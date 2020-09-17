@@ -4,6 +4,8 @@
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma"
-    ]
-  }
+    ],
+    "outFile": "./index.js"
+  },
+  "include": ["src/*"]
 }

@@ -4,8 +4,14 @@
   "description": "Your Figma Plugin",
   "main": "code.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "start": "npm run build-watch",
+    "build": "tsc -p tsconfig.json",
+    "build-watch": "npm run test && tsc --watch -p tsconfig.json",
+    "test": "tsc --noEmit"
   },
   "author": "",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.16.1"
+  }
 }
