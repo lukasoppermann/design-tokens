@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "description": "Your Figma Plugin",
   "main": "code.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/lukasoppermann/design-tokens.git"
+  },  
   "scripts": {
     "start": "npm run build-watch",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc-bundle tsconfig.json",
     "build-watch": "npm run test && tsc --watch -p tsconfig.json",
     "test": "tsc --noEmit"
   },
-  "author": "",
-  "license": "",
+  "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
+  "license": "MIT",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.16.1"
+    "@figma/plugin-typings": "^1.16.1",
+    "typescript-bundle": "^1.0.16"
   }
 }

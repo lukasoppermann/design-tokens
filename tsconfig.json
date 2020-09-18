@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "lib": ["es6", "es2017", "dom"],
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma"
     ],
-    "outFile": "./index.js"
+    "outFile": "./dist/plugin.js",
+    "sourceMap": false
   },
-  "include": ["src/*"]
+  "files": ["src/index.ts"]
 }

@@ -2,7 +2,7 @@
   "name": "Design Tokens",
   "id": "888356646278934516",
   "api": "1.0.0",
-  "main": "index.js",
+  "main": "dist/plugin.js",
   "ui": "ui.html",
   "menu": [
     {"name": "Export Design Tokens", "command": "export"},

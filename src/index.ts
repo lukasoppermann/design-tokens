@@ -1,26 +1,12 @@
+import exportTokens from './exportTokens'
 // This plugin will open a modal to prompt the user to enter a number, and
 // it will then create that many rectangles on the screen.
 
 figma.showUI(__html__, {visible: false})
 
-const exportTokens = () => {
-  const count = 5
-  const nodes: SceneNode[] = [];
-  for (let i = 0; i < count; i++) {
-    const rect = figma.createRectangle();
-    rect.x = i * 150;
-    rect.fills = [{type: 'SOLID', color: {r: 1, g: 0.5, b: 0}}];
-    figma.currentPage.appendChild(rect);
-    nodes.push(rect);
-  }
-  figma.currentPage.selection = nodes;
-  figma.viewport.scrollAndZoomIntoView(nodes);
-}
-
 // This file holds the main code for the plugins. It has access to the *document*.
 // You can access browser APIs in the <script> tag inside "ui.html" which has a
 // full browser environment (see documentation).
-console.log(figma.command)
 
 if(figma.command === 'export') {
   exportTokens()
