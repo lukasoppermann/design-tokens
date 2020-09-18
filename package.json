@@ -10,8 +10,8 @@
   "scripts": {
     "start": "npm run build-watch",
     "build": "tsc-bundle tsconfig.json",
-    "build-watch": "npm run test && tsc --watch -p tsconfig.json",
-    "test": "tsc --noEmit"
+    "build-watch": "npm run test && npm run build -- --watch",
+    "test": "tsc src/index.ts --target es6 --noEmit --typeRoots \"./node_modules/@types,./node_modules/@figma\""
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",
