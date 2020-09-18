@@ -9,33 +9,6 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
-    define("exportTokens", ["require", "exports"], function (require, exports) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const drawSquares = (count) => {
-            const nodes = [];
-            for (let i = 0; i < count; i++) {
-                const rect = figma.createRectangle();
-                rect.x = i * 150;
-                rect.fills = [{ type: 'SOLID', color: { r: 1, g: 0.5, b: 0.25 } }];
-                figma.currentPage.appendChild(rect);
-                nodes.push(rect);
-            }
-            figma.currentPage.selection = nodes;
-            figma.viewport.scrollAndZoomIntoView(nodes);
-        };
-        const tokenExport = () => {
-            drawSquares(5);
-            // writeJson(figma.getLocalPaintStyles())
-            // console.log([0])
-            // console.log(figma.getStyleById(figma.getLocalPaintStyles()[0].id).name)
-            // console.log(figma.getLocalTextStyles())
-            // console.log(figma.getLocalEffectStyles())
-            // console.log(figma.getLocalGridStyles())
-            return figma.getLocalPaintStyles();
-        };
-        exports.default = tokenExport;
-    });
     define("writeJson", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -53,7 +26,98 @@
         };
         exports.default = writeJson;
     });
-    define("index", ["require", "exports", "exportTokens", "writeJson"], function (require, exports, exportTokens_1, writeJson_1) {
+    define("getColors", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getColors = () => {
+            const paintStyles = figma.getLocalPaintStyles();
+            return paintStyles.map(item => ({
+                id: item.id,
+                name: item.name,
+                description: item.description,
+                paints: item.paints
+            }));
+        };
+        exports.default = getColors;
+    });
+    define("getGrids", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getGrids = () => {
+            // get styles
+            const gridStyles = figma.getLocalGridStyles();
+            // transform styles
+            return gridStyles.map(item => ({
+                id: item.id,
+                name: item.name,
+                description: item.description,
+                grids: item.layoutGrids
+            }));
+        };
+        exports.default = getGrids;
+    });
+    define("getFonts", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getFonts = () => {
+            const textStyles = figma.getLocalTextStyles();
+            return textStyles.map(item => ({
+                id: item.id,
+                name: item.name,
+                description: item.description,
+                fontSize: item.fontSize,
+                textDecoration: item.textDecoration,
+                fontName: item.fontName,
+                letterSpacing: item.letterSpacing,
+                lineHeight: item.lineHeight,
+                paragraphIndent: item.paragraphIndent,
+                paragraphSpacing: item.paragraphSpacing,
+                textCase: item.textCase
+            }));
+        };
+        exports.default = getFonts;
+    });
+    define("getEffects", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getEffects = () => {
+            // get styles
+            const effectStyles = figma.getLocalEffectStyles();
+            // transform styles
+            return effectStyles.map(item => ({
+                id: item.id,
+                name: item.name,
+                description: item.description,
+                effects: item.effects
+            }));
+        };
+        exports.default = getEffects;
+    });
+    define("exportTokens", ["require", "exports", "writeJson", "getColors", "getGrids", "getFonts", "getEffects"], function (require, exports, writeJson_1, getColors_1, getGrids_1, getFonts_1, getEffects_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const tokenExport = () => {
+            // writeJson(figma.getLocalPaintStyles())
+            // console.log([0])
+            // console.log(figma.getStyleById(figma.getLocalPaintStyles()[0].id).name)
+            // console.log(figma.getLocalTextStyles())
+            // console.log(figma.getLocalEffectStyles())
+            // console.log(figma.getLocalGridStyles())
+            // return figma.getLocalPaintStyles()
+            const colors = getColors_1.default();
+            const grids = getGrids_1.default();
+            const fonts = getFonts_1.default();
+            const effects = getEffects_1.default();
+            writeJson_1.default({
+                colors: colors,
+                grids: grids,
+                fonts: fonts,
+                effects: effects
+            });
+        };
+        exports.default = tokenExport;
+    });
+    define("index", ["require", "exports", "exportTokens"], function (require, exports, exportTokens_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // register the UI 
@@ -71,9 +135,10 @@
         console.log("Figma plugin command:" + figma.command);
         if (figma.command === 'export') {
             console.log("Running export");
-            const tokens = exportTokens_1.default();
+            exportTokens_1.default();
+            // const tokens = exportTokens()
             // console.log(tokens)
-            writeJson_1.default(tokens);
+            // writeJson(tokens)
             // always run closePlugin otherwise the plugin will keep running
         }
         // SETTINGS

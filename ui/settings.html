@@ -45,13 +45,12 @@ const downloadJson = (json, filename) => {
   // Return the anchor element
   // Useful if you want a reference to the element
   // in order to attach it to the DOM or use it in some other way
-  return a;
+  // return a;
 }
 
 onmessage = (event) => {
   let message = event.data.pluginMessage
   if (message.command === "export") {
-    console.log(message)
     downloadJson(message.data.data, message.data.filename)
     parent.postMessage({ pluginMessage: 'closePlugin' }, '*')
   }

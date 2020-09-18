@@ -1,6 +1,5 @@
 // imports
 import exportTokens from './exportTokens'
-import writeJson from './writeJson'
 // register the UI 
 // by default it is hidden
 figma.showUI(__html__, {visible: false})
@@ -17,9 +16,10 @@ figma.showUI(__html__, {visible: false})
 console.log("Figma plugin command:" + figma.command)
 if(figma.command === 'export') {
   console.log("Running export")
-  const tokens = exportTokens()
+  exportTokens()
+  // const tokens = exportTokens()
   // console.log(tokens)
-  writeJson(tokens)
+  // writeJson(tokens)
   // always run closePlugin otherwise the plugin will keep running
 }
 // SETTINGS
