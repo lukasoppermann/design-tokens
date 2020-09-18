@@ -4,9 +4,9 @@
   "description": "Your Figma Plugin",
   "main": "code.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/lukasoppermann/design-tokens.git"
-  },  
+    "type": "git",
+    "url": "https://github.com/lukasoppermann/design-tokens.git"
+  },
   "scripts": {
     "start": "npm run build-watch",
     "build": "tsc-bundle tsconfig.json",
@@ -18,5 +18,8 @@
   "devDependencies": {
     "@figma/plugin-typings": "^1.16.1",
     "typescript-bundle": "^1.0.16"
+  },
+  "dependencies": {
+    "@types/node": "^14.11.1"
   }
 }

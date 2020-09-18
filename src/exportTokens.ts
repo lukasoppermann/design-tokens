@@ -13,11 +13,13 @@ const drawSquares = (count) => {
 
 const tokenExport = () => {
   drawSquares(5)
-  console.log(figma.getLocalPaintStyles()[0])
-  console.log(figma.getStyleById(figma.getLocalPaintStyles()[0].id).name)
-  console.log(figma.getLocalTextStyles())
-  console.log(figma.getLocalEffectStyles())
-  console.log(figma.getLocalGridStyles())
+  // writeJson(figma.getLocalPaintStyles())
+  // console.log([0])
+  // console.log(figma.getStyleById(figma.getLocalPaintStyles()[0].id).name)
+  // console.log(figma.getLocalTextStyles())
+  // console.log(figma.getLocalEffectStyles())
+  // console.log(figma.getLocalGridStyles())
+  return figma.getLocalPaintStyles()
 }
 
 export default tokenExport

@@ -26,35 +26,68 @@
         };
         const tokenExport = () => {
             drawSquares(5);
-            console.log(figma.getLocalPaintStyles()[0]);
-            console.log(figma.getStyleById(figma.getLocalPaintStyles()[0].id).name);
-            console.log(figma.getLocalTextStyles());
-            console.log(figma.getLocalEffectStyles());
-            console.log(figma.getLocalGridStyles());
+            // writeJson(figma.getLocalPaintStyles())
+            // console.log([0])
+            // console.log(figma.getStyleById(figma.getLocalPaintStyles()[0].id).name)
+            // console.log(figma.getLocalTextStyles())
+            // console.log(figma.getLocalEffectStyles())
+            // console.log(figma.getLocalGridStyles())
+            return figma.getLocalPaintStyles();
         };
         exports.default = tokenExport;
     });
-    define("index", ["require", "exports", "exportTokens"], function (require, exports, exportTokens_1) {
+    define("writeJson", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const writeJson = (json) => {
+            // convert json to string
+            const jsonString = JSON.stringify(json, null, 2);
+            console.log('writeJson');
+            figma.ui.postMessage({
+                command: "export",
+                data: {
+                    filename: "design-tokens.json",
+                    data: jsonString
+                }
+            });
+        };
+        exports.default = writeJson;
+    });
+    define("index", ["require", "exports", "exportTokens", "writeJson"], function (require, exports, exportTokens_1, writeJson_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // register the UI 
         // by default it is hidden
         figma.showUI(__html__, { visible: false });
+        // const ui = {
+        //   settings: figma.showUI(__uiFiles__.settings, {visible: false}),
+        //   utilities: figma.showUI(__uiFiles__.utilities, {visible: false})
+        // }
         // figma.command is the menu item executed from the plugin menu
         // run different functions depending on the provided command
         //
         // EXPORT
         // exports the design tokens
+        console.log("Figma plugin command:" + figma.command);
         if (figma.command === 'export') {
-            exportTokens_1.default();
+            console.log("Running export");
+            const tokens = exportTokens_1.default();
+            // console.log(tokens)
+            writeJson_1.default(tokens);
             // always run closePlugin otherwise the plugin will keep running
-            figma.closePlugin();
         }
         // SETTINGS
         // settings for the design tokens
         if (figma.command === 'settings') {
             figma.ui.show();
         }
+        figma.ui.onmessage = (message) => {
+            console.log(message);
+            if (message === 'closePlugin') {
+                console.log('closing plugin');
+                figma.closePlugin();
+            }
+        };
     });
     
     'marker:resolver';
