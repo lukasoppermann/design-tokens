@@ -1,14 +1,15 @@
 const getGrids = () => {
-  // get styles
-  const gridStyles = figma.getLocalGridStyles()
-  // transform styles
-  return gridStyles.map(item => ({
+  // get grid styles
+  const gridStyles = figma.getLocalGridStyles().map(item => ({
     id: item.id,
     name: item.name,
     description: item.description,
     grids: item.layoutGrids
   }))
-
+  // return as object
+  return {
+    grids: gridStyles
+  }
 }
 
 export default getGrids

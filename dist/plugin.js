@@ -30,13 +30,17 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getColors = () => {
-            const paintStyles = figma.getLocalPaintStyles();
-            return paintStyles.map(item => ({
+            // get all paint styles
+            const paintStyles = figma.getLocalPaintStyles().map(item => ({
                 id: item.id,
                 name: item.name,
                 description: item.description,
                 paints: item.paints
             }));
+            // return as object
+            return {
+                colors: paintStyles
+            };
         };
         exports.default = getColors;
     });
@@ -44,15 +48,17 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getGrids = () => {
-            // get styles
-            const gridStyles = figma.getLocalGridStyles();
-            // transform styles
-            return gridStyles.map(item => ({
+            // get grid styles
+            const gridStyles = figma.getLocalGridStyles().map(item => ({
                 id: item.id,
                 name: item.name,
                 description: item.description,
                 grids: item.layoutGrids
             }));
+            // return as object
+            return {
+                grids: gridStyles
+            };
         };
         exports.default = getGrids;
     });
@@ -60,8 +66,8 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getFonts = () => {
-            const textStyles = figma.getLocalTextStyles();
-            return textStyles.map(item => ({
+            // get raw text styles
+            const textStyles = figma.getLocalTextStyles().map(item => ({
                 id: item.id,
                 name: item.name,
                 description: item.description,
@@ -74,6 +80,10 @@
                 paragraphSpacing: item.paragraphSpacing,
                 textCase: item.textCase
             }));
+            // return as object
+            return {
+                fonts: textStyles
+            };
         };
         exports.default = getFonts;
     });
@@ -81,39 +91,153 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getEffects = () => {
-            // get styles
-            const effectStyles = figma.getLocalEffectStyles();
-            // transform styles
-            return effectStyles.map(item => ({
+            // get effect styles
+            const effectStyles = figma.getLocalEffectStyles().map(item => ({
                 id: item.id,
                 name: item.name,
                 description: item.description,
                 effects: item.effects
             }));
+            // return as object
+            return {
+                effects: effectStyles
+            };
         };
         exports.default = getEffects;
     });
-    define("exportTokens", ["require", "exports", "writeJson", "getColors", "getGrids", "getFonts", "getEffects"], function (require, exports, writeJson_1, getColors_1, getGrids_1, getFonts_1, getEffects_1) {
+    define("getSpacers", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getSpacers = tokenNodes => {
+            const nodeName = 'spacers';
+            console.log(figma.root);
+            // return spacings.map(item => ({
+            //   id: item.id,
+            //   name: item.name,
+            //   description: item.description,
+            //   fontSize: item.fontSize,
+            //   textDecoration: item.textDecoration,
+            //   fontName: item.fontName,
+            //   letterSpacing: item.letterSpacing,
+            //   lineHeight: item.lineHeight,
+            //   paragraphIndent: item.paragraphIndent,
+            //   paragraphSpacing: item.paragraphSpacing,
+            //   textCase: item.textCase
+            // }))
+            return {
+                spacers: []
+            };
+        };
+        exports.default = getSpacers;
+    });
+    define("getSizes", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getSizes = tokenNodes => {
+            const nodeName = 'sizes';
+            // return spacings.map(item => ({
+            //   id: item.id,
+            //   name: item.name,
+            //   description: item.description,
+            //   fontSize: item.fontSize,
+            //   textDecoration: item.textDecoration,
+            //   fontName: item.fontName,
+            //   letterSpacing: item.letterSpacing,
+            //   lineHeight: item.lineHeight,
+            //   paragraphIndent: item.paragraphIndent,
+            //   paragraphSpacing: item.paragraphSpacing,
+            //   textCase: item.textCase
+            // }))
+            return {
+                sizes: []
+            };
+        };
+        exports.default = getSizes;
+    });
+    define("getBorders", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getBorders = tokenNodes => {
+            const nodeName = 'borders';
+            console.log(figma.root);
+            // return spacings.map(item => ({
+            //   id: item.id,
+            //   name: item.name,
+            //   description: item.description,
+            //   fontSize: item.fontSize,
+            //   textDecoration: item.textDecoration,
+            //   fontName: item.fontName,
+            //   letterSpacing: item.letterSpacing,
+            //   lineHeight: item.lineHeight,
+            //   paragraphIndent: item.paragraphIndent,
+            //   paragraphSpacing: item.paragraphSpacing,
+            //   textCase: item.textCase
+            // }))
+            return {
+                borders: []
+            };
+        };
+        exports.default = getBorders;
+    });
+    define("getRadii", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getRadii = tokenNodes => {
+            const nodeName = 'radii';
+            console.log(figma.root);
+            // return spacings.map(item => ({
+            //   id: item.id,
+            //   name: item.name,
+            //   description: item.description,
+            //   fontSize: item.fontSize,
+            //   textDecoration: item.textDecoration,
+            //   fontName: item.fontName,
+            //   letterSpacing: item.letterSpacing,
+            //   lineHeight: item.lineHeight,
+            //   paragraphIndent: item.paragraphIndent,
+            //   paragraphSpacing: item.paragraphSpacing,
+            //   textCase: item.textCase
+            // }))
+            return {
+                radii: []
+            };
+        };
+        exports.default = getRadii;
+    });
+    define("getCustomTokens", ["require", "exports", "getSpacers", "getSizes", "getBorders", "getRadii"], function (require, exports, getSpacers_1, getSizes_1, getBorders_1, getRadii_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        // the node types that can be used for tokens
+        const tokenNodeTypes = [
+            'COMPONENT',
+            'RECTANGLE'
+        ];
+        // the name that token frames have
+        const tokenFrameName = '_tokens';
+        // check if a frame is a _token frame
+        const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, tokenFrameName.length) === tokenFrameName;
+        // check if a node is a valid token node
+        const isTokenNode = node => tokenNodeTypes.includes(node.type);
+        // get the tokens from the token frames and return custom tokens
+        const getCustomTokens = () => {
+            // get token frames
+            const tokenFrames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
+            // get all children of token frames
+            const tokens = tokenFrames.map(frame => frame.findChildren(node => isTokenNode(node))).reduce((flatten, arr) => [...flatten, ...arr]);
+            // return tokens
+            return (Object.assign(Object.assign(Object.assign(Object.assign({}, getSpacers_1.default(tokens)), getSizes_1.default(tokens)), getBorders_1.default(tokens)), getRadii_1.default(tokens)));
+        };
+        exports.default = getCustomTokens;
+    });
+    define("exportTokens", ["require", "exports", "writeJson", "getColors", "getGrids", "getFonts", "getEffects", "getCustomTokens"], function (require, exports, writeJson_1, getColors_1, getGrids_1, getFonts_1, getEffects_1, getCustomTokens_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const tokenExport = () => {
-            // writeJson(figma.getLocalPaintStyles())
-            // console.log([0])
-            // console.log(figma.getStyleById(figma.getLocalPaintStyles()[0].id).name)
-            // console.log(figma.getLocalTextStyles())
-            // console.log(figma.getLocalEffectStyles())
-            // console.log(figma.getLocalGridStyles())
-            // return figma.getLocalPaintStyles()
-            const colors = getColors_1.default();
-            const grids = getGrids_1.default();
-            const fonts = getFonts_1.default();
-            const effects = getEffects_1.default();
-            writeJson_1.default({
-                colors: colors,
-                grids: grids,
-                fonts: fonts,
-                effects: effects
-            });
+            // get tokens
+            const rawTokens = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, getCustomTokens_1.default()), getColors_1.default()), getGrids_1.default()), getFonts_1.default()), getEffects_1.default());
+            console.log(rawTokens);
+            // write tokens to json file
+            writeJson_1.default(rawTokens);
         };
         exports.default = tokenExport;
     });
@@ -144,6 +268,9 @@
         // SETTINGS
         // settings for the design tokens
         if (figma.command === 'settings') {
+            const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, 7) === '_tokens';
+            const frames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
+            console.log(frames.map(frame => frame.children));
             figma.ui.show();
         }
         figma.ui.onmessage = (message) => {

@@ -1,6 +1,6 @@
 const getFonts = () => {
-  const textStyles = figma.getLocalTextStyles()
-  return textStyles.map(item => ({
+  // get raw text styles
+  const textStyles = figma.getLocalTextStyles().map(item => ({
     id: item.id,
     name: item.name,
     description: item.description,
@@ -13,6 +13,10 @@ const getFonts = () => {
     paragraphSpacing: item.paragraphSpacing,
     textCase: item.textCase
   }))
+  // return as object
+  return {
+    fonts: textStyles
+  }
 
 }
 

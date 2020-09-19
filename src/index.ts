@@ -25,6 +25,9 @@ if(figma.command === 'export') {
 // SETTINGS
 // settings for the design tokens
 if(figma.command === 'settings') {
+  const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0,7) === '_tokens'
+  const frames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr])
+  console.log(frames.map(frame => frame.children))
   figma.ui.show()
 }
 
