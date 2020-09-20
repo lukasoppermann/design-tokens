@@ -5,6 +5,7 @@ import getFonts from './getFonts'
 import getEffects from './getEffects'
 import getCustomTokens from './getCustomTokens'
 
+
 const tokenExport = () => {
   // get tokens
   const rawTokens = { 
@@ -15,7 +16,8 @@ const tokenExport = () => {
     ...getEffects()
   }
   
-  console.log(rawTokens)
+  console.log('Raw Tokens', rawTokens)
+  
   // write tokens to json file
   writeJson(rawTokens)
 }

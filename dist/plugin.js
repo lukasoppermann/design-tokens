@@ -15,7 +15,7 @@
         const writeJson = (json) => {
             // convert json to string
             const jsonString = JSON.stringify(json, null, 2);
-            console.log('writeJson');
+            // send json string to ui to prompt download
             figma.ui.postMessage({
                 command: "export",
                 data: {
@@ -26,7 +26,66 @@
         };
         exports.default = writeJson;
     });
-    define("getColors", ["require", "exports"], function (require, exports) {
+    define("utilities/deepMerge", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        /**
+         * Performs a deep merge of `source` into `target`.
+         * Mutates `target` only but not its objects and arrays.
+         *
+         * @author inspired by [jhildenbiddle](https://stackoverflow.com/a/48218209).
+         */
+        const deepMerge = (target, source) => {
+            // function to test if a variable is an object
+            const isObject = (obj) => obj && typeof obj === 'object';
+            // make sure both the target and the source are objects
+            // otherwise return source
+            if (!isObject(target) || !isObject(source)) {
+                return source;
+            }
+            // iteratre over source
+            Object.keys(source).forEach(key => {
+                // get values from both target and source for the given key
+                const targetValue = target[key];
+                const sourceValue = source[key];
+                // merge both values
+                if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
+                    target[key] = targetValue.concat(sourceValue);
+                }
+                else if (isObject(targetValue) && isObject(sourceValue)) {
+                    target[key] = deepMerge(Object.assign({}, targetValue), sourceValue);
+                }
+                else {
+                    target[key] = sourceValue;
+                }
+            });
+            // return merge object
+            return target;
+        };
+        exports.default = deepMerge;
+    });
+    define("groupTokensByName", ["require", "exports", "utilities/deepMerge"], function (require, exports, deepMerge_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        // create a nested object structure from the array (['style','colors','main','red'])
+        const nestedObjectFromArray = (array, value) => array.reduceRight((value, key) => ({ [key]: value }), value);
+        const groupTokensByName = tokenArray => {
+            // nest tokens into object with hierachy defined by name using /
+            const groupedTokens = tokenArray.map(token => {
+                // split token name into array
+                // remove leading and following whitespace for every item
+                // transform items to lowerCase
+                const groups = token.name.split('/').map(group => group.trim().toLowerCase());
+                // return 
+                return nestedObjectFromArray(groups, token);
+            });
+            console.log(groupedTokens);
+            const merged = groupedTokens.reduce((accumulator = {}, currentValue) => deepMerge_1.default(accumulator, currentValue));
+            console.log(merged);
+        };
+        exports.default = groupTokensByName;
+    });
+    define("getColors", ["require", "exports", "groupTokensByName"], function (require, exports, groupTokensByName_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getColors = () => {
@@ -39,7 +98,7 @@
             }));
             // return as object
             return {
-                colors: paintStyles
+                colors: groupTokensByName_1.default(paintStyles)
             };
         };
         exports.default = getColors;
@@ -110,22 +169,16 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         const getSpacers = tokenNodes => {
             const nodeName = 'spacers';
-            console.log(figma.root);
-            // return spacings.map(item => ({
-            //   id: item.id,
-            //   name: item.name,
-            //   description: item.description,
-            //   fontSize: item.fontSize,
-            //   textDecoration: item.textDecoration,
-            //   fontName: item.fontName,
-            //   letterSpacing: item.letterSpacing,
-            //   lineHeight: item.lineHeight,
-            //   paragraphIndent: item.paragraphIndent,
-            //   paragraphSpacing: item.paragraphSpacing,
-            //   textCase: item.textCase
-            // }))
+            // return as object
+            const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+                name: node.name,
+                description: node.description || null,
+                width: node.width,
+                height: node.height
+            }));
+            // return as object
             return {
-                spacers: []
+                [nodeName]: relevantTokenNodes
             };
         };
         exports.default = getSpacers;
@@ -135,21 +188,16 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         const getSizes = tokenNodes => {
             const nodeName = 'sizes';
-            // return spacings.map(item => ({
-            //   id: item.id,
-            //   name: item.name,
-            //   description: item.description,
-            //   fontSize: item.fontSize,
-            //   textDecoration: item.textDecoration,
-            //   fontName: item.fontName,
-            //   letterSpacing: item.letterSpacing,
-            //   lineHeight: item.lineHeight,
-            //   paragraphIndent: item.paragraphIndent,
-            //   paragraphSpacing: item.paragraphSpacing,
-            //   textCase: item.textCase
-            // }))
+            // return as object
+            const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+                name: node.name,
+                description: node.description || null,
+                width: node.width,
+                height: node.height
+            }));
+            // return as object
             return {
-                sizes: []
+                [nodeName]: relevantTokenNodes
             };
         };
         exports.default = getSizes;
@@ -159,22 +207,21 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         const getBorders = tokenNodes => {
             const nodeName = 'borders';
-            console.log(figma.root);
-            // return spacings.map(item => ({
-            //   id: item.id,
-            //   name: item.name,
-            //   description: item.description,
-            //   fontSize: item.fontSize,
-            //   textDecoration: item.textDecoration,
-            //   fontName: item.fontName,
-            //   letterSpacing: item.letterSpacing,
-            //   lineHeight: item.lineHeight,
-            //   paragraphIndent: item.paragraphIndent,
-            //   paragraphSpacing: item.paragraphSpacing,
-            //   textCase: item.textCase
-            // }))
+            // return as object
+            const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+                name: node.name,
+                description: node.description || null,
+                strokeAlign: node.strokeAlign.toLowerCase,
+                strokeCap: node.strokeCap.toLowerCase,
+                strokeJoin: node.strokeJoin.toLowerCase,
+                strokeMiterLimit: node.strokeMiterLimit,
+                strokeStyleId: node.strokeStyleId,
+                strokeWeight: node.strokeWeight,
+                strokes: node.strokes
+            }));
+            // return as object
             return {
-                borders: []
+                [nodeName]: relevantTokenNodes
             };
         };
         exports.default = getBorders;
@@ -184,22 +231,42 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         const getRadii = tokenNodes => {
             const nodeName = 'radii';
-            console.log(figma.root);
-            // return spacings.map(item => ({
-            //   id: item.id,
-            //   name: item.name,
-            //   description: item.description,
-            //   fontSize: item.fontSize,
-            //   textDecoration: item.textDecoration,
-            //   fontName: item.fontName,
-            //   letterSpacing: item.letterSpacing,
-            //   lineHeight: item.lineHeight,
-            //   paragraphIndent: item.paragraphIndent,
-            //   paragraphSpacing: item.paragraphSpacing,
-            //   textCase: item.textCase
-            // }))
+            // get the type of the corner radius
+            const getRadiusType = radius => {
+                if (typeof radius === 'number') {
+                    return 'single';
+                }
+                return 'mixed';
+            };
+            // get the individual radii
+            const getRadii = (node) => {
+                if (typeof node.cornerRadius !== 'number') {
+                    return {
+                        topLeft: node.topLeftRadius || 0,
+                        topRight: node.topRightRadius || 0,
+                        bottomRight: node.bottomRightRadius || 0,
+                        bottomLeft: node.bottomLeftRadius || 0
+                    };
+                }
+                return {
+                    topLeft: node.cornerRadius,
+                    topRight: node.cornerRadius,
+                    bottomRight: node.cornerRadius,
+                    bottomLeft: node.cornerRadius
+                };
+            };
+            // return as object
+            const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+                name: node.name,
+                description: node.description || null,
+                radius: node.cornerRadius,
+                radiusType: getRadiusType(node.cornerRadius),
+                radii: getRadii(node),
+                smoothing: node.cornerSmoothing
+            }));
+            // return as object
             return {
-                radii: []
+                [nodeName]: relevantTokenNodes
             };
         };
         exports.default = getRadii;
@@ -216,12 +283,14 @@
         const tokenFrameName = '_tokens';
         // check if a frame is a _token frame
         const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, tokenFrameName.length) === tokenFrameName;
+        // return only nodes that are frames
+        const getFrameNodes = (nodes) => nodes.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
         // check if a node is a valid token node
         const isTokenNode = node => tokenNodeTypes.includes(node.type);
         // get the tokens from the token frames and return custom tokens
         const getCustomTokens = () => {
             // get token frames
-            const tokenFrames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
+            const tokenFrames = getFrameNodes(figma.root.children);
             // get all children of token frames
             const tokens = tokenFrames.map(frame => frame.findChildren(node => isTokenNode(node))).reduce((flatten, arr) => [...flatten, ...arr]);
             // return tokens
@@ -235,7 +304,7 @@
         const tokenExport = () => {
             // get tokens
             const rawTokens = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, getCustomTokens_1.default()), getColors_1.default()), getGrids_1.default()), getFonts_1.default()), getEffects_1.default());
-            console.log(rawTokens);
+            console.log('Raw Tokens', rawTokens);
             // write tokens to json file
             writeJson_1.default(rawTokens);
         };
@@ -256,12 +325,9 @@
         //
         // EXPORT
         // exports the design tokens
-        console.log("Figma plugin command:" + figma.command);
         if (figma.command === 'export') {
-            console.log("Running export");
             exportTokens_1.default();
             // const tokens = exportTokens()
-            // console.log(tokens)
             // writeJson(tokens)
             // always run closePlugin otherwise the plugin will keep running
         }
@@ -270,14 +336,11 @@
         if (figma.command === 'settings') {
             const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, 7) === '_tokens';
             const frames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
-            console.log(frames.map(frame => frame.children));
             figma.ui.show();
         }
         figma.ui.onmessage = (message) => {
-            console.log(message);
             if (message === 'closePlugin') {
-                console.log('closing plugin');
-                figma.closePlugin();
+                // figma.closePlugin()
             }
         };
     });

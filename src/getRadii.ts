@@ -1,21 +1,41 @@
 const getRadii = tokenNodes => {
   const nodeName = 'radii'
-  console.log(figma.root)
-  // return spacings.map(item => ({
-  //   id: item.id,
-  //   name: item.name,
-  //   description: item.description,
-  //   fontSize: item.fontSize,
-  //   textDecoration: item.textDecoration,
-  //   fontName: item.fontName,
-  //   letterSpacing: item.letterSpacing,
-  //   lineHeight: item.lineHeight,
-  //   paragraphIndent: item.paragraphIndent,
-  //   paragraphSpacing: item.paragraphSpacing,
-  //   textCase: item.textCase
-  // }))
+  // get the type of the corner radius
+  const getRadiusType = radius => {
+    if (typeof radius === 'number') {
+      return 'single'
+    }
+    return 'mixed'
+  }
+  // get the individual radii
+  const getRadii = (node) => {
+    if (typeof node.cornerRadius !== 'number') {
+      return {
+        topLeft: node.topLeftRadius || 0,
+        topRight: node.topRightRadius || 0,
+        bottomRight: node.bottomRightRadius || 0,
+        bottomLeft: node.bottomLeftRadius || 0
+      }
+    }
+    return {
+      topLeft: node.cornerRadius,
+      topRight: node.cornerRadius,
+      bottomRight: node.cornerRadius,
+      bottomLeft: node.cornerRadius
+    }
+  }
+  // return as object
+  const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
+    name: node.name,
+    description: node.description || null,
+    radius: node.cornerRadius,
+    radiusType: getRadiusType(node.cornerRadius),
+    radii: getRadii(node),
+    smoothing: node.cornerSmoothing
+  }))  
+  // return as object
   return {
-    radii: []
+    [nodeName]: relevantTokenNodes
   }
 
 }

@@ -1,7 +1,7 @@
 const writeJson = (json) => {
   // convert json to string
   const jsonString = JSON.stringify(json, null, 2)
-  console.log('writeJson')
+  // send json string to ui to prompt download
   figma.ui.postMessage({
     command: "export",
     data: {

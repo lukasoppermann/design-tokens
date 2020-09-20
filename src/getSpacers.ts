@@ -1,23 +1,16 @@
 const getSpacers = tokenNodes => {
   const nodeName = 'spacers'
-  console.log(figma.root)
-  // return spacings.map(item => ({
-  //   id: item.id,
-  //   name: item.name,
-  //   description: item.description,
-  //   fontSize: item.fontSize,
-  //   textDecoration: item.textDecoration,
-  //   fontName: item.fontName,
-  //   letterSpacing: item.letterSpacing,
-  //   lineHeight: item.lineHeight,
-  //   paragraphIndent: item.paragraphIndent,
-  //   paragraphSpacing: item.paragraphSpacing,
-  //   textCase: item.textCase
-  // }))
+  // return as object
+  const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
+    name: node.name,
+    description: node.description || null,
+    width: node.width,
+    height: node.height
+  }))
+  // return as object
   return {
-    spacers: []
+    [nodeName]: relevantTokenNodes
   }
-
 }
 
 export default getSpacers

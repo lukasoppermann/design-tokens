@@ -1,3 +1,5 @@
+import groupTokensByName from './groupTokensByName'
+
 const getColors = () => {
   // get all paint styles
   const paintStyles = figma.getLocalPaintStyles().map(item => ({
@@ -8,7 +10,7 @@ const getColors = () => {
   }))
   // return as object
   return {
-    colors: paintStyles
+    colors: groupTokensByName(paintStyles)
   }
 
 }
