@@ -1,4 +1,4 @@
-import groupTokensByName from './groupTokensByName'
+import groupByName from '../utilities/groupByName'
 
 const getColors = () => {
   // get all paint styles
@@ -9,9 +9,7 @@ const getColors = () => {
     paints: item.paints
   }))
   // return as object
-  return {
-    colors: groupTokensByName(paintStyles)
-  }
+  return groupByName(paintStyles)
 
 }
 

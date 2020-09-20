@@ -1,7 +1,7 @@
-import getSpacers from './getSpacers'
-import getSizes from './getSizes'
-import getBorders from './getBorders'
-import getRadii from './getRadii'
+import extractSpacers from './extractSpacers'
+import extractSizes from './extractSizes'
+import extractBorders from './extractBorders'
+import extractRadii from './extractRadii'
 
 // the node types that can be used for tokens
 const tokenNodeTypes = [
@@ -28,10 +28,10 @@ const getCustomTokens = () => {
   const tokens = tokenFrames.map(frame => frame.findChildren(node => isTokenNode(node))).reduce((flatten, arr) => [...flatten, ...arr])
   // return tokens
   return ({
-    ...getSpacers(tokens),
-    ...getSizes(tokens),
-    ...getBorders(tokens),
-    ...getRadii(tokens)
+    ...extractSpacers(tokens),
+    ...extractSizes(tokens),
+    ...extractBorders(tokens),
+    ...extractRadii(tokens)
   })
 }
 

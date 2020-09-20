@@ -1,4 +1,6 @@
-const getRadii = tokenNodes => {
+import groupByName from '../utilities/groupByName'
+
+const extractRadii = tokenNodes => {
   const nodeName = 'radii'
   // get the type of the corner radius
   const getRadiusType = radius => {
@@ -34,10 +36,8 @@ const getRadii = tokenNodes => {
     smoothing: node.cornerSmoothing
   }))  
   // return as object
-  return {
-    [nodeName]: relevantTokenNodes
-  }
+  return groupByName(relevantTokenNodes)
 
 }
 
-export default getRadii
+export default extractRadii

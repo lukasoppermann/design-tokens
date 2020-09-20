@@ -1,5 +1,7 @@
-const getSizes = tokenNodes => {
-  const nodeName = 'sizes'
+import groupByName from '../utilities/groupByName'
+
+const extractSpacers = tokenNodes => {
+  const nodeName = 'spacers'
   // return as object
   const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
     name: node.name,
@@ -8,9 +10,7 @@ const getSizes = tokenNodes => {
     height: node.height
   }))
   // return as object
-  return {
-    [nodeName]: relevantTokenNodes
-  }
+  return groupByName(relevantTokenNodes)
 }
 
-export default getSizes
+export default extractSpacers

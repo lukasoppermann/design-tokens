@@ -9,23 +9,6 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
-    define("writeJson", ["require", "exports"], function (require, exports) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const writeJson = (json) => {
-            // convert json to string
-            const jsonString = JSON.stringify(json, null, 2);
-            // send json string to ui to prompt download
-            figma.ui.postMessage({
-                command: "export",
-                data: {
-                    filename: "design-tokens.json",
-                    data: jsonString
-                }
-            });
-        };
-        exports.default = writeJson;
-    });
     define("utilities/deepMerge", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -64,28 +47,27 @@
         };
         exports.default = deepMerge;
     });
-    define("groupTokensByName", ["require", "exports", "utilities/deepMerge"], function (require, exports, deepMerge_1) {
+    define("utilities/groupByName", ["require", "exports", "utilities/deepMerge"], function (require, exports, deepMerge_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // create a nested object structure from the array (['style','colors','main','red'])
         const nestedObjectFromArray = (array, value) => array.reduceRight((value, key) => ({ [key]: value }), value);
-        const groupTokensByName = tokenArray => {
+        const groupByName = tokenArray => {
             // nest tokens into object with hierachy defined by name using /
             const groupedTokens = tokenArray.map(token => {
                 // split token name into array
                 // remove leading and following whitespace for every item
                 // transform items to lowerCase
-                const groups = token.name.split('/').map(group => group.trim().toLowerCase());
+                const groupsFromName = token.name.split('/').map(group => group.trim().toLowerCase());
                 // return 
-                return nestedObjectFromArray(groups, token);
+                return nestedObjectFromArray(groupsFromName, token);
             });
-            console.log(groupedTokens);
-            const merged = groupedTokens.reduce((accumulator = {}, currentValue) => deepMerge_1.default(accumulator, currentValue));
-            console.log(merged);
+            // return merged object of tokens grouped by name hierachy
+            return groupedTokens.reduce((accumulator = {}, currentValue) => deepMerge_1.default(accumulator, currentValue));
         };
-        exports.default = groupTokensByName;
+        exports.default = groupByName;
     });
-    define("getColors", ["require", "exports", "groupTokensByName"], function (require, exports, groupTokensByName_1) {
+    define("extractor/extractColors", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getColors = () => {
@@ -97,13 +79,11 @@
                 paints: item.paints
             }));
             // return as object
-            return {
-                colors: groupTokensByName_1.default(paintStyles)
-            };
+            return groupByName_1.default(paintStyles);
         };
         exports.default = getColors;
     });
-    define("getGrids", ["require", "exports"], function (require, exports) {
+    define("extractor/extractGrids", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getGrids = () => {
@@ -115,38 +95,49 @@
                 grids: item.layoutGrids
             }));
             // return as object
-            return {
-                grids: gridStyles
-            };
+            return groupByName_2.default(gridStyles);
         };
         exports.default = getGrids;
     });
-    define("getFonts", ["require", "exports"], function (require, exports) {
+    define("transformer/amazonStyleDirectory", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const amazonStyleDirectoryTransformer = (property) => {
+            // transform to amazon style directory structure
+            Object.keys(property.values).map(function (key) {
+                property.values[key] = Object.assign(Object.assign({}, (property.description != null && { description: property.description })), { value: property.values[key] });
+            });
+            // return values
+            return property;
+        };
+        exports.default = amazonStyleDirectoryTransformer;
+    });
+    define("extractor/extractFonts", ["require", "exports", "utilities/groupByName", "transformer/amazonStyleDirectory"], function (require, exports, groupByName_3, amazonStyleDirectory_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getFonts = () => {
             // get raw text styles
-            const textStyles = figma.getLocalTextStyles().map(item => ({
+            const textStyles = figma.getLocalTextStyles().map(item => (amazonStyleDirectory_1.default({
                 id: item.id,
                 name: item.name,
-                description: item.description,
-                fontSize: item.fontSize,
-                textDecoration: item.textDecoration,
-                fontName: item.fontName,
-                letterSpacing: item.letterSpacing,
-                lineHeight: item.lineHeight,
-                paragraphIndent: item.paragraphIndent,
-                paragraphSpacing: item.paragraphSpacing,
-                textCase: item.textCase
-            }));
+                description: item.description || null,
+                values: {
+                    fontSize: item.fontSize,
+                    textDecoration: item.textDecoration,
+                    fontName: item.fontName,
+                    letterSpacing: item.letterSpacing,
+                    lineHeight: item.lineHeight,
+                    paragraphIndent: item.paragraphIndent,
+                    paragraphSpacing: item.paragraphSpacing,
+                    textCase: item.textCase
+                }
+            })));
             // return as object
-            return {
-                fonts: textStyles
-            };
+            return groupByName_3.default(textStyles);
         };
         exports.default = getFonts;
     });
-    define("getEffects", ["require", "exports"], function (require, exports) {
+    define("extractor/extractEffects", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const getEffects = () => {
@@ -155,19 +146,19 @@
                 id: item.id,
                 name: item.name,
                 description: item.description,
-                effects: item.effects
+                values: {
+                    effects: item.effects
+                }
             }));
             // return as object
-            return {
-                effects: effectStyles
-            };
+            return groupByName_4.default(effectStyles);
         };
         exports.default = getEffects;
     });
-    define("getSpacers", ["require", "exports"], function (require, exports) {
+    define("extractor/extractSpacers", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_5) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const getSpacers = tokenNodes => {
+        const extractSpacers = tokenNodes => {
             const nodeName = 'spacers';
             // return as object
             const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
@@ -177,16 +168,14 @@
                 height: node.height
             }));
             // return as object
-            return {
-                [nodeName]: relevantTokenNodes
-            };
+            return groupByName_5.default(relevantTokenNodes);
         };
-        exports.default = getSpacers;
+        exports.default = extractSpacers;
     });
-    define("getSizes", ["require", "exports"], function (require, exports) {
+    define("extractor/extractSizes", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_6) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const getSizes = tokenNodes => {
+        const extractSizes = tokenNodes => {
             const nodeName = 'sizes';
             // return as object
             const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
@@ -196,16 +185,14 @@
                 height: node.height
             }));
             // return as object
-            return {
-                [nodeName]: relevantTokenNodes
-            };
+            return groupByName_6.default(relevantTokenNodes);
         };
-        exports.default = getSizes;
+        exports.default = extractSizes;
     });
-    define("getBorders", ["require", "exports"], function (require, exports) {
+    define("extractor/extractBorders", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_7) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const getBorders = tokenNodes => {
+        const extractBorders = tokenNodes => {
             const nodeName = 'borders';
             // return as object
             const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
@@ -220,16 +207,14 @@
                 strokes: node.strokes
             }));
             // return as object
-            return {
-                [nodeName]: relevantTokenNodes
-            };
+            return groupByName_7.default(relevantTokenNodes);
         };
-        exports.default = getBorders;
+        exports.default = extractBorders;
     });
-    define("getRadii", ["require", "exports"], function (require, exports) {
+    define("extractor/extractRadii", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_8) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const getRadii = tokenNodes => {
+        const extractRadii = tokenNodes => {
             const nodeName = 'radii';
             // get the type of the corner radius
             const getRadiusType = radius => {
@@ -265,13 +250,11 @@
                 smoothing: node.cornerSmoothing
             }));
             // return as object
-            return {
-                [nodeName]: relevantTokenNodes
-            };
+            return groupByName_8.default(relevantTokenNodes);
         };
-        exports.default = getRadii;
+        exports.default = extractRadii;
     });
-    define("getCustomTokens", ["require", "exports", "getSpacers", "getSizes", "getBorders", "getRadii"], function (require, exports, getSpacers_1, getSizes_1, getBorders_1, getRadii_1) {
+    define("extractor/extractCustomTokens", ["require", "exports", "extractor/extractSpacers", "extractor/extractSizes", "extractor/extractBorders", "extractor/extractRadii"], function (require, exports, extractSpacers_1, extractSizes_1, extractBorders_1, extractRadii_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // the node types that can be used for tokens
@@ -294,19 +277,35 @@
             // get all children of token frames
             const tokens = tokenFrames.map(frame => frame.findChildren(node => isTokenNode(node))).reduce((flatten, arr) => [...flatten, ...arr]);
             // return tokens
-            return (Object.assign(Object.assign(Object.assign(Object.assign({}, getSpacers_1.default(tokens)), getSizes_1.default(tokens)), getBorders_1.default(tokens)), getRadii_1.default(tokens)));
+            return (Object.assign(Object.assign(Object.assign(Object.assign({}, extractSpacers_1.default(tokens)), extractSizes_1.default(tokens)), extractBorders_1.default(tokens)), extractRadii_1.default(tokens)));
         };
         exports.default = getCustomTokens;
     });
-    define("exportTokens", ["require", "exports", "writeJson", "getColors", "getGrids", "getFonts", "getEffects", "getCustomTokens"], function (require, exports, writeJson_1, getColors_1, getGrids_1, getFonts_1, getEffects_1, getCustomTokens_1) {
+    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "extractor/extractCustomTokens"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractCustomTokens_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        /**
+         * Sending json string to ui
+         * @param json object
+         */
+        const sendJsonToUi = (json) => {
+            // convert json to string
+            const jsonString = JSON.stringify(json, null, 2);
+            // send json string to ui to prompt download
+            figma.ui.postMessage({
+                command: "export",
+                data: {
+                    filename: "design-tokens.json",
+                    data: jsonString
+                }
+            });
+        };
         const tokenExport = () => {
             // get tokens
-            const rawTokens = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, getCustomTokens_1.default()), getColors_1.default()), getGrids_1.default()), getFonts_1.default()), getEffects_1.default());
+            const rawTokens = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, extractCustomTokens_1.default()), extractColors_1.default()), extractGrids_1.default()), extractFonts_1.default()), extractEffects_1.default());
             console.log('Raw Tokens', rawTokens);
             // write tokens to json file
-            writeJson_1.default(rawTokens);
+            sendJsonToUi(rawTokens);
         };
         exports.default = tokenExport;
     });

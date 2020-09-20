@@ -1,4 +1,6 @@
-const getBorders = tokenNodes => {
+import groupByName from '../utilities/groupByName'
+
+const extractBorders = tokenNodes => {
   const nodeName = 'borders'
   // return as object
   const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
@@ -13,9 +15,7 @@ const getBorders = tokenNodes => {
     strokes: node.strokes
   }))
   // return as object
-  return {
-    [nodeName]: relevantTokenNodes
-  }
+  return groupByName(relevantTokenNodes)
 }
 
-export default getBorders
+export default extractBorders

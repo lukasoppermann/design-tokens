@@ -1,3 +1,5 @@
+import groupByName from '../utilities/groupByName'
+
 const getGrids = () => {
   // get grid styles
   const gridStyles = figma.getLocalGridStyles().map(item => ({
@@ -7,9 +9,7 @@ const getGrids = () => {
     grids: item.layoutGrids
   }))
   // return as object
-  return {
-    grids: gridStyles
-  }
+  return groupByName(gridStyles)
 }
 
 export default getGrids
