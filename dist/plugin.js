@@ -9,6 +9,278 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
+    define("extractor/extractColors", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const extractColors = (tokenNodes) => {
+            // get all paint styles
+            return tokenNodes.map(node => ({
+                name: node.name,
+                description: node.description || null,
+                values: {
+                    paints: node.paints
+                }
+            }));
+        };
+        exports.default = extractColors;
+    });
+    define("extractor/extractGrids", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const extractGrids = (tokenNodes) => {
+            // get grid styles
+            return tokenNodes.map(node => ({
+                name: node.name,
+                description: node.description || null,
+                values: {
+                    grids: node.layoutGrids
+                }
+            }));
+        };
+        exports.default = extractGrids;
+    });
+    define("extractor/extractFonts", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const textDecorations = {
+            'NONE': 'none',
+            'UNDERLINE': 'underline',
+            'STRIKETHROUGH': 'line-through'
+        };
+        const extractFonts = (tokenNodes) => {
+            // get raw text styles
+            return tokenNodes.map(node => ({
+                name: node.name,
+                description: node.description || null,
+                values: {
+                    fontSize: {
+                        value: node.fontSize,
+                        unit: 'pixels'
+                    },
+                    textDecoration: {
+                        value: textDecorations[node.textDecoration]
+                    },
+                    fontFamily: {
+                        value: node.fontName.family
+                    },
+                    fontStyle: {
+                        value: node.fontName.style
+                    },
+                    letterSpacing: {
+                        value: node.letterSpacing.value,
+                        unit: node.letterSpacing.unit.toLowerCase()
+                    },
+                    lineHeight: {
+                        // @ts-ignore
+                        value: node.lineHeight.value || 'normal',
+                        unit: node.lineHeight.unit.toLowerCase()
+                    },
+                    paragraphIndent: {
+                        value: node.paragraphIndent,
+                        unit: 'pixels'
+                    },
+                    paragraphSpacing: {
+                        value: node.paragraphSpacing,
+                        unit: 'pixels'
+                    },
+                    textCase: {
+                        value: node.textCase.toLowerCase()
+                    }
+                }
+            }));
+        };
+        exports.default = extractFonts;
+    });
+    define("extractor/extractEffects", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const extractEffects = (tokenNodes) => {
+            // get effect styles
+            return tokenNodes.map(node => ({
+                name: node.name,
+                description: node.description || null,
+                values: {
+                    effects: node.effects
+                }
+            }));
+        };
+        exports.default = extractEffects;
+    });
+    define("extractor/extractSpacers", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const extractSpacers = (tokenNodes) => {
+            const nodeName = 'spacers';
+            // return as object
+            return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+                name: node.name,
+                // @ts-ignore
+                description: node.description || null,
+                values: {
+                    width: {
+                        value: node.width,
+                        unit: "pixels"
+                    },
+                    height: {
+                        value: node.height,
+                        unit: "pixels"
+                    }
+                }
+            }));
+        };
+        exports.default = extractSpacers;
+    });
+    define("extractor/extractSizes", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const extractSizes = (tokenNodes) => {
+            const nodeName = 'sizes';
+            // return as object
+            return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+                name: node.name,
+                // @ts-ignore
+                description: node.description || null,
+                values: {
+                    width: {
+                        value: node.width,
+                        unit: "pixels"
+                    },
+                    height: {
+                        value: node.height,
+                        unit: "pixels"
+                    }
+                }
+            }));
+        };
+        exports.default = extractSizes;
+    });
+    define("extractor/extractBorders", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const strokeJoins = {
+            'MITER': 'miter',
+            'BEVEL': 'bevel',
+            'ROUND': 'round'
+        };
+        const strokeAligns = {
+            'CENTER': 'center',
+            'INSIDE': 'inside',
+            'OUTSIDE': 'outside'
+        };
+        const extractBorders = (tokenNodes) => {
+            const nodeName = 'borders';
+            // return as object
+            return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+                name: node.name,
+                // @ts-ignore
+                description: node.description || null,
+                values: {
+                    strokeAlign: {
+                        value: strokeAligns[node.strokeAlign]
+                    },
+                    // strokeCap: {
+                    //   value: (typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase : 'mixed'
+                    // },
+                    strokeJoin: {
+                        value: strokeJoins[node.strokeJoin]
+                    },
+                    strokeMiterLimit: {
+                        value: node.strokeMiterLimit
+                    },
+                    strokeStyleId: {
+                        value: node.strokeStyleId
+                    },
+                    strokeWeight: {
+                        value: node.strokeWeight,
+                        unit: 'pixels'
+                    },
+                    strokes: node.strokes
+                }
+            }));
+        };
+        exports.default = extractBorders;
+    });
+    define("extractor/extractRadii", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const extractRadii = (tokenNodes) => {
+            const nodeName = 'radii';
+            // get the type of the corner radius
+            const getRadiusType = radius => {
+                if (typeof radius === 'number') {
+                    return 'single';
+                }
+                return 'mixed';
+            };
+            // get the individual radii
+            const getRadii = (node) => {
+                if (typeof node.cornerRadius !== 'number') {
+                    return {
+                        topLeft: node.topLeftRadius || 0,
+                        topRight: node.topRightRadius || 0,
+                        bottomRight: node.bottomRightRadius || 0,
+                        bottomLeft: node.bottomLeftRadius || 0
+                    };
+                }
+                return {
+                    topLeft: node.cornerRadius,
+                    topRight: node.cornerRadius,
+                    bottomRight: node.cornerRadius,
+                    bottomLeft: node.cornerRadius
+                };
+            };
+            // return as object
+            return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+                name: node.name,
+                // @ts-ignore
+                description: node.description || null,
+                values: {
+                    radius: node.cornerRadius,
+                    radiusType: getRadiusType(node.cornerRadius),
+                    radii: getRadii(node),
+                    smoothing: node.cornerSmoothing
+                }
+            }));
+        };
+        exports.default = extractRadii;
+    });
+    define("utilities/getTokenFrames", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        // the node types that can be used for tokens
+        const tokenNodeTypes = [
+            'COMPONENT',
+            'RECTANGLE'
+        ];
+        // the name that token frames have
+        const tokenFrameName = '_tokens';
+        // check if a frame is a _token frame
+        const isTokenFrame = (node) => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, tokenFrameName.length) === tokenFrameName;
+        // return only nodes that are frames
+        const getFrameNodes = (nodes) => nodes.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
+        /**
+         * check if a node is a valid token node type
+         * Currently: 'COMPONENT' or 'RECTANGLE'
+         * @param SceneNode node
+         */
+        const isTokenNode = (node) => tokenNodeTypes.includes(node.type);
+        /**
+         * Returns all frames from the file that have a name that starts with _tokens or the user defined token specifier
+         *
+         * @param pages PageNodes
+         */
+        const getTokenFrames = (pages) => {
+            // get token frames
+            const tokenFrames = getFrameNodes(pages);
+            // get all children of token frames
+            return tokenFrames.map(frame => frame
+                // check if children are of valide types
+                .findChildren(node => isTokenNode(node)))
+                // merges all children into one array
+                .reduce((flatten, arr) => [...flatten, ...arr]);
+        };
+        exports.default = getTokenFrames;
+    });
     define("utilities/deepMerge", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -52,236 +324,29 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         // create a nested object structure from the array (['style','colors','main','red'])
         const nestedObjectFromArray = (array, value) => array.reduceRight((value, key) => ({ [key]: value }), value);
-        const groupByName = tokenArray => {
+        const groupByName = (tokenArray, removeName = true) => {
             // nest tokens into object with hierachy defined by name using /
             const groupedTokens = tokenArray.map(token => {
                 // split token name into array
                 // remove leading and following whitespace for every item
                 // transform items to lowerCase
                 const groupsFromName = token.name.split('/').map(group => group.trim().toLowerCase());
+                // remove name if not otherwise specified
+                if (removeName === true) {
+                    delete token.name;
+                }
                 // return 
                 return nestedObjectFromArray(groupsFromName, token);
             });
-            // return merged object of tokens grouped by name hierachy
-            return groupedTokens.reduce((accumulator = {}, currentValue) => deepMerge_1.default(accumulator, currentValue));
+            if (groupedTokens.length > 0) {
+                // return merged object of tokens grouped by name hierachy
+                return groupedTokens.reduce((accumulator = {}, currentValue) => deepMerge_1.default(accumulator, currentValue));
+            }
+            return [];
         };
         exports.default = groupByName;
     });
-    define("extractor/extractColors", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_1) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const getColors = () => {
-            // get all paint styles
-            const paintStyles = figma.getLocalPaintStyles().map(item => ({
-                id: item.id,
-                name: item.name,
-                description: item.description,
-                paints: item.paints
-            }));
-            // return as object
-            return groupByName_1.default(paintStyles);
-        };
-        exports.default = getColors;
-    });
-    define("extractor/extractGrids", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_2) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const getGrids = () => {
-            // get grid styles
-            const gridStyles = figma.getLocalGridStyles().map(item => ({
-                id: item.id,
-                name: item.name,
-                description: item.description,
-                grids: item.layoutGrids
-            }));
-            // return as object
-            return groupByName_2.default(gridStyles);
-        };
-        exports.default = getGrids;
-    });
-    define("transformer/amazonStyleDirectory", ["require", "exports"], function (require, exports) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const amazonStyleDirectoryTransformer = (property) => {
-            // transform to amazon style directory structure
-            Object.keys(property.values).map(function (key) {
-                property.values[key] = Object.assign(Object.assign({}, (property.description != null && { description: property.description })), { value: property.values[key] });
-            });
-            // return values
-            return property;
-        };
-        exports.default = amazonStyleDirectoryTransformer;
-    });
-    define("extractor/extractFonts", ["require", "exports", "utilities/groupByName", "transformer/amazonStyleDirectory"], function (require, exports, groupByName_3, amazonStyleDirectory_1) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const getFonts = () => {
-            // get raw text styles
-            const textStyles = figma.getLocalTextStyles().map(item => (amazonStyleDirectory_1.default({
-                id: item.id,
-                name: item.name,
-                description: item.description || null,
-                values: {
-                    fontSize: item.fontSize,
-                    textDecoration: item.textDecoration,
-                    fontName: item.fontName,
-                    letterSpacing: item.letterSpacing,
-                    lineHeight: item.lineHeight,
-                    paragraphIndent: item.paragraphIndent,
-                    paragraphSpacing: item.paragraphSpacing,
-                    textCase: item.textCase
-                }
-            })));
-            // return as object
-            return groupByName_3.default(textStyles);
-        };
-        exports.default = getFonts;
-    });
-    define("extractor/extractEffects", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_4) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const getEffects = () => {
-            // get effect styles
-            const effectStyles = figma.getLocalEffectStyles().map(item => ({
-                id: item.id,
-                name: item.name,
-                description: item.description,
-                values: {
-                    effects: item.effects
-                }
-            }));
-            // return as object
-            return groupByName_4.default(effectStyles);
-        };
-        exports.default = getEffects;
-    });
-    define("extractor/extractSpacers", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_5) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const extractSpacers = tokenNodes => {
-            const nodeName = 'spacers';
-            // return as object
-            const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
-                name: node.name,
-                description: node.description || null,
-                width: node.width,
-                height: node.height
-            }));
-            // return as object
-            return groupByName_5.default(relevantTokenNodes);
-        };
-        exports.default = extractSpacers;
-    });
-    define("extractor/extractSizes", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_6) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const extractSizes = tokenNodes => {
-            const nodeName = 'sizes';
-            // return as object
-            const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
-                name: node.name,
-                description: node.description || null,
-                width: node.width,
-                height: node.height
-            }));
-            // return as object
-            return groupByName_6.default(relevantTokenNodes);
-        };
-        exports.default = extractSizes;
-    });
-    define("extractor/extractBorders", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_7) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const extractBorders = tokenNodes => {
-            const nodeName = 'borders';
-            // return as object
-            const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
-                name: node.name,
-                description: node.description || null,
-                strokeAlign: node.strokeAlign.toLowerCase,
-                strokeCap: node.strokeCap.toLowerCase,
-                strokeJoin: node.strokeJoin.toLowerCase,
-                strokeMiterLimit: node.strokeMiterLimit,
-                strokeStyleId: node.strokeStyleId,
-                strokeWeight: node.strokeWeight,
-                strokes: node.strokes
-            }));
-            // return as object
-            return groupByName_7.default(relevantTokenNodes);
-        };
-        exports.default = extractBorders;
-    });
-    define("extractor/extractRadii", ["require", "exports", "utilities/groupByName"], function (require, exports, groupByName_8) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const extractRadii = tokenNodes => {
-            const nodeName = 'radii';
-            // get the type of the corner radius
-            const getRadiusType = radius => {
-                if (typeof radius === 'number') {
-                    return 'single';
-                }
-                return 'mixed';
-            };
-            // get the individual radii
-            const getRadii = (node) => {
-                if (typeof node.cornerRadius !== 'number') {
-                    return {
-                        topLeft: node.topLeftRadius || 0,
-                        topRight: node.topRightRadius || 0,
-                        bottomRight: node.bottomRightRadius || 0,
-                        bottomLeft: node.bottomLeftRadius || 0
-                    };
-                }
-                return {
-                    topLeft: node.cornerRadius,
-                    topRight: node.cornerRadius,
-                    bottomRight: node.cornerRadius,
-                    bottomLeft: node.cornerRadius
-                };
-            };
-            // return as object
-            const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
-                name: node.name,
-                description: node.description || null,
-                radius: node.cornerRadius,
-                radiusType: getRadiusType(node.cornerRadius),
-                radii: getRadii(node),
-                smoothing: node.cornerSmoothing
-            }));
-            // return as object
-            return groupByName_8.default(relevantTokenNodes);
-        };
-        exports.default = extractRadii;
-    });
-    define("extractor/extractCustomTokens", ["require", "exports", "extractor/extractSpacers", "extractor/extractSizes", "extractor/extractBorders", "extractor/extractRadii"], function (require, exports, extractSpacers_1, extractSizes_1, extractBorders_1, extractRadii_1) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        // the node types that can be used for tokens
-        const tokenNodeTypes = [
-            'COMPONENT',
-            'RECTANGLE'
-        ];
-        // the name that token frames have
-        const tokenFrameName = '_tokens';
-        // check if a frame is a _token frame
-        const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, tokenFrameName.length) === tokenFrameName;
-        // return only nodes that are frames
-        const getFrameNodes = (nodes) => nodes.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
-        // check if a node is a valid token node
-        const isTokenNode = node => tokenNodeTypes.includes(node.type);
-        // get the tokens from the token frames and return custom tokens
-        const getCustomTokens = () => {
-            // get token frames
-            const tokenFrames = getFrameNodes(figma.root.children);
-            // get all children of token frames
-            const tokens = tokenFrames.map(frame => frame.findChildren(node => isTokenNode(node))).reduce((flatten, arr) => [...flatten, ...arr]);
-            // return tokens
-            return (Object.assign(Object.assign(Object.assign(Object.assign({}, extractSpacers_1.default(tokens)), extractSizes_1.default(tokens)), extractBorders_1.default(tokens)), extractRadii_1.default(tokens)));
-        };
-        exports.default = getCustomTokens;
-    });
-    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "extractor/extractCustomTokens"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractCustomTokens_1) {
+    define("exportTokens", ["require", "exports", "extractor/extractFonts", "utilities/getTokenFrames", "utilities/groupByName"], function (require, exports, extractFonts_1, getTokenFrames_1, groupByName_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         /**
@@ -301,11 +366,22 @@
             });
         };
         const tokenExport = () => {
+            console.log('exporting');
+            // use spread operator because the original is readOnly
+            const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
             // get tokens
-            const rawTokens = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, extractCustomTokens_1.default()), extractColors_1.default()), extractGrids_1.default()), extractFonts_1.default()), extractEffects_1.default());
-            console.log('Raw Tokens', rawTokens);
+            const tokens = groupByName_1.default([
+                // ...extractSpacers(tokenFrames),
+                // ...extractSizes(tokenFrames),
+                // ...extractBorders(tokenFrames),
+                // ...extractRadii(tokenFrames),
+                // ...extractColors(figma.getLocalPaintStyles()),
+                // ...extractGrids(figma.getLocalGridStyles()),
+                ...extractFonts_1.default(figma.getLocalTextStyles()),
+            ]);
+            console.log('Raw Tokens', tokens);
             // write tokens to json file
-            sendJsonToUi(rawTokens);
+            sendJsonToUi(tokens);
         };
         exports.default = tokenExport;
     });
@@ -323,6 +399,7 @@
         // run different functions depending on the provided command
         //
         // EXPORT
+        console.log('index.ts');
         // exports the design tokens
         if (figma.command === 'export') {
             exportTokens_1.default();
@@ -339,7 +416,7 @@
         }
         figma.ui.onmessage = (message) => {
             if (message === 'closePlugin') {
-                // figma.closePlugin()
+                figma.closePlugin();
             }
         };
     });
