@@ -1,6 +1,7 @@
-import groupByName from '../utilities/groupByName'
+import extractorInterface from "../../types/extractorInterface"
+import { customTokenNodes } from '../../types/tokenNodeTypes'
 
-const extractRadii = tokenNodes => {
+const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]) => {
   const nodeName = 'radii'
   // get the type of the corner radius
   const getRadiusType = radius => {
@@ -27,16 +28,17 @@ const extractRadii = tokenNodes => {
     }
   }
   // return as object
-  const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
+  return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
     name: node.name,
+    // @ts-ignore
     description: node.description || null,
-    radius: node.cornerRadius,
-    radiusType: getRadiusType(node.cornerRadius),
-    radii: getRadii(node),
-    smoothing: node.cornerSmoothing
+    values: {
+      radius: node.cornerRadius,
+      radiusType: getRadiusType(node.cornerRadius),
+      radii: getRadii(node),
+      smoothing: node.cornerSmoothing
+    }
   }))  
-  // return as object
-  return groupByName(relevantTokenNodes)
 
 }
 

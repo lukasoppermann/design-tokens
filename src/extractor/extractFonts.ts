@@ -1,26 +1,54 @@
-import groupByName from '../utilities/groupByName'
-import amazonTransformer from '../transformer/amazonStyleDirectory'
+import extractorInterface from '../../types/extractorInterface'
+import { fontPropertyInterface, textDecorationType, letterSpacingUnitType, lineHeightUnitType, textCaseType } from '../../types/propertyObject'
 
-const getFonts = () => {
+const textDecorations = {
+  'NONE': 'none',
+  'UNDERLINE': 'underline',
+  'STRIKETHROUGH': 'line-through'
+}
+
+const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontPropertyInterface[] => {
   // get raw text styles
-  const textStyles = figma.getLocalTextStyles().map(item => (amazonTransformer({
-    id: item.id,
-    name: item.name,
-    description: item.description || null,
+  return tokenNodes.map(node => ({
+    name: node.name,
+    description: node.description || null,
     values: {
-      fontSize: item.fontSize,
-      textDecoration: item.textDecoration,
-      fontName: item.fontName,
-      letterSpacing: item.letterSpacing,
-      lineHeight: item.lineHeight,
-      paragraphIndent: item.paragraphIndent,
-      paragraphSpacing: item.paragraphSpacing,
-      textCase: item.textCase
+      fontSize: {
+        value: node.fontSize, 
+        unit: 'pixels'
+      },
+      textDecoration: {
+        value: textDecorations[node.textDecoration] as textDecorationType
+      },
+      fontFamily: {
+        value: node.fontName.family
+      },
+      fontStyle: {
+        value: node.fontName.style
+      },
+      letterSpacing: {
+        value: node.letterSpacing.value,
+        unit: node.letterSpacing.unit.toLowerCase() as letterSpacingUnitType
+      },
+      lineHeight: {
+        // @ts-ignore
+        value: node.lineHeight.value || 'normal',
+        unit: node.lineHeight.unit.toLowerCase() as lineHeightUnitType
+      },
+      paragraphIndent: {
+        value: node.paragraphIndent,
+        unit: 'pixels'
+      },
+      paragraphSpacing: {
+        value: node.paragraphSpacing,
+        unit: 'pixels'
+      },
+      textCase: {
+        value: node.textCase.toLowerCase() as textCaseType
+      }
     }
-  })))
-  // return as object
-  return groupByName(textStyles)
+  }))
 
 }
 
-export default getFonts
+export default extractFonts

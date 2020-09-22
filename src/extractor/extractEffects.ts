@@ -1,17 +1,14 @@
-import groupByName from '../utilities/groupByName'
+import extractorInterface from '../../types/extractorInterface'
 
-const getEffects = () => {
+const extractEffects: extractorInterface = (tokenNodes: EffectStyle[]) => {
   // get effect styles
-  const effectStyles = figma.getLocalEffectStyles().map(item => ({
-    id: item.id,
-    name: item.name,
-    description: item.description,
+  return tokenNodes.map(node => ({
+    name: node.name,
+    description: node.description || null,
     values: {
-      effects: item.effects
+      effects: node.effects
     }
   }))
-  // return as object
-  return groupByName(effectStyles)
 }
 
-export default getEffects
+export default extractEffects

@@ -1,0 +1,1 @@
+export type customTokenNodes = RectangleNode | ComponentNode

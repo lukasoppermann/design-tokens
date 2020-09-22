@@ -2,7 +2,12 @@ import extractColors from './extractor/extractColors'
 import extractGrids from './extractor/extractGrids'
 import extractFonts from './extractor/extractFonts'
 import extractEffects from './extractor/extractEffects'
-import extractCustomTokens from './extractor/extractCustomTokens'
+import extractSpacers from './extractor/extractSpacers'
+import extractSizes from './extractor/extractSizes'
+import extractBorders from './extractor/extractBorders'
+import extractRadii from './extractor/extractRadii'
+import getTokenFrames from './utilities/getTokenFrames'
+import groupByName from './utilities/groupByName'
 /**
  * Sending json string to ui
  * @param json object
@@ -21,19 +26,24 @@ const sendJsonToUi = (json) => {
 }
 
 const tokenExport = () => {
+  console.log('exporting')
+  // use spread operator because the original is readOnly
+  const tokenFrames = getTokenFrames([...figma.root.children])
   // get tokens
-  const rawTokens = { 
-    ...extractCustomTokens(),
-    ...extractColors(),
-    ...extractGrids(),
-    ...extractFonts(),
-    ...extractEffects()
-  }
-  
-  console.log('Raw Tokens', rawTokens)
+  const tokens = groupByName([ 
+    // ...extractSpacers(tokenFrames),
+    // ...extractSizes(tokenFrames),
+    // ...extractBorders(tokenFrames),
+    // ...extractRadii(tokenFrames),
+    // ...extractColors(figma.getLocalPaintStyles()),
+    // ...extractGrids(figma.getLocalGridStyles()),
+    ...extractFonts(figma.getLocalTextStyles()),
+    // ...extractEffects(figma.getLocalEffectStyles())
+  ])
+  console.log('Raw Tokens', tokens)
   
   // write tokens to json file
-  sendJsonToUi(rawTokens)
+  sendJsonToUi(tokens)
 }
 
 export default tokenExport

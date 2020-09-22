@@ -1,15 +1,14 @@
-import groupByName from '../utilities/groupByName'
+import extractorInterface from '../../types/extractorInterface'
 
-const getGrids = () => {
+const extractGrids: extractorInterface = (tokenNodes: GridStyle[]) => {
   // get grid styles
-  const gridStyles = figma.getLocalGridStyles().map(item => ({
-    id: item.id,
-    name: item.name,
-    description: item.description,
-    grids: item.layoutGrids
+  return tokenNodes.map(node => ({
+    name: node.name,
+    description: node.description || null,
+    values: {
+      grids: node.layoutGrids
+    }
   }))
-  // return as object
-  return groupByName(gridStyles)
 }
 
-export default getGrids
+export default extractGrids

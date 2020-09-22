@@ -1,16 +1,15 @@
-import groupByName from '../utilities/groupByName'
+import extractorInterface from '../../types/extractorInterface'
 
-const getColors = () => {
+const extractColors: extractorInterface = (tokenNodes: PaintStyle[]) => {
   // get all paint styles
-  const paintStyles = figma.getLocalPaintStyles().map(item => ({
-    id: item.id,
-    name: item.name,
-    description: item.description,
-    paints: item.paints
+  return tokenNodes.map(node => ({
+    name: node.name,
+    description: node.description || null,
+    values: {
+      paints: node.paints
+    }
   }))
-  // return as object
-  return groupByName(paintStyles)
 
 }
 
-export default getColors
+export default extractColors

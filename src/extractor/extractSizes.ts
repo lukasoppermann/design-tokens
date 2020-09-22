@@ -1,16 +1,25 @@
-import groupByName from '../utilities/groupByName'
+import extractorInterface from "../../types/extractorInterface"
+import { sizePropertyInterface } from "../../types/propertyObject"
+import { customTokenNodes } from '../../types/tokenNodeTypes'
 
-const extractSizes = tokenNodes => {
+const extractSizes: extractorInterface = (tokenNodes: customTokenNodes[]): sizePropertyInterface[] => {
   const nodeName = 'sizes'
   // return as object
-  const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
+  return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
     name: node.name,
+    // @ts-ignore
     description: node.description || null,
-    width: node.width,
-    height: node.height
+    values: {
+      width: {
+        value: node.width,
+        unit: "pixels"
+      },
+      height: {
+        value: node.height,
+        unit: "pixels"
+      }
+    }
   }))
-  // return as object
-  return groupByName(relevantTokenNodes)
 }
 
 export default extractSizes

@@ -1,21 +1,49 @@
-import groupByName from '../utilities/groupByName'
+import extractorInterface from '../../types/extractorInterface'
+import { borderPropertyInterface, strokeAlignType } from '../../types/propertyObject'
+import { customTokenNodes } from '../../types/tokenNodeTypes'
 
-const extractBorders = tokenNodes => {
+const strokeJoins = {
+  'MITER': 'miter',
+  'BEVEL': 'bevel',
+  'ROUND': 'round'
+}
+
+const strokeAligns = {
+  'CENTER': 'center',
+  'INSIDE': 'inside',
+  'OUTSIDE': 'outside'
+}
+
+const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): borderPropertyInterface[] => {
   const nodeName = 'borders'
   // return as object
-  const relevantTokenNodes = tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
+  return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
     name: node.name,
+    // @ts-ignore
     description: node.description || null,
-    strokeAlign: node.strokeAlign.toLowerCase,
-    strokeCap: node.strokeCap.toLowerCase,
-    strokeJoin: node.strokeJoin.toLowerCase,
-    strokeMiterLimit: node.strokeMiterLimit,
-    strokeStyleId: node.strokeStyleId,
-    strokeWeight: node.strokeWeight,
-    strokes: node.strokes
+    values: {
+      strokeAlign: {
+        value: strokeAligns[node.strokeAlign] as strokeAlignType
+      },
+      // strokeCap: {
+      //   value: (typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase : 'mixed'
+      // },
+      strokeJoin: {
+        value: strokeJoins[node.strokeJoin]
+      },
+      strokeMiterLimit: {
+        value: node.strokeMiterLimit
+      },
+      strokeStyleId: {
+        value: node.strokeStyleId
+      },
+      strokeWeight: {
+        value: node.strokeWeight,
+        unit: 'pixels'
+      },
+      strokes: node.strokes
+    }
   }))
-  // return as object
-  return groupByName(relevantTokenNodes)
 }
 
 export default extractBorders
