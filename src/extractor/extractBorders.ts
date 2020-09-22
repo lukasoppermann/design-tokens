@@ -1,5 +1,5 @@
 import extractorInterface from '../../types/extractorInterface'
-import { borderPropertyInterface, strokeAlignType } from '../../types/propertyObject'
+import { borderPropertyInterface, strokeAlignType, strokeCapType } from '../../types/propertyObject'
 import { customTokenNodes } from '../../types/tokenNodeTypes'
 
 const strokeJoins = {
@@ -25,9 +25,9 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
       strokeAlign: {
         value: strokeAligns[node.strokeAlign] as strokeAlignType
       },
-      // strokeCap: {
-      //   value: (typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase : 'mixed'
-      // },
+      strokeCap: {
+        value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase : 'mixed') as strokeCapType
+      },
       strokeJoin: {
         value: strokeJoins[node.strokeJoin]
       },

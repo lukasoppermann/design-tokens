@@ -67,15 +67,16 @@ export type sizePropertyInterface = propertyObject & {
 }
 
 export type strokeAlignType = "center" | "inside" | "outside"
+export type strokeCapType = "none" | "round" | "square" | "arrow_lines" | "arrow_equilateral" | "mixed"
 
 export type borderPropertyInterface = propertyObject & {
   values: {
     strokeAlign: {
       value: strokeAlignType
     },
-    // strokeCap: {
-    //   value: "none" | "round" | "square" | "arrow_lines" | "arrow_equilateral" | "mixed"
-    // },
+    strokeCap: {
+      value: strokeCapType
+    },
     strokeJoin: {
       value: "miter" | "bevel" | "round"
     },

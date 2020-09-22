@@ -2,7 +2,6 @@ import extractColors from './extractor/extractColors'
 import extractGrids from './extractor/extractGrids'
 import extractFonts from './extractor/extractFonts'
 import extractEffects from './extractor/extractEffects'
-import extractSpacers from './extractor/extractSpacers'
 import extractSizes from './extractor/extractSizes'
 import extractBorders from './extractor/extractBorders'
 import extractRadii from './extractor/extractRadii'
@@ -31,14 +30,13 @@ const tokenExport = () => {
   const tokenFrames = getTokenFrames([...figma.root.children])
   // get tokens
   const tokens = groupByName([ 
-    // ...extractSpacers(tokenFrames),
-    // ...extractSizes(tokenFrames),
-    // ...extractBorders(tokenFrames),
-    // ...extractRadii(tokenFrames),
-    // ...extractColors(figma.getLocalPaintStyles()),
-    // ...extractGrids(figma.getLocalGridStyles()),
+    ...extractSizes(tokenFrames),
+    ...extractBorders(tokenFrames),
+    ...extractRadii(tokenFrames),
+    ...extractColors(figma.getLocalPaintStyles()),
+    ...extractGrids(figma.getLocalGridStyles()),
     ...extractFonts(figma.getLocalTextStyles()),
-    // ...extractEffects(figma.getLocalEffectStyles())
+    ...extractEffects(figma.getLocalEffectStyles())
   ])
   console.log('Raw Tokens', tokens)
   

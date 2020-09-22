@@ -106,30 +106,6 @@
         };
         exports.default = extractEffects;
     });
-    define("extractor/extractSpacers", ["require", "exports"], function (require, exports) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const extractSpacers = (tokenNodes) => {
-            const nodeName = 'spacers';
-            // return as object
-            return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
-                name: node.name,
-                // @ts-ignore
-                description: node.description || null,
-                values: {
-                    width: {
-                        value: node.width,
-                        unit: "pixels"
-                    },
-                    height: {
-                        value: node.height,
-                        unit: "pixels"
-                    }
-                }
-            }));
-        };
-        exports.default = extractSpacers;
-    });
     define("extractor/extractSizes", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -178,9 +154,9 @@
                     strokeAlign: {
                         value: strokeAligns[node.strokeAlign]
                     },
-                    // strokeCap: {
-                    //   value: (typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase : 'mixed'
-                    // },
+                    strokeCap: {
+                        value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase : 'mixed')
+                    },
                     strokeJoin: {
                         value: strokeJoins[node.strokeJoin]
                     },
@@ -346,7 +322,7 @@
         };
         exports.default = groupByName;
     });
-    define("exportTokens", ["require", "exports", "extractor/extractFonts", "utilities/getTokenFrames", "utilities/groupByName"], function (require, exports, extractFonts_1, getTokenFrames_1, groupByName_1) {
+    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "extractor/extractSizes", "extractor/extractBorders", "extractor/extractRadii", "utilities/getTokenFrames", "utilities/groupByName"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, getTokenFrames_1, groupByName_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         /**
@@ -371,13 +347,13 @@
             const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
             // get tokens
             const tokens = groupByName_1.default([
-                // ...extractSpacers(tokenFrames),
-                // ...extractSizes(tokenFrames),
-                // ...extractBorders(tokenFrames),
-                // ...extractRadii(tokenFrames),
-                // ...extractColors(figma.getLocalPaintStyles()),
-                // ...extractGrids(figma.getLocalGridStyles()),
+                ...extractSizes_1.default(tokenFrames),
+                ...extractBorders_1.default(tokenFrames),
+                ...extractRadii_1.default(tokenFrames),
+                ...extractColors_1.default(figma.getLocalPaintStyles()),
+                ...extractGrids_1.default(figma.getLocalGridStyles()),
                 ...extractFonts_1.default(figma.getLocalTextStyles()),
+                ...extractEffects_1.default(figma.getLocalEffectStyles())
             ]);
             console.log('Raw Tokens', tokens);
             // write tokens to json file
