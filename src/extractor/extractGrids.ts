@@ -40,7 +40,7 @@ const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridProperty
   return tokenNodes.map(node => ({
     name: node.name,
     description: node.description || null,
-    values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
+    values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid)) // extract first grid only
   }))
 }
 

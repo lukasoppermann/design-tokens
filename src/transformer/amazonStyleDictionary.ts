@@ -8,8 +8,8 @@ const convertPropertyValue = valueObject => {
   return valueObject
 }
 
-const amazonStyleDirectoryTransformer = (property: propertyObject): convertedPropertyObject => {
-  // transform to amazon style directory structure
+const amazonStyleDictionaryTransformer = (property: propertyObject): convertedPropertyObject => {
+  // transform to amazon style Dictionary structure
   Object.keys(property.values).map(function(key) {
     // define value
     property.values[key] = {
@@ -28,4 +28,4 @@ const amazonStyleDirectoryTransformer = (property: propertyObject): convertedPro
   }
 }
 
-export default amazonStyleDirectoryTransformer
+export default amazonStyleDictionaryTransformer

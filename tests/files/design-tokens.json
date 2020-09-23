@@ -69,24 +69,16 @@
         "strokeMiterLimit": {
           "value": 4
         },
-        "strokeStyleId": {
-          "value": ""
-        },
         "strokeWeight": {
           "value": 1,
           "unit": "pixels"
         },
-        "strokes": {
-          "color": {
-            "value": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          },
-          "opacity": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
+        "stroke": {
+          "value": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
           }
         }
       }
@@ -104,24 +96,16 @@
         "strokeMiterLimit": {
           "value": 4
         },
-        "strokeStyleId": {
-          "value": ""
-        },
         "strokeWeight": {
           "value": 1,
           "unit": "pixels"
         },
-        "strokes": {
-          "color": {
-            "value": {
-              "r": 1,
-              "g": 0.02916663885116577,
-              "b": 0.02916663885116577
-            }
-          },
-          "opacity": {
-            "value": 0.3700000047683716,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
+        "stroke": {
+          "value": {
+            "r": 1,
+            "g": 0.02916663885116577,
+            "b": 0.02916663885116577,
+            "a": 0.3700000047683716
           }
         }
       }
@@ -139,24 +123,16 @@
         "strokeMiterLimit": {
           "value": 4
         },
-        "strokeStyleId": {
-          "value": "S:4a3029d323d8fb0c05dee39a983dafea20d7221e,"
-        },
         "strokeWeight": {
           "value": 4,
           "unit": "pixels"
         },
-        "strokes": {
-          "color": {
-            "value": {
-              "r": 0.25,
-              "g": 1,
-              "b": 0.7299998998641968
-            }
-          },
-          "opacity": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
+        "stroke": {
+          "value": {
+            "r": 0.25,
+            "g": 1,
+            "b": 0.7299998998641968,
+            "a": 1
           }
         }
       }
@@ -174,14 +150,13 @@
         "strokeMiterLimit": {
           "value": 2.613126039505005
         },
-        "strokeStyleId": {
-          "value": ""
-        },
         "strokeWeight": {
           "value": 4,
           "unit": "pixels"
         },
-        "strokes": null
+        "stroke": {
+          "value": null
+        }
       }
     }
   },
@@ -225,48 +200,39 @@
     "orange": {
       "description": "Our primary color",
       "values": {
-        "color": {
+        "fill": {
           "value": {
             "r": 1,
             "g": 0.5,
-            "b": 0.25
+            "b": 0.25,
+            "a": 1
           }
-        },
-        "opacity": {
-          "value": 1,
-          "comment": "Percent of as decimal from 0.0 - 1.0"
         }
       }
     },
     "green": {
       "description": null,
       "values": {
-        "color": {
+        "fill": {
           "value": {
             "r": 0.25,
             "g": 1,
-            "b": 0.7299998998641968
+            "b": 0.7299998998641968,
+            "a": 1
           }
-        },
-        "opacity": {
-          "value": 1,
-          "comment": "Percent of as decimal from 0.0 - 1.0"
         }
       }
     },
     "blue": {
       "description": null,
       "values": {
-        "color": {
+        "fill": {
           "value": {
             "r": 0.016666650772094727,
             "g": 0.2919999659061432,
-            "b": 1
+            "b": 1,
+            "a": 1
           }
-        },
-        "opacity": {
-          "value": 1,
-          "comment": "Percent of as decimal from 0.0 - 1.0"
         }
       }
     },
@@ -274,32 +240,26 @@
       "green": {
         "description": null,
         "values": {
-          "color": {
+          "fill": {
             "value": {
               "r": 0.14036458730697632,
               "g": 0.6875,
-              "b": 0.1950780749320984
+              "b": 0.1950780749320984,
+              "a": 1
             }
-          },
-          "opacity": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
           }
         }
       },
       "yellow": {
         "description": null,
         "values": {
-          "color": {
+          "fill": {
             "value": {
               "r": 1,
               "g": 0.7199999690055847,
-              "b": 0
+              "b": 0,
+              "a": 1
             }
-          },
-          "opacity": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
           }
         }
       }
@@ -309,16 +269,13 @@
     "error": {
       "description": null,
       "values": {
-        "color": {
+        "fill": {
           "value": {
             "r": 1,
             "g": 0,
-            "b": 0
+            "b": 0,
+            "a": 1
           }
-        },
-        "opacity": {
-          "value": 1,
-          "comment": "Percent of as decimal from 0.0 - 1.0"
         }
       }
     }
@@ -522,92 +479,134 @@
   "effect": {
     "shadow": {
       "description": null,
-      "values": {
-        "effects": [
-          {
-            "type": "DROP_SHADOW",
-            "color": {
+      "values": 
+        {
+          "type": {
+            "value": "dropShadow"
+          },
+          "radius": {
+            "value": 4,
+            "unit": "pixels"
+          },
+          "color": {
+            "value": {
               "r": 0,
               "g": 0,
               "b": 0,
               "a": 0.25
+            }
+          },
+          "offset": {
+            "x": {
+              "value": 0,
+              "unit": "pixels"
             },
-            "offset": {
-              "x": 0,
-              "y": 4
-            },
-            "radius": 4,
-            "spread": 0,
-            "visible": true,
-            "blendMode": "NORMAL"
+            "y": {
+              "value": 4,
+              "unit": "pixels"
+            }
+          },
+          "spread": {
+            "value": 0,
+            "unit": "pixels"
           }
-        ]
-      }
+        }
+      
     },
     "layer blur": {
       "description": null,
-      "values": {
-        "effects": [
-          {
-            "type": "LAYER_BLUR",
-            "radius": 4,
-            "visible": true
+      "values": [
+        {
+          "type": {
+            "value": "layerBlur"
+          },
+          "radius": {
+            "value": 4,
+            "unit": "pixels"
           }
-        ]
-      }
+        }
+      ]
     },
     "background blur": {
       "description": null,
-      "values": {
-        "effects": [
-          {
-            "type": "BACKGROUND_BLUR",
-            "radius": 4,
-            "visible": true
+      "values": [
+        {
+          "type": {
+            "value": "backgroundBlur"
+          },
+          "radius": {
+            "value": 4,
+            "unit": "pixels"
           }
-        ]
-      }
+        }
+      ]
     }
   },
   "inner shadow": {
     "description": null,
-    "values": {
-      "effects": [
-        {
-          "type": "INNER_SHADOW",
-          "color": {
+    "values": [
+      {
+        "type": {
+          "value": "innerShadow"
+        },
+        "radius": {
+          "value": 4,
+          "unit": "pixels"
+        },
+        "color": {
+          "value": {
             "r": 0,
             "g": 0,
             "b": 0,
             "a": 0.25
-          },
-          "offset": {
-            "x": 0,
-            "y": 4
-          },
-          "radius": 4,
-          "spread": 0,
-          "visible": true,
-          "blendMode": "NORMAL"
+          }
         },
-        {
-          "type": "INNER_SHADOW",
-          "color": {
+        "offset": {
+          "x": {
+            "value": 0,
+            "unit": "pixels"
+          },
+          "y": {
+            "value": 4,
+            "unit": "pixels"
+          }
+        },
+        "spread": {
+          "value": 0,
+          "unit": "pixels"
+        }
+      },
+      {
+        "type": {
+          "value": "innerShadow"
+        },
+        "radius": {
+          "value": 10,
+          "unit": "pixels"
+        },
+        "color": {
+          "value": {
             "r": 0,
             "g": 0,
             "b": 0,
             "a": 0.15000000596046448
+          }
+        },
+        "offset": {
+          "x": {
+            "value": 0,
+            "unit": "pixels"
           },
-          "offset": {
-            "x": 0,
-            "y": -4
-          },
-          "radius": 10,
-          "spread": 0,
-          "visible": true,
-          "blendMode": "NORMAL"
+          "y": {
+            "value": -4,
+            "unit": "pixels"
+          }
+        },
+        "spread": {
+          "value": 0,
+          "unit": "pixels"
         }
-      ]
-    }
+      }
+    ]
   }
 }

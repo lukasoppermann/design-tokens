@@ -1,6 +1,6 @@
 
 // Do not edit directly
-// Generated on Wed, 23 Sep 2020 11:56:09 GMT
+// Generated on Wed, 23 Sep 2020 22:27:30 GMT
 
 $sizes-8-values-width: 8;
 $sizes-8-values-height: 8;
@@ -13,29 +13,23 @@ $sizes-spacers-32-values-height: 32;
 $borders-2-of-them-values-stroke-align: inside;
 $borders-2-of-them-values-stroke-join: miter;
 $borders-2-of-them-values-stroke-miter-limit: 4;
-$borders-2-of-them-values-stroke-style-id: ;
 $borders-2-of-them-values-stroke-weight: 1;
-$borders-2-of-them-values-strokes-color: [object Object];
-$borders-2-of-them-values-strokes-opacity: 1; // Percent of as decimal from 0.0 - 1.0
+$borders-2-of-them-values-stroke: [object Object];
 $borders-red-1-px-values-stroke-align: inside;
 $borders-red-1-px-values-stroke-join: miter;
 $borders-red-1-px-values-stroke-miter-limit: 4;
-$borders-red-1-px-values-stroke-style-id: ;
 $borders-red-1-px-values-stroke-weight: 1;
-$borders-red-1-px-values-strokes-color: [object Object];
-$borders-red-1-px-values-strokes-opacity: 0.3700000047683716; // Percent of as decimal from 0.0 - 1.0
+$borders-red-1-px-values-stroke: [object Object];
 $borders-green-4-px-dotted-values-stroke-align: inside;
 $borders-green-4-px-dotted-values-stroke-join: round;
 $borders-green-4-px-dotted-values-stroke-miter-limit: 4;
-$borders-green-4-px-dotted-values-stroke-style-id: S:4a3029d323d8fb0c05dee39a983dafea20d7221e,;
 $borders-green-4-px-dotted-values-stroke-weight: 4;
-$borders-green-4-px-dotted-values-strokes-color: [object Object];
-$borders-green-4-px-dotted-values-strokes-opacity: 1; // Percent of as decimal from 0.0 - 1.0
+$borders-green-4-px-dotted-values-stroke: [object Object];
 $borders-green-4-px-gradient-values-stroke-align: inside;
 $borders-green-4-px-gradient-values-stroke-join: miter;
 $borders-green-4-px-gradient-values-stroke-miter-limit: 2.613126039505005;
-$borders-green-4-px-gradient-values-stroke-style-id: ;
 $borders-green-4-px-gradient-values-stroke-weight: 4;
+$borders-green-4-px-gradient-values-stroke: null;
 $radii-mixed-values-radius: mixed;
 $radii-mixed-values-radius-type: mixed;
 $radii-mixed-values-radii-top-left: 0;
@@ -43,18 +37,12 @@ $radii-mixed-values-radii-top-right: 3;
 $radii-mixed-values-radii-bottom-right: 4;
 $radii-mixed-values-radii-bottom-left: 6;
 $radii-mixed-values-smoothing: 0.6200000047683716; // Percent of as decimal from 0.0 - 1.0
-$colors-orange-values-color: [object Object];
-$colors-orange-values-opacity: 1; // Percent of as decimal from 0.0 - 1.0
-$colors-green-values-color: [object Object];
-$colors-green-values-opacity: 1; // Percent of as decimal from 0.0 - 1.0
-$colors-blue-values-color: [object Object];
-$colors-blue-values-opacity: 1; // Percent of as decimal from 0.0 - 1.0
-$colors-secondary-green-values-color: [object Object];
-$colors-secondary-green-values-opacity: 1; // Percent of as decimal from 0.0 - 1.0
-$colors-secondary-yellow-values-color: [object Object];
-$colors-secondary-yellow-values-opacity: 1; // Percent of as decimal from 0.0 - 1.0
-$utilities-error-values-color: [object Object];
-$utilities-error-values-opacity: 1; // Percent of as decimal from 0.0 - 1.0
+$colors-orange-values-fill: [object Object];
+$colors-green-values-fill: [object Object];
+$colors-blue-values-fill: [object Object];
+$colors-secondary-green-values-fill: [object Object];
+$colors-secondary-yellow-values-fill: [object Object];
+$utilities-error-values-fill: [object Object];
 $body-h-3-values-font-size: 20;
 $body-h-3-values-text-decoration: none;
 $body-h-3-values-font-family: Roboto;
@@ -64,3 +52,9 @@ $body-h-3-values-line-height: 160.0000023841858;
 $body-h-3-values-paragraph-indent: 5;
 $body-h-3-values-paragraph-spacing: 8;
 $body-h-3-values-text-case: uppercase;
+$effect-shadow-values-type: dropShadow;
+$effect-shadow-values-radius: 4;
+$effect-shadow-values-color: [object Object];
+$effect-shadow-values-offset-x: 0;
+$effect-shadow-values-offset-y: 4;
+$effect-shadow-values-spread: 0;

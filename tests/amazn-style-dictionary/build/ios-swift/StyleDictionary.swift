@@ -3,7 +3,7 @@
 // StyleDictionary.swift
 //
 // Do not edit directly
-// Generated on Wed, 23 Sep 2020 11:56:09 GMT
+// Generated on Wed, 23 Sep 2020 22:27:30 GMT
 //
 
 
@@ -19,42 +19,37 @@ public class StyleDictionary {
     public static let bodyH3ValuesParagraphSpacing = 8
     public static let bodyH3ValuesTextCase = uppercase
     public static let bodyH3ValuesTextDecoration = none
+    public static let borders2OfThemValuesStroke = [object Object]
     public static let borders2OfThemValuesStrokeAlign = inside
     public static let borders2OfThemValuesStrokeJoin = miter
     public static let borders2OfThemValuesStrokeMiterLimit = 4
-    public static let borders2OfThemValuesStrokeStyleId = 
     public static let borders2OfThemValuesStrokeWeight = 1
-    public static let borders2OfThemValuesStrokesColor = [object Object]
-    public static let borders2OfThemValuesStrokesOpacity = 1
+    public static let bordersGreen4PxDottedValuesStroke = [object Object]
     public static let bordersGreen4PxDottedValuesStrokeAlign = inside
     public static let bordersGreen4PxDottedValuesStrokeJoin = round
     public static let bordersGreen4PxDottedValuesStrokeMiterLimit = 4
-    public static let bordersGreen4PxDottedValuesStrokeStyleId = S:4a3029d323d8fb0c05dee39a983dafea20d7221e,
     public static let bordersGreen4PxDottedValuesStrokeWeight = 4
-    public static let bordersGreen4PxDottedValuesStrokesColor = [object Object]
-    public static let bordersGreen4PxDottedValuesStrokesOpacity = 1
+    public static let bordersGreen4PxGradientValuesStroke = null
     public static let bordersGreen4PxGradientValuesStrokeAlign = inside
     public static let bordersGreen4PxGradientValuesStrokeJoin = miter
     public static let bordersGreen4PxGradientValuesStrokeMiterLimit = 2.613126039505005
-    public static let bordersGreen4PxGradientValuesStrokeStyleId = 
     public static let bordersGreen4PxGradientValuesStrokeWeight = 4
+    public static let bordersRed1PxValuesStroke = [object Object]
     public static let bordersRed1PxValuesStrokeAlign = inside
     public static let bordersRed1PxValuesStrokeJoin = miter
     public static let bordersRed1PxValuesStrokeMiterLimit = 4
-    public static let bordersRed1PxValuesStrokeStyleId = 
     public static let bordersRed1PxValuesStrokeWeight = 1
-    public static let bordersRed1PxValuesStrokesColor = [object Object]
-    public static let bordersRed1PxValuesStrokesOpacity = 0.3700000047683716
-    public static let colorsBlueValuesColor = [object Object]
-    public static let colorsBlueValuesOpacity = 1
-    public static let colorsGreenValuesColor = [object Object]
-    public static let colorsGreenValuesOpacity = 1
-    public static let colorsOrangeValuesColor = [object Object]
-    public static let colorsOrangeValuesOpacity = 1
-    public static let colorsSecondaryGreenValuesColor = [object Object]
-    public static let colorsSecondaryGreenValuesOpacity = 1
-    public static let colorsSecondaryYellowValuesColor = [object Object]
-    public static let colorsSecondaryYellowValuesOpacity = 1
+    public static let colorsBlueValuesFill = [object Object]
+    public static let colorsGreenValuesFill = [object Object]
+    public static let colorsOrangeValuesFill = [object Object]
+    public static let colorsSecondaryGreenValuesFill = [object Object]
+    public static let colorsSecondaryYellowValuesFill = [object Object]
+    public static let effectShadowValuesColor = [object Object]
+    public static let effectShadowValuesOffsetX = 0
+    public static let effectShadowValuesOffsetY = 4
+    public static let effectShadowValuesRadius = 4
+    public static let effectShadowValuesSpread = 0
+    public static let effectShadowValuesType = dropShadow
     public static let radiiMixedValuesRadiiBottomLeft = 6
     public static let radiiMixedValuesRadiiBottomRight = 4
     public static let radiiMixedValuesRadiiTopLeft = 0
@@ -70,6 +65,5 @@ public class StyleDictionary {
     public static let sizesSpacers16ValuesWidth = 16
     public static let sizesSpacers32ValuesHeight = 32
     public static let sizesSpacers32ValuesWidth = 32
-    public static let utilitiesErrorValuesColor = [object Object]
-    public static let utilitiesErrorValuesOpacity = 1
+    public static let utilitiesErrorValuesFill = [object Object]
 }

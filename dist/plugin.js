@@ -9,34 +9,36 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
-    define("utilities/convertPaint", ["require", "exports"], function (require, exports) {
+    define("utilities/convertPaintToRgba", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const convertPaint = (paint) => {
+        const convertPaintToRgba = (paint) => {
             if (paint.type === 'SOLID' && paint.visible === true) {
                 return {
-                    color: {
-                        value: paint.color
-                    },
-                    opacity: {
-                        value: paint.opacity,
-                        comment: "Percent of as decimal from 0.0 - 1.0"
-                    }
+                    r: paint.color.r,
+                    g: paint.color.g,
+                    b: paint.color.b,
+                    a: paint.opacity
                 };
             }
             return null;
         };
-        exports.default = convertPaint;
+        exports.default = convertPaintToRgba;
     });
-    define("extractor/extractColors", ["require", "exports", "utilities/convertPaint"], function (require, exports, convertPaint_1) {
+    define("extractor/extractColors", ["require", "exports", "utilities/convertPaintToRgba"], function (require, exports, convertPaintToRgba_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const extractColors = (tokenNodes) => {
             // get all paint styles
             return tokenNodes.map(node => ({
                 name: node.name,
+                // id: node.id,
                 description: node.description || null,
-                values: convertPaint_1.default(node.paints[0])
+                values: {
+                    fill: {
+                        value: convertPaintToRgba_1.default(node.paints[0])
+                    }
+                }
             }));
         };
         exports.default = extractColors;
@@ -81,7 +83,7 @@
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
-                values: node.layoutGrids.map((grid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
+                values: node.layoutGrids.map((grid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid)) // extract first grid only
             }));
         };
         exports.default = extractGrids;
@@ -235,14 +237,55 @@
     define("extractor/extractEffects", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        const effectType = {
+            "LAYER_BLUR": 'layerBlur',
+            "BACKGROUND_BLUR": 'backgroundBlur',
+            "DROP_SHADOW": 'dropShadow',
+            "INNER_SHADOW": 'innerShadow'
+        };
+        const blurValues = (effect) => ({
+            type: {
+                value: effectType[effect.type]
+            },
+            radius: {
+                value: effect.radius,
+                unit: 'pixels'
+            }
+        });
+        const shadowValues = (effect) => ({
+            type: {
+                value: effectType[effect.type]
+            },
+            radius: {
+                value: effect.radius,
+                unit: 'pixels'
+            },
+            color: {
+                value: effect.color
+            },
+            offset: {
+                x: {
+                    value: effect.offset.x,
+                    unit: 'pixels'
+                },
+                y: {
+                    value: effect.offset.y,
+                    unit: 'pixels'
+                }
+            },
+            spread: {
+                value: effect.spread,
+                unit: 'pixels'
+            }
+        });
         const extractEffects = (tokenNodes) => {
             // get effect styles
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
-                values: {
-                    effects: node.effects
-                }
+                values: node.effects.map((effect) => effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
+                    ? blurValues(effect)
+                    : shadowValues(effect))
             }));
         };
         exports.default = extractEffects;
@@ -271,7 +314,7 @@
         };
         exports.default = extractSizes;
     });
-    define("extractor/extractBorders", ["require", "exports", "utilities/convertPaint"], function (require, exports, convertPaint_2) {
+    define("extractor/extractBorders", ["require", "exports", "utilities/convertPaintToRgba"], function (require, exports, convertPaintToRgba_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const strokeJoins = {
@@ -304,14 +347,16 @@
                     strokeMiterLimit: {
                         value: node.strokeMiterLimit
                     },
-                    strokeStyleId: {
-                        value: node.strokeStyleId
-                    },
+                    // strokeStyleId: {
+                    //   value: node.strokeStyleId
+                    // },
                     strokeWeight: {
                         value: node.strokeWeight,
                         unit: 'pixels'
                     },
-                    strokes: convertPaint_2.default((node.strokes[0]))
+                    stroke: {
+                        value: convertPaintToRgba_2.default((node.strokes[0]))
+                    }
                 }
             }));
         };

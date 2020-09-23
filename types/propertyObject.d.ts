@@ -11,6 +11,12 @@ export type convertedPropertyObject = {
   [key: string]: any
 }
 
+export type colorRgbaType = {
+  r: number,
+  g: number,
+  b: number,
+  a: number
+}
 export type textDecorationType = "none" | "underline" | "line-through"
 export type letterSpacingUnitType = "pixels" | "percent"
 export type lineHeightUnitType = "pixels" | "percent" | "auto"
@@ -53,6 +59,14 @@ export type fontPropertyInterface = propertyObject & {
   }
 }
 
+export type colorPropertyInterface = propertyObject & {
+  values: {
+    fill: {
+      value: colorRgbaType
+    }
+  }
+}
+
 export type sizePropertyInterface = propertyObject & {
   values: {
     width: {
@@ -83,14 +97,16 @@ export type borderPropertyInterface = propertyObject & {
     strokeMiterLimit: {
       value: number
     },
-    strokeStyleId: {
-      value: string
-    },
+    // strokeStyleId: {
+    //   value: string
+    // },
     strokeWeight: {
       value: number,
       unit: "pixels"
     },
-    strokes: any
+    stroke: {
+      value: colorRgbaType 
+    }
   }
 }
 
@@ -151,6 +167,35 @@ export type gridPropertyInterface = propertyObject & {
       value: number
     },
     offset?: {
+      value: number,
+      unit: string
+    }
+  }[]
+}
+export type effectType = 'dropShadow' | 'innerShadow' | 'layerBlur' | 'backgroundBlur'
+export type effectPropertyInterface = propertyObject & {
+  values: {
+    type: {
+      value: effectType
+    },
+    radius: {
+      value: number,
+      unit: string
+    },
+    color?: {
+      value: colorRgbaType
+    },
+    offset?: {
+      x: {
+        value: number,
+        unit: string
+      },
+      y: {
+        value: number,
+        unit: string
+      }
+    },
+    spread?: {
       value: number,
       unit: string
     }

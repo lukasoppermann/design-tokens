@@ -261,25 +261,6 @@
             "strokeMiterLimit"
           ]
         },
-        "strokeStyleId": {
-          "value": "",
-          "original": {
-            "value": ""
-          },
-          "name": "Borders2OfThemValuesStrokeStyleId",
-          "attributes": {
-            "category": "borders",
-            "type": "2 of them",
-            "item": "values",
-            "subitem": "strokeStyleId"
-          },
-          "path": [
-            "borders",
-            "2 of them",
-            "values",
-            "strokeStyleId"
-          ]
-        },
         "strokeWeight": {
           "value": 1,
           "unit": "pixels",
@@ -301,59 +282,34 @@
             "strokeWeight"
           ]
         },
-        "strokes": {
-          "color": {
+        "stroke": {
+          "value": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          },
+          "original": {
             "value": {
               "r": 0,
               "g": 0,
-              "b": 0
-            },
-            "original": {
-              "value": {
-                "r": 0,
-                "g": 0,
-                "b": 0
-              }
-            },
-            "name": "Borders2OfThemValuesStrokesColor",
-            "attributes": {
-              "category": "borders",
-              "type": "2 of them",
-              "item": "values",
-              "subitem": "strokes",
-              "state": "color"
-            },
-            "path": [
-              "borders",
-              "2 of them",
-              "values",
-              "strokes",
-              "color"
-            ]
+              "b": 0,
+              "a": 1
+            }
           },
-          "opacity": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0",
-            "original": {
-              "value": 1,
-              "comment": "Percent of as decimal from 0.0 - 1.0"
-            },
-            "name": "Borders2OfThemValuesStrokesOpacity",
-            "attributes": {
-              "category": "borders",
-              "type": "2 of them",
-              "item": "values",
-              "subitem": "strokes",
-              "state": "opacity"
-            },
-            "path": [
-              "borders",
-              "2 of them",
-              "values",
-              "strokes",
-              "opacity"
-            ]
-          }
+          "name": "Borders2OfThemValuesStroke",
+          "attributes": {
+            "category": "borders",
+            "type": "2 of them",
+            "item": "values",
+            "subitem": "stroke"
+          },
+          "path": [
+            "borders",
+            "2 of them",
+            "values",
+            "stroke"
+          ]
         }
       }
     },
@@ -418,25 +374,6 @@
             "strokeMiterLimit"
           ]
         },
-        "strokeStyleId": {
-          "value": "",
-          "original": {
-            "value": ""
-          },
-          "name": "BordersRed1PxValuesStrokeStyleId",
-          "attributes": {
-            "category": "borders",
-            "type": "red 1px",
-            "item": "values",
-            "subitem": "strokeStyleId"
-          },
-          "path": [
-            "borders",
-            "red 1px",
-            "values",
-            "strokeStyleId"
-          ]
-        },
         "strokeWeight": {
           "value": 1,
           "unit": "pixels",
@@ -458,59 +395,34 @@
             "strokeWeight"
           ]
         },
-        "strokes": {
-          "color": {
+        "stroke": {
+          "value": {
+            "r": 1,
+            "g": 0.02916663885116577,
+            "b": 0.02916663885116577,
+            "a": 0.3700000047683716
+          },
+          "original": {
             "value": {
               "r": 1,
               "g": 0.02916663885116577,
-              "b": 0.02916663885116577
-            },
-            "original": {
-              "value": {
-                "r": 1,
-                "g": 0.02916663885116577,
-                "b": 0.02916663885116577
-              }
-            },
-            "name": "BordersRed1PxValuesStrokesColor",
-            "attributes": {
-              "category": "borders",
-              "type": "red 1px",
-              "item": "values",
-              "subitem": "strokes",
-              "state": "color"
-            },
-            "path": [
-              "borders",
-              "red 1px",
-              "values",
-              "strokes",
-              "color"
-            ]
+              "b": 0.02916663885116577,
+              "a": 0.3700000047683716
+            }
           },
-          "opacity": {
-            "value": 0.3700000047683716,
-            "comment": "Percent of as decimal from 0.0 - 1.0",
-            "original": {
-              "value": 0.3700000047683716,
-              "comment": "Percent of as decimal from 0.0 - 1.0"
-            },
-            "name": "BordersRed1PxValuesStrokesOpacity",
-            "attributes": {
-              "category": "borders",
-              "type": "red 1px",
-              "item": "values",
-              "subitem": "strokes",
-              "state": "opacity"
-            },
-            "path": [
-              "borders",
-              "red 1px",
-              "values",
-              "strokes",
-              "opacity"
-            ]
-          }
+          "name": "BordersRed1PxValuesStroke",
+          "attributes": {
+            "category": "borders",
+            "type": "red 1px",
+            "item": "values",
+            "subitem": "stroke"
+          },
+          "path": [
+            "borders",
+            "red 1px",
+            "values",
+            "stroke"
+          ]
         }
       }
     },
@@ -575,25 +487,6 @@
             "strokeMiterLimit"
           ]
         },
-        "strokeStyleId": {
-          "value": "S:4a3029d323d8fb0c05dee39a983dafea20d7221e,",
-          "original": {
-            "value": "S:4a3029d323d8fb0c05dee39a983dafea20d7221e,"
-          },
-          "name": "BordersGreen4PxDottedValuesStrokeStyleId",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px dotted",
-            "item": "values",
-            "subitem": "strokeStyleId"
-          },
-          "path": [
-            "borders",
-            "green 4 px dotted",
-            "values",
-            "strokeStyleId"
-          ]
-        },
         "strokeWeight": {
           "value": 4,
           "unit": "pixels",
@@ -615,59 +508,34 @@
             "strokeWeight"
           ]
         },
-        "strokes": {
-          "color": {
+        "stroke": {
+          "value": {
+            "r": 0.25,
+            "g": 1,
+            "b": 0.7299998998641968,
+            "a": 1
+          },
+          "original": {
             "value": {
               "r": 0.25,
               "g": 1,
-              "b": 0.7299998998641968
-            },
-            "original": {
-              "value": {
-                "r": 0.25,
-                "g": 1,
-                "b": 0.7299998998641968
-              }
-            },
-            "name": "BordersGreen4PxDottedValuesStrokesColor",
-            "attributes": {
-              "category": "borders",
-              "type": "green 4 px dotted",
-              "item": "values",
-              "subitem": "strokes",
-              "state": "color"
-            },
-            "path": [
-              "borders",
-              "green 4 px dotted",
-              "values",
-              "strokes",
-              "color"
-            ]
+              "b": 0.7299998998641968,
+              "a": 1
+            }
           },
-          "opacity": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0",
-            "original": {
-              "value": 1,
-              "comment": "Percent of as decimal from 0.0 - 1.0"
-            },
-            "name": "BordersGreen4PxDottedValuesStrokesOpacity",
-            "attributes": {
-              "category": "borders",
-              "type": "green 4 px dotted",
-              "item": "values",
-              "subitem": "strokes",
-              "state": "opacity"
-            },
-            "path": [
-              "borders",
-              "green 4 px dotted",
-              "values",
-              "strokes",
-              "opacity"
-            ]
-          }
+          "name": "BordersGreen4PxDottedValuesStroke",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px dotted",
+            "item": "values",
+            "subitem": "stroke"
+          },
+          "path": [
+            "borders",
+            "green 4 px dotted",
+            "values",
+            "stroke"
+          ]
         }
       }
     },
@@ -732,25 +600,6 @@
             "strokeMiterLimit"
           ]
         },
-        "strokeStyleId": {
-          "value": "",
-          "original": {
-            "value": ""
-          },
-          "name": "BordersGreen4PxGradientValuesStrokeStyleId",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px gradient",
-            "item": "values",
-            "subitem": "strokeStyleId"
-          },
-          "path": [
-            "borders",
-            "green 4 px gradient",
-            "values",
-            "strokeStyleId"
-          ]
-        },
         "strokeWeight": {
           "value": 4,
           "unit": "pixels",
@@ -772,7 +621,25 @@
             "strokeWeight"
           ]
         },
-        "strokes": null
+        "stroke": {
+          "value": null,
+          "original": {
+            "value": null
+          },
+          "name": "BordersGreen4PxGradientValuesStroke",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px gradient",
+            "item": "values",
+            "subitem": "stroke"
+          },
+          "path": [
+            "borders",
+            "green 4 px gradient",
+            "values",
+            "stroke"
+          ]
+        }
       }
     }
   },
@@ -942,52 +809,33 @@
     "orange": {
       "description": "Our primary color",
       "values": {
-        "color": {
+        "fill": {
           "value": {
             "r": 1,
             "g": 0.5,
-            "b": 0.25
+            "b": 0.25,
+            "a": 1
           },
           "original": {
             "value": {
               "r": 1,
               "g": 0.5,
-              "b": 0.25
+              "b": 0.25,
+              "a": 1
             }
           },
-          "name": "ColorsOrangeValuesColor",
+          "name": "ColorsOrangeValuesFill",
           "attributes": {
             "category": "colors",
             "type": "orange",
             "item": "values",
-            "subitem": "color"
+            "subitem": "fill"
           },
           "path": [
             "colors",
             "orange",
             "values",
-            "color"
-          ]
-        },
-        "opacity": {
-          "value": 1,
-          "comment": "Percent of as decimal from 0.0 - 1.0",
-          "original": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
-          },
-          "name": "ColorsOrangeValuesOpacity",
-          "attributes": {
-            "category": "colors",
-            "type": "orange",
-            "item": "values",
-            "subitem": "opacity"
-          },
-          "path": [
-            "colors",
-            "orange",
-            "values",
-            "opacity"
+            "fill"
           ]
         }
       }
@@ -995,52 +843,33 @@
     "green": {
       "description": null,
       "values": {
-        "color": {
+        "fill": {
           "value": {
             "r": 0.25,
             "g": 1,
-            "b": 0.7299998998641968
+            "b": 0.7299998998641968,
+            "a": 1
           },
           "original": {
             "value": {
               "r": 0.25,
               "g": 1,
-              "b": 0.7299998998641968
+              "b": 0.7299998998641968,
+              "a": 1
             }
           },
-          "name": "ColorsGreenValuesColor",
+          "name": "ColorsGreenValuesFill",
           "attributes": {
             "category": "colors",
             "type": "green",
             "item": "values",
-            "subitem": "color"
+            "subitem": "fill"
           },
           "path": [
             "colors",
             "green",
             "values",
-            "color"
-          ]
-        },
-        "opacity": {
-          "value": 1,
-          "comment": "Percent of as decimal from 0.0 - 1.0",
-          "original": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
-          },
-          "name": "ColorsGreenValuesOpacity",
-          "attributes": {
-            "category": "colors",
-            "type": "green",
-            "item": "values",
-            "subitem": "opacity"
-          },
-          "path": [
-            "colors",
-            "green",
-            "values",
-            "opacity"
+            "fill"
           ]
         }
       }
@@ -1048,52 +877,33 @@
     "blue": {
       "description": null,
       "values": {
-        "color": {
+        "fill": {
           "value": {
             "r": 0.016666650772094727,
             "g": 0.2919999659061432,
-            "b": 1
+            "b": 1,
+            "a": 1
           },
           "original": {
             "value": {
               "r": 0.016666650772094727,
               "g": 0.2919999659061432,
-              "b": 1
+              "b": 1,
+              "a": 1
             }
           },
-          "name": "ColorsBlueValuesColor",
+          "name": "ColorsBlueValuesFill",
           "attributes": {
             "category": "colors",
             "type": "blue",
             "item": "values",
-            "subitem": "color"
+            "subitem": "fill"
           },
           "path": [
             "colors",
             "blue",
             "values",
-            "color"
-          ]
-        },
-        "opacity": {
-          "value": 1,
-          "comment": "Percent of as decimal from 0.0 - 1.0",
-          "original": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
-          },
-          "name": "ColorsBlueValuesOpacity",
-          "attributes": {
-            "category": "colors",
-            "type": "blue",
-            "item": "values",
-            "subitem": "opacity"
-          },
-          "path": [
-            "colors",
-            "blue",
-            "values",
-            "opacity"
+            "fill"
           ]
         }
       }
@@ -1102,56 +912,35 @@
       "green": {
         "description": null,
         "values": {
-          "color": {
+          "fill": {
             "value": {
               "r": 0.14036458730697632,
               "g": 0.6875,
-              "b": 0.1950780749320984
+              "b": 0.1950780749320984,
+              "a": 1
             },
             "original": {
               "value": {
                 "r": 0.14036458730697632,
                 "g": 0.6875,
-                "b": 0.1950780749320984
+                "b": 0.1950780749320984,
+                "a": 1
               }
             },
-            "name": "ColorsSecondaryGreenValuesColor",
+            "name": "ColorsSecondaryGreenValuesFill",
             "attributes": {
               "category": "colors",
               "type": "secondary",
               "item": "green",
               "subitem": "values",
-              "state": "color"
+              "state": "fill"
             },
             "path": [
               "colors",
               "secondary",
               "green",
               "values",
-              "color"
-            ]
-          },
-          "opacity": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0",
-            "original": {
-              "value": 1,
-              "comment": "Percent of as decimal from 0.0 - 1.0"
-            },
-            "name": "ColorsSecondaryGreenValuesOpacity",
-            "attributes": {
-              "category": "colors",
-              "type": "secondary",
-              "item": "green",
-              "subitem": "values",
-              "state": "opacity"
-            },
-            "path": [
-              "colors",
-              "secondary",
-              "green",
-              "values",
-              "opacity"
+              "fill"
             ]
           }
         }
@@ -1159,56 +948,35 @@
       "yellow": {
         "description": null,
         "values": {
-          "color": {
+          "fill": {
             "value": {
               "r": 1,
               "g": 0.7199999690055847,
-              "b": 0
+              "b": 0,
+              "a": 1
             },
             "original": {
               "value": {
                 "r": 1,
                 "g": 0.7199999690055847,
-                "b": 0
+                "b": 0,
+                "a": 1
               }
             },
-            "name": "ColorsSecondaryYellowValuesColor",
+            "name": "ColorsSecondaryYellowValuesFill",
             "attributes": {
               "category": "colors",
               "type": "secondary",
               "item": "yellow",
               "subitem": "values",
-              "state": "color"
+              "state": "fill"
             },
             "path": [
               "colors",
               "secondary",
               "yellow",
               "values",
-              "color"
-            ]
-          },
-          "opacity": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0",
-            "original": {
-              "value": 1,
-              "comment": "Percent of as decimal from 0.0 - 1.0"
-            },
-            "name": "ColorsSecondaryYellowValuesOpacity",
-            "attributes": {
-              "category": "colors",
-              "type": "secondary",
-              "item": "yellow",
-              "subitem": "values",
-              "state": "opacity"
-            },
-            "path": [
-              "colors",
-              "secondary",
-              "yellow",
-              "values",
-              "opacity"
+              "fill"
             ]
           }
         }
@@ -1219,52 +987,33 @@
     "error": {
       "description": null,
       "values": {
-        "color": {
+        "fill": {
           "value": {
             "r": 1,
             "g": 0,
-            "b": 0
+            "b": 0,
+            "a": 1
           },
           "original": {
             "value": {
               "r": 1,
               "g": 0,
-              "b": 0
+              "b": 0,
+              "a": 1
             }
           },
-          "name": "UtilitiesErrorValuesColor",
+          "name": "UtilitiesErrorValuesFill",
           "attributes": {
             "category": "utilities",
             "type": "error",
             "item": "values",
-            "subitem": "color"
+            "subitem": "fill"
           },
           "path": [
             "utilities",
             "error",
             "values",
-            "color"
-          ]
-        },
-        "opacity": {
-          "value": 1,
-          "comment": "Percent of as decimal from 0.0 - 1.0",
-          "original": {
-            "value": 1,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
-          },
-          "name": "UtilitiesErrorValuesOpacity",
-          "attributes": {
-            "category": "utilities",
-            "type": "error",
-            "item": "values",
-            "subitem": "opacity"
-          },
-          "path": [
-            "utilities",
-            "error",
-            "values",
-            "opacity"
+            "fill"
           ]
         }
       }
@@ -1619,91 +1368,240 @@
     "shadow": {
       "description": null,
       "values": {
-        "effects": [
-          {
-            "type": "DROP_SHADOW",
-            "color": {
-              "r": 0,
-              "g": 0,
-              "b": 0,
-              "a": 0.25
-            },
-            "offset": {
-              "x": 0,
-              "y": 4
-            },
-            "radius": 4,
-            "spread": 0,
-            "visible": true,
-            "blendMode": "NORMAL"
-          }
-        ]
-      }
-    },
-    "layer blur": {
-      "description": null,
-      "values": {
-        "effects": [
-          {
-            "type": "LAYER_BLUR",
-            "radius": 4,
-            "visible": true
-          }
-        ]
-      }
-    },
-    "background blur": {
-      "description": null,
-      "values": {
-        "effects": [
-          {
-            "type": "BACKGROUND_BLUR",
-            "radius": 4,
-            "visible": true
-          }
-        ]
-      }
-    }
-  },
-  "inner shadow": {
-    "description": null,
-    "values": {
-      "effects": [
-        {
-          "type": "INNER_SHADOW",
-          "color": {
+        "type": {
+          "value": "dropShadow",
+          "original": {
+            "value": "dropShadow"
+          },
+          "name": "EffectShadowValuesType",
+          "attributes": {
+            "category": "effect",
+            "type": "shadow",
+            "item": "values",
+            "subitem": "type"
+          },
+          "path": [
+            "effect",
+            "shadow",
+            "values",
+            "type"
+          ]
+        },
+        "radius": {
+          "value": 4,
+          "unit": "pixels",
+          "original": {
+            "value": 4,
+            "unit": "pixels"
+          },
+          "name": "EffectShadowValuesRadius",
+          "attributes": {
+            "category": "effect",
+            "type": "shadow",
+            "item": "values",
+            "subitem": "radius"
+          },
+          "path": [
+            "effect",
+            "shadow",
+            "values",
+            "radius"
+          ]
+        },
+        "color": {
+          "value": {
             "r": 0,
             "g": 0,
             "b": 0,
             "a": 0.25
           },
-          "offset": {
-            "x": 0,
-            "y": 4
+          "original": {
+            "value": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.25
+            }
           },
-          "radius": 4,
-          "spread": 0,
-          "visible": true,
-          "blendMode": "NORMAL"
+          "name": "EffectShadowValuesColor",
+          "attributes": {
+            "category": "effect",
+            "type": "shadow",
+            "item": "values",
+            "subitem": "color"
+          },
+          "path": [
+            "effect",
+            "shadow",
+            "values",
+            "color"
+          ]
         },
+        "offset": {
+          "x": {
+            "value": 0,
+            "unit": "pixels",
+            "original": {
+              "value": 0,
+              "unit": "pixels"
+            },
+            "name": "EffectShadowValuesOffsetX",
+            "attributes": {
+              "category": "effect",
+              "type": "shadow",
+              "item": "values",
+              "subitem": "offset",
+              "state": "x"
+            },
+            "path": [
+              "effect",
+              "shadow",
+              "values",
+              "offset",
+              "x"
+            ]
+          },
+          "y": {
+            "value": 4,
+            "unit": "pixels",
+            "original": {
+              "value": 4,
+              "unit": "pixels"
+            },
+            "name": "EffectShadowValuesOffsetY",
+            "attributes": {
+              "category": "effect",
+              "type": "shadow",
+              "item": "values",
+              "subitem": "offset",
+              "state": "y"
+            },
+            "path": [
+              "effect",
+              "shadow",
+              "values",
+              "offset",
+              "y"
+            ]
+          }
+        },
+        "spread": {
+          "value": 0,
+          "unit": "pixels",
+          "original": {
+            "value": 0,
+            "unit": "pixels"
+          },
+          "name": "EffectShadowValuesSpread",
+          "attributes": {
+            "category": "effect",
+            "type": "shadow",
+            "item": "values",
+            "subitem": "spread"
+          },
+          "path": [
+            "effect",
+            "shadow",
+            "values",
+            "spread"
+          ]
+        }
+      }
+    },
+    "layer blur": {
+      "description": null,
+      "values": [
         {
-          "type": "INNER_SHADOW",
-          "color": {
+          "type": {
+            "value": "layerBlur"
+          },
+          "radius": {
+            "value": 4,
+            "unit": "pixels"
+          }
+        }
+      ]
+    },
+    "background blur": {
+      "description": null,
+      "values": [
+        {
+          "type": {
+            "value": "backgroundBlur"
+          },
+          "radius": {
+            "value": 4,
+            "unit": "pixels"
+          }
+        }
+      ]
+    }
+  },
+  "inner shadow": {
+    "description": null,
+    "values": [
+      {
+        "type": {
+          "value": "innerShadow"
+        },
+        "radius": {
+          "value": 4,
+          "unit": "pixels"
+        },
+        "color": {
+          "value": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.25
+          }
+        },
+        "offset": {
+          "x": {
+            "value": 0,
+            "unit": "pixels"
+          },
+          "y": {
+            "value": 4,
+            "unit": "pixels"
+          }
+        },
+        "spread": {
+          "value": 0,
+          "unit": "pixels"
+        }
+      },
+      {
+        "type": {
+          "value": "innerShadow"
+        },
+        "radius": {
+          "value": 10,
+          "unit": "pixels"
+        },
+        "color": {
+          "value": {
             "r": 0,
             "g": 0,
             "b": 0,
             "a": 0.15000000596046448
+          }
+        },
+        "offset": {
+          "x": {
+            "value": 0,
+            "unit": "pixels"
           },
-          "offset": {
-            "x": 0,
-            "y": -4
-          },
-          "radius": 10,
-          "spread": 0,
-          "visible": true,
-          "blendMode": "NORMAL"
+          "y": {
+            "value": -4,
+            "unit": "pixels"
+          }
+        },
+        "spread": {
+          "value": 0,
+          "unit": "pixels"
         }
-      ]
-    }
+      }
+    ]
   }
 }
