@@ -9,7 +9,26 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
-    define("extractor/extractColors", ["require", "exports"], function (require, exports) {
+    define("utilities/convertPaint", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const convertPaint = (paint) => {
+            if (paint.type === 'SOLID' && paint.visible === true) {
+                return {
+                    color: {
+                        value: paint.color
+                    },
+                    opacity: {
+                        value: paint.opacity,
+                        comment: "Percent of as decimal from 0.0 - 1.0"
+                    }
+                };
+            }
+            return null;
+        };
+        exports.default = convertPaint;
+    });
+    define("extractor/extractColors", ["require", "exports", "utilities/convertPaint"], function (require, exports, convertPaint_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const extractColors = (tokenNodes) => {
@@ -17,9 +36,7 @@
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
-                values: {
-                    paints: node.paints
-                }
+                values: convertPaint_1.default(node.paints[0])
             }));
         };
         exports.default = extractColors;
@@ -27,18 +44,136 @@
     define("extractor/extractGrids", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        const gridValues = (grid) => ({
+            pattern: {
+                value: grid.pattern.toLowerCase()
+            },
+            sectionSize: {
+                value: grid.sectionSize,
+                unit: 'pixels'
+            }
+        });
+        const rowColumnValues = (grid) => ({
+            pattern: {
+                value: grid.pattern.toLowerCase()
+            },
+            sectionSize: {
+                value: grid.sectionSize,
+                unit: 'pixels'
+            },
+            gutterSize: {
+                value: grid.gutterSize,
+                unit: 'pixels'
+            },
+            alignment: {
+                value: grid.alignment.toLowerCase()
+            },
+            count: {
+                value: grid.count
+            },
+            offset: {
+                value: grid.offset,
+                unit: 'pixels'
+            }
+        });
         const extractGrids = (tokenNodes) => {
             // get grid styles
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
-                values: {
-                    grids: node.layoutGrids
-                }
+                values: node.layoutGrids.map((grid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
             }));
         };
         exports.default = extractGrids;
     });
+    // "grids": [
+    //   {
+    //     "pattern": "COLUMNS",
+    //     "visible": true,
+    //     "color": {
+    //       "r": 1,
+    //       "g": 0,
+    //       "b": 0,
+    //       "a": 0.10000000149011612
+    //     },
+    //     "gutterSize": 20,
+    //     "alignment": "STRETCH",
+    //     "count": 5,
+    //     "offset": 10
+    //   },
+    //   {
+    //     "pattern": "ROWS",
+    //     "visible": true,
+    //     "color": {
+    //       "r": 1,
+    //       "g": 0,
+    //       "b": 0,
+    //       "a": 0.10000000149011612
+    //     },
+    //     "gutterSize": 10,
+    //     "alignment": "CENTER",
+    //     "count": 5,
+    //     "sectionSize": 8
+    //   },
+    //   {
+    //     "pattern": "COLUMNS",
+    //     "visible": true,
+    //     "color": {
+    //       "r": 1,
+    //       "g": 0,
+    //       "b": 0,
+    //       "a": 0.10000000149011612
+    //     },
+    //     "gutterSize": 20,
+    //     "alignment": "MAX",
+    //     "count": 5,
+    //     "sectionSize": 8,
+    //     "offset": 10
+    //   },
+    //   {
+    //     "pattern": "COLUMNS",
+    //     "visible": true,
+    //     "color": {
+    //       "r": 1,
+    //       "g": 0,
+    //       "b": 0,
+    //       "a": 0.10000000149011612
+    //     },
+    //     "gutterSize": 20,
+    //     "alignment": "MIN",
+    //     "count": 5,
+    //     "sectionSize": 34,
+    //     "offset": 13
+    //   },
+    //   {
+    //     "pattern": "ROWS",
+    //     "visible": true,
+    //     "color": {
+    //       "r": 1,
+    //       "g": 0,
+    //       "b": 0,
+    //       "a": 0.10000000149011612
+    //     },
+    //     "gutterSize": 20,
+    //     "alignment": "MIN",
+    //     "count": 5,
+    //     "sectionSize": 8,
+    //     "offset": 10
+    //   },
+    //   {
+    //     "pattern": "GRID",
+    //     "visible": true,
+    //     "color": {
+    //       "r": 1,
+    //       "g": 0,
+    //       "b": 0,
+    //       "a": 0.10000000149011612
+    //     },
+    //     "sectionSize": 8
+    //   }
+    // ]
+    //       }
+    //     }
     define("extractor/extractFonts", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -46,6 +181,12 @@
             'NONE': 'none',
             'UNDERLINE': 'underline',
             'STRIKETHROUGH': 'line-through'
+        };
+        const textCases = {
+            "ORIGINAL": "none",
+            "UPPER": "uppercase",
+            "LOWER": "lowercase",
+            "TITLE": "capitalize"
         };
         const extractFonts = (tokenNodes) => {
             // get raw text styles
@@ -84,7 +225,7 @@
                         unit: 'pixels'
                     },
                     textCase: {
-                        value: node.textCase.toLowerCase()
+                        value: textCases[node.textCase]
                     }
                 }
             }));
@@ -130,7 +271,7 @@
         };
         exports.default = extractSizes;
     });
-    define("extractor/extractBorders", ["require", "exports"], function (require, exports) {
+    define("extractor/extractBorders", ["require", "exports", "utilities/convertPaint"], function (require, exports, convertPaint_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const strokeJoins = {
@@ -170,7 +311,7 @@
                         value: node.strokeWeight,
                         unit: 'pixels'
                     },
-                    strokes: node.strokes
+                    strokes: convertPaint_2.default((node.strokes[0]))
                 }
             }));
         };
@@ -192,17 +333,41 @@
             const getRadii = (node) => {
                 if (typeof node.cornerRadius !== 'number') {
                     return {
-                        topLeft: node.topLeftRadius || 0,
-                        topRight: node.topRightRadius || 0,
-                        bottomRight: node.bottomRightRadius || 0,
-                        bottomLeft: node.bottomLeftRadius || 0
+                        topLeft: {
+                            value: node.topLeftRadius || 0,
+                            unit: 'pixels'
+                        },
+                        topRight: {
+                            value: node.topRightRadius || 0,
+                            unit: 'pixels'
+                        },
+                        bottomRight: {
+                            value: node.bottomRightRadius || 0,
+                            unit: 'pixels'
+                        },
+                        bottomLeft: {
+                            value: node.bottomLeftRadius || 0,
+                            unit: 'pixels'
+                        }
                     };
                 }
                 return {
-                    topLeft: node.cornerRadius,
-                    topRight: node.cornerRadius,
-                    bottomRight: node.cornerRadius,
-                    bottomLeft: node.cornerRadius
+                    topLeft: {
+                        value: node.cornerRadius,
+                        unit: 'pixels'
+                    },
+                    topRight: {
+                        value: node.cornerRadius,
+                        unit: 'pixels'
+                    },
+                    bottomRight: {
+                        value: node.cornerRadius,
+                        unit: 'pixels'
+                    },
+                    bottomLeft: {
+                        value: node.cornerRadius,
+                        unit: 'pixels'
+                    }
                 };
             };
             // return as object
@@ -211,10 +376,18 @@
                 // @ts-ignore
                 description: node.description || null,
                 values: {
-                    radius: node.cornerRadius,
-                    radiusType: getRadiusType(node.cornerRadius),
+                    radius: {
+                        value: (typeof node.cornerRadius === 'number' ? node.cornerRadius : 'mixed'),
+                        unit: 'pixels'
+                    },
+                    radiusType: {
+                        value: getRadiusType(node.cornerRadius)
+                    },
                     radii: getRadii(node),
-                    smoothing: node.cornerSmoothing
+                    smoothing: {
+                        value: node.cornerSmoothing,
+                        comment: "Percent of as decimal from 0.0 - 1.0"
+                    }
                 }
             }));
         };

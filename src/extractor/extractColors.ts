@@ -1,13 +1,12 @@
 import extractorInterface from '../../types/extractorInterface'
+import convertPaint from '../utilities/convertPaint'
 
 const extractColors: extractorInterface = (tokenNodes: PaintStyle[]) => {
   // get all paint styles
   return tokenNodes.map(node => ({
     name: node.name,
     description: node.description || null,
-    values: {
-      paints: node.paints
-    }
+    values: convertPaint(node.paints[0])
   }))
 
 }

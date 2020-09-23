@@ -1,101 +1,4 @@
 {
-  "color": {
-    "base": {
-      "gray": {
-        "light": {
-          "value": "#cccccc",
-          "original": {
-            "value": "#CCCCCC"
-          },
-          "name": "ColorBaseGrayLight",
-          "attributes": {
-            "category": "color",
-            "type": "base",
-            "item": "gray",
-            "subitem": "light"
-          },
-          "path": [
-            "color",
-            "base",
-            "gray",
-            "light"
-          ]
-        },
-        "medium": {
-          "value": "#999999",
-          "original": {
-            "value": "#999999"
-          },
-          "name": "ColorBaseGrayMedium",
-          "attributes": {
-            "category": "color",
-            "type": "base",
-            "item": "gray",
-            "subitem": "medium"
-          },
-          "path": [
-            "color",
-            "base",
-            "gray",
-            "medium"
-          ]
-        },
-        "dark": {
-          "value": "#111111",
-          "original": {
-            "value": "#111111"
-          },
-          "name": "ColorBaseGrayDark",
-          "attributes": {
-            "category": "color",
-            "type": "base",
-            "item": "gray",
-            "subitem": "dark"
-          },
-          "path": [
-            "color",
-            "base",
-            "gray",
-            "dark"
-          ]
-        }
-      },
-      "red": {
-        "value": "#ff0000",
-        "original": {
-          "value": "#FF0000"
-        },
-        "name": "ColorBaseRed",
-        "attributes": {
-          "category": "color",
-          "type": "base",
-          "item": "red"
-        },
-        "path": [
-          "color",
-          "base",
-          "red"
-        ]
-      },
-      "green": {
-        "value": "#00ff00",
-        "original": {
-          "value": "#00FF00"
-        },
-        "name": "ColorBaseGreen",
-        "attributes": {
-          "category": "color",
-          "type": "base",
-          "item": "green"
-        },
-        "path": [
-          "color",
-          "base",
-          "green"
-        ]
-      }
-    }
-  },
   "sizes": {
     "8": {
       "description": null,
@@ -398,57 +301,60 @@
             "strokeWeight"
           ]
         },
-        "strokes": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "strokes": {
+          "color": {
+            "value": {
               "r": 0,
               "g": 0,
               "b": 0
-            }
-          },
-          {
-            "type": "GRADIENT_LINEAR",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "gradientStops": [
-              {
-                "color": {
-                  "r": 1,
-                  "g": 0,
-                  "b": 0,
-                  "a": 1
-                },
-                "position": 0
-              },
-              {
-                "color": {
-                  "r": 1,
-                  "g": 1,
-                  "b": 1,
-                  "a": 0
-                },
-                "position": 1
+            },
+            "original": {
+              "value": {
+                "r": 0,
+                "g": 0,
+                "b": 0
               }
-            ],
-            "gradientTransform": [
-              [
-                6.123234262925839e-17,
-                1,
-                0
-              ],
-              [
-                -1,
-                6.123234262925839e-17,
-                1
-              ]
+            },
+            "name": "Borders2OfThemValuesStrokesColor",
+            "attributes": {
+              "category": "borders",
+              "type": "2 of them",
+              "item": "values",
+              "subitem": "strokes",
+              "state": "color"
+            },
+            "path": [
+              "borders",
+              "2 of them",
+              "values",
+              "strokes",
+              "color"
+            ]
+          },
+          "opacity": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0",
+            "original": {
+              "value": 1,
+              "comment": "Percent of as decimal from 0.0 - 1.0"
+            },
+            "name": "Borders2OfThemValuesStrokesOpacity",
+            "attributes": {
+              "category": "borders",
+              "type": "2 of them",
+              "item": "values",
+              "subitem": "strokes",
+              "state": "opacity"
+            },
+            "path": [
+              "borders",
+              "2 of them",
+              "values",
+              "strokes",
+              "opacity"
             ]
           }
-        ]
+        }
       }
     },
     "red 1px": {
@@ -552,19 +458,60 @@
             "strokeWeight"
           ]
         },
-        "strokes": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "strokes": {
+          "color": {
+            "value": {
               "r": 1,
               "g": 0.02916663885116577,
               "b": 0.02916663885116577
-            }
+            },
+            "original": {
+              "value": {
+                "r": 1,
+                "g": 0.02916663885116577,
+                "b": 0.02916663885116577
+              }
+            },
+            "name": "BordersRed1PxValuesStrokesColor",
+            "attributes": {
+              "category": "borders",
+              "type": "red 1px",
+              "item": "values",
+              "subitem": "strokes",
+              "state": "color"
+            },
+            "path": [
+              "borders",
+              "red 1px",
+              "values",
+              "strokes",
+              "color"
+            ]
+          },
+          "opacity": {
+            "value": 0.3700000047683716,
+            "comment": "Percent of as decimal from 0.0 - 1.0",
+            "original": {
+              "value": 0.3700000047683716,
+              "comment": "Percent of as decimal from 0.0 - 1.0"
+            },
+            "name": "BordersRed1PxValuesStrokesOpacity",
+            "attributes": {
+              "category": "borders",
+              "type": "red 1px",
+              "item": "values",
+              "subitem": "strokes",
+              "state": "opacity"
+            },
+            "path": [
+              "borders",
+              "red 1px",
+              "values",
+              "strokes",
+              "opacity"
+            ]
           }
-        ]
+        }
       }
     },
     "green 4 px dotted": {
@@ -668,19 +615,60 @@
             "strokeWeight"
           ]
         },
-        "strokes": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "strokes": {
+          "color": {
+            "value": {
               "r": 0.25,
               "g": 1,
               "b": 0.7299998998641968
-            }
+            },
+            "original": {
+              "value": {
+                "r": 0.25,
+                "g": 1,
+                "b": 0.7299998998641968
+              }
+            },
+            "name": "BordersGreen4PxDottedValuesStrokesColor",
+            "attributes": {
+              "category": "borders",
+              "type": "green 4 px dotted",
+              "item": "values",
+              "subitem": "strokes",
+              "state": "color"
+            },
+            "path": [
+              "borders",
+              "green 4 px dotted",
+              "values",
+              "strokes",
+              "color"
+            ]
+          },
+          "opacity": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0",
+            "original": {
+              "value": 1,
+              "comment": "Percent of as decimal from 0.0 - 1.0"
+            },
+            "name": "BordersGreen4PxDottedValuesStrokesOpacity",
+            "attributes": {
+              "category": "borders",
+              "type": "green 4 px dotted",
+              "item": "values",
+              "subitem": "strokes",
+              "state": "opacity"
+            },
+            "path": [
+              "borders",
+              "green 4 px dotted",
+              "values",
+              "strokes",
+              "opacity"
+            ]
           }
-        ]
+        }
       }
     },
     "green 4 px gradient": {
@@ -784,46 +772,7 @@
             "strokeWeight"
           ]
         },
-        "strokes": [
-          {
-            "type": "GRADIENT_RADIAL",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "gradientStops": [
-              {
-                "color": {
-                  "r": 0.25156253576278687,
-                  "g": 0.875,
-                  "b": 0.3139062225818634,
-                  "a": 1
-                },
-                "position": 0
-              },
-              {
-                "color": {
-                  "r": 1,
-                  "g": 0,
-                  "b": 0,
-                  "a": 1
-                },
-                "position": 1
-              }
-            ],
-            "gradientTransform": [
-              [
-                0.12476077675819397,
-                0.37510251998901367,
-                0.5625171065330505
-              ],
-              [
-                -0.37510251998901367,
-                0.16075822710990906,
-                0.5267930626869202
-              ]
-            ]
-          }
-        ]
+        "strokes": null
       }
     }
   },
@@ -831,14 +780,161 @@
     "mixed": {
       "description": null,
       "values": {
-        "radiusType": "mixed",
-        "radii": {
-          "topLeft": 0,
-          "topRight": 3,
-          "bottomRight": 4,
-          "bottomLeft": 6
+        "radius": {
+          "value": "mixed",
+          "unit": "pixels",
+          "original": {
+            "value": "mixed",
+            "unit": "pixels"
+          },
+          "name": "RadiiMixedValuesRadius",
+          "attributes": {
+            "category": "radii",
+            "type": "mixed",
+            "item": "values",
+            "subitem": "radius"
+          },
+          "path": [
+            "radii",
+            "mixed",
+            "values",
+            "radius"
+          ]
         },
-        "smoothing": 0
+        "radiusType": {
+          "value": "mixed",
+          "original": {
+            "value": "mixed"
+          },
+          "name": "RadiiMixedValuesRadiusType",
+          "attributes": {
+            "category": "radii",
+            "type": "mixed",
+            "item": "values",
+            "subitem": "radiusType"
+          },
+          "path": [
+            "radii",
+            "mixed",
+            "values",
+            "radiusType"
+          ]
+        },
+        "radii": {
+          "topLeft": {
+            "value": 0,
+            "unit": "pixels",
+            "original": {
+              "value": 0,
+              "unit": "pixels"
+            },
+            "name": "RadiiMixedValuesRadiiTopLeft",
+            "attributes": {
+              "category": "radii",
+              "type": "mixed",
+              "item": "values",
+              "subitem": "radii",
+              "state": "topLeft"
+            },
+            "path": [
+              "radii",
+              "mixed",
+              "values",
+              "radii",
+              "topLeft"
+            ]
+          },
+          "topRight": {
+            "value": 3,
+            "unit": "pixels",
+            "original": {
+              "value": 3,
+              "unit": "pixels"
+            },
+            "name": "RadiiMixedValuesRadiiTopRight",
+            "attributes": {
+              "category": "radii",
+              "type": "mixed",
+              "item": "values",
+              "subitem": "radii",
+              "state": "topRight"
+            },
+            "path": [
+              "radii",
+              "mixed",
+              "values",
+              "radii",
+              "topRight"
+            ]
+          },
+          "bottomRight": {
+            "value": 4,
+            "unit": "pixels",
+            "original": {
+              "value": 4,
+              "unit": "pixels"
+            },
+            "name": "RadiiMixedValuesRadiiBottomRight",
+            "attributes": {
+              "category": "radii",
+              "type": "mixed",
+              "item": "values",
+              "subitem": "radii",
+              "state": "bottomRight"
+            },
+            "path": [
+              "radii",
+              "mixed",
+              "values",
+              "radii",
+              "bottomRight"
+            ]
+          },
+          "bottomLeft": {
+            "value": 6,
+            "unit": "pixels",
+            "original": {
+              "value": 6,
+              "unit": "pixels"
+            },
+            "name": "RadiiMixedValuesRadiiBottomLeft",
+            "attributes": {
+              "category": "radii",
+              "type": "mixed",
+              "item": "values",
+              "subitem": "radii",
+              "state": "bottomLeft"
+            },
+            "path": [
+              "radii",
+              "mixed",
+              "values",
+              "radii",
+              "bottomLeft"
+            ]
+          }
+        },
+        "smoothing": {
+          "value": 0.6200000047683716,
+          "comment": "Percent of as decimal from 0.0 - 1.0",
+          "original": {
+            "value": 0.6200000047683716,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
+          },
+          "name": "RadiiMixedValuesSmoothing",
+          "attributes": {
+            "category": "radii",
+            "type": "mixed",
+            "item": "values",
+            "subitem": "smoothing"
+          },
+          "path": [
+            "radii",
+            "mixed",
+            "values",
+            "smoothing"
+          ]
+        }
       }
     }
   },
@@ -846,92 +942,275 @@
     "orange": {
       "description": "Our primary color",
       "values": {
-        "paints": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "color": {
+          "value": {
+            "r": 1,
+            "g": 0.5,
+            "b": 0.25
+          },
+          "original": {
+            "value": {
               "r": 1,
               "g": 0.5,
               "b": 0.25
             }
-          }
-        ]
+          },
+          "name": "ColorsOrangeValuesColor",
+          "attributes": {
+            "category": "colors",
+            "type": "orange",
+            "item": "values",
+            "subitem": "color"
+          },
+          "path": [
+            "colors",
+            "orange",
+            "values",
+            "color"
+          ]
+        },
+        "opacity": {
+          "value": 1,
+          "comment": "Percent of as decimal from 0.0 - 1.0",
+          "original": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
+          },
+          "name": "ColorsOrangeValuesOpacity",
+          "attributes": {
+            "category": "colors",
+            "type": "orange",
+            "item": "values",
+            "subitem": "opacity"
+          },
+          "path": [
+            "colors",
+            "orange",
+            "values",
+            "opacity"
+          ]
+        }
       }
     },
     "green": {
       "description": null,
       "values": {
-        "paints": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "color": {
+          "value": {
+            "r": 0.25,
+            "g": 1,
+            "b": 0.7299998998641968
+          },
+          "original": {
+            "value": {
               "r": 0.25,
               "g": 1,
               "b": 0.7299998998641968
             }
-          }
-        ]
+          },
+          "name": "ColorsGreenValuesColor",
+          "attributes": {
+            "category": "colors",
+            "type": "green",
+            "item": "values",
+            "subitem": "color"
+          },
+          "path": [
+            "colors",
+            "green",
+            "values",
+            "color"
+          ]
+        },
+        "opacity": {
+          "value": 1,
+          "comment": "Percent of as decimal from 0.0 - 1.0",
+          "original": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
+          },
+          "name": "ColorsGreenValuesOpacity",
+          "attributes": {
+            "category": "colors",
+            "type": "green",
+            "item": "values",
+            "subitem": "opacity"
+          },
+          "path": [
+            "colors",
+            "green",
+            "values",
+            "opacity"
+          ]
+        }
       }
     },
     "blue": {
       "description": null,
       "values": {
-        "paints": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "color": {
+          "value": {
+            "r": 0.016666650772094727,
+            "g": 0.2919999659061432,
+            "b": 1
+          },
+          "original": {
+            "value": {
               "r": 0.016666650772094727,
               "g": 0.2919999659061432,
               "b": 1
             }
-          }
-        ]
+          },
+          "name": "ColorsBlueValuesColor",
+          "attributes": {
+            "category": "colors",
+            "type": "blue",
+            "item": "values",
+            "subitem": "color"
+          },
+          "path": [
+            "colors",
+            "blue",
+            "values",
+            "color"
+          ]
+        },
+        "opacity": {
+          "value": 1,
+          "comment": "Percent of as decimal from 0.0 - 1.0",
+          "original": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
+          },
+          "name": "ColorsBlueValuesOpacity",
+          "attributes": {
+            "category": "colors",
+            "type": "blue",
+            "item": "values",
+            "subitem": "opacity"
+          },
+          "path": [
+            "colors",
+            "blue",
+            "values",
+            "opacity"
+          ]
+        }
       }
     },
     "secondary": {
       "green": {
         "description": null,
         "values": {
-          "paints": [
-            {
-              "type": "SOLID",
-              "visible": true,
-              "opacity": 1,
-              "blendMode": "NORMAL",
-              "color": {
+          "color": {
+            "value": {
+              "r": 0.14036458730697632,
+              "g": 0.6875,
+              "b": 0.1950780749320984
+            },
+            "original": {
+              "value": {
                 "r": 0.14036458730697632,
                 "g": 0.6875,
                 "b": 0.1950780749320984
               }
-            }
-          ]
+            },
+            "name": "ColorsSecondaryGreenValuesColor",
+            "attributes": {
+              "category": "colors",
+              "type": "secondary",
+              "item": "green",
+              "subitem": "values",
+              "state": "color"
+            },
+            "path": [
+              "colors",
+              "secondary",
+              "green",
+              "values",
+              "color"
+            ]
+          },
+          "opacity": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0",
+            "original": {
+              "value": 1,
+              "comment": "Percent of as decimal from 0.0 - 1.0"
+            },
+            "name": "ColorsSecondaryGreenValuesOpacity",
+            "attributes": {
+              "category": "colors",
+              "type": "secondary",
+              "item": "green",
+              "subitem": "values",
+              "state": "opacity"
+            },
+            "path": [
+              "colors",
+              "secondary",
+              "green",
+              "values",
+              "opacity"
+            ]
+          }
         }
       },
       "yellow": {
         "description": null,
         "values": {
-          "paints": [
-            {
-              "type": "SOLID",
-              "visible": true,
-              "opacity": 1,
-              "blendMode": "NORMAL",
-              "color": {
+          "color": {
+            "value": {
+              "r": 1,
+              "g": 0.7199999690055847,
+              "b": 0
+            },
+            "original": {
+              "value": {
                 "r": 1,
                 "g": 0.7199999690055847,
                 "b": 0
               }
-            }
-          ]
+            },
+            "name": "ColorsSecondaryYellowValuesColor",
+            "attributes": {
+              "category": "colors",
+              "type": "secondary",
+              "item": "yellow",
+              "subitem": "values",
+              "state": "color"
+            },
+            "path": [
+              "colors",
+              "secondary",
+              "yellow",
+              "values",
+              "color"
+            ]
+          },
+          "opacity": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0",
+            "original": {
+              "value": 1,
+              "comment": "Percent of as decimal from 0.0 - 1.0"
+            },
+            "name": "ColorsSecondaryYellowValuesOpacity",
+            "attributes": {
+              "category": "colors",
+              "type": "secondary",
+              "item": "yellow",
+              "subitem": "values",
+              "state": "opacity"
+            },
+            "path": [
+              "colors",
+              "secondary",
+              "yellow",
+              "values",
+              "opacity"
+            ]
+          }
         }
       }
     }
@@ -940,54 +1219,212 @@
     "error": {
       "description": null,
       "values": {
-        "paints": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "color": {
+          "value": {
+            "r": 1,
+            "g": 0,
+            "b": 0
+          },
+          "original": {
+            "value": {
               "r": 1,
               "g": 0,
               "b": 0
             }
-          }
-        ]
+          },
+          "name": "UtilitiesErrorValuesColor",
+          "attributes": {
+            "category": "utilities",
+            "type": "error",
+            "item": "values",
+            "subitem": "color"
+          },
+          "path": [
+            "utilities",
+            "error",
+            "values",
+            "color"
+          ]
+        },
+        "opacity": {
+          "value": 1,
+          "comment": "Percent of as decimal from 0.0 - 1.0",
+          "original": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
+          },
+          "name": "UtilitiesErrorValuesOpacity",
+          "attributes": {
+            "category": "utilities",
+            "type": "error",
+            "item": "values",
+            "subitem": "opacity"
+          },
+          "path": [
+            "utilities",
+            "error",
+            "values",
+            "opacity"
+          ]
+        }
       }
     }
   },
   "grid": {
     "base": {
       "description": "A base grid",
-      "values": {
-        "grids": [
-          {
-            "pattern": "COLUMNS",
-            "visible": true,
-            "color": {
-              "r": 1,
-              "g": 0,
-              "b": 0,
-              "a": 0.10000000149011612
-            },
-            "gutterSize": 20,
-            "alignment": "STRETCH",
-            "count": 5,
-            "offset": 0
+      "values": [
+        {
+          "pattern": {
+            "value": "columns"
           },
-          {
-            "pattern": "GRID",
-            "visible": true,
-            "color": {
-              "r": 1,
-              "g": 0,
-              "b": 0,
-              "a": 0.10000000149011612
-            },
-            "sectionSize": 8
+          "sectionSize": {
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "stretch"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 10,
+            "unit": "pixels"
           }
-        ]
-      }
+        },
+        {
+          "pattern": {
+            "value": "rows"
+          },
+          "sectionSize": {
+            "value": 8,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 10,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "center"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "unit": "pixels"
+          }
+        },
+        {
+          "pattern": {
+            "value": "columns"
+          },
+          "sectionSize": {
+            "value": 1,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "max"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 1,
+            "unit": "pixels"
+          }
+        },
+        {
+          "pattern": {
+            "value": "columns"
+          },
+          "sectionSize": {
+            "value": 34,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "min"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 13,
+            "unit": "pixels"
+          }
+        },
+        {
+          "pattern": {
+            "value": "rows"
+          },
+          "sectionSize": {
+            "value": 8,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "min"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 10,
+            "unit": "pixels"
+          }
+        },
+        {
+          "pattern": {
+            "value": "grid"
+          },
+          "sectionSize": {
+            "value": 8,
+            "unit": "pixels"
+          }
+        }
+      ]
+    },
+    "weird grid with comment": {
+      "description": "COMMENT to describe weird grid",
+      "values": [
+        {
+          "pattern": {
+            "value": "columns"
+          },
+          "sectionSize": {
+            "value": 21,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 13,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "max"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 23,
+            "unit": "pixels"
+          }
+        }
+      ]
     }
   },
   "body": {
@@ -1157,9 +1594,9 @@
           ]
         },
         "textCase": {
-          "value": "upper",
+          "value": "uppercase",
           "original": {
-            "value": "upper"
+            "value": "uppercase"
           },
           "name": "BodyH3ValuesTextCase",
           "attributes": {

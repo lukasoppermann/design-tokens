@@ -76,57 +76,19 @@
           "value": 1,
           "unit": "pixels"
         },
-        "strokes": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "strokes": {
+          "color": {
+            "value": {
               "r": 0,
               "g": 0,
               "b": 0
             }
           },
-          {
-            "type": "GRADIENT_LINEAR",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "gradientStops": [
-              {
-                "color": {
-                  "r": 1,
-                  "g": 0,
-                  "b": 0,
-                  "a": 1
-                },
-                "position": 0
-              },
-              {
-                "color": {
-                  "r": 1,
-                  "g": 1,
-                  "b": 1,
-                  "a": 0
-                },
-                "position": 1
-              }
-            ],
-            "gradientTransform": [
-              [
-                6.123234262925839e-17,
-                1,
-                0
-              ],
-              [
-                -1,
-                6.123234262925839e-17,
-                1
-              ]
-            ]
+          "opacity": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
           }
-        ]
+        }
       }
     },
     "red 1px": {
@@ -149,19 +111,19 @@
           "value": 1,
           "unit": "pixels"
         },
-        "strokes": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "strokes": {
+          "color": {
+            "value": {
               "r": 1,
               "g": 0.02916663885116577,
               "b": 0.02916663885116577
             }
+          },
+          "opacity": {
+            "value": 0.3700000047683716,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
           }
-        ]
+        }
       }
     },
     "green 4 px dotted": {
@@ -184,19 +146,19 @@
           "value": 4,
           "unit": "pixels"
         },
-        "strokes": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
+        "strokes": {
+          "color": {
+            "value": {
               "r": 0.25,
               "g": 1,
               "b": 0.7299998998641968
             }
+          },
+          "opacity": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
           }
-        ]
+        }
       }
     },
     "green 4 px gradient": {
@@ -219,46 +181,7 @@
           "value": 4,
           "unit": "pixels"
         },
-        "strokes": [
-          {
-            "type": "GRADIENT_RADIAL",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "gradientStops": [
-              {
-                "color": {
-                  "r": 0.25156253576278687,
-                  "g": 0.875,
-                  "b": 0.3139062225818634,
-                  "a": 1
-                },
-                "position": 0
-              },
-              {
-                "color": {
-                  "r": 1,
-                  "g": 0,
-                  "b": 0,
-                  "a": 1
-                },
-                "position": 1
-              }
-            ],
-            "gradientTransform": [
-              [
-                0.12476077675819397,
-                0.37510251998901367,
-                0.5625171065330505
-              ],
-              [
-                -0.37510251998901367,
-                0.16075822710990906,
-                0.5267930626869202
-              ]
-            ]
-          }
-        ]
+        "strokes": null
       }
     }
   },
@@ -266,14 +189,35 @@
     "mixed": {
       "description": null,
       "values": {
-        "radiusType": "mixed",
-        "radii": {
-          "topLeft": 0,
-          "topRight": 3,
-          "bottomRight": 4,
-          "bottomLeft": 6
+        "radius": {
+          "value": "mixed",
+          "unit": "pixels"
         },
-        "smoothing": 0
+        "radiusType": {
+          "value": "mixed"
+        },
+        "radii": {
+          "topLeft": {
+            "value": 0,
+            "unit": "pixels"
+          },
+          "topRight": {
+            "value": 3,
+            "unit": "pixels"
+          },
+          "bottomRight": {
+            "value": 4,
+            "unit": "pixels"
+          },
+          "bottomLeft": {
+            "value": 6,
+            "unit": "pixels"
+          }
+        },
+        "smoothing": {
+          "value": 0.6200000047683716,
+          "comment": "Percent of as decimal from 0.0 - 1.0"
+        }
       }
     }
   },
@@ -281,92 +225,82 @@
     "orange": {
       "description": "Our primary color",
       "values": {
-        "paints": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
-              "r": 1,
-              "g": 0.5,
-              "b": 0.25
-            }
+        "color": {
+          "value": {
+            "r": 1,
+            "g": 0.5,
+            "b": 0.25
           }
-        ]
+        },
+        "opacity": {
+          "value": 1,
+          "comment": "Percent of as decimal from 0.0 - 1.0"
+        }
       }
     },
     "green": {
       "description": null,
       "values": {
-        "paints": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
-              "r": 0.25,
-              "g": 1,
-              "b": 0.7299998998641968
-            }
+        "color": {
+          "value": {
+            "r": 0.25,
+            "g": 1,
+            "b": 0.7299998998641968
           }
-        ]
+        },
+        "opacity": {
+          "value": 1,
+          "comment": "Percent of as decimal from 0.0 - 1.0"
+        }
       }
     },
     "blue": {
       "description": null,
       "values": {
-        "paints": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
-              "r": 0.016666650772094727,
-              "g": 0.2919999659061432,
-              "b": 1
-            }
+        "color": {
+          "value": {
+            "r": 0.016666650772094727,
+            "g": 0.2919999659061432,
+            "b": 1
           }
-        ]
+        },
+        "opacity": {
+          "value": 1,
+          "comment": "Percent of as decimal from 0.0 - 1.0"
+        }
       }
     },
     "secondary": {
       "green": {
         "description": null,
         "values": {
-          "paints": [
-            {
-              "type": "SOLID",
-              "visible": true,
-              "opacity": 1,
-              "blendMode": "NORMAL",
-              "color": {
-                "r": 0.14036458730697632,
-                "g": 0.6875,
-                "b": 0.1950780749320984
-              }
+          "color": {
+            "value": {
+              "r": 0.14036458730697632,
+              "g": 0.6875,
+              "b": 0.1950780749320984
             }
-          ]
+          },
+          "opacity": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
+          }
         }
       },
       "yellow": {
         "description": null,
         "values": {
-          "paints": [
-            {
-              "type": "SOLID",
-              "visible": true,
-              "opacity": 1,
-              "blendMode": "NORMAL",
-              "color": {
-                "r": 1,
-                "g": 0.7199999690055847,
-                "b": 0
-              }
+          "color": {
+            "value": {
+              "r": 1,
+              "g": 0.7199999690055847,
+              "b": 0
             }
-          ]
+          },
+          "opacity": {
+            "value": 1,
+            "comment": "Percent of as decimal from 0.0 - 1.0"
+          }
         }
       }
     }
@@ -375,54 +309,175 @@
     "error": {
       "description": null,
       "values": {
-        "paints": [
-          {
-            "type": "SOLID",
-            "visible": true,
-            "opacity": 1,
-            "blendMode": "NORMAL",
-            "color": {
-              "r": 1,
-              "g": 0,
-              "b": 0
-            }
+        "color": {
+          "value": {
+            "r": 1,
+            "g": 0,
+            "b": 0
           }
-        ]
+        },
+        "opacity": {
+          "value": 1,
+          "comment": "Percent of as decimal from 0.0 - 1.0"
+        }
       }
     }
   },
   "grid": {
     "base": {
       "description": "A base grid",
-      "values": {
-        "grids": [
-          {
-            "pattern": "COLUMNS",
-            "visible": true,
-            "color": {
-              "r": 1,
-              "g": 0,
-              "b": 0,
-              "a": 0.10000000149011612
-            },
-            "gutterSize": 20,
-            "alignment": "STRETCH",
-            "count": 5,
-            "offset": 0
+      "values": [
+        {
+          "pattern": {
+            "value": "columns"
           },
-          {
-            "pattern": "GRID",
-            "visible": true,
-            "color": {
-              "r": 1,
-              "g": 0,
-              "b": 0,
-              "a": 0.10000000149011612
-            },
-            "sectionSize": 8
+          "sectionSize": {
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "stretch"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 10,
+            "unit": "pixels"
           }
-        ]
-      }
+        },
+        {
+          "pattern": {
+            "value": "rows"
+          },
+          "sectionSize": {
+            "value": 8,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 10,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "center"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "unit": "pixels"
+          }
+        },
+        {
+          "pattern": {
+            "value": "columns"
+          },
+          "sectionSize": {
+            "value": 1,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "max"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 1,
+            "unit": "pixels"
+          }
+        },
+        {
+          "pattern": {
+            "value": "columns"
+          },
+          "sectionSize": {
+            "value": 34,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "min"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 13,
+            "unit": "pixels"
+          }
+        },
+        {
+          "pattern": {
+            "value": "rows"
+          },
+          "sectionSize": {
+            "value": 8,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "min"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 10,
+            "unit": "pixels"
+          }
+        },
+        {
+          "pattern": {
+            "value": "grid"
+          },
+          "sectionSize": {
+            "value": 8,
+            "unit": "pixels"
+          }
+        }
+      ]
+    },
+    "weird grid with comment": {
+      "description": "COMMENT to describe weird grid",
+      "values": [
+        {
+          "pattern": {
+            "value": "columns"
+          },
+          "sectionSize": {
+            "value": 21,
+            "unit": "pixels"
+          },
+          "gutterSize": {
+            "value": 13,
+            "unit": "pixels"
+          },
+          "alignment": {
+            "value": "max"
+          },
+          "count": {
+            "value": 5
+          },
+          "offset": {
+            "value": 23,
+            "unit": "pixels"
+          }
+        }
+      ]
     }
   },
   "body": {
@@ -459,7 +514,7 @@
           "unit": "pixels"
         },
         "textCase": {
-          "value": "upper"
+          "value": "uppercase"
         }
       }
     }

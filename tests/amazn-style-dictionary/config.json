@@ -1,6 +1,16 @@
 {
   "source": ["./tests/files/*.json"],
   "platforms": {
+    "css": {
+      "transformGroup": "css",
+      "buildPath": "./tests/amazn-style-dictionary/build/css/",
+      "files": [
+        {
+          "destination": "_variables.css",
+          "format": "css/variables"
+        }
+      ]
+    },
     "scss": {
       "transformGroup": "scss",
       "buildPath": "./tests/amazn-style-dictionary/build/scss/",

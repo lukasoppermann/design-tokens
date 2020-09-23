@@ -1,6 +1,6 @@
 export type propertyObject = {
   name: string,
-  description: string | null,
+  description?: string | null,
   values: {
     [key: string]: any
   }
@@ -94,3 +94,65 @@ export type borderPropertyInterface = propertyObject & {
   }
 }
 
+export type radiusPropertyInterface = propertyObject & {
+  values: {
+    radius: {
+      value: number | 'mixed',
+      unit: string
+    },
+    radiusType: {
+      value: 'single' | 'mixed'
+    },
+    radii: {
+      topLeft: {
+        value: number
+        unit: string
+      },
+      topRight: {
+        value: number
+        unit: string
+      },
+      bottomRight: {
+        value: number
+        unit: string
+      },
+      bottomLeft: {
+        value: number
+        unit: string
+      }
+    },
+    smoothing: {
+      value: number
+      comment: string
+    }
+  }
+}
+
+export type gridPatternType = 'rows' | 'columns' | 'grid'
+export type gridAlignmentType = 'stretch' | 'center' | 'min' | 'max'
+
+export type gridPropertyInterface = propertyObject & {
+  values: {
+    pattern: {
+      value: gridPatternType
+    },
+    sectionSize?: {
+      value: number,
+      unit: string
+    },
+    gutterSize?: {
+      value: number,
+      unit: string
+    },
+    alignment?: {
+      value: gridAlignmentType
+    },
+    count?: {
+      value: number
+    },
+    offset?: {
+      value: number,
+      unit: string
+    }
+  }[]
+}

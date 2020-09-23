@@ -7,6 +7,13 @@ const textDecorations = {
   'STRIKETHROUGH': 'line-through'
 }
 
+const textCases = {
+  "ORIGINAL": "none",
+  "UPPER": "uppercase",
+  "LOWER": "lowercase",
+  "TITLE": "capitalize"
+}
+
 const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontPropertyInterface[] => {
   // get raw text styles
   return tokenNodes.map(node => ({
@@ -44,7 +51,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
         unit: 'pixels'
       },
       textCase: {
-        value: node.textCase.toLowerCase() as textCaseType
+        value: textCases[node.textCase] as textCaseType
       }
     }
   }))
