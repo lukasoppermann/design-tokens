@@ -11,12 +11,16 @@
     "start": "npm run build-watch",
     "build": "tsc-bundle tsconfig.json",
     "build-watch": "npm run test && npm run build -- --watch",
-    "test": "tsc src/index.ts --target es6 --noEmit --typeRoots \"./node_modules/@types,./node_modules/@figma\""
+    "test": "tsc src/index.ts --target es6 --noEmit --typeRoots \"./node_modules/@types,./node_modules/@figma\"",
+    "amazn": "style-dictionary build --config ./tests/amazn-style-dictionary/config.json"
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",
   "devDependencies": {
     "@figma/plugin-typings": "^1.16.1",
+    "install": "^0.13.0",
+    "npm": "^6.14.8",
+    "style-dictionary": "^2.10.1",
     "typescript-bundle": "^1.0.16"
   },
   "dependencies": {

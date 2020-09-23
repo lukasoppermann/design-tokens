@@ -1,0 +1,1272 @@
+{
+  "color": {
+    "base": {
+      "gray": {
+        "light": {
+          "value": "#cccccc",
+          "original": {
+            "value": "#CCCCCC"
+          },
+          "name": "ColorBaseGrayLight",
+          "attributes": {
+            "category": "color",
+            "type": "base",
+            "item": "gray",
+            "subitem": "light"
+          },
+          "path": [
+            "color",
+            "base",
+            "gray",
+            "light"
+          ]
+        },
+        "medium": {
+          "value": "#999999",
+          "original": {
+            "value": "#999999"
+          },
+          "name": "ColorBaseGrayMedium",
+          "attributes": {
+            "category": "color",
+            "type": "base",
+            "item": "gray",
+            "subitem": "medium"
+          },
+          "path": [
+            "color",
+            "base",
+            "gray",
+            "medium"
+          ]
+        },
+        "dark": {
+          "value": "#111111",
+          "original": {
+            "value": "#111111"
+          },
+          "name": "ColorBaseGrayDark",
+          "attributes": {
+            "category": "color",
+            "type": "base",
+            "item": "gray",
+            "subitem": "dark"
+          },
+          "path": [
+            "color",
+            "base",
+            "gray",
+            "dark"
+          ]
+        }
+      },
+      "red": {
+        "value": "#ff0000",
+        "original": {
+          "value": "#FF0000"
+        },
+        "name": "ColorBaseRed",
+        "attributes": {
+          "category": "color",
+          "type": "base",
+          "item": "red"
+        },
+        "path": [
+          "color",
+          "base",
+          "red"
+        ]
+      },
+      "green": {
+        "value": "#00ff00",
+        "original": {
+          "value": "#00FF00"
+        },
+        "name": "ColorBaseGreen",
+        "attributes": {
+          "category": "color",
+          "type": "base",
+          "item": "green"
+        },
+        "path": [
+          "color",
+          "base",
+          "green"
+        ]
+      }
+    }
+  },
+  "sizes": {
+    "8": {
+      "description": null,
+      "values": {
+        "width": {
+          "value": 8,
+          "unit": "pixels",
+          "original": {
+            "value": 8,
+            "unit": "pixels"
+          },
+          "name": "Sizes8ValuesWidth",
+          "attributes": {
+            "category": "sizes",
+            "type": "8",
+            "item": "values",
+            "subitem": "width"
+          },
+          "path": [
+            "sizes",
+            "8",
+            "values",
+            "width"
+          ]
+        },
+        "height": {
+          "value": 8,
+          "unit": "pixels",
+          "original": {
+            "value": 8,
+            "unit": "pixels"
+          },
+          "name": "Sizes8ValuesHeight",
+          "attributes": {
+            "category": "sizes",
+            "type": "8",
+            "item": "values",
+            "subitem": "height"
+          },
+          "path": [
+            "sizes",
+            "8",
+            "values",
+            "height"
+          ]
+        }
+      }
+    },
+    "11": {
+      "description": null,
+      "values": {
+        "width": {
+          "value": 11,
+          "unit": "pixels",
+          "original": {
+            "value": 11,
+            "unit": "pixels"
+          },
+          "name": "Sizes11ValuesWidth",
+          "attributes": {
+            "category": "sizes",
+            "type": "11",
+            "item": "values",
+            "subitem": "width"
+          },
+          "path": [
+            "sizes",
+            "11",
+            "values",
+            "width"
+          ]
+        },
+        "height": {
+          "value": 11,
+          "unit": "pixels",
+          "original": {
+            "value": 11,
+            "unit": "pixels"
+          },
+          "name": "Sizes11ValuesHeight",
+          "attributes": {
+            "category": "sizes",
+            "type": "11",
+            "item": "values",
+            "subitem": "height"
+          },
+          "path": [
+            "sizes",
+            "11",
+            "values",
+            "height"
+          ]
+        }
+      }
+    },
+    "spacers": {
+      "16": {
+        "description": null,
+        "values": {
+          "width": {
+            "value": 16,
+            "unit": "pixels",
+            "original": {
+              "value": 16,
+              "unit": "pixels"
+            },
+            "name": "SizesSpacers16ValuesWidth",
+            "attributes": {
+              "category": "sizes",
+              "type": "spacers",
+              "item": "16",
+              "subitem": "values",
+              "state": "width"
+            },
+            "path": [
+              "sizes",
+              "spacers",
+              "16",
+              "values",
+              "width"
+            ]
+          },
+          "height": {
+            "value": 16,
+            "unit": "pixels",
+            "original": {
+              "value": 16,
+              "unit": "pixels"
+            },
+            "name": "SizesSpacers16ValuesHeight",
+            "attributes": {
+              "category": "sizes",
+              "type": "spacers",
+              "item": "16",
+              "subitem": "values",
+              "state": "height"
+            },
+            "path": [
+              "sizes",
+              "spacers",
+              "16",
+              "values",
+              "height"
+            ]
+          }
+        }
+      },
+      "32": {
+        "description": "32px spacer component",
+        "values": {
+          "width": {
+            "value": 32,
+            "unit": "pixels",
+            "original": {
+              "value": 32,
+              "unit": "pixels"
+            },
+            "name": "SizesSpacers32ValuesWidth",
+            "attributes": {
+              "category": "sizes",
+              "type": "spacers",
+              "item": "32",
+              "subitem": "values",
+              "state": "width"
+            },
+            "path": [
+              "sizes",
+              "spacers",
+              "32",
+              "values",
+              "width"
+            ]
+          },
+          "height": {
+            "value": 32,
+            "unit": "pixels",
+            "original": {
+              "value": 32,
+              "unit": "pixels"
+            },
+            "name": "SizesSpacers32ValuesHeight",
+            "attributes": {
+              "category": "sizes",
+              "type": "spacers",
+              "item": "32",
+              "subitem": "values",
+              "state": "height"
+            },
+            "path": [
+              "sizes",
+              "spacers",
+              "32",
+              "values",
+              "height"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "borders": {
+    "2 of them": {
+      "description": null,
+      "values": {
+        "strokeAlign": {
+          "value": "inside",
+          "original": {
+            "value": "inside"
+          },
+          "name": "Borders2OfThemValuesStrokeAlign",
+          "attributes": {
+            "category": "borders",
+            "type": "2 of them",
+            "item": "values",
+            "subitem": "strokeAlign"
+          },
+          "path": [
+            "borders",
+            "2 of them",
+            "values",
+            "strokeAlign"
+          ]
+        },
+        "strokeCap": {},
+        "strokeJoin": {
+          "value": "miter",
+          "original": {
+            "value": "miter"
+          },
+          "name": "Borders2OfThemValuesStrokeJoin",
+          "attributes": {
+            "category": "borders",
+            "type": "2 of them",
+            "item": "values",
+            "subitem": "strokeJoin"
+          },
+          "path": [
+            "borders",
+            "2 of them",
+            "values",
+            "strokeJoin"
+          ]
+        },
+        "strokeMiterLimit": {
+          "value": 4,
+          "original": {
+            "value": 4
+          },
+          "name": "Borders2OfThemValuesStrokeMiterLimit",
+          "attributes": {
+            "category": "borders",
+            "type": "2 of them",
+            "item": "values",
+            "subitem": "strokeMiterLimit"
+          },
+          "path": [
+            "borders",
+            "2 of them",
+            "values",
+            "strokeMiterLimit"
+          ]
+        },
+        "strokeStyleId": {
+          "value": "",
+          "original": {
+            "value": ""
+          },
+          "name": "Borders2OfThemValuesStrokeStyleId",
+          "attributes": {
+            "category": "borders",
+            "type": "2 of them",
+            "item": "values",
+            "subitem": "strokeStyleId"
+          },
+          "path": [
+            "borders",
+            "2 of them",
+            "values",
+            "strokeStyleId"
+          ]
+        },
+        "strokeWeight": {
+          "value": 1,
+          "unit": "pixels",
+          "original": {
+            "value": 1,
+            "unit": "pixels"
+          },
+          "name": "Borders2OfThemValuesStrokeWeight",
+          "attributes": {
+            "category": "borders",
+            "type": "2 of them",
+            "item": "values",
+            "subitem": "strokeWeight"
+          },
+          "path": [
+            "borders",
+            "2 of them",
+            "values",
+            "strokeWeight"
+          ]
+        },
+        "strokes": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
+          },
+          {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0,
+                  "a": 1
+                },
+                "position": 0
+              },
+              {
+                "color": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1,
+                  "a": 0
+                },
+                "position": 1
+              }
+            ],
+            "gradientTransform": [
+              [
+                6.123234262925839e-17,
+                1,
+                0
+              ],
+              [
+                -1,
+                6.123234262925839e-17,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "red 1px": {
+      "description": null,
+      "values": {
+        "strokeAlign": {
+          "value": "inside",
+          "original": {
+            "value": "inside"
+          },
+          "name": "BordersRed1PxValuesStrokeAlign",
+          "attributes": {
+            "category": "borders",
+            "type": "red 1px",
+            "item": "values",
+            "subitem": "strokeAlign"
+          },
+          "path": [
+            "borders",
+            "red 1px",
+            "values",
+            "strokeAlign"
+          ]
+        },
+        "strokeCap": {},
+        "strokeJoin": {
+          "value": "miter",
+          "original": {
+            "value": "miter"
+          },
+          "name": "BordersRed1PxValuesStrokeJoin",
+          "attributes": {
+            "category": "borders",
+            "type": "red 1px",
+            "item": "values",
+            "subitem": "strokeJoin"
+          },
+          "path": [
+            "borders",
+            "red 1px",
+            "values",
+            "strokeJoin"
+          ]
+        },
+        "strokeMiterLimit": {
+          "value": 4,
+          "original": {
+            "value": 4
+          },
+          "name": "BordersRed1PxValuesStrokeMiterLimit",
+          "attributes": {
+            "category": "borders",
+            "type": "red 1px",
+            "item": "values",
+            "subitem": "strokeMiterLimit"
+          },
+          "path": [
+            "borders",
+            "red 1px",
+            "values",
+            "strokeMiterLimit"
+          ]
+        },
+        "strokeStyleId": {
+          "value": "",
+          "original": {
+            "value": ""
+          },
+          "name": "BordersRed1PxValuesStrokeStyleId",
+          "attributes": {
+            "category": "borders",
+            "type": "red 1px",
+            "item": "values",
+            "subitem": "strokeStyleId"
+          },
+          "path": [
+            "borders",
+            "red 1px",
+            "values",
+            "strokeStyleId"
+          ]
+        },
+        "strokeWeight": {
+          "value": 1,
+          "unit": "pixels",
+          "original": {
+            "value": 1,
+            "unit": "pixels"
+          },
+          "name": "BordersRed1PxValuesStrokeWeight",
+          "attributes": {
+            "category": "borders",
+            "type": "red 1px",
+            "item": "values",
+            "subitem": "strokeWeight"
+          },
+          "path": [
+            "borders",
+            "red 1px",
+            "values",
+            "strokeWeight"
+          ]
+        },
+        "strokes": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 1,
+              "g": 0.02916663885116577,
+              "b": 0.02916663885116577
+            }
+          }
+        ]
+      }
+    },
+    "green 4 px dotted": {
+      "description": null,
+      "values": {
+        "strokeAlign": {
+          "value": "inside",
+          "original": {
+            "value": "inside"
+          },
+          "name": "BordersGreen4PxDottedValuesStrokeAlign",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px dotted",
+            "item": "values",
+            "subitem": "strokeAlign"
+          },
+          "path": [
+            "borders",
+            "green 4 px dotted",
+            "values",
+            "strokeAlign"
+          ]
+        },
+        "strokeCap": {},
+        "strokeJoin": {
+          "value": "round",
+          "original": {
+            "value": "round"
+          },
+          "name": "BordersGreen4PxDottedValuesStrokeJoin",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px dotted",
+            "item": "values",
+            "subitem": "strokeJoin"
+          },
+          "path": [
+            "borders",
+            "green 4 px dotted",
+            "values",
+            "strokeJoin"
+          ]
+        },
+        "strokeMiterLimit": {
+          "value": 4,
+          "original": {
+            "value": 4
+          },
+          "name": "BordersGreen4PxDottedValuesStrokeMiterLimit",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px dotted",
+            "item": "values",
+            "subitem": "strokeMiterLimit"
+          },
+          "path": [
+            "borders",
+            "green 4 px dotted",
+            "values",
+            "strokeMiterLimit"
+          ]
+        },
+        "strokeStyleId": {
+          "value": "S:4a3029d323d8fb0c05dee39a983dafea20d7221e,",
+          "original": {
+            "value": "S:4a3029d323d8fb0c05dee39a983dafea20d7221e,"
+          },
+          "name": "BordersGreen4PxDottedValuesStrokeStyleId",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px dotted",
+            "item": "values",
+            "subitem": "strokeStyleId"
+          },
+          "path": [
+            "borders",
+            "green 4 px dotted",
+            "values",
+            "strokeStyleId"
+          ]
+        },
+        "strokeWeight": {
+          "value": 4,
+          "unit": "pixels",
+          "original": {
+            "value": 4,
+            "unit": "pixels"
+          },
+          "name": "BordersGreen4PxDottedValuesStrokeWeight",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px dotted",
+            "item": "values",
+            "subitem": "strokeWeight"
+          },
+          "path": [
+            "borders",
+            "green 4 px dotted",
+            "values",
+            "strokeWeight"
+          ]
+        },
+        "strokes": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.25,
+              "g": 1,
+              "b": 0.7299998998641968
+            }
+          }
+        ]
+      }
+    },
+    "green 4 px gradient": {
+      "description": null,
+      "values": {
+        "strokeAlign": {
+          "value": "inside",
+          "original": {
+            "value": "inside"
+          },
+          "name": "BordersGreen4PxGradientValuesStrokeAlign",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px gradient",
+            "item": "values",
+            "subitem": "strokeAlign"
+          },
+          "path": [
+            "borders",
+            "green 4 px gradient",
+            "values",
+            "strokeAlign"
+          ]
+        },
+        "strokeCap": {},
+        "strokeJoin": {
+          "value": "miter",
+          "original": {
+            "value": "miter"
+          },
+          "name": "BordersGreen4PxGradientValuesStrokeJoin",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px gradient",
+            "item": "values",
+            "subitem": "strokeJoin"
+          },
+          "path": [
+            "borders",
+            "green 4 px gradient",
+            "values",
+            "strokeJoin"
+          ]
+        },
+        "strokeMiterLimit": {
+          "value": 2.613126039505005,
+          "original": {
+            "value": 2.613126039505005
+          },
+          "name": "BordersGreen4PxGradientValuesStrokeMiterLimit",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px gradient",
+            "item": "values",
+            "subitem": "strokeMiterLimit"
+          },
+          "path": [
+            "borders",
+            "green 4 px gradient",
+            "values",
+            "strokeMiterLimit"
+          ]
+        },
+        "strokeStyleId": {
+          "value": "",
+          "original": {
+            "value": ""
+          },
+          "name": "BordersGreen4PxGradientValuesStrokeStyleId",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px gradient",
+            "item": "values",
+            "subitem": "strokeStyleId"
+          },
+          "path": [
+            "borders",
+            "green 4 px gradient",
+            "values",
+            "strokeStyleId"
+          ]
+        },
+        "strokeWeight": {
+          "value": 4,
+          "unit": "pixels",
+          "original": {
+            "value": 4,
+            "unit": "pixels"
+          },
+          "name": "BordersGreen4PxGradientValuesStrokeWeight",
+          "attributes": {
+            "category": "borders",
+            "type": "green 4 px gradient",
+            "item": "values",
+            "subitem": "strokeWeight"
+          },
+          "path": [
+            "borders",
+            "green 4 px gradient",
+            "values",
+            "strokeWeight"
+          ]
+        },
+        "strokes": [
+          {
+            "type": "GRADIENT_RADIAL",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0.25156253576278687,
+                  "g": 0.875,
+                  "b": 0.3139062225818634,
+                  "a": 1
+                },
+                "position": 0
+              },
+              {
+                "color": {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0,
+                  "a": 1
+                },
+                "position": 1
+              }
+            ],
+            "gradientTransform": [
+              [
+                0.12476077675819397,
+                0.37510251998901367,
+                0.5625171065330505
+              ],
+              [
+                -0.37510251998901367,
+                0.16075822710990906,
+                0.5267930626869202
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "radii": {
+    "mixed": {
+      "description": null,
+      "values": {
+        "radiusType": "mixed",
+        "radii": {
+          "topLeft": 0,
+          "topRight": 3,
+          "bottomRight": 4,
+          "bottomLeft": 6
+        },
+        "smoothing": 0
+      }
+    }
+  },
+  "colors": {
+    "orange": {
+      "description": "Our primary color",
+      "values": {
+        "paints": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 1,
+              "g": 0.5,
+              "b": 0.25
+            }
+          }
+        ]
+      }
+    },
+    "green": {
+      "description": null,
+      "values": {
+        "paints": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.25,
+              "g": 1,
+              "b": 0.7299998998641968
+            }
+          }
+        ]
+      }
+    },
+    "blue": {
+      "description": null,
+      "values": {
+        "paints": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.016666650772094727,
+              "g": 0.2919999659061432,
+              "b": 1
+            }
+          }
+        ]
+      }
+    },
+    "secondary": {
+      "green": {
+        "description": null,
+        "values": {
+          "paints": [
+            {
+              "type": "SOLID",
+              "visible": true,
+              "opacity": 1,
+              "blendMode": "NORMAL",
+              "color": {
+                "r": 0.14036458730697632,
+                "g": 0.6875,
+                "b": 0.1950780749320984
+              }
+            }
+          ]
+        }
+      },
+      "yellow": {
+        "description": null,
+        "values": {
+          "paints": [
+            {
+              "type": "SOLID",
+              "visible": true,
+              "opacity": 1,
+              "blendMode": "NORMAL",
+              "color": {
+                "r": 1,
+                "g": 0.7199999690055847,
+                "b": 0
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "utilities": {
+    "error": {
+      "description": null,
+      "values": {
+        "paints": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 1,
+              "g": 0,
+              "b": 0
+            }
+          }
+        ]
+      }
+    }
+  },
+  "grid": {
+    "base": {
+      "description": "A base grid",
+      "values": {
+        "grids": [
+          {
+            "pattern": "COLUMNS",
+            "visible": true,
+            "color": {
+              "r": 1,
+              "g": 0,
+              "b": 0,
+              "a": 0.10000000149011612
+            },
+            "gutterSize": 20,
+            "alignment": "STRETCH",
+            "count": 5,
+            "offset": 0
+          },
+          {
+            "pattern": "GRID",
+            "visible": true,
+            "color": {
+              "r": 1,
+              "g": 0,
+              "b": 0,
+              "a": 0.10000000149011612
+            },
+            "sectionSize": 8
+          }
+        ]
+      }
+    }
+  },
+  "body": {
+    "h3": {
+      "description": null,
+      "values": {
+        "fontSize": {
+          "value": 20,
+          "unit": "pixels",
+          "original": {
+            "value": 20,
+            "unit": "pixels"
+          },
+          "name": "BodyH3ValuesFontSize",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "fontSize"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "fontSize"
+          ]
+        },
+        "textDecoration": {
+          "value": "none",
+          "original": {
+            "value": "none"
+          },
+          "name": "BodyH3ValuesTextDecoration",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "textDecoration"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "textDecoration"
+          ]
+        },
+        "fontFamily": {
+          "value": "Roboto",
+          "original": {
+            "value": "Roboto"
+          },
+          "name": "BodyH3ValuesFontFamily",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "fontFamily"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "fontFamily"
+          ]
+        },
+        "fontStyle": {
+          "value": "Medium",
+          "original": {
+            "value": "Medium"
+          },
+          "name": "BodyH3ValuesFontStyle",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "fontStyle"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "fontStyle"
+          ]
+        },
+        "letterSpacing": {
+          "value": 2,
+          "unit": "percent",
+          "original": {
+            "value": 2,
+            "unit": "percent"
+          },
+          "name": "BodyH3ValuesLetterSpacing",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "letterSpacing"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "letterSpacing"
+          ]
+        },
+        "lineHeight": {
+          "value": 160.0000023841858,
+          "unit": "percent",
+          "original": {
+            "value": 160.0000023841858,
+            "unit": "percent"
+          },
+          "name": "BodyH3ValuesLineHeight",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "lineHeight"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "lineHeight"
+          ]
+        },
+        "paragraphIndent": {
+          "value": 5,
+          "unit": "pixels",
+          "original": {
+            "value": 5,
+            "unit": "pixels"
+          },
+          "name": "BodyH3ValuesParagraphIndent",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "paragraphIndent"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "paragraphIndent"
+          ]
+        },
+        "paragraphSpacing": {
+          "value": 8,
+          "unit": "pixels",
+          "original": {
+            "value": 8,
+            "unit": "pixels"
+          },
+          "name": "BodyH3ValuesParagraphSpacing",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "paragraphSpacing"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "paragraphSpacing"
+          ]
+        },
+        "textCase": {
+          "value": "upper",
+          "original": {
+            "value": "upper"
+          },
+          "name": "BodyH3ValuesTextCase",
+          "attributes": {
+            "category": "body",
+            "type": "h3",
+            "item": "values",
+            "subitem": "textCase"
+          },
+          "path": [
+            "body",
+            "h3",
+            "values",
+            "textCase"
+          ]
+        }
+      }
+    }
+  },
+  "effect": {
+    "shadow": {
+      "description": null,
+      "values": {
+        "effects": [
+          {
+            "type": "DROP_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.25
+            },
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "radius": 4,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      }
+    },
+    "layer blur": {
+      "description": null,
+      "values": {
+        "effects": [
+          {
+            "type": "LAYER_BLUR",
+            "radius": 4,
+            "visible": true
+          }
+        ]
+      }
+    },
+    "background blur": {
+      "description": null,
+      "values": {
+        "effects": [
+          {
+            "type": "BACKGROUND_BLUR",
+            "radius": 4,
+            "visible": true
+          }
+        ]
+      }
+    }
+  },
+  "inner shadow": {
+    "description": null,
+    "values": {
+      "effects": [
+        {
+          "type": "INNER_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.25
+          },
+          "offset": {
+            "x": 0,
+            "y": 4
+          },
+          "radius": 4,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "INNER_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.15000000596046448
+          },
+          "offset": {
+            "x": 0,
+            "y": -4
+          },
+          "radius": 10,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    }
+  }
+}
