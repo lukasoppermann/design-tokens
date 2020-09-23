@@ -346,7 +346,7 @@
             // use spread operator because the original is readOnly
             const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
             // get tokens
-            const tokens = groupByName_1.default([
+            const tokens = [
                 ...extractSizes_1.default(tokenFrames),
                 ...extractBorders_1.default(tokenFrames),
                 ...extractRadii_1.default(tokenFrames),
@@ -354,10 +354,13 @@
                 ...extractGrids_1.default(figma.getLocalGridStyles()),
                 ...extractFonts_1.default(figma.getLocalTextStyles()),
                 ...extractEffects_1.default(figma.getLocalEffectStyles())
-            ]);
+            ];
             console.log('Raw Tokens', tokens);
+            // group tokens
+            const groupedTokens = groupByName_1.default(tokens);
+            console.log('grouped Tokens', groupedTokens);
             // write tokens to json file
-            sendJsonToUi(tokens);
+            sendJsonToUi(groupedTokens);
         };
         exports.default = tokenExport;
     });

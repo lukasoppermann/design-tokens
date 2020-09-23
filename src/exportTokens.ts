@@ -29,7 +29,7 @@ const tokenExport = () => {
   // use spread operator because the original is readOnly
   const tokenFrames = getTokenFrames([...figma.root.children])
   // get tokens
-  const tokens = groupByName([ 
+  const tokens = [ 
     ...extractSizes(tokenFrames),
     ...extractBorders(tokenFrames),
     ...extractRadii(tokenFrames),
@@ -37,11 +37,13 @@ const tokenExport = () => {
     ...extractGrids(figma.getLocalGridStyles()),
     ...extractFonts(figma.getLocalTextStyles()),
     ...extractEffects(figma.getLocalEffectStyles())
-  ])
+  ]
   console.log('Raw Tokens', tokens)
-  
+  // group tokens
+  const groupedTokens = groupByName(tokens)
+  console.log('grouped Tokens', groupedTokens)
   // write tokens to json file
-  sendJsonToUi(tokens)
+  sendJsonToUi(groupedTokens)
 }
 
 export default tokenExport
