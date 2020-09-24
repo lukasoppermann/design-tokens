@@ -1,7 +1,7 @@
 import extractorInterface from '../../types/extractorInterface'
 import { borderPropertyInterface, strokeAlignType, strokeCapType } from '../../types/propertyObject'
 import { customTokenNodes } from '../../types/tokenNodeTypes'
-import convertPaint from '../utilities/convertPaintToRgba'
+import { convertPaintToRgba } from '../utilities/convertColor'
 
 const strokeJoins = {
   'MITER': 'miter',
@@ -43,7 +43,7 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
         unit: 'pixels'
       },
       stroke: {
-        value: convertPaint((node.strokes[0]))
+        value: convertPaintToRgba((node.strokes[0]))
       } 
     }
   }))

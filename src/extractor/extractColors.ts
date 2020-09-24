@@ -1,6 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
 import { colorPropertyInterface, colorRgbaType } from '../../types/propertyObject'
-import convertPaintToRgba from '../utilities/convertPaintToRgba'
+import { convertPaintToRgba } from '../utilities/convertColor'
 
 const extractColors: extractorInterface = (tokenNodes: PaintStyle[]): colorPropertyInterface[] => {
   // get all paint styles

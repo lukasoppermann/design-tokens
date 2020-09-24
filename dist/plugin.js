@@ -9,23 +9,41 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
-    define("utilities/convertPaintToRgba", ["require", "exports"], function (require, exports) {
+    define("utilities/roundWithDecimals", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const convertPaintToRgba = (paint) => {
+        /**
+         * If the provided value is a number
+         * it is rounded to 3 decimal positions
+         * otherwise it is returned as is
+         * @param value any
+         */
+        const roundWithDecimals = value => {
+            if (typeof value === 'number') {
+                return Math.round(value * 1000) / 1000;
+            }
+            return value;
+        };
+        exports.default = roundWithDecimals;
+    });
+    define("utilities/convertColor", ["require", "exports", "utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.convertPaintToRgba = exports.roundRgba = void 0;
+        exports.roundRgba = (rgba) => ({
+            r: roundWithDecimals_1.default(rgba.r),
+            g: roundWithDecimals_1.default(rgba.g),
+            b: roundWithDecimals_1.default(rgba.b),
+            a: roundWithDecimals_1.default(rgba.opacity || rgba.a || 1)
+        });
+        exports.convertPaintToRgba = (paint) => {
             if (paint.type === 'SOLID' && paint.visible === true) {
-                return {
-                    r: paint.color.r,
-                    g: paint.color.g,
-                    b: paint.color.b,
-                    a: paint.opacity
-                };
+                return exports.roundRgba(paint.color);
             }
             return null;
         };
-        exports.default = convertPaintToRgba;
     });
-    define("extractor/extractColors", ["require", "exports", "utilities/convertPaintToRgba"], function (require, exports, convertPaintToRgba_1) {
+    define("extractor/extractColors", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const extractColors = (tokenNodes) => {
@@ -36,7 +54,7 @@
                 description: node.description || null,
                 values: {
                     fill: {
-                        value: convertPaintToRgba_1.default(node.paints[0])
+                        value: convertColor_1.convertPaintToRgba(node.paints[0])
                     }
                 }
             }));
@@ -234,7 +252,7 @@
         };
         exports.default = extractFonts;
     });
-    define("extractor/extractEffects", ["require", "exports"], function (require, exports) {
+    define("extractor/extractEffects", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const effectType = {
@@ -261,7 +279,7 @@
                 unit: 'pixels'
             },
             color: {
-                value: effect.color
+                value: convertColor_2.roundRgba(effect.color)
             },
             offset: {
                 x: {
@@ -314,7 +332,7 @@
         };
         exports.default = extractSizes;
     });
-    define("extractor/extractBorders", ["require", "exports", "utilities/convertPaintToRgba"], function (require, exports, convertPaintToRgba_2) {
+    define("extractor/extractBorders", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const strokeJoins = {
@@ -355,7 +373,7 @@
                         unit: 'pixels'
                     },
                     stroke: {
-                        value: convertPaintToRgba_2.default((node.strokes[0]))
+                        value: convertColor_3.convertPaintToRgba((node.strokes[0]))
                     }
                 }
             }));

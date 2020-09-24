@@ -1,5 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
 import { effectPropertyInterface } from '../../types/propertyObject'
+import { roundRgba } from '../utilities/convertColor'
 
 const effectType = {
   "LAYER_BLUR": 'layerBlur',
@@ -27,7 +28,7 @@ const shadowValues = (effect) => ({
     unit: 'pixels'
   },
   color: {
-    value: effect.color
+    value: roundRgba(effect.color)
   },
   offset: {
     x: {
