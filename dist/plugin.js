@@ -540,9 +540,54 @@
         };
         exports.default = groupByName;
     });
-    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "extractor/extractSizes", "extractor/extractBorders", "extractor/extractRadii", "utilities/getTokenFrames", "utilities/groupByName"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, getTokenFrames_1, groupByName_1) {
+    define("utilities/convertSizeUnits", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        const convertSizeUnits = (valueObject) => {
+            // check if valueObject is a number
+            if (typeof valueObject === 'number') {
+                return Math.round((valueObject + Number.EPSILON) * 100) / 100;
+            }
+            // otherwise if unit is defined
+            if (typeof valueObject === 'object' && valueObject.unit !== undefined) {
+                if (valueObject.unit === "PERCENT") {
+                    return (Math.round((valueObject.value + Number.EPSILON) * 100) / 100) + '%';
+                }
+                return Math.round((valueObject.value + Number.EPSILON) * 100) / 100;
+            }
+        };
+        exports.default = convertSizeUnits;
+    });
+    define("transformer/amazonStyleDictionaryTransformer", ["require", "exports", "utilities/convertSizeUnits"], function (require, exports, convertSizeUnits_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const convertPropertyValue = valueObject => {
+            if (typeof valueObject === 'object' && typeof valueObject.value === 'number') {
+                return convertSizeUnits_1.default(valueObject);
+            }
+            return valueObject;
+        };
+        const amazonStyleDictionaryTransformer = (property) => {
+            // transform to amazon style Dictionary structure
+            Object.keys(property.values).map(function (key) {
+                // define value
+                property.values[key] = Object.assign(Object.assign({}, (property.description != null && { description: property.description })), { value: convertPropertyValue(property.values[key]) });
+            });
+            // delete the description property
+            if (property.description !== undefined) {
+                delete property.description;
+            }
+            // return values
+            return Object.assign({ name: property.name }, property.values);
+        };
+        exports.default = amazonStyleDictionaryTransformer;
+    });
+    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "extractor/extractSizes", "extractor/extractBorders", "extractor/extractRadii", "utilities/getTokenFrames", "utilities/groupByName", "transformer/amazonStyleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, getTokenFrames_1, groupByName_1, amazonStyleDictionaryTransformer_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const transformer = {
+            amazon: amazonStyleDictionaryTransformer_1.default
+        };
         /**
          * Sending json string to ui
          * @param json object
@@ -559,12 +604,11 @@
                 }
             });
         };
-        const tokenExport = () => {
-            console.log('exporting');
+        const exportRawTokenArray = (figma) => {
             // use spread operator because the original is readOnly
             const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
             // get tokens
-            const tokens = [
+            return [
                 ...extractSizes_1.default(tokenFrames),
                 ...extractBorders_1.default(tokenFrames),
                 ...extractRadii_1.default(tokenFrames),
@@ -573,9 +617,15 @@
                 ...extractFonts_1.default(figma.getLocalTextStyles()),
                 ...extractEffects_1.default(figma.getLocalEffectStyles())
             ];
-            console.log('Raw Tokens', tokens);
+        };
+        const tokenExport = (figma, format = 'amazon') => {
+            // get token array
+            const tokenArray = exportRawTokenArray(figma);
+            console.log('JSON TOKEN', tokenArray);
+            // format tokens
+            const formattedTokens = tokenArray.map(token => transformer[format](token));
             // group tokens
-            const groupedTokens = groupByName_1.default(tokens);
+            const groupedTokens = groupByName_1.default(formattedTokens);
             console.log('grouped Tokens', groupedTokens);
             // write tokens to json file
             sendJsonToUi(groupedTokens);
@@ -599,7 +649,7 @@
         console.log('index.ts');
         // exports the design tokens
         if (figma.command === 'export') {
-            exportTokens_1.default();
+            exportTokens_1.default(figma);
             // const tokens = exportTokens()
             // writeJson(tokens)
             // always run closePlugin otherwise the plugin will keep running

@@ -1,79 +1,63 @@
 {
   "sizes": {
     "8": {
-      "description": null,
-      "values": {
-        "width": {
-          "value": 8,
-          "unit": "pixels"
-        },
-        "height": {
-          "value": 8,
-          "unit": "pixels"
-        }
+      "width": {
+        "value": 8
+      },
+      "height": {
+        "value": 8
       }
     },
     "11": {
-      "description": null,
-      "values": {
-        "width": {
-          "value": 11,
-          "unit": "pixels"
-        },
-        "height": {
-          "value": 11,
-          "unit": "pixels"
-        }
+      "width": {
+        "value": 11
+      },
+      "height": {
+        "value": 11
       }
     },
     "spacers": {
       "16": {
-        "description": null,
-        "values": {
-          "width": {
-            "value": 16,
-            "unit": "pixels"
-          },
-          "height": {
-            "value": 16,
-            "unit": "pixels"
-          }
+        "width": {
+          "value": 16
+        },
+        "height": {
+          "value": 16
         }
       },
       "32": {
-        "description": "32px spacer component",
-        "values": {
-          "width": {
-            "value": 32,
-            "unit": "pixels"
-          },
-          "height": {
-            "value": 32,
-            "unit": "pixels"
-          }
+        "width": {
+          "description": "32px spacer component",
+          "value": 32
+        },
+        "height": {
+          "description": "32px spacer component",
+          "value": 32
         }
       }
     }
   },
   "borders": {
     "2 of them": {
-      "description": null,
-      "values": {
-        "strokeAlign": {
+      "strokeAlign": {
+        "value": {
           "value": "inside"
-        },
-        "strokeCap": {},
-        "strokeJoin": {
+        }
+      },
+      "strokeCap": {
+        "value": {}
+      },
+      "strokeJoin": {
+        "value": {
           "value": "miter"
-        },
-        "strokeMiterLimit": {
-          "value": 4
-        },
-        "strokeWeight": {
-          "value": 1,
-          "unit": "pixels"
-        },
-        "stroke": {
+        }
+      },
+      "strokeMiterLimit": {},
+      "strokeWeight": {
+        "value": 1
+      },
+      "stroke": {
+        "value": {
           "value": {
             "r": 0,
             "g": 0,
@@ -84,23 +68,25 @@
       }
     },
     "red 1px": {
-      "description": null,
-      "values": {
-        "strokeAlign": {
+      "strokeAlign": {
+        "value": {
           "value": "inside"
-        },
-        "strokeCap": {},
-        "strokeJoin": {
+        }
+      },
+      "strokeCap": {
+        "value": {}
+      },
+      "strokeJoin": {
+        "value": {
           "value": "miter"
-        },
-        "strokeMiterLimit": {
-          "value": 4
-        },
-        "strokeWeight": {
-          "value": 1,
-          "unit": "pixels"
-        },
-        "stroke": {
+        }
+      },
+      "strokeMiterLimit": {},
+      "strokeWeight": {
+        "value": 1
+      },
+      "stroke": {
+        "value": {
           "value": {
             "r": 1,
             "g": 0.02916663885116577,
@@ -111,23 +97,25 @@
       }
     },
     "green 4 px dotted": {
-      "description": null,
-      "values": {
-        "strokeAlign": {
+      "strokeAlign": {
+        "value": {
           "value": "inside"
-        },
-        "strokeCap": {},
-        "strokeJoin": {
+        }
+      },
+      "strokeCap": {
+        "value": {}
+      },
+      "strokeJoin": {
+        "value": {
           "value": "round"
-        },
-        "strokeMiterLimit": {
-          "value": 4
-        },
-        "strokeWeight": {
-          "value": 4,
-          "unit": "pixels"
-        },
-        "stroke": {
+        }
+      },
+      "strokeMiterLimit": {},
+      "strokeWeight": {
+        "value": 4
+      },
+      "stroke": {
+        "value": {
           "value": {
             "r": 0.25,
             "g": 1,
@@ -138,23 +126,25 @@
       }
     },
     "green 4 px gradient": {
-      "description": null,
-      "values": {
-        "strokeAlign": {
+      "strokeAlign": {
+        "value": {
           "value": "inside"
-        },
-        "strokeCap": {},
-        "strokeJoin": {
+        }
+      },
+      "strokeCap": {
+        "value": {}
+      },
+      "strokeJoin": {
+        "value": {
           "value": "miter"
-        },
-        "strokeMiterLimit": {
-          "value": 2.613126039505005
-        },
-        "strokeWeight": {
-          "value": 4,
-          "unit": "pixels"
-        },
-        "stroke": {
+        }
+      },
+      "strokeMiterLimit": {},
+      "strokeWeight": {
+        "value": 4
+      },
+      "stroke": {
+        "value": {
           "value": null
         }
       }
@@ -162,16 +152,19 @@
   },
   "radii": {
     "mixed": {
-      "description": null,
-      "values": {
-        "radius": {
+      "radius": {
+        "value": {
           "value": "mixed",
           "unit": "pixels"
-        },
-        "radiusType": {
+        }
+      },
+      "radiusType": {
+        "value": {
           "value": "mixed"
-        },
-        "radii": {
+        }
+      },
+      "radii": {
+        "value": {
           "topLeft": {
             "value": 0,
             "unit": "pixels"
@@ -188,19 +181,16 @@
             "value": 6,
             "unit": "pixels"
           }
-        },
-        "smoothing": {
-          "value": 0.6200000047683716,
-          "comment": "Percent of as decimal from 0.0 - 1.0"
         }
-      }
+      },
+      "smoothing": {}
     }
   },
   "colors": {
     "orange": {
-      "description": "Our primary color",
-      "values": {
-        "fill": {
+      "fill": {
+        "description": "Our primary color",
+        "value": {
           "value": {
             "r": 1,
             "g": 0.5,
@@ -211,9 +201,8 @@
       }
     },
     "green": {
-      "description": null,
-      "values": {
-        "fill": {
+      "fill": {
+        "value": {
           "value": {
             "r": 0.25,
             "g": 1,
@@ -224,9 +213,8 @@
       }
     },
     "blue": {
-      "description": null,
-      "values": {
-        "fill": {
+      "fill": {
+        "value": {
           "value": {
             "r": 0.016666650772094727,
             "g": 0.2919999659061432,
@@ -238,9 +226,8 @@
     },
     "secondary": {
       "green": {
-        "description": null,
-        "values": {
-          "fill": {
+        "fill": {
+          "value": {
             "value": {
               "r": 0.14036458730697632,
               "g": 0.6875,
@@ -251,9 +238,8 @@
         }
       },
       "yellow": {
-        "description": null,
-        "values": {
-          "fill": {
+        "fill": {
+          "value": {
             "value": {
               "r": 1,
               "g": 0.7199999690055847,
@@ -267,9 +253,8 @@
   },
   "utilities": {
     "error": {
-      "description": null,
-      "values": {
-        "fill": {
+      "fill": {
+        "value": {
           "value": {
             "r": 1,
             "g": 0,
@@ -282,9 +267,9 @@
   },
   "grid": {
     "base": {
-      "description": "A base grid",
-      "values": [
-        {
+      "0": {
+        "description": "A base grid",
+        "value": {
           "pattern": {
             "value": "columns"
           },
@@ -305,8 +290,11 @@
             "value": 10,
             "unit": "pixels"
           }
-        },
-        {
+        }
+      },
+      "1": {
+        "description": "A base grid",
+        "value": {
           "pattern": {
             "value": "rows"
           },
@@ -327,8 +315,11 @@
           "offset": {
             "unit": "pixels"
           }
-        },
-        {
+        }
+      },
+      "2": {
+        "description": "A base grid",
+        "value": {
           "pattern": {
             "value": "columns"
           },
@@ -350,8 +341,11 @@
             "value": 1,
             "unit": "pixels"
           }
-        },
-        {
+        }
+      },
+      "3": {
+        "description": "A base grid",
+        "value": {
           "pattern": {
             "value": "columns"
           },
@@ -373,8 +367,11 @@
             "value": 13,
             "unit": "pixels"
           }
-        },
-        {
+        }
+      },
+      "4": {
+        "description": "A base grid",
+        "value": {
           "pattern": {
             "value": "rows"
           },
@@ -396,8 +393,11 @@
             "value": 10,
             "unit": "pixels"
           }
-        },
-        {
+        }
+      },
+      "5": {
+        "description": "A base grid",
+        "value": {
           "pattern": {
             "value": "grid"
           },
@@ -406,12 +406,12 @@
             "unit": "pixels"
           }
         }
-      ]
+      }
     },
     "weird grid with comment": {
-      "description": "COMMENT to describe weird grid",
-      "values": [
-        {
+      "0": {
+        "description": "COMMENT to describe weird grid",
+        "value": {
           "pattern": {
             "value": "columns"
           },
@@ -434,43 +434,43 @@
             "unit": "pixels"
           }
         }
-      ]
+      }
     }
   },
   "body": {
     "h3": {
-      "description": null,
-      "values": {
-        "fontSize": {
-          "value": 20,
-          "unit": "pixels"
-        },
-        "textDecoration": {
+      "fontSize": {
+        "value": 20
+      },
+      "textDecoration": {
+        "value": {
           "value": "none"
-        },
-        "fontFamily": {
+        }
+      },
+      "fontFamily": {
+        "value": {
           "value": "Roboto"
-        },
-        "fontStyle": {
+        }
+      },
+      "fontStyle": {
+        "value": {
           "value": "Medium"
-        },
-        "letterSpacing": {
-          "value": 2,
-          "unit": "percent"
-        },
-        "lineHeight": {
-          "value": 160.0000023841858,
-          "unit": "percent"
-        },
-        "paragraphIndent": {
-          "value": 5,
-          "unit": "pixels"
-        },
-        "paragraphSpacing": {
-          "value": 8,
-          "unit": "pixels"
-        },
-        "textCase": {
+        }
+      },
+      "letterSpacing": {
+        "value": 2
+      },
+      "lineHeight": {
+        "value": 160
+      },
+      "paragraphIndent": {
+        "value": 5
+      },
+      "paragraphSpacing": {
+        "value": 8
+      },
+      "textCase": {
+        "value": {
           "value": "uppercase"
         }
       }
@@ -478,9 +478,8 @@
   },
   "effect": {
     "shadow": {
-      "description": null,
-      "values": 
-        {
+      "0": {
+        "value": {
           "type": {
             "value": "dropShadow"
           },
@@ -511,12 +510,11 @@
             "unit": "pixels"
           }
         }
-      
+      }
     },
     "layer blur": {
-      "description": null,
-      "values": [
-        {
+      "0": {
+        "value": {
           "type": {
             "value": "layerBlur"
           },
@@ -525,12 +523,11 @@
             "unit": "pixels"
           }
         }
-      ]
+      }
     },
     "background blur": {
-      "description": null,
-      "values": [
-        {
+      "0": {
+        "value": {
           "type": {
             "value": "backgroundBlur"
           },
@@ -539,13 +536,12 @@
             "unit": "pixels"
           }
         }
-      ]
+      }
     }
   },
   "inner shadow": {
-    "description": null,
-    "values": [
-      {
+    "0": {
+      "value": {
         "type": {
           "value": "innerShadow"
         },
@@ -575,8 +571,10 @@
           "value": 0,
           "unit": "pixels"
         }
-      },
-      {
+      }
+    },
+    "1": {
+      "value": {
         "type": {
           "value": "innerShadow"
         },
@@ -607,6 +605,6 @@
           "unit": "pixels"
         }
       }
-    ]
+    }
   }
 }

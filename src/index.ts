@@ -15,7 +15,7 @@ figma.showUI(__html__, {visible: false})
 console.log('index.ts')
 // exports the design tokens
 if(figma.command === 'export') {
-  exportTokens()
+  exportTokens(figma)
   // const tokens = exportTokens()
   // writeJson(tokens)
   // always run closePlugin otherwise the plugin will keep running

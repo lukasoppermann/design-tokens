@@ -7,6 +7,13 @@ import extractBorders from './extractor/extractBorders'
 import extractRadii from './extractor/extractRadii'
 import getTokenFrames from './utilities/getTokenFrames'
 import groupByName from './utilities/groupByName'
+import amazonStyleDictionaryTransformer from './transformer/amazonStyleDictionaryTransformer'
+
+
+const transformer = {
+  amazon: amazonStyleDictionaryTransformer
+}
+
 /**
  * Sending json string to ui
  * @param json object
@@ -24,12 +31,11 @@ const sendJsonToUi = (json) => {
   })
 }
 
-const tokenExport = () => {
-  console.log('exporting')
+const exportRawTokenArray = (figma: PluginAPI) => {
   // use spread operator because the original is readOnly
   const tokenFrames = getTokenFrames([...figma.root.children])
   // get tokens
-  const tokens = [ 
+  return [ 
     ...extractSizes(tokenFrames),
     ...extractBorders(tokenFrames),
     ...extractRadii(tokenFrames),
@@ -38,12 +44,20 @@ const tokenExport = () => {
     ...extractFonts(figma.getLocalTextStyles()),
     ...extractEffects(figma.getLocalEffectStyles())
   ]
-  console.log('Raw Tokens', tokens)
+}
+
+const tokenExport = (figma: PluginAPI, format: string = 'amazon') => {
+  // get token array
+  const tokenArray = exportRawTokenArray(figma)
+  console.log('JSON TOKEN', tokenArray)
+  // format tokens
+  const formattedTokens = tokenArray.map(token => transformer[format](token))
   // group tokens
-  const groupedTokens = groupByName(tokens)
+  const groupedTokens = groupByName(formattedTokens)
   console.log('grouped Tokens', groupedTokens)
   // write tokens to json file
   sendJsonToUi(groupedTokens)
+
 }
 
 export default tokenExport
