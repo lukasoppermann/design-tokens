@@ -1,5 +1,5 @@
 import extractorInterface from '../../types/extractorInterface'
-import { gridAlignmentType, gridPatternType, gridPropertyInterface } from '../../types/propertyObject'
+import { gridAlignmentType, gridPatternType, gridPropertyInterface, propertyType } from '../../types/propertyObject'
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {
@@ -7,31 +7,38 @@ const gridValues = (grid: GridLayoutGrid) => ({
   },
   sectionSize: {
     value: grid.sectionSize,
-    unit: 'pixels'
+    unit: 'pixel',
+    type: 'number' as propertyType
   }
 })
 
 const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
   pattern: {
-    value: grid.pattern.toLowerCase() as gridPatternType
+    value: grid.pattern.toLowerCase() as gridPatternType,
+    type: 'string' as propertyType
   },
   sectionSize: {
     value: grid.sectionSize,
-    unit: 'pixels'
+    unit: 'pixel',
+    type: 'number' as propertyType
   },
   gutterSize: {
     value: grid.gutterSize,
-    unit: 'pixels'
+    unit: 'pixel',
+    type: 'number' as propertyType
   },
   alignment: {
-    value: grid.alignment.toLowerCase() as gridAlignmentType
+    value: grid.alignment.toLowerCase() as gridAlignmentType,
+    type: 'string' as propertyType
   },
   count: {
-    value: grid.count
+    value: grid.count,
+    type: 'number' as propertyType
   },
   offset: {
     value: grid.offset,
-    unit: 'pixels'
+    unit: 'pixel',
+    type: 'number' as propertyType
   }
 })
 
@@ -40,97 +47,12 @@ const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridProperty
   return tokenNodes.map(node => ({
     name: node.name,
     description: node.description || null,
-    values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid)) // extract first grid only
+    values: {
+      layouts: {
+        value: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
+      }
+    }
   }))
 }
 
 export default extractGrids
-
-// "grids": [
-//   {
-//     "pattern": "COLUMNS",
-//     "visible": true,
-//     "color": {
-//       "r": 1,
-//       "g": 0,
-//       "b": 0,
-//       "a": 0.10000000149011612
-//     },
-//     "gutterSize": 20,
-//     "alignment": "STRETCH",
-//     "count": 5,
-//     "offset": 10
-//   },
-//   {
-//     "pattern": "ROWS",
-//     "visible": true,
-//     "color": {
-//       "r": 1,
-//       "g": 0,
-//       "b": 0,
-//       "a": 0.10000000149011612
-//     },
-//     "gutterSize": 10,
-//     "alignment": "CENTER",
-//     "count": 5,
-//     "sectionSize": 8
-//   },
-//   {
-//     "pattern": "COLUMNS",
-//     "visible": true,
-//     "color": {
-//       "r": 1,
-//       "g": 0,
-//       "b": 0,
-//       "a": 0.10000000149011612
-//     },
-//     "gutterSize": 20,
-//     "alignment": "MAX",
-//     "count": 5,
-//     "sectionSize": 8,
-//     "offset": 10
-//   },
-//   {
-//     "pattern": "COLUMNS",
-//     "visible": true,
-//     "color": {
-//       "r": 1,
-//       "g": 0,
-//       "b": 0,
-//       "a": 0.10000000149011612
-//     },
-//     "gutterSize": 20,
-//     "alignment": "MIN",
-//     "count": 5,
-//     "sectionSize": 34,
-//     "offset": 13
-//   },
-//   {
-//     "pattern": "ROWS",
-//     "visible": true,
-//     "color": {
-//       "r": 1,
-//       "g": 0,
-//       "b": 0,
-//       "a": 0.10000000149011612
-//     },
-//     "gutterSize": 20,
-//     "alignment": "MIN",
-//     "count": 5,
-//     "sectionSize": 8,
-//     "offset": 10
-//   },
-//   {
-//     "pattern": "GRID",
-//     "visible": true,
-//     "color": {
-//       "r": 1,
-//       "g": 0,
-//       "b": 0,
-//       "a": 0.10000000149011612
-//     },
-//     "sectionSize": 8
-//   }
-// ]
-//       }
-//     }

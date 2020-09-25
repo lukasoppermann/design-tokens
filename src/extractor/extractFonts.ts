@@ -1,5 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
-import { fontPropertyInterface, textDecorationType, letterSpacingUnitType, lineHeightUnitType, textCaseType } from '../../types/propertyObject'
+import { fontPropertyInterface, textDecorationType, lineHeightUnitType, textCaseType, propertyType, numericUnits } from '../../types/propertyObject'
+import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const textDecorations = {
   'NONE': 'none',
@@ -18,40 +19,49 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
   // get raw text styles
   return tokenNodes.map(node => ({
     name: node.name,
-    description: node.description || null,
+    description: node.description || undefined,
     values: {
       fontSize: {
         value: node.fontSize, 
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       },
       textDecoration: {
-        value: textDecorations[node.textDecoration] as textDecorationType
+        value: textDecorations[node.textDecoration] as textDecorationType,
+        type: 'string' as propertyType
       },
       fontFamily: {
-        value: node.fontName.family
+        value: node.fontName.family,
+        type: 'string' as propertyType
       },
       fontStyle: {
-        value: node.fontName.style
+        value: node.fontName.style,
+        type: 'string' as propertyType
       },
       letterSpacing: {
-        value: node.letterSpacing.value,
-        unit: node.letterSpacing.unit.toLowerCase() as letterSpacingUnitType
+        value: roundWithDecimals(node.letterSpacing.value),
+        unit: <numericUnits>node.letterSpacing.unit.toLowerCase(),
+        type: 'number' as propertyType
       },
       lineHeight: {
         // @ts-ignore
-        value: node.lineHeight.value || 'normal',
-        unit: node.lineHeight.unit.toLowerCase() as lineHeightUnitType
+        value: roundWithDecimals(node.lineHeight.value) || 'normal',
+        unit: node.lineHeight.unit.toLowerCase() as lineHeightUnitType,
+        type: (node.lineHeight.hasOwnProperty('value') ? 'number' : 'string') as propertyType
       },
       paragraphIndent: {
         value: node.paragraphIndent,
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       },
       paragraphSpacing: {
         value: node.paragraphSpacing,
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       },
       textCase: {
-        value: textCases[node.textCase] as textCaseType
+        value: textCases[node.textCase] as textCaseType,
+        type: 'string' as propertyType
       }
     }
   }))

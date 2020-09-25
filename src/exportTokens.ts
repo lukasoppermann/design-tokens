@@ -8,6 +8,7 @@ import extractRadii from './extractor/extractRadii'
 import getTokenFrames from './utilities/getTokenFrames'
 import groupByName from './utilities/groupByName'
 import amazonStyleDictionaryTransformer from './transformer/amazonStyleDictionaryTransformer'
+import { convertedPropertyObject } from '../types/propertyObject'
 
 
 const transformer = {
@@ -51,7 +52,8 @@ const tokenExport = (figma: PluginAPI, format: string = 'amazon') => {
   const tokenArray = exportRawTokenArray(figma)
   console.log('JSON TOKEN', tokenArray)
   // format tokens
-  const formattedTokens = tokenArray.map(token => transformer[format](token))
+  const formattedTokens = tokenArray.map((token: convertedPropertyObject )=> transformer[format](token))
+  console.log('formatted Tokens', formattedTokens)
   // group tokens
   const groupedTokens = groupByName(formattedTokens)
   console.log('grouped Tokens', groupedTokens)

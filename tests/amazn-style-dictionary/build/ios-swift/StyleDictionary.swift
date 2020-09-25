@@ -3,67 +3,63 @@
 // StyleDictionary.swift
 //
 // Do not edit directly
-// Generated on Wed, 23 Sep 2020 22:27:30 GMT
+// Generated on Fri, 25 Sep 2020 13:41:12 GMT
 //
 
 
 import UIKit
 
 public class StyleDictionary {
-    public static let bodyH3ValuesFontFamily = Roboto
-    public static let bodyH3ValuesFontSize = 20
-    public static let bodyH3ValuesFontStyle = Medium
-    public static let bodyH3ValuesLetterSpacing = 2
-    public static let bodyH3ValuesLineHeight = 160.0000023841858
-    public static let bodyH3ValuesParagraphIndent = 5
-    public static let bodyH3ValuesParagraphSpacing = 8
-    public static let bodyH3ValuesTextCase = uppercase
-    public static let bodyH3ValuesTextDecoration = none
-    public static let borders2OfThemValuesStroke = [object Object]
-    public static let borders2OfThemValuesStrokeAlign = inside
-    public static let borders2OfThemValuesStrokeJoin = miter
-    public static let borders2OfThemValuesStrokeMiterLimit = 4
-    public static let borders2OfThemValuesStrokeWeight = 1
-    public static let bordersGreen4PxDottedValuesStroke = [object Object]
-    public static let bordersGreen4PxDottedValuesStrokeAlign = inside
-    public static let bordersGreen4PxDottedValuesStrokeJoin = round
-    public static let bordersGreen4PxDottedValuesStrokeMiterLimit = 4
-    public static let bordersGreen4PxDottedValuesStrokeWeight = 4
-    public static let bordersGreen4PxGradientValuesStroke = null
-    public static let bordersGreen4PxGradientValuesStrokeAlign = inside
-    public static let bordersGreen4PxGradientValuesStrokeJoin = miter
-    public static let bordersGreen4PxGradientValuesStrokeMiterLimit = 2.613126039505005
-    public static let bordersGreen4PxGradientValuesStrokeWeight = 4
-    public static let bordersRed1PxValuesStroke = [object Object]
-    public static let bordersRed1PxValuesStrokeAlign = inside
-    public static let bordersRed1PxValuesStrokeJoin = miter
-    public static let bordersRed1PxValuesStrokeMiterLimit = 4
-    public static let bordersRed1PxValuesStrokeWeight = 1
-    public static let colorsBlueValuesFill = [object Object]
-    public static let colorsGreenValuesFill = [object Object]
-    public static let colorsOrangeValuesFill = [object Object]
-    public static let colorsSecondaryGreenValuesFill = [object Object]
-    public static let colorsSecondaryYellowValuesFill = [object Object]
-    public static let effectShadowValuesColor = [object Object]
-    public static let effectShadowValuesOffsetX = 0
-    public static let effectShadowValuesOffsetY = 4
-    public static let effectShadowValuesRadius = 4
-    public static let effectShadowValuesSpread = 0
-    public static let effectShadowValuesType = dropShadow
-    public static let radiiMixedValuesRadiiBottomLeft = 6
-    public static let radiiMixedValuesRadiiBottomRight = 4
-    public static let radiiMixedValuesRadiiTopLeft = 0
-    public static let radiiMixedValuesRadiiTopRight = 3
-    public static let radiiMixedValuesRadius = mixed
-    public static let radiiMixedValuesRadiusType = mixed
-    public static let radiiMixedValuesSmoothing = 0.6200000047683716
-    public static let sizes11ValuesHeight = 11
-    public static let sizes11ValuesWidth = 11
-    public static let sizes8ValuesHeight = 8
-    public static let sizes8ValuesWidth = 8
-    public static let sizesSpacers16ValuesHeight = 16
-    public static let sizesSpacers16ValuesWidth = 16
-    public static let sizesSpacers32ValuesHeight = 32
-    public static let sizesSpacers32ValuesWidth = 32
-    public static let utilitiesErrorValuesFill = [object Object]
+    public static let bodyH3FontFamily = Roboto
+    public static let bodyH3FontSize = 20
+    public static let bodyH3FontStyle = Medium
+    public static let bodyH3LetterSpacing = 2
+    public static let bodyH3LineHeight = 160
+    public static let bodyH3ParagraphIndent = 5
+    public static let bodyH3ParagraphSpacing = 8
+    public static let bodyH3TextCase = uppercase
+    public static let bodyH3TextDecoration = none
+    public static let borders2OfThemStroke = [object Object]
+    public static let borders2OfThemStrokeAlign = inside
+    public static let borders2OfThemStrokeCap = none
+    public static let borders2OfThemStrokeJoin = miter
+    public static let borders2OfThemStrokeMiterAngle = 4
+    public static let borders2OfThemStrokeWeight = 1
+    public static let bordersGreen4PxDottedStroke = [object Object]
+    public static let bordersGreen4PxDottedStrokeAlign = inside
+    public static let bordersGreen4PxDottedStrokeCap = round
+    public static let bordersGreen4PxDottedStrokeJoin = round
+    public static let bordersGreen4PxDottedStrokeMiterAngle = 4
+    public static let bordersGreen4PxDottedStrokeWeight = 4
+    public static let bordersGreen4PxGradientStroke = null
+    public static let bordersGreen4PxGradientStrokeAlign = inside
+    public static let bordersGreen4PxGradientStrokeCap = arrow_lines
+    public static let bordersGreen4PxGradientStrokeJoin = miter
+    public static let bordersGreen4PxGradientStrokeMiterAngle = 2.613
+    public static let bordersGreen4PxGradientStrokeWeight = 4
+    public static let bordersRed1PxStroke = [object Object]
+    public static let bordersRed1PxStrokeAlign = inside
+    public static let bordersRed1PxStrokeCap = none
+    public static let bordersRed1PxStrokeJoin = miter
+    public static let bordersRed1PxStrokeMiterAngle = 4
+    public static let bordersRed1PxStrokeWeight = 1
+    public static let colorsBlueFill = [object Object]
+    public static let colorsGreenFill = [object Object]
+    public static let colorsOrangeFill = [object Object]
+    public static let colorsSecondaryGreenFill = [object Object]
+    public static let colorsSecondaryYellowFill = [object Object]
+    public static let effectBackgroundBlurEffects = [object Object]
+    public static let effectLayerBlurEffects = [object Object]
+    public static let effectShadowEffects = [object Object]
+    public static let gridBaseLayouts = [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+    public static let gridWeirdGridWithCommentLayouts = [object Object]
+    public static let innerShadowEffects = [object Object],[object Object]
+    public static let radiiMixedRadius = mixed
+    public static let radiiMixedRadiusType = mixed
+    public static let radiiMixedSmoothing = 0.62
+    public static let sizes11 = 11
+    public static let sizes8 = 8
+    public static let sizesSpacers16 = 16
+    public static let sizesSpacers32 = 32
+    public static let utilitiesErrorFill = [object Object]
 }

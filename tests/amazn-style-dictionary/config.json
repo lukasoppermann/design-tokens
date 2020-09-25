@@ -47,9 +47,7 @@
         "className": "StyleDictionaryColor",
         "type": "StyleDictionaryColorName",
         "filter": {
-          "attributes": {
-            "category": "color"
-          }
+          "type": "color"
         }
       },{
         "destination": "StyleDictionaryColor.m",
@@ -57,9 +55,7 @@
         "className": "StyleDictionaryColor",
         "type": "StyleDictionaryColorName",
         "filter": {
-          "attributes": {
-            "category": "color"
-          }
+          "type": "color"
         }
       },{
         "destination": "StyleDictionarySize.h",
@@ -67,9 +63,7 @@
         "className": "StyleDictionarySize",
         "type": "float",
         "filter": {
-          "attributes": {
-            "category": "size"
-          }
+          "type": "number"
         }
       },{
         "destination": "StyleDictionarySize.m",
@@ -77,9 +71,7 @@
         "className": "StyleDictionarySize",
         "type": "float",
         "filter": {
-          "attributes": {
-            "category": "size"
-          }
+          "type": "number"
         }
       }]
     },

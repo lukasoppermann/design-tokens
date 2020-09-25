@@ -1,1607 +1,1806 @@
 {
   "sizes": {
     "8": {
-      "description": null,
-      "values": {
-        "width": {
-          "value": 8,
-          "unit": "pixels",
-          "original": {
-            "value": 8,
-            "unit": "pixels"
-          },
-          "name": "Sizes8ValuesWidth",
-          "attributes": {
-            "category": "sizes",
-            "type": "8",
-            "item": "values",
-            "subitem": "width"
-          },
-          "path": [
-            "sizes",
-            "8",
-            "values",
-            "width"
-          ]
-        },
-        "height": {
-          "value": 8,
-          "unit": "pixels",
-          "original": {
-            "value": 8,
-            "unit": "pixels"
-          },
-          "name": "Sizes8ValuesHeight",
-          "attributes": {
-            "category": "sizes",
-            "type": "8",
-            "item": "values",
-            "subitem": "height"
-          },
-          "path": [
-            "sizes",
-            "8",
-            "values",
-            "height"
-          ]
-        }
-      }
+      "value": 8,
+      "type": "number",
+      "unit": "pixel",
+      "original": {
+        "value": 8,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "name": "Sizes8",
+      "attributes": {
+        "category": "sizes",
+        "type": "8"
+      },
+      "path": [
+        "sizes",
+        "8"
+      ]
     },
     "11": {
-      "description": null,
-      "values": {
-        "width": {
-          "value": 11,
-          "unit": "pixels",
-          "original": {
-            "value": 11,
-            "unit": "pixels"
-          },
-          "name": "Sizes11ValuesWidth",
-          "attributes": {
-            "category": "sizes",
-            "type": "11",
-            "item": "values",
-            "subitem": "width"
-          },
-          "path": [
-            "sizes",
-            "11",
-            "values",
-            "width"
-          ]
-        },
-        "height": {
-          "value": 11,
-          "unit": "pixels",
-          "original": {
-            "value": 11,
-            "unit": "pixels"
-          },
-          "name": "Sizes11ValuesHeight",
-          "attributes": {
-            "category": "sizes",
-            "type": "11",
-            "item": "values",
-            "subitem": "height"
-          },
-          "path": [
-            "sizes",
-            "11",
-            "values",
-            "height"
-          ]
-        }
-      }
+      "value": 11,
+      "type": "number",
+      "unit": "pixel",
+      "original": {
+        "value": 11,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "name": "Sizes11",
+      "attributes": {
+        "category": "sizes",
+        "type": "11"
+      },
+      "path": [
+        "sizes",
+        "11"
+      ]
     },
     "spacers": {
       "16": {
-        "description": null,
-        "values": {
-          "width": {
-            "value": 16,
-            "unit": "pixels",
-            "original": {
-              "value": 16,
-              "unit": "pixels"
-            },
-            "name": "SizesSpacers16ValuesWidth",
-            "attributes": {
-              "category": "sizes",
-              "type": "spacers",
-              "item": "16",
-              "subitem": "values",
-              "state": "width"
-            },
-            "path": [
-              "sizes",
-              "spacers",
-              "16",
-              "values",
-              "width"
-            ]
-          },
-          "height": {
-            "value": 16,
-            "unit": "pixels",
-            "original": {
-              "value": 16,
-              "unit": "pixels"
-            },
-            "name": "SizesSpacers16ValuesHeight",
-            "attributes": {
-              "category": "sizes",
-              "type": "spacers",
-              "item": "16",
-              "subitem": "values",
-              "state": "height"
-            },
-            "path": [
-              "sizes",
-              "spacers",
-              "16",
-              "values",
-              "height"
-            ]
-          }
-        }
+        "value": 16,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 16,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "SizesSpacers16",
+        "attributes": {
+          "category": "sizes",
+          "type": "spacers",
+          "item": "16"
+        },
+        "path": [
+          "sizes",
+          "spacers",
+          "16"
+        ]
       },
       "32": {
-        "description": "32px spacer component",
-        "values": {
-          "width": {
-            "value": 32,
-            "unit": "pixels",
-            "original": {
-              "value": 32,
-              "unit": "pixels"
-            },
-            "name": "SizesSpacers32ValuesWidth",
-            "attributes": {
-              "category": "sizes",
-              "type": "spacers",
-              "item": "32",
-              "subitem": "values",
-              "state": "width"
-            },
-            "path": [
-              "sizes",
-              "spacers",
-              "32",
-              "values",
-              "width"
-            ]
-          },
-          "height": {
-            "value": 32,
-            "unit": "pixels",
-            "original": {
-              "value": 32,
-              "unit": "pixels"
-            },
-            "name": "SizesSpacers32ValuesHeight",
-            "attributes": {
-              "category": "sizes",
-              "type": "spacers",
-              "item": "32",
-              "subitem": "values",
-              "state": "height"
-            },
-            "path": [
-              "sizes",
-              "spacers",
-              "32",
-              "values",
-              "height"
-            ]
-          }
-        }
+        "comment": "32px spacer component",
+        "value": 32,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "comment": "32px spacer component",
+          "value": 32,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "SizesSpacers32",
+        "attributes": {
+          "category": "sizes",
+          "type": "spacers",
+          "item": "32"
+        },
+        "path": [
+          "sizes",
+          "spacers",
+          "32"
+        ]
       }
     }
   },
   "borders": {
     "2 of them": {
-      "description": null,
-      "values": {
-        "strokeAlign": {
+      "strokeAlign": {
+        "value": "inside",
+        "type": "string",
+        "original": {
           "value": "inside",
-          "original": {
-            "value": "inside"
-          },
-          "name": "Borders2OfThemValuesStrokeAlign",
-          "attributes": {
-            "category": "borders",
-            "type": "2 of them",
-            "item": "values",
-            "subitem": "strokeAlign"
-          },
-          "path": [
-            "borders",
-            "2 of them",
-            "values",
-            "strokeAlign"
-          ]
+          "type": "string"
         },
-        "strokeCap": {},
-        "strokeJoin": {
+        "name": "Borders2OfThemStrokeAlign",
+        "attributes": {
+          "category": "borders",
+          "type": "2 of them",
+          "item": "strokeAlign"
+        },
+        "path": [
+          "borders",
+          "2 of them",
+          "strokeAlign"
+        ]
+      },
+      "strokeCap": {
+        "value": "none",
+        "type": "string",
+        "original": {
+          "value": "none",
+          "type": "string"
+        },
+        "name": "Borders2OfThemStrokeCap",
+        "attributes": {
+          "category": "borders",
+          "type": "2 of them",
+          "item": "strokeCap"
+        },
+        "path": [
+          "borders",
+          "2 of them",
+          "strokeCap"
+        ]
+      },
+      "strokeJoin": {
+        "value": "miter",
+        "type": "string",
+        "original": {
           "value": "miter",
-          "original": {
-            "value": "miter"
-          },
-          "name": "Borders2OfThemValuesStrokeJoin",
-          "attributes": {
-            "category": "borders",
-            "type": "2 of them",
-            "item": "values",
-            "subitem": "strokeJoin"
-          },
-          "path": [
-            "borders",
-            "2 of them",
-            "values",
-            "strokeJoin"
-          ]
+          "type": "string"
         },
-        "strokeMiterLimit": {
+        "name": "Borders2OfThemStrokeJoin",
+        "attributes": {
+          "category": "borders",
+          "type": "2 of them",
+          "item": "strokeJoin"
+        },
+        "path": [
+          "borders",
+          "2 of them",
+          "strokeJoin"
+        ]
+      },
+      "strokeMiterAngle": {
+        "value": 4,
+        "type": "number",
+        "unit": "degree",
+        "original": {
           "value": 4,
-          "original": {
-            "value": 4
-          },
-          "name": "Borders2OfThemValuesStrokeMiterLimit",
-          "attributes": {
-            "category": "borders",
-            "type": "2 of them",
-            "item": "values",
-            "subitem": "strokeMiterLimit"
-          },
-          "path": [
-            "borders",
-            "2 of them",
-            "values",
-            "strokeMiterLimit"
-          ]
+          "type": "number",
+          "unit": "degree"
         },
-        "strokeWeight": {
+        "name": "Borders2OfThemStrokeMiterAngle",
+        "attributes": {
+          "category": "borders",
+          "type": "2 of them",
+          "item": "strokeMiterAngle"
+        },
+        "path": [
+          "borders",
+          "2 of them",
+          "strokeMiterAngle"
+        ]
+      },
+      "strokeWeight": {
+        "value": 1,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
           "value": 1,
-          "unit": "pixels",
-          "original": {
-            "value": 1,
-            "unit": "pixels"
-          },
-          "name": "Borders2OfThemValuesStrokeWeight",
-          "attributes": {
-            "category": "borders",
-            "type": "2 of them",
-            "item": "values",
-            "subitem": "strokeWeight"
-          },
-          "path": [
-            "borders",
-            "2 of them",
-            "values",
-            "strokeWeight"
-          ]
+          "type": "number",
+          "unit": "pixel"
         },
-        "stroke": {
+        "name": "Borders2OfThemStrokeWeight",
+        "attributes": {
+          "category": "borders",
+          "type": "2 of them",
+          "item": "strokeWeight"
+        },
+        "path": [
+          "borders",
+          "2 of them",
+          "strokeWeight"
+        ]
+      },
+      "stroke": {
+        "value": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "type": "color",
+        "original": {
           "value": {
             "r": 0,
             "g": 0,
             "b": 0,
             "a": 1
           },
-          "original": {
-            "value": {
-              "r": 0,
-              "g": 0,
-              "b": 0,
-              "a": 1
-            }
-          },
-          "name": "Borders2OfThemValuesStroke",
-          "attributes": {
-            "category": "borders",
-            "type": "2 of them",
-            "item": "values",
-            "subitem": "stroke"
-          },
-          "path": [
-            "borders",
-            "2 of them",
-            "values",
-            "stroke"
-          ]
-        }
+          "type": "color"
+        },
+        "name": "Borders2OfThemStroke",
+        "attributes": {
+          "category": "borders",
+          "type": "2 of them",
+          "item": "stroke"
+        },
+        "path": [
+          "borders",
+          "2 of them",
+          "stroke"
+        ]
       }
     },
     "red 1px": {
-      "description": null,
-      "values": {
-        "strokeAlign": {
+      "strokeAlign": {
+        "value": "inside",
+        "type": "string",
+        "original": {
           "value": "inside",
-          "original": {
-            "value": "inside"
-          },
-          "name": "BordersRed1PxValuesStrokeAlign",
-          "attributes": {
-            "category": "borders",
-            "type": "red 1px",
-            "item": "values",
-            "subitem": "strokeAlign"
-          },
-          "path": [
-            "borders",
-            "red 1px",
-            "values",
-            "strokeAlign"
-          ]
+          "type": "string"
         },
-        "strokeCap": {},
-        "strokeJoin": {
+        "name": "BordersRed1PxStrokeAlign",
+        "attributes": {
+          "category": "borders",
+          "type": "red 1px",
+          "item": "strokeAlign"
+        },
+        "path": [
+          "borders",
+          "red 1px",
+          "strokeAlign"
+        ]
+      },
+      "strokeCap": {
+        "value": "none",
+        "type": "string",
+        "original": {
+          "value": "none",
+          "type": "string"
+        },
+        "name": "BordersRed1PxStrokeCap",
+        "attributes": {
+          "category": "borders",
+          "type": "red 1px",
+          "item": "strokeCap"
+        },
+        "path": [
+          "borders",
+          "red 1px",
+          "strokeCap"
+        ]
+      },
+      "strokeJoin": {
+        "value": "miter",
+        "type": "string",
+        "original": {
           "value": "miter",
-          "original": {
-            "value": "miter"
-          },
-          "name": "BordersRed1PxValuesStrokeJoin",
-          "attributes": {
-            "category": "borders",
-            "type": "red 1px",
-            "item": "values",
-            "subitem": "strokeJoin"
-          },
-          "path": [
-            "borders",
-            "red 1px",
-            "values",
-            "strokeJoin"
-          ]
+          "type": "string"
         },
-        "strokeMiterLimit": {
+        "name": "BordersRed1PxStrokeJoin",
+        "attributes": {
+          "category": "borders",
+          "type": "red 1px",
+          "item": "strokeJoin"
+        },
+        "path": [
+          "borders",
+          "red 1px",
+          "strokeJoin"
+        ]
+      },
+      "strokeMiterAngle": {
+        "value": 4,
+        "type": "number",
+        "unit": "degree",
+        "original": {
           "value": 4,
-          "original": {
-            "value": 4
-          },
-          "name": "BordersRed1PxValuesStrokeMiterLimit",
-          "attributes": {
-            "category": "borders",
-            "type": "red 1px",
-            "item": "values",
-            "subitem": "strokeMiterLimit"
-          },
-          "path": [
-            "borders",
-            "red 1px",
-            "values",
-            "strokeMiterLimit"
-          ]
+          "type": "number",
+          "unit": "degree"
         },
-        "strokeWeight": {
+        "name": "BordersRed1PxStrokeMiterAngle",
+        "attributes": {
+          "category": "borders",
+          "type": "red 1px",
+          "item": "strokeMiterAngle"
+        },
+        "path": [
+          "borders",
+          "red 1px",
+          "strokeMiterAngle"
+        ]
+      },
+      "strokeWeight": {
+        "value": 1,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
           "value": 1,
-          "unit": "pixels",
-          "original": {
-            "value": 1,
-            "unit": "pixels"
-          },
-          "name": "BordersRed1PxValuesStrokeWeight",
-          "attributes": {
-            "category": "borders",
-            "type": "red 1px",
-            "item": "values",
-            "subitem": "strokeWeight"
-          },
-          "path": [
-            "borders",
-            "red 1px",
-            "values",
-            "strokeWeight"
-          ]
+          "type": "number",
+          "unit": "pixel"
         },
-        "stroke": {
+        "name": "BordersRed1PxStrokeWeight",
+        "attributes": {
+          "category": "borders",
+          "type": "red 1px",
+          "item": "strokeWeight"
+        },
+        "path": [
+          "borders",
+          "red 1px",
+          "strokeWeight"
+        ]
+      },
+      "stroke": {
+        "value": {
+          "r": 1,
+          "g": 0.029,
+          "b": 0.029,
+          "a": 1
+        },
+        "type": "color",
+        "original": {
           "value": {
             "r": 1,
-            "g": 0.02916663885116577,
-            "b": 0.02916663885116577,
-            "a": 0.3700000047683716
+            "g": 0.029,
+            "b": 0.029,
+            "a": 1
           },
-          "original": {
-            "value": {
-              "r": 1,
-              "g": 0.02916663885116577,
-              "b": 0.02916663885116577,
-              "a": 0.3700000047683716
-            }
-          },
-          "name": "BordersRed1PxValuesStroke",
-          "attributes": {
-            "category": "borders",
-            "type": "red 1px",
-            "item": "values",
-            "subitem": "stroke"
-          },
-          "path": [
-            "borders",
-            "red 1px",
-            "values",
-            "stroke"
-          ]
-        }
+          "type": "color"
+        },
+        "name": "BordersRed1PxStroke",
+        "attributes": {
+          "category": "borders",
+          "type": "red 1px",
+          "item": "stroke"
+        },
+        "path": [
+          "borders",
+          "red 1px",
+          "stroke"
+        ]
       }
     },
     "green 4 px dotted": {
-      "description": null,
-      "values": {
-        "strokeAlign": {
+      "strokeAlign": {
+        "value": "inside",
+        "type": "string",
+        "original": {
           "value": "inside",
-          "original": {
-            "value": "inside"
-          },
-          "name": "BordersGreen4PxDottedValuesStrokeAlign",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px dotted",
-            "item": "values",
-            "subitem": "strokeAlign"
-          },
-          "path": [
-            "borders",
-            "green 4 px dotted",
-            "values",
-            "strokeAlign"
-          ]
+          "type": "string"
         },
-        "strokeCap": {},
-        "strokeJoin": {
+        "name": "BordersGreen4PxDottedStrokeAlign",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px dotted",
+          "item": "strokeAlign"
+        },
+        "path": [
+          "borders",
+          "green 4 px dotted",
+          "strokeAlign"
+        ]
+      },
+      "strokeCap": {
+        "value": "round",
+        "type": "string",
+        "original": {
           "value": "round",
-          "original": {
-            "value": "round"
-          },
-          "name": "BordersGreen4PxDottedValuesStrokeJoin",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px dotted",
-            "item": "values",
-            "subitem": "strokeJoin"
-          },
-          "path": [
-            "borders",
-            "green 4 px dotted",
-            "values",
-            "strokeJoin"
-          ]
+          "type": "string"
         },
-        "strokeMiterLimit": {
+        "name": "BordersGreen4PxDottedStrokeCap",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px dotted",
+          "item": "strokeCap"
+        },
+        "path": [
+          "borders",
+          "green 4 px dotted",
+          "strokeCap"
+        ]
+      },
+      "strokeJoin": {
+        "value": "round",
+        "type": "string",
+        "original": {
+          "value": "round",
+          "type": "string"
+        },
+        "name": "BordersGreen4PxDottedStrokeJoin",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px dotted",
+          "item": "strokeJoin"
+        },
+        "path": [
+          "borders",
+          "green 4 px dotted",
+          "strokeJoin"
+        ]
+      },
+      "strokeMiterAngle": {
+        "value": 4,
+        "type": "number",
+        "unit": "degree",
+        "original": {
           "value": 4,
-          "original": {
-            "value": 4
-          },
-          "name": "BordersGreen4PxDottedValuesStrokeMiterLimit",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px dotted",
-            "item": "values",
-            "subitem": "strokeMiterLimit"
-          },
-          "path": [
-            "borders",
-            "green 4 px dotted",
-            "values",
-            "strokeMiterLimit"
-          ]
+          "type": "number",
+          "unit": "degree"
         },
-        "strokeWeight": {
+        "name": "BordersGreen4PxDottedStrokeMiterAngle",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px dotted",
+          "item": "strokeMiterAngle"
+        },
+        "path": [
+          "borders",
+          "green 4 px dotted",
+          "strokeMiterAngle"
+        ]
+      },
+      "strokeWeight": {
+        "value": 4,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
           "value": 4,
-          "unit": "pixels",
-          "original": {
-            "value": 4,
-            "unit": "pixels"
-          },
-          "name": "BordersGreen4PxDottedValuesStrokeWeight",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px dotted",
-            "item": "values",
-            "subitem": "strokeWeight"
-          },
-          "path": [
-            "borders",
-            "green 4 px dotted",
-            "values",
-            "strokeWeight"
-          ]
+          "type": "number",
+          "unit": "pixel"
         },
-        "stroke": {
+        "name": "BordersGreen4PxDottedStrokeWeight",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px dotted",
+          "item": "strokeWeight"
+        },
+        "path": [
+          "borders",
+          "green 4 px dotted",
+          "strokeWeight"
+        ]
+      },
+      "stroke": {
+        "value": {
+          "r": 0.25,
+          "g": 1,
+          "b": 0.73,
+          "a": 1
+        },
+        "type": "color",
+        "original": {
           "value": {
             "r": 0.25,
             "g": 1,
-            "b": 0.7299998998641968,
+            "b": 0.73,
             "a": 1
           },
-          "original": {
-            "value": {
-              "r": 0.25,
-              "g": 1,
-              "b": 0.7299998998641968,
-              "a": 1
-            }
-          },
-          "name": "BordersGreen4PxDottedValuesStroke",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px dotted",
-            "item": "values",
-            "subitem": "stroke"
-          },
-          "path": [
-            "borders",
-            "green 4 px dotted",
-            "values",
-            "stroke"
-          ]
-        }
+          "type": "color"
+        },
+        "name": "BordersGreen4PxDottedStroke",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px dotted",
+          "item": "stroke"
+        },
+        "path": [
+          "borders",
+          "green 4 px dotted",
+          "stroke"
+        ]
       }
     },
     "green 4 px gradient": {
-      "description": null,
-      "values": {
-        "strokeAlign": {
+      "strokeAlign": {
+        "value": "inside",
+        "type": "string",
+        "original": {
           "value": "inside",
-          "original": {
-            "value": "inside"
-          },
-          "name": "BordersGreen4PxGradientValuesStrokeAlign",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px gradient",
-            "item": "values",
-            "subitem": "strokeAlign"
-          },
-          "path": [
-            "borders",
-            "green 4 px gradient",
-            "values",
-            "strokeAlign"
-          ]
+          "type": "string"
         },
-        "strokeCap": {},
-        "strokeJoin": {
+        "name": "BordersGreen4PxGradientStrokeAlign",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px gradient",
+          "item": "strokeAlign"
+        },
+        "path": [
+          "borders",
+          "green 4 px gradient",
+          "strokeAlign"
+        ]
+      },
+      "strokeCap": {
+        "value": "arrow_lines",
+        "type": "string",
+        "original": {
+          "value": "arrow_lines",
+          "type": "string"
+        },
+        "name": "BordersGreen4PxGradientStrokeCap",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px gradient",
+          "item": "strokeCap"
+        },
+        "path": [
+          "borders",
+          "green 4 px gradient",
+          "strokeCap"
+        ]
+      },
+      "strokeJoin": {
+        "value": "miter",
+        "type": "string",
+        "original": {
           "value": "miter",
-          "original": {
-            "value": "miter"
-          },
-          "name": "BordersGreen4PxGradientValuesStrokeJoin",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px gradient",
-            "item": "values",
-            "subitem": "strokeJoin"
-          },
-          "path": [
-            "borders",
-            "green 4 px gradient",
-            "values",
-            "strokeJoin"
-          ]
+          "type": "string"
         },
-        "strokeMiterLimit": {
-          "value": 2.613126039505005,
-          "original": {
-            "value": 2.613126039505005
-          },
-          "name": "BordersGreen4PxGradientValuesStrokeMiterLimit",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px gradient",
-            "item": "values",
-            "subitem": "strokeMiterLimit"
-          },
-          "path": [
-            "borders",
-            "green 4 px gradient",
-            "values",
-            "strokeMiterLimit"
-          ]
+        "name": "BordersGreen4PxGradientStrokeJoin",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px gradient",
+          "item": "strokeJoin"
         },
-        "strokeWeight": {
+        "path": [
+          "borders",
+          "green 4 px gradient",
+          "strokeJoin"
+        ]
+      },
+      "strokeMiterAngle": {
+        "value": 2.613,
+        "type": "number",
+        "unit": "degree",
+        "original": {
+          "value": 2.613,
+          "type": "number",
+          "unit": "degree"
+        },
+        "name": "BordersGreen4PxGradientStrokeMiterAngle",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px gradient",
+          "item": "strokeMiterAngle"
+        },
+        "path": [
+          "borders",
+          "green 4 px gradient",
+          "strokeMiterAngle"
+        ]
+      },
+      "strokeWeight": {
+        "value": 4,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
           "value": 4,
-          "unit": "pixels",
-          "original": {
-            "value": 4,
-            "unit": "pixels"
-          },
-          "name": "BordersGreen4PxGradientValuesStrokeWeight",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px gradient",
-            "item": "values",
-            "subitem": "strokeWeight"
-          },
-          "path": [
-            "borders",
-            "green 4 px gradient",
-            "values",
-            "strokeWeight"
-          ]
+          "type": "number",
+          "unit": "pixel"
         },
-        "stroke": {
+        "name": "BordersGreen4PxGradientStrokeWeight",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px gradient",
+          "item": "strokeWeight"
+        },
+        "path": [
+          "borders",
+          "green 4 px gradient",
+          "strokeWeight"
+        ]
+      },
+      "stroke": {
+        "value": null,
+        "type": "color",
+        "original": {
           "value": null,
-          "original": {
-            "value": null
-          },
-          "name": "BordersGreen4PxGradientValuesStroke",
-          "attributes": {
-            "category": "borders",
-            "type": "green 4 px gradient",
-            "item": "values",
-            "subitem": "stroke"
-          },
-          "path": [
-            "borders",
-            "green 4 px gradient",
-            "values",
-            "stroke"
-          ]
-        }
+          "type": "color"
+        },
+        "name": "BordersGreen4PxGradientStroke",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px gradient",
+          "item": "stroke"
+        },
+        "path": [
+          "borders",
+          "green 4 px gradient",
+          "stroke"
+        ]
       }
     }
   },
   "radii": {
     "mixed": {
-      "description": null,
-      "values": {
-        "radius": {
+      "radius": {
+        "value": "mixed",
+        "type": "number",
+        "unit": "pixel",
+        "original": {
           "value": "mixed",
-          "unit": "pixels",
-          "original": {
-            "value": "mixed",
-            "unit": "pixels"
-          },
-          "name": "RadiiMixedValuesRadius",
-          "attributes": {
-            "category": "radii",
-            "type": "mixed",
-            "item": "values",
-            "subitem": "radius"
-          },
-          "path": [
-            "radii",
-            "mixed",
-            "values",
-            "radius"
-          ]
+          "type": "number",
+          "unit": "pixel"
         },
-        "radiusType": {
+        "name": "RadiiMixedRadius",
+        "attributes": {
+          "category": "radii",
+          "type": "mixed",
+          "item": "radius"
+        },
+        "path": [
+          "radii",
+          "mixed",
+          "radius"
+        ]
+      },
+      "radiusType": {
+        "value": "mixed",
+        "type": "string",
+        "original": {
           "value": "mixed",
-          "original": {
-            "value": "mixed"
-          },
-          "name": "RadiiMixedValuesRadiusType",
-          "attributes": {
-            "category": "radii",
-            "type": "mixed",
-            "item": "values",
-            "subitem": "radiusType"
-          },
-          "path": [
-            "radii",
-            "mixed",
-            "values",
-            "radiusType"
-          ]
+          "type": "string"
         },
-        "radii": {
-          "topLeft": {
-            "value": 0,
-            "unit": "pixels",
-            "original": {
-              "value": 0,
-              "unit": "pixels"
-            },
-            "name": "RadiiMixedValuesRadiiTopLeft",
-            "attributes": {
-              "category": "radii",
-              "type": "mixed",
-              "item": "values",
-              "subitem": "radii",
-              "state": "topLeft"
-            },
-            "path": [
-              "radii",
-              "mixed",
-              "values",
-              "radii",
-              "topLeft"
-            ]
-          },
-          "topRight": {
-            "value": 3,
-            "unit": "pixels",
-            "original": {
-              "value": 3,
-              "unit": "pixels"
-            },
-            "name": "RadiiMixedValuesRadiiTopRight",
-            "attributes": {
-              "category": "radii",
-              "type": "mixed",
-              "item": "values",
-              "subitem": "radii",
-              "state": "topRight"
-            },
-            "path": [
-              "radii",
-              "mixed",
-              "values",
-              "radii",
-              "topRight"
-            ]
-          },
-          "bottomRight": {
-            "value": 4,
-            "unit": "pixels",
-            "original": {
-              "value": 4,
-              "unit": "pixels"
-            },
-            "name": "RadiiMixedValuesRadiiBottomRight",
-            "attributes": {
-              "category": "radii",
-              "type": "mixed",
-              "item": "values",
-              "subitem": "radii",
-              "state": "bottomRight"
-            },
-            "path": [
-              "radii",
-              "mixed",
-              "values",
-              "radii",
-              "bottomRight"
-            ]
-          },
-          "bottomLeft": {
-            "value": 6,
-            "unit": "pixels",
-            "original": {
-              "value": 6,
-              "unit": "pixels"
-            },
-            "name": "RadiiMixedValuesRadiiBottomLeft",
-            "attributes": {
-              "category": "radii",
-              "type": "mixed",
-              "item": "values",
-              "subitem": "radii",
-              "state": "bottomLeft"
-            },
-            "path": [
-              "radii",
-              "mixed",
-              "values",
-              "radii",
-              "bottomLeft"
-            ]
-          }
+        "name": "RadiiMixedRadiusType",
+        "attributes": {
+          "category": "radii",
+          "type": "mixed",
+          "item": "radiusType"
         },
-        "smoothing": {
-          "value": 0.6200000047683716,
-          "comment": "Percent of as decimal from 0.0 - 1.0",
-          "original": {
-            "value": 0.6200000047683716,
-            "comment": "Percent of as decimal from 0.0 - 1.0"
-          },
-          "name": "RadiiMixedValuesSmoothing",
-          "attributes": {
-            "category": "radii",
-            "type": "mixed",
-            "item": "values",
-            "subitem": "smoothing"
-          },
-          "path": [
-            "radii",
-            "mixed",
-            "values",
-            "smoothing"
-          ]
-        }
+        "path": [
+          "radii",
+          "mixed",
+          "radiusType"
+        ]
+      },
+      "radii": {},
+      "smoothing": {
+        "value": 0.62,
+        "type": "number",
+        "original": {
+          "value": 0.62,
+          "type": "number"
+        },
+        "name": "RadiiMixedSmoothing",
+        "attributes": {
+          "category": "radii",
+          "type": "mixed",
+          "item": "smoothing"
+        },
+        "path": [
+          "radii",
+          "mixed",
+          "smoothing"
+        ]
       }
     }
   },
   "colors": {
     "orange": {
-      "description": "Our primary color",
-      "values": {
-        "fill": {
+      "comment": "Our primary color",
+      "fill": {
+        "value": {
+          "r": 1,
+          "g": 0.5,
+          "b": 0.25,
+          "a": 1
+        },
+        "type": "color",
+        "original": {
           "value": {
             "r": 1,
             "g": 0.5,
             "b": 0.25,
             "a": 1
           },
-          "original": {
-            "value": {
-              "r": 1,
-              "g": 0.5,
-              "b": 0.25,
-              "a": 1
-            }
-          },
-          "name": "ColorsOrangeValuesFill",
-          "attributes": {
-            "category": "colors",
-            "type": "orange",
-            "item": "values",
-            "subitem": "fill"
-          },
-          "path": [
-            "colors",
-            "orange",
-            "values",
-            "fill"
-          ]
-        }
+          "type": "color"
+        },
+        "name": "ColorsOrangeFill",
+        "attributes": {
+          "category": "colors",
+          "type": "orange",
+          "item": "fill"
+        },
+        "path": [
+          "colors",
+          "orange",
+          "fill"
+        ]
       }
     },
     "green": {
-      "description": null,
-      "values": {
-        "fill": {
+      "fill": {
+        "value": {
+          "r": 0.25,
+          "g": 1,
+          "b": 0.73,
+          "a": 1
+        },
+        "type": "color",
+        "original": {
           "value": {
             "r": 0.25,
             "g": 1,
-            "b": 0.7299998998641968,
+            "b": 0.73,
             "a": 1
           },
-          "original": {
-            "value": {
-              "r": 0.25,
-              "g": 1,
-              "b": 0.7299998998641968,
-              "a": 1
-            }
-          },
-          "name": "ColorsGreenValuesFill",
-          "attributes": {
-            "category": "colors",
-            "type": "green",
-            "item": "values",
-            "subitem": "fill"
-          },
-          "path": [
-            "colors",
-            "green",
-            "values",
-            "fill"
-          ]
-        }
+          "type": "color"
+        },
+        "name": "ColorsGreenFill",
+        "attributes": {
+          "category": "colors",
+          "type": "green",
+          "item": "fill"
+        },
+        "path": [
+          "colors",
+          "green",
+          "fill"
+        ]
       }
     },
     "blue": {
-      "description": null,
-      "values": {
-        "fill": {
+      "fill": {
+        "value": {
+          "r": 0.017,
+          "g": 0.292,
+          "b": 1,
+          "a": 1
+        },
+        "type": "color",
+        "original": {
           "value": {
-            "r": 0.016666650772094727,
-            "g": 0.2919999659061432,
+            "r": 0.017,
+            "g": 0.292,
             "b": 1,
             "a": 1
           },
-          "original": {
-            "value": {
-              "r": 0.016666650772094727,
-              "g": 0.2919999659061432,
-              "b": 1,
-              "a": 1
-            }
-          },
-          "name": "ColorsBlueValuesFill",
-          "attributes": {
-            "category": "colors",
-            "type": "blue",
-            "item": "values",
-            "subitem": "fill"
-          },
-          "path": [
-            "colors",
-            "blue",
-            "values",
-            "fill"
-          ]
-        }
+          "type": "color"
+        },
+        "name": "ColorsBlueFill",
+        "attributes": {
+          "category": "colors",
+          "type": "blue",
+          "item": "fill"
+        },
+        "path": [
+          "colors",
+          "blue",
+          "fill"
+        ]
       }
     },
     "secondary": {
       "green": {
-        "description": null,
-        "values": {
-          "fill": {
+        "fill": {
+          "value": {
+            "r": 0.14,
+            "g": 0.688,
+            "b": 0.195,
+            "a": 1
+          },
+          "type": "color",
+          "original": {
             "value": {
-              "r": 0.14036458730697632,
-              "g": 0.6875,
-              "b": 0.1950780749320984,
+              "r": 0.14,
+              "g": 0.688,
+              "b": 0.195,
               "a": 1
             },
-            "original": {
-              "value": {
-                "r": 0.14036458730697632,
-                "g": 0.6875,
-                "b": 0.1950780749320984,
-                "a": 1
-              }
-            },
-            "name": "ColorsSecondaryGreenValuesFill",
-            "attributes": {
-              "category": "colors",
-              "type": "secondary",
-              "item": "green",
-              "subitem": "values",
-              "state": "fill"
-            },
-            "path": [
-              "colors",
-              "secondary",
-              "green",
-              "values",
-              "fill"
-            ]
-          }
+            "type": "color"
+          },
+          "name": "ColorsSecondaryGreenFill",
+          "attributes": {
+            "category": "colors",
+            "type": "secondary",
+            "item": "green",
+            "subitem": "fill"
+          },
+          "path": [
+            "colors",
+            "secondary",
+            "green",
+            "fill"
+          ]
         }
       },
       "yellow": {
-        "description": null,
-        "values": {
-          "fill": {
+        "fill": {
+          "value": {
+            "r": 1,
+            "g": 0.72,
+            "b": 0,
+            "a": 1
+          },
+          "type": "color",
+          "original": {
             "value": {
               "r": 1,
-              "g": 0.7199999690055847,
+              "g": 0.72,
               "b": 0,
               "a": 1
             },
-            "original": {
-              "value": {
-                "r": 1,
-                "g": 0.7199999690055847,
-                "b": 0,
-                "a": 1
-              }
-            },
-            "name": "ColorsSecondaryYellowValuesFill",
-            "attributes": {
-              "category": "colors",
-              "type": "secondary",
-              "item": "yellow",
-              "subitem": "values",
-              "state": "fill"
-            },
-            "path": [
-              "colors",
-              "secondary",
-              "yellow",
-              "values",
-              "fill"
-            ]
-          }
+            "type": "color"
+          },
+          "name": "ColorsSecondaryYellowFill",
+          "attributes": {
+            "category": "colors",
+            "type": "secondary",
+            "item": "yellow",
+            "subitem": "fill"
+          },
+          "path": [
+            "colors",
+            "secondary",
+            "yellow",
+            "fill"
+          ]
         }
       }
     }
   },
   "utilities": {
     "error": {
-      "description": null,
-      "values": {
-        "fill": {
+      "fill": {
+        "value": {
+          "r": 1,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "type": "color",
+        "original": {
           "value": {
             "r": 1,
             "g": 0,
             "b": 0,
             "a": 1
           },
-          "original": {
-            "value": {
-              "r": 1,
-              "g": 0,
-              "b": 0,
-              "a": 1
-            }
-          },
-          "name": "UtilitiesErrorValuesFill",
-          "attributes": {
-            "category": "utilities",
-            "type": "error",
-            "item": "values",
-            "subitem": "fill"
-          },
-          "path": [
-            "utilities",
-            "error",
-            "values",
-            "fill"
-          ]
-        }
+          "type": "color"
+        },
+        "name": "UtilitiesErrorFill",
+        "attributes": {
+          "category": "utilities",
+          "type": "error",
+          "item": "fill"
+        },
+        "path": [
+          "utilities",
+          "error",
+          "fill"
+        ]
       }
     }
   },
   "grid": {
     "base": {
-      "description": "A base grid",
-      "values": [
-        {
-          "pattern": {
-            "value": "columns"
+      "comment": "A base grid",
+      "layouts": {
+        "value": [
+          {
+            "pattern": {
+              "value": "columns",
+              "type": "string"
+            },
+            "sectionSize": {
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 20,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "stretch",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 10,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "sectionSize": {
-            "unit": "pixels"
+          {
+            "pattern": {
+              "value": "rows",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 8,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 10,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "center",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "gutterSize": {
-            "value": 20,
-            "unit": "pixels"
+          {
+            "pattern": {
+              "value": "columns",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 1,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 20,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "max",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 1,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "alignment": {
-            "value": "stretch"
+          {
+            "pattern": {
+              "value": "columns",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 34,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 20,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "min",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 13,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "count": {
-            "value": 5
+          {
+            "pattern": {
+              "value": "rows",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 8,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 20,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "min",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 10,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "offset": {
-            "value": 10,
-            "unit": "pixels"
+          {
+            "pattern": {
+              "value": "grid"
+            },
+            "sectionSize": {
+              "value": 8,
+              "unit": "pixel",
+              "type": "number"
+            }
           }
+        ],
+        "original": {
+          "value": [
+            {
+              "pattern": {
+                "value": "columns",
+                "type": "string"
+              },
+              "sectionSize": {
+                "unit": "pixel",
+                "type": "number"
+              },
+              "gutterSize": {
+                "value": 20,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "alignment": {
+                "value": "stretch",
+                "type": "string"
+              },
+              "count": {
+                "value": 5,
+                "type": "number"
+              },
+              "offset": {
+                "value": 10,
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            {
+              "pattern": {
+                "value": "rows",
+                "type": "string"
+              },
+              "sectionSize": {
+                "value": 8,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "gutterSize": {
+                "value": 10,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "alignment": {
+                "value": "center",
+                "type": "string"
+              },
+              "count": {
+                "value": 5,
+                "type": "number"
+              },
+              "offset": {
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            {
+              "pattern": {
+                "value": "columns",
+                "type": "string"
+              },
+              "sectionSize": {
+                "value": 1,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "gutterSize": {
+                "value": 20,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "alignment": {
+                "value": "max",
+                "type": "string"
+              },
+              "count": {
+                "value": 5,
+                "type": "number"
+              },
+              "offset": {
+                "value": 1,
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            {
+              "pattern": {
+                "value": "columns",
+                "type": "string"
+              },
+              "sectionSize": {
+                "value": 34,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "gutterSize": {
+                "value": 20,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "alignment": {
+                "value": "min",
+                "type": "string"
+              },
+              "count": {
+                "value": 5,
+                "type": "number"
+              },
+              "offset": {
+                "value": 13,
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            {
+              "pattern": {
+                "value": "rows",
+                "type": "string"
+              },
+              "sectionSize": {
+                "value": 8,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "gutterSize": {
+                "value": 20,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "alignment": {
+                "value": "min",
+                "type": "string"
+              },
+              "count": {
+                "value": 5,
+                "type": "number"
+              },
+              "offset": {
+                "value": 10,
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            {
+              "pattern": {
+                "value": "grid"
+              },
+              "sectionSize": {
+                "value": 8,
+                "unit": "pixel",
+                "type": "number"
+              }
+            }
+          ]
         },
-        {
-          "pattern": {
-            "value": "rows"
-          },
-          "sectionSize": {
-            "value": 8,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 10,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "center"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "unit": "pixels"
-          }
+        "name": "GridBaseLayouts",
+        "attributes": {
+          "category": "grid",
+          "type": "base",
+          "item": "layouts"
         },
-        {
-          "pattern": {
-            "value": "columns"
-          },
-          "sectionSize": {
-            "value": 1,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 20,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "max"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "value": 1,
-            "unit": "pixels"
-          }
-        },
-        {
-          "pattern": {
-            "value": "columns"
-          },
-          "sectionSize": {
-            "value": 34,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 20,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "min"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "value": 13,
-            "unit": "pixels"
-          }
-        },
-        {
-          "pattern": {
-            "value": "rows"
-          },
-          "sectionSize": {
-            "value": 8,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 20,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "min"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "value": 10,
-            "unit": "pixels"
-          }
-        },
-        {
-          "pattern": {
-            "value": "grid"
-          },
-          "sectionSize": {
-            "value": 8,
-            "unit": "pixels"
-          }
-        }
-      ]
+        "path": [
+          "grid",
+          "base",
+          "layouts"
+        ]
+      }
     },
     "weird grid with comment": {
-      "description": "COMMENT to describe weird grid",
-      "values": [
-        {
-          "pattern": {
-            "value": "columns"
-          },
-          "sectionSize": {
-            "value": 21,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 13,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "max"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "value": 23,
-            "unit": "pixels"
+      "comment": "COMMENT to describe weird grid",
+      "layouts": {
+        "value": [
+          {
+            "pattern": {
+              "value": "columns",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 21,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 13,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "max",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 23,
+              "unit": "pixel",
+              "type": "number"
+            }
           }
-        }
-      ]
+        ],
+        "original": {
+          "value": [
+            {
+              "pattern": {
+                "value": "columns",
+                "type": "string"
+              },
+              "sectionSize": {
+                "value": 21,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "gutterSize": {
+                "value": 13,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "alignment": {
+                "value": "max",
+                "type": "string"
+              },
+              "count": {
+                "value": 5,
+                "type": "number"
+              },
+              "offset": {
+                "value": 23,
+                "unit": "pixel",
+                "type": "number"
+              }
+            }
+          ]
+        },
+        "name": "GridWeirdGridWithCommentLayouts",
+        "attributes": {
+          "category": "grid",
+          "type": "weird grid with comment",
+          "item": "layouts"
+        },
+        "path": [
+          "grid",
+          "weird grid with comment",
+          "layouts"
+        ]
+      }
     }
   },
   "body": {
     "h3": {
-      "description": null,
-      "values": {
-        "fontSize": {
+      "fontSize": {
+        "value": 20,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
           "value": 20,
-          "unit": "pixels",
-          "original": {
-            "value": 20,
-            "unit": "pixels"
-          },
-          "name": "BodyH3ValuesFontSize",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "fontSize"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "fontSize"
-          ]
+          "type": "number",
+          "unit": "pixel"
         },
-        "textDecoration": {
+        "name": "BodyH3FontSize",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "fontSize"
+        },
+        "path": [
+          "body",
+          "h3",
+          "fontSize"
+        ]
+      },
+      "textDecoration": {
+        "value": "none",
+        "type": "string",
+        "original": {
           "value": "none",
-          "original": {
-            "value": "none"
-          },
-          "name": "BodyH3ValuesTextDecoration",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "textDecoration"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "textDecoration"
-          ]
+          "type": "string"
         },
-        "fontFamily": {
+        "name": "BodyH3TextDecoration",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "textDecoration"
+        },
+        "path": [
+          "body",
+          "h3",
+          "textDecoration"
+        ]
+      },
+      "fontFamily": {
+        "value": "Roboto",
+        "type": "string",
+        "original": {
           "value": "Roboto",
-          "original": {
-            "value": "Roboto"
-          },
-          "name": "BodyH3ValuesFontFamily",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "fontFamily"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "fontFamily"
-          ]
+          "type": "string"
         },
-        "fontStyle": {
+        "name": "BodyH3FontFamily",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "fontFamily"
+        },
+        "path": [
+          "body",
+          "h3",
+          "fontFamily"
+        ]
+      },
+      "fontStyle": {
+        "value": "Medium",
+        "type": "string",
+        "original": {
           "value": "Medium",
-          "original": {
-            "value": "Medium"
-          },
-          "name": "BodyH3ValuesFontStyle",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "fontStyle"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "fontStyle"
-          ]
+          "type": "string"
         },
-        "letterSpacing": {
+        "name": "BodyH3FontStyle",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "fontStyle"
+        },
+        "path": [
+          "body",
+          "h3",
+          "fontStyle"
+        ]
+      },
+      "letterSpacing": {
+        "value": 2,
+        "type": "number",
+        "unit": "percent",
+        "original": {
           "value": 2,
-          "unit": "percent",
-          "original": {
-            "value": 2,
-            "unit": "percent"
-          },
-          "name": "BodyH3ValuesLetterSpacing",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "letterSpacing"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "letterSpacing"
-          ]
+          "type": "number",
+          "unit": "percent"
         },
-        "lineHeight": {
-          "value": 160.0000023841858,
-          "unit": "percent",
-          "original": {
-            "value": 160.0000023841858,
-            "unit": "percent"
-          },
-          "name": "BodyH3ValuesLineHeight",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "lineHeight"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "lineHeight"
-          ]
+        "name": "BodyH3LetterSpacing",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "letterSpacing"
         },
-        "paragraphIndent": {
+        "path": [
+          "body",
+          "h3",
+          "letterSpacing"
+        ]
+      },
+      "lineHeight": {
+        "value": 160,
+        "type": "number",
+        "unit": "percent",
+        "original": {
+          "value": 160,
+          "type": "number",
+          "unit": "percent"
+        },
+        "name": "BodyH3LineHeight",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "lineHeight"
+        },
+        "path": [
+          "body",
+          "h3",
+          "lineHeight"
+        ]
+      },
+      "paragraphIndent": {
+        "value": 5,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
           "value": 5,
-          "unit": "pixels",
-          "original": {
-            "value": 5,
-            "unit": "pixels"
-          },
-          "name": "BodyH3ValuesParagraphIndent",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "paragraphIndent"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "paragraphIndent"
-          ]
+          "type": "number",
+          "unit": "pixel"
         },
-        "paragraphSpacing": {
+        "name": "BodyH3ParagraphIndent",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "paragraphIndent"
+        },
+        "path": [
+          "body",
+          "h3",
+          "paragraphIndent"
+        ]
+      },
+      "paragraphSpacing": {
+        "value": 8,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
           "value": 8,
-          "unit": "pixels",
-          "original": {
-            "value": 8,
-            "unit": "pixels"
-          },
-          "name": "BodyH3ValuesParagraphSpacing",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "paragraphSpacing"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "paragraphSpacing"
-          ]
+          "type": "number",
+          "unit": "pixel"
         },
-        "textCase": {
+        "name": "BodyH3ParagraphSpacing",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "paragraphSpacing"
+        },
+        "path": [
+          "body",
+          "h3",
+          "paragraphSpacing"
+        ]
+      },
+      "textCase": {
+        "value": "uppercase",
+        "type": "string",
+        "original": {
           "value": "uppercase",
-          "original": {
-            "value": "uppercase"
-          },
-          "name": "BodyH3ValuesTextCase",
-          "attributes": {
-            "category": "body",
-            "type": "h3",
-            "item": "values",
-            "subitem": "textCase"
-          },
-          "path": [
-            "body",
-            "h3",
-            "values",
-            "textCase"
-          ]
-        }
+          "type": "string"
+        },
+        "name": "BodyH3TextCase",
+        "attributes": {
+          "category": "body",
+          "type": "h3",
+          "item": "textCase"
+        },
+        "path": [
+          "body",
+          "h3",
+          "textCase"
+        ]
       }
     }
   },
   "effect": {
     "shadow": {
-      "description": null,
-      "values": {
-        "type": {
-          "value": "dropShadow",
-          "original": {
-            "value": "dropShadow"
-          },
-          "name": "EffectShadowValuesType",
-          "attributes": {
-            "category": "effect",
-            "type": "shadow",
-            "item": "values",
-            "subitem": "type"
-          },
-          "path": [
-            "effect",
-            "shadow",
-            "values",
-            "type"
+      "effects": {
+        "value": [
+          {
+            "type": {
+              "value": "dropShadow",
+              "type": "string"
+            },
+            "radius": {
+              "value": 4,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "color": {
+              "value": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0.25
+              },
+              "type": "color"
+            },
+            "offset": {
+              "x": {
+                "value": 0,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "y": {
+                "value": 4,
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            "spread": {
+              "value": 0,
+              "unit": "pixel",
+              "type": "number"
+            }
+          }
+        ],
+        "original": {
+          "value": [
+            {
+              "type": {
+                "value": "dropShadow",
+                "type": "string"
+              },
+              "radius": {
+                "value": 4,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "color": {
+                "value": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.25
+                },
+                "type": "color"
+              },
+              "offset": {
+                "x": {
+                  "value": 0,
+                  "unit": "pixel",
+                  "type": "number"
+                },
+                "y": {
+                  "value": 4,
+                  "unit": "pixel",
+                  "type": "number"
+                }
+              },
+              "spread": {
+                "value": 0,
+                "unit": "pixel",
+                "type": "number"
+              }
+            }
           ]
         },
-        "radius": {
-          "value": 4,
-          "unit": "pixels",
-          "original": {
+        "name": "EffectShadowEffects",
+        "attributes": {
+          "category": "effect",
+          "type": "shadow",
+          "item": "effects"
+        },
+        "path": [
+          "effect",
+          "shadow",
+          "effects"
+        ]
+      }
+    },
+    "layer blur": {
+      "effects": {
+        "value": [
+          {
+            "type": {
+              "value": "layerBlur",
+              "type": "string"
+            },
+            "radius": {
+              "value": 4,
+              "unit": "pixel",
+              "type": "number"
+            }
+          }
+        ],
+        "original": {
+          "value": [
+            {
+              "type": {
+                "value": "layerBlur",
+                "type": "string"
+              },
+              "radius": {
+                "value": 4,
+                "unit": "pixel",
+                "type": "number"
+              }
+            }
+          ]
+        },
+        "name": "EffectLayerBlurEffects",
+        "attributes": {
+          "category": "effect",
+          "type": "layer blur",
+          "item": "effects"
+        },
+        "path": [
+          "effect",
+          "layer blur",
+          "effects"
+        ]
+      }
+    },
+    "background blur": {
+      "effects": {
+        "value": [
+          {
+            "type": {
+              "value": "backgroundBlur",
+              "type": "string"
+            },
+            "radius": {
+              "value": 4,
+              "unit": "pixel",
+              "type": "number"
+            }
+          }
+        ],
+        "original": {
+          "value": [
+            {
+              "type": {
+                "value": "backgroundBlur",
+                "type": "string"
+              },
+              "radius": {
+                "value": 4,
+                "unit": "pixel",
+                "type": "number"
+              }
+            }
+          ]
+        },
+        "name": "EffectBackgroundBlurEffects",
+        "attributes": {
+          "category": "effect",
+          "type": "background blur",
+          "item": "effects"
+        },
+        "path": [
+          "effect",
+          "background blur",
+          "effects"
+        ]
+      }
+    }
+  },
+  "inner shadow": {
+    "effects": {
+      "value": [
+        {
+          "type": {
+            "value": "innerShadow",
+            "type": "string"
+          },
+          "radius": {
             "value": 4,
-            "unit": "pixels"
+            "unit": "pixel",
+            "type": "number"
           },
-          "name": "EffectShadowValuesRadius",
-          "attributes": {
-            "category": "effect",
-            "type": "shadow",
-            "item": "values",
-            "subitem": "radius"
-          },
-          "path": [
-            "effect",
-            "shadow",
-            "values",
-            "radius"
-          ]
-        },
-        "color": {
-          "value": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.25
-          },
-          "original": {
+          "color": {
             "value": {
               "r": 0,
               "g": 0,
               "b": 0,
               "a": 0.25
+            },
+            "type": "color"
+          },
+          "offset": {
+            "x": {
+              "value": 0,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "y": {
+              "value": 4,
+              "unit": "pixel",
+              "type": "number"
             }
           },
-          "name": "EffectShadowValuesColor",
-          "attributes": {
-            "category": "effect",
-            "type": "shadow",
-            "item": "values",
-            "subitem": "color"
-          },
-          "path": [
-            "effect",
-            "shadow",
-            "values",
-            "color"
-          ]
-        },
-        "offset": {
-          "x": {
+          "spread": {
             "value": 0,
-            "unit": "pixels",
-            "original": {
+            "unit": "pixel",
+            "type": "number"
+          }
+        },
+        {
+          "type": {
+            "value": "innerShadow",
+            "type": "string"
+          },
+          "radius": {
+            "value": 10,
+            "unit": "pixel",
+            "type": "number"
+          },
+          "color": {
+            "value": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.15
+            },
+            "type": "color"
+          },
+          "offset": {
+            "x": {
               "value": 0,
-              "unit": "pixels"
+              "unit": "pixel",
+              "type": "number"
             },
-            "name": "EffectShadowValuesOffsetX",
-            "attributes": {
-              "category": "effect",
-              "type": "shadow",
-              "item": "values",
-              "subitem": "offset",
-              "state": "x"
-            },
-            "path": [
-              "effect",
-              "shadow",
-              "values",
-              "offset",
-              "x"
-            ]
+            "y": {
+              "value": -4,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "y": {
-            "value": 4,
-            "unit": "pixels",
-            "original": {
-              "value": 4,
-              "unit": "pixels"
-            },
-            "name": "EffectShadowValuesOffsetY",
-            "attributes": {
-              "category": "effect",
-              "type": "shadow",
-              "item": "values",
-              "subitem": "offset",
-              "state": "y"
-            },
-            "path": [
-              "effect",
-              "shadow",
-              "values",
-              "offset",
-              "y"
-            ]
-          }
-        },
-        "spread": {
-          "value": 0,
-          "unit": "pixels",
-          "original": {
+          "spread": {
             "value": 0,
-            "unit": "pixels"
-          },
-          "name": "EffectShadowValuesSpread",
-          "attributes": {
-            "category": "effect",
-            "type": "shadow",
-            "item": "values",
-            "subitem": "spread"
-          },
-          "path": [
-            "effect",
-            "shadow",
-            "values",
-            "spread"
-          ]
-        }
-      }
-    },
-    "layer blur": {
-      "description": null,
-      "values": [
-        {
-          "type": {
-            "value": "layerBlur"
-          },
-          "radius": {
-            "value": 4,
-            "unit": "pixels"
+            "unit": "pixel",
+            "type": "number"
           }
         }
-      ]
-    },
-    "background blur": {
-      "description": null,
-      "values": [
-        {
-          "type": {
-            "value": "backgroundBlur"
+      ],
+      "original": {
+        "value": [
+          {
+            "type": {
+              "value": "innerShadow",
+              "type": "string"
+            },
+            "radius": {
+              "value": 4,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "color": {
+              "value": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0.25
+              },
+              "type": "color"
+            },
+            "offset": {
+              "x": {
+                "value": 0,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "y": {
+                "value": 4,
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            "spread": {
+              "value": 0,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "radius": {
-            "value": 4,
-            "unit": "pixels"
+          {
+            "type": {
+              "value": "innerShadow",
+              "type": "string"
+            },
+            "radius": {
+              "value": 10,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "color": {
+              "value": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0.15
+              },
+              "type": "color"
+            },
+            "offset": {
+              "x": {
+                "value": 0,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "y": {
+                "value": -4,
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            "spread": {
+              "value": 0,
+              "unit": "pixel",
+              "type": "number"
+            }
           }
-        }
+        ]
+      },
+      "name": "InnerShadowEffects",
+      "attributes": {
+        "category": "inner shadow",
+        "type": "effects"
+      },
+      "path": [
+        "inner shadow",
+        "effects"
       ]
     }
-  },
-  "inner shadow": {
-    "description": null,
-    "values": [
-      {
-        "type": {
-          "value": "innerShadow"
-        },
-        "radius": {
-          "value": 4,
-          "unit": "pixels"
-        },
-        "color": {
-          "value": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.25
-          }
-        },
-        "offset": {
-          "x": {
-            "value": 0,
-            "unit": "pixels"
-          },
-          "y": {
-            "value": 4,
-            "unit": "pixels"
-          }
-        },
-        "spread": {
-          "value": 0,
-          "unit": "pixels"
-        }
-      },
-      {
-        "type": {
-          "value": "innerShadow"
-        },
-        "radius": {
-          "value": 10,
-          "unit": "pixels"
-        },
-        "color": {
-          "value": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.15000000596046448
-          }
-        },
-        "offset": {
-          "x": {
-            "value": 0,
-            "unit": "pixels"
-          },
-          "y": {
-            "value": -4,
-            "unit": "pixels"
-          }
-        },
-        "spread": {
-          "value": 0,
-          "unit": "pixels"
-        }
-      }
-    ]
   }
 }

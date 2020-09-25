@@ -1,7 +1,8 @@
 import extractorInterface from '../../types/extractorInterface'
-import { borderPropertyInterface, strokeAlignType, strokeCapType } from '../../types/propertyObject'
+import { borderPropertyInterface, propertyType, strokeAlignType, strokeCapType } from '../../types/propertyObject'
 import { customTokenNodes } from '../../types/tokenNodeTypes'
 import { convertPaintToRgba } from '../utilities/convertColor'
+import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const strokeJoins = {
   'MITER': 'miter',
@@ -24,26 +25,33 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
     description: node.description || null,
     values: {
       strokeAlign: {
-        value: strokeAligns[node.strokeAlign] as strokeAlignType
+        value: strokeAligns[node.strokeAlign] as strokeAlignType,
+        type: 'string' as propertyType
       },
       strokeCap: {
-        value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase : 'mixed') as strokeCapType
+        value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase() : 'mixed') as strokeCapType,
+        type: 'string' as propertyType
       },
       strokeJoin: {
-        value: strokeJoins[node.strokeJoin]
+        value: strokeJoins[node.strokeJoin],
+        type: 'string' as propertyType
       },
-      strokeMiterLimit: {
-        value: node.strokeMiterLimit
+      strokeMiterAngle: {
+        value: roundWithDecimals(node.strokeMiterLimit),
+        unit: 'degree',
+        type: 'number' as propertyType
       },
       // strokeStyleId: {
       //   value: node.strokeStyleId
       // },
       strokeWeight: {
         value: node.strokeWeight,
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       },
       stroke: {
-        value: convertPaintToRgba((node.strokes[0]))
+        value: convertPaintToRgba((node.strokes[0])),
+        type: 'color' as propertyType
       } 
     }
   }))

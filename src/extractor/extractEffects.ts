@@ -1,5 +1,5 @@
 import extractorInterface from '../../types/extractorInterface'
-import { effectPropertyInterface } from '../../types/propertyObject'
+import { effectPropertyInterface, propertyType } from '../../types/propertyObject'
 import { roundRgba } from '../utilities/convertColor'
 
 const effectType = {
@@ -11,38 +11,46 @@ const effectType = {
 
 const blurValues = (effect) => ({
   type: {
-    value: effectType[effect.type]
+    value: effectType[effect.type],
+    type: 'string' as propertyType
   },
   radius: {
     value: effect.radius,
-    unit: 'pixels'
+    unit: 'pixel',
+    type: 'number' as propertyType
   }
 })
 
-const shadowValues = (effect) => ({
+const shadowValues = effect => ({
   type: {
-    value: effectType[effect.type]
+    value: effectType[effect.type],
+    type: 'string' as propertyType
   },
   radius: {
     value: effect.radius,
-    unit: 'pixels'
+    unit: 'pixel',
+    type: 'number' as propertyType
   },
   color: {
-    value: roundRgba(effect.color)
+    value: roundRgba(effect.color),
+    type: 'color' as propertyType
   },
   offset: {
     x: {
       value: effect.offset.x,
-      unit: 'pixels'
+      unit: 'pixel',
+      type: 'number' as propertyType
     },
     y: {
       value: effect.offset.y,
-      unit: 'pixels'
+      unit: 'pixel',
+      type: 'number' as propertyType
     }
   },
   spread: {
     value: effect.spread,
-    unit: 'pixels'
+    unit: 'pixel',
+    type: 'number' as propertyType
   }
 })
 
@@ -51,11 +59,15 @@ const extractEffects: extractorInterface = (tokenNodes: EffectStyle[]): effectPr
   return tokenNodes.map(node => ({
     name: node.name,
     description: node.description || null,
-    values: node.effects.map(
-      (effect: Effect) => 
-        effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
-          ? blurValues(effect) 
-          : shadowValues(effect))
+    values: {
+      effects: {
+        value: node.effects.map(
+          (effect: Effect) => 
+            effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
+            ? blurValues(effect) 
+            : shadowValues(effect))
+      }
+    }
   }))
 }
 

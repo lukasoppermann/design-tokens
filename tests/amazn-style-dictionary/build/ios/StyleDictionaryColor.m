@@ -3,7 +3,7 @@
 // StyleDictionaryColor.m
 //
 // Do not edit directly
-// Generated on Wed, 23 Sep 2020 22:27:30 GMT
+// Generated on Fri, 25 Sep 2020 13:41:12 GMT
 //
 
 #import "StyleDictionaryColor.h"
@@ -21,7 +21,16 @@
 
   dispatch_once(&onceToken, ^{
     colorArray = @[
-
+[object Object],
+[object Object],
+[object Object],
+,
+[object Object],
+[object Object],
+[object Object],
+[object Object],
+[object Object],
+[object Object]
     ];
   });
 

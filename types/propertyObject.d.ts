@@ -1,7 +1,8 @@
 export type propertyObject = {
   name: string,
-  description?: string | null,
-  values: {
+  description?: string,
+  category?: string,
+  values?: {
     [key: string]: any
   }
 }
@@ -11,6 +12,15 @@ export type convertedPropertyObject = {
   [key: string]: any
 }
 
+export type propertyType = "number" | "color" | "string"
+export type numericUnits = "degree" | "pixel" | "percent"
+
+export type numericPropertyType = {
+  value: number,
+  unit?: numericUnits,
+  type: propertyType
+}
+
 export type colorRgbaType = {
   r: number,
   g: number,
@@ -18,16 +28,12 @@ export type colorRgbaType = {
   a: number
 }
 export type textDecorationType = "none" | "underline" | "line-through"
-export type letterSpacingUnitType = "pixels" | "percent"
-export type lineHeightUnitType = "pixels" | "percent" | "auto"
+export type lineHeightUnitType = "pixel" | "percent" | "auto"
 export type textCaseType = "none" | "uppercase" | "lowercase" | "capitalize"
 
 export type fontPropertyInterface = propertyObject & {
   values: {
-    fontSize: {
-      value: number,
-      unit: "pixels"
-    },
+    fontSize: numericPropertyType,
     textDecoration: {
       value: textDecorationType
     },
@@ -37,22 +43,13 @@ export type fontPropertyInterface = propertyObject & {
     fontStyle: {
       value: string
     },
-    letterSpacing: {
-      value: number
-      unit: letterSpacingUnitType
-    },
+    letterSpacing: numericPropertyType,
     lineHeight: {
       value: number | "normal"
-      unit: "pixels" | "percent" | "auto"
+      unit: "pixel" | "percent" | "auto"
     },
-    paragraphIndent: {
-      value: number,
-      unit: "pixels"
-    },
-    paragraphSpacing: {
-      value: number,
-      unit: "pixels"
-    },
+    paragraphIndent: numericPropertyType,
+    paragraphSpacing: numericPropertyType,
     textCase: {
       value: textCaseType
     }
@@ -62,7 +59,8 @@ export type fontPropertyInterface = propertyObject & {
 export type colorPropertyInterface = propertyObject & {
   values: {
     fill: {
-      value: colorRgbaType
+      value: colorRgbaType,
+      type: propertyType
     }
   }
 }
@@ -71,11 +69,13 @@ export type sizePropertyInterface = propertyObject & {
   values: {
     width: {
       value: number,
-      unit: "pixels"
+      unit: "pixel",
+      type: propertyType
     },
     height: {
       value: number,
-      unit: "pixels"
+      unit: "pixel",
+      type: propertyType
     }
   }
 }
@@ -94,7 +94,7 @@ export type borderPropertyInterface = propertyObject & {
     strokeJoin: {
       value: "miter" | "bevel" | "round"
     },
-    strokeMiterLimit: {
+    strokeMiterAngle: {
       value: number
     },
     // strokeStyleId: {
@@ -102,10 +102,11 @@ export type borderPropertyInterface = propertyObject & {
     // },
     strokeWeight: {
       value: number,
-      unit: "pixels"
+      unit: "pixel"
     },
     stroke: {
-      value: colorRgbaType 
+      value: colorRgbaType,
+      type: propertyType
     }
   }
 }
@@ -117,7 +118,8 @@ export type radiusPropertyInterface = propertyObject & {
       unit: string
     },
     radiusType: {
-      value: 'single' | 'mixed'
+      value: 'single' | 'mixed',
+      type: propertyType
     },
     radii: {
       topLeft: {
@@ -149,55 +151,64 @@ export type gridAlignmentType = 'stretch' | 'center' | 'min' | 'max'
 
 export type gridPropertyInterface = propertyObject & {
   values: {
-    pattern: {
-      value: gridPatternType
-    },
-    sectionSize?: {
-      value: number,
-      unit: string
-    },
-    gutterSize?: {
-      value: number,
-      unit: string
-    },
-    alignment?: {
-      value: gridAlignmentType
-    },
-    count?: {
-      value: number
-    },
-    offset?: {
-      value: number,
-      unit: string
+    layouts: {
+      value: {
+        pattern: {
+          value: gridPatternType
+        },
+        sectionSize?: {
+          value: number,
+          unit: string
+        },
+        gutterSize?: {
+          value: number,
+          unit: string
+        },
+        alignment?: {
+          value: gridAlignmentType
+        },
+        count?: {
+          value: number
+        },
+        offset?: {
+          value: number,
+          unit: string
+        }
+      }[]
     }
-  }[]
+  }
 }
 export type effectType = 'dropShadow' | 'innerShadow' | 'layerBlur' | 'backgroundBlur'
 export type effectPropertyInterface = propertyObject & {
   values: {
-    type: {
-      value: effectType
-    },
-    radius: {
-      value: number,
-      unit: string
-    },
-    color?: {
-      value: colorRgbaType
-    },
-    offset?: {
-      x: {
-        value: number,
-        unit: string
-      },
-      y: {
-        value: number,
-        unit: string
-      }
-    },
-    spread?: {
-      value: number,
-      unit: string
+    effects: {
+      value: {
+        type: {
+          value: effectType
+        },
+        radius: {
+          value: number,
+          unit: string
+        },
+        color?: {
+          value: colorRgbaType,
+          type: propertyType
+        },
+        offset?: {
+          x: {
+            value: number,
+            unit: string
+          },
+          y: {
+            value: number,
+            unit: string
+          }
+        },
+        spread?: {
+          value: number,
+          unit: string
+        }
+      }[]
     }
-  }[]
+  }
 }

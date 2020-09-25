@@ -1,252 +1,232 @@
 {
   "sizes": {
     "8": {
-      "width": {
-        "value": 8
-      },
-      "height": {
-        "value": 8
-      }
+      "value": 8,
+      "type": "number",
+      "unit": "pixel"
     },
     "11": {
-      "width": {
-        "value": 11
-      },
-      "height": {
-        "value": 11
-      }
+      "value": 11,
+      "type": "number",
+      "unit": "pixel"
     },
     "spacers": {
       "16": {
-        "width": {
-          "value": 16
-        },
-        "height": {
-          "value": 16
-        }
+        "value": 16,
+        "type": "number",
+        "unit": "pixel"
       },
       "32": {
-        "width": {
-          "description": "32px spacer component",
-          "value": 32
-        },
-        "height": {
-          "description": "32px spacer component",
-          "value": 32
-        }
+        "comment": "32px spacer component",
+        "value": 32,
+        "type": "number",
+        "unit": "pixel"
       }
     }
   },
   "borders": {
     "2 of them": {
       "strokeAlign": {
-        "value": {
-          "value": "inside"
-        }
+        "value": "inside",
+        "type": "string"
       },
       "strokeCap": {
-        "value": {}
+        "value": "none",
+        "type": "string"
       },
       "strokeJoin": {
-        "value": {
-          "value": "miter"
-        }
+        "value": "miter",
+        "type": "string"
       },
-      "strokeMiterLimit": {},
+      "strokeMiterAngle": {
+        "value": 4,
+        "type": "number",
+        "unit": "degree"
+      },
       "strokeWeight": {
-        "value": 1
+        "value": 1,
+        "type": "number",
+        "unit": "pixel"
       },
       "stroke": {
         "value": {
-          "value": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          }
-        }
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "type": "color"
       }
     },
     "red 1px": {
       "strokeAlign": {
-        "value": {
-          "value": "inside"
-        }
+        "value": "inside",
+        "type": "string"
       },
       "strokeCap": {
-        "value": {}
+        "value": "none",
+        "type": "string"
       },
       "strokeJoin": {
-        "value": {
-          "value": "miter"
-        }
+        "value": "miter",
+        "type": "string"
       },
-      "strokeMiterLimit": {},
+      "strokeMiterAngle": {
+        "value": 4,
+        "type": "number",
+        "unit": "degree"
+      },
       "strokeWeight": {
-        "value": 1
+        "value": 1,
+        "type": "number",
+        "unit": "pixel"
       },
       "stroke": {
         "value": {
-          "value": {
-            "r": 1,
-            "g": 0.029,
-            "b": 0.029,
-            "a": 1
-          }
-        }
+          "r": 1,
+          "g": 0.029,
+          "b": 0.029,
+          "a": 1
+        },
+        "type": "color"
       }
     },
     "green 4 px dotted": {
       "strokeAlign": {
-        "value": {
-          "value": "inside"
-        }
+        "value": "inside",
+        "type": "string"
       },
       "strokeCap": {
-        "value": {}
+        "value": "round",
+        "type": "string"
       },
       "strokeJoin": {
-        "value": {
-          "value": "round"
-        }
+        "value": "round",
+        "type": "string"
       },
-      "strokeMiterLimit": {},
+      "strokeMiterAngle": {
+        "value": 4,
+        "type": "number",
+        "unit": "degree"
+      },
       "strokeWeight": {
-        "value": 4
+        "value": 4,
+        "type": "number",
+        "unit": "pixel"
       },
       "stroke": {
         "value": {
-          "value": {
-            "r": 0.25,
-            "g": 1,
-            "b": 0.73,
-            "a": 1
-          }
-        }
+          "r": 0.25,
+          "g": 1,
+          "b": 0.73,
+          "a": 1
+        },
+        "type": "color"
       }
     },
     "green 4 px gradient": {
       "strokeAlign": {
-        "value": {
-          "value": "inside"
-        }
+        "value": "inside",
+        "type": "string"
       },
       "strokeCap": {
-        "value": {}
+        "value": "arrow_lines",
+        "type": "string"
       },
       "strokeJoin": {
-        "value": {
-          "value": "miter"
-        }
+        "value": "miter",
+        "type": "string"
       },
-      "strokeMiterLimit": {},
+      "strokeMiterAngle": {
+        "value": 2.613,
+        "type": "number",
+        "unit": "degree"
+      },
       "strokeWeight": {
-        "value": 4
+        "value": 4,
+        "type": "number",
+        "unit": "pixel"
       },
       "stroke": {
-        "value": {
-          "value": null
-        }
+        "value": null,
+        "type": "color"
       }
     }
   },
   "radii": {
     "mixed": {
       "radius": {
-        "value": {
-          "value": "mixed",
-          "unit": "pixels"
-        }
+        "value": "mixed",
+        "type": "number",
+        "unit": "pixel"
       },
       "radiusType": {
-        "value": {
-          "value": "mixed"
-        }
+        "value": "mixed",
+        "type": "string"
       },
-      "radii": {
-        "value": {
-          "topLeft": {
-            "value": 0,
-            "unit": "pixels"
-          },
-          "topRight": {
-            "value": 3,
-            "unit": "pixels"
-          },
-          "bottomRight": {
-            "value": 4,
-            "unit": "pixels"
-          },
-          "bottomLeft": {
-            "value": 6,
-            "unit": "pixels"
-          }
-        }
-      },
-      "smoothing": {}
+      "radii": {},
+      "smoothing": {
+        "value": 0.62,
+        "type": "number"
+      }
     }
   },
   "colors": {
     "orange": {
+      "comment": "Our primary color",
       "fill": {
-        "description": "Our primary color",
         "value": {
-          "value": {
-            "r": 1,
-            "g": 0.5,
-            "b": 0.25,
-            "a": 1
-          }
-        }
+          "r": 1,
+          "g": 0.5,
+          "b": 0.25,
+          "a": 1
+        },
+        "type": "color"
       }
     },
     "green": {
       "fill": {
         "value": {
-          "value": {
-            "r": 0.25,
-            "g": 1,
-            "b": 0.73,
-            "a": 1
-          }
-        }
+          "r": 0.25,
+          "g": 1,
+          "b": 0.73,
+          "a": 1
+        },
+        "type": "color"
       }
     },
     "blue": {
       "fill": {
         "value": {
-          "value": {
-            "r": 0.017,
-            "g": 0.292,
-            "b": 1,
-            "a": 1
-          }
-        }
+          "r": 0.017,
+          "g": 0.292,
+          "b": 1,
+          "a": 1
+        },
+        "type": "color"
       }
     },
     "secondary": {
       "green": {
         "fill": {
           "value": {
-            "value": {
-              "r": 0.14,
-              "g": 0.688,
-              "b": 0.195,
-              "a": 1
-            }
-          }
+            "r": 0.14,
+            "g": 0.688,
+            "b": 0.195,
+            "a": 1
+          },
+          "type": "color"
         }
       },
       "yellow": {
         "fill": {
           "value": {
-            "value": {
-              "r": 1,
-              "g": 0.72,
-              "b": 0,
-              "a": 1
-            }
-          }
+            "r": 1,
+            "g": 0.72,
+            "b": 0,
+            "a": 1
+          },
+          "type": "color"
         }
       }
     }
@@ -255,237 +235,349 @@
     "error": {
       "fill": {
         "value": {
-          "value": {
-            "r": 1,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          }
-        }
+          "r": 1,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "type": "color"
       }
     }
   },
   "grid": {
     "base": {
-      "0": {
-        "description": "A base grid",
-        "value": {
-          "pattern": {
-            "value": "columns"
+      "comment": "A base grid",
+      "layouts": {
+        "value": [
+          {
+            "pattern": {
+              "value": "columns",
+              "type": "string"
+            },
+            "sectionSize": {
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 20,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "stretch",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 10,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "sectionSize": {
-            "unit": "pixels"
+          {
+            "pattern": {
+              "value": "rows",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 8,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 10,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "center",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "gutterSize": {
-            "value": 20,
-            "unit": "pixels"
+          {
+            "pattern": {
+              "value": "columns",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 1,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 20,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "max",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 1,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "alignment": {
-            "value": "stretch"
+          {
+            "pattern": {
+              "value": "columns",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 34,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 20,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "min",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 13,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "count": {
-            "value": 5
+          {
+            "pattern": {
+              "value": "rows",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 8,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 20,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "min",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 10,
+              "unit": "pixel",
+              "type": "number"
+            }
           },
-          "offset": {
-            "value": 10,
-            "unit": "pixels"
+          {
+            "pattern": {
+              "value": "grid"
+            },
+            "sectionSize": {
+              "value": 8,
+              "unit": "pixel",
+              "type": "number"
+            }
           }
-        }
-      },
-      "1": {
-        "description": "A base grid",
-        "value": {
-          "pattern": {
-            "value": "rows"
-          },
-          "sectionSize": {
-            "value": 8,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 10,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "center"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "unit": "pixels"
-          }
-        }
-      },
-      "2": {
-        "description": "A base grid",
-        "value": {
-          "pattern": {
-            "value": "columns"
-          },
-          "sectionSize": {
-            "value": 1,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 20,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "max"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "value": 1,
-            "unit": "pixels"
-          }
-        }
-      },
-      "3": {
-        "description": "A base grid",
-        "value": {
-          "pattern": {
-            "value": "columns"
-          },
-          "sectionSize": {
-            "value": 34,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 20,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "min"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "value": 13,
-            "unit": "pixels"
-          }
-        }
-      },
-      "4": {
-        "description": "A base grid",
-        "value": {
-          "pattern": {
-            "value": "rows"
-          },
-          "sectionSize": {
-            "value": 8,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 20,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "min"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "value": 10,
-            "unit": "pixels"
-          }
-        }
-      },
-      "5": {
-        "description": "A base grid",
-        "value": {
-          "pattern": {
-            "value": "grid"
-          },
-          "sectionSize": {
-            "value": 8,
-            "unit": "pixels"
-          }
-        }
+        ]
       }
     },
     "weird grid with comment": {
-      "0": {
-        "description": "COMMENT to describe weird grid",
-        "value": {
-          "pattern": {
-            "value": "columns"
-          },
-          "sectionSize": {
-            "value": 21,
-            "unit": "pixels"
-          },
-          "gutterSize": {
-            "value": 13,
-            "unit": "pixels"
-          },
-          "alignment": {
-            "value": "max"
-          },
-          "count": {
-            "value": 5
-          },
-          "offset": {
-            "value": 23,
-            "unit": "pixels"
+      "comment": "COMMENT to describe weird grid",
+      "layouts": {
+        "value": [
+          {
+            "pattern": {
+              "value": "columns",
+              "type": "string"
+            },
+            "sectionSize": {
+              "value": 21,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "gutterSize": {
+              "value": 13,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "alignment": {
+              "value": "max",
+              "type": "string"
+            },
+            "count": {
+              "value": 5,
+              "type": "number"
+            },
+            "offset": {
+              "value": 23,
+              "unit": "pixel",
+              "type": "number"
+            }
           }
-        }
+        ]
       }
     }
   },
   "body": {
     "h3": {
       "fontSize": {
-        "value": 20
+        "value": 20,
+        "type": "number",
+        "unit": "pixel"
       },
       "textDecoration": {
-        "value": {
-          "value": "none"
-        }
+        "value": "none",
+        "type": "string"
       },
       "fontFamily": {
-        "value": {
-          "value": "Roboto"
-        }
+        "value": "Roboto",
+        "type": "string"
       },
       "fontStyle": {
-        "value": {
-          "value": "Medium"
-        }
+        "value": "Medium",
+        "type": "string"
       },
       "letterSpacing": {
-        "value": 2
+        "value": 2,
+        "type": "number",
+        "unit": "percent"
       },
       "lineHeight": {
-        "value": 160
+        "value": 160,
+        "type": "number",
+        "unit": "percent"
       },
       "paragraphIndent": {
-        "value": 5
+        "value": 5,
+        "type": "number",
+        "unit": "pixel"
       },
       "paragraphSpacing": {
-        "value": 8
+        "value": 8,
+        "type": "number",
+        "unit": "pixel"
       },
       "textCase": {
-        "value": {
-          "value": "uppercase"
-        }
+        "value": "uppercase",
+        "type": "string"
       }
     }
   },
   "effect": {
     "shadow": {
-      "0": {
-        "value": {
+      "effects": {
+        "value": [
+          {
+            "type": {
+              "value": "dropShadow",
+              "type": "string"
+            },
+            "radius": {
+              "value": 4,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "color": {
+              "value": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0.25
+              },
+              "type": "color"
+            },
+            "offset": {
+              "x": {
+                "value": 0,
+                "unit": "pixel",
+                "type": "number"
+              },
+              "y": {
+                "value": 4,
+                "unit": "pixel",
+                "type": "number"
+              }
+            },
+            "spread": {
+              "value": 0,
+              "unit": "pixel",
+              "type": "number"
+            }
+          }
+        ]
+      }
+    },
+    "layer blur": {
+      "effects": {
+        "value": [
+          {
+            "type": {
+              "value": "layerBlur",
+              "type": "string"
+            },
+            "radius": {
+              "value": 4,
+              "unit": "pixel",
+              "type": "number"
+            }
+          }
+        ]
+      }
+    },
+    "background blur": {
+      "effects": {
+        "value": [
+          {
+            "type": {
+              "value": "backgroundBlur",
+              "type": "string"
+            },
+            "radius": {
+              "value": 4,
+              "unit": "pixel",
+              "type": "number"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "inner shadow": {
+    "effects": {
+      "value": [
+        {
           "type": {
-            "value": "dropShadow"
+            "value": "innerShadow",
+            "type": "string"
           },
           "radius": {
             "value": 4,
-            "unit": "pixels"
+            "unit": "pixel",
+            "type": "number"
           },
           "color": {
             "value": {
@@ -493,118 +585,65 @@
               "g": 0,
               "b": 0,
               "a": 0.25
-            }
+            },
+            "type": "color"
           },
           "offset": {
             "x": {
               "value": 0,
-              "unit": "pixels"
+              "unit": "pixel",
+              "type": "number"
             },
             "y": {
               "value": 4,
-              "unit": "pixels"
+              "unit": "pixel",
+              "type": "number"
             }
           },
           "spread": {
             "value": 0,
-            "unit": "pixels"
+            "unit": "pixel",
+            "type": "number"
           }
-        }
-      }
-    },
-    "layer blur": {
-      "0": {
-        "value": {
+        },
+        {
           "type": {
-            "value": "layerBlur"
+            "value": "innerShadow",
+            "type": "string"
           },
           "radius": {
-            "value": 4,
-            "unit": "pixels"
-          }
-        }
-      }
-    },
-    "background blur": {
-      "0": {
-        "value": {
-          "type": {
-            "value": "backgroundBlur"
+            "value": 10,
+            "unit": "pixel",
+            "type": "number"
           },
-          "radius": {
-            "value": 4,
-            "unit": "pixels"
-          }
-        }
-      }
-    }
-  },
-  "inner shadow": {
-    "0": {
-      "value": {
-        "type": {
-          "value": "innerShadow"
-        },
-        "radius": {
-          "value": 4,
-          "unit": "pixels"
-        },
-        "color": {
-          "value": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.25
-          }
-        },
-        "offset": {
-          "x": {
+          "color": {
+            "value": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.15
+            },
+            "type": "color"
+          },
+          "offset": {
+            "x": {
+              "value": 0,
+              "unit": "pixel",
+              "type": "number"
+            },
+            "y": {
+              "value": -4,
+              "unit": "pixel",
+              "type": "number"
+            }
+          },
+          "spread": {
             "value": 0,
-            "unit": "pixels"
-          },
-          "y": {
-            "value": 4,
-            "unit": "pixels"
+            "unit": "pixel",
+            "type": "number"
           }
-        },
-        "spread": {
-          "value": 0,
-          "unit": "pixels"
         }
-      }
-    },
-    "1": {
-      "value": {
-        "type": {
-          "value": "innerShadow"
-        },
-        "radius": {
-          "value": 10,
-          "unit": "pixels"
-        },
-        "color": {
-          "value": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0.15
-          }
-        },
-        "offset": {
-          "x": {
-            "value": 0,
-            "unit": "pixels"
-          },
-          "y": {
-            "value": -4,
-            "unit": "pixels"
-          }
-        },
-        "spread": {
-          "value": 0,
-          "unit": "pixels"
-        }
-      }
+      ]
     }
   }
 }

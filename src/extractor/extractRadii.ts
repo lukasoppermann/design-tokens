@@ -1,6 +1,7 @@
 import extractorInterface from "../../types/extractorInterface"
-import { radiusPropertyInterface } from '../../types/propertyObject'
+import { propertyType, radiusPropertyInterface } from '../../types/propertyObject'
 import { customTokenNodes } from '../../types/tokenNodeTypes'
+import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiusPropertyInterface[] => {
   const nodeName = 'radii'
@@ -17,38 +18,46 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
       return {
         topLeft: {
           value: node.topLeftRadius || 0,
-          unit: 'pixels'
+          unit: 'pixel',
+          type: 'number' as propertyType
         },
         topRight: {
           value: node.topRightRadius || 0,
-          unit: 'pixels'
+          unit: 'pixel',
+          type: 'number' as propertyType
         },
         bottomRight: {
           value: node.bottomRightRadius || 0,
-          unit: 'pixels'
+          unit: 'pixel',
+          type: 'number' as propertyType
         },
         bottomLeft: {
           value: node.bottomLeftRadius || 0,
-          unit: 'pixels'
+          unit: 'pixel',
+          type: 'number' as propertyType
         }
       }
     }
     return {
       topLeft: {
         value: node.cornerRadius,
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       },
       topRight: {
         value: node.cornerRadius,
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       },
       bottomRight: {
         value: node.cornerRadius,
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       },
       bottomLeft: {
         value: node.cornerRadius,
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       }
     }
   }
@@ -60,15 +69,18 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
     values: {
       radius: {
         value: (typeof node.cornerRadius === 'number' ? node.cornerRadius : 'mixed'),
-        unit: 'pixels'
+        unit: 'pixel',
+        type: 'number' as propertyType
       },
       radiusType: {
-        value: getRadiusType(node.cornerRadius)
+        value: getRadiusType(node.cornerRadius),
+        type: 'string' as propertyType
       },
       radii: getRadii(node),
       smoothing: {
-        value: node.cornerSmoothing,
-        comment: "Percent of as decimal from 0.0 - 1.0"
+        value: roundWithDecimals(node.cornerSmoothing),
+        comment: "Percent as decimal from 0.0 - 1.0",
+        type: 'number' as propertyType
       }
     }
   }))  

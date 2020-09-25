@@ -1,5 +1,5 @@
 import extractorInterface from "../../types/extractorInterface"
-import { sizePropertyInterface } from "../../types/propertyObject"
+import { propertyType, sizePropertyInterface } from "../../types/propertyObject"
 import { customTokenNodes } from '../../types/tokenNodeTypes'
 
 const extractSizes: extractorInterface = (tokenNodes: customTokenNodes[]): sizePropertyInterface[] => {
@@ -9,14 +9,17 @@ const extractSizes: extractorInterface = (tokenNodes: customTokenNodes[]): sizeP
     name: node.name,
     // @ts-ignore
     description: node.description || null,
+    category: 'size',
     values: {
       width: {
         value: node.width,
-        unit: "pixels"
+        unit: "pixel",
+        type: 'number' as propertyType
       },
       height: {
         value: node.height,
-        unit: "pixels"
+        unit: "pixel",
+        type: 'number' as propertyType
       }
     }
   }))

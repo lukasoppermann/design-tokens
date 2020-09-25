@@ -54,7 +54,8 @@
                 description: node.description || null,
                 values: {
                     fill: {
-                        value: convertColor_1.convertPaintToRgba(node.paints[0])
+                        value: convertColor_1.convertPaintToRgba(node.paints[0]),
+                        type: 'color'
                     }
                 }
             }));
@@ -70,30 +71,37 @@
             },
             sectionSize: {
                 value: grid.sectionSize,
-                unit: 'pixels'
+                unit: 'pixel',
+                type: 'number'
             }
         });
         const rowColumnValues = (grid) => ({
             pattern: {
-                value: grid.pattern.toLowerCase()
+                value: grid.pattern.toLowerCase(),
+                type: 'string'
             },
             sectionSize: {
                 value: grid.sectionSize,
-                unit: 'pixels'
+                unit: 'pixel',
+                type: 'number'
             },
             gutterSize: {
                 value: grid.gutterSize,
-                unit: 'pixels'
+                unit: 'pixel',
+                type: 'number'
             },
             alignment: {
-                value: grid.alignment.toLowerCase()
+                value: grid.alignment.toLowerCase(),
+                type: 'string'
             },
             count: {
-                value: grid.count
+                value: grid.count,
+                type: 'number'
             },
             offset: {
                 value: grid.offset,
-                unit: 'pixels'
+                unit: 'pixel',
+                type: 'number'
             }
         });
         const extractGrids = (tokenNodes) => {
@@ -101,100 +109,16 @@
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
-                values: node.layoutGrids.map((grid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid)) // extract first grid only
+                values: {
+                    layouts: {
+                        value: node.layoutGrids.map((grid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
+                    }
+                }
             }));
         };
         exports.default = extractGrids;
     });
-    // "grids": [
-    //   {
-    //     "pattern": "COLUMNS",
-    //     "visible": true,
-    //     "color": {
-    //       "r": 1,
-    //       "g": 0,
-    //       "b": 0,
-    //       "a": 0.10000000149011612
-    //     },
-    //     "gutterSize": 20,
-    //     "alignment": "STRETCH",
-    //     "count": 5,
-    //     "offset": 10
-    //   },
-    //   {
-    //     "pattern": "ROWS",
-    //     "visible": true,
-    //     "color": {
-    //       "r": 1,
-    //       "g": 0,
-    //       "b": 0,
-    //       "a": 0.10000000149011612
-    //     },
-    //     "gutterSize": 10,
-    //     "alignment": "CENTER",
-    //     "count": 5,
-    //     "sectionSize": 8
-    //   },
-    //   {
-    //     "pattern": "COLUMNS",
-    //     "visible": true,
-    //     "color": {
-    //       "r": 1,
-    //       "g": 0,
-    //       "b": 0,
-    //       "a": 0.10000000149011612
-    //     },
-    //     "gutterSize": 20,
-    //     "alignment": "MAX",
-    //     "count": 5,
-    //     "sectionSize": 8,
-    //     "offset": 10
-    //   },
-    //   {
-    //     "pattern": "COLUMNS",
-    //     "visible": true,
-    //     "color": {
-    //       "r": 1,
-    //       "g": 0,
-    //       "b": 0,
-    //       "a": 0.10000000149011612
-    //     },
-    //     "gutterSize": 20,
-    //     "alignment": "MIN",
-    //     "count": 5,
-    //     "sectionSize": 34,
-    //     "offset": 13
-    //   },
-    //   {
-    //     "pattern": "ROWS",
-    //     "visible": true,
-    //     "color": {
-    //       "r": 1,
-    //       "g": 0,
-    //       "b": 0,
-    //       "a": 0.10000000149011612
-    //     },
-    //     "gutterSize": 20,
-    //     "alignment": "MIN",
-    //     "count": 5,
-    //     "sectionSize": 8,
-    //     "offset": 10
-    //   },
-    //   {
-    //     "pattern": "GRID",
-    //     "visible": true,
-    //     "color": {
-    //       "r": 1,
-    //       "g": 0,
-    //       "b": 0,
-    //       "a": 0.10000000149011612
-    //     },
-    //     "sectionSize": 8
-    //   }
-    // ]
-    //       }
-    //     }
-    define("extractor/extractFonts", ["require", "exports"], function (require, exports) {
+    define("extractor/extractFonts", ["require", "exports", "utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const textDecorations = {
@@ -212,40 +136,49 @@
             // get raw text styles
             return tokenNodes.map(node => ({
                 name: node.name,
-                description: node.description || null,
+                description: node.description || undefined,
                 values: {
                     fontSize: {
                         value: node.fontSize,
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     },
                     textDecoration: {
-                        value: textDecorations[node.textDecoration]
+                        value: textDecorations[node.textDecoration],
+                        type: 'string'
                     },
                     fontFamily: {
-                        value: node.fontName.family
+                        value: node.fontName.family,
+                        type: 'string'
                     },
                     fontStyle: {
-                        value: node.fontName.style
+                        value: node.fontName.style,
+                        type: 'string'
                     },
                     letterSpacing: {
-                        value: node.letterSpacing.value,
-                        unit: node.letterSpacing.unit.toLowerCase()
+                        value: roundWithDecimals_2.default(node.letterSpacing.value),
+                        unit: node.letterSpacing.unit.toLowerCase(),
+                        type: 'number'
                     },
                     lineHeight: {
                         // @ts-ignore
-                        value: node.lineHeight.value || 'normal',
-                        unit: node.lineHeight.unit.toLowerCase()
+                        value: roundWithDecimals_2.default(node.lineHeight.value) || 'normal',
+                        unit: node.lineHeight.unit.toLowerCase(),
+                        type: (node.lineHeight.hasOwnProperty('value') ? 'number' : 'string')
                     },
                     paragraphIndent: {
                         value: node.paragraphIndent,
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     },
                     paragraphSpacing: {
                         value: node.paragraphSpacing,
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     },
                     textCase: {
-                        value: textCases[node.textCase]
+                        value: textCases[node.textCase],
+                        type: 'string'
                     }
                 }
             }));
@@ -263,37 +196,45 @@
         };
         const blurValues = (effect) => ({
             type: {
-                value: effectType[effect.type]
+                value: effectType[effect.type],
+                type: 'string'
             },
             radius: {
                 value: effect.radius,
-                unit: 'pixels'
+                unit: 'pixel',
+                type: 'number'
             }
         });
-        const shadowValues = (effect) => ({
+        const shadowValues = effect => ({
             type: {
-                value: effectType[effect.type]
+                value: effectType[effect.type],
+                type: 'string'
             },
             radius: {
                 value: effect.radius,
-                unit: 'pixels'
+                unit: 'pixel',
+                type: 'number'
             },
             color: {
-                value: convertColor_2.roundRgba(effect.color)
+                value: convertColor_2.roundRgba(effect.color),
+                type: 'color'
             },
             offset: {
                 x: {
                     value: effect.offset.x,
-                    unit: 'pixels'
+                    unit: 'pixel',
+                    type: 'number'
                 },
                 y: {
                     value: effect.offset.y,
-                    unit: 'pixels'
+                    unit: 'pixel',
+                    type: 'number'
                 }
             },
             spread: {
                 value: effect.spread,
-                unit: 'pixels'
+                unit: 'pixel',
+                type: 'number'
             }
         });
         const extractEffects = (tokenNodes) => {
@@ -301,9 +242,13 @@
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
-                values: node.effects.map((effect) => effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
-                    ? blurValues(effect)
-                    : shadowValues(effect))
+                values: {
+                    effects: {
+                        value: node.effects.map((effect) => effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
+                            ? blurValues(effect)
+                            : shadowValues(effect))
+                    }
+                }
             }));
         };
         exports.default = extractEffects;
@@ -318,21 +263,24 @@
                 name: node.name,
                 // @ts-ignore
                 description: node.description || null,
+                category: 'size',
                 values: {
                     width: {
                         value: node.width,
-                        unit: "pixels"
+                        unit: "pixel",
+                        type: 'number'
                     },
                     height: {
                         value: node.height,
-                        unit: "pixels"
+                        unit: "pixel",
+                        type: 'number'
                     }
                 }
             }));
         };
         exports.default = extractSizes;
     });
-    define("extractor/extractBorders", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_3) {
+    define("extractor/extractBorders", ["require", "exports", "utilities/convertColor", "utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const strokeJoins = {
@@ -354,33 +302,40 @@
                 description: node.description || null,
                 values: {
                     strokeAlign: {
-                        value: strokeAligns[node.strokeAlign]
+                        value: strokeAligns[node.strokeAlign],
+                        type: 'string'
                     },
                     strokeCap: {
-                        value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase : 'mixed')
+                        value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase() : 'mixed'),
+                        type: 'string'
                     },
                     strokeJoin: {
-                        value: strokeJoins[node.strokeJoin]
+                        value: strokeJoins[node.strokeJoin],
+                        type: 'string'
                     },
-                    strokeMiterLimit: {
-                        value: node.strokeMiterLimit
+                    strokeMiterAngle: {
+                        value: roundWithDecimals_3.default(node.strokeMiterLimit),
+                        unit: 'degree',
+                        type: 'number'
                     },
                     // strokeStyleId: {
                     //   value: node.strokeStyleId
                     // },
                     strokeWeight: {
                         value: node.strokeWeight,
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     },
                     stroke: {
-                        value: convertColor_3.convertPaintToRgba((node.strokes[0]))
+                        value: convertColor_3.convertPaintToRgba((node.strokes[0])),
+                        type: 'color'
                     }
                 }
             }));
         };
         exports.default = extractBorders;
     });
-    define("extractor/extractRadii", ["require", "exports"], function (require, exports) {
+    define("extractor/extractRadii", ["require", "exports", "utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const extractRadii = (tokenNodes) => {
@@ -398,38 +353,46 @@
                     return {
                         topLeft: {
                             value: node.topLeftRadius || 0,
-                            unit: 'pixels'
+                            unit: 'pixel',
+                            type: 'number'
                         },
                         topRight: {
                             value: node.topRightRadius || 0,
-                            unit: 'pixels'
+                            unit: 'pixel',
+                            type: 'number'
                         },
                         bottomRight: {
                             value: node.bottomRightRadius || 0,
-                            unit: 'pixels'
+                            unit: 'pixel',
+                            type: 'number'
                         },
                         bottomLeft: {
                             value: node.bottomLeftRadius || 0,
-                            unit: 'pixels'
+                            unit: 'pixel',
+                            type: 'number'
                         }
                     };
                 }
                 return {
                     topLeft: {
                         value: node.cornerRadius,
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     },
                     topRight: {
                         value: node.cornerRadius,
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     },
                     bottomRight: {
                         value: node.cornerRadius,
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     },
                     bottomLeft: {
                         value: node.cornerRadius,
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     }
                 };
             };
@@ -441,15 +404,18 @@
                 values: {
                     radius: {
                         value: (typeof node.cornerRadius === 'number' ? node.cornerRadius : 'mixed'),
-                        unit: 'pixels'
+                        unit: 'pixel',
+                        type: 'number'
                     },
                     radiusType: {
-                        value: getRadiusType(node.cornerRadius)
+                        value: getRadiusType(node.cornerRadius),
+                        type: 'string'
                     },
                     radii: getRadii(node),
                     smoothing: {
-                        value: node.cornerSmoothing,
-                        comment: "Percent of as decimal from 0.0 - 1.0"
+                        value: roundWithDecimals_4.default(node.cornerSmoothing),
+                        comment: "Percent as decimal from 0.0 - 1.0",
+                        type: 'number'
                     }
                 }
             }));
@@ -535,7 +501,12 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // create a nested object structure from the array (['style','colors','main','red'])
-        const nestedObjectFromArray = (array, value) => array.reduceRight((value, key) => ({ [key]: value }), value);
+        const nestedObjectFromArray = (array, value) => {
+            // reducer
+            const reducer = (val, key) => ({ [key]: val });
+            // return reduced array
+            return array.reduceRight(reducer, value);
+        };
         const groupByName = (tokenArray, removeName = true) => {
             // nest tokens into object with hierachy defined by name using /
             const groupedTokens = tokenArray.map(token => {
@@ -576,27 +547,30 @@
         };
         exports.default = convertSizeUnits;
     });
-    define("transformer/amazonStyleDictionaryTransformer", ["require", "exports", "utilities/convertSizeUnits"], function (require, exports, convertSizeUnits_1) {
+    define("transformer/amazonStyleDictionaryTransformer", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const convertPropertyValue = valueObject => {
-            if (typeof valueObject === 'object' && typeof valueObject.value === 'number') {
-                return convertSizeUnits_1.default(valueObject);
-            }
-            return valueObject;
-        };
-        const amazonStyleDictionaryTransformer = (property) => {
-            // transform to amazon style Dictionary structure
-            Object.keys(property.values).map(function (key) {
-                // define value
-                property.values[key] = Object.assign(Object.assign({}, (property.description != null && { description: property.description })), { value: convertPropertyValue(property.values[key]) });
+        const defaultTransformer = propertyGroup => {
+            const transformedProperties = {};
+            Object.keys(propertyGroup.values).forEach(function (key) {
+                transformedProperties[key] = amazonFormat(propertyGroup.values[key]);
             });
-            // delete the description property
-            if (property.description !== undefined) {
-                delete property.description;
-            }
+            return transformedProperties;
+        };
+        const sizeTransformer = propertyGroup => {
+            return amazonFormat(propertyGroup.values['width']);
+        };
+        const categoryTransformer = {
+            default: defaultTransformer,
+            size: sizeTransformer
+        };
+        const amazonConvertValue = (value, type) => value;
+        const amazonFormat = (property) => (Object.assign(Object.assign({ value: amazonConvertValue(property.value, property.type), type: property.type }, (property.description != undefined && { comment: property.description })), (property.unit != undefined && { unit: property.unit })));
+        const amazonStyleDictionaryTransformer = (propertyGroup) => {
+            // transform to amazon style Dictionary structure
+            const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup);
             // return values
-            return Object.assign({ name: property.name }, property.values);
+            return Object.assign(Object.assign({ name: propertyGroup.name }, (propertyGroup.description != undefined && { comment: propertyGroup.description })), transformedProperties);
         };
         exports.default = amazonStyleDictionaryTransformer;
     });
@@ -641,7 +615,8 @@
             const tokenArray = exportRawTokenArray(figma);
             console.log('JSON TOKEN', tokenArray);
             // format tokens
-            const formattedTokens = tokenArray.map(token => transformer[format](token));
+            const formattedTokens = tokenArray.map((token) => transformer[format](token));
+            console.log('formatted Tokens', formattedTokens);
             // group tokens
             const groupedTokens = groupByName_1.default(formattedTokens);
             console.log('grouped Tokens', groupedTokens);

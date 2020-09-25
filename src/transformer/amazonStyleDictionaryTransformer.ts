@@ -1,30 +1,55 @@
-import { propertyObject, convertedPropertyObject } from "../../types/propertyObject"
+import { propertyObject, convertedPropertyObject, propertyType } from "../../types/propertyObject"
 import convertSizeUnits from "../utilities/convertSizeUnits"
 
-const convertPropertyValue = valueObject => {
-  if (typeof valueObject === 'object' && typeof valueObject.value === 'number') {
-    return convertSizeUnits(valueObject)
-  }
-  return valueObject
+type amazonPropertyObject = {
+  value: string | number,
+  type: propertyType,
+  unit?: string
+  comment?: string,
 }
 
-const amazonStyleDictionaryTransformer = (property: propertyObject): convertedPropertyObject => {
-  // transform to amazon style Dictionary structure
-  Object.keys(property.values).map(function(key) {
-    // define value
-    property.values[key] = {
-      ...(property.description != null && {description: property.description}),
-      ...{ value: convertPropertyValue(property.values[key]) }
-    }
+type amazonPropertyGroup = {
+  name: string,
+  comment?: string,
+} & {
+  [key: string]: amazonPropertyObject | any
+}
+
+const defaultTransformer = propertyGroup => {
+  const transformedProperties = {}
+  Object.keys(propertyGroup.values).forEach(function (key) {
+    transformedProperties[key] = amazonFormat(propertyGroup.values[key])
   })
-  // delete the description property
-  if (property.description !== undefined) {
-    delete property.description
-  }
+  return transformedProperties
+}
+
+const sizeTransformer = propertyGroup => {
+  return amazonFormat(propertyGroup.values['width'])
+}
+
+const categoryTransformer = {
+  default: defaultTransformer,
+  size: sizeTransformer
+}
+
+const amazonConvertValue = (value, type: string) => value
+
+const amazonFormat = (property): amazonPropertyObject => ({
+  value: amazonConvertValue(property.value, property.type),
+  type: property.type,
+  // optional properties
+  ...(property.description != undefined && { comment: property.description }),
+  ...(property.unit != undefined && { unit: property.unit }),
+})
+
+const amazonStyleDictionaryTransformer = (propertyGroup: propertyObject): amazonPropertyGroup => {
+  // transform to amazon style Dictionary structure
+  const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup)
   // return values
   return {
-    ...{ name: property.name },
-    ...property.values
+    name: propertyGroup.name,
+    ...(propertyGroup.description != undefined && { comment: propertyGroup.description }),
+    ...transformedProperties
   }
 }
 

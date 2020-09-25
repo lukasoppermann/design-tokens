@@ -1,7 +1,12 @@
 import { convertedPropertyObject } from '../../types/propertyObject'
 import deepMerge from './deepMerge'
 // create a nested object structure from the array (['style','colors','main','red'])
-const nestedObjectFromArray = (array: string[], value: any) => array.reduceRight((value, key) => ({[key]: value}), value)
+const nestedObjectFromArray = (array: string[], value: any) => {
+  // reducer
+  const reducer = (val, key) => ({ [key]: val })
+  // return reduced array
+  return array.reduceRight(reducer, value)
+}
 
 const groupByName = (tokenArray: convertedPropertyObject[], removeName: boolean = true) => {
   // nest tokens into object with hierachy defined by name using /
