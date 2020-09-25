@@ -1,4 +1,5 @@
 import { propertyObject, convertedPropertyObject, propertyType } from "../../types/propertyObject"
+import { convertRgbaObjectToString } from '../utilities/convertColor'
 import convertSizeUnits from "../utilities/convertSizeUnits"
 
 type amazonPropertyObject = {
@@ -27,12 +28,25 @@ const sizeTransformer = propertyGroup => {
   return amazonFormat(propertyGroup.values['width'])
 }
 
-const categoryTransformer = {
-  default: defaultTransformer,
-  size: sizeTransformer
+const colorTransformer = propertyGroup => {
+  return amazonFormat(propertyGroup.values['fill'])
 }
 
-const amazonConvertValue = (value, type: string) => value
+const categoryTransformer = {
+  default: defaultTransformer,
+  size: sizeTransformer,
+  color: colorTransformer
+}
+
+const amazonConvertValue = (value, type: string) => {
+  if (value === undefined || value === null) {
+    return
+  }
+  if (type === 'color') {
+    return convertRgbaObjectToString(value)
+  }
+  return value
+}
 
 const amazonFormat = (property): amazonPropertyObject => ({
   value: amazonConvertValue(property.value, property.type),

@@ -8,6 +8,7 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyle[]): colorPrope
     name: node.name,
     // id: node.id,
     description: node.description || null,
+    category: 'color',
     values: {
       fill: {
         value: convertPaintToRgba(node.paints[0]),

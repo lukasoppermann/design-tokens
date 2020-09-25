@@ -106,6 +106,25 @@
           "strokeAlign"
         ]
       },
+      "dashPattern": {
+        "value": "",
+        "type": "string",
+        "original": {
+          "value": "",
+          "type": "string"
+        },
+        "name": "Borders2OfThemDashPattern",
+        "attributes": {
+          "category": "borders",
+          "type": "2 of them",
+          "item": "dashPattern"
+        },
+        "path": [
+          "borders",
+          "2 of them",
+          "dashPattern"
+        ]
+      },
       "strokeCap": {
         "value": "none",
         "type": "string",
@@ -187,20 +206,10 @@
         ]
       },
       "stroke": {
-        "value": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
+        "value": "rgba(0, 0, 0, 1)",
         "type": "color",
         "original": {
-          "value": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
+          "value": "rgba(0, 0, 0, 1)",
           "type": "color"
         },
         "name": "Borders2OfThemStroke",
@@ -234,6 +243,25 @@
           "borders",
           "red 1px",
           "strokeAlign"
+        ]
+      },
+      "dashPattern": {
+        "value": "",
+        "type": "string",
+        "original": {
+          "value": "",
+          "type": "string"
+        },
+        "name": "BordersRed1PxDashPattern",
+        "attributes": {
+          "category": "borders",
+          "type": "red 1px",
+          "item": "dashPattern"
+        },
+        "path": [
+          "borders",
+          "red 1px",
+          "dashPattern"
         ]
       },
       "strokeCap": {
@@ -317,20 +345,10 @@
         ]
       },
       "stroke": {
-        "value": {
-          "r": 1,
-          "g": 0.029,
-          "b": 0.029,
-          "a": 1
-        },
+        "value": "rgba(1, 0.029, 0.029, 1)",
         "type": "color",
         "original": {
-          "value": {
-            "r": 1,
-            "g": 0.029,
-            "b": 0.029,
-            "a": 1
-          },
+          "value": "rgba(1, 0.029, 0.029, 1)",
           "type": "color"
         },
         "name": "BordersRed1PxStroke",
@@ -364,6 +382,25 @@
           "borders",
           "green 4 px dotted",
           "strokeAlign"
+        ]
+      },
+      "dashPattern": {
+        "value": "20,20",
+        "type": "string",
+        "original": {
+          "value": "20,20",
+          "type": "string"
+        },
+        "name": "BordersGreen4PxDottedDashPattern",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px dotted",
+          "item": "dashPattern"
+        },
+        "path": [
+          "borders",
+          "green 4 px dotted",
+          "dashPattern"
         ]
       },
       "strokeCap": {
@@ -447,20 +484,10 @@
         ]
       },
       "stroke": {
-        "value": {
-          "r": 0.25,
-          "g": 1,
-          "b": 0.73,
-          "a": 1
-        },
+        "value": "rgba(0.25, 1, 0.73, 1)",
         "type": "color",
         "original": {
-          "value": {
-            "r": 0.25,
-            "g": 1,
-            "b": 0.73,
-            "a": 1
-          },
+          "value": "rgba(0.25, 1, 0.73, 1)",
           "type": "color"
         },
         "name": "BordersGreen4PxDottedStroke",
@@ -494,6 +521,25 @@
           "borders",
           "green 4 px gradient",
           "strokeAlign"
+        ]
+      },
+      "dashPattern": {
+        "value": "4,3",
+        "type": "string",
+        "original": {
+          "value": "4,3",
+          "type": "string"
+        },
+        "name": "BordersGreen4PxGradientDashPattern",
+        "attributes": {
+          "category": "borders",
+          "type": "green 4 px gradient",
+          "item": "dashPattern"
+        },
+        "path": [
+          "borders",
+          "green 4 px gradient",
+          "dashPattern"
         ]
       },
       "strokeCap": {
@@ -577,23 +623,7 @@
         ]
       },
       "stroke": {
-        "value": null,
-        "type": "color",
-        "original": {
-          "value": null,
-          "type": "color"
-        },
-        "name": "BordersGreen4PxGradientStroke",
-        "attributes": {
-          "category": "borders",
-          "type": "green 4 px gradient",
-          "item": "stroke"
-        },
-        "path": [
-          "borders",
-          "green 4 px gradient",
-          "stroke"
-        ]
+        "type": "color"
       }
     }
   },
@@ -664,198 +694,115 @@
   "colors": {
     "orange": {
       "comment": "Our primary color",
-      "fill": {
-        "value": {
-          "r": 1,
-          "g": 0.5,
-          "b": 0.25,
-          "a": 1
-        },
-        "type": "color",
-        "original": {
-          "value": {
-            "r": 1,
-            "g": 0.5,
-            "b": 0.25,
-            "a": 1
-          },
-          "type": "color"
-        },
-        "name": "ColorsOrangeFill",
-        "attributes": {
-          "category": "colors",
-          "type": "orange",
-          "item": "fill"
-        },
-        "path": [
-          "colors",
-          "orange",
-          "fill"
-        ]
-      }
+      "value": "rgba(1, 0.5, 0.25, 1)",
+      "type": "color",
+      "original": {
+        "comment": "Our primary color",
+        "value": "rgba(1, 0.5, 0.25, 1)",
+        "type": "color"
+      },
+      "name": "ColorsOrange",
+      "attributes": {
+        "category": "colors",
+        "type": "orange"
+      },
+      "path": [
+        "colors",
+        "orange"
+      ]
     },
     "green": {
-      "fill": {
-        "value": {
-          "r": 0.25,
-          "g": 1,
-          "b": 0.73,
-          "a": 1
-        },
-        "type": "color",
-        "original": {
-          "value": {
-            "r": 0.25,
-            "g": 1,
-            "b": 0.73,
-            "a": 1
-          },
-          "type": "color"
-        },
-        "name": "ColorsGreenFill",
-        "attributes": {
-          "category": "colors",
-          "type": "green",
-          "item": "fill"
-        },
-        "path": [
-          "colors",
-          "green",
-          "fill"
-        ]
-      }
+      "value": "rgba(0.25, 1, 0.73, 1)",
+      "type": "color",
+      "original": {
+        "value": "rgba(0.25, 1, 0.73, 1)",
+        "type": "color"
+      },
+      "name": "ColorsGreen",
+      "attributes": {
+        "category": "colors",
+        "type": "green"
+      },
+      "path": [
+        "colors",
+        "green"
+      ]
     },
     "blue": {
-      "fill": {
-        "value": {
-          "r": 0.017,
-          "g": 0.292,
-          "b": 1,
-          "a": 1
-        },
-        "type": "color",
-        "original": {
-          "value": {
-            "r": 0.017,
-            "g": 0.292,
-            "b": 1,
-            "a": 1
-          },
-          "type": "color"
-        },
-        "name": "ColorsBlueFill",
-        "attributes": {
-          "category": "colors",
-          "type": "blue",
-          "item": "fill"
-        },
-        "path": [
-          "colors",
-          "blue",
-          "fill"
-        ]
-      }
+      "value": "rgba(0.017, 0.292, 1, 1)",
+      "type": "color",
+      "original": {
+        "value": "rgba(0.017, 0.292, 1, 1)",
+        "type": "color"
+      },
+      "name": "ColorsBlue",
+      "attributes": {
+        "category": "colors",
+        "type": "blue"
+      },
+      "path": [
+        "colors",
+        "blue"
+      ]
     },
     "secondary": {
       "green": {
-        "fill": {
-          "value": {
-            "r": 0.14,
-            "g": 0.688,
-            "b": 0.195,
-            "a": 1
-          },
-          "type": "color",
-          "original": {
-            "value": {
-              "r": 0.14,
-              "g": 0.688,
-              "b": 0.195,
-              "a": 1
-            },
-            "type": "color"
-          },
-          "name": "ColorsSecondaryGreenFill",
-          "attributes": {
-            "category": "colors",
-            "type": "secondary",
-            "item": "green",
-            "subitem": "fill"
-          },
-          "path": [
-            "colors",
-            "secondary",
-            "green",
-            "fill"
-          ]
-        }
+        "value": "rgba(0.14, 0.688, 0.195, 1)",
+        "type": "color",
+        "original": {
+          "value": "rgba(0.14, 0.688, 0.195, 1)",
+          "type": "color"
+        },
+        "name": "ColorsSecondaryGreen",
+        "attributes": {
+          "category": "colors",
+          "type": "secondary",
+          "item": "green"
+        },
+        "path": [
+          "colors",
+          "secondary",
+          "green"
+        ]
       },
       "yellow": {
-        "fill": {
-          "value": {
-            "r": 1,
-            "g": 0.72,
-            "b": 0,
-            "a": 1
-          },
-          "type": "color",
-          "original": {
-            "value": {
-              "r": 1,
-              "g": 0.72,
-              "b": 0,
-              "a": 1
-            },
-            "type": "color"
-          },
-          "name": "ColorsSecondaryYellowFill",
-          "attributes": {
-            "category": "colors",
-            "type": "secondary",
-            "item": "yellow",
-            "subitem": "fill"
-          },
-          "path": [
-            "colors",
-            "secondary",
-            "yellow",
-            "fill"
-          ]
-        }
+        "value": "rgba(1, 0.72, 0, 1)",
+        "type": "color",
+        "original": {
+          "value": "rgba(1, 0.72, 0, 1)",
+          "type": "color"
+        },
+        "name": "ColorsSecondaryYellow",
+        "attributes": {
+          "category": "colors",
+          "type": "secondary",
+          "item": "yellow"
+        },
+        "path": [
+          "colors",
+          "secondary",
+          "yellow"
+        ]
       }
     }
   },
   "utilities": {
     "error": {
-      "fill": {
-        "value": {
-          "r": 1,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "type": "color",
-        "original": {
-          "value": {
-            "r": 1,
-            "g": 0,
-            "b": 0,
-            "a": 1
-          },
-          "type": "color"
-        },
-        "name": "UtilitiesErrorFill",
-        "attributes": {
-          "category": "utilities",
-          "type": "error",
-          "item": "fill"
-        },
-        "path": [
-          "utilities",
-          "error",
-          "fill"
-        ]
-      }
+      "value": "rgba(1, 0, 0, 1)",
+      "type": "color",
+      "original": {
+        "value": "rgba(1, 0, 0, 1)",
+        "type": "color"
+      },
+      "name": "UtilitiesError",
+      "attributes": {
+        "category": "utilities",
+        "type": "error"
+      },
+      "path": [
+        "utilities",
+        "error"
+      ]
     }
   },
   "grid": {

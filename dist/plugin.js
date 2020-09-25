@@ -29,7 +29,7 @@
     define("utilities/convertColor", ["require", "exports", "utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        exports.convertPaintToRgba = exports.roundRgba = void 0;
+        exports.convertRgbaObjectToString = exports.convertPaintToRgba = exports.roundRgba = void 0;
         exports.roundRgba = (rgba) => ({
             r: roundWithDecimals_1.default(rgba.r),
             g: roundWithDecimals_1.default(rgba.g),
@@ -42,6 +42,7 @@
             }
             return null;
         };
+        exports.convertRgbaObjectToString = (rgbaObject) => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`;
     });
     define("extractor/extractColors", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_1) {
         "use strict";
@@ -52,6 +53,7 @@
                 name: node.name,
                 // id: node.id,
                 description: node.description || null,
+                category: 'color',
                 values: {
                     fill: {
                         value: convertColor_1.convertPaintToRgba(node.paints[0]),
@@ -305,6 +307,10 @@
                         value: strokeAligns[node.strokeAlign],
                         type: 'string'
                     },
+                    dashPattern: {
+                        value: node.dashPattern.toString(),
+                        type: 'string'
+                    },
                     strokeCap: {
                         value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase() : 'mixed'),
                         type: 'string'
@@ -547,7 +553,7 @@
         };
         exports.default = convertSizeUnits;
     });
-    define("transformer/amazonStyleDictionaryTransformer", ["require", "exports"], function (require, exports) {
+    define("transformer/amazonStyleDictionaryTransformer", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const defaultTransformer = propertyGroup => {
@@ -560,11 +566,23 @@
         const sizeTransformer = propertyGroup => {
             return amazonFormat(propertyGroup.values['width']);
         };
+        const colorTransformer = propertyGroup => {
+            return amazonFormat(propertyGroup.values['fill']);
+        };
         const categoryTransformer = {
             default: defaultTransformer,
-            size: sizeTransformer
+            size: sizeTransformer,
+            color: colorTransformer
         };
-        const amazonConvertValue = (value, type) => value;
+        const amazonConvertValue = (value, type) => {
+            if (value === undefined || value === null) {
+                return;
+            }
+            if (type === 'color') {
+                return convertColor_4.convertRgbaObjectToString(value);
+            }
+            return value;
+        };
         const amazonFormat = (property) => (Object.assign(Object.assign({ value: amazonConvertValue(property.value, property.type), type: property.type }, (property.description != undefined && { comment: property.description })), (property.unit != undefined && { unit: property.unit })));
         const amazonStyleDictionaryTransformer = (propertyGroup) => {
             // transform to amazon style Dictionary structure

@@ -30,6 +30,10 @@
         "value": "inside",
         "type": "string"
       },
+      "dashPattern": {
+        "value": "",
+        "type": "string"
+      },
       "strokeCap": {
         "value": "none",
         "type": "string"
@@ -49,12 +53,7 @@
         "unit": "pixel"
       },
       "stroke": {
-        "value": {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
+        "value": "rgba(0, 0, 0, 1)",
         "type": "color"
       }
     },
@@ -63,6 +62,10 @@
         "value": "inside",
         "type": "string"
       },
+      "dashPattern": {
+        "value": "",
+        "type": "string"
+      },
       "strokeCap": {
         "value": "none",
         "type": "string"
@@ -82,18 +85,17 @@
         "unit": "pixel"
       },
       "stroke": {
-        "value": {
-          "r": 1,
-          "g": 0.029,
-          "b": 0.029,
-          "a": 1
-        },
+        "value": "rgba(1, 0.029, 0.029, 1)",
         "type": "color"
       }
     },
     "green 4 px dotted": {
       "strokeAlign": {
         "value": "inside",
+        "type": "string"
+      },
+      "dashPattern": {
+        "value": "20,20",
         "type": "string"
       },
       "strokeCap": {
@@ -115,18 +117,17 @@
         "unit": "pixel"
       },
       "stroke": {
-        "value": {
-          "r": 0.25,
-          "g": 1,
-          "b": 0.73,
-          "a": 1
-        },
+        "value": "rgba(0.25, 1, 0.73, 1)",
         "type": "color"
       }
     },
     "green 4 px gradient": {
       "strokeAlign": {
         "value": "inside",
+        "type": "string"
+      },
+      "dashPattern": {
+        "value": "4,3",
         "type": "string"
       },
       "strokeCap": {
@@ -148,7 +149,6 @@
         "unit": "pixel"
       },
       "stroke": {
-        "value": null,
         "type": "color"
       }
     }
@@ -174,74 +174,32 @@
   "colors": {
     "orange": {
       "comment": "Our primary color",
-      "fill": {
-        "value": {
-          "r": 1,
-          "g": 0.5,
-          "b": 0.25,
-          "a": 1
-        },
-        "type": "color"
-      }
+      "value": "rgba(1, 0.5, 0.25, 1)",
+      "type": "color"
     },
     "green": {
-      "fill": {
-        "value": {
-          "r": 0.25,
-          "g": 1,
-          "b": 0.73,
-          "a": 1
-        },
-        "type": "color"
-      }
+      "value": "rgba(0.25, 1, 0.73, 1)",
+      "type": "color"
     },
     "blue": {
-      "fill": {
-        "value": {
-          "r": 0.017,
-          "g": 0.292,
-          "b": 1,
-          "a": 1
-        },
-        "type": "color"
-      }
+      "value": "rgba(0.017, 0.292, 1, 1)",
+      "type": "color"
     },
     "secondary": {
       "green": {
-        "fill": {
-          "value": {
-            "r": 0.14,
-            "g": 0.688,
-            "b": 0.195,
-            "a": 1
-          },
-          "type": "color"
-        }
+        "value": "rgba(0.14, 0.688, 0.195, 1)",
+        "type": "color"
       },
       "yellow": {
-        "fill": {
-          "value": {
-            "r": 1,
-            "g": 0.72,
-            "b": 0,
-            "a": 1
-          },
-          "type": "color"
-        }
+        "value": "rgba(1, 0.72, 0, 1)",
+        "type": "color"
       }
     }
   },
   "utilities": {
     "error": {
-      "fill": {
-        "value": {
-          "r": 1,
-          "g": 0,
-          "b": 0,
-          "a": 1
-        },
-        "type": "color"
-      }
+      "value": "rgba(1, 0, 0, 1)",
+      "type": "color"
     }
   },
   "grid": {

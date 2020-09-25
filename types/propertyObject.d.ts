@@ -97,6 +97,9 @@ export type borderPropertyInterface = propertyObject & {
     strokeMiterAngle: {
       value: number
     },
+    dashPattern: {
+      value: string
+    }
     // strokeStyleId: {
     //   value: string
     // },

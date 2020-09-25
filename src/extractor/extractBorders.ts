@@ -28,6 +28,10 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
         value: strokeAligns[node.strokeAlign] as strokeAlignType,
         type: 'string' as propertyType
       },
+      dashPattern: {
+        value: node.dashPattern.toString(),
+        type: 'string' as propertyType
+      },
       strokeCap: {
         value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase() : 'mixed') as strokeCapType,
         type: 'string' as propertyType

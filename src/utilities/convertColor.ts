@@ -20,3 +20,5 @@ export const convertPaintToRgba = (paint): colorRgbaType => {
   }
   return null
 }
+
+export const convertRgbaObjectToString = (rgbaObject: colorRgbaType): string => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
