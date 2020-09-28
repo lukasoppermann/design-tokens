@@ -59,15 +59,13 @@ const extractEffects: extractorInterface = (tokenNodes: EffectStyle[]): effectPr
   return tokenNodes.map(node => ({
     name: node.name,
     description: node.description || null,
-    values: {
-      effects: {
-        value: node.effects.map(
+    category: 'effect',
+    values: node.effects.map(
           (effect: Effect) => 
             effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
             ? blurValues(effect) 
-            : shadowValues(effect))
-      }
-    }
+            : shadowValues(effect)
+          )
   }))
 }
 

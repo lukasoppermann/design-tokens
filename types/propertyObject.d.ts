@@ -154,64 +154,56 @@ export type gridAlignmentType = 'stretch' | 'center' | 'min' | 'max'
 
 export type gridPropertyInterface = propertyObject & {
   values: {
-    layouts: {
-      value: {
-        pattern: {
-          value: gridPatternType
-        },
-        sectionSize?: {
-          value: number,
-          unit: string
-        },
-        gutterSize?: {
-          value: number,
-          unit: string
-        },
-        alignment?: {
-          value: gridAlignmentType
-        },
-        count?: {
-          value: number
-        },
-        offset?: {
-          value: number,
-          unit: string
-        }
-      }[]
+    pattern: {
+      value: gridPatternType
+    },
+    sectionSize?: {
+      value: number,
+      unit: string
+    },
+    gutterSize?: {
+      value: number,
+      unit: string
+    },
+    alignment?: {
+      value: gridAlignmentType
+    },
+    count?: {
+      value: number
+    },
+    offset?: {
+      value: number,
+      unit: string
     }
-  }
+  }[]
 }
 export type effectType = 'dropShadow' | 'innerShadow' | 'layerBlur' | 'backgroundBlur'
 export type effectPropertyInterface = propertyObject & {
   values: {
-    effects: {
-      value: {
-        type: {
-          value: effectType
-        },
-        radius: {
-          value: number,
-          unit: string
-        },
-        color?: {
-          value: colorRgbaType,
-          type: propertyType
-        },
-        offset?: {
-          x: {
-            value: number,
-            unit: string
-          },
-          y: {
-            value: number,
-            unit: string
-          }
-        },
-        spread?: {
-          value: number,
-          unit: string
-        }
-      }[]
+    type: {
+      value: effectType
+    },
+    radius: {
+      value: number,
+      unit: string
+    },
+    color?: {
+      value: colorRgbaType,
+      type: propertyType
+    },
+    offset?: {
+      x: {
+        value: number,
+        unit: string
+      },
+      y: {
+        value: number,
+        unit: string
+      }
+    },
+    spread?: {
+      value: number,
+      unit: string
     }
-  }
+  }[]
 }

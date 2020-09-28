@@ -1,10 +1,12 @@
 {
   "sizes": {
     "8": {
+      "category": "size",
       "value": 8,
       "type": "number",
       "unit": "pixel",
       "original": {
+        "category": "size",
         "value": 8,
         "type": "number",
         "unit": "pixel"
@@ -20,10 +22,12 @@
       ]
     },
     "11": {
+      "category": "size",
       "value": 11,
       "type": "number",
       "unit": "pixel",
       "original": {
+        "category": "size",
         "value": 11,
         "type": "number",
         "unit": "pixel"
@@ -40,10 +44,12 @@
     },
     "spacers": {
       "16": {
+        "category": "size",
         "value": 16,
         "type": "number",
         "unit": "pixel",
         "original": {
+          "category": "size",
           "value": 16,
           "type": "number",
           "unit": "pixel"
@@ -61,11 +67,13 @@
         ]
       },
       "32": {
+        "category": "size",
         "comment": "32px spacer component",
         "value": 32,
         "type": "number",
         "unit": "pixel",
         "original": {
+          "category": "size",
           "comment": "32px spacer component",
           "value": 32,
           "type": "number",
@@ -693,10 +701,12 @@
   },
   "colors": {
     "orange": {
+      "category": "color",
       "comment": "Our primary color",
       "value": "rgba(1, 0.5, 0.25, 1)",
       "type": "color",
       "original": {
+        "category": "color",
         "comment": "Our primary color",
         "value": "rgba(1, 0.5, 0.25, 1)",
         "type": "color"
@@ -712,9 +722,11 @@
       ]
     },
     "green": {
+      "category": "color",
       "value": "rgba(0.25, 1, 0.73, 1)",
       "type": "color",
       "original": {
+        "category": "color",
         "value": "rgba(0.25, 1, 0.73, 1)",
         "type": "color"
       },
@@ -729,9 +741,11 @@
       ]
     },
     "blue": {
+      "category": "color",
       "value": "rgba(0.017, 0.292, 1, 1)",
       "type": "color",
       "original": {
+        "category": "color",
         "value": "rgba(0.017, 0.292, 1, 1)",
         "type": "color"
       },
@@ -747,9 +761,11 @@
     },
     "secondary": {
       "green": {
+        "category": "color",
         "value": "rgba(0.14, 0.688, 0.195, 1)",
         "type": "color",
         "original": {
+          "category": "color",
           "value": "rgba(0.14, 0.688, 0.195, 1)",
           "type": "color"
         },
@@ -766,9 +782,11 @@
         ]
       },
       "yellow": {
+        "category": "color",
         "value": "rgba(1, 0.72, 0, 1)",
         "type": "color",
         "original": {
+          "category": "color",
           "value": "rgba(1, 0.72, 0, 1)",
           "type": "color"
         },
@@ -788,9 +806,11 @@
   },
   "utilities": {
     "error": {
+      "category": "color",
       "value": "rgba(1, 0, 0, 1)",
       "type": "color",
       "original": {
+        "category": "color",
         "value": "rgba(1, 0, 0, 1)",
         "type": "color"
       },
@@ -807,416 +827,1018 @@
   },
   "grid": {
     "base": {
-      "comment": "A base grid",
-      "layouts": {
-        "value": [
-          {
-            "pattern": {
-              "value": "columns",
-              "type": "string"
-            },
-            "sectionSize": {
-              "unit": "pixel",
-              "type": "number"
-            },
-            "gutterSize": {
-              "value": 20,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "alignment": {
-              "value": "stretch",
-              "type": "string"
-            },
-            "count": {
-              "value": 5,
-              "type": "number"
-            },
-            "offset": {
-              "value": 10,
-              "unit": "pixel",
-              "type": "number"
-            }
+      "0": {
+        "pattern": {
+          "value": "columns",
+          "type": "string",
+          "original": {
+            "value": "columns",
+            "type": "string"
           },
-          {
-            "pattern": {
-              "value": "rows",
-              "type": "string"
-            },
-            "sectionSize": {
-              "value": 8,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "gutterSize": {
-              "value": 10,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "alignment": {
-              "value": "center",
-              "type": "string"
-            },
-            "count": {
-              "value": 5,
-              "type": "number"
-            },
-            "offset": {
-              "unit": "pixel",
-              "type": "number"
-            }
+          "name": "GridBase0Pattern",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "0",
+            "subitem": "pattern"
           },
-          {
-            "pattern": {
-              "value": "columns",
-              "type": "string"
-            },
-            "sectionSize": {
-              "value": 1,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "gutterSize": {
-              "value": 20,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "alignment": {
-              "value": "max",
-              "type": "string"
-            },
-            "count": {
-              "value": 5,
-              "type": "number"
-            },
-            "offset": {
-              "value": 1,
-              "unit": "pixel",
-              "type": "number"
-            }
-          },
-          {
-            "pattern": {
-              "value": "columns",
-              "type": "string"
-            },
-            "sectionSize": {
-              "value": 34,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "gutterSize": {
-              "value": 20,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "alignment": {
-              "value": "min",
-              "type": "string"
-            },
-            "count": {
-              "value": 5,
-              "type": "number"
-            },
-            "offset": {
-              "value": 13,
-              "unit": "pixel",
-              "type": "number"
-            }
-          },
-          {
-            "pattern": {
-              "value": "rows",
-              "type": "string"
-            },
-            "sectionSize": {
-              "value": 8,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "gutterSize": {
-              "value": 20,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "alignment": {
-              "value": "min",
-              "type": "string"
-            },
-            "count": {
-              "value": 5,
-              "type": "number"
-            },
-            "offset": {
-              "value": 10,
-              "unit": "pixel",
-              "type": "number"
-            }
-          },
-          {
-            "pattern": {
-              "value": "grid"
-            },
-            "sectionSize": {
-              "value": 8,
-              "unit": "pixel",
-              "type": "number"
-            }
-          }
-        ],
-        "original": {
-          "value": [
-            {
-              "pattern": {
-                "value": "columns",
-                "type": "string"
-              },
-              "sectionSize": {
-                "unit": "pixel",
-                "type": "number"
-              },
-              "gutterSize": {
-                "value": 20,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "alignment": {
-                "value": "stretch",
-                "type": "string"
-              },
-              "count": {
-                "value": 5,
-                "type": "number"
-              },
-              "offset": {
-                "value": 10,
-                "unit": "pixel",
-                "type": "number"
-              }
-            },
-            {
-              "pattern": {
-                "value": "rows",
-                "type": "string"
-              },
-              "sectionSize": {
-                "value": 8,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "gutterSize": {
-                "value": 10,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "alignment": {
-                "value": "center",
-                "type": "string"
-              },
-              "count": {
-                "value": 5,
-                "type": "number"
-              },
-              "offset": {
-                "unit": "pixel",
-                "type": "number"
-              }
-            },
-            {
-              "pattern": {
-                "value": "columns",
-                "type": "string"
-              },
-              "sectionSize": {
-                "value": 1,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "gutterSize": {
-                "value": 20,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "alignment": {
-                "value": "max",
-                "type": "string"
-              },
-              "count": {
-                "value": 5,
-                "type": "number"
-              },
-              "offset": {
-                "value": 1,
-                "unit": "pixel",
-                "type": "number"
-              }
-            },
-            {
-              "pattern": {
-                "value": "columns",
-                "type": "string"
-              },
-              "sectionSize": {
-                "value": 34,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "gutterSize": {
-                "value": 20,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "alignment": {
-                "value": "min",
-                "type": "string"
-              },
-              "count": {
-                "value": 5,
-                "type": "number"
-              },
-              "offset": {
-                "value": 13,
-                "unit": "pixel",
-                "type": "number"
-              }
-            },
-            {
-              "pattern": {
-                "value": "rows",
-                "type": "string"
-              },
-              "sectionSize": {
-                "value": 8,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "gutterSize": {
-                "value": 20,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "alignment": {
-                "value": "min",
-                "type": "string"
-              },
-              "count": {
-                "value": 5,
-                "type": "number"
-              },
-              "offset": {
-                "value": 10,
-                "unit": "pixel",
-                "type": "number"
-              }
-            },
-            {
-              "pattern": {
-                "value": "grid"
-              },
-              "sectionSize": {
-                "value": 8,
-                "unit": "pixel",
-                "type": "number"
-              }
-            }
+          "path": [
+            "grid",
+            "base",
+            "0",
+            "pattern"
           ]
         },
-        "name": "GridBaseLayouts",
-        "attributes": {
-          "category": "grid",
-          "type": "base",
-          "item": "layouts"
+        "gutterSize": {
+          "value": 20,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 20,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase0GutterSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "0",
+            "subitem": "gutterSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "0",
+            "gutterSize"
+          ]
         },
-        "path": [
-          "grid",
-          "base",
-          "layouts"
-        ]
-      }
+        "alignment": {
+          "value": "stretch",
+          "type": "string",
+          "original": {
+            "value": "stretch",
+            "type": "string"
+          },
+          "name": "GridBase0Alignment",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "0",
+            "subitem": "alignment"
+          },
+          "path": [
+            "grid",
+            "base",
+            "0",
+            "alignment"
+          ]
+        },
+        "count": {
+          "value": 5,
+          "type": "number",
+          "original": {
+            "value": 5,
+            "type": "number"
+          },
+          "name": "GridBase0Count",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "0",
+            "subitem": "count"
+          },
+          "path": [
+            "grid",
+            "base",
+            "0",
+            "count"
+          ]
+        },
+        "offset": {
+          "value": 10,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 10,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase0Offset",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "0",
+            "subitem": "offset"
+          },
+          "path": [
+            "grid",
+            "base",
+            "0",
+            "offset"
+          ]
+        }
+      },
+      "1": {
+        "pattern": {
+          "value": "rows",
+          "type": "string",
+          "original": {
+            "value": "rows",
+            "type": "string"
+          },
+          "name": "GridBase1Pattern",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "1",
+            "subitem": "pattern"
+          },
+          "path": [
+            "grid",
+            "base",
+            "1",
+            "pattern"
+          ]
+        },
+        "sectionSize": {
+          "value": 8,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 8,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase1SectionSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "1",
+            "subitem": "sectionSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "1",
+            "sectionSize"
+          ]
+        },
+        "gutterSize": {
+          "value": 10,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 10,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase1GutterSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "1",
+            "subitem": "gutterSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "1",
+            "gutterSize"
+          ]
+        },
+        "alignment": {
+          "value": "center",
+          "type": "string",
+          "original": {
+            "value": "center",
+            "type": "string"
+          },
+          "name": "GridBase1Alignment",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "1",
+            "subitem": "alignment"
+          },
+          "path": [
+            "grid",
+            "base",
+            "1",
+            "alignment"
+          ]
+        },
+        "count": {
+          "value": 5,
+          "type": "number",
+          "original": {
+            "value": 5,
+            "type": "number"
+          },
+          "name": "GridBase1Count",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "1",
+            "subitem": "count"
+          },
+          "path": [
+            "grid",
+            "base",
+            "1",
+            "count"
+          ]
+        }
+      },
+      "2": {
+        "pattern": {
+          "value": "columns",
+          "type": "string",
+          "original": {
+            "value": "columns",
+            "type": "string"
+          },
+          "name": "GridBase2Pattern",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "2",
+            "subitem": "pattern"
+          },
+          "path": [
+            "grid",
+            "base",
+            "2",
+            "pattern"
+          ]
+        },
+        "sectionSize": {
+          "value": 1,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 1,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase2SectionSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "2",
+            "subitem": "sectionSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "2",
+            "sectionSize"
+          ]
+        },
+        "gutterSize": {
+          "value": 20,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 20,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase2GutterSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "2",
+            "subitem": "gutterSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "2",
+            "gutterSize"
+          ]
+        },
+        "alignment": {
+          "value": "max",
+          "type": "string",
+          "original": {
+            "value": "max",
+            "type": "string"
+          },
+          "name": "GridBase2Alignment",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "2",
+            "subitem": "alignment"
+          },
+          "path": [
+            "grid",
+            "base",
+            "2",
+            "alignment"
+          ]
+        },
+        "count": {
+          "value": 5,
+          "type": "number",
+          "original": {
+            "value": 5,
+            "type": "number"
+          },
+          "name": "GridBase2Count",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "2",
+            "subitem": "count"
+          },
+          "path": [
+            "grid",
+            "base",
+            "2",
+            "count"
+          ]
+        },
+        "offset": {
+          "value": 1,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 1,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase2Offset",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "2",
+            "subitem": "offset"
+          },
+          "path": [
+            "grid",
+            "base",
+            "2",
+            "offset"
+          ]
+        }
+      },
+      "3": {
+        "pattern": {
+          "value": "columns",
+          "type": "string",
+          "original": {
+            "value": "columns",
+            "type": "string"
+          },
+          "name": "GridBase3Pattern",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "3",
+            "subitem": "pattern"
+          },
+          "path": [
+            "grid",
+            "base",
+            "3",
+            "pattern"
+          ]
+        },
+        "sectionSize": {
+          "value": 34,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 34,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase3SectionSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "3",
+            "subitem": "sectionSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "3",
+            "sectionSize"
+          ]
+        },
+        "gutterSize": {
+          "value": 20,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 20,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase3GutterSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "3",
+            "subitem": "gutterSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "3",
+            "gutterSize"
+          ]
+        },
+        "alignment": {
+          "value": "min",
+          "type": "string",
+          "original": {
+            "value": "min",
+            "type": "string"
+          },
+          "name": "GridBase3Alignment",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "3",
+            "subitem": "alignment"
+          },
+          "path": [
+            "grid",
+            "base",
+            "3",
+            "alignment"
+          ]
+        },
+        "count": {
+          "value": 5,
+          "type": "number",
+          "original": {
+            "value": 5,
+            "type": "number"
+          },
+          "name": "GridBase3Count",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "3",
+            "subitem": "count"
+          },
+          "path": [
+            "grid",
+            "base",
+            "3",
+            "count"
+          ]
+        },
+        "offset": {
+          "value": 13,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 13,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase3Offset",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "3",
+            "subitem": "offset"
+          },
+          "path": [
+            "grid",
+            "base",
+            "3",
+            "offset"
+          ]
+        }
+      },
+      "4": {
+        "pattern": {
+          "value": "rows",
+          "type": "string",
+          "original": {
+            "value": "rows",
+            "type": "string"
+          },
+          "name": "GridBase4Pattern",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "4",
+            "subitem": "pattern"
+          },
+          "path": [
+            "grid",
+            "base",
+            "4",
+            "pattern"
+          ]
+        },
+        "sectionSize": {
+          "value": 8,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 8,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase4SectionSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "4",
+            "subitem": "sectionSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "4",
+            "sectionSize"
+          ]
+        },
+        "gutterSize": {
+          "value": 20,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 20,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase4GutterSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "4",
+            "subitem": "gutterSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "4",
+            "gutterSize"
+          ]
+        },
+        "alignment": {
+          "value": "min",
+          "type": "string",
+          "original": {
+            "value": "min",
+            "type": "string"
+          },
+          "name": "GridBase4Alignment",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "4",
+            "subitem": "alignment"
+          },
+          "path": [
+            "grid",
+            "base",
+            "4",
+            "alignment"
+          ]
+        },
+        "count": {
+          "value": 5,
+          "type": "number",
+          "original": {
+            "value": 5,
+            "type": "number"
+          },
+          "name": "GridBase4Count",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "4",
+            "subitem": "count"
+          },
+          "path": [
+            "grid",
+            "base",
+            "4",
+            "count"
+          ]
+        },
+        "offset": {
+          "value": 10,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 10,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase4Offset",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "4",
+            "subitem": "offset"
+          },
+          "path": [
+            "grid",
+            "base",
+            "4",
+            "offset"
+          ]
+        }
+      },
+      "5": {
+        "pattern": {
+          "value": "grid",
+          "original": {
+            "value": "grid"
+          },
+          "name": "GridBase5Pattern",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "5",
+            "subitem": "pattern"
+          },
+          "path": [
+            "grid",
+            "base",
+            "5",
+            "pattern"
+          ]
+        },
+        "sectionSize": {
+          "value": 8,
+          "type": "number",
+          "unit": "pixel",
+          "original": {
+            "value": 8,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "name": "GridBase5SectionSize",
+          "attributes": {
+            "category": "grid",
+            "type": "base",
+            "item": "5",
+            "subitem": "sectionSize"
+          },
+          "path": [
+            "grid",
+            "base",
+            "5",
+            "sectionSize"
+          ]
+        }
+      },
+      "category": "grid",
+      "comment": "A base grid"
     },
     "weird grid with comment": {
+      "category": "grid",
       "comment": "COMMENT to describe weird grid",
-      "layouts": {
-        "value": [
-          {
-            "pattern": {
-              "value": "columns",
-              "type": "string"
-            },
-            "sectionSize": {
-              "value": 21,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "gutterSize": {
-              "value": 13,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "alignment": {
-              "value": "max",
-              "type": "string"
-            },
-            "count": {
-              "value": 5,
-              "type": "number"
-            },
-            "offset": {
-              "value": 23,
-              "unit": "pixel",
-              "type": "number"
-            }
-          }
-        ],
+      "pattern": {
+        "value": "columns",
+        "type": "string",
         "original": {
-          "value": [
-            {
-              "pattern": {
-                "value": "columns",
-                "type": "string"
-              },
-              "sectionSize": {
-                "value": 21,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "gutterSize": {
-                "value": 13,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "alignment": {
-                "value": "max",
-                "type": "string"
-              },
-              "count": {
-                "value": 5,
-                "type": "number"
-              },
-              "offset": {
-                "value": 23,
-                "unit": "pixel",
-                "type": "number"
-              }
-            }
-          ]
+          "value": "columns",
+          "type": "string"
         },
-        "name": "GridWeirdGridWithCommentLayouts",
+        "name": "GridWeirdGridWithCommentPattern",
         "attributes": {
           "category": "grid",
           "type": "weird grid with comment",
-          "item": "layouts"
+          "item": "pattern"
         },
         "path": [
           "grid",
           "weird grid with comment",
-          "layouts"
+          "pattern"
+        ]
+      },
+      "sectionSize": {
+        "value": 21,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 21,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "GridWeirdGridWithCommentSectionSize",
+        "attributes": {
+          "category": "grid",
+          "type": "weird grid with comment",
+          "item": "sectionSize"
+        },
+        "path": [
+          "grid",
+          "weird grid with comment",
+          "sectionSize"
+        ]
+      },
+      "gutterSize": {
+        "value": 13,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 13,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "GridWeirdGridWithCommentGutterSize",
+        "attributes": {
+          "category": "grid",
+          "type": "weird grid with comment",
+          "item": "gutterSize"
+        },
+        "path": [
+          "grid",
+          "weird grid with comment",
+          "gutterSize"
+        ]
+      },
+      "alignment": {
+        "value": "max",
+        "type": "string",
+        "original": {
+          "value": "max",
+          "type": "string"
+        },
+        "name": "GridWeirdGridWithCommentAlignment",
+        "attributes": {
+          "category": "grid",
+          "type": "weird grid with comment",
+          "item": "alignment"
+        },
+        "path": [
+          "grid",
+          "weird grid with comment",
+          "alignment"
+        ]
+      },
+      "count": {
+        "value": 5,
+        "type": "number",
+        "original": {
+          "value": 5,
+          "type": "number"
+        },
+        "name": "GridWeirdGridWithCommentCount",
+        "attributes": {
+          "category": "grid",
+          "type": "weird grid with comment",
+          "item": "count"
+        },
+        "path": [
+          "grid",
+          "weird grid with comment",
+          "count"
+        ]
+      },
+      "offset": {
+        "value": 23,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 23,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "GridWeirdGridWithCommentOffset",
+        "attributes": {
+          "category": "grid",
+          "type": "weird grid with comment",
+          "item": "offset"
+        },
+        "path": [
+          "grid",
+          "weird grid with comment",
+          "offset"
+        ]
+      }
+    },
+    "centered": {
+      "category": "grid",
+      "pattern": {
+        "value": "columns",
+        "type": "string",
+        "original": {
+          "value": "columns",
+          "type": "string"
+        },
+        "name": "GridCenteredPattern",
+        "attributes": {
+          "category": "grid",
+          "type": "centered",
+          "item": "pattern"
+        },
+        "path": [
+          "grid",
+          "centered",
+          "pattern"
+        ]
+      },
+      "sectionSize": {
+        "value": 11,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 11,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "GridCenteredSectionSize",
+        "attributes": {
+          "category": "grid",
+          "type": "centered",
+          "item": "sectionSize"
+        },
+        "path": [
+          "grid",
+          "centered",
+          "sectionSize"
+        ]
+      },
+      "gutterSize": {
+        "value": 20,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 20,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "GridCenteredGutterSize",
+        "attributes": {
+          "category": "grid",
+          "type": "centered",
+          "item": "gutterSize"
+        },
+        "path": [
+          "grid",
+          "centered",
+          "gutterSize"
+        ]
+      },
+      "alignment": {
+        "value": "center",
+        "type": "string",
+        "original": {
+          "value": "center",
+          "type": "string"
+        },
+        "name": "GridCenteredAlignment",
+        "attributes": {
+          "category": "grid",
+          "type": "centered",
+          "item": "alignment"
+        },
+        "path": [
+          "grid",
+          "centered",
+          "alignment"
+        ]
+      },
+      "count": {
+        "value": 5,
+        "type": "number",
+        "original": {
+          "value": 5,
+          "type": "number"
+        },
+        "name": "GridCenteredCount",
+        "attributes": {
+          "category": "grid",
+          "type": "centered",
+          "item": "count"
+        },
+        "path": [
+          "grid",
+          "centered",
+          "count"
         ]
       }
     }
   },
+  "count auto": {
+    "category": "grid",
+    "pattern": {
+      "value": "rows",
+      "type": "string",
+      "original": {
+        "value": "rows",
+        "type": "string"
+      },
+      "name": "CountAutoPattern",
+      "attributes": {
+        "category": "count auto",
+        "type": "pattern"
+      },
+      "path": [
+        "count auto",
+        "pattern"
+      ]
+    },
+    "sectionSize": {
+      "value": 100,
+      "type": "number",
+      "unit": "pixel",
+      "original": {
+        "value": 100,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "name": "CountAutoSectionSize",
+      "attributes": {
+        "category": "count auto",
+        "type": "sectionSize"
+      },
+      "path": [
+        "count auto",
+        "sectionSize"
+      ]
+    },
+    "gutterSize": {
+      "value": 21,
+      "type": "number",
+      "unit": "pixel",
+      "original": {
+        "value": 21,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "name": "CountAutoGutterSize",
+      "attributes": {
+        "category": "count auto",
+        "type": "gutterSize"
+      },
+      "path": [
+        "count auto",
+        "gutterSize"
+      ]
+    },
+    "alignment": {
+      "value": "min",
+      "type": "string",
+      "original": {
+        "value": "min",
+        "type": "string"
+      },
+      "name": "CountAutoAlignment",
+      "attributes": {
+        "category": "count auto",
+        "type": "alignment"
+      },
+      "path": [
+        "count auto",
+        "alignment"
+      ]
+    },
+    "count": {
+      "value": "auto",
+      "type": "string",
+      "original": {
+        "value": "auto",
+        "type": "string"
+      },
+      "name": "CountAutoCount",
+      "attributes": {
+        "category": "count auto",
+        "type": "count"
+      },
+      "path": [
+        "count auto",
+        "count"
+      ]
+    },
+    "offset": {
+      "value": 30,
+      "type": "number",
+      "unit": "pixel",
+      "original": {
+        "value": 30,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "name": "CountAutoOffset",
+      "attributes": {
+        "category": "count auto",
+        "type": "offset"
+      },
+      "path": [
+        "count auto",
+        "offset"
+      ]
+    }
+  },
   "body": {
     "h3": {
+      "comment": "Comment for text style",
       "fontSize": {
         "value": 20,
         "type": "number",
@@ -1402,352 +2024,343 @@
   },
   "effect": {
     "shadow": {
-      "effects": {
-        "value": [
-          {
-            "type": {
-              "value": "dropShadow",
-              "type": "string"
-            },
-            "radius": {
-              "value": 4,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "color": {
-              "value": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0.25
-              },
-              "type": "color"
-            },
-            "offset": {
-              "x": {
-                "value": 0,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "y": {
-                "value": 4,
-                "unit": "pixel",
-                "type": "number"
-              }
-            },
-            "spread": {
-              "value": 0,
-              "unit": "pixel",
-              "type": "number"
-            }
-          }
-        ],
+      "category": "effect",
+      "type": {
+        "value": "dropShadow",
+        "type": "string",
         "original": {
-          "value": [
-            {
-              "type": {
-                "value": "dropShadow",
-                "type": "string"
-              },
-              "radius": {
-                "value": 4,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "color": {
-                "value": {
-                  "r": 0,
-                  "g": 0,
-                  "b": 0,
-                  "a": 0.25
-                },
-                "type": "color"
-              },
-              "offset": {
-                "x": {
-                  "value": 0,
-                  "unit": "pixel",
-                  "type": "number"
-                },
-                "y": {
-                  "value": 4,
-                  "unit": "pixel",
-                  "type": "number"
-                }
-              },
-              "spread": {
-                "value": 0,
-                "unit": "pixel",
-                "type": "number"
-              }
-            }
-          ]
+          "value": "dropShadow",
+          "type": "string"
         },
-        "name": "EffectShadowEffects",
+        "name": "EffectShadowType",
         "attributes": {
           "category": "effect",
           "type": "shadow",
-          "item": "effects"
+          "item": "type"
         },
         "path": [
           "effect",
           "shadow",
-          "effects"
+          "type"
+        ]
+      },
+      "radius": {
+        "value": 4,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 4,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "EffectShadowRadius",
+        "attributes": {
+          "category": "effect",
+          "type": "shadow",
+          "item": "radius"
+        },
+        "path": [
+          "effect",
+          "shadow",
+          "radius"
+        ]
+      },
+      "color": {
+        "value": "rgba(0, 0, 0, 0.25)",
+        "type": "color",
+        "original": {
+          "value": "rgba(0, 0, 0, 0.25)",
+          "type": "color"
+        },
+        "name": "EffectShadowColor",
+        "attributes": {
+          "category": "effect",
+          "type": "shadow",
+          "item": "color"
+        },
+        "path": [
+          "effect",
+          "shadow",
+          "color"
+        ]
+      },
+      "offset": {},
+      "spread": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "EffectShadowSpread",
+        "attributes": {
+          "category": "effect",
+          "type": "shadow",
+          "item": "spread"
+        },
+        "path": [
+          "effect",
+          "shadow",
+          "spread"
         ]
       }
     },
     "layer blur": {
-      "effects": {
-        "value": [
-          {
-            "type": {
-              "value": "layerBlur",
-              "type": "string"
-            },
-            "radius": {
-              "value": 4,
-              "unit": "pixel",
-              "type": "number"
-            }
-          }
-        ],
+      "category": "effect",
+      "type": {
+        "value": "layerBlur",
+        "type": "string",
         "original": {
-          "value": [
-            {
-              "type": {
-                "value": "layerBlur",
-                "type": "string"
-              },
-              "radius": {
-                "value": 4,
-                "unit": "pixel",
-                "type": "number"
-              }
-            }
-          ]
+          "value": "layerBlur",
+          "type": "string"
         },
-        "name": "EffectLayerBlurEffects",
+        "name": "EffectLayerBlurType",
         "attributes": {
           "category": "effect",
           "type": "layer blur",
-          "item": "effects"
+          "item": "type"
         },
         "path": [
           "effect",
           "layer blur",
-          "effects"
+          "type"
+        ]
+      },
+      "radius": {
+        "value": 4,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 4,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "EffectLayerBlurRadius",
+        "attributes": {
+          "category": "effect",
+          "type": "layer blur",
+          "item": "radius"
+        },
+        "path": [
+          "effect",
+          "layer blur",
+          "radius"
         ]
       }
     },
     "background blur": {
-      "effects": {
-        "value": [
-          {
-            "type": {
-              "value": "backgroundBlur",
-              "type": "string"
-            },
-            "radius": {
-              "value": 4,
-              "unit": "pixel",
-              "type": "number"
-            }
-          }
-        ],
+      "category": "effect",
+      "type": {
+        "value": "backgroundBlur",
+        "type": "string",
         "original": {
-          "value": [
-            {
-              "type": {
-                "value": "backgroundBlur",
-                "type": "string"
-              },
-              "radius": {
-                "value": 4,
-                "unit": "pixel",
-                "type": "number"
-              }
-            }
-          ]
+          "value": "backgroundBlur",
+          "type": "string"
         },
-        "name": "EffectBackgroundBlurEffects",
+        "name": "EffectBackgroundBlurType",
         "attributes": {
           "category": "effect",
           "type": "background blur",
-          "item": "effects"
+          "item": "type"
         },
         "path": [
           "effect",
           "background blur",
-          "effects"
+          "type"
+        ]
+      },
+      "radius": {
+        "value": 4,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 4,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "EffectBackgroundBlurRadius",
+        "attributes": {
+          "category": "effect",
+          "type": "background blur",
+          "item": "radius"
+        },
+        "path": [
+          "effect",
+          "background blur",
+          "radius"
         ]
       }
     }
   },
   "inner shadow": {
-    "effects": {
-      "value": [
-        {
-          "type": {
-            "value": "innerShadow",
-            "type": "string"
-          },
-          "radius": {
-            "value": 4,
-            "unit": "pixel",
-            "type": "number"
-          },
-          "color": {
-            "value": {
-              "r": 0,
-              "g": 0,
-              "b": 0,
-              "a": 0.25
-            },
-            "type": "color"
-          },
-          "offset": {
-            "x": {
-              "value": 0,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "y": {
-              "value": 4,
-              "unit": "pixel",
-              "type": "number"
-            }
-          },
-          "spread": {
-            "value": 0,
-            "unit": "pixel",
-            "type": "number"
-          }
+    "0": {
+      "type": {
+        "value": "innerShadow",
+        "type": "string",
+        "original": {
+          "value": "innerShadow",
+          "type": "string"
         },
-        {
-          "type": {
-            "value": "innerShadow",
-            "type": "string"
-          },
-          "radius": {
-            "value": 10,
-            "unit": "pixel",
-            "type": "number"
-          },
-          "color": {
-            "value": {
-              "r": 0,
-              "g": 0,
-              "b": 0,
-              "a": 0.15
-            },
-            "type": "color"
-          },
-          "offset": {
-            "x": {
-              "value": 0,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "y": {
-              "value": -4,
-              "unit": "pixel",
-              "type": "number"
-            }
-          },
-          "spread": {
-            "value": 0,
-            "unit": "pixel",
-            "type": "number"
-          }
-        }
-      ],
-      "original": {
-        "value": [
-          {
-            "type": {
-              "value": "innerShadow",
-              "type": "string"
-            },
-            "radius": {
-              "value": 4,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "color": {
-              "value": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0.25
-              },
-              "type": "color"
-            },
-            "offset": {
-              "x": {
-                "value": 0,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "y": {
-                "value": 4,
-                "unit": "pixel",
-                "type": "number"
-              }
-            },
-            "spread": {
-              "value": 0,
-              "unit": "pixel",
-              "type": "number"
-            }
-          },
-          {
-            "type": {
-              "value": "innerShadow",
-              "type": "string"
-            },
-            "radius": {
-              "value": 10,
-              "unit": "pixel",
-              "type": "number"
-            },
-            "color": {
-              "value": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0.15
-              },
-              "type": "color"
-            },
-            "offset": {
-              "x": {
-                "value": 0,
-                "unit": "pixel",
-                "type": "number"
-              },
-              "y": {
-                "value": -4,
-                "unit": "pixel",
-                "type": "number"
-              }
-            },
-            "spread": {
-              "value": 0,
-              "unit": "pixel",
-              "type": "number"
-            }
-          }
+        "name": "InnerShadow0Type",
+        "attributes": {
+          "category": "inner shadow",
+          "type": "0",
+          "item": "type"
+        },
+        "path": [
+          "inner shadow",
+          "0",
+          "type"
         ]
       },
-      "name": "InnerShadowEffects",
-      "attributes": {
-        "category": "inner shadow",
-        "type": "effects"
+      "radius": {
+        "value": 4,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 4,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "InnerShadow0Radius",
+        "attributes": {
+          "category": "inner shadow",
+          "type": "0",
+          "item": "radius"
+        },
+        "path": [
+          "inner shadow",
+          "0",
+          "radius"
+        ]
       },
-      "path": [
-        "inner shadow",
-        "effects"
-      ]
-    }
+      "color": {
+        "value": "rgba(0, 0, 0, 0.25)",
+        "type": "color",
+        "original": {
+          "value": "rgba(0, 0, 0, 0.25)",
+          "type": "color"
+        },
+        "name": "InnerShadow0Color",
+        "attributes": {
+          "category": "inner shadow",
+          "type": "0",
+          "item": "color"
+        },
+        "path": [
+          "inner shadow",
+          "0",
+          "color"
+        ]
+      },
+      "offset": {},
+      "spread": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "InnerShadow0Spread",
+        "attributes": {
+          "category": "inner shadow",
+          "type": "0",
+          "item": "spread"
+        },
+        "path": [
+          "inner shadow",
+          "0",
+          "spread"
+        ]
+      }
+    },
+    "1": {
+      "type": {
+        "value": "innerShadow",
+        "type": "string",
+        "original": {
+          "value": "innerShadow",
+          "type": "string"
+        },
+        "name": "InnerShadow1Type",
+        "attributes": {
+          "category": "inner shadow",
+          "type": "1",
+          "item": "type"
+        },
+        "path": [
+          "inner shadow",
+          "1",
+          "type"
+        ]
+      },
+      "radius": {
+        "value": 10,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 10,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "InnerShadow1Radius",
+        "attributes": {
+          "category": "inner shadow",
+          "type": "1",
+          "item": "radius"
+        },
+        "path": [
+          "inner shadow",
+          "1",
+          "radius"
+        ]
+      },
+      "color": {
+        "value": "rgba(0, 0, 0, 0.15)",
+        "type": "color",
+        "original": {
+          "value": "rgba(0, 0, 0, 0.15)",
+          "type": "color"
+        },
+        "name": "InnerShadow1Color",
+        "attributes": {
+          "category": "inner shadow",
+          "type": "1",
+          "item": "color"
+        },
+        "path": [
+          "inner shadow",
+          "1",
+          "color"
+        ]
+      },
+      "offset": {},
+      "spread": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel",
+        "original": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "name": "InnerShadow1Spread",
+        "attributes": {
+          "category": "inner shadow",
+          "type": "1",
+          "item": "spread"
+        },
+        "path": [
+          "inner shadow",
+          "1",
+          "spread"
+        ]
+      }
+    },
+    "category": "effect"
   }
 }

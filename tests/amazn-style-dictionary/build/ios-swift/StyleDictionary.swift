@@ -3,7 +3,7 @@
 // StyleDictionary.swift
 //
 // Do not edit directly
-// Generated on Fri, 25 Sep 2020 14:01:59 GMT
+// Generated on Sat, 26 Sep 2020 12:57:16 GMT
 //
 
 
@@ -51,12 +51,69 @@ public class StyleDictionary {
     public static let colorsOrange = rgba(1, 0.5, 0.25, 1)
     public static let colorsSecondaryGreen = rgba(0.14, 0.688, 0.195, 1)
     public static let colorsSecondaryYellow = rgba(1, 0.72, 0, 1)
-    public static let effectBackgroundBlurEffects = [object Object]
-    public static let effectLayerBlurEffects = [object Object]
-    public static let effectShadowEffects = [object Object]
-    public static let gridBaseLayouts = [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
-    public static let gridWeirdGridWithCommentLayouts = [object Object]
-    public static let innerShadowEffects = [object Object],[object Object]
+    public static let countAutoAlignment = min
+    public static let countAutoCount = auto
+    public static let countAutoGutterSize = 21
+    public static let countAutoOffset = 30
+    public static let countAutoPattern = rows
+    public static let countAutoSectionSize = 100
+    public static let effectBackgroundBlurRadius = 4
+    public static let effectBackgroundBlurType = backgroundBlur
+    public static let effectLayerBlurRadius = 4
+    public static let effectLayerBlurType = layerBlur
+    public static let effectShadowColor = rgba(0, 0, 0, 0.25)
+    public static let effectShadowRadius = 4
+    public static let effectShadowSpread = 0
+    public static let effectShadowType = dropShadow
+    public static let gridBase0Alignment = stretch
+    public static let gridBase0Count = 5
+    public static let gridBase0GutterSize = 20
+    public static let gridBase0Offset = 10
+    public static let gridBase0Pattern = columns
+    public static let gridBase1Alignment = center
+    public static let gridBase1Count = 5
+    public static let gridBase1GutterSize = 10
+    public static let gridBase1Pattern = rows
+    public static let gridBase1SectionSize = 8
+    public static let gridBase2Alignment = max
+    public static let gridBase2Count = 5
+    public static let gridBase2GutterSize = 20
+    public static let gridBase2Offset = 1
+    public static let gridBase2Pattern = columns
+    public static let gridBase2SectionSize = 1
+    public static let gridBase3Alignment = min
+    public static let gridBase3Count = 5
+    public static let gridBase3GutterSize = 20
+    public static let gridBase3Offset = 13
+    public static let gridBase3Pattern = columns
+    public static let gridBase3SectionSize = 34
+    public static let gridBase4Alignment = min
+    public static let gridBase4Count = 5
+    public static let gridBase4GutterSize = 20
+    public static let gridBase4Offset = 10
+    public static let gridBase4Pattern = rows
+    public static let gridBase4SectionSize = 8
+    public static let gridBase5Pattern = grid
+    public static let gridBase5SectionSize = 8
+    public static let gridCenteredAlignment = center
+    public static let gridCenteredCount = 5
+    public static let gridCenteredGutterSize = 20
+    public static let gridCenteredPattern = columns
+    public static let gridCenteredSectionSize = 11
+    public static let gridWeirdGridWithCommentAlignment = max
+    public static let gridWeirdGridWithCommentCount = 5
+    public static let gridWeirdGridWithCommentGutterSize = 13
+    public static let gridWeirdGridWithCommentOffset = 23
+    public static let gridWeirdGridWithCommentPattern = columns
+    public static let gridWeirdGridWithCommentSectionSize = 21
+    public static let innerShadow0Color = rgba(0, 0, 0, 0.25)
+    public static let innerShadow0Radius = 4
+    public static let innerShadow0Spread = 0
+    public static let innerShadow0Type = innerShadow
+    public static let innerShadow1Color = rgba(0, 0, 0, 0.15)
+    public static let innerShadow1Radius = 10
+    public static let innerShadow1Spread = 0
+    public static let innerShadow1Type = innerShadow
     public static let radiiMixedRadius = mixed
     public static let radiiMixedRadiusType = mixed
     public static let radiiMixedSmoothing = 0.62

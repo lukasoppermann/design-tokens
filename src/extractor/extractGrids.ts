@@ -12,16 +12,30 @@ const gridValues = (grid: GridLayoutGrid) => ({
   }
 })
 
+const getCount = count => {
+  if (count === Infinity) {
+    return {
+      value: 'auto',
+      type: 'string' as propertyType
+    }
+  }
+  return {
+    value: count,
+    type: 'number' as propertyType
+  }
+}
+
 const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
   pattern: {
     value: grid.pattern.toLowerCase() as gridPatternType,
     type: 'string' as propertyType
   },
-  sectionSize: {
+  // undefined when aligment stretch
+  ...(grid.sectionSize !== undefined && {sectionSize: {
     value: grid.sectionSize,
     unit: 'pixel',
     type: 'number' as propertyType
-  },
+  }}),
   gutterSize: {
     value: grid.gutterSize,
     unit: 'pixel',
@@ -31,15 +45,13 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
     value: grid.alignment.toLowerCase() as gridAlignmentType,
     type: 'string' as propertyType
   },
-  count: {
-    value: grid.count,
-    type: 'number' as propertyType
-  },
-  offset: {
+  count: getCount(grid.count),
+  // undefined when aligment centred
+  ...(grid.offset !== undefined && {offset: {
     value: grid.offset,
     unit: 'pixel',
     type: 'number' as propertyType
-  }
+  }})
 })
 
 const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridPropertyInterface[] => {
@@ -47,11 +59,8 @@ const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridProperty
   return tokenNodes.map(node => ({
     name: node.name,
     description: node.description || null,
-    values: {
-      layouts: {
-        value: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
-      }
-    }
+    category: 'grid',
+    values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
   }))
 }
 

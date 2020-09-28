@@ -16,26 +16,35 @@ type amazonPropertyGroup = {
   [key: string]: amazonPropertyObject | any
 }
 
-const defaultTransformer = propertyGroup => {
+const defaultTransformer = propertyGroupValues => {
   const transformedProperties = {}
-  Object.keys(propertyGroup.values).forEach(function (key) {
-    transformedProperties[key] = amazonFormat(propertyGroup.values[key])
+  Object.keys(propertyGroupValues).forEach(function (key) {
+    transformedProperties[key] = amazonFormat(propertyGroupValues[key])
   })
   return transformedProperties
 }
 
-const sizeTransformer = propertyGroup => {
-  return amazonFormat(propertyGroup.values['width'])
+const sizeTransformer = propertyGroupValues => {
+  return amazonFormat(propertyGroupValues['width'])
 }
 
-const colorTransformer = propertyGroup => {
-  return amazonFormat(propertyGroup.values['fill'])
+const colorTransformer = propertyGroupValues => {
+  return amazonFormat(propertyGroupValues['fill'])
+}
+
+const arrayTransformer = propertyGroupValueGroups => {
+  if (propertyGroupValueGroups.length === 1) {
+    return defaultTransformer(propertyGroupValueGroups[0])
+  }
+  return propertyGroupValueGroups.map(propertyGroupValues => defaultTransformer(propertyGroupValues))
 }
 
 const categoryTransformer = {
   default: defaultTransformer,
   size: sizeTransformer,
-  color: colorTransformer
+  color: colorTransformer,
+  grid: arrayTransformer,
+  effect: arrayTransformer
 }
 
 const amazonConvertValue = (value, type: string) => {
@@ -58,10 +67,11 @@ const amazonFormat = (property): amazonPropertyObject => ({
 
 const amazonStyleDictionaryTransformer = (propertyGroup: propertyObject): amazonPropertyGroup => {
   // transform to amazon style Dictionary structure
-  const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup)
+  const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup.values)
   // return values
   return {
     name: propertyGroup.name,
+    category: propertyGroup.category,
     ...(propertyGroup.description != undefined && { comment: propertyGroup.description }),
     ...transformedProperties
   }

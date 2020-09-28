@@ -77,45 +77,44 @@
                 type: 'number'
             }
         });
-        const rowColumnValues = (grid) => ({
-            pattern: {
+        const getCount = count => {
+            if (count === Infinity) {
+                return {
+                    value: 'auto',
+                    type: 'string'
+                };
+            }
+            return {
+                value: count,
+                type: 'number'
+            };
+        };
+        const rowColumnValues = (grid) => (Object.assign(Object.assign(Object.assign({ pattern: {
                 value: grid.pattern.toLowerCase(),
                 type: 'string'
-            },
-            sectionSize: {
+            } }, (grid.sectionSize !== undefined && { sectionSize: {
                 value: grid.sectionSize,
                 unit: 'pixel',
                 type: 'number'
-            },
-            gutterSize: {
+            } })), { gutterSize: {
                 value: grid.gutterSize,
                 unit: 'pixel',
                 type: 'number'
-            },
-            alignment: {
+            }, alignment: {
                 value: grid.alignment.toLowerCase(),
                 type: 'string'
-            },
-            count: {
-                value: grid.count,
-                type: 'number'
-            },
-            offset: {
+            }, count: getCount(grid.count) }), (grid.offset !== undefined && { offset: {
                 value: grid.offset,
                 unit: 'pixel',
                 type: 'number'
-            }
-        });
+            } })));
         const extractGrids = (tokenNodes) => {
             // get grid styles
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
-                values: {
-                    layouts: {
-                        value: node.layoutGrids.map((grid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
-                    }
-                }
+                category: 'grid',
+                values: node.layoutGrids.map((grid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
             }));
         };
         exports.default = extractGrids;
@@ -244,13 +243,10 @@
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
-                values: {
-                    effects: {
-                        value: node.effects.map((effect) => effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
-                            ? blurValues(effect)
-                            : shadowValues(effect))
-                    }
-                }
+                category: 'effect',
+                values: node.effects.map((effect) => effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
+                    ? blurValues(effect)
+                    : shadowValues(effect))
             }));
         };
         exports.default = extractEffects;
@@ -461,7 +457,7 @@
                 // check if children are of valide types
                 .findChildren(node => isTokenNode(node)))
                 // merges all children into one array
-                .reduce((flatten, arr) => [...flatten, ...arr]);
+                .reduce((flatten, arr) => [...flatten, ...arr], []);
         };
         exports.default = getTokenFrames;
     });
@@ -556,23 +552,31 @@
     define("transformer/amazonStyleDictionaryTransformer", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const defaultTransformer = propertyGroup => {
+        const defaultTransformer = propertyGroupValues => {
             const transformedProperties = {};
-            Object.keys(propertyGroup.values).forEach(function (key) {
-                transformedProperties[key] = amazonFormat(propertyGroup.values[key]);
+            Object.keys(propertyGroupValues).forEach(function (key) {
+                transformedProperties[key] = amazonFormat(propertyGroupValues[key]);
             });
             return transformedProperties;
         };
-        const sizeTransformer = propertyGroup => {
-            return amazonFormat(propertyGroup.values['width']);
+        const sizeTransformer = propertyGroupValues => {
+            return amazonFormat(propertyGroupValues['width']);
         };
-        const colorTransformer = propertyGroup => {
-            return amazonFormat(propertyGroup.values['fill']);
+        const colorTransformer = propertyGroupValues => {
+            return amazonFormat(propertyGroupValues['fill']);
+        };
+        const arrayTransformer = propertyGroupValueGroups => {
+            if (propertyGroupValueGroups.length === 1) {
+                return defaultTransformer(propertyGroupValueGroups[0]);
+            }
+            return propertyGroupValueGroups.map(propertyGroupValues => defaultTransformer(propertyGroupValues));
         };
         const categoryTransformer = {
             default: defaultTransformer,
             size: sizeTransformer,
-            color: colorTransformer
+            color: colorTransformer,
+            grid: arrayTransformer,
+            effect: arrayTransformer
         };
         const amazonConvertValue = (value, type) => {
             if (value === undefined || value === null) {
@@ -586,13 +590,13 @@
         const amazonFormat = (property) => (Object.assign(Object.assign({ value: amazonConvertValue(property.value, property.type), type: property.type }, (property.description != undefined && { comment: property.description })), (property.unit != undefined && { unit: property.unit })));
         const amazonStyleDictionaryTransformer = (propertyGroup) => {
             // transform to amazon style Dictionary structure
-            const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup);
+            const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup.values);
             // return values
-            return Object.assign(Object.assign({ name: propertyGroup.name }, (propertyGroup.description != undefined && { comment: propertyGroup.description })), transformedProperties);
+            return Object.assign(Object.assign({ name: propertyGroup.name, category: propertyGroup.category }, (propertyGroup.description != undefined && { comment: propertyGroup.description })), transformedProperties);
         };
         exports.default = amazonStyleDictionaryTransformer;
     });
-    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "extractor/extractSizes", "extractor/extractBorders", "extractor/extractRadii", "utilities/getTokenFrames", "utilities/groupByName", "transformer/amazonStyleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, getTokenFrames_1, groupByName_1, amazonStyleDictionaryTransformer_1) {
+    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "utilities/getTokenFrames", "utilities/groupByName", "transformer/amazonStyleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, getTokenFrames_1, groupByName_1, amazonStyleDictionaryTransformer_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const transformer = {
@@ -619,9 +623,9 @@
             const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
             // get tokens
             return [
-                ...extractSizes_1.default(tokenFrames),
-                ...extractBorders_1.default(tokenFrames),
-                ...extractRadii_1.default(tokenFrames),
+                // ...extractSizes(tokenFrames),
+                // ...extractBorders(tokenFrames),
+                // ...extractRadii(tokenFrames),
                 ...extractColors_1.default(figma.getLocalPaintStyles()),
                 ...extractGrids_1.default(figma.getLocalGridStyles()),
                 ...extractFonts_1.default(figma.getLocalTextStyles()),
@@ -673,7 +677,7 @@
             figma.ui.show();
         }
         figma.ui.onmessage = (message) => {
-            if (message === 'closePlugin') {
+            if (message.command === 'closePlugin') {
                 figma.closePlugin();
             }
         };

@@ -52,7 +52,10 @@ onmessage = (event) => {
   let message = event.data.pluginMessage
   if (message.command === "export") {
     downloadJson(message.data.data, message.data.filename)
-    parent.postMessage({ pluginMessage: 'closePlugin' }, '*')
+    parent.postMessage({ pluginMessage: {
+      command: 'closePlugin',
+      notification: '🎉 Design token export succesfull!'
+    }}, '*')
   }
 }
 

@@ -30,7 +30,7 @@ if(figma.command === 'settings') {
 
 
 figma.ui.onmessage = (message) => {
-  if(message === 'closePlugin') {
+  if (message.command === 'closePlugin') {
     figma.closePlugin()
   }
 }

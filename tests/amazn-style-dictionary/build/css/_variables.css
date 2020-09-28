@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Fri, 25 Sep 2020 14:01:59 GMT
+ * Generated on Sat, 26 Sep 2020 12:57:16 GMT
  */
 
 :root {
@@ -44,8 +44,53 @@
   --colors-secondary-green: rgba(0.14, 0.688, 0.195, 1);
   --colors-secondary-yellow: rgba(1, 0.72, 0, 1);
   --utilities-error: rgba(1, 0, 0, 1);
-  --grid-base-layouts: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object];
-  --grid-weird-grid-with-comment-layouts: [object Object];
+  --grid-base-0-pattern: columns;
+  --grid-base-0-gutter-size: 20;
+  --grid-base-0-alignment: stretch;
+  --grid-base-0-count: 5;
+  --grid-base-0-offset: 10;
+  --grid-base-1-pattern: rows;
+  --grid-base-1-section-size: 8;
+  --grid-base-1-gutter-size: 10;
+  --grid-base-1-alignment: center;
+  --grid-base-1-count: 5;
+  --grid-base-2-pattern: columns;
+  --grid-base-2-section-size: 1;
+  --grid-base-2-gutter-size: 20;
+  --grid-base-2-alignment: max;
+  --grid-base-2-count: 5;
+  --grid-base-2-offset: 1;
+  --grid-base-3-pattern: columns;
+  --grid-base-3-section-size: 34;
+  --grid-base-3-gutter-size: 20;
+  --grid-base-3-alignment: min;
+  --grid-base-3-count: 5;
+  --grid-base-3-offset: 13;
+  --grid-base-4-pattern: rows;
+  --grid-base-4-section-size: 8;
+  --grid-base-4-gutter-size: 20;
+  --grid-base-4-alignment: min;
+  --grid-base-4-count: 5;
+  --grid-base-4-offset: 10;
+  --grid-base-5-pattern: grid;
+  --grid-base-5-section-size: 8;
+  --grid-weird-grid-with-comment-pattern: columns;
+  --grid-weird-grid-with-comment-section-size: 21;
+  --grid-weird-grid-with-comment-gutter-size: 13;
+  --grid-weird-grid-with-comment-alignment: max;
+  --grid-weird-grid-with-comment-count: 5;
+  --grid-weird-grid-with-comment-offset: 23;
+  --grid-centered-pattern: columns;
+  --grid-centered-section-size: 11;
+  --grid-centered-gutter-size: 20;
+  --grid-centered-alignment: center;
+  --grid-centered-count: 5;
+  --count-auto-pattern: rows;
+  --count-auto-section-size: 100;
+  --count-auto-gutter-size: 21;
+  --count-auto-alignment: min;
+  --count-auto-count: auto;
+  --count-auto-offset: 30;
   --body-h-3-font-size: 20;
   --body-h-3-text-decoration: none;
   --body-h-3-font-family: Roboto;
@@ -55,8 +100,20 @@
   --body-h-3-paragraph-indent: 5;
   --body-h-3-paragraph-spacing: 8;
   --body-h-3-text-case: uppercase;
-  --effect-shadow-effects: [object Object];
-  --effect-layer-blur-effects: [object Object];
-  --effect-background-blur-effects: [object Object];
-  --inner-shadow-effects: [object Object],[object Object];
+  --effect-shadow-type: dropShadow;
+  --effect-shadow-radius: 4;
+  --effect-shadow-color: rgba(0, 0, 0, 0.25);
+  --effect-shadow-spread: 0;
+  --effect-layer-blur-type: layerBlur;
+  --effect-layer-blur-radius: 4;
+  --effect-background-blur-type: backgroundBlur;
+  --effect-background-blur-radius: 4;
+  --inner-shadow-0-type: innerShadow;
+  --inner-shadow-0-radius: 4;
+  --inner-shadow-0-color: rgba(0, 0, 0, 0.25);
+  --inner-shadow-0-spread: 0;
+  --inner-shadow-1-type: innerShadow;
+  --inner-shadow-1-radius: 10;
+  --inner-shadow-1-color: rgba(0, 0, 0, 0.15);
+  --inner-shadow-1-spread: 0;
 }

@@ -31,7 +31,7 @@ const getTokenFrames = (pages: PageNode[]): SceneNode[] => {
     // check if children are of valide types
     .findChildren(node => isTokenNode(node)))
     // merges all children into one array
-    .reduce((flatten, arr) => [...flatten, ...arr])
+    .reduce((flatten, arr) => [...flatten, ...arr], [])
 
 }
 
