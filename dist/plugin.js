@@ -44,12 +44,24 @@
         };
         exports.convertRgbaObjectToString = (rgbaObject) => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`;
     });
-    define("extractor/extractColors", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_1) {
+    define("utilities/getTokenStyles", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const excludeUnderscoreStyles = true;
+        const getTokenStyles = (styles) => {
+            if (excludeUnderscoreStyles === true) {
+                return styles.filter(style => style.name.trim().substr(0, 1) !== '_');
+            }
+            return styles;
+        };
+        exports.default = getTokenStyles;
+    });
+    define("extractor/extractColors", ["require", "exports", "utilities/convertColor", "utilities/getTokenStyles"], function (require, exports, convertColor_1, getTokenStyles_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const extractColors = (tokenNodes) => {
             // get all paint styles
-            return tokenNodes.map(node => ({
+            return getTokenStyles_1.default(tokenNodes).map(node => ({
                 name: node.name,
                 // id: node.id,
                 description: node.description || null,
@@ -64,7 +76,7 @@
         };
         exports.default = extractColors;
     });
-    define("extractor/extractGrids", ["require", "exports"], function (require, exports) {
+    define("extractor/extractGrids", ["require", "exports", "utilities/getTokenStyles"], function (require, exports, getTokenStyles_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const gridValues = (grid) => ({
@@ -110,7 +122,7 @@
             } })));
         const extractGrids = (tokenNodes) => {
             // get grid styles
-            return tokenNodes.map(node => ({
+            return getTokenStyles_2.default(tokenNodes).map(node => ({
                 name: node.name,
                 description: node.description || null,
                 category: 'grid',
@@ -119,7 +131,7 @@
         };
         exports.default = extractGrids;
     });
-    define("extractor/extractFonts", ["require", "exports", "utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_2) {
+    define("extractor/extractFonts", ["require", "exports", "utilities/getTokenStyles", "utilities/roundWithDecimals"], function (require, exports, getTokenStyles_3, roundWithDecimals_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const textDecorations = {
@@ -135,7 +147,7 @@
         };
         const extractFonts = (tokenNodes) => {
             // get raw text styles
-            return tokenNodes.map(node => ({
+            return getTokenStyles_3.default(tokenNodes).map(node => ({
                 name: node.name,
                 description: node.description || undefined,
                 values: {
@@ -186,7 +198,7 @@
         };
         exports.default = extractFonts;
     });
-    define("extractor/extractEffects", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_2) {
+    define("extractor/extractEffects", ["require", "exports", "utilities/convertColor", "utilities/getTokenStyles"], function (require, exports, convertColor_2, getTokenStyles_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const effectType = {
@@ -240,7 +252,7 @@
         });
         const extractEffects = (tokenNodes) => {
             // get effect styles
-            return tokenNodes.map(node => ({
+            return getTokenStyles_4.default(tokenNodes).map(node => ({
                 name: node.name,
                 description: node.description || null,
                 category: 'effect',
@@ -596,7 +608,7 @@
         };
         exports.default = amazonStyleDictionaryTransformer;
     });
-    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "utilities/getTokenFrames", "utilities/groupByName", "transformer/amazonStyleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, getTokenFrames_1, groupByName_1, amazonStyleDictionaryTransformer_1) {
+    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "extractor/extractSizes", "extractor/extractBorders", "extractor/extractRadii", "utilities/getTokenFrames", "utilities/groupByName", "transformer/amazonStyleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, getTokenFrames_1, groupByName_1, amazonStyleDictionaryTransformer_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const transformer = {
@@ -623,9 +635,9 @@
             const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
             // get tokens
             return [
-                // ...extractSizes(tokenFrames),
-                // ...extractBorders(tokenFrames),
-                // ...extractRadii(tokenFrames),
+                ...extractSizes_1.default(tokenFrames),
+                ...extractBorders_1.default(tokenFrames),
+                ...extractRadii_1.default(tokenFrames),
                 ...extractColors_1.default(figma.getLocalPaintStyles()),
                 ...extractGrids_1.default(figma.getLocalGridStyles()),
                 ...extractFonts_1.default(figma.getLocalTextStyles()),
@@ -635,13 +647,10 @@
         const tokenExport = (figma, format = 'amazon') => {
             // get token array
             const tokenArray = exportRawTokenArray(figma);
-            console.log('JSON TOKEN', tokenArray);
             // format tokens
             const formattedTokens = tokenArray.map((token) => transformer[format](token));
-            console.log('formatted Tokens', formattedTokens);
             // group tokens
             const groupedTokens = groupByName_1.default(formattedTokens);
-            console.log('grouped Tokens', groupedTokens);
             // write tokens to json file
             sendJsonToUi(groupedTokens);
         };
@@ -661,7 +670,6 @@
         // run different functions depending on the provided command
         //
         // EXPORT
-        console.log('index.ts');
         // exports the design tokens
         if (figma.command === 'export') {
             exportTokens_1.default(figma);

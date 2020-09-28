@@ -37,9 +37,9 @@ const exportRawTokenArray = (figma: PluginAPI) => {
   const tokenFrames = getTokenFrames([...figma.root.children])
   // get tokens
   return [ 
-    // ...extractSizes(tokenFrames),
-    // ...extractBorders(tokenFrames),
-    // ...extractRadii(tokenFrames),
+    ...extractSizes(tokenFrames),
+    ...extractBorders(tokenFrames),
+    ...extractRadii(tokenFrames),
     ...extractColors(figma.getLocalPaintStyles()),
     ...extractGrids(figma.getLocalGridStyles()),
     ...extractFonts(figma.getLocalTextStyles()),
@@ -50,13 +50,10 @@ const exportRawTokenArray = (figma: PluginAPI) => {
 const tokenExport = (figma: PluginAPI, format: string = 'amazon') => {
   // get token array
   const tokenArray = exportRawTokenArray(figma)
-  console.log('JSON TOKEN', tokenArray)
   // format tokens
   const formattedTokens = tokenArray.map((token: convertedPropertyObject )=> transformer[format](token))
-  console.log('formatted Tokens', formattedTokens)
   // group tokens
   const groupedTokens = groupByName(formattedTokens)
-  console.log('grouped Tokens', groupedTokens)
   // write tokens to json file
   sendJsonToUi(groupedTokens)
 }

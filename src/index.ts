@@ -12,7 +12,6 @@ figma.showUI(__html__, {visible: false})
 // run different functions depending on the provided command
 //
 // EXPORT
-console.log('index.ts')
 // exports the design tokens
 if(figma.command === 'export') {
   exportTokens(figma)
