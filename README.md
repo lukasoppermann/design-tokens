@@ -44,6 +44,9 @@ Every property of a style will be converted to an individual token. For a `Text 
   --font-headline-3-text-case: uppercase;
 ```
 
+#### Ignoring styles
+Styles you don't want to be exported as design tokens can be prefixed with an `_` underscore. For example a color style called `_readlining/line-color` will not be exported.
+
 ### Custom design tokens
 The plugin also supports custom tokens for `borders`, `radii` & `spaces`.
 
