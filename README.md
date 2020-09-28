@@ -15,3 +15,15 @@ git clone https://github.com/lukasoppermann/design-token-transformer.git
 2. Export your tokens using the plugin and place the json file in the `tokens` folder within the transformer repositry
 3. Run `npm run transform-tokens` from the commandline
 4. 🎉 Your converted tokens should be in the `build` folder. For more customization options check out the [design token transformer documentation](https://github.com/lukasoppermann/design-token-transformer)
+
+## Roadmap & PRs
+### Roadmap
+This plugin is under active development. You can find all planned features in the [roadmap](https://github.com/lukasoppermann/design-tokens/issues/2).
+### Feature requests & help
+If you would like to see a specific feature implemented, please [create an issue](https://github.com/lukasoppermann/design-tokens/issues/new) including a description of the feature and a use case.
+
+If you can build the feature yourself and send a PR, this is even better. Please still create an issue first and mention that you want to implement it.
+I will get back to you asap to discuss the details of how to implement it.
+
+#### Help develop this plugin
+If you are interested in helping please comment on any issue you would like to take on. I will get back to you to discuss how to implement it.
