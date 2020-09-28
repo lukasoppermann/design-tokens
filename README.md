@@ -7,6 +7,12 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
 
 ## Installation
 
+<img src="https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Design%20Tokens%20Plugin%20Icon.png" width="50px"> 
+
+1. Go to [Figma / Community / Plugins](https://www.figma.com/community?tab=plugins)
+2. Search for `Design Tokens` 
+3. Click on install
+
 ## Transforming tokens using Amazon style dictionary
 1. Clone the [design token transformer](https://github.com/lukasoppermann/design-token-transformer) repositiory.
 ```cli
