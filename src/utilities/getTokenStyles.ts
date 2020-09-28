@@ -1,6 +1,6 @@
 const excludeUnderscoreStyles = true
 
-const getTokenStyles = (styles: BaseStyle[]): BaseStyle[] => {
+const getTokenStyles = (styles: BaseStyle[]): any[] => {
   if (excludeUnderscoreStyles === true) {
     return styles.filter(style => style.name.trim().substr(0, 1) !== '_')
   }
