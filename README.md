@@ -25,6 +25,36 @@ git clone https://github.com/lukasoppermann/design-token-transformer.git
 3. Run `npm run transform-tokens` from the commandline
 4. 🎉 Your converted tokens should be in the `build` folder. For more customization options check out the [design token transformer documentation](https://github.com/lukasoppermann/design-token-transformer)
 
+## Design Tokens
+### Naming
+### Design tokens from Styles
+The plugin converts the styles you define in Fimga into design tokens, this includes `Text Styles`, `Color Styles`, `Grid Styles` and `Effect Styles`.
+
+Every property of a style will be converted to an individual token. For a `Text Styles` this may result in the following tokens (show as transformed css custom properties for readability).
+
+```css
+  --font-headline-3-font-size: 20;
+  --font-headline-3-text-decoration: none;
+  --font-headline-3-font-family: Roboto;
+  --font-headline-3-font-style: Medium;
+  --font-headline-3-letter-spacing: 2;
+  --font-headline-3-line-height: 160;
+  --font-headline-3-paragraph-indent: 5;
+  --font-headline-3-paragraph-spacing: 8;
+  --font-headline-3-text-case: uppercase;
+```
+
+### Custom design tokens
+The plugin also supports custom tokens for `borders`, `radii` & `spaces`.
+
+Every custom design token must be within a Frame with a name starting with _tokens.
+
+
+### Available properties
+To allow for maximum customizability I decided to provide all values that Fimga provides. Many are not applicable to for example `css` but may be usable in other languages.
+
+**Colors** are provided in `rgba` but can be converted using [Amazon style dictionary](https://amzn.github.io/style-dictionary/#/).
+
 ## Roadmap & PRs
 ### Roadmap
 This plugin is under active development. You can find all planned features in the [roadmap](https://github.com/lukasoppermann/design-tokens/issues/2).
