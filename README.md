@@ -47,8 +47,15 @@ Every property of a style will be converted to an individual token. For a `Text 
 ### Custom design tokens
 The plugin also supports custom tokens for `borders`, `radii` & `spaces`.
 
-Every custom design token must be within a Frame with a name starting with _tokens.
+- Every custom design token must be within a `Frame` with a name starting with `_tokens`.
+- The token itself has to have a name starting with `sizes`, `borders` or `radii` and has to be a `Rectangle` or `Main Component`. This is so that the plugin can identify what is and what isn't a token.
 
+If you wanted to create a custom spacer token for an `8px` space you would do the following:
+
+1. Create a new `Frame` and name ot `_tokens/spacers` (Note: It must start with `_tokens`)
+2. Create a new `Component`, set its width to `8px` (currently only width is used for size elements)
+3. Name the new component `sizes/spacers/8px` (Note: It must start with `sizes`, `borders` or `radii`)
+4. Run the plugin `Design Tokens > Export Design Tokens`
 
 ### Available properties
 To allow for maximum customizability I decided to provide all values that Fimga provides. Many are not applicable to for example `css` but may be usable in other languages.

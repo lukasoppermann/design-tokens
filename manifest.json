@@ -5,7 +5,6 @@
   "main": "dist/plugin.js",
   "ui": "ui/settings.html",
   "menu": [
-    {"name": "Export Design Tokens", "command": "export"},
-    {"name": "Settings", "command": "settings"}
+    {"name": "Export Design Tokens", "command": "export"}
   ]
 }

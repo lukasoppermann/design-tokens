@@ -3,25 +3,14 @@
 // StyleDictionaryColor.h
 //
 // Do not edit directly
-// Generated on Sat, 26 Sep 2020 12:57:16 GMT
+// Generated on Mon, 28 Sep 2020 11:44:15 GMT
 //
 
 #import <UIKit/UIKit.h>
 
 
 typedef NS_ENUM(NSInteger, StyleDictionaryColorName) {
-Borders2OfThemStroke,
-BordersRed1PxStroke,
-BordersGreen4PxDottedStroke,
-ColorsOrange,
-ColorsGreen,
-ColorsBlue,
-ColorsSecondaryGreen,
-ColorsSecondaryYellow,
-UtilitiesError,
-EffectShadowColor,
-InnerShadow0Color,
-InnerShadow1Color
+ColorWhatever
 };
 
 @interface StyleDictionaryColor : NSObject
