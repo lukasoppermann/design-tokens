@@ -9,7 +9,7 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
-    define("utilities/roundWithDecimals", ["require", "exports"], function (require, exports) {
+    define("src/utilities/roundWithDecimals", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         /**
@@ -26,7 +26,7 @@
         };
         exports.default = roundWithDecimals;
     });
-    define("utilities/convertColor", ["require", "exports", "utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_1) {
+    define("src/utilities/convertColor", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         exports.convertRgbaObjectToString = exports.convertPaintToRgba = exports.roundRgba = void 0;
@@ -44,7 +44,7 @@
         };
         exports.convertRgbaObjectToString = (rgbaObject) => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`;
     });
-    define("utilities/getTokenStyles", ["require", "exports"], function (require, exports) {
+    define("src/utilities/getTokenStyles", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const excludeUnderscoreStyles = true;
@@ -56,7 +56,7 @@
         };
         exports.default = getTokenStyles;
     });
-    define("extractor/extractColors", ["require", "exports", "utilities/convertColor", "utilities/getTokenStyles"], function (require, exports, convertColor_1, getTokenStyles_1) {
+    define("src/extractor/extractColors", ["require", "exports", "src/utilities/convertColor", "src/utilities/getTokenStyles"], function (require, exports, convertColor_1, getTokenStyles_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const extractColors = (tokenNodes) => {
@@ -76,7 +76,7 @@
         };
         exports.default = extractColors;
     });
-    define("extractor/extractGrids", ["require", "exports", "utilities/getTokenStyles"], function (require, exports, getTokenStyles_2) {
+    define("src/extractor/extractGrids", ["require", "exports", "src/utilities/getTokenStyles"], function (require, exports, getTokenStyles_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const gridValues = (grid) => ({
@@ -131,7 +131,7 @@
         };
         exports.default = extractGrids;
     });
-    define("extractor/extractFonts", ["require", "exports", "utilities/getTokenStyles", "utilities/roundWithDecimals"], function (require, exports, getTokenStyles_3, roundWithDecimals_2) {
+    define("src/extractor/extractFonts", ["require", "exports", "src/utilities/getTokenStyles", "src/utilities/roundWithDecimals"], function (require, exports, getTokenStyles_3, roundWithDecimals_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const textDecorations = {
@@ -198,7 +198,7 @@
         };
         exports.default = extractFonts;
     });
-    define("extractor/extractEffects", ["require", "exports", "utilities/convertColor", "utilities/getTokenStyles"], function (require, exports, convertColor_2, getTokenStyles_4) {
+    define("src/extractor/extractEffects", ["require", "exports", "src/utilities/convertColor", "src/utilities/getTokenStyles"], function (require, exports, convertColor_2, getTokenStyles_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const effectType = {
@@ -263,7 +263,7 @@
         };
         exports.default = extractEffects;
     });
-    define("extractor/extractSizes", ["require", "exports"], function (require, exports) {
+    define("src/extractor/extractSizes", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const extractSizes = (tokenNodes) => {
@@ -290,7 +290,7 @@
         };
         exports.default = extractSizes;
     });
-    define("extractor/extractBorders", ["require", "exports", "utilities/convertColor", "utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_3) {
+    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/convertColor", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const strokeJoins = {
@@ -349,7 +349,7 @@
         };
         exports.default = extractBorders;
     });
-    define("extractor/extractRadii", ["require", "exports", "utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_4) {
+    define("src/extractor/extractRadii", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const extractRadii = (tokenNodes) => {
@@ -436,7 +436,7 @@
         };
         exports.default = extractRadii;
     });
-    define("utilities/getTokenFrames", ["require", "exports"], function (require, exports) {
+    define("src/utilities/getTokenFrames", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // the node types that can be used for tokens
@@ -473,7 +473,7 @@
         };
         exports.default = getTokenFrames;
     });
-    define("utilities/deepMerge", ["require", "exports"], function (require, exports) {
+    define("src/utilities/deepMerge", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         /**
@@ -511,7 +511,7 @@
         };
         exports.default = deepMerge;
     });
-    define("utilities/groupByName", ["require", "exports", "utilities/deepMerge"], function (require, exports, deepMerge_1) {
+    define("src/utilities/groupByName", ["require", "exports", "src/utilities/deepMerge"], function (require, exports, deepMerge_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // create a nested object structure from the array (['style','colors','main','red'])
@@ -543,7 +543,7 @@
         };
         exports.default = groupByName;
     });
-    define("utilities/convertSizeUnits", ["require", "exports"], function (require, exports) {
+    define("src/utilities/convertSizeUnits", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const convertSizeUnits = (valueObject) => {
@@ -561,7 +561,7 @@
         };
         exports.default = convertSizeUnits;
     });
-    define("transformer/amazonStyleDictionaryTransformer", ["require", "exports", "utilities/convertColor"], function (require, exports, convertColor_4) {
+    define("src/transformer/amazonStyleDictionaryTransformer", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const defaultTransformer = propertyGroupValues => {
@@ -608,7 +608,11 @@
         };
         exports.default = amazonStyleDictionaryTransformer;
     });
-    define("exportTokens", ["require", "exports", "extractor/extractColors", "extractor/extractGrids", "extractor/extractFonts", "extractor/extractEffects", "extractor/extractSizes", "extractor/extractBorders", "extractor/extractRadii", "utilities/getTokenFrames", "utilities/groupByName", "transformer/amazonStyleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, getTokenFrames_1, groupByName_1, amazonStyleDictionaryTransformer_1) {
+    define("types/figmaDataType", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+    });
+    define("src/exportTokens", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractSizes", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/amazonStyleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, groupByName_1, amazonStyleDictionaryTransformer_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const transformer = {
@@ -630,23 +634,21 @@
                 }
             });
         };
-        const exportRawTokenArray = (figma) => {
-            // use spread operator because the original is readOnly
-            const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
+        const exportRawTokenArray = (figmaData) => {
             // get tokens
             return [
-                ...extractSizes_1.default(tokenFrames),
-                ...extractBorders_1.default(tokenFrames),
-                ...extractRadii_1.default(tokenFrames),
-                ...extractColors_1.default(figma.getLocalPaintStyles()),
-                ...extractGrids_1.default(figma.getLocalGridStyles()),
-                ...extractFonts_1.default(figma.getLocalTextStyles()),
-                ...extractEffects_1.default(figma.getLocalEffectStyles())
+                ...extractSizes_1.default(figmaData.tokenFrames),
+                ...extractBorders_1.default(figmaData.tokenFrames),
+                ...extractRadii_1.default(figmaData.tokenFrames),
+                ...extractColors_1.default(figmaData.paintStyles),
+                ...extractGrids_1.default(figmaData.gridStyles),
+                ...extractFonts_1.default(figmaData.textStyles),
+                ...extractEffects_1.default(figmaData.effectStyles)
             ];
         };
-        const tokenExport = (figma, format = 'amazon') => {
+        const tokenExport = (figmaData, format = 'amazon') => {
             // get token array
-            const tokenArray = exportRawTokenArray(figma);
+            const tokenArray = exportRawTokenArray(figmaData);
             // format tokens
             const formattedTokens = tokenArray.map((token) => transformer[format](token));
             // group tokens
@@ -656,7 +658,24 @@
         };
         exports.default = tokenExport;
     });
-    define("index", ["require", "exports", "exportTokens"], function (require, exports, exportTokens_1) {
+    define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/getTokenFrames"], function (require, exports, getTokenFrames_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const buildFigmaData = (figma) => {
+            // use spread operator because the original is readOnly
+            const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
+            // get data from figma
+            return {
+                tokenFrames: tokenFrames,
+                paintStyles: figma.getLocalPaintStyles(),
+                gridStyles: figma.getLocalGridStyles(),
+                textStyles: figma.getLocalTextStyles(),
+                effectStyles: figma.getLocalEffectStyles()
+            };
+        };
+        exports.default = buildFigmaData;
+    });
+    define("src/index", ["require", "exports", "src/exportTokens", "src/utilities/buildFigmaData"], function (require, exports, exportTokens_1, buildFigmaData_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // register the UI 
@@ -672,7 +691,10 @@
         // EXPORT
         // exports the design tokens
         if (figma.command === 'export') {
-            exportTokens_1.default(figma);
+            // construct figma data object
+            const figmaData = buildFigmaData_1.default(figma);
+            // export tokens
+            exportTokens_1.default(figmaData);
             // const tokens = exportTokens()
             // writeJson(tokens)
             // always run closePlugin otherwise the plugin will keep running
@@ -680,9 +702,9 @@
         // SETTINGS
         // settings for the design tokens
         if (figma.command === 'settings') {
-            const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, 7) === '_tokens';
-            const frames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
-            figma.ui.show();
+            // const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0,7) === '_tokens'
+            // const frames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr])
+            // figma.ui.show()
         }
         figma.ui.onmessage = (message) => {
             if (message.command === 'closePlugin') {

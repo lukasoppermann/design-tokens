@@ -9,7 +9,7 @@ import getTokenFrames from './utilities/getTokenFrames'
 import groupByName from './utilities/groupByName'
 import amazonStyleDictionaryTransformer from './transformer/amazonStyleDictionaryTransformer'
 import { convertedPropertyObject } from '../types/propertyObject'
-
+import { figmaDataType } from '../types/figmaDataType'
 
 const transformer = {
   amazon: amazonStyleDictionaryTransformer
@@ -32,24 +32,22 @@ const sendJsonToUi = (json) => {
   })
 }
 
-const exportRawTokenArray = (figma: PluginAPI) => {
-  // use spread operator because the original is readOnly
-  const tokenFrames = getTokenFrames([...figma.root.children])
+const exportRawTokenArray = (figmaData: figmaDataType) => {
   // get tokens
   return [ 
-    ...extractSizes(tokenFrames),
-    ...extractBorders(tokenFrames),
-    ...extractRadii(tokenFrames),
-    ...extractColors(figma.getLocalPaintStyles()),
-    ...extractGrids(figma.getLocalGridStyles()),
-    ...extractFonts(figma.getLocalTextStyles()),
-    ...extractEffects(figma.getLocalEffectStyles())
+    ...extractSizes(figmaData.tokenFrames),
+    ...extractBorders(figmaData.tokenFrames),
+    ...extractRadii(figmaData.tokenFrames),
+    ...extractColors(figmaData.paintStyles),
+    ...extractGrids(figmaData.gridStyles),
+    ...extractFonts(figmaData.textStyles),
+    ...extractEffects(figmaData.effectStyles)
   ]
 }
 
-const tokenExport = (figma: PluginAPI, format: string = 'amazon') => {
+const tokenExport = (figmaData: figmaDataType, format: string = 'amazon') => {
   // get token array
-  const tokenArray = exportRawTokenArray(figma)
+  const tokenArray = exportRawTokenArray(figmaData)
   // format tokens
   const formattedTokens = tokenArray.map((token: convertedPropertyObject )=> transformer[format](token))
   // group tokens
