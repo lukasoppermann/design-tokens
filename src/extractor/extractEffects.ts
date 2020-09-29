@@ -1,5 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
 import { effectPropertyInterface, propertyType } from '../../types/propertyObject'
+import { UnitTypePixel } from '../../types/valueTypes'
 import { roundRgba } from '../utilities/convertColor'
 import getTokenStyles from '../utilities/getTokenStyles'
 
@@ -17,7 +18,7 @@ const blurValues = (effect) => ({
   },
   radius: {
     value: effect.radius,
-    unit: 'pixel',
+    unit: 'pixel' as UnitTypePixel,
     type: 'number' as propertyType
   }
 })
@@ -29,7 +30,7 @@ const shadowValues = effect => ({
   },
   radius: {
     value: effect.radius,
-    unit: 'pixel',
+    unit: 'pixel' as UnitTypePixel,
     type: 'number' as propertyType
   },
   color: {
@@ -39,18 +40,18 @@ const shadowValues = effect => ({
   offset: {
     x: {
       value: effect.offset.x,
-      unit: 'pixel',
+      unit: 'pixel' as UnitTypePixel,
       type: 'number' as propertyType
     },
     y: {
       value: effect.offset.y,
-      unit: 'pixel',
+      unit: 'pixel' as UnitTypePixel,
       type: 'number' as propertyType
     }
   },
   spread: {
     value: effect.spread,
-    unit: 'pixel',
+    unit: 'pixel' as UnitTypePixel,
     type: 'number' as propertyType
   }
 })

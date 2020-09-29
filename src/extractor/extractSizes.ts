@@ -1,6 +1,7 @@
 import extractorInterface from "../../types/extractorInterface"
 import { propertyType, sizePropertyInterface } from "../../types/propertyObject"
 import { customTokenNodes } from '../../types/tokenNodeTypes'
+import { UnitTypePixel } from '../../types/valueTypes'
 
 const extractSizes: extractorInterface = (tokenNodes: customTokenNodes[]): sizePropertyInterface[] => {
   const nodeName = 'sizes'
@@ -13,12 +14,12 @@ const extractSizes: extractorInterface = (tokenNodes: customTokenNodes[]): sizeP
     values: {
       width: {
         value: node.width,
-        unit: "pixel",
+        unit: 'pixel' as UnitTypePixel,
         type: 'number' as propertyType
       },
       height: {
         value: node.height,
-        unit: "pixel",
+        unit: 'pixel' as UnitTypePixel,
         type: 'number' as propertyType
       }
     }

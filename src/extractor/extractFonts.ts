@@ -1,5 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
-import { fontPropertyInterface, textDecorationType, lineHeightUnitType, textCaseType, propertyType, numericUnits } from '../../types/propertyObject'
+import { fontPropertyInterface, lineHeightUnitType, propertyType } from '../../types/propertyObject'
+import { UnitTypePixel, TextCase, TextDecoration, NumericUnitTypes } from '../../types/valueTypes'
 import getTokenStyles from '../utilities/getTokenStyles'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
@@ -24,11 +25,11 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
     values: {
       fontSize: {
         value: node.fontSize, 
-        unit: 'pixel',
+        unit: 'pixel' as UnitTypePixel,
         type: 'number' as propertyType
       },
       textDecoration: {
-        value: textDecorations[node.textDecoration] as textDecorationType,
+        value: textDecorations[node.textDecoration] as TextDecoration,
         type: 'string' as propertyType
       },
       fontFamily: {
@@ -41,7 +42,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
       },
       letterSpacing: {
         value: roundWithDecimals(node.letterSpacing.value),
-        unit: <numericUnits>node.letterSpacing.unit.toLowerCase(),
+        unit: <NumericUnitTypes>node.letterSpacing.unit.toLowerCase(),
         type: 'number' as propertyType
       },
       lineHeight: {
@@ -52,16 +53,16 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
       },
       paragraphIndent: {
         value: node.paragraphIndent,
-        unit: 'pixel',
+        unit: 'pixel' as UnitTypePixel,
         type: 'number' as propertyType
       },
       paragraphSpacing: {
         value: node.paragraphSpacing,
-        unit: 'pixel',
+        unit: 'pixel' as UnitTypePixel,
         type: 'number' as propertyType
       },
       textCase: {
-        value: textCases[node.textCase] as textCaseType,
+        value: textCases[node.textCase] as TextCase,
         type: 'string' as propertyType
       }
     }

@@ -1,5 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
-import { borderPropertyInterface, propertyType, strokeAlignType, strokeCapType } from '../../types/propertyObject'
+import { borderPropertyInterface, propertyType } from '../../types/propertyObject'
+import { StrokeCap, StrokeAlign } from '../../types/valueTypes'
 import { customTokenNodes } from '../../types/tokenNodeTypes'
 import { convertPaintToRgba } from '../utilities/convertColor'
 import roundWithDecimals from '../utilities/roundWithDecimals'
@@ -31,7 +32,7 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
     description: node.description || null,
     values: {
       strokeAlign: {
-        value: strokeAligns[node.strokeAlign] as strokeAlignType,
+        value: strokeAligns[node.strokeAlign] as StrokeAlign,
         type: 'string' as propertyType
       },
       dashPattern: {
@@ -39,7 +40,7 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
         type: 'string' as propertyType
       },
       strokeCap: {
-        value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase() : 'mixed') as strokeCapType,
+        value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase() : 'mixed') as StrokeCap,
         type: 'string' as propertyType
       },
       strokeJoin: {
