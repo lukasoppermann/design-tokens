@@ -1,5 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
-import { colorPropertyInterface, fillValuesType, gradientTypeType, gradientValuesType, propertyType } from '../../types/propertyObject'
+import { colorPropertyInterface, fillValuesType, gradientValuesType, propertyType } from '../../types/propertyObject'
+import { GradientType } from '../../types/valueTypes'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import getTokenStyles from '../utilities/getTokenStyles'
 
@@ -31,7 +32,7 @@ const extractFill = (paint): fillValuesType | gradientValuesType => {
   if (["GRADIENT_LINEAR", "GRADIENT_RADIAL", "GRADIENT_ANGULAR", "GRADIENT_DIAMOND"].includes(paint.type)) {
     return {
       gradientType: {
-        value: gradientType[paint.type] as gradientTypeType,
+        value: gradientType[paint.type] as GradientType,
         type: "string" as propertyType
       },
       stops: paint.gradientStops.map(stop => ({

@@ -1,10 +1,11 @@
 import extractorInterface from '../../types/extractorInterface'
-import { gridAlignmentType, gridPatternType, gridPropertyInterface, propertyType } from '../../types/propertyObject'
+import { gridPropertyInterface, propertyType } from '../../types/propertyObject'
+import { GridAlignment, GridPattern } from '../../types/valueTypes'
 import getTokenStyles from '../utilities/getTokenStyles'
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {
-    value: grid.pattern.toLowerCase() as gridPatternType
+    value: grid.pattern.toLowerCase() as GridPattern
   },
   sectionSize: {
     value: grid.sectionSize,
@@ -28,7 +29,7 @@ const getCount = count => {
 
 const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
   pattern: {
-    value: grid.pattern.toLowerCase() as gridPatternType,
+    value: grid.pattern.toLowerCase() as GridPattern,
     type: 'string' as propertyType
   },
   // undefined when aligment stretch
@@ -43,7 +44,7 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
     type: 'number' as propertyType
   },
   alignment: {
-    value: grid.alignment.toLowerCase() as gridAlignmentType,
+    value: grid.alignment.toLowerCase() as GridAlignment,
     type: 'string' as propertyType
   },
   count: getCount(grid.count),

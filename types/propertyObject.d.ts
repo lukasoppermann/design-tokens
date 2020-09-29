@@ -1,3 +1,5 @@
+import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType } from './valueTypes'
+
 export type propertyObject = {
   name: string,
   description?: string,
@@ -8,29 +10,18 @@ export type propertyObject = {
 }
 
 export type propertyType = "number" | "color" | "string"
-export type numericUnits = "degree" | "pixel" | "percent"
 
 export type numericPropertyType = {
   value: number,
-  unit?: numericUnits,
+  unit?: NumericUnitTypes,
   type: propertyType
 }
-
-export type colorRgbaType = {
-  r: number,
-  g: number,
-  b: number,
-  a: number
-}
-export type textDecorationType = "none" | "underline" | "line-through"
-export type lineHeightUnitType = "pixel" | "percent" | "auto"
-export type textCaseType = "none" | "uppercase" | "lowercase" | "capitalize"
 
 export type fontPropertyInterface = propertyObject & {
   values: {
     fontSize: numericPropertyType,
     textDecoration: {
-      value: textDecorationType
+      value: TextDecoration
     },
     fontFamily: {
       value: string
@@ -46,22 +37,21 @@ export type fontPropertyInterface = propertyObject & {
     paragraphIndent: numericPropertyType,
     paragraphSpacing: numericPropertyType,
     textCase: {
-      value: textCaseType
+      value: TextCase
     }
   }
 }
 
 export type fillValuesType = {
   fill: {
-    value: colorRgbaType,
+    value: ColorRgba,
     type: propertyType
   }
 }
 
-export type gradientTypeType = "linear" | "radial" | "angular" | "diamond"
 export type gradientStopType = {
   color: {
-    value: colorRgbaType,
+    value: ColorRgba,
     type: propertyType
   },
   position: {
@@ -72,7 +62,7 @@ export type gradientStopType = {
 
 export type gradientValuesType = {
   gradientType: {
-    value: gradientTypeType,
+    value: GradientType,
     type: propertyType
   },
   stops: gradientStopType[],
@@ -101,19 +91,16 @@ export type sizePropertyInterface = propertyObject & {
   }
 }
 
-export type strokeAlignType = "center" | "inside" | "outside"
-export type strokeCapType = "none" | "round" | "square" | "arrow_lines" | "arrow_equilateral" | "mixed"
-
 export type borderPropertyInterface = propertyObject & {
   values: {
     strokeAlign: {
-      value: strokeAlignType
+      value: StrokeAlign
     },
     strokeCap: {
-      value: strokeCapType
+      value: StrokeCap
     },
     strokeJoin: {
-      value: "miter" | "bevel" | "round"
+      value: StrokeJoin
     },
     strokeMiterAngle: {
       value: number
@@ -126,10 +113,10 @@ export type borderPropertyInterface = propertyObject & {
     // },
     strokeWeight: {
       value: number,
-      unit: "pixel"
+      unit: UnitTypePixel
     },
     stroke: {
-      value: colorRgbaType,
+      value: ColorRgba,
       type: propertyType
     }
   }
@@ -137,9 +124,10 @@ export type borderPropertyInterface = propertyObject & {
 
 export type radiusPropertyInterface = propertyObject & {
   values: {
-    radius: {
-      value: number | 'mixed',
-      unit: string
+    radius?: {
+      value: number,
+      unit: UnitTypePixel,
+      type: propertyType
     },
     radiusType: {
       value: 'single' | 'mixed',
@@ -170,13 +158,10 @@ export type radiusPropertyInterface = propertyObject & {
   }
 }
 
-export type gridPatternType = 'rows' | 'columns' | 'grid'
-export type gridAlignmentType = 'stretch' | 'center' | 'min' | 'max'
-
 export type gridPropertyInterface = propertyObject & {
   values: {
     pattern: {
-      value: gridPatternType
+      value: GridPattern
     },
     sectionSize?: {
       value: number,
@@ -187,7 +172,7 @@ export type gridPropertyInterface = propertyObject & {
       unit: string
     },
     alignment?: {
-      value: gridAlignmentType
+      value: GridAlignment
     },
     count?: {
       value: number
@@ -198,18 +183,18 @@ export type gridPropertyInterface = propertyObject & {
     }
   }[]
 }
-export type effectType = 'dropShadow' | 'innerShadow' | 'layerBlur' | 'backgroundBlur'
+
 export type effectPropertyInterface = propertyObject & {
   values: {
     type: {
-      value: effectType
+      value: EffectType
     },
     radius: {
       value: number,
       unit: string
     },
     color?: {
-      value: colorRgbaType,
+      value: ColorRgba,
       type: propertyType
     },
     offset?: {

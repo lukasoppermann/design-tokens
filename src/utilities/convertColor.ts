@@ -1,4 +1,4 @@
-import { colorRgbaType } from '../../types/propertyObject'
+import { ColorRgba } from '../../types/valueTypes'
 import roundWithDecimals from './roundWithDecimals'
 
 export const roundRgba = (rgba: {
@@ -7,18 +7,18 @@ export const roundRgba = (rgba: {
   b: number,
   a?: number,
   opacity?: number
-}): colorRgbaType => ({
+}): ColorRgba => ({
   r: roundWithDecimals(rgba.r),
   g: roundWithDecimals(rgba.g),
   b: roundWithDecimals(rgba.b),
   a: roundWithDecimals(rgba.opacity || rgba.a || 1)
 })
 
-export const convertPaintToRgba = (paint): colorRgbaType => {
+export const convertPaintToRgba = (paint): ColorRgba => {
   if (paint.type === 'SOLID' && paint.visible === true) {
     return roundRgba(paint.color)
   }
   return null
 }
 
-export const convertRgbaObjectToString = (rgbaObject: colorRgbaType): string => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
+export const convertRgbaObjectToString = (rgbaObject: ColorRgba): string => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
