@@ -14,59 +14,34 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
     return 'mixed'
   }
   // get the individual radii
-  const getRadii = (node) => {
-    if (typeof node.cornerRadius !== 'number') {
-      return {
-        topLeft: {
-          value: node.topLeftRadius || 0,
-          unit: 'pixel' as UnitTypePixel,
-          type: 'number' as propertyType
-        },
-        topRight: {
-          value: node.topRightRadius || 0,
-          unit: 'pixel' as UnitTypePixel,
-          type: 'number' as propertyType
-        },
-        bottomRight: {
-          value: node.bottomRightRadius || 0,
-          unit: 'pixel' as UnitTypePixel,
-          type: 'number' as propertyType
-        },
-        bottomLeft: {
-          value: node.bottomLeftRadius || 0,
-          unit: 'pixel' as UnitTypePixel,
-          type: 'number' as propertyType
-        }
-      }
+  const getRadii = (node) => ({
+    topLeft: {
+      value: node.topLeftRadius || 0,
+      unit: 'pixel' as UnitTypePixel,
+      type: 'number' as propertyType
+    },
+    topRight: {
+      value: node.topRightRadius || 0,
+      unit: 'pixel' as UnitTypePixel,
+      type: 'number' as propertyType
+    },
+    bottomRight: {
+      value: node.bottomRightRadius || 0,
+      unit: 'pixel' as UnitTypePixel,
+      type: 'number' as propertyType
+    },
+    bottomLeft: {
+      value: node.bottomLeftRadius || 0,
+      unit: 'pixel' as UnitTypePixel,
+      type: 'number' as propertyType
     }
-    return {
-      topLeft: {
-        value: node.cornerRadius,
-        unit: 'pixel' as UnitTypePixel,
-        type: 'number' as propertyType
-      },
-      topRight: {
-        value: node.cornerRadius,
-        unit: 'pixel' as UnitTypePixel,
-        type: 'number' as propertyType
-      },
-      bottomRight: {
-        value: node.cornerRadius,
-        unit: 'pixel' as UnitTypePixel,
-        type: 'number' as propertyType
-      },
-      bottomLeft: {
-        value: node.cornerRadius,
-        unit: 'pixel' as UnitTypePixel,
-        type: 'number' as propertyType
-      }
-    }
-  }
+  })
   // return as object
   return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
     name: node.name,
     // @ts-ignore
     description: node.description || null,
+    category: 'radius',
     values: {
       ...(typeof node.cornerRadius === "number" && {
         radius: {
