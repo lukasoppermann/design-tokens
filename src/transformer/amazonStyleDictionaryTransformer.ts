@@ -30,6 +30,19 @@ const sizeTransformer = propertyGroupValues => {
 const colorTransformer = propertyGroupValues => {
   return amazonFormat(propertyGroupValues['fill'])
 }
+const gradientTransformer = propertyGroupValues => {
+  const transformedProperties = {
+    gradientType: amazonFormat(propertyGroupValues.gradientType),
+    opacity: amazonFormat(propertyGroupValues.opacity),
+  }
+  // prepare stops
+  propertyGroupValues.stops.forEach((stop, index) => {
+    transformedProperties[`stop-${index + 1}-position`] = amazonFormat(stop.position)
+    transformedProperties[`stop-${index + 1}-color`] = amazonFormat(stop.color)
+  })
+
+  return transformedProperties
+}
 
 const arrayTransformer = propertyGroupValueGroups => {
   if (propertyGroupValueGroups.length === 1) {
@@ -42,6 +55,7 @@ const categoryTransformer = {
   default: defaultTransformer,
   size: sizeTransformer,
   color: colorTransformer,
+  gradient: gradientTransformer,
   grid: arrayTransformer,
   effect: arrayTransformer
 }

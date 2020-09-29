@@ -19,7 +19,13 @@ const strokeAligns = {
 const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): borderPropertyInterface[] => {
   const nodeName = 'borders'
   // return as object
-  return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+  return tokenNodes
+  // only get border nodes
+  .filter(node => node.name.substr(0, nodeName.length) === nodeName)
+  // remove nodes with no border property
+  .filter(node => node.strokes.length > 0)
+  // convert borders
+  .map(node => ({
     name: node.name,
     // @ts-ignore
     description: node.description || null,

@@ -51,13 +51,39 @@ export type fontPropertyInterface = propertyObject & {
   }
 }
 
-export type colorPropertyInterface = propertyObject & {
-  values: {
-    fill: {
-      value: colorRgbaType,
-      type: propertyType
-    }
+export type fillValuesType = {
+  fill: {
+    value: colorRgbaType,
+    type: propertyType
   }
+}
+
+export type gradientTypeType = "linear" | "radial" | "angular" | "diamond"
+export type gradientStopType = {
+  color: {
+    value: colorRgbaType,
+    type: propertyType
+  },
+  position: {
+    value: number,
+    type: propertyType
+  }
+}
+
+export type gradientValuesType = {
+  gradientType: {
+    value: gradientTypeType,
+    type: propertyType
+  },
+  stops: gradientStopType[],
+  opacity: {
+    value: number,
+    type: propertyType
+  }
+}
+
+export type colorPropertyInterface = propertyObject & {
+  values: fillValuesType | gradientValuesType
 }
 
 export type sizePropertyInterface = propertyObject & {
