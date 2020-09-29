@@ -9,6 +9,10 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
+    define("types/valueTypes", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+    });
     define("src/utilities/roundWithDecimals", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -59,19 +63,68 @@
     define("src/extractor/extractColors", ["require", "exports", "src/utilities/convertColor", "src/utilities/getTokenStyles"], function (require, exports, convertColor_1, getTokenStyles_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        const gradientType = {
+            "GRADIENT_LINEAR": "linear",
+            "GRADIENT_RADIAL": "radial",
+            "GRADIENT_ANGULAR": "angular",
+            "GRADIENT_DIAMOND": "diamond"
+        };
+        const paintCategory = (paint) => {
+            if (paint.type === "SOLID") {
+                return "color";
+            }
+            if (["GRADIENT_LINEAR", "GRADIENT_RADIAL", "GRADIENT_ANGULAR", "GRADIENT_DIAMOND"].includes(paint.type)) {
+                return "gradient";
+            }
+        };
+        const extractFill = (paint) => {
+            if (paint.type === "SOLID") {
+                return {
+                    fill: {
+                        value: convertColor_1.convertPaintToRgba(paint),
+                        type: 'color'
+                    }
+                };
+            }
+            if (["GRADIENT_LINEAR", "GRADIENT_RADIAL", "GRADIENT_ANGULAR", "GRADIENT_DIAMOND"].includes(paint.type)) {
+                return {
+                    gradientType: {
+                        value: gradientType[paint.type],
+                        type: "string"
+                    },
+                    stops: paint.gradientStops.map(stop => ({
+                        position: {
+                            value: stop.position,
+                            type: "number"
+                        },
+                        color: {
+                            value: convertColor_1.roundRgba(stop.color),
+                            type: "color"
+                        }
+                    })),
+                    opacity: {
+                        value: paint.opacity,
+                        type: "number"
+                    }
+                };
+            }
+            return null;
+        };
         const extractColors = (tokenNodes) => {
             // get all paint styles
-            return getTokenStyles_1.default(tokenNodes).map(node => ({
+            return getTokenStyles_1.default(tokenNodes)
+                // filter style
+                // remove with no fill
+                .filter(node => node.paints.length > 0)
+                // remove image fills
+                .filter(node => node.paints[0].type !== "IMAGE")
+                // transform style
+                .map(node => ({
                 name: node.name,
                 // id: node.id,
                 description: node.description || null,
-                category: 'color',
-                values: {
-                    fill: {
-                        value: convertColor_1.convertPaintToRgba(node.paints[0]),
-                        type: 'color'
-                    }
-                }
+                category: paintCategory(node.paints[0]),
+                values: extractFill(node.paints[0])
             }));
         };
         exports.default = extractColors;
@@ -277,12 +330,12 @@
                 values: {
                     width: {
                         value: node.width,
-                        unit: "pixel",
+                        unit: 'pixel',
                         type: 'number'
                     },
                     height: {
                         value: node.height,
-                        unit: "pixel",
+                        unit: 'pixel',
                         type: 'number'
                     }
                 }
@@ -306,7 +359,13 @@
         const extractBorders = (tokenNodes) => {
             const nodeName = 'borders';
             // return as object
-            return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
+            return tokenNodes
+                // only get border nodes
+                .filter(node => node.name.substr(0, nodeName.length) === nodeName)
+                // remove nodes with no border property
+                .filter(node => node.strokes.length > 0)
+                // convert borders
+                .map(node => ({
                 name: node.name,
                 // @ts-ignore
                 description: node.description || null,
@@ -362,116 +421,51 @@
                 return 'mixed';
             };
             // get the individual radii
-            const getRadii = (node) => {
-                if (typeof node.cornerRadius !== 'number') {
-                    return {
-                        topLeft: {
-                            value: node.topLeftRadius || 0,
-                            unit: 'pixel',
-                            type: 'number'
-                        },
-                        topRight: {
-                            value: node.topRightRadius || 0,
-                            unit: 'pixel',
-                            type: 'number'
-                        },
-                        bottomRight: {
-                            value: node.bottomRightRadius || 0,
-                            unit: 'pixel',
-                            type: 'number'
-                        },
-                        bottomLeft: {
-                            value: node.bottomLeftRadius || 0,
-                            unit: 'pixel',
-                            type: 'number'
-                        }
-                    };
+            const getRadii = (node) => ({
+                topLeft: {
+                    value: node.topLeftRadius || 0,
+                    unit: 'pixel',
+                    type: 'number'
+                },
+                topRight: {
+                    value: node.topRightRadius || 0,
+                    unit: 'pixel',
+                    type: 'number'
+                },
+                bottomRight: {
+                    value: node.bottomRightRadius || 0,
+                    unit: 'pixel',
+                    type: 'number'
+                },
+                bottomLeft: {
+                    value: node.bottomLeftRadius || 0,
+                    unit: 'pixel',
+                    type: 'number'
                 }
-                return {
-                    topLeft: {
-                        value: node.cornerRadius,
-                        unit: 'pixel',
-                        type: 'number'
-                    },
-                    topRight: {
-                        value: node.cornerRadius,
-                        unit: 'pixel',
-                        type: 'number'
-                    },
-                    bottomRight: {
-                        value: node.cornerRadius,
-                        unit: 'pixel',
-                        type: 'number'
-                    },
-                    bottomLeft: {
-                        value: node.cornerRadius,
-                        unit: 'pixel',
-                        type: 'number'
-                    }
-                };
-            };
+            });
             // return as object
             return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
                 name: node.name,
                 // @ts-ignore
                 description: node.description || null,
-                values: {
+                category: 'radius',
+                values: Object.assign(Object.assign({}, (typeof node.cornerRadius === "number" && {
                     radius: {
-                        value: (typeof node.cornerRadius === 'number' ? node.cornerRadius : 'mixed'),
+                        value: node.cornerRadius,
                         unit: 'pixel',
                         type: 'number'
-                    },
-                    radiusType: {
+                    }
+                })), { radiusType: {
                         value: getRadiusType(node.cornerRadius),
                         type: 'string'
-                    },
-                    radii: getRadii(node),
-                    smoothing: {
+                    }, radii: getRadii(node), smoothing: {
                         value: roundWithDecimals_4.default(node.cornerSmoothing),
                         comment: "Percent as decimal from 0.0 - 1.0",
                         type: 'number'
-                    }
-                }
+                    } })
             }));
         };
         exports.default = extractRadii;
-    });
-    define("src/utilities/getTokenFrames", ["require", "exports"], function (require, exports) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        // the node types that can be used for tokens
-        const tokenNodeTypes = [
-            'COMPONENT',
-            'RECTANGLE'
-        ];
-        // the name that token frames have
-        const tokenFrameName = '_tokens';
-        // check if a frame is a _token frame
-        const isTokenFrame = (node) => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, tokenFrameName.length) === tokenFrameName;
-        // return only nodes that are frames
-        const getFrameNodes = (nodes) => nodes.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
-        /**
-         * check if a node is a valid token node type
-         * Currently: 'COMPONENT' or 'RECTANGLE'
-         * @param SceneNode node
-         */
-        const isTokenNode = (node) => tokenNodeTypes.includes(node.type);
-        /**
-         * Returns all frames from the file that have a name that starts with _tokens or the user defined token specifier
-         *
-         * @param pages PageNodes
-         */
-        const getTokenFrames = (pages) => {
-            // get token frames
-            const tokenFrames = getFrameNodes(pages);
-            // get all children of token frames
-            return tokenFrames.map(frame => frame
-                // check if children are of valide types
-                .findChildren(node => isTokenNode(node)))
-                // merges all children into one array
-                .reduce((flatten, arr) => [...flatten, ...arr], []);
-        };
-        exports.default = getTokenFrames;
     });
     define("src/utilities/deepMerge", ["require", "exports"], function (require, exports) {
         "use strict";
@@ -543,24 +537,6 @@
         };
         exports.default = groupByName;
     });
-    define("src/utilities/convertSizeUnits", ["require", "exports"], function (require, exports) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        const convertSizeUnits = (valueObject) => {
-            // check if valueObject is a number
-            if (typeof valueObject === 'number') {
-                return Math.round((valueObject + Number.EPSILON) * 100) / 100;
-            }
-            // otherwise if unit is defined
-            if (typeof valueObject === 'object' && valueObject.unit !== undefined) {
-                if (valueObject.unit === "PERCENT") {
-                    return (Math.round((valueObject.value + Number.EPSILON) * 100) / 100) + '%';
-                }
-                return Math.round((valueObject.value + Number.EPSILON) * 100) / 100;
-            }
-        };
-        exports.default = convertSizeUnits;
-    });
     define("src/transformer/amazonStyleDictionaryTransformer", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -577,6 +553,32 @@
         const colorTransformer = propertyGroupValues => {
             return amazonFormat(propertyGroupValues['fill']);
         };
+        const gradientTransformer = propertyGroupValues => {
+            const transformedProperties = {
+                gradientType: amazonFormat(propertyGroupValues.gradientType),
+                opacity: amazonFormat(propertyGroupValues.opacity),
+            };
+            // prepare stops
+            propertyGroupValues.stops.forEach((stop, index) => {
+                transformedProperties[`stop-${index + 1}-position`] = amazonFormat(stop.position);
+                transformedProperties[`stop-${index + 1}-color`] = amazonFormat(stop.color);
+            });
+            return transformedProperties;
+        };
+        const radiusTransformer = propertyGroupValues => {
+            const transformedProperties = {};
+            // prepare radii
+            Object.entries(propertyGroupValues.radii).forEach(entry => {
+                const [key, value] = entry;
+                transformedProperties[`radius-${key}`] = amazonFormat(value);
+            });
+            delete propertyGroupValues.radii;
+            // transform rest of properties
+            Object.keys(propertyGroupValues).forEach(function (key) {
+                transformedProperties[key] = amazonFormat(propertyGroupValues[key]);
+            });
+            return transformedProperties;
+        };
         const arrayTransformer = propertyGroupValueGroups => {
             if (propertyGroupValueGroups.length === 1) {
                 return defaultTransformer(propertyGroupValueGroups[0]);
@@ -587,8 +589,10 @@
             default: defaultTransformer,
             size: sizeTransformer,
             color: colorTransformer,
+            gradient: gradientTransformer,
             grid: arrayTransformer,
-            effect: arrayTransformer
+            effect: arrayTransformer,
+            radius: radiusTransformer
         };
         const amazonConvertValue = (value, type) => {
             if (value === undefined || value === null) {
@@ -657,6 +661,43 @@
             sendJsonToUi(groupedTokens);
         };
         exports.default = tokenExport;
+    });
+    define("src/utilities/getTokenFrames", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        // the node types that can be used for tokens
+        const tokenNodeTypes = [
+            'COMPONENT',
+            'RECTANGLE'
+        ];
+        // the name that token frames have
+        const tokenFrameName = '_tokens';
+        // check if a frame is a _token frame
+        const isTokenFrame = (node) => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, tokenFrameName.length) === tokenFrameName;
+        // return only nodes that are frames
+        const getFrameNodes = (nodes) => nodes.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
+        /**
+         * check if a node is a valid token node type
+         * Currently: 'COMPONENT' or 'RECTANGLE'
+         * @param SceneNode node
+         */
+        const isTokenNode = (node) => tokenNodeTypes.includes(node.type);
+        /**
+         * Returns all frames from the file that have a name that starts with _tokens or the user defined token specifier
+         *
+         * @param pages PageNodes
+         */
+        const getTokenFrames = (pages) => {
+            // get token frames
+            const tokenFrames = getFrameNodes(pages);
+            // get all children of token frames
+            return tokenFrames.map(frame => frame
+                // check if children are of valide types
+                .findChildren(node => isTokenNode(node)))
+                // merges all children into one array
+                .reduce((flatten, arr) => [...flatten, ...arr], []);
+        };
+        exports.default = getTokenFrames;
     });
     define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/getTokenFrames"], function (require, exports, getTokenFrames_1) {
         "use strict";
