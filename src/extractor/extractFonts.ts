@@ -1,5 +1,5 @@
 import extractorInterface from '../../types/extractorInterface'
-import { fontPropertyInterface, lineHeightUnitType, propertyType } from '../../types/propertyObject'
+import { fontPropertyInterface, propertyType } from '../../types/propertyObject'
 import { UnitTypePixel, TextCase, TextDecoration, NumericUnitTypes } from '../../types/valueTypes'
 import getTokenStyles from '../utilities/getTokenStyles'
 import roundWithDecimals from '../utilities/roundWithDecimals'
@@ -48,7 +48,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
       lineHeight: {
         // @ts-ignore
         value: roundWithDecimals(node.lineHeight.value) || 'normal',
-        unit: node.lineHeight.unit.toLowerCase() as lineHeightUnitType,
+        unit: node.lineHeight.unit.toLowerCase(),
         type: (node.lineHeight.hasOwnProperty('value') ? 'number' : 'string') as propertyType
       },
       paragraphIndent: {

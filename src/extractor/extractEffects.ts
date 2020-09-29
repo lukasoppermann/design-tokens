@@ -1,6 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
 import { effectPropertyInterface, propertyType } from '../../types/propertyObject'
-import { UnitTypePixel } from '../../types/valueTypes'
+import { EffectType, UnitTypePixel } from '../../types/valueTypes'
 import { roundRgba } from '../utilities/convertColor'
 import getTokenStyles from '../utilities/getTokenStyles'
 
@@ -13,7 +13,7 @@ const effectType = {
 
 const blurValues = (effect) => ({
   type: {
-    value: effectType[effect.type],
+    value: effectType[effect.type] as EffectType,
     type: 'string' as propertyType
   },
   radius: {
@@ -25,7 +25,7 @@ const blurValues = (effect) => ({
 
 const shadowValues = effect => ({
   type: {
-    value: effectType[effect.type],
+    value: effectType[effect.type] as EffectType,
     type: 'string' as propertyType
   },
   radius: {

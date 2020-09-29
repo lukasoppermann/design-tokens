@@ -68,11 +68,13 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
     // @ts-ignore
     description: node.description || null,
     values: {
-      radius: {
-        value: (typeof node.cornerRadius === 'number' ? node.cornerRadius : 'mixed'),
-        unit: 'pixel' as UnitTypePixel,
-        type: 'number' as propertyType
-      },
+      ...(typeof node.cornerRadius === "number" && {
+        radius: {
+          value: node.cornerRadius,
+          unit: 'pixel' as UnitTypePixel,
+          type: 'number' as propertyType
+        }
+      }),
       radiusType: {
         value: getRadiusType(node.cornerRadius),
         type: 'string' as propertyType

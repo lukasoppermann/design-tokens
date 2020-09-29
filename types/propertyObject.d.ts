@@ -1,4 +1,4 @@
-import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel } from './valueTypes'
+import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType } from './valueTypes'
 
 export type propertyObject = {
   name: string,
@@ -16,8 +16,6 @@ export type numericPropertyType = {
   unit?: NumericUnitTypes,
   type: propertyType
 }
-
-export type lineHeightUnitType = "pixel" | "percent" | "auto"
 
 export type fontPropertyInterface = propertyObject & {
   values: {
@@ -126,9 +124,10 @@ export type borderPropertyInterface = propertyObject & {
 
 export type radiusPropertyInterface = propertyObject & {
   values: {
-    radius: {
-      value: number | 'mixed',
-      unit: string
+    radius?: {
+      value: number,
+      unit: UnitTypePixel,
+      type: propertyType
     },
     radiusType: {
       value: 'single' | 'mixed',
@@ -184,11 +183,11 @@ export type gridPropertyInterface = propertyObject & {
     }
   }[]
 }
-export type effectType = 'dropShadow' | 'innerShadow' | 'layerBlur' | 'backgroundBlur'
+
 export type effectPropertyInterface = propertyObject & {
   values: {
     type: {
-      value: effectType
+      value: EffectType
     },
     radius: {
       value: number,
