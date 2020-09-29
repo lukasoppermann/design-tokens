@@ -1,6 +1,5 @@
-import { propertyObject, convertedPropertyObject, propertyType } from "../../types/propertyObject"
+import { propertyObject, propertyType } from "../../types/propertyObject"
 import { convertRgbaObjectToString } from '../utilities/convertColor'
-import convertSizeUnits from "../utilities/convertSizeUnits"
 
 type amazonPropertyObject = {
   value: string | number,

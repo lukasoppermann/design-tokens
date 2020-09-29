@@ -1,5 +1,5 @@
-import { convertedPropertyObject, propertyObject } from './propertyObject'
+import { propertyObject } from './propertyObject'
 
-type extractorInterface = (tokenNodes) => (convertedPropertyObject | propertyObject)[];
+type extractorInterface = (tokenNodes) => propertyObject[];
 
 export default extractorInterface

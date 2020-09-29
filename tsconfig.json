@@ -10,5 +10,8 @@
     "sourceMap": false,
   },
   "include": ["src/**/*"],
+  "exclude": [
+    "src/**/_*"
+  ],
   "files": ["src/index.ts"]
 }

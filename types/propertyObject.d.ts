@@ -7,11 +7,6 @@ export type propertyObject = {
   }
 }
 
-export type convertedPropertyObject = {
-  name: string,
-  [key: string]: any
-}
-
 export type propertyType = "number" | "color" | "string"
 export type numericUnits = "degree" | "pixel" | "percent"
 

@@ -5,10 +5,9 @@ import extractEffects from './extractor/extractEffects'
 import extractSizes from './extractor/extractSizes'
 import extractBorders from './extractor/extractBorders'
 import extractRadii from './extractor/extractRadii'
-import getTokenFrames from './utilities/getTokenFrames'
 import groupByName from './utilities/groupByName'
 import amazonStyleDictionaryTransformer from './transformer/amazonStyleDictionaryTransformer'
-import { convertedPropertyObject } from '../types/propertyObject'
+import { propertyObject } from '../types/propertyObject'
 import { figmaDataType } from '../types/figmaDataType'
 
 const transformer = {
@@ -49,7 +48,7 @@ const tokenExport = (figmaData: figmaDataType, format: string = 'amazon') => {
   // get token array
   const tokenArray = exportRawTokenArray(figmaData)
   // format tokens
-  const formattedTokens = tokenArray.map((token: convertedPropertyObject )=> transformer[format](token))
+  const formattedTokens = tokenArray.map((token: propertyObject )=> transformer[format](token))
   // group tokens
   const groupedTokens = groupByName(formattedTokens)
   // write tokens to json file
