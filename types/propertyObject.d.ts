@@ -83,12 +83,7 @@ export type gradientValuesType = {
 }
 
 export type colorPropertyInterface = propertyObject & {
-  values: {
-    fill: {
-      value: colorRgbaType,
-      type: propertyType
-    }
-  }
+  values: fillValuesType | gradientValuesType
 }
 
 export type sizePropertyInterface = propertyObject & {

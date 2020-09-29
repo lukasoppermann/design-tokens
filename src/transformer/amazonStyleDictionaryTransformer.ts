@@ -31,15 +31,17 @@ const colorTransformer = propertyGroupValues => {
   return amazonFormat(propertyGroupValues['fill'])
 }
 const gradientTransformer = propertyGroupValues => {
-  console.log(propertyGroupValues)
-  return {
+  const transformedProperties = {
     gradientType: amazonFormat(propertyGroupValues.gradientType),
     opacity: amazonFormat(propertyGroupValues.opacity),
-    stops: propertyGroupValues.stops.map(stop => ({
-      position: amazonFormat(stop.position),
-      color: amazonFormat(stop.color)
-    }))
   }
+  // prepare stops
+  propertyGroupValues.stops.forEach((stop, index) => {
+    transformedProperties[`stop-${index + 1}-position`] = amazonFormat(stop.position)
+    transformedProperties[`stop-${index + 1}-color`] = amazonFormat(stop.color)
+  })
+
+  return transformedProperties
 }
 
 const arrayTransformer = propertyGroupValueGroups => {
