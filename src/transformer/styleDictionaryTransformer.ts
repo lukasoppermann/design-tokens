@@ -20,6 +20,8 @@ const defaultTransformer = propertyGroupValues => {
       transformedProperties[key] = defaultTransformer(propertyGroupValues[key])
     }
   })
+  // if only one property is in object (e.g. only fill for color)
+  // return teh value of this property directly (e.g. color-blue: #0000AA instead of color-blue-fill: #0000AA)
   if (Object.keys(transformedProperties).length === 1) {
     return Object.values(transformedProperties)[0]
   }
@@ -30,7 +32,6 @@ const defaultTransformer = propertyGroupValues => {
 const sizeTransformer = propertyGroupValues => {
   return styleDictionaryFormat(propertyGroupValues['width'])
 }
-
 
 const categoryTransformer = {
   default: defaultTransformer,

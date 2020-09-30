@@ -61,8 +61,8 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyle[]): colorPrope
     name: node.name,
     // id: node.id,
     description: node.description || null,
-    category: 'fill', //paintCategory(node.paints[0]),
-    values: node.paints.map(paint => extractFills(paint)) // extractFill(node.paints[0])
+    category: 'fill',
+    values: node.paints.map(paint => extractFills(paint))
   }))
 
 }
