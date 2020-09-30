@@ -18,7 +18,12 @@ type amazonPropertyGroup = {
 const defaultTransformer = propertyGroupValues => {
   const transformedProperties = {}
   Object.keys(propertyGroupValues).forEach(function (key) {
-    transformedProperties[key] = amazonFormat(propertyGroupValues[key])
+    if (propertyGroupValues[key].hasOwnProperty('value')) {
+      transformedProperties[key] = amazonFormat(propertyGroupValues[key])
+    }
+    else {
+      transformedProperties[key] = defaultTransformer(propertyGroupValues[key])
+    }
   })
   return transformedProperties
 }
@@ -67,6 +72,7 @@ const arrayTransformer = propertyGroupValueGroups => {
   }
   return propertyGroupValueGroups.map(propertyGroupValues => defaultTransformer(propertyGroupValues))
 }
+
 
 const categoryTransformer = {
   default: defaultTransformer,
