@@ -11,7 +11,8 @@
     "start": "npm run build-watch",
     "build": "tsc-bundle tsconfig.json",
     "build-watch": "npm run test && npm run build -- --watch",
-    "test": "tsc src/index.ts --target es6 --noEmit --typeRoots \"./node_modules/@types,./node_modules/@figma\"",
+    "test": "npm run test:unit",
+    "test:unit": "jest tests/unit",
     "amazn": "style-dictionary build --config ./tests/amazn-style-dictionary/config.json"
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
@@ -19,12 +20,39 @@
   "devDependencies": {
     "@figma/plugin-typings": "^1.16.1",
     "install": "^0.13.0",
+    "jest": "^26.4.2",
+    "jest-preset-typescript": "^1.2.0",
     "npm": "^6.14.8",
     "style-dictionary": "^2.10.1",
+    "ts-jest": "^26.4.1",
     "typescript-bundle": "^1.0.16"
   },
   "dependencies": {
     "@types/node": "^14.11.2",
     "typescript": "^4.0.3"
+  },
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "verbose": true,
+    "testTimeout": 15000,
+    "collectCoverage": false,
+    "coverageDirectory": "./tests/unit/coverage",
+    "collectCoverageFrom": [
+      "./src/**/*.ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testMatch": [
+      "**/tests/integration/!(skip.)*.test.[jt]s?(x)",
+      "**/tests/unit/!(skip.)*.test.[jt]s?(x)"
+    ]
   }
 }
