@@ -3,6 +3,7 @@ import { colorPropertyInterface, fillValuesType, gradientValuesType } from '../.
 import { GradientType, PropertyType } from '../../types/valueTypes'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import getTokenStyles from '../utilities/getTokenStyles'
+import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const gradientType = {
   "GRADIENT_LINEAR": "linear",
@@ -10,17 +11,7 @@ const gradientType = {
   "GRADIENT_ANGULAR": "angular",
   "GRADIENT_DIAMOND": "diamond"
 }
-
-const paintCategory = (paint: Paint) => {
-  if (paint.type === "SOLID") {
-    return "color"
-  }
-  if (["GRADIENT_LINEAR", "GRADIENT_RADIAL", "GRADIENT_ANGULAR", "GRADIENT_DIAMOND"].includes(paint.type)) {
-    return "gradient"
-  }
-}
-
-const extractFill = (paint): fillValuesType | gradientValuesType => {
+const extractFills = (paint): fillValuesType | gradientValuesType => {
   if (paint.type === "SOLID") {
     return {
       fill: {
@@ -37,7 +28,7 @@ const extractFill = (paint): fillValuesType | gradientValuesType => {
       },
       stops: paint.gradientStops.map(stop => ({
         position: {
-          value: stop.position,
+          value: roundWithDecimals(stop.position),
           type: "number" as PropertyType
         },
         color: {
@@ -46,7 +37,7 @@ const extractFill = (paint): fillValuesType | gradientValuesType => {
         }
       })),
       opacity: {
-        value: paint.opacity,
+        value: roundWithDecimals(paint.opacity),
         type: "number" as PropertyType
       }
     }
@@ -70,8 +61,8 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyle[]): colorPrope
     name: node.name,
     // id: node.id,
     description: node.description || null,
-    category: paintCategory(node.paints[0]),
-    values: extractFill(node.paints[0])
+    category: 'fill',
+    values: node.paints.map(paint => extractFills(paint))
   }))
 
 }

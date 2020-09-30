@@ -20,6 +20,11 @@ const defaultTransformer = propertyGroupValues => {
       transformedProperties[key] = defaultTransformer(propertyGroupValues[key])
     }
   })
+  // if only one property is in object (e.g. only fill for color)
+  // return teh value of this property directly (e.g. color-blue: #0000AA instead of color-blue-fill: #0000AA)
+  if (Object.keys(transformedProperties).length === 1) {
+    return Object.values(transformedProperties)[0]
+  }
   // return transformed properties
   return transformedProperties
 }
@@ -28,19 +33,13 @@ const sizeTransformer = propertyGroupValues => {
   return styleDictionaryFormat(propertyGroupValues['width'])
 }
 
-const colorTransformer = propertyGroupValues => {
-  return styleDictionaryFormat(propertyGroupValues['fill'])
-}
-
-
 const categoryTransformer = {
   default: defaultTransformer,
   size: sizeTransformer,
-  color: colorTransformer,
-  gradient: defaultTransformer,
   grid: defaultTransformer,
   effect: defaultTransformer,
-  radius: defaultTransformer
+  radius: defaultTransformer,
+  fill: defaultTransformer
 }
 
 const styleDictionaryConvertValue = (value, type: string) => {
