@@ -9,6 +9,9 @@
         Object.defineProperty(exports, "__cjsModule", { value: true });
         Object.defineProperty(exports, "default", { value: (name) => resolve(name) });
     });
+    var __importDefault = (this && this.__importDefault) || function (mod) {
+        return (mod && mod.__esModule) ? mod : { "default": mod };
+    };
     define("types/valueTypes", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -34,15 +37,16 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         exports.convertRgbaObjectToString = exports.convertPaintToRgba = exports.roundRgba = void 0;
-        exports.roundRgba = (rgba) => ({
+        roundWithDecimals_1 = __importDefault(roundWithDecimals_1);
+        exports.roundRgba = (rgba, opacity) => ({
             r: roundWithDecimals_1.default(rgba.r),
             g: roundWithDecimals_1.default(rgba.g),
             b: roundWithDecimals_1.default(rgba.b),
-            a: roundWithDecimals_1.default(rgba.opacity || rgba.a || 1)
+            a: roundWithDecimals_1.default(opacity || rgba.a || 1)
         });
         exports.convertPaintToRgba = (paint) => {
             if (paint.type === 'SOLID' && paint.visible === true) {
-                return exports.roundRgba(paint.color);
+                return exports.roundRgba(paint.color, paint.opacity || null);
             }
             return null;
         };
@@ -63,6 +67,7 @@
     define("src/extractor/extractColors", ["require", "exports", "src/utilities/convertColor", "src/utilities/getTokenStyles"], function (require, exports, convertColor_1, getTokenStyles_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        getTokenStyles_1 = __importDefault(getTokenStyles_1);
         const gradientType = {
             "GRADIENT_LINEAR": "linear",
             "GRADIENT_RADIAL": "radial",
@@ -113,11 +118,13 @@
         const extractColors = (tokenNodes) => {
             // get all paint styles
             return getTokenStyles_1.default(tokenNodes)
-                // filter style
-                // remove with no fill
+                // remove images fills from tokens
+                .map(node => {
+                node.paints = node.paints.filter(paint => paint.type !== "IMAGE");
+                return node;
+            })
+                // remove tokens with no fill
                 .filter(node => node.paints.length > 0)
-                // remove image fills
-                .filter(node => node.paints[0].type !== "IMAGE")
                 // transform style
                 .map(node => ({
                 name: node.name,
@@ -132,6 +139,7 @@
     define("src/extractor/extractGrids", ["require", "exports", "src/utilities/getTokenStyles"], function (require, exports, getTokenStyles_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        getTokenStyles_2 = __importDefault(getTokenStyles_2);
         const gridValues = (grid) => ({
             pattern: {
                 value: grid.pattern.toLowerCase()
@@ -187,6 +195,8 @@
     define("src/extractor/extractFonts", ["require", "exports", "src/utilities/getTokenStyles", "src/utilities/roundWithDecimals"], function (require, exports, getTokenStyles_3, roundWithDecimals_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        getTokenStyles_3 = __importDefault(getTokenStyles_3);
+        roundWithDecimals_2 = __importDefault(roundWithDecimals_2);
         const textDecorations = {
             'NONE': 'none',
             'UNDERLINE': 'underline',
@@ -254,6 +264,7 @@
     define("src/extractor/extractEffects", ["require", "exports", "src/utilities/convertColor", "src/utilities/getTokenStyles"], function (require, exports, convertColor_2, getTokenStyles_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        getTokenStyles_4 = __importDefault(getTokenStyles_4);
         const effectType = {
             "LAYER_BLUR": 'layerBlur',
             "BACKGROUND_BLUR": 'backgroundBlur',
@@ -346,6 +357,7 @@
     define("src/extractor/extractBorders", ["require", "exports", "src/utilities/convertColor", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        roundWithDecimals_3 = __importDefault(roundWithDecimals_3);
         const strokeJoins = {
             'MITER': 'miter',
             'BEVEL': 'bevel',
@@ -411,6 +423,7 @@
     define("src/extractor/extractRadii", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        roundWithDecimals_4 = __importDefault(roundWithDecimals_4);
         const extractRadii = (tokenNodes) => {
             const nodeName = 'radii';
             // get the type of the corner radius
@@ -508,6 +521,7 @@
     define("src/utilities/groupByName", ["require", "exports", "src/utilities/deepMerge"], function (require, exports, deepMerge_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        deepMerge_1 = __importDefault(deepMerge_1);
         // create a nested object structure from the array (['style','colors','main','red'])
         const nestedObjectFromArray = (array, value) => {
             // reducer
@@ -537,64 +551,50 @@
         };
         exports.default = groupByName;
     });
-    define("src/transformer/amazonStyleDictionaryTransformer", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_4) {
+    define("types/styleDictionaryProperties", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+    });
+    define("src/transformer/styleDictionaryTransformer", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const defaultTransformer = propertyGroupValues => {
+            // turn array with only one item into normal object
+            if (Array.isArray(propertyGroupValues) && propertyGroupValues.length === 1) {
+                propertyGroupValues = propertyGroupValues[0];
+            }
+            // define object
             const transformedProperties = {};
+            // transform proeprties
             Object.keys(propertyGroupValues).forEach(function (key) {
-                transformedProperties[key] = amazonFormat(propertyGroupValues[key]);
+                // if this is the final level
+                if (propertyGroupValues[key].hasOwnProperty('value')) {
+                    transformedProperties[key] = styleDictionaryFormat(propertyGroupValues[key]);
+                }
+                // if there is more nesting
+                else {
+                    transformedProperties[key] = defaultTransformer(propertyGroupValues[key]);
+                }
             });
+            // return transformed properties
             return transformedProperties;
         };
         const sizeTransformer = propertyGroupValues => {
-            return amazonFormat(propertyGroupValues['width']);
+            return styleDictionaryFormat(propertyGroupValues['width']);
         };
         const colorTransformer = propertyGroupValues => {
-            return amazonFormat(propertyGroupValues['fill']);
-        };
-        const gradientTransformer = propertyGroupValues => {
-            const transformedProperties = {
-                gradientType: amazonFormat(propertyGroupValues.gradientType),
-                opacity: amazonFormat(propertyGroupValues.opacity),
-            };
-            // prepare stops
-            propertyGroupValues.stops.forEach((stop, index) => {
-                transformedProperties[`stop-${index + 1}-position`] = amazonFormat(stop.position);
-                transformedProperties[`stop-${index + 1}-color`] = amazonFormat(stop.color);
-            });
-            return transformedProperties;
-        };
-        const radiusTransformer = propertyGroupValues => {
-            const transformedProperties = {};
-            // prepare radii
-            Object.entries(propertyGroupValues.radii).forEach(entry => {
-                const [key, value] = entry;
-                transformedProperties[`radius-${key}`] = amazonFormat(value);
-            });
-            delete propertyGroupValues.radii;
-            // transform rest of properties
-            Object.keys(propertyGroupValues).forEach(function (key) {
-                transformedProperties[key] = amazonFormat(propertyGroupValues[key]);
-            });
-            return transformedProperties;
-        };
-        const arrayTransformer = propertyGroupValueGroups => {
-            if (propertyGroupValueGroups.length === 1) {
-                return defaultTransformer(propertyGroupValueGroups[0]);
-            }
-            return propertyGroupValueGroups.map(propertyGroupValues => defaultTransformer(propertyGroupValues));
+            return styleDictionaryFormat(propertyGroupValues['fill']);
         };
         const categoryTransformer = {
             default: defaultTransformer,
             size: sizeTransformer,
             color: colorTransformer,
-            gradient: gradientTransformer,
-            grid: arrayTransformer,
-            effect: arrayTransformer,
-            radius: radiusTransformer
+            gradient: defaultTransformer,
+            grid: defaultTransformer,
+            effect: defaultTransformer,
+            radius: defaultTransformer
         };
-        const amazonConvertValue = (value, type) => {
+        const styleDictionaryConvertValue = (value, type) => {
             if (value === undefined || value === null) {
                 return;
             }
@@ -603,24 +603,33 @@
             }
             return value;
         };
-        const amazonFormat = (property) => (Object.assign(Object.assign({ value: amazonConvertValue(property.value, property.type), type: property.type }, (property.description != undefined && { comment: property.description })), (property.unit != undefined && { unit: property.unit })));
-        const amazonStyleDictionaryTransformer = (propertyGroup) => {
+        const styleDictionaryFormat = (property) => (Object.assign(Object.assign({ value: styleDictionaryConvertValue(property.value, property.type), type: property.type }, (property.description != undefined && { comment: property.description })), (property.unit != undefined && { unit: property.unit })));
+        const styleDictionaryTransformer = (propertyGroup) => {
             // transform to amazon style Dictionary structure
             const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup.values);
             // return values
             return Object.assign(Object.assign({ name: propertyGroup.name, category: propertyGroup.category }, (propertyGroup.description != undefined && { comment: propertyGroup.description })), transformedProperties);
         };
-        exports.default = amazonStyleDictionaryTransformer;
+        exports.default = styleDictionaryTransformer;
     });
     define("types/figmaDataType", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
     });
-    define("src/exportTokens", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractSizes", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/amazonStyleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, groupByName_1, amazonStyleDictionaryTransformer_1) {
+    define("src/exportTokens", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractSizes", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/styleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, groupByName_1, styleDictionaryTransformer_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        extractColors_1 = __importDefault(extractColors_1);
+        extractGrids_1 = __importDefault(extractGrids_1);
+        extractFonts_1 = __importDefault(extractFonts_1);
+        extractEffects_1 = __importDefault(extractEffects_1);
+        extractSizes_1 = __importDefault(extractSizes_1);
+        extractBorders_1 = __importDefault(extractBorders_1);
+        extractRadii_1 = __importDefault(extractRadii_1);
+        groupByName_1 = __importDefault(groupByName_1);
+        styleDictionaryTransformer_1 = __importDefault(styleDictionaryTransformer_1);
         const transformer = {
-            amazon: amazonStyleDictionaryTransformer_1.default
+            styleDictionary: styleDictionaryTransformer_1.default
         };
         /**
          * Sending json string to ui
@@ -650,7 +659,7 @@
                 ...extractEffects_1.default(figmaData.effectStyles)
             ];
         };
-        const tokenExport = (figmaData, format = 'amazon') => {
+        const tokenExport = (figmaData, format = 'styleDictionary') => {
             // get token array
             const tokenArray = exportRawTokenArray(figmaData);
             // format tokens
@@ -702,6 +711,7 @@
     define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/getTokenFrames"], function (require, exports, getTokenFrames_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        getTokenFrames_1 = __importDefault(getTokenFrames_1);
         const buildFigmaData = (figma) => {
             // use spread operator because the original is readOnly
             const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
@@ -719,6 +729,8 @@
     define("src/index", ["require", "exports", "src/exportTokens", "src/utilities/buildFigmaData"], function (require, exports, exportTokens_1, buildFigmaData_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        exportTokens_1 = __importDefault(exportTokens_1);
+        buildFigmaData_1 = __importDefault(buildFigmaData_1);
         // register the UI 
         // by default it is hidden
         figma.showUI(__html__, { visible: false });

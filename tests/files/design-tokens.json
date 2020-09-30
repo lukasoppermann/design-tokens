@@ -256,29 +256,31 @@
   "radii": {
     "mixed": {
       "category": "radius",
-      "radius-topLeft": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-topRight": {
-        "value": 3,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-bottomRight": {
-        "value": 4,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-bottomLeft": {
-        "value": 6,
-        "type": "number",
-        "unit": "pixel"
-      },
       "radiusType": {
         "value": "mixed",
         "type": "string"
+      },
+      "radii": {
+        "topLeft": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "topRight": {
+          "value": 3,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "bottomRight": {
+          "value": 4,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "bottomLeft": {
+          "value": 6,
+          "type": "number",
+          "unit": "pixel"
+        }
       },
       "smoothing": {
         "value": 0.62,
@@ -287,26 +289,6 @@
     },
     "all 5px": {
       "category": "radius",
-      "radius-topLeft": {
-        "value": 5,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-topRight": {
-        "value": 5,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-bottomRight": {
-        "value": 5,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-bottomLeft": {
-        "value": 5,
-        "type": "number",
-        "unit": "pixel"
-      },
       "radius": {
         "value": 5,
         "type": "number",
@@ -315,6 +297,28 @@
       "radiusType": {
         "value": "single",
         "type": "string"
+      },
+      "radii": {
+        "topLeft": {
+          "value": 5,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "topRight": {
+          "value": 5,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "bottomRight": {
+          "value": 5,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "bottomLeft": {
+          "value": 5,
+          "type": "number",
+          "unit": "pixel"
+        }
       },
       "smoothing": {
         "value": 0.62,
@@ -323,26 +327,6 @@
     },
     "all 3px": {
       "category": "radius",
-      "radius-topLeft": {
-        "value": 3,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-topRight": {
-        "value": 3,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-bottomRight": {
-        "value": 3,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "radius-bottomLeft": {
-        "value": 3,
-        "type": "number",
-        "unit": "pixel"
-      },
       "radius": {
         "value": 3,
         "type": "number",
@@ -351,6 +335,28 @@
       "radiusType": {
         "value": "single",
         "type": "string"
+      },
+      "radii": {
+        "topLeft": {
+          "value": 3,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "topRight": {
+          "value": 3,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "bottomRight": {
+          "value": 3,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "bottomLeft": {
+          "value": 3,
+          "type": "number",
+          "unit": "pixel"
+        }
       },
       "smoothing": {
         "value": 0,
@@ -396,30 +402,91 @@
         "value": "linear",
         "type": "string"
       },
+      "stops": {
+        "0": {
+          "position": {
+            "value": 0,
+            "type": "number"
+          },
+          "color": {
+            "value": "rgba(1, 0.72, 0, 1)",
+            "type": "color"
+          }
+        },
+        "1": {
+          "position": {
+            "value": 1,
+            "type": "number"
+          },
+          "color": {
+            "value": "rgba(1, 0.72, 0, 1)",
+            "type": "color"
+          }
+        }
+      },
       "opacity": {
         "value": 1,
         "type": "number"
-      },
-      "stop-1-position": {
-        "value": 0,
-        "type": "number"
-      },
-      "stop-1-color": {
-        "value": "rgba(1, 0.72, 0, 1)",
-        "type": "color"
-      },
-      "stop-2-position": {
-        "value": 1,
-        "type": "number"
-      },
-      "stop-2-color": {
-        "value": "rgba(1, 0.72, 0, 1)",
-        "type": "color"
+      }
+    },
+    "radial": {
+      "multi-colour": {
+        "category": "gradient",
+        "gradientType": {
+          "value": "radial",
+          "type": "string"
+        },
+        "stops": {
+          "0": {
+            "position": {
+              "value": 0,
+              "type": "number"
+            },
+            "color": {
+              "value": "rgba(1, 0.72, 0, 1)",
+              "type": "color"
+            }
+          },
+          "1": {
+            "position": {
+              "value": 0.34375,
+              "type": "number"
+            },
+            "color": {
+              "value": "rgba(0, 1, 0.1, 1)",
+              "type": "color"
+            }
+          },
+          "2": {
+            "position": {
+              "value": 0.7708333134651184,
+              "type": "number"
+            },
+            "color": {
+              "value": "rgba(0.56, 0, 1, 1)",
+              "type": "color"
+            }
+          },
+          "3": {
+            "position": {
+              "value": 1,
+              "type": "number"
+            },
+            "color": {
+              "value": "rgba(1, 0, 0, 1)",
+              "type": "color"
+            }
+          }
+        },
+        "opacity": {
+          "value": 1,
+          "type": "number"
+        }
       }
     }
   },
   "grid": {
-    "base": {
+    "multiple": {
       "0": {
         "pattern": {
           "value": "columns",
@@ -568,7 +635,7 @@
       "category": "grid",
       "comment": "A base grid"
     },
-    "centered": {
+    "single": {
       "category": "grid",
       "pattern": {
         "value": "columns",
@@ -592,47 +659,11 @@
         "value": 5,
         "type": "number"
       }
-    }
-  },
-  "$_grid": {
-    "weird grid with comment": {
-      "category": "grid",
-      "comment": "COMMENT to describe weird grid",
-      "pattern": {
-        "value": "columns",
-        "type": "string"
-      },
-      "sectionSize": {
-        "value": 21,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "gutterSize": {
-        "value": 13,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "alignment": {
-        "value": "max",
-        "type": "string"
-      },
-      "count": {
-        "value": 5,
-        "type": "number"
-      },
-      "offset": {
-        "value": 23,
-        "type": "number",
-        "unit": "pixel"
+    },
+    "error": {
+      "no grid": {
+        "category": "grid"
       }
-    }
-  },
-  "count auto": {
-    "category": "grid"
-  },
-  "error": {
-    "empty grid": {
-      "category": "grid"
     }
   },
   "body": {
@@ -682,7 +713,7 @@
     }
   },
   "effect": {
-    "shadow": {
+    "drop shadow (single)": {
       "category": "effect",
       "type": {
         "value": "dropShadow",
@@ -697,12 +728,122 @@
         "value": "rgba(0, 0, 0, 0.25)",
         "type": "color"
       },
-      "offset": {},
+      "offset": {
+        "x": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "y": {
+          "value": 4,
+          "type": "number",
+          "unit": "pixel"
+        }
+      },
       "spread": {
         "value": 0,
         "type": "number",
         "unit": "pixel"
       }
+    },
+    "inner shadow (multiple)": {
+      "0": {
+        "type": {
+          "value": "innerShadow",
+          "type": "string"
+        },
+        "radius": {
+          "value": 4,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "color": {
+          "value": "rgba(0, 0, 0, 0.25)",
+          "type": "color"
+        },
+        "offset": {
+          "x": {
+            "value": 0,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "y": {
+            "value": 4,
+            "type": "number",
+            "unit": "pixel"
+          }
+        },
+        "spread": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        }
+      },
+      "1": {
+        "type": {
+          "value": "innerShadow",
+          "type": "string"
+        },
+        "radius": {
+          "value": 1,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "color": {
+          "value": "rgba(0, 0, 0, 1)",
+          "type": "color"
+        },
+        "offset": {
+          "x": {
+            "value": 10,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "y": {
+            "value": 100,
+            "type": "number",
+            "unit": "pixel"
+          }
+        },
+        "spread": {
+          "value": 0.5,
+          "type": "number",
+          "unit": "pixel"
+        }
+      },
+      "2": {
+        "type": {
+          "value": "innerShadow",
+          "type": "string"
+        },
+        "radius": {
+          "value": 3,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "color": {
+          "value": "rgba(0, 0, 0, 0.25)",
+          "type": "color"
+        },
+        "offset": {
+          "x": {
+            "value": -4,
+            "type": "number",
+            "unit": "pixel"
+          },
+          "y": {
+            "value": 2,
+            "type": "number",
+            "unit": "pixel"
+          }
+        },
+        "spread": {
+          "value": 11,
+          "type": "number",
+          "unit": "pixel"
+        }
+      },
+      "category": "effect"
     },
     "layer blur": {
       "category": "effect",
@@ -727,28 +868,6 @@
         "type": "number",
         "unit": "pixel"
       }
-    }
-  },
-  "inner shadow": {
-    "category": "effect",
-    "type": {
-      "value": "innerShadow",
-      "type": "string"
-    },
-    "radius": {
-      "value": 4,
-      "type": "number",
-      "unit": "pixel"
-    },
-    "color": {
-      "value": "rgba(0, 0, 0, 0.25)",
-      "type": "color"
-    },
-    "offset": {},
-    "spread": {
-      "value": 0,
-      "type": "number",
-      "unit": "pixel"
     }
   }
 }

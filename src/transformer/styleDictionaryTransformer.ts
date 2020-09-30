@@ -3,15 +3,24 @@ import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from "../
 import { convertRgbaObjectToString } from '../utilities/convertColor'
 
 const defaultTransformer = propertyGroupValues => {
+  // turn array with only one item into normal object
+  if (Array.isArray(propertyGroupValues) && propertyGroupValues.length === 1) {
+    propertyGroupValues = propertyGroupValues[0]
+  }
+  // define object
   const transformedProperties = {}
+  // transform proeprties
   Object.keys(propertyGroupValues).forEach(function (key) {
+    // if this is the final level
     if (propertyGroupValues[key].hasOwnProperty('value')) {
       transformedProperties[key] = styleDictionaryFormat(propertyGroupValues[key])
     }
+    // if there is more nesting
     else {
       transformedProperties[key] = defaultTransformer(propertyGroupValues[key])
     }
   })
+  // return transformed properties
   return transformedProperties
 }
 
@@ -23,21 +32,14 @@ const colorTransformer = propertyGroupValues => {
   return styleDictionaryFormat(propertyGroupValues['fill'])
 }
 
-const arrayTransformer = propertyGroupValueGroups => {
-  if (propertyGroupValueGroups.length === 1) {
-    return defaultTransformer(propertyGroupValueGroups[0])
-  }
-  return propertyGroupValueGroups.map(propertyGroupValues => defaultTransformer(propertyGroupValues))
-}
-
 
 const categoryTransformer = {
   default: defaultTransformer,
   size: sizeTransformer,
   color: colorTransformer,
   gradient: defaultTransformer,
-  grid: arrayTransformer,
-  effect: arrayTransformer,
+  grid: defaultTransformer,
+  effect: defaultTransformer,
   radius: defaultTransformer
 }
 
