@@ -40,7 +40,8 @@ const categoryTransformer = {
   gradient: defaultTransformer,
   grid: defaultTransformer,
   effect: defaultTransformer,
-  radius: defaultTransformer
+  radius: defaultTransformer,
+  fill: defaultTransformer
 }
 
 const styleDictionaryConvertValue = (value, type: string) => {
