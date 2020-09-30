@@ -36,36 +36,6 @@ const colorTransformer = propertyGroupValues => {
   return amazonFormat(propertyGroupValues['fill'])
 }
 
-const gradientTransformer = propertyGroupValues => {
-  const transformedProperties = {
-    gradientType: amazonFormat(propertyGroupValues.gradientType),
-    opacity: amazonFormat(propertyGroupValues.opacity),
-  }
-  // prepare stops
-  propertyGroupValues.stops.forEach((stop, index) => {
-    transformedProperties[`stop-${index + 1}-position`] = amazonFormat(stop.position)
-    transformedProperties[`stop-${index + 1}-color`] = amazonFormat(stop.color)
-  })
-
-  return transformedProperties
-}
-
-const radiusTransformer = propertyGroupValues => {
-  const transformedProperties = {}
-  // prepare radii
-  Object.entries(propertyGroupValues.radii).forEach(entry => {
-    const [key, value] = entry
-    transformedProperties[`radius-${key}`] = amazonFormat(value)
-  });
-  delete propertyGroupValues.radii
-  // transform rest of properties
-  Object.keys(propertyGroupValues).forEach(function (key) {
-    transformedProperties[key] = amazonFormat(propertyGroupValues[key])
-  })
-
-  return transformedProperties
-}
-
 const arrayTransformer = propertyGroupValueGroups => {
   if (propertyGroupValueGroups.length === 1) {
     return defaultTransformer(propertyGroupValueGroups[0])
@@ -78,10 +48,10 @@ const categoryTransformer = {
   default: defaultTransformer,
   size: sizeTransformer,
   color: colorTransformer,
-  gradient: gradientTransformer,
+  gradient: defaultTransformer,
   grid: arrayTransformer,
   effect: arrayTransformer,
-  radius: radiusTransformer
+  radius: defaultTransformer
 }
 
 const amazonConvertValue = (value, type: string) => {
