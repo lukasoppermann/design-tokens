@@ -1,7 +1,7 @@
 import extractorInterface from "../../types/extractorInterface"
-import { propertyType, radiusPropertyInterface } from '../../types/propertyObject'
+import { radiusPropertyInterface } from '../../types/propertyObject'
 import { customTokenNodes } from '../../types/tokenNodeTypes'
-import { UnitTypePixel } from '../../types/valueTypes'
+import { UnitTypePixel, PropertyType } from '../../types/valueTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiusPropertyInterface[] => {
@@ -18,22 +18,22 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
     topLeft: {
       value: node.topLeftRadius || 0,
       unit: 'pixel' as UnitTypePixel,
-      type: 'number' as propertyType
+      type: 'number' as PropertyType
     },
     topRight: {
       value: node.topRightRadius || 0,
       unit: 'pixel' as UnitTypePixel,
-      type: 'number' as propertyType
+      type: 'number' as PropertyType
     },
     bottomRight: {
       value: node.bottomRightRadius || 0,
       unit: 'pixel' as UnitTypePixel,
-      type: 'number' as propertyType
+      type: 'number' as PropertyType
     },
     bottomLeft: {
       value: node.bottomLeftRadius || 0,
       unit: 'pixel' as UnitTypePixel,
-      type: 'number' as propertyType
+      type: 'number' as PropertyType
     }
   })
   // return as object
@@ -47,18 +47,18 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
         radius: {
           value: node.cornerRadius,
           unit: 'pixel' as UnitTypePixel,
-          type: 'number' as propertyType
+          type: 'number' as PropertyType
         }
       }),
       radiusType: {
         value: getRadiusType(node.cornerRadius),
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       },
       radii: getRadii(node),
       smoothing: {
         value: roundWithDecimals(node.cornerSmoothing),
         comment: "Percent as decimal from 0.0 - 1.0",
-        type: 'number' as propertyType
+        type: 'number' as PropertyType
       }
     }
   }))  

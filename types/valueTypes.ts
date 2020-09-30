@@ -23,3 +23,5 @@ export type GridPattern = 'rows' | 'columns' | 'grid'
 export type GridAlignment = 'stretch' | 'center' | 'min' | 'max'
 
 export type EffectType = 'dropShadow' | 'innerShadow' | 'layerBlur' | 'backgroundBlur'
+
+export type PropertyType = "number" | "color" | "string"

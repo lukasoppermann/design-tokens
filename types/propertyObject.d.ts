@@ -1,4 +1,4 @@
-import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType } from './valueTypes'
+import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType } from './valueTypes'
 
 export type propertyObject = {
   name: string,
@@ -9,12 +9,10 @@ export type propertyObject = {
   }
 }
 
-export type propertyType = "number" | "color" | "string"
-
 export type numericPropertyType = {
   value: number,
   unit?: NumericUnitTypes,
-  type: propertyType
+  type: PropertyType
 }
 
 export type fontPropertyInterface = propertyObject & {
@@ -45,30 +43,30 @@ export type fontPropertyInterface = propertyObject & {
 export type fillValuesType = {
   fill: {
     value: ColorRgba,
-    type: propertyType
+    type: PropertyType
   }
 }
 
 export type gradientStopType = {
   color: {
     value: ColorRgba,
-    type: propertyType
+    type: PropertyType
   },
   position: {
     value: number,
-    type: propertyType
+    type: PropertyType
   }
 }
 
 export type gradientValuesType = {
   gradientType: {
     value: GradientType,
-    type: propertyType
+    type: PropertyType
   },
   stops: gradientStopType[],
   opacity: {
     value: number,
-    type: propertyType
+    type: PropertyType
   }
 }
 
@@ -81,12 +79,12 @@ export type sizePropertyInterface = propertyObject & {
     width: {
       value: number,
       unit: "pixel",
-      type: propertyType
+      type: PropertyType
     },
     height: {
       value: number,
       unit: "pixel",
-      type: propertyType
+      type: PropertyType
     }
   }
 }
@@ -117,7 +115,7 @@ export type borderPropertyInterface = propertyObject & {
     },
     stroke: {
       value: ColorRgba,
-      type: propertyType
+      type: PropertyType
     }
   }
 }
@@ -127,11 +125,11 @@ export type radiusPropertyInterface = propertyObject & {
     radius?: {
       value: number,
       unit: UnitTypePixel,
-      type: propertyType
+      type: PropertyType
     },
     radiusType: {
       value: 'single' | 'mixed',
-      type: propertyType
+      type: PropertyType
     },
     radii: {
       topLeft: {
@@ -195,7 +193,7 @@ export type effectPropertyInterface = propertyObject & {
     },
     color?: {
       value: ColorRgba,
-      type: propertyType
+      type: PropertyType
     },
     offset?: {
       x: {

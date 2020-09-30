@@ -1,6 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
-import { colorPropertyInterface, fillValuesType, gradientValuesType, propertyType } from '../../types/propertyObject'
-import { GradientType } from '../../types/valueTypes'
+import { colorPropertyInterface, fillValuesType, gradientValuesType } from '../../types/propertyObject'
+import { GradientType, PropertyType } from '../../types/valueTypes'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import getTokenStyles from '../utilities/getTokenStyles'
 
@@ -25,7 +25,7 @@ const extractFill = (paint): fillValuesType | gradientValuesType => {
     return {
       fill: {
         value: convertPaintToRgba(paint),
-        type: 'color' as propertyType
+        type: 'color' as PropertyType
       }
     }
   }
@@ -33,21 +33,21 @@ const extractFill = (paint): fillValuesType | gradientValuesType => {
     return {
       gradientType: {
         value: gradientType[paint.type] as GradientType,
-        type: "string" as propertyType
+        type: "string" as PropertyType
       },
       stops: paint.gradientStops.map(stop => ({
         position: {
           value: stop.position,
-          type: "number" as propertyType
+          type: "number" as PropertyType
         },
         color: {
           value: roundRgba(stop.color),
-          type: "color" as propertyType
+          type: "color" as PropertyType
         }
       })),
       opacity: {
         value: paint.opacity,
-        type: "number" as propertyType
+        type: "number" as PropertyType
       }
     }
   }

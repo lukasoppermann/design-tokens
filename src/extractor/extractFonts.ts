@@ -1,6 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
-import { fontPropertyInterface, propertyType } from '../../types/propertyObject'
-import { UnitTypePixel, TextCase, TextDecoration, NumericUnitTypes } from '../../types/valueTypes'
+import { fontPropertyInterface } from '../../types/propertyObject'
+import { UnitTypePixel, TextCase, TextDecoration, NumericUnitTypes, PropertyType } from '../../types/valueTypes'
 import getTokenStyles from '../utilities/getTokenStyles'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
@@ -26,44 +26,44 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
       fontSize: {
         value: node.fontSize, 
         unit: 'pixel' as UnitTypePixel,
-        type: 'number' as propertyType
+        type: 'number' as PropertyType
       },
       textDecoration: {
         value: textDecorations[node.textDecoration] as TextDecoration,
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       },
       fontFamily: {
         value: node.fontName.family,
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       },
       fontStyle: {
         value: node.fontName.style,
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       },
       letterSpacing: {
         value: roundWithDecimals(node.letterSpacing.value),
         unit: <NumericUnitTypes>node.letterSpacing.unit.toLowerCase(),
-        type: 'number' as propertyType
+        type: 'number' as PropertyType
       },
       lineHeight: {
         // @ts-ignore
         value: roundWithDecimals(node.lineHeight.value) || 'normal',
         unit: node.lineHeight.unit.toLowerCase(),
-        type: (node.lineHeight.hasOwnProperty('value') ? 'number' : 'string') as propertyType
+        type: (node.lineHeight.hasOwnProperty('value') ? 'number' : 'string') as PropertyType
       },
       paragraphIndent: {
         value: node.paragraphIndent,
         unit: 'pixel' as UnitTypePixel,
-        type: 'number' as propertyType
+        type: 'number' as PropertyType
       },
       paragraphSpacing: {
         value: node.paragraphSpacing,
         unit: 'pixel' as UnitTypePixel,
-        type: 'number' as propertyType
+        type: 'number' as PropertyType
       },
       textCase: {
         value: textCases[node.textCase] as TextCase,
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       }
     }
   }))

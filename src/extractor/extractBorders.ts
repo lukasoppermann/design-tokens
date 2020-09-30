@@ -1,6 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
-import { borderPropertyInterface, propertyType } from '../../types/propertyObject'
-import { StrokeCap, StrokeAlign } from '../../types/valueTypes'
+import { borderPropertyInterface } from '../../types/propertyObject'
+import { StrokeCap, StrokeAlign, PropertyType } from '../../types/valueTypes'
 import { customTokenNodes } from '../../types/tokenNodeTypes'
 import { convertPaintToRgba } from '../utilities/convertColor'
 import roundWithDecimals from '../utilities/roundWithDecimals'
@@ -33,24 +33,24 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
     values: {
       strokeAlign: {
         value: strokeAligns[node.strokeAlign] as StrokeAlign,
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       },
       dashPattern: {
         value: node.dashPattern.toString(),
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       },
       strokeCap: {
         value: ((typeof node.strokeCap === 'string') ? node.strokeCap.toLowerCase() : 'mixed') as StrokeCap,
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       },
       strokeJoin: {
         value: strokeJoins[node.strokeJoin],
-        type: 'string' as propertyType
+        type: 'string' as PropertyType
       },
       strokeMiterAngle: {
         value: roundWithDecimals(node.strokeMiterLimit),
         unit: 'degree',
-        type: 'number' as propertyType
+        type: 'number' as PropertyType
       },
       // strokeStyleId: {
       //   value: node.strokeStyleId
@@ -58,11 +58,11 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
       strokeWeight: {
         value: node.strokeWeight,
         unit: 'pixel',
-        type: 'number' as propertyType
+        type: 'number' as PropertyType
       },
       stroke: {
         value: convertPaintToRgba((node.strokes[0])),
-        type: 'color' as propertyType
+        type: 'color' as PropertyType
       } 
     }
   }))

@@ -14,7 +14,7 @@
     "test": "npm run lint && npm run test:unit",
     "test:unit": "jest tests/unit",
     "lint": "standardx src | snazzy",
-    "amazn": "style-dictionary build --config ./tests/amazn-style-dictionary/config.json"
+    "sd": "style-dictionary build --config ./tests/amazn-style-dictionary/config.json"
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",

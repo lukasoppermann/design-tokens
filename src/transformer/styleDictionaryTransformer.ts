@@ -1,25 +1,12 @@
-import { propertyObject, propertyType } from "../../types/propertyObject"
+import { propertyObject } from "../../types/propertyObject"
+import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from "../../types/styleDictionaryProperties"
 import { convertRgbaObjectToString } from '../utilities/convertColor'
-
-type amazonPropertyObject = {
-  value: string | number,
-  type: propertyType,
-  unit?: string
-  comment?: string,
-}
-
-type amazonPropertyGroup = {
-  name: string,
-  comment?: string,
-} & {
-  [key: string]: amazonPropertyObject | any
-}
 
 const defaultTransformer = propertyGroupValues => {
   const transformedProperties = {}
   Object.keys(propertyGroupValues).forEach(function (key) {
     if (propertyGroupValues[key].hasOwnProperty('value')) {
-      transformedProperties[key] = amazonFormat(propertyGroupValues[key])
+      transformedProperties[key] = styleDictionaryFormat(propertyGroupValues[key])
     }
     else {
       transformedProperties[key] = defaultTransformer(propertyGroupValues[key])
@@ -29,11 +16,11 @@ const defaultTransformer = propertyGroupValues => {
 }
 
 const sizeTransformer = propertyGroupValues => {
-  return amazonFormat(propertyGroupValues['width'])
+  return styleDictionaryFormat(propertyGroupValues['width'])
 }
 
 const colorTransformer = propertyGroupValues => {
-  return amazonFormat(propertyGroupValues['fill'])
+  return styleDictionaryFormat(propertyGroupValues['fill'])
 }
 
 const arrayTransformer = propertyGroupValueGroups => {
@@ -54,7 +41,7 @@ const categoryTransformer = {
   radius: defaultTransformer
 }
 
-const amazonConvertValue = (value, type: string) => {
+const styleDictionaryConvertValue = (value, type: string) => {
   if (value === undefined || value === null) {
     return
   }
@@ -64,15 +51,15 @@ const amazonConvertValue = (value, type: string) => {
   return value
 }
 
-const amazonFormat = (property): amazonPropertyObject => ({
-  value: amazonConvertValue(property.value, property.type),
+const styleDictionaryFormat = (property): StyleDictionaryPropertyObject => ({
+  value: styleDictionaryConvertValue(property.value, property.type),
   type: property.type,
   // optional properties
   ...(property.description != undefined && { comment: property.description }),
   ...(property.unit != undefined && { unit: property.unit }),
 })
 
-const amazonStyleDictionaryTransformer = (propertyGroup: propertyObject): amazonPropertyGroup => {
+const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDictionaryPropertyGroup => {
   // transform to amazon style Dictionary structure
   const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup.values)
   // return values
@@ -84,4 +71,4 @@ const amazonStyleDictionaryTransformer = (propertyGroup: propertyObject): amazon
   }
 }
 
-export default amazonStyleDictionaryTransformer
+export default styleDictionaryTransformer

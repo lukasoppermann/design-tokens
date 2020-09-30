@@ -1,6 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
-import { gridPropertyInterface, propertyType } from '../../types/propertyObject'
-import { GridAlignment, GridPattern } from '../../types/valueTypes'
+import { gridPropertyInterface } from '../../types/propertyObject'
+import { GridAlignment, GridPattern, PropertyType } from '../../types/valueTypes'
 import getTokenStyles from '../utilities/getTokenStyles'
 
 const gridValues = (grid: GridLayoutGrid) => ({
@@ -10,7 +10,7 @@ const gridValues = (grid: GridLayoutGrid) => ({
   sectionSize: {
     value: grid.sectionSize,
     unit: 'pixel',
-    type: 'number' as propertyType
+    type: 'number' as PropertyType
   }
 })
 
@@ -18,41 +18,41 @@ const getCount = count => {
   if (count === Infinity) {
     return {
       value: 'auto',
-      type: 'string' as propertyType
+      type: 'string' as PropertyType
     }
   }
   return {
     value: count,
-    type: 'number' as propertyType
+    type: 'number' as PropertyType
   }
 }
 
 const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
   pattern: {
     value: grid.pattern.toLowerCase() as GridPattern,
-    type: 'string' as propertyType
+    type: 'string' as PropertyType
   },
   // undefined when aligment stretch
   ...(grid.sectionSize !== undefined && {sectionSize: {
     value: grid.sectionSize,
     unit: 'pixel',
-    type: 'number' as propertyType
+    type: 'number' as PropertyType
   }}),
   gutterSize: {
     value: grid.gutterSize,
     unit: 'pixel',
-    type: 'number' as propertyType
+    type: 'number' as PropertyType
   },
   alignment: {
     value: grid.alignment.toLowerCase() as GridAlignment,
-    type: 'string' as propertyType
+    type: 'string' as PropertyType
   },
   count: getCount(grid.count),
   // undefined when aligment centred
   ...(grid.offset !== undefined && {offset: {
     value: grid.offset,
     unit: 'pixel',
-    type: 'number' as propertyType
+    type: 'number' as PropertyType
   }})
 })
 

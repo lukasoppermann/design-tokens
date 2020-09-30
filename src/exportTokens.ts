@@ -6,12 +6,12 @@ import extractSizes from './extractor/extractSizes'
 import extractBorders from './extractor/extractBorders'
 import extractRadii from './extractor/extractRadii'
 import groupByName from './utilities/groupByName'
-import amazonStyleDictionaryTransformer from './transformer/amazonStyleDictionaryTransformer'
+import styleDictionaryTransformer from './transformer/styleDictionaryTransformer'
 import { propertyObject } from '../types/propertyObject'
 import { figmaDataType } from '../types/figmaDataType'
 
 const transformer = {
-  amazon: amazonStyleDictionaryTransformer
+  styleDictionary: styleDictionaryTransformer
 }
 
 /**
@@ -44,7 +44,7 @@ const exportRawTokenArray = (figmaData: figmaDataType) => {
   ]
 }
 
-const tokenExport = (figmaData: figmaDataType, format: string = 'amazon') => {
+const tokenExport = (figmaData: figmaDataType, format: string = 'styleDictionary') => {
   // get token array
   const tokenArray = exportRawTokenArray(figmaData)
   // format tokens
