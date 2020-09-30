@@ -50,7 +50,7 @@
     ],
     "verbose": true,
     "testTimeout": 15000,
-    "collectCoverage": false,
+    "collectCoverage": true,
     "coverageDirectory": "./tests/unit/coverage",
     "collectCoverageFrom": [
       "./src/**/*.ts"
