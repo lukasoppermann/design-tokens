@@ -11,51 +11,6 @@ const gradientType = {
   "GRADIENT_ANGULAR": "angular",
   "GRADIENT_DIAMOND": "diamond"
 }
-
-const paintCategory = (paint: Paint) => {
-  if (paint.type === "SOLID") {
-    return "color"
-  }
-  if (["GRADIENT_LINEAR", "GRADIENT_RADIAL", "GRADIENT_ANGULAR", "GRADIENT_DIAMOND"].includes(paint.type)) {
-    return "gradient"
-  }
-}
-
-// const extractFill = (paint): fillValuesType | gradientValuesType => {
-//   if (paint.type === "SOLID") {
-//     return {
-//       fill: {
-//         value: convertPaintToRgba(paint),
-//         type: 'color' as PropertyType
-//       }
-//     }
-//   }
-//   if (["GRADIENT_LINEAR", "GRADIENT_RADIAL", "GRADIENT_ANGULAR", "GRADIENT_DIAMOND"].includes(paint.type)) {
-//     return {
-//       gradientType: {
-//         value: gradientType[paint.type] as GradientType,
-//         type: "string" as PropertyType
-//       },
-//       stops: paint.gradientStops.map(stop => ({
-//         position: {
-//           value: stop.position,
-//           type: "number" as PropertyType
-//         },
-//         color: {
-//           value: roundRgba(stop.color),
-//           type: "color" as PropertyType
-//         }
-//       })),
-//       opacity: {
-//         value: paint.opacity,
-//         type: "number" as PropertyType
-//       }
-//     }
-//   }
-
-//   return null
-// } 
-
 const extractFills = (paint): fillValuesType | gradientValuesType => {
   if (paint.type === "SOLID") {
     return {

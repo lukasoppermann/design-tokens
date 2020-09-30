@@ -20,6 +20,9 @@ const defaultTransformer = propertyGroupValues => {
       transformedProperties[key] = defaultTransformer(propertyGroupValues[key])
     }
   })
+  if (Object.keys(transformedProperties).length === 1) {
+    return Object.values(transformedProperties)[0]
+  }
   // return transformed properties
   return transformedProperties
 }
@@ -28,16 +31,10 @@ const sizeTransformer = propertyGroupValues => {
   return styleDictionaryFormat(propertyGroupValues['width'])
 }
 
-const colorTransformer = propertyGroupValues => {
-  return styleDictionaryFormat(propertyGroupValues['fill'])
-}
-
 
 const categoryTransformer = {
   default: defaultTransformer,
   size: sizeTransformer,
-  color: colorTransformer,
-  gradient: defaultTransformer,
   grid: defaultTransformer,
   effect: defaultTransformer,
   radius: defaultTransformer,
