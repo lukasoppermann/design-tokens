@@ -58,11 +58,13 @@ const extractFill = (paint): fillValuesType | gradientValuesType => {
 const extractColors: extractorInterface = (tokenNodes: PaintStyle[]): colorPropertyInterface[] => {
   // get all paint styles
   return getTokenStyles(tokenNodes)
-  // filter style
-  // remove with no fill
+  // remove images fills from tokens
+  .map(node => {
+    node.paints = node.paints.filter(paint => paint.type !== "IMAGE")
+    return node
+  })
+  // remove tokens with no fill
   .filter(node => node.paints.length > 0)
-  // remove image fills
-  .filter(node => node.paints[0].type !== "IMAGE")
   // transform style
   .map(node => ({
     name: node.name,
