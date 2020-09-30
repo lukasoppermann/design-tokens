@@ -5,8 +5,8 @@ export const rgb = {
     b: 0
   },
   converted: {
-    r: 0.524,
-    g: 1,
+    r: 134,
+    g: 255,
     b: 0
   }
 }
@@ -19,8 +19,8 @@ export const rgba = {
     a: 0.65
   },
   converted: {
-    r: 0.525,
-    g: 1,
+    r: 134,
+    g: 255,
     b: 0,
     a: 0.65
   }

@@ -7,9 +7,9 @@ export const roundRgba = (rgba: {
     b: number,
     a?: number,
   }, opacity?: number): ColorRgba => ({
-  r: roundWithDecimals(rgba.r),
-  g: roundWithDecimals(rgba.g),
-  b: roundWithDecimals(rgba.b),
+  r: roundWithDecimals(rgba.r * 255, 0),
+  g: roundWithDecimals(rgba.g * 255, 0),
+  b: roundWithDecimals(rgba.b * 255, 0),
   a: roundWithDecimals(opacity || rgba.a || 1)
 })
 

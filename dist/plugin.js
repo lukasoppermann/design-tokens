@@ -23,13 +23,23 @@
          * If the provided value is a number
          * it is rounded to 3 decimal positions
          * otherwise it is returned as is
-         * @param value any
+         * @param value number
+         * @param decimalPlaces int
          */
-        const roundWithDecimals = value => {
-            if (typeof value === 'number') {
-                return Math.round(value * 1000) / 1000;
+        const roundWithDecimals = (value, decimalPlaces = 2) => {
+            // check for correct inputs
+            if (typeof value === 'number' && typeof decimalPlaces === 'number') {
+                // set decimal places
+                const factorOfTen = Math.pow(10, decimalPlaces);
+                // round result and return
+                return Math.round(value * factorOfTen) / factorOfTen;
             }
+            // return original value of wrong arguments provided
             return value;
+        };
+        const round = (number, decimalPlaces) => {
+            const factorOfTen = Math.pow(10, decimalPlaces);
+            return Math.round(number * factorOfTen) / factorOfTen;
         };
         exports.default = roundWithDecimals;
     });
@@ -39,9 +49,9 @@
         exports.convertRgbaObjectToString = exports.convertPaintToRgba = exports.roundRgba = void 0;
         roundWithDecimals_1 = __importDefault(roundWithDecimals_1);
         exports.roundRgba = (rgba, opacity) => ({
-            r: roundWithDecimals_1.default(rgba.r),
-            g: roundWithDecimals_1.default(rgba.g),
-            b: roundWithDecimals_1.default(rgba.b),
+            r: roundWithDecimals_1.default(rgba.r * 255, 0),
+            g: roundWithDecimals_1.default(rgba.g * 255, 0),
+            b: roundWithDecimals_1.default(rgba.b * 255, 0),
             a: roundWithDecimals_1.default(opacity || rgba.a || 1)
         });
         exports.convertPaintToRgba = (paint) => {
@@ -64,25 +74,18 @@
         };
         exports.default = getTokenStyles;
     });
-    define("src/extractor/extractColors", ["require", "exports", "src/utilities/convertColor", "src/utilities/getTokenStyles"], function (require, exports, convertColor_1, getTokenStyles_1) {
+    define("src/extractor/extractColors", ["require", "exports", "src/utilities/convertColor", "src/utilities/getTokenStyles", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_1, getTokenStyles_1, roundWithDecimals_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         getTokenStyles_1 = __importDefault(getTokenStyles_1);
+        roundWithDecimals_2 = __importDefault(roundWithDecimals_2);
         const gradientType = {
             "GRADIENT_LINEAR": "linear",
             "GRADIENT_RADIAL": "radial",
             "GRADIENT_ANGULAR": "angular",
             "GRADIENT_DIAMOND": "diamond"
         };
-        const paintCategory = (paint) => {
-            if (paint.type === "SOLID") {
-                return "color";
-            }
-            if (["GRADIENT_LINEAR", "GRADIENT_RADIAL", "GRADIENT_ANGULAR", "GRADIENT_DIAMOND"].includes(paint.type)) {
-                return "gradient";
-            }
-        };
-        const extractFill = (paint) => {
+        const extractFills = (paint) => {
             if (paint.type === "SOLID") {
                 return {
                     fill: {
@@ -99,7 +102,7 @@
                     },
                     stops: paint.gradientStops.map(stop => ({
                         position: {
-                            value: stop.position,
+                            value: roundWithDecimals_2.default(stop.position),
                             type: "number"
                         },
                         color: {
@@ -108,7 +111,7 @@
                         }
                     })),
                     opacity: {
-                        value: paint.opacity,
+                        value: roundWithDecimals_2.default(paint.opacity),
                         type: "number"
                     }
                 };
@@ -130,8 +133,8 @@
                 name: node.name,
                 // id: node.id,
                 description: node.description || null,
-                category: paintCategory(node.paints[0]),
-                values: extractFill(node.paints[0])
+                category: 'fill',
+                values: node.paints.map(paint => extractFills(paint))
             }));
         };
         exports.default = extractColors;
@@ -192,11 +195,11 @@
         };
         exports.default = extractGrids;
     });
-    define("src/extractor/extractFonts", ["require", "exports", "src/utilities/getTokenStyles", "src/utilities/roundWithDecimals"], function (require, exports, getTokenStyles_3, roundWithDecimals_2) {
+    define("src/extractor/extractFonts", ["require", "exports", "src/utilities/getTokenStyles", "src/utilities/roundWithDecimals"], function (require, exports, getTokenStyles_3, roundWithDecimals_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         getTokenStyles_3 = __importDefault(getTokenStyles_3);
-        roundWithDecimals_2 = __importDefault(roundWithDecimals_2);
+        roundWithDecimals_3 = __importDefault(roundWithDecimals_3);
         const textDecorations = {
             'NONE': 'none',
             'UNDERLINE': 'underline',
@@ -232,13 +235,13 @@
                         type: 'string'
                     },
                     letterSpacing: {
-                        value: roundWithDecimals_2.default(node.letterSpacing.value),
+                        value: roundWithDecimals_3.default(node.letterSpacing.value),
                         unit: node.letterSpacing.unit.toLowerCase(),
                         type: 'number'
                     },
                     lineHeight: {
                         // @ts-ignore
-                        value: roundWithDecimals_2.default(node.lineHeight.value) || 'normal',
+                        value: roundWithDecimals_3.default(node.lineHeight.value) || 'normal',
                         unit: node.lineHeight.unit.toLowerCase(),
                         type: (node.lineHeight.hasOwnProperty('value') ? 'number' : 'string')
                     },
@@ -354,10 +357,10 @@
         };
         exports.default = extractSizes;
     });
-    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/convertColor", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_3) {
+    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/convertColor", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        roundWithDecimals_3 = __importDefault(roundWithDecimals_3);
+        roundWithDecimals_4 = __importDefault(roundWithDecimals_4);
         const strokeJoins = {
             'MITER': 'miter',
             'BEVEL': 'bevel',
@@ -399,7 +402,7 @@
                         type: 'string'
                     },
                     strokeMiterAngle: {
-                        value: roundWithDecimals_3.default(node.strokeMiterLimit),
+                        value: roundWithDecimals_4.default(node.strokeMiterLimit),
                         unit: 'degree',
                         type: 'number'
                     },
@@ -420,10 +423,10 @@
         };
         exports.default = extractBorders;
     });
-    define("src/extractor/extractRadii", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_4) {
+    define("src/extractor/extractRadii", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_5) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        roundWithDecimals_4 = __importDefault(roundWithDecimals_4);
+        roundWithDecimals_5 = __importDefault(roundWithDecimals_5);
         const extractRadii = (tokenNodes) => {
             const nodeName = 'radii';
             // get the type of the corner radius
@@ -472,7 +475,7 @@
                         value: getRadiusType(node.cornerRadius),
                         type: 'string'
                     }, radii: getRadii(node), smoothing: {
-                        value: roundWithDecimals_4.default(node.cornerSmoothing),
+                        value: roundWithDecimals_5.default(node.cornerSmoothing),
                         comment: "Percent as decimal from 0.0 - 1.0",
                         type: 'number'
                     } })
@@ -576,23 +579,24 @@
                     transformedProperties[key] = defaultTransformer(propertyGroupValues[key]);
                 }
             });
+            // if only one property is in object (e.g. only fill for color)
+            // return teh value of this property directly (e.g. color-blue: #0000AA instead of color-blue-fill: #0000AA)
+            if (Object.keys(transformedProperties).length === 1) {
+                return Object.values(transformedProperties)[0];
+            }
             // return transformed properties
             return transformedProperties;
         };
         const sizeTransformer = propertyGroupValues => {
             return styleDictionaryFormat(propertyGroupValues['width']);
         };
-        const colorTransformer = propertyGroupValues => {
-            return styleDictionaryFormat(propertyGroupValues['fill']);
-        };
         const categoryTransformer = {
             default: defaultTransformer,
             size: sizeTransformer,
-            color: colorTransformer,
-            gradient: defaultTransformer,
             grid: defaultTransformer,
             effect: defaultTransformer,
-            radius: defaultTransformer
+            radius: defaultTransformer,
+            fill: defaultTransformer
         };
         const styleDictionaryConvertValue = (value, type) => {
             if (value === undefined || value === null) {

@@ -89,7 +89,7 @@
         "unit": "pixel"
       },
       "stroke": {
-        "value": "rgba(1, 0.029, 0.029, 0.37)",
+        "value": "rgba(255, 7, 7, 0.37)",
         "type": "color"
       }
     },
@@ -121,7 +121,7 @@
         "unit": "pixel"
       },
       "stroke": {
-        "value": "rgba(0.25, 1, 0.73, 1)",
+        "value": "rgba(64, 255, 186, 1)",
         "type": "color"
       }
     },
@@ -143,7 +143,7 @@
         "type": "string"
       },
       "strokeMiterAngle": {
-        "value": 2.613,
+        "value": 2.61,
         "type": "number",
         "unit": "degree"
       },
@@ -366,38 +366,46 @@
   },
   "colors": {
     "green": {
-      "category": "color",
-      "value": "rgba(0.25, 1, 0.73, 1)",
+      "category": "fill",
+      "value": "rgba(64, 255, 186, 1)",
       "type": "color"
     },
     "blue": {
-      "category": "color",
-      "value": "rgba(0.017, 0.292, 1, 1)",
+      "category": "fill",
+      "value": "rgba(4, 74, 255, 1)",
       "type": "color"
     },
     "secondary": {
       "green": {
-        "category": "color",
-        "value": "rgba(0.14, 0.688, 0.195, 1)",
+        "category": "fill",
+        "value": "rgba(36, 175, 50, 1)",
         "type": "color"
-      },
-      "yellow": {
-        "category": "color",
-        "value": "rgba(1, 0.72, 0, 1)",
-        "type": "color"
+      }
+    },
+    "mixed": {
+      "yellow + green": {
+        "0": {
+          "value": "rgba(255, 184, 0, 1)",
+          "type": "color"
+        },
+        "1": {
+          "value": "rgba(64, 223, 80, 0.5)",
+          "type": "color"
+        },
+        "category": "fill"
       }
     }
   },
   "utilities": {
     "error": {
-      "category": "color",
-      "value": "rgba(1, 0, 0, 1)",
+      "category": "fill",
+      "value": "rgba(255, 0, 0, 1)",
       "type": "color"
     }
   },
   "gradient": {
     "yellow to transparent": {
-      "category": "gradient",
+      "category": "fill",
       "gradientType": {
         "value": "linear",
         "type": "string"
@@ -409,7 +417,7 @@
             "type": "number"
           },
           "color": {
-            "value": "rgba(1, 0.72, 0, 1)",
+            "value": "rgba(255, 184, 0, 1)",
             "type": "color"
           }
         },
@@ -419,7 +427,7 @@
             "type": "number"
           },
           "color": {
-            "value": "rgba(1, 0.72, 0, 1)",
+            "value": "rgba(255, 184, 0, 1)",
             "type": "color"
           }
         }
@@ -431,7 +439,7 @@
     },
     "radial": {
       "multi-colour": {
-        "category": "gradient",
+        "category": "fill",
         "gradientType": {
           "value": "radial",
           "type": "string"
@@ -443,27 +451,27 @@
               "type": "number"
             },
             "color": {
-              "value": "rgba(1, 0.72, 0, 1)",
+              "value": "rgba(255, 184, 0, 1)",
               "type": "color"
             }
           },
           "1": {
             "position": {
-              "value": 0.34375,
+              "value": 0.34,
               "type": "number"
             },
             "color": {
-              "value": "rgba(0, 1, 0.1, 1)",
+              "value": "rgba(0, 255, 25, 1)",
               "type": "color"
             }
           },
           "2": {
             "position": {
-              "value": 0.7708333134651184,
+              "value": 0.77,
               "type": "number"
             },
             "color": {
-              "value": "rgba(0.56, 0, 1, 1)",
+              "value": "rgba(143, 0, 255, 1)",
               "type": "color"
             }
           },
@@ -473,7 +481,7 @@
               "type": "number"
             },
             "color": {
-              "value": "rgba(1, 0, 0, 1)",
+              "value": "rgba(255, 0, 0, 1)",
               "type": "color"
             }
           }
