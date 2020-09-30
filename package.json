@@ -11,18 +11,24 @@
     "start": "npm run build-watch",
     "build": "tsc-bundle tsconfig.json",
     "build-watch": "npm run test && npm run build -- --watch",
-    "test": "npm run test:unit",
+    "test": "npm run lint && npm run test:unit",
     "test:unit": "jest tests/unit",
+    "lint": "standardx src | snazzy",
     "amazn": "style-dictionary build --config ./tests/amazn-style-dictionary/config.json"
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",
   "devDependencies": {
     "@figma/plugin-typings": "^1.16.1",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint-plugin-typescript": "^0.14.0",
     "install": "^0.13.0",
     "jest": "^26.4.2",
     "jest-preset-typescript": "^1.2.0",
     "npm": "^6.14.8",
+    "snazzy": "^8.0.0",
+    "standardx": "^5.0.0",
     "style-dictionary": "^2.10.1",
     "ts-jest": "^26.4.1",
     "typescript-bundle": "^1.0.16"
@@ -30,6 +36,12 @@
   "dependencies": {
     "@types/node": "^14.11.2",
     "typescript": "^4.0.3"
+  },
+  "standardx": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ]
   },
   "jest": {
     "moduleDirectories": [
