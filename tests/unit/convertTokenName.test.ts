@@ -5,8 +5,8 @@ describe("convertTokenName", () => {
     // input, expected
     ["button / primary", "button/primary"],
     ["button/Primary", "button/primary"],
-    ["button / primary button", "button/primaryButton"],
-    ["button / primary-button", "button/primary_button"],
+    ["button / primary button", "button/primary-button"],
+    ["button / primary-button", "button/primary-button"],
     ["button / primary_button", "button/primary_button"],
     ["button / PrimaryButton", "button/primaryButton"],
     ["Button / Primary", "button/primary"],
