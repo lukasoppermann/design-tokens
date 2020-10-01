@@ -1,7 +1,7 @@
 import { roundRgba } from '../../src/utilities/convertColor'
 import { rgb, rgba } from './data/color.data'
 
-describe("Testing roundRgba function", () => {
+describe("roundRgba", () => {
   test("RGB and no opacity", () => {
     expect(roundRgba(rgb.raw)).toStrictEqual({
       ...rgb.converted,
