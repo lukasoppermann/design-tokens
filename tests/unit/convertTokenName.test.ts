@@ -1,48 +1,23 @@
 import convertTokenName from '../../src/utilities/convertTokenName'
 
 describe("convertTokenName", () => {
-  test('Spaces & slashes "button / primary"', () => {
-    expect(convertTokenName("")).toStrictEqual("")
-  })
-
-  test('Slashes without spaces "button/primary"', () => {
-
-  })
-
-
-  test('Spaces within name part "button / primary button"', () => {
-
-  })
-
-  test('Dashes within name part "button / primary-button"', () => {
-
-  })
-
-  test('Underscore within name part (snake_case) "button / primary_button"', () => {
-
-  })
-
-  test('CamelCase within name part "button / PrimaryButton"', () => {
-
-  })
-
-  test('Uppercase "Button / Primary"', () => {
-
-  })
-
-  test('Dot in name part "Button / Primary.Button"', () => {
-
-  })
-
-  test('Plus in name part "Button / Primary+Button"', () => {
-
-  })
-
-  test('Ampersand in name part "Button / Primary&Button"', () => {
-
-  })
-
-  test('Colon in name part "Button / Primary:Button"', () => {
-
+  test.each([
+    // input, expected
+    ["button / primary", "button/primary"],
+    ["button/Primary", "button/primary"],
+    ["button / primary button", "button/primaryButton"],
+    ["button / primary-button", "button/primary_button"],
+    ["button / primary_button", "button/primary_button"],
+    ["button / PrimaryButton", "button/primaryButton"],
+    ["Button / Primary", "button/primary"],
+    ["Button / Primary.Button", "button/primary_button"],
+    ["Button / Primary+Button", "button/primary_button"],
+    ["Button / Primary&Button", "button/primary_button"],
+    ["Button / Primary:Button", "button/primary_button"],
+    ["Button / Änderung", "button/anderung"],
+    ["Button / ♥", "button/love"],
+    ["Button / ☢", "button/"],
+  ])('Converting: "%s"', (input, expected) => {
+    expect(convertTokenName(input)).toStrictEqual(expected)
   })
 })
