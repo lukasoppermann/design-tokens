@@ -61,8 +61,8 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNodes[]): bor
         type: 'number' as PropertyType
       },
       stroke: {
-        value: convertPaintToRgba((node.strokes[0])),
-        type: 'color' as PropertyType
+        value: node.strokeStyleId ? node.strokeStyleId : convertPaintToRgba((node.strokes[0])),
+        type: (node.strokeStyleId ? 'reference' : 'color') as PropertyType
       } 
     }
   }))

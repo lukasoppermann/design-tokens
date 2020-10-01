@@ -114,7 +114,7 @@ export type borderPropertyInterface = propertyObject & {
       unit: UnitTypePixel
     },
     stroke: {
-      value: ColorRgba,
+      value: ColorRgba | string,
       type: PropertyType
     }
   }

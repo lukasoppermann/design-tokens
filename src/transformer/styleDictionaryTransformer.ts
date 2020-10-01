@@ -1,6 +1,7 @@
 import { propertyObject } from "../../types/propertyObject"
 import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from "../../types/styleDictionaryProperties"
 import { convertRgbaObjectToString } from '../utilities/convertColor'
+import convertReferenceIdToName from '../utilities/convertReferenceIDToName'
 
 const defaultTransformer = propertyGroupValues => {
   // turn array with only one item into normal object
@@ -43,12 +44,19 @@ const categoryTransformer = {
 }
 
 const styleDictionaryConvertValue = (value, type: string) => {
+  // empty value
   if (value === undefined || value === null) {
-    return
+    return 
   }
+  // color value
   if (type === 'color') {
     return convertRgbaObjectToString(value)
   }
+  // reference value
+  if (type === 'reference') {
+    return convertReferenceIdToName(value)
+  }
+  // other value
   return value
 }
 
