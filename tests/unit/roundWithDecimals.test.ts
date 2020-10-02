@@ -21,6 +21,12 @@ describe("roundWithDecimals", () => {
     expect(roundWithDecimals(1.234, undefined)).toStrictEqual(1.23)
   })
 
+  test("undefined as 1st arg", () => {
+    // @ts-ignore
+    expect(roundWithDecimals(undefined, undefined)).toStrictEqual()
+  })
+
+
   test("null for 2ng arg decimal placess", () => {
     const catchError = () => roundWithDecimals(1.234, null)
     expect(catchError).toThrowError(`Invalid parameters, both value "${1.234}" (${typeof 1.234}) and decimalPlaces "${null}" (${typeof null}) must be of type number`)
