@@ -11,7 +11,7 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
 
 <img src="https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Design%20Tokens%20Plugin%20Icon.png" width="50px"> 
 
-1. Go to [design tokens plugin page](https://www.figma.com/community/plugin/888356646278934516/Design-Tokens)
+1. Go to the [design tokens plugin page](https://www.figma.com/community/plugin/888356646278934516/Design-Tokens)
 2. Click on install in the top right corner
 
 ## Plugin usage
