@@ -10,10 +10,12 @@ const convertTokenName = (tokenName: string): string => {
 }
 
 function slugify(text) {
-  return text.toString().toLowerCase()
+  return text.toString()
+    .replace(/(^\w|\s\w)/g, m => m.toLowerCase()) // first letter of every word to lowercase
     .replace(/\s+\/\s+/g, '/')      // Remove spaces around /
     .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\/\_\-]+/g, '')     // Remove all non-word chars (but - and /)
+    .replace(/[\+\&\.\:]/g, '_')    // Replace some characters with _
+    .replace(/[^\w\/\_\-]+/g, '')   // Remove all non-word chars (but - and /)
     .replace(/\-\-+/g, '-')         // Replace multiple - with single -
     .replace(/^-+/, '')             // Trim - from start of text
     .replace(/-+$/, '');            // Trim - from end of text
