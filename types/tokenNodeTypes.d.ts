@@ -1,1 +1,1 @@
-export type customTokenNodes = RectangleNode | ComponentNode
+export type customTokenNodes = RectangleNode | ComponentNode | FrameNode

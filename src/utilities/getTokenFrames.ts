@@ -1,7 +1,8 @@
 // the node types that can be used for tokens
 const tokenNodeTypes = [
   'COMPONENT',
-  'RECTANGLE'
+  'RECTANGLE',
+  'FRAME'
 ]
 // the name that token frames have
 const tokenFrameName = '_tokens'

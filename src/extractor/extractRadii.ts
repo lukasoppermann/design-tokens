@@ -56,7 +56,7 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
       },
       radii: getRadii(node),
       smoothing: {
-        value: roundWithDecimals(node.cornerSmoothing),
+        value: roundWithDecimals(node.cornerSmoothing, 2),
         comment: "Percent as decimal from 0.0 - 1.0",
         type: 'number' as PropertyType
       }

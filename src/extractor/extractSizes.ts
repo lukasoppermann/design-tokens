@@ -2,6 +2,7 @@ import extractorInterface from "../../types/extractorInterface"
 import { sizePropertyInterface } from "../../types/propertyObject"
 import { customTokenNodes } from '../../types/tokenNodeTypes'
 import { UnitTypePixel, PropertyType } from '../../types/valueTypes'
+import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const extractSizes: extractorInterface = (tokenNodes: customTokenNodes[]): sizePropertyInterface[] => {
   const nodeName = 'sizes'
@@ -13,12 +14,12 @@ const extractSizes: extractorInterface = (tokenNodes: customTokenNodes[]): sizeP
     category: 'size',
     values: {
       width: {
-        value: node.width,
+        value: roundWithDecimals(node.width, 2),
         unit: 'pixel' as UnitTypePixel,
         type: 'number' as PropertyType
       },
       height: {
-        value: node.height,
+        value: roundWithDecimals(node.height, 2),
         unit: 'pixel' as UnitTypePixel,
         type: 'number' as PropertyType
       }

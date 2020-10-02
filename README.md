@@ -53,7 +53,8 @@ Styles you don't want to be exported as design tokens can be prefixed with an `_
 The plugin also supports custom tokens for `borders`, `radii` & `spaces`.
 
 - Every custom design token must be within a `Frame` with a name starting with `_tokens`.
-- The token itself has to have a name starting with `sizes`, `borders` or `radii` and has to be a `Rectangle` or `Main Component`. This is so that the plugin can identify what is and what isn't a token.
+- The token itself has to have a name starting with `sizes`, `borders` or `radii` and has to be a `Frame`, `Rectangle` or `Main Component`. This is so that the plugin can identify what is and what isn't a token.
+- The token has to be a direct child of a `_token` frame
 
 If you wanted to create a custom spacer token for an `8px` space you would do the following:
 

@@ -27,19 +27,18 @@
          * @param decimalPlaces int
          */
         const roundWithDecimals = (value, decimalPlaces = 2) => {
-            // check for correct inputs
-            if (typeof value === 'number' && typeof decimalPlaces === 'number') {
-                // set decimal places
-                const factorOfTen = Math.pow(10, decimalPlaces);
-                // round result and return
-                return Math.round(value * factorOfTen) / factorOfTen;
+            // exit if value is undefined
+            if (value === undefined) {
+                return;
             }
-            // return original value of wrong arguments provided
-            return value;
-        };
-        const round = (number, decimalPlaces) => {
+            // check for correct inputs
+            if (typeof value !== 'number' || typeof decimalPlaces !== 'number') {
+                throw new Error(`Invalid parameters, both value "${value}" (${typeof value}) and decimalPlaces "${decimalPlaces}" (${typeof decimalPlaces}) must be of type number`);
+            }
+            // set decimal places
             const factorOfTen = Math.pow(10, decimalPlaces);
-            return Math.round(number * factorOfTen) / factorOfTen;
+            // round result and return
+            return Math.round(value * factorOfTen) / factorOfTen;
         };
         exports.default = roundWithDecimals;
     });
@@ -330,9 +329,10 @@
         };
         exports.default = extractEffects;
     });
-    define("src/extractor/extractSizes", ["require", "exports"], function (require, exports) {
+    define("src/extractor/extractSizes", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        roundWithDecimals_4 = __importDefault(roundWithDecimals_4);
         const extractSizes = (tokenNodes) => {
             const nodeName = 'sizes';
             // return as object
@@ -343,12 +343,12 @@
                 category: 'size',
                 values: {
                     width: {
-                        value: node.width,
+                        value: roundWithDecimals_4.default(node.width, 2),
                         unit: 'pixel',
                         type: 'number'
                     },
                     height: {
-                        value: node.height,
+                        value: roundWithDecimals_4.default(node.height, 2),
                         unit: 'pixel',
                         type: 'number'
                     }
@@ -357,10 +357,10 @@
         };
         exports.default = extractSizes;
     });
-    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/convertColor", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_4) {
+    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/convertColor", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_5) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        roundWithDecimals_4 = __importDefault(roundWithDecimals_4);
+        roundWithDecimals_5 = __importDefault(roundWithDecimals_5);
         const strokeJoins = {
             'MITER': 'miter',
             'BEVEL': 'bevel',
@@ -402,7 +402,7 @@
                         type: 'string'
                     },
                     strokeMiterAngle: {
-                        value: roundWithDecimals_4.default(node.strokeMiterLimit),
+                        value: roundWithDecimals_5.default(node.strokeMiterLimit),
                         unit: 'degree',
                         type: 'number'
                     },
@@ -423,10 +423,10 @@
         };
         exports.default = extractBorders;
     });
-    define("src/extractor/extractRadii", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_5) {
+    define("src/extractor/extractRadii", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_6) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        roundWithDecimals_5 = __importDefault(roundWithDecimals_5);
+        roundWithDecimals_6 = __importDefault(roundWithDecimals_6);
         const extractRadii = (tokenNodes) => {
             const nodeName = 'radii';
             // get the type of the corner radius
@@ -475,7 +475,7 @@
                         value: getRadiusType(node.cornerRadius),
                         type: 'string'
                     }, radii: getRadii(node), smoothing: {
-                        value: roundWithDecimals_5.default(node.cornerSmoothing),
+                        value: roundWithDecimals_6.default(node.cornerSmoothing, 2),
                         comment: "Percent as decimal from 0.0 - 1.0",
                         type: 'number'
                     } })
@@ -681,7 +681,8 @@
         // the node types that can be used for tokens
         const tokenNodeTypes = [
             'COMPONENT',
-            'RECTANGLE'
+            'RECTANGLE',
+            'FRAME'
         ];
         // the name that token frames have
         const tokenFrameName = '_tokens';
