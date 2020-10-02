@@ -1,4 +1,4 @@
 node_modules
 .DS_Store
-tests/amazon-style-dictionary
+tests/amazon-style-dictionary/build
 tests/unit/coverage
