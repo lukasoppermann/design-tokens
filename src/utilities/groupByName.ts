@@ -22,6 +22,7 @@ const groupByName = (tokenArray: propertyObject[], removeName: boolean = true) =
     // return 
     return nestedObjectFromArray(groupsFromName, token)
   })
+  
   if (groupedTokens.length > 0 ) {
     // return merged object of tokens grouped by name hierachy
     return groupedTokens.reduce((accumulator = {}, currentValue) => deepMerge(accumulator, currentValue))
