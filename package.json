@@ -11,10 +11,11 @@
     "start": "npm run build-watch",
     "build": "tsc-bundle tsconfig.json",
     "build-watch": "npm run test && npm run build -- --watch",
-    "test": "npm run lint && npm run test:unit",
+    "test": "npm run lint && npm run test:unit && npm run test:integration",
     "test:unit": "jest tests/unit",
+    "test:integration": "style-dictionary clean --config ./tests/integration/config.json && style-dictionary build --config ./tests/integration/config.json && jest tests/integration --coverage=false",
     "lint": "standardx src | snazzy",
-    "sd": "rm -rf tests/amazon-style-dictionary/build  && style-dictionary build --config ./tests/amazon-style-dictionary/config.json"
+    "sd": "rm -rf tests/amazon-style-dictionary/build && style-dictionary build --config ./tests/amazon-style-dictionary/config.json"
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",
