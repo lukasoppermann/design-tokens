@@ -51,6 +51,7 @@
     "testTimeout": 15000,
     "collectCoverage": true,
     "coverageDirectory": "./tests/unit/coverage",
+    "testEnvironment": "node",
     "collectCoverageFrom": [
       "./src/**/*.ts"
     ],
