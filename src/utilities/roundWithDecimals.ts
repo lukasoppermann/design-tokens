@@ -7,20 +7,13 @@
  */
 const roundWithDecimals = (value: number, decimalPlaces: number = 2) => {
   // check for correct inputs
-  if (typeof value === 'number' && typeof decimalPlaces === 'number') {
-    // set decimal places
-    const factorOfTen = Math.pow(10, decimalPlaces)
-    // round result and return
-    return Math.round(value * factorOfTen) / factorOfTen
+  if (typeof value !== 'number' || typeof decimalPlaces !== 'number') {
+    throw new Error(`Invalid parameters, both value "${value}" (${typeof value}) and decimalPlaces "${decimalPlaces}" (${typeof decimalPlaces}) must be of type number`)
   }
-  // return original value of wrong arguments provided
-  return value
-}
-
-
-const round = (number, decimalPlaces) => {
+  // set decimal places
   const factorOfTen = Math.pow(10, decimalPlaces)
-  return Math.round(number * factorOfTen) / factorOfTen
+  // round result and return
+  return Math.round(value * factorOfTen) / factorOfTen
 }
 
 export default roundWithDecimals

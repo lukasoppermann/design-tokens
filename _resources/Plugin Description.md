@@ -19,6 +19,8 @@ Benefits
 Usage & transformation
 Find out how to use the plugin to create custom tokens from the documentation. https://github.com/lukasoppermann/design-tokens 
 
+You can also view the example Figma file https://www.figma.com/file/2MQ759R5kJtzQn4qSHuqR7/Design-Tokens-for-Figma?node-id=231%3A2
+
 Get up to speed transforming your tokens using style directory with the transformer package. https://github.com/lukasoppermann/design-token-transformer
 
 
