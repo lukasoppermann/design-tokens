@@ -1,3 +1,5 @@
+import { BaseStyle } from '../../types/styles'
+
 const excludeUnderscoreStyles = true
 
 const getTokenStyles = (styles: BaseStyle[]): any[] => {
