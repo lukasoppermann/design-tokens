@@ -1,25 +1,24 @@
-import getTokenStyles from '../../src/utilities/getTokenStyles'
-import { BaseStyle, StyleType } from '../../types/styles'
+import filterByNameProperty from '../../src/utilities/filterByNameProperty'
 
 describe("getTokenStyles", () => {
   test("exclude _ prefix", () => {
-    expect(getTokenStyles([
+    expect(filterByNameProperty([
       {
         id: "valid",
-        type: "PAINT" as StyleType,
+        type: "PAINT",
         name: 'valid',
         description: ''
       },
       {
         id: "invalid",
-        type: "PAINT" as StyleType,
+        type: "PAINT",
         name: '_invalid',
         description: ''
       }
     ])).toStrictEqual([
       {
         id: "valid",
-        type: "PAINT" as StyleType,
+        type: "PAINT",
         name: 'valid',
         description: ''
       }

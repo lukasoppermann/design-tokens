@@ -1,7 +1,7 @@
 import extractorInterface from '../../types/extractorInterface'
 import { fontPropertyInterface } from '../../types/propertyObject'
 import { UnitTypePixel, TextCase, TextDecoration, NumericUnitTypes, PropertyType } from '../../types/valueTypes'
-import getTokenStyles from '../utilities/getTokenStyles'
+import filterByNameProperty from '../utilities/filterByNameProperty'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const textDecorations = {
@@ -19,7 +19,7 @@ const textCases = {
 
 const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontPropertyInterface[] => {
   // get raw text styles
-  return getTokenStyles(tokenNodes).map(node => ({
+  return filterByNameProperty(tokenNodes).map(node => ({
     name: node.name,
     description: node.description || undefined,
     values: {

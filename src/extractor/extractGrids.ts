@@ -1,7 +1,7 @@
 import extractorInterface from '../../types/extractorInterface'
 import { gridPropertyInterface } from '../../types/propertyObject'
 import { GridAlignment, GridPattern, PropertyType } from '../../types/valueTypes'
-import getTokenStyles from '../utilities/getTokenStyles'
+import filterByNameProperty from '../utilities/filterByNameProperty'
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {
@@ -58,7 +58,7 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
 
 const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridPropertyInterface[] => {
   // get grid styles
-  return getTokenStyles(tokenNodes).map(node => ({
+  return filterByNameProperty(tokenNodes).map(node => ({
     name: node.name,
     description: node.description || null,
     category: 'grid',

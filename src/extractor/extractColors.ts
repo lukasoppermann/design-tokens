@@ -2,7 +2,7 @@ import extractorInterface from '../../types/extractorInterface'
 import { colorPropertyInterface, fillValuesType, gradientValuesType } from '../../types/propertyObject'
 import { GradientType, PropertyType } from '../../types/valueTypes'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
-import getTokenStyles from '../utilities/getTokenStyles'
+import filterByNameProperty from '../utilities/filterByNameProperty'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const gradientType = {
@@ -48,7 +48,7 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
 
 const extractColors: extractorInterface = (tokenNodes: PaintStyle[]): colorPropertyInterface[] => {
   // get all paint styles
-  return getTokenStyles(tokenNodes)
+  return filterByNameProperty(tokenNodes)
   // remove images fills from tokens
   .map(node => {
     node.paints = node.paints.filter(paint => paint.type !== "IMAGE")
