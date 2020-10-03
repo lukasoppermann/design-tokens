@@ -30,7 +30,7 @@ export type fontPropertyInterface = propertyObject & {
     letterSpacing: numericPropertyType,
     lineHeight: {
       value: number | "normal"
-      unit: "pixel" | "percent" | "auto"
+      unit: string // "pixel" | "percent" | "auto"
     },
     paragraphIndent: numericPropertyType,
     paragraphSpacing: numericPropertyType,
@@ -71,7 +71,7 @@ export type gradientValuesType = {
 }
 
 export type colorPropertyInterface = propertyObject & {
-  values: fillValuesType | gradientValuesType
+  values: (fillValuesType | gradientValuesType)[]
 }
 
 export type sizePropertyInterface = propertyObject & {

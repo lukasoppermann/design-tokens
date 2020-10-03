@@ -2,7 +2,6 @@ import extractorInterface from '../../types/extractorInterface'
 import { effectPropertyInterface } from '../../types/propertyObject'
 import { EffectType, UnitTypePixel, PropertyType } from '../../types/valueTypes'
 import { roundRgba } from '../utilities/convertColor'
-import filterByNameProperty from '../utilities/filterByNameProperty'
 
 const effectType = {
   "LAYER_BLUR": 'layerBlur',
@@ -58,7 +57,7 @@ const shadowValues = effect => ({
 
 const extractEffects: extractorInterface = (tokenNodes: EffectStyle[]): effectPropertyInterface[] => {
   // get effect styles
-  return filterByNameProperty(tokenNodes).map(node => ({
+  return tokenNodes.map(node => ({
     name: node.name,
     description: node.description || null,
     category: 'effect',

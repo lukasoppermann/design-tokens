@@ -1,6 +1,6 @@
 export default 
 `:root {
-  --sizes-32: 32.72; /* 32px spacer component */
+  --sizes-32: 32.72; /* 32.72px spacer component */
   --sizes-frame: 32;
   --sizes-rect: 32;
   --sizes-shape-in-component: 32; /* Should use 32px not 20 from inside shape */

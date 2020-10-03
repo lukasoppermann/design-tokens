@@ -61,22 +61,9 @@
         };
         exports.convertRgbaObjectToString = (rgbaObject) => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`;
     });
-    define("src/utilities/filterByNameProperty", ["require", "exports"], function (require, exports) {
+    define("src/extractor/extractColors", ["require", "exports", "src/utilities/convertColor", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_1, roundWithDecimals_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const excludeUnderscoreStyles = true;
-        const filterByNameProperty = (objects) => {
-            if (excludeUnderscoreStyles === true) {
-                return objects.filter(style => style.name.trim().substr(0, 1) !== '_');
-            }
-            return objects;
-        };
-        exports.default = filterByNameProperty;
-    });
-    define("src/extractor/extractColors", ["require", "exports", "src/utilities/convertColor", "src/utilities/filterByNameProperty", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_1, filterByNameProperty_1, roundWithDecimals_2) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        filterByNameProperty_1 = __importDefault(filterByNameProperty_1);
         roundWithDecimals_2 = __importDefault(roundWithDecimals_2);
         const gradientType = {
             "GRADIENT_LINEAR": "linear",
@@ -119,7 +106,7 @@
         };
         const extractColors = (tokenNodes) => {
             // get all paint styles
-            return filterByNameProperty_1.default(tokenNodes)
+            return tokenNodes
                 // remove images fills from tokens
                 .map(node => {
                 node.paints = node.paints.filter(paint => paint.type !== "IMAGE");
@@ -138,10 +125,9 @@
         };
         exports.default = extractColors;
     });
-    define("src/extractor/extractGrids", ["require", "exports", "src/utilities/filterByNameProperty"], function (require, exports, filterByNameProperty_2) {
+    define("src/extractor/extractGrids", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        filterByNameProperty_2 = __importDefault(filterByNameProperty_2);
         const gridValues = (grid) => ({
             pattern: {
                 value: grid.pattern.toLowerCase()
@@ -185,7 +171,7 @@
             } })));
         const extractGrids = (tokenNodes) => {
             // get grid styles
-            return filterByNameProperty_2.default(tokenNodes).map(node => ({
+            return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
                 category: 'grid',
@@ -194,10 +180,9 @@
         };
         exports.default = extractGrids;
     });
-    define("src/extractor/extractFonts", ["require", "exports", "src/utilities/filterByNameProperty", "src/utilities/roundWithDecimals"], function (require, exports, filterByNameProperty_3, roundWithDecimals_3) {
+    define("src/extractor/extractFonts", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        filterByNameProperty_3 = __importDefault(filterByNameProperty_3);
         roundWithDecimals_3 = __importDefault(roundWithDecimals_3);
         const textDecorations = {
             'NONE': 'none',
@@ -212,7 +197,7 @@
         };
         const extractFonts = (tokenNodes) => {
             // get raw text styles
-            return filterByNameProperty_3.default(tokenNodes).map(node => ({
+            return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || undefined,
                 values: {
@@ -263,10 +248,9 @@
         };
         exports.default = extractFonts;
     });
-    define("src/extractor/extractEffects", ["require", "exports", "src/utilities/convertColor", "src/utilities/filterByNameProperty"], function (require, exports, convertColor_2, filterByNameProperty_4) {
+    define("src/extractor/extractEffects", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        filterByNameProperty_4 = __importDefault(filterByNameProperty_4);
         const effectType = {
             "LAYER_BLUR": 'layerBlur',
             "BACKGROUND_BLUR": 'backgroundBlur',
@@ -318,7 +302,7 @@
         });
         const extractEffects = (tokenNodes) => {
             // get effect styles
-            return filterByNameProperty_4.default(tokenNodes).map(node => ({
+            return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
                 category: 'effect',
@@ -675,6 +659,14 @@
         };
         exports.default = tokenExport;
     });
+    define("src/utilities/filterByNameProperty", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const filterByPropertyName = (prefix = '_', exclude = true) => {
+            return (object) => (object.name.trim().substr(0, prefix.length) !== prefix) === exclude;
+        };
+        exports.default = filterByPropertyName;
+    });
     define("src/utilities/getTokenFrames", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -713,20 +705,24 @@
         };
         exports.default = getTokenFrames;
     });
-    define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/getTokenFrames"], function (require, exports, getTokenFrames_1) {
+    define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/filterByNameProperty", "src/utilities/getTokenFrames"], function (require, exports, filterByNameProperty_1, getTokenFrames_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        filterByNameProperty_1 = __importDefault(filterByNameProperty_1);
         getTokenFrames_1 = __importDefault(getTokenFrames_1);
         const buildFigmaData = (figma) => {
             // use spread operator because the original is readOnly
             const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
+            // filter options
+            const filterPrefix = '_';
+            const filterExclude = true;
             // get data from figma
             return {
                 tokenFrames: tokenFrames,
-                paintStyles: figma.getLocalPaintStyles(),
-                gridStyles: figma.getLocalGridStyles(),
-                textStyles: figma.getLocalTextStyles(),
-                effectStyles: figma.getLocalEffectStyles()
+                paintStyles: figma.getLocalPaintStyles().filter(filterByNameProperty_1.default(filterPrefix, filterExclude)),
+                gridStyles: figma.getLocalGridStyles().filter(filterByNameProperty_1.default(filterPrefix, filterExclude)),
+                textStyles: figma.getLocalTextStyles().filter(filterByNameProperty_1.default(filterPrefix, filterExclude)),
+                effectStyles: figma.getLocalEffectStyles().filter(filterByNameProperty_1.default(filterPrefix, filterExclude)),
             };
         };
         exports.default = buildFigmaData;

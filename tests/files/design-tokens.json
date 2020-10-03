@@ -2,7 +2,7 @@
   "sizes": {
     "32": {
       "category": "size",
-      "comment": "32px spacer component",
+      "comment": "32.72px spacer component",
       "value": 32.72,
       "type": "number",
       "unit": "pixel"
