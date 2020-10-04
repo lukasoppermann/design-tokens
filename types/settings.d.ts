@@ -1,16 +1,11 @@
-type UserSettings = {
+type Settings = {
   filename: string,
   excludePrefix: boolean,
-  prefix: string
+  prefix: string,
+  serverUrl?: string,
+  eventType: string,
+  acceptHeader?: string,
+  authType: string
 }
 
-type PrivateUserSettings = {
-  sendToUrl: boolean
-}
-
-type Settings = {
-  settings: UserSettings,
-  privateSettings: PrivateUserSettings
-}
-
-export { Settings, UserSettings, PrivateUserSettings }
+export default Settings

@@ -43,6 +43,52 @@
         }
       }, '*')
     }
+    // send to url
+    if (message.command === "urlExport") {
+      // only run of a valid url is provided
+      if (message.data.url === "") {
+        window.parent.postMessage({
+          pluginMessage: {
+            command: 'closePlugin',
+            notification: '🚨 No server url was provided, push aborted!'
+          }
+        }, '*')
+      } 
+      else {
+        // init request
+        const request = new XMLHttpRequest()
+        // send to user defined url
+        request.open('POST', message.data.url)
+        // set request header if provided
+        if (message.data.acceptHeader !== "") {
+          request.setRequestHeader('Accept', 'application/vnd.github.everest-preview+json')
+        }
+        // add access token of provided
+        if (message.data.accessToken !== "" && message.data.authType !== "") {
+          request.setRequestHeader('Authorization', `${message.data.authType} ${message.data.accessToken}`)
+        }
+        // on error
+        request.onerror = () => {
+          window.parent.postMessage({
+            pluginMessage: {
+              command: 'closePlugin',
+              notification: '🚨 An error occured while sending the tokens: check your settings & server.'
+            }
+          }, '*')
+        }
+        // show message on successful push
+        request.onload = () => {
+          window.parent.postMessage({
+            pluginMessage: {
+              command: 'closePlugin',
+              notification: '🎉 Design tokens pushed to server!'
+            }
+          }, '*')
+        }
+        // send request
+        request.send(JSON.stringify(message.data.data, 0, 2))
+      }
+    }
     // open help page
     if (message.command === "help") {
       window.open('https://github.com/lukasoppermann/design-tokens')

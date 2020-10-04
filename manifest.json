@@ -8,7 +8,8 @@
     "settings": "ui/settings.html"
   },
   "menu": [
-    {"name": "Export Design Tokens", "command": "export"},
+    {"name": "Export Design Token File", "command": "export"},
+    {"name": "Send Design Tokens to Url", "command": "urlExport"},
     {"separator": true},
     {"name": "Settings", "command": "settings"},
     {"separator": true},
