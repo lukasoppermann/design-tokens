@@ -1,21 +1,44 @@
 import exportTokens from './exportTokens'
 import buildFigmaData from './utilities/buildFigmaData'
-// register the UI 
-// by default it is hidden
-figma.showUI(__html__, {visible: false})
-// const ui = {
-//   settings: figma.showUI(__uiFiles__.settings, {visible: false}),
-//   utilities: figma.showUI(__uiFiles__.utilities, {visible: false})
-// }
+import prepareSettings from './utilities/prepareSettings'
 
+const getSettings = async () => {
+  return {
+    // store public settings that should be shared across org
+    settings: JSON.parse(figma.root.getPluginData('settings')),
+    // set secret server credentials
+    secretSettings: await figma.clientStorage.getAsync('secretSettings')
+  }
+}
+
+const settings = JSON.parse(figma.root.getPluginData('settings'))
+
+const saveSettings = (settings, secretSettings) => {
+  // store public settings that should be shared across org
+  figma.root.setPluginData('settings', JSON.stringify(settings, null, 2))
+  // set secret server credentials
+  figma.clientStorage.setAsync('secretSettings', secretSettings)
+}
+
+
+const activateUtilitiesUi = () => {
+  // register the utilities UI 
+  // by default it is hidden
+  // @ts-ignore
+  figma.showUI(__uiFiles__.utilities, { visible: false })
+}
 // figma.command is the menu item executed from the plugin menu
 // run different functions depending on the provided command
 //
 // EXPORT
 // exports the design tokens
 if(figma.command === 'export') {
+  activateUtilitiesUi()
   // construct figma data object
-  const figmaData = buildFigmaData(figma)
+  const figmaData = buildFigmaData(figma, {
+    prefix: settings.prefix,
+    excludePrefix: settings.excludePrefix
+  })
   // export tokens
   exportTokens(figmaData)
   // const tokens = exportTokens()
@@ -25,21 +48,44 @@ if(figma.command === 'export') {
 // SETTINGS
 // settings for the design tokens
 if(figma.command === 'settings') {
-  // const isTokenFrame = node => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0,7) === '_tokens'
-  // const frames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr])
-  // figma.ui.show()
+  // register the settings UI
+  // by default it is hidden
+  // @ts-ignore
+  figma.showUI(__uiFiles__.settings, {
+    visible: false,
+    width: 500,
+    height: 220
+  })
+  const openUi = async () => {
+    figma.ui.postMessage({
+      command: "getSettings",
+      data: await getSettings()
+    })
+    // @ts-ignore
+    figma.ui.show(__uiFiles__.settings)
+  }
+  openUi()
 }
 // HELP
 // Open github help page
 if (figma.command === 'help') {
+  activateUtilitiesUi()
   figma.ui.postMessage({
     command: "help"
   })
 }
 
-
-figma.ui.onmessage = (message) => {
+// CLOSE PLUGIN
+figma.ui.onmessage = async (message) => {
   if (message.command === 'closePlugin') {
+    figma.closePlugin()
+  }
+  // save settings
+  if (message.command === 'saveSettings') {
+    const preparedSettings = prepareSettings(message.data, await getSettings())
+    // store settings 
+    saveSettings(preparedSettings.settings, preparedSettings.secretSettings)
+    // close plugin
     figma.closePlugin()
   }
 }
