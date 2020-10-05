@@ -12,6 +12,15 @@
     var __importDefault = (this && this.__importDefault) || function (mod) {
         return (mod && mod.__esModule) ? mod : { "default": mod };
     };
+    var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
     define("types/valueTypes", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -727,11 +736,81 @@
         };
         exports.default = buildFigmaData;
     });
-    define("src/index", ["require", "exports", "src/exportTokens", "src/utilities/buildFigmaData"], function (require, exports, exportTokens_1, buildFigmaData_1) {
+    define("src/utilities/prepareSettings", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        // settings structure & default values
+        const settingsStructure = {
+            settings: {
+                excludePrefix: {
+                    default: true,
+                    empty: false
+                },
+                prefix: {
+                    default: "_",
+                    empty: false
+                }
+            }
+        };
+        /**
+         * Function sanitizes and prepares settings to be stored
+         * @param newSettings
+         * @param currentSettings
+         */
+        const prepareSettings = (newSettings, currentSettings) => {
+            // initialize object
+            const mergedSettings = {
+                settings: {},
+                secretSettings: {}
+            };
+            // add public settings
+            for (const [key, value] of Object.entries(settingsStructure.settings)) {
+                // avoid empty values
+                if (typeof value.default === "string" && value.empty === false) {
+                    if (newSettings[key].trim() === '') {
+                        newSettings[key] = currentSettings.settings[key] || value.default;
+                    }
+                }
+                // if valid new settings
+                if (typeof newSettings[key] === typeof value.default) {
+                    mergedSettings.settings[key] = newSettings[key];
+                }
+                // if valid current settings
+                else if (typeof currentSettings[key] === typeof value.default) {
+                    mergedSettings.settings[key] = currentSettings[key];
+                }
+                else {
+                    // if both new and old value don't fit, use default
+                    mergedSettings.settings[key] = value.default;
+                }
+            }
+            return {
+                settings: mergedSettings.settings,
+                secretSettings: mergedSettings.secretSettings
+            };
+        };
+        exports.default = prepareSettings;
+    });
+    define("src/index", ["require", "exports", "src/exportTokens", "src/utilities/buildFigmaData", "src/utilities/prepareSettings"], function (require, exports, exportTokens_1, buildFigmaData_1, prepareSettings_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         exportTokens_1 = __importDefault(exportTokens_1);
         buildFigmaData_1 = __importDefault(buildFigmaData_1);
+        prepareSettings_1 = __importDefault(prepareSettings_1);
+        const getSettings = () => __awaiter(void 0, void 0, void 0, function* () {
+            return {
+                // store public settings that should be shared across org
+                settings: JSON.parse(figma.root.getPluginData('settings')),
+                // set secret server credentials
+                secretSettings: yield figma.clientStorage.getAsync('secretSettings')
+            };
+        });
+        const saveSettings = (settings, secretSettings) => {
+            // store public settings that should be shared across org
+            figma.root.setPluginData('settings', JSON.stringify(settings, null, 2));
+            // set secret server credentials
+            figma.clientStorage.setAsync('secretSettings', secretSettings);
+        };
         const activateUtilitiesUi = () => {
             // register the utilities UI 
             // by default it is hidden
@@ -764,8 +843,15 @@
                 width: 500,
                 height: 220
             });
-            // @ts-ignore
-            figma.ui.show(__uiFiles__.settings);
+            const openUi = () => __awaiter(void 0, void 0, void 0, function* () {
+                figma.ui.postMessage({
+                    command: "getSettings",
+                    data: yield getSettings()
+                });
+                // @ts-ignore
+                figma.ui.show(__uiFiles__.settings);
+            });
+            openUi();
         }
         // HELP
         // Open github help page
@@ -776,11 +862,19 @@
             });
         }
         // CLOSE PLUGIN
-        figma.ui.onmessage = (message) => {
+        figma.ui.onmessage = (message) => __awaiter(void 0, void 0, void 0, function* () {
             if (message.command === 'closePlugin') {
                 figma.closePlugin();
             }
-        };
+            // save settings
+            if (message.command === 'saveSettings') {
+                const preparedSettings = prepareSettings_1.default(message.data, yield getSettings());
+                // store settings 
+                saveSettings(preparedSettings.settings, preparedSettings.secretSettings);
+                // close plugin
+                figma.closePlugin();
+            }
+        });
     });
     
     'marker:resolver';

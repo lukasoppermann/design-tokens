@@ -1,5 +1,23 @@
 import exportTokens from './exportTokens'
 import buildFigmaData from './utilities/buildFigmaData'
+import prepareSettings from './utilities/prepareSettings'
+
+const getSettings = async () => {
+  return {
+    // store public settings that should be shared across org
+    settings: JSON.parse(figma.root.getPluginData('settings')),
+    // set secret server credentials
+    secretSettings: await figma.clientStorage.getAsync('secretSettings')
+  }
+}
+
+const saveSettings = (settings, secretSettings) => {
+  // store public settings that should be shared across org
+  figma.root.setPluginData('settings', JSON.stringify(settings, null, 2))
+  // set secret server credentials
+  figma.clientStorage.setAsync('secretSettings', secretSettings)
+}
+
 const activateUtilitiesUi = () => {
   // register the utilities UI 
   // by default it is hidden
@@ -32,8 +50,15 @@ if(figma.command === 'settings') {
     width: 500,
     height: 220
   })
-  // @ts-ignore
-  figma.ui.show(__uiFiles__.settings)
+  const openUi = async () => {
+    figma.ui.postMessage({
+      command: "getSettings",
+      data: await getSettings()
+    })
+    // @ts-ignore
+    figma.ui.show(__uiFiles__.settings)
+  }
+  openUi()
 }
 // HELP
 // Open github help page
@@ -45,8 +70,16 @@ if (figma.command === 'help') {
 }
 
 // CLOSE PLUGIN
-figma.ui.onmessage = (message) => {
+figma.ui.onmessage = async (message) => {
   if (message.command === 'closePlugin') {
+    figma.closePlugin()
+  }
+  // save settings
+  if (message.command === 'saveSettings') {
+    const preparedSettings = prepareSettings(message.data, await getSettings())
+    // store settings 
+    saveSettings(preparedSettings.settings, preparedSettings.secretSettings)
+    // close plugin
     figma.closePlugin()
   }
 }
