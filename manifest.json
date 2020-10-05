@@ -3,9 +3,14 @@
   "id": "888356646278934516",
   "api": "1.0.0",
   "main": "dist/plugin.js",
-  "ui": "ui/settings.html",
+  "ui": {
+    "utilities": "ui/utilities.html",
+    "settings": "ui/settings.html"
+  },
   "menu": [
     {"name": "Export Design Tokens", "command": "export"},
+    {"separator": true},
+    {"name": "Settings", "command": "settings"},
     {"separator": true},
     {"name": "Help", "command": "help"}
   ]
