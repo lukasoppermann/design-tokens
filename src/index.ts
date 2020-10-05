@@ -2,6 +2,12 @@ import exportTokens from './exportTokens'
 import buildFigmaData from './utilities/buildFigmaData'
 import prepareSettings from './utilities/prepareSettings'
 
+console.log('Settings breaks as it has no defaults')
+console.log(figma.root.getPluginData('settings'))
+// extract into function
+const settings = JSON.parse(figma.root.getPluginData('settings'))
+// extract secret settings into function
+// secret settings
 const getSettings = async () => {
   return {
     // store public settings that should be shared across org
@@ -10,8 +16,6 @@ const getSettings = async () => {
     secretSettings: await figma.clientStorage.getAsync('secretSettings')
   }
 }
-
-const settings = JSON.parse(figma.root.getPluginData('settings'))
 
 const saveSettings = (settings, secretSettings) => {
   // store public settings that should be shared across org
@@ -35,10 +39,11 @@ const activateUtilitiesUi = () => {
 if(figma.command === 'export') {
   activateUtilitiesUi()
   // construct figma data object
-  const figmaData = buildFigmaData(figma, {
-    prefix: settings.prefix,
-    excludePrefix: settings.excludePrefix
-  })
+  const figmaData = buildFigmaData(figma)
+  // const figmaData = buildFigmaData(figma, {
+  //   prefix: settings.prefix,
+  //   excludePrefix: settings.excludePrefix
+  // })
   // export tokens
   exportTokens(figmaData)
   // const tokens = exportTokens()

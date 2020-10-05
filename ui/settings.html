@@ -43,16 +43,16 @@
       /* Font stack */
       --font-stack: 'Inter', sans-serif;
       /* Font sizes */
-      --font-size-xsmall: 11px;
-      --font-size-small: 12px;
-      --font-size-large: 13px;
-      --font-size-xlarge: 14px;
+      --font-size-xsmall: 13px;
+      --font-size-small: 15px;
+      --font-size-large: 16px;
+      --font-size-xlarge: 18px;
       /* Font weights */
       --font-weight-normal: 400;
       --font-weight-medium: 500;
       --font-weight-bold: 600;
       /* Lineheight */
-      --font-line-height: 16px;
+      --font-line-height: 18px;
       /* Use For xsmall, small font sizes */
       --font-line-height-large: 24px;
       /* Use For large, xlarge font sizes */
@@ -2053,14 +2053,20 @@
     }
   </style>
   <style>
+    :root {
+      --dark-grey: rgb(100, 100, 100);
+    }
     .plugin-ui-content {
       padding: 2px var(--size-xxsmall) var(--size-xsmall);
     }
     h3 {
       padding: 0 var(--size-xxsmall);
     }
+    .label {
+      color: var(--dark-grey);
+    }
     .message-box {
-      padding: 0 var(--size-xxxsmall) 0 var(--size-xxsmall);
+      padding: 0 var(--size-xxxsmall) var(--size-xxsmall) var(--size-xxsmall);
     }
     .message-box .message {
       font-family: var(--font-stack);
@@ -2075,12 +2081,17 @@
     .flex-horizontal .label {
       width: auto;
     }
+    input:invalid {
+      border: 1px solid var(--red);
+      outline: 1px solid var(--red);
+      outline-offset: -2px;
+    }
     #excludePrefix ~ .switch__label > .toggleText::before {
       position: relative;
       display: inline-block;
       content: "(prefix styles are included)";
       padding-left: var(--size-xxxsmall);
-      color: var(--black3);
+      color: var(--dark-grey);
     }
     #excludePrefix:checked ~ .switch__label > .toggleText::before{
       content: "(prefix styles are excluded)";
@@ -2102,7 +2113,7 @@
 </head>
 
 <body>
-  <div class="plugin-ui-content">
+  <form id="settingsForm" class="plugin-ui-content">
     <h3>Design Token Settings</h3>
     <div class="section-title">Prefix</div>
     <div class="message-box">
@@ -2111,7 +2122,7 @@
     <div class="flex-horizontal">
       <div class="input flex-horizontal">
         <div class="label">Prefix:</div>
-        <input type="input" id="prefix" class="input__field" value="_">
+        <input required pattern="\S+" type="input" id="prefix" class="input__field" placeholder="_" value="_">
       </div>
       <div class="switch">
         <input class="switch__toggle" type="checkbox" id="excludePrefix" checked>
@@ -2122,8 +2133,8 @@
       <button id="cancel" class='button button--secondary'>Cancel</button>
       <button id="save" class='button button--primary'>Save changes</button>
     </footer>
-  </div>
-  <script>
+  </form>
+  <script> 
   onmessage = (event) => {
     let message = event.data.pluginMessage
     if (message.command === "getSettings") {
@@ -2137,13 +2148,17 @@
   //   parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
   // }
   document.getElementById('save').onclick = () => {
-    parent.postMessage({ pluginMessage: { 
-      command: 'saveSettings',
-      data: {
-        prefix: document.getElementById('prefix').value,
-        excludePrefix: document.getElementById('excludePrefix').checked
-      }
-    } }, '*')
+    let form = document.getElementById('settingsForm')
+    // fir form is valid
+    if (form.checkValidity() === true) {
+      parent.postMessage({ pluginMessage: { 
+        command: 'saveSettings',
+        data: {
+          prefix: document.getElementById('prefix').value,
+          excludePrefix: document.getElementById('excludePrefix').checked
+        }
+      } }, '*')
+    }
   }
   // close settings without saving
   document.getElementById('cancel').onclick = () => {
