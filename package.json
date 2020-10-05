@@ -1,6 +1,6 @@
 {
   "name": "Design-Tokens",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Your Figma Plugin",
   "main": "code.js",
   "repository": {
