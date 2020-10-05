@@ -2127,7 +2127,6 @@
   onmessage = (event) => {
     let message = event.data.pluginMessage
     if (message.command === "getSettings") {
-      console.log(message)
       document.getElementById('prefix').value = message.data.settings.prefix
       document.getElementById('excludePrefix').checked = message.data.settings.excludePrefix
     }

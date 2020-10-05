@@ -11,12 +11,15 @@ const getSettings = async () => {
   }
 }
 
+const settings = JSON.parse(figma.root.getPluginData('settings'))
+
 const saveSettings = (settings, secretSettings) => {
   // store public settings that should be shared across org
   figma.root.setPluginData('settings', JSON.stringify(settings, null, 2))
   // set secret server credentials
   figma.clientStorage.setAsync('secretSettings', secretSettings)
 }
+
 
 const activateUtilitiesUi = () => {
   // register the utilities UI 
@@ -32,7 +35,10 @@ const activateUtilitiesUi = () => {
 if(figma.command === 'export') {
   activateUtilitiesUi()
   // construct figma data object
-  const figmaData = buildFigmaData(figma)
+  const figmaData = buildFigmaData(figma, {
+    prefix: settings.prefix,
+    excludePrefix: settings.excludePrefix
+  })
   // export tokens
   exportTokens(figmaData)
   // const tokens = exportTokens()

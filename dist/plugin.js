@@ -719,19 +719,19 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         filterByNameProperty_1 = __importDefault(filterByNameProperty_1);
         getTokenFrames_1 = __importDefault(getTokenFrames_1);
-        const buildFigmaData = (figma) => {
+        const buildFigmaData = (figma, options = {
+            prefix: '_',
+            excludePrefix: true
+        }) => {
             // use spread operator because the original is readOnly
             const tokenFrames = getTokenFrames_1.default([...figma.root.children]);
-            // filter options
-            const filterPrefix = '_';
-            const filterExclude = true;
             // get data from figma
             return {
                 tokenFrames: tokenFrames,
-                paintStyles: figma.getLocalPaintStyles().filter(filterByNameProperty_1.default(filterPrefix, filterExclude)),
-                gridStyles: figma.getLocalGridStyles().filter(filterByNameProperty_1.default(filterPrefix, filterExclude)),
-                textStyles: figma.getLocalTextStyles().filter(filterByNameProperty_1.default(filterPrefix, filterExclude)),
-                effectStyles: figma.getLocalEffectStyles().filter(filterByNameProperty_1.default(filterPrefix, filterExclude)),
+                paintStyles: figma.getLocalPaintStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
+                gridStyles: figma.getLocalGridStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
+                textStyles: figma.getLocalTextStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
+                effectStyles: figma.getLocalEffectStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
             };
         };
         exports.default = buildFigmaData;
@@ -805,6 +805,7 @@
                 secretSettings: yield figma.clientStorage.getAsync('secretSettings')
             };
         });
+        const settings = JSON.parse(figma.root.getPluginData('settings'));
         const saveSettings = (settings, secretSettings) => {
             // store public settings that should be shared across org
             figma.root.setPluginData('settings', JSON.stringify(settings, null, 2));
@@ -825,7 +826,10 @@
         if (figma.command === 'export') {
             activateUtilitiesUi();
             // construct figma data object
-            const figmaData = buildFigmaData_1.default(figma);
+            const figmaData = buildFigmaData_1.default(figma, {
+                prefix: settings.prefix,
+                excludePrefix: settings.excludePrefix
+            });
             // export tokens
             exportTokens_1.default(figmaData);
             // const tokens = exportTokens()
