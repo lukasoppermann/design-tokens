@@ -29,6 +29,13 @@ if(figma.command === 'settings') {
   // const frames = figma.root.children.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr])
   // figma.ui.show()
 }
+// HELP
+// Open github help page
+if (figma.command === 'help') {
+  figma.ui.postMessage({
+    command: "help"
+  })
+}
 
 
 figma.ui.onmessage = (message) => {
