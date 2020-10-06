@@ -2163,6 +2163,14 @@
     }
   }
   // ---------------------------------
+    // close on esc
+    document.addEventListener("keyup", event => {
+      if (event.key === "Escape") {
+        event
+        parent.postMessage({ pluginMessage: { command: 'closePlugin' } }, '*')
+      }
+    })
+  // ---------------------------------
   // CANCEL: close settings without saving
   document.getElementById('cancel').onclick = () => {
     parent.postMessage({ pluginMessage: { command: 'closePlugin' } }, '*')
