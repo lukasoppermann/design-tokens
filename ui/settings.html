@@ -2135,22 +2135,24 @@
     </footer>
   </form>
   <script> 
+  // ---------------------------------
+  // listen to messages
   onmessage = (event) => {
     let message = event.data.pluginMessage
+    // when settings date is send to ui
     if (message.command === "getSettings") {
+      // fill form with data
       document.getElementById('prefix').value = message.data.settings.prefix
       document.getElementById('excludePrefix').checked = message.data.settings.excludePrefix
     }
   }
-  // document.getElementById('create').onclick = () => {
-  //   const textbox = document.getElementById('count');
-  //   const count = parseInt(textbox.value, 10);
-  //   parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
-  // }
+  // ---------------------------------
+  // when save button is clicked
   document.getElementById('save').onclick = () => {
     let form = document.getElementById('settingsForm')
-    // fir form is valid
+    // if form is valid
     if (form.checkValidity() === true) {
+      // sent to index saveSettings method
       parent.postMessage({ pluginMessage: { 
         command: 'saveSettings',
         data: {
@@ -2160,7 +2162,8 @@
       } }, '*')
     }
   }
-  // close settings without saving
+  // ---------------------------------
+  // CANCEL: close settings without saving
   document.getElementById('cancel').onclick = () => {
     parent.postMessage({ pluginMessage: { command: 'closePlugin' } }, '*')
   }

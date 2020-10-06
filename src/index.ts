@@ -1,33 +1,26 @@
 import exportTokens from './exportTokens'
 import buildFigmaData from './utilities/buildFigmaData'
-import prepareSettings from './utilities/prepareSettings'
+import settingsPrepare from './utilities/settingsPrepare'
+import { settingsKeys, getSettings, getPrivateSettings } from './utilities/settingsGetters'
+import { UserSettings, PrivateUserSettings } from '../types/settings'
 
-console.log('Settings breaks as it has no defaults')
-console.log(figma.root.getPluginData('settings'))
-// extract into function
-const settings = JSON.parse(figma.root.getPluginData('settings'))
-// extract secret settings into function
-// secret settings
-const getSettings = async () => {
-  return {
-    // store public settings that should be shared across org
-    settings: JSON.parse(figma.root.getPluginData('settings')),
-    // set secret server credentials
-    secretSettings: await figma.clientStorage.getAsync('secretSettings')
-  }
-}
+// Get the user settings
+const getUserSettings = (userSettings: string): UserSettings | undefined => userSettings.length > 0 ? JSON.parse(userSettings) : undefined
+const userSettings = getUserSettings(figma.root.getPluginData(settingsKeys.settings))
 
-const saveSettings = (settings, secretSettings) => {
+// get private user settings
+const getPrivateUserSettings = async (): Promise<PrivateUserSettings> => await figma.clientStorage.getAsync(settingsKeys.privateSettings)
+
+
+const saveSettings = (settings: UserSettings, secretSettings: PrivateUserSettings) => {
   // store public settings that should be shared across org
   figma.root.setPluginData('settings', JSON.stringify(settings, null, 2))
   // set secret server credentials
   figma.clientStorage.setAsync('secretSettings', secretSettings)
 }
 
-
 const activateUtilitiesUi = () => {
-  // register the utilities UI 
-  // by default it is hidden
+  // register the utilities UI (hidden by default)
   // @ts-ignore
   figma.showUI(__uiFiles__.utilities, { visible: false })
 }
@@ -39,16 +32,13 @@ const activateUtilitiesUi = () => {
 if(figma.command === 'export') {
   activateUtilitiesUi()
   // construct figma data object
-  const figmaData = buildFigmaData(figma)
-  // const figmaData = buildFigmaData(figma, {
-  //   prefix: settings.prefix,
-  //   excludePrefix: settings.excludePrefix
-  // })
+  // const figmaData = buildFigmaData(figma)
+  const figmaData = buildFigmaData(figma, {
+    prefix: userSettings.prefix,
+    excludePrefix: userSettings.excludePrefix
+  })
   // export tokens
   exportTokens(figmaData)
-  // const tokens = exportTokens()
-  // writeJson(tokens)
-  // always run closePlugin otherwise the plugin will keep running
 }
 // SETTINGS
 // settings for the design tokens
@@ -61,10 +51,17 @@ if(figma.command === 'settings') {
     width: 500,
     height: 220
   })
+  // wrap in function because of async client Storage
   const openUi = async () => {
+    // get user provate settings
+    const userPrivateSettings = await getPrivateUserSettings()
+    // sent settings to UI
     figma.ui.postMessage({
       command: "getSettings",
-      data: await getSettings()
+      data: {
+        settings: getSettings(userSettings),
+        privateSettings: getPrivateSettings(userPrivateSettings)
+      }
     })
     // @ts-ignore
     figma.ui.show(__uiFiles__.settings)
@@ -87,9 +84,15 @@ figma.ui.onmessage = async (message) => {
   }
   // save settings
   if (message.command === 'saveSettings') {
-    const preparedSettings = prepareSettings(message.data, await getSettings())
+    // construct currentSettings object
+    const currentSettings = {
+      [settingsKeys.settings]: userSettings,
+      [settingsKeys.privateSettings]: await getPrivateUserSettings()
+    }
+    // prepare settings object
+    const preparedSettings = settingsPrepare(message.data, currentSettings)
     // store settings 
-    saveSettings(preparedSettings.settings, preparedSettings.secretSettings)
+    saveSettings(preparedSettings.settings, preparedSettings.privateSettings)
     // close plugin
     figma.closePlugin()
   }

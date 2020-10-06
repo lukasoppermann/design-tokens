@@ -1,25 +1,11 @@
-// settings structure & default values
-const settingsStructure = {
-  settings: {
-    excludePrefix: {
-      default: true,
-      empty: false
-    },
-    prefix: {
-      default: "_",
-      empty: false
-    }
-  }
-}
+import settingsStructure from './settingsDefault'
+import { Settings } from '../../types/settings'
 /**
  * Function sanitizes and prepares settings to be stored
  * @param newSettings 
  * @param currentSettings 
  */
-const prepareSettings = (newSettings, currentSettings): {
-  settings: any,
-  secretSettings: any
-} => {
+const settingsPrepare = (newSettings, currentSettings): Settings => {
   // initialize object
   const mergedSettings = {
     settings: {},
@@ -46,11 +32,13 @@ const prepareSettings = (newSettings, currentSettings): {
       mergedSettings.settings[key] = value.default
     }
   }
-
+  // return merged settings object
   return {
+    // @ts-ignore
     settings: mergedSettings.settings,
+    // @ts-ignore
     secretSettings: mergedSettings.secretSettings
   }
 }
-
-export default prepareSettings
+// expots
+export default settingsPrepare
