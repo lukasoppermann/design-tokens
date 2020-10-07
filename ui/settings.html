@@ -2134,7 +2134,10 @@
       <button id="save" class='button button--primary' type="submit">Save changes</button>
     </footer>
   </form>
-  <script> 
+  <script>
+  // ---------------------------------
+  // listen to messages
+  document.getElementById('prefix').focus()
   // ---------------------------------
   // listen to messages
   onmessage = (event) => {
@@ -2149,7 +2152,7 @@
   // ---------------------------------
   // when save button is clicked
   document.getElementById('save').onclick = () => {
-    let form = document.getElementById('settingsForm')
+    const form = document.getElementById('settingsForm')
     // if form is valid
     if (form.checkValidity() === true) {
       // sent to index saveSettings method
