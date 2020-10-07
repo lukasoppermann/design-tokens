@@ -48,6 +48,9 @@ Every property of a style will be converted to an individual token. For a `Text 
 #### Ignoring styles
 Styles you don't want to be exported as design tokens can be prefixed with an `_` underscore. For example a color style called `_readlining/line-color` will not be exported.
 
+In the settings you can change the prefix to anything you want.
+
+
 ### Custom design tokens
 The plugin also supports custom tokens for `borders`, `radii` & `spaces`.
 
@@ -66,6 +69,14 @@ If you wanted to create a custom spacer token for an `8px` space you would do th
 To allow for maximum customizability I decided to provide all values that Fimga provides. Many are not applicable to for example `css` but may be usable in other languages.
 
 **Colors** are provided in `rgba` but can be converted using [Amazon style dictionary](https://amzn.github.io/style-dictionary/#/).
+
+## Settings
+
+### Prefix (used to in-/exclude styles)
+**Prefix:** You can change the prefix from `_` to anything, e.g. `_tokens`.  
+**Exclude:** The toggle allows you to switch from `exclude` to `include` mode. This means that only prefixed styles will be exported. For example if you only wanted to export styles that are named `_tokens/...`.
+
+**Note:** This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
 
 ## Roadmap & PRs
 ### Roadmap
