@@ -2054,10 +2054,14 @@
   </style>
   <style>
     :root {
+      --blue: rgb(24, 160, 351);
+      --blue-10: rgba(24, 160, 351, 0.1);
+      --blue-black: rgb(20, 45, 60);
       --dark-grey: rgb(100, 100, 100);
     }
     .plugin-ui-content {
-      padding: 2px var(--size-xxsmall) var(--size-xsmall);
+      padding: 2px var(--size-xxsmall) 0;
+      margin-bottom: 0;
     }
     h3 {
       padding: 0 var(--size-xxsmall);
@@ -2074,6 +2078,39 @@
       font-weight: var(--font-weight-normal);
       letter-spacing: var(--font-letter-spacing-pos-xsmall);
       line-height: var(--font-line-height);
+    }
+    .notification:not(.hidden) {
+      font-family: var(--font-stack);
+      font-size: var(--font-size-xsmall);
+      font-weight: var(--font-weight-normal);
+      letter-spacing: var(--font-letter-spacing-pos-xsmall);
+      line-height: var(--font-line-height);
+      margin-top: var(--size-xxsmall);
+      padding: var(--size-xxsmall);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+    }
+    .notification--info {
+      position: relative;
+      background: var(--blue-10);
+      color: var(--blue-black);
+    }
+    .notification--info a {
+      color: var(--blue);
+    }
+    .notification--info a:hover {
+      text-decoration: none;
+    }
+    .notification--info a.subtle {
+      text-decoration: none;
+    }
+    .notification--info a.subtle:hover {
+      text-decoration: underline;
+    }
+    .notification--icon {
+      margin-right: var(--size-xxsmall);
+      margin-left: var(--size-xxxsmall);
     }
     .flex-horizontal {
       display: flex;
@@ -2114,6 +2151,14 @@
 
 <body>
   <form id="settingsForm" class="plugin-ui-content">
+    <div id="versionNotice" class="notification notification--info hidden">
+      <div class="notification--icon">🎉</div>
+      <div class="notification--message">
+        The <a class="subtle" href="https://www.figma.com/community/plugin/888356646278934516/Design-Tokens" target="_blank">Design Token plugin</a> was
+        updated.<br />
+        Find out about changes & new features in the <a href="https://github.com/lukasoppermann/design-tokens/releases" target="_blank">release notes →</a>
+      </div>
+    </div>
     <h3>Design Token Settings</h3>
     <div class="section-title">Prefix</div>
     <div class="message-box">
@@ -2147,6 +2192,10 @@
       // fill form with data
       document.getElementById('prefix').value = message.data.settings.prefix
       document.getElementById('excludePrefix').checked = message.data.settings.excludePrefix
+      // show update notice
+      if (message.data.versionDifference === 'major' || message.data.versionDifference === 'minor') {
+        document.getElementById('versionNotice').classList.remove('hidden')
+      }
     }
   }
   // ---------------------------------

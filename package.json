@@ -1,5 +1,5 @@
 {
-  "name": "Design-Tokens",
+  "name": "design-tokens",
   "version": "1.0.1",
   "description": "Your Figma Plugin",
   "main": "code.js",
@@ -15,7 +15,9 @@
     "test:unit": "jest tests/unit",
     "test:integration": "style-dictionary clean --config ./tests/integration/config.json && style-dictionary build --config ./tests/integration/config.json && jest tests/integration --coverage=false",
     "lint": "standardx src | snazzy",
-    "sd": "rm -rf tests/amazon-style-dictionary/build && style-dictionary build --config ./tests/amazon-style-dictionary/config.json"
+    "sd": "rm -rf tests/amazon-style-dictionary/build && style-dictionary build --config ./tests/amazon-style-dictionary/config.json",
+    "set-version": "replace-in-files --regex='\\d+\\.\\d+\\.\\d+' --replacement=$npm_package_version src/utilities/version.ts",
+    "version" : "npm run set-version"
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",
@@ -26,6 +28,7 @@
     "eslint-plugin-typescript": "^0.14.0",
     "jest": "^26.4.2",
     "jest-preset-typescript": "^1.2.0",
+    "replace-in-files-cli": "^1.0.0",
     "snazzy": "^8.0.0",
     "standardx": "^5.0.0",
     "style-dictionary": "^2.10.1",

@@ -855,12 +855,37 @@
         };
         exports.getPrivateSettings = getPrivateSettings;
     });
-    define("src/index", ["require", "exports", "src/exportTokens", "src/utilities/buildFigmaData", "src/utilities/settingsPrepare", "src/utilities/settingsGetters"], function (require, exports, exportTokens_1, buildFigmaData_1, settingsPrepare_1, settingsGetters_1) {
+    define("src/utilities/version", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const version = '1.0.1';
+        exports.default = version;
+    });
+    define("src/utilities/semVerDifference", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.default = (prevSemVers = '1.0.0', currentSemVer) => {
+            const [pMajor, pMinor, pPatch] = prevSemVers.split('.');
+            const [cMajor, cMinor, cPatch] = currentSemVer.split('.');
+            if (pMajor < cMajor) {
+                return 'major';
+            }
+            if (pMinor < cMinor) {
+                return 'minor';
+            }
+            if (pPatch < cPatch) {
+                return 'patch';
+            }
+        };
+    });
+    define("src/index", ["require", "exports", "src/exportTokens", "src/utilities/buildFigmaData", "src/utilities/settingsPrepare", "src/utilities/settingsGetters", "src/utilities/version", "src/utilities/semVerDifference"], function (require, exports, exportTokens_1, buildFigmaData_1, settingsPrepare_1, settingsGetters_1, version_1, semVerDifference_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         exportTokens_1 = __importDefault(exportTokens_1);
         buildFigmaData_1 = __importDefault(buildFigmaData_1);
         settingsPrepare_1 = __importDefault(settingsPrepare_1);
+        version_1 = __importDefault(version_1);
+        semVerDifference_1 = __importDefault(semVerDifference_1);
         // Get the user settings
         const getUserSettings = (userSettings) => userSettings.length > 0 ? JSON.parse(userSettings) : undefined;
         const userSettings = getUserSettings(figma.root.getPluginData(settingsGetters_1.settingsKeys.settings));
@@ -896,16 +921,30 @@
         // SETTINGS
         // settings for the design tokens
         if (figma.command === 'settings') {
-            // register the settings UI
-            // by default it is hidden
-            // @ts-ignore
-            figma.showUI(__uiFiles__.settings, {
-                visible: false,
-                width: 500,
-                height: 220
-            });
+            const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened';
+            // height for the settings dialog
+            let settingsDialogHeight = 220;
             // wrap in function because of async client Storage
             const openUi = () => __awaiter(void 0, void 0, void 0, function* () {
+                // get version & version difference
+                const lastVersionSettingsOpened = yield figma.clientStorage.getAsync(lastVersionSettingsOpenedKey);
+                const versionDifference = semVerDifference_1.default(lastVersionSettingsOpened, version_1.default);
+                // update version
+                if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== version_1.default) {
+                    yield figma.clientStorage.setAsync(lastVersionSettingsOpenedKey, version_1.default);
+                }
+                // if minor or major update
+                if (versionDifference === 'major' || versionDifference === 'minor') {
+                    settingsDialogHeight += 60;
+                }
+                // register the settings UI
+                // by default it is hidden
+                // @ts-ignore
+                figma.showUI(__uiFiles__.settings, {
+                    visible: false,
+                    width: 500,
+                    height: settingsDialogHeight
+                });
                 // get user provate settings
                 const userPrivateSettings = yield getPrivateUserSettings();
                 // sent settings to UI
@@ -913,12 +952,14 @@
                     command: "getSettings",
                     data: {
                         settings: settingsGetters_1.getSettings(userSettings),
-                        privateSettings: settingsGetters_1.getPrivateSettings(userPrivateSettings)
+                        privateSettings: settingsGetters_1.getPrivateSettings(userPrivateSettings),
+                        versionDifference: versionDifference
                     }
                 });
                 // @ts-ignore
                 figma.ui.show(__uiFiles__.settings);
             });
+            // run function
             openUi();
         }
         // HELP
