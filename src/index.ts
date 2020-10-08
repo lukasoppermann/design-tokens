@@ -3,11 +3,12 @@ import buildFigmaData from './utilities/buildFigmaData'
 import settingsPrepare from './utilities/settingsPrepare'
 import { settingsKeys, getSettings, getPrivateSettings } from './utilities/settingsGetters'
 import { UserSettings, PrivateUserSettings } from '../types/settings'
+import currentVersion from './utilities/version'
+import semVerDifference from './utilities/semVerDifference'
 
 // Get the user settings
 const getUserSettings = (userSettings: string): UserSettings | undefined => userSettings.length > 0 ? JSON.parse(userSettings) : undefined
 const userSettings = getUserSettings(figma.root.getPluginData(settingsKeys.settings))
-
 // get private user settings
 const getPrivateUserSettings = async (): Promise<PrivateUserSettings> => await figma.clientStorage.getAsync(settingsKeys.privateSettings)
 
@@ -43,13 +44,25 @@ if(figma.command === 'export') {
 // SETTINGS
 // settings for the design tokens
 if(figma.command === 'settings') {
+  let settingsDialogHeight = 220
+  // get version & version difference
+  const lastVersionSettingsOpened = figma.root.getPluginData('lastVersionSettingsOpened')
+  const versionDifference = semVerDifference(lastVersionSettingsOpened, currentVersion)
+  // update version
+  if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== currentVersion) {
+    figma.root.setPluginData('lastVersionSettingsOpened', currentVersion)
+  } 
+  // if minor or major update
+  if (versionDifference === 'major' || versionDifference === 'minor') {
+    settingsDialogHeight += 60
+  }
   // register the settings UI
   // by default it is hidden
   // @ts-ignore
   figma.showUI(__uiFiles__.settings, {
     visible: false,
     width: 500,
-    height: 220
+    height: settingsDialogHeight
   })
   // wrap in function because of async client Storage
   const openUi = async () => {
@@ -60,7 +73,8 @@ if(figma.command === 'settings') {
       command: "getSettings",
       data: {
         settings: getSettings(userSettings),
-        privateSettings: getPrivateSettings(userPrivateSettings)
+        privateSettings: getPrivateSettings(userPrivateSettings),
+        versionDifference: versionDifference
       }
     })
     // @ts-ignore
