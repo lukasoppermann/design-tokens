@@ -26,3 +26,8 @@ Get up to speed transforming your tokens using style directory with the transfor
 
 Feature request & bugs
 Please create an issues in the repository. https://github.com/lukasoppermann/design-tokens/issues/new
+
+-------
+
+Tags:
+amazon style dictionary, designsystems, design systems, design tokens, design-tokens, tokens, design properties, export, json, styleguides, styles, handoff
