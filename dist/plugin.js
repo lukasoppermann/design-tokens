@@ -858,7 +858,7 @@
     define("src/utilities/version", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const version = '1.0.1';
+        const version = '1.0.2';
         exports.default = version;
     });
     define("src/utilities/semVerDifference", ["require", "exports"], function (require, exports) {

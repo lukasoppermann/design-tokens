@@ -1,6 +1,6 @@
 {
   "name": "design-tokens",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Your Figma Plugin",
   "main": "code.js",
   "repository": {
@@ -17,7 +17,7 @@
     "lint": "standardx src | snazzy",
     "sd": "rm -rf tests/amazon-style-dictionary/build && style-dictionary build --config ./tests/amazon-style-dictionary/config.json",
     "set-version": "replace-in-files --regex='\\d+\\.\\d+\\.\\d+' --replacement=$npm_package_version src/utilities/version.ts",
-    "version" : "npm run set-version && npm run build && git add --all"
+    "version": "npm run set-version && npm run build && git add --all"
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",
