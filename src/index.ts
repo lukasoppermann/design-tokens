@@ -44,28 +44,30 @@ if(figma.command === 'export') {
 // SETTINGS
 // settings for the design tokens
 if(figma.command === 'settings') {
+  const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
+  // height for the settings dialog
   let settingsDialogHeight = 220
-  // get version & version difference
-  const lastVersionSettingsOpened = figma.root.getPluginData('lastVersionSettingsOpened')
-  const versionDifference = semVerDifference(lastVersionSettingsOpened, currentVersion)
-  // update version
-  if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== currentVersion) {
-    figma.root.setPluginData('lastVersionSettingsOpened', currentVersion)
-  } 
-  // if minor or major update
-  if (versionDifference === 'major' || versionDifference === 'minor') {
-    settingsDialogHeight += 60
-  }
-  // register the settings UI
-  // by default it is hidden
-  // @ts-ignore
-  figma.showUI(__uiFiles__.settings, {
-    visible: false,
-    width: 500,
-    height: settingsDialogHeight
-  })
   // wrap in function because of async client Storage
   const openUi = async () => {
+    // get version & version difference
+    const lastVersionSettingsOpened = await figma.clientStorage.getAsync(lastVersionSettingsOpenedKey)
+    const versionDifference = semVerDifference(lastVersionSettingsOpened, currentVersion)
+    // update version
+    if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== currentVersion) {
+      await figma.clientStorage.setAsync(lastVersionSettingsOpenedKey, currentVersion)
+    }
+    // if minor or major update
+    if (versionDifference === 'major' || versionDifference === 'minor') {
+      settingsDialogHeight += 60
+    }
+    // register the settings UI
+    // by default it is hidden
+    // @ts-ignore
+    figma.showUI(__uiFiles__.settings, {
+      visible: false,
+      width: 500,
+      height: settingsDialogHeight
+    })
     // get user provate settings
     const userPrivateSettings = await getPrivateUserSettings()
     // sent settings to UI
@@ -80,6 +82,7 @@ if(figma.command === 'settings') {
     // @ts-ignore
     figma.ui.show(__uiFiles__.settings)
   }
+  // run function
   openUi()
 }
 // HELP

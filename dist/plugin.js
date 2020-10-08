@@ -921,28 +921,30 @@
         // SETTINGS
         // settings for the design tokens
         if (figma.command === 'settings') {
+            const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened';
+            // height for the settings dialog
             let settingsDialogHeight = 220;
-            // get version & version difference
-            const lastVersionSettingsOpened = figma.root.getPluginData('lastVersionSettingsOpened');
-            const versionDifference = semVerDifference_1.default(lastVersionSettingsOpened, version_1.default);
-            // update version
-            if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== version_1.default) {
-                figma.root.setPluginData('lastVersionSettingsOpened', version_1.default);
-            }
-            // if minor or major update
-            if (versionDifference === 'major' || versionDifference === 'minor') {
-                settingsDialogHeight += 60;
-            }
-            // register the settings UI
-            // by default it is hidden
-            // @ts-ignore
-            figma.showUI(__uiFiles__.settings, {
-                visible: false,
-                width: 500,
-                height: settingsDialogHeight
-            });
             // wrap in function because of async client Storage
             const openUi = () => __awaiter(void 0, void 0, void 0, function* () {
+                // get version & version difference
+                const lastVersionSettingsOpened = yield figma.clientStorage.getAsync(lastVersionSettingsOpenedKey);
+                const versionDifference = semVerDifference_1.default(lastVersionSettingsOpened, version_1.default);
+                // update version
+                if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== version_1.default) {
+                    yield figma.clientStorage.setAsync(lastVersionSettingsOpenedKey, version_1.default);
+                }
+                // if minor or major update
+                if (versionDifference === 'major' || versionDifference === 'minor') {
+                    settingsDialogHeight += 60;
+                }
+                // register the settings UI
+                // by default it is hidden
+                // @ts-ignore
+                figma.showUI(__uiFiles__.settings, {
+                    visible: false,
+                    width: 500,
+                    height: settingsDialogHeight
+                });
                 // get user provate settings
                 const userPrivateSettings = yield getPrivateUserSettings();
                 // sent settings to UI
@@ -957,6 +959,7 @@
                 // @ts-ignore
                 figma.ui.show(__uiFiles__.settings);
             });
+            // run function
             openUi();
         }
         // HELP
