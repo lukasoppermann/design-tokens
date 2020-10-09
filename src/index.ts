@@ -8,7 +8,7 @@ import semVerDifference from './utilities/semVerDifference'
 
 // Get the user settings
 const getUserSettings = (userSettings: string): UserSettings | undefined => userSettings.length > 0 ? JSON.parse(userSettings) : undefined
-const userSettings = getUserSettings(figma.root.getPluginData(settingsKeys.settings))
+const userSettings = getSettings(getUserSettings(figma.root.getPluginData(settingsKeys.settings)))
 // get private user settings
 const getPrivateUserSettings = async (): Promise<PrivateUserSettings> => await figma.clientStorage.getAsync(settingsKeys.privateSettings)
 
@@ -46,7 +46,7 @@ if(figma.command === 'export') {
 if(figma.command === 'settings') {
   const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
   // height for the settings dialog
-  let settingsDialogHeight = 220
+  let settingsDialogHeight = 270
   // wrap in function because of async client Storage
   const openUi = async () => {
     // get version & version difference
@@ -74,7 +74,7 @@ if(figma.command === 'settings') {
     figma.ui.postMessage({
       command: "getSettings",
       data: {
-        settings: getSettings(userSettings),
+        settings: userSettings,
         privateSettings: getPrivateSettings(userPrivateSettings),
         versionDifference: versionDifference
       }

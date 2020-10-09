@@ -2146,6 +2146,11 @@
     footer > :last-child{
       margin-right: 0;
     }
+    :not(h3) + .section-title {
+      padding-top: var(--size-xxsmall);
+      margin-top: var(--size-xsmall);
+      border-top: 1px solid var(--silver);
+    }
   </style>
 </head>
 
@@ -2160,6 +2165,13 @@
       </div>
     </div>
     <h3>Design Token Settings</h3>
+    <div class="flex-horizontal">
+      <div class="input flex-horizontal">
+        <div class="label">Filename:</div>
+        <input required pattern="^[\w\-\.]+$" type="text" id="filename" class="input__field" placeholder="design-tokens" value="design-tokens">
+        <div class="label">.json</div>
+      </div>
+    </div>
     <div class="section-title">Prefix</div>
     <div class="message-box">
       <div class="message message--info">Define a prefix for styles to be in-/excluded.</div>
@@ -2167,7 +2179,7 @@
     <div class="flex-horizontal">
       <div class="input flex-horizontal">
         <div class="label">Prefix:</div>
-        <input required pattern="\S+" type="input" id="prefix" class="input__field" placeholder="_" value="_">
+        <input required pattern="\S+" type="text" id="prefix" class="input__field" placeholder="_" value="_">
       </div>
       <div class="switch">
         <input class="switch__toggle" type="checkbox" id="excludePrefix" checked>
@@ -2182,7 +2194,7 @@
   <script>
   // ---------------------------------
   // listen to messages
-  document.getElementById('prefix').focus()
+  document.getElementById('settingsForm').querySelector('input[type=text]').focus()
   // ---------------------------------
   // listen to messages
   onmessage = (event) => {
@@ -2190,6 +2202,7 @@
     // when settings date is send to ui
     if (message.command === "getSettings") {
       // fill form with data
+      document.getElementById('filename').value = message.data.settings.filename
       document.getElementById('prefix').value = message.data.settings.prefix
       document.getElementById('excludePrefix').checked = message.data.settings.excludePrefix
       // show update notice
@@ -2208,6 +2221,7 @@
       parent.postMessage({ pluginMessage: { 
         command: 'saveSettings',
         data: {
+          filename: document.getElementById('filename').value,
           prefix: document.getElementById('prefix').value,
           excludePrefix: document.getElementById('excludePrefix').checked
         }

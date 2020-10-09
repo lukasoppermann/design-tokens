@@ -1,12 +1,16 @@
 // settings structure & default values
 export default {
   settings: {
+    filename: {
+      default: 'design-tokens',
+      empty: false
+    },
     excludePrefix: {
       default: true,
       empty: false
     },
     prefix: {
-      default: "_",
+      default: '_',
       empty: false
     }
   },

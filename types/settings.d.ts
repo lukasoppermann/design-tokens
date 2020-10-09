@@ -1,4 +1,5 @@
 type UserSettings = {
+  filename: string,
   excludePrefix: boolean,
   prefix: string
 }

@@ -742,12 +742,16 @@
         // settings structure & default values
         exports.default = {
             settings: {
+                filename: {
+                    default: 'design-tokens',
+                    empty: false
+                },
                 excludePrefix: {
                     default: true,
                     empty: false
                 },
                 prefix: {
-                    default: "_",
+                    default: '_',
                     empty: false
                 }
             },
@@ -888,7 +892,7 @@
         semVerDifference_1 = __importDefault(semVerDifference_1);
         // Get the user settings
         const getUserSettings = (userSettings) => userSettings.length > 0 ? JSON.parse(userSettings) : undefined;
-        const userSettings = getUserSettings(figma.root.getPluginData(settingsGetters_1.settingsKeys.settings));
+        const userSettings = settingsGetters_1.getSettings(getUserSettings(figma.root.getPluginData(settingsGetters_1.settingsKeys.settings)));
         // get private user settings
         const getPrivateUserSettings = () => __awaiter(void 0, void 0, void 0, function* () { return yield figma.clientStorage.getAsync(settingsGetters_1.settingsKeys.privateSettings); });
         const saveSettings = (settings, secretSettings) => {
@@ -923,7 +927,7 @@
         if (figma.command === 'settings') {
             const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened';
             // height for the settings dialog
-            let settingsDialogHeight = 220;
+            let settingsDialogHeight = 270;
             // wrap in function because of async client Storage
             const openUi = () => __awaiter(void 0, void 0, void 0, function* () {
                 // get version & version difference
@@ -951,7 +955,7 @@
                 figma.ui.postMessage({
                     command: "getSettings",
                     data: {
-                        settings: settingsGetters_1.getSettings(userSettings),
+                        settings: userSettings,
                         privateSettings: settingsGetters_1.getPrivateSettings(userPrivateSettings),
                         versionDifference: versionDifference
                     }

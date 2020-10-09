@@ -41,4 +41,4 @@ const getPrivateSettings = (userPrivateSettings: object) => {
 }
 
 // exports
-export { settingsKeys, getSettings, getPrivateSettings}
+export { settingsKeys, getSettings, getPrivateSettings }
