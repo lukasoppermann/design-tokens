@@ -1,4 +1,5 @@
 import settingsDefault from './settingsDefault'
+import { UserSettings } from '../../types/settings'
 const settingsKeys = {
   settings: 'settings',
   privateSettings: 'privateSettings'
@@ -9,7 +10,7 @@ const settingsKeys = {
  * @param userSettings object users current settings
  * @return object
  */
-const getSettings = (userSettings?: object) => {
+const getSettings = (userSettings?: object): UserSettings => {
   // init settings object
   const settings = {}
   // fill with user settings or defaults
@@ -19,8 +20,8 @@ const getSettings = (userSettings?: object) => {
     }
     return settings[key] = value.default
   })
-  // return settings
-  return settings
+  
+  return <UserSettings>settings
 }
 /**
  * get the current users private settings
