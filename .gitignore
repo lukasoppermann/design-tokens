@@ -2,3 +2,4 @@ node_modules/
 .DS_Store
 tests/amazon-style-dictionary/build
 tests/unit/coverage
+_resources/_notSynced.md
