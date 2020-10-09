@@ -14,23 +14,6 @@ const transformer = {
   styleDictionary: styleDictionaryTransformer
 }
 
-/**
- * Sending json string to ui
- * @param json object
- */
-const sendJsonToUi = (json) => {
-  // convert json to string
-  const jsonString = JSON.stringify(json, null, 2)
-  // send json string to ui to prompt download
-  figma.ui.postMessage({
-    command: "export",
-    data: {
-      filename: "design-tokens.json",
-      data: jsonString
-    }  
-  })
-}
-
 const exportRawTokenArray = (figmaData: figmaDataType) => {
   // get tokens
   return [ 
@@ -44,15 +27,15 @@ const exportRawTokenArray = (figmaData: figmaDataType) => {
   ]
 }
 
-const tokenExport = (figmaData: figmaDataType, format: string = 'styleDictionary') => {
+const getTokenJson = (figmaData: figmaDataType, format: string = 'styleDictionary') => {
   // get token array
   const tokenArray = exportRawTokenArray(figmaData)
   // format tokens
   const formattedTokens = tokenArray.map((token: propertyObject )=> transformer[format](token))
   // group tokens
   const groupedTokens = groupByName(formattedTokens)
-  // write tokens to json file
-  sendJsonToUi(groupedTokens)
+  // return group tokens
+  return groupedTokens
 }
 
-export default tokenExport
+export default getTokenJson

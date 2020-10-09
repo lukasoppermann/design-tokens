@@ -1,4 +1,4 @@
-import exportTokens from './exportTokens'
+import getTokenJson from './getTokenJson'
 import buildFigmaData from './utilities/buildFigmaData'
 import settingsPrepare from './utilities/settingsPrepare'
 import { settingsKeys, getSettings, getPrivateSettings } from './utilities/settingsGetters'
@@ -11,36 +11,59 @@ const getUserSettings = (userSettings: string): UserSettings | undefined => user
 const userSettings = getSettings(getUserSettings(figma.root.getPluginData(settingsKeys.settings)))
 // get private user settings
 const getPrivateUserSettings = async (): Promise<PrivateUserSettings> => await figma.clientStorage.getAsync(settingsKeys.privateSettings)
-
-
+/**
+ * @name saveSettings
+ * @description save the user settings and the private user settings to the "cache"
+ * @param {UserSettings} settings
+ * @param {PrivateUserSettings} secretSettings
+ */
 const saveSettings = (settings: UserSettings, secretSettings: PrivateUserSettings) => {
   // store public settings that should be shared across org
   figma.root.setPluginData('settings', JSON.stringify(settings, null, 2))
   // set secret server credentials
   figma.clientStorage.setAsync('secretSettings', secretSettings)
 }
-
+/**
+ * @name activateUtilitiesUi
+ * @description activates the utilities ui to run utility functions
+ */
 const activateUtilitiesUi = () => {
   // register the utilities UI (hidden by default)
-  // @ts-ignore
   figma.showUI(__uiFiles__.utilities, { visible: false })
 }
-// figma.command is the menu item executed from the plugin menu
-// run different functions depending on the provided command
-//
-// EXPORT
-// exports the design tokens
-if(figma.command === 'export') {
-  activateUtilitiesUi()
+/**
+ * @name getJson
+ * @param {PluginAPI} figma
+ * @param {boolean} stringify 
+ */
+const getJson = (figma: PluginAPI, stringify: boolean = true) => {
   // construct figma data object
-  // const figmaData = buildFigmaData(figma)
   const figmaData = buildFigmaData(figma, {
     prefix: userSettings.prefix,
     excludePrefix: userSettings.excludePrefix
   })
-  // export tokens
-  exportTokens(figmaData)
+  if (stringify === false) {
+    return getTokenJson(figmaData)
+  }
+  // get tokens as stringified json
+  return JSON.stringify(getTokenJson(figmaData), null, 2)
 }
+// ---------------------------------
+// EXPORT TO FILE
+// exports the design tokens to a file
+if (figma.command === 'export') {
+  // activete utilities UI
+  activateUtilitiesUi()
+  // write tokens to json file
+  figma.ui.postMessage({
+    command: "export",
+    data: {
+      filename: `${userSettings.filename}.json`,
+      data: getJson(figma)
+    }
+  })
+}
+// ---------------------------------
 // SETTINGS
 // settings for the design tokens
 if(figma.command === 'settings') {

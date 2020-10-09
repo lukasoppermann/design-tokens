@@ -71,6 +71,8 @@ To allow for maximum customizability I decided to provide all values that Fimga 
 **Colors** are provided in `rgba` but can be converted using [Amazon style dictionary](https://amzn.github.io/style-dictionary/#/).
 
 ## Settings
+### Filename
+This allows you to define the file name that is used when exporting tokens. The `.json` extension will be automatically appended to the name.
 
 ### Prefix (used to in-/exclude styles)
 **Prefix:** You can change the prefix from `_` to anything, e.g. `_tokens`.  

@@ -613,7 +613,7 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
     });
-    define("src/exportTokens", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractSizes", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/styleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, groupByName_1, styleDictionaryTransformer_1) {
+    define("src/getTokenJson", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractSizes", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/styleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, groupByName_1, styleDictionaryTransformer_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         extractColors_1 = __importDefault(extractColors_1);
@@ -628,22 +628,6 @@
         const transformer = {
             styleDictionary: styleDictionaryTransformer_1.default
         };
-        /**
-         * Sending json string to ui
-         * @param json object
-         */
-        const sendJsonToUi = (json) => {
-            // convert json to string
-            const jsonString = JSON.stringify(json, null, 2);
-            // send json string to ui to prompt download
-            figma.ui.postMessage({
-                command: "export",
-                data: {
-                    filename: "design-tokens.json",
-                    data: jsonString
-                }
-            });
-        };
         const exportRawTokenArray = (figmaData) => {
             // get tokens
             return [
@@ -656,17 +640,17 @@
                 ...extractEffects_1.default(figmaData.effectStyles)
             ];
         };
-        const tokenExport = (figmaData, format = 'styleDictionary') => {
+        const getTokenJson = (figmaData, format = 'styleDictionary') => {
             // get token array
             const tokenArray = exportRawTokenArray(figmaData);
             // format tokens
             const formattedTokens = tokenArray.map((token) => transformer[format](token));
             // group tokens
             const groupedTokens = groupByName_1.default(formattedTokens);
-            // write tokens to json file
-            sendJsonToUi(groupedTokens);
+            // return group tokens
+            return groupedTokens;
         };
-        exports.default = tokenExport;
+        exports.default = getTokenJson;
     });
     define("src/utilities/filterByNameProperty", ["require", "exports"], function (require, exports) {
         "use strict";
@@ -836,7 +820,6 @@
                 }
                 return settings[key] = value.default;
             });
-            // return settings
             return settings;
         };
         exports.getSettings = getSettings;
@@ -882,10 +865,10 @@
             }
         };
     });
-    define("src/index", ["require", "exports", "src/exportTokens", "src/utilities/buildFigmaData", "src/utilities/settingsPrepare", "src/utilities/settingsGetters", "src/utilities/version", "src/utilities/semVerDifference"], function (require, exports, exportTokens_1, buildFigmaData_1, settingsPrepare_1, settingsGetters_1, version_1, semVerDifference_1) {
+    define("src/index", ["require", "exports", "src/getTokenJson", "src/utilities/buildFigmaData", "src/utilities/settingsPrepare", "src/utilities/settingsGetters", "src/utilities/version", "src/utilities/semVerDifference"], function (require, exports, getTokenJson_1, buildFigmaData_1, settingsPrepare_1, settingsGetters_1, version_1, semVerDifference_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        exportTokens_1 = __importDefault(exportTokens_1);
+        getTokenJson_1 = __importDefault(getTokenJson_1);
         buildFigmaData_1 = __importDefault(buildFigmaData_1);
         settingsPrepare_1 = __importDefault(settingsPrepare_1);
         version_1 = __importDefault(version_1);
@@ -895,33 +878,59 @@
         const userSettings = settingsGetters_1.getSettings(getUserSettings(figma.root.getPluginData(settingsGetters_1.settingsKeys.settings)));
         // get private user settings
         const getPrivateUserSettings = () => __awaiter(void 0, void 0, void 0, function* () { return yield figma.clientStorage.getAsync(settingsGetters_1.settingsKeys.privateSettings); });
+        /**
+         * @name saveSettings
+         * @description save the user settings and the private user settings to the "cache"
+         * @param {UserSettings} settings
+         * @param {PrivateUserSettings} secretSettings
+         */
         const saveSettings = (settings, secretSettings) => {
             // store public settings that should be shared across org
             figma.root.setPluginData('settings', JSON.stringify(settings, null, 2));
             // set secret server credentials
             figma.clientStorage.setAsync('secretSettings', secretSettings);
         };
+        /**
+         * @name activateUtilitiesUi
+         * @description activates the utilities ui to run utility functions
+         */
         const activateUtilitiesUi = () => {
             // register the utilities UI (hidden by default)
-            // @ts-ignore
             figma.showUI(__uiFiles__.utilities, { visible: false });
         };
-        // figma.command is the menu item executed from the plugin menu
-        // run different functions depending on the provided command
-        //
-        // EXPORT
-        // exports the design tokens
-        if (figma.command === 'export') {
-            activateUtilitiesUi();
+        /**
+         * @name getJson
+         * @param {PluginAPI} figma
+         * @param {boolean} stringify
+         */
+        const getJson = (figma, stringify = true) => {
             // construct figma data object
-            // const figmaData = buildFigmaData(figma)
             const figmaData = buildFigmaData_1.default(figma, {
                 prefix: userSettings.prefix,
                 excludePrefix: userSettings.excludePrefix
             });
-            // export tokens
-            exportTokens_1.default(figmaData);
+            if (stringify === false) {
+                return getTokenJson_1.default(figmaData);
+            }
+            // get tokens as stringified json
+            return JSON.stringify(getTokenJson_1.default(figmaData), null, 2);
+        };
+        // ---------------------------------
+        // EXPORT TO FILE
+        // exports the design tokens to a file
+        if (figma.command === 'export') {
+            // activete utilities UI
+            activateUtilitiesUi();
+            // write tokens to json file
+            figma.ui.postMessage({
+                command: "export",
+                data: {
+                    filename: `${userSettings.filename}.json`,
+                    data: getJson(figma)
+                }
+            });
         }
+        // ---------------------------------
         // SETTINGS
         // settings for the design tokens
         if (figma.command === 'settings') {

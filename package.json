@@ -22,21 +22,21 @@
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.16.1",
-    "@typescript-eslint/eslint-plugin": "^4.3.0",
-    "@typescript-eslint/parser": "^4.3.0",
+    "@figma/plugin-typings": "^1.17.1",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
     "eslint-plugin-typescript": "^0.14.0",
-    "jest": "^26.4.2",
+    "jest": "^26.5.2",
     "jest-preset-typescript": "^1.2.0",
     "replace-in-files-cli": "^1.0.0",
     "snazzy": "^8.0.0",
     "standardx": "^5.0.0",
-    "style-dictionary": "^2.10.1",
+    "style-dictionary": "^2.10.2",
     "ts-jest": "^26.4.1",
     "typescript-bundle": "^1.0.16"
   },
   "dependencies": {
-    "@types/node": "^14.11.2",
+    "@types/node": "^14.11.8",
     "figma-plugin-ds": "^0.1.8",
     "typescript": "^4.0.3"
   },
