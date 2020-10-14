@@ -109,7 +109,8 @@ This defines the authentication method used with the access token. The current c
 - `bearer` token
 - `basic` auth
 #### **Access token**
-The token send using the authentication method defined above.
+The token send using the authentication method defined above. Learn more about creating a [personal access token for github](https://github.com/lukasoppermann/design-token-transformer#personal-access-token).
+
 #### Github repo or custom server
 You can use this feature to integrate tokens into your build pipeline. The ideal is to send tokens from Figma to a repository and automatically transform them. Depending on your setup you could either trigger a webhook on your product repos, create a new semversion on the tokens repo or notify the dev teams in another way.
 
