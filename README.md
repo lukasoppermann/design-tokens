@@ -71,6 +71,9 @@ To allow for maximum customizability I decided to provide all values that Fimga 
 **Colors** are provided in `rgba` but can be converted using [Amazon style dictionary](https://amzn.github.io/style-dictionary/#/).
 
 ## Settings
+
+![Design Tokens plugin settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/settings.png)
+
 ### Filename
 This allows you to define the file name that is used when exporting tokens. The `.json` extension will be automatically appended to the name.
 The filename will also be send to the server when sending design tokens to the server.
@@ -91,7 +94,7 @@ The body of the request will look like the following:
   "client_payload": { 
     "tokenFileName": "design-tokens.json", // this is the filename you define above
     "tokens": "{...}", // the stringified json object holding all your desing tokens
-    "filename": "Design Tokens" // the file name from which the tokens were exported
+    "filename": "Design Tokens" // the Figma file name from which the tokens were exported
   }
 ```
 
