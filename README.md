@@ -73,12 +73,44 @@ To allow for maximum customizability I decided to provide all values that Fimga 
 ## Settings
 ### Filename
 This allows you to define the file name that is used when exporting tokens. The `.json` extension will be automatically appended to the name.
+The filename will also be send to the server when sending design tokens to the server.
 
 ### Prefix (used to in-/exclude styles)
-**Prefix:** You can change the prefix from `_` to anything, e.g. `_tokens`.  
-**Exclude:** The toggle allows you to switch from `exclude` to `include` mode. This means that only prefixed styles will be exported. For example if you only wanted to export styles that are named `_tokens/...`.
+#### **Prefix**
+You can change the prefix from `_` to anything, e.g. `_tokens`.   
+#### **Exclude**
+The toggle allows you to switch from `exclude` to `include` mode. This means that only prefixed styles will be exported. For example if you only wanted to export styles that are named `_tokens/...`.
 
 **Note:** This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
+
+### Push to Server
+When a `server url` is specified, the command `Send Design Tokens to Url` will send a `POST` request to the provided url.
+The body of the request will look like the following:
+```ts
+  "event_type": "update-tokens", // or any string you defined
+  "client_payload": { 
+    "tokenFileName": "design-tokens.json", // this is the filename you define above
+    "tokens": "{...}", // the stringified json object holding all your desing tokens
+    "filename": "Design Tokens" // the file name from which the tokens were exported
+  }
+```
+
+#### **Event type**
+This is the `event_type` property that is send in the body of the request with the `client_payload`.
+#### **Server url**
+The url the post request is send to. This must be SSL secured (using `https`) as Figma is a secure environment and thus does not allow non-secure requests.
+A limitation that comes with Figma is that the server must allow access from any origin and send the following header: `Access-Control-Allow-Origin: *`
+#### **Auth header**
+This defines the authentication method used with the access token. The current choices are:
+- `token` (used for github)
+- `bearer` token
+- `basic` auth
+#### **Access token**
+The token send using the authentication method defined above.
+#### Github repo or custom server
+You can use this feature to integrate tokens into your build pipeline. The ideal is to send tokens from Figma to a repository and automatically transform them. Depending on your setup you could either trigger a webhook on your product repos, create a new semversion on the tokens repo or notify the dev teams in another way.
+
+To learn how to set this up using `github` and `actions` check out the documentation and code examples in the [design token transformer repositry](https://github.com/lukasoppermann/design-token-transformer).
 
 ## Roadmap & PRs
 ### Roadmap
