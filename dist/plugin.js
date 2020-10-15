@@ -871,7 +871,7 @@
     define("src/utilities/version", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const version = '1.2.0';
+        const version = '1.2.1';
         exports.default = version;
     });
     define("src/utilities/semVerDifference", ["require", "exports"], function (require, exports) {
@@ -898,7 +898,6 @@
         buildFigmaData_1 = __importDefault(buildFigmaData_1);
         version_1 = __importDefault(version_1);
         semVerDifference_1 = __importDefault(semVerDifference_1);
-        figma.clientStorage.setAsync('accessTokens', null);
         // set plugin id if it does not exist
         if (figma.root.getPluginData('fileId') === "") {
             figma.root.setPluginData('fileId', figma.root.name + ' ' + Math.floor(Math.random() * 1000000000));
