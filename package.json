@@ -23,10 +23,10 @@
   "license": "MIT",
   "devDependencies": {
     "@figma/plugin-typings": "^1.17.1",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
     "eslint-plugin-typescript": "^0.14.0",
-    "jest": "^26.5.2",
+    "jest": "^26.5.3",
     "jest-preset-typescript": "^1.2.0",
     "replace-in-files-cli": "^1.0.0",
     "snazzy": "^8.0.0",

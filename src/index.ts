@@ -1,28 +1,17 @@
-import getTokenJson from './getTokenJson'
+import getTokenJson from './utilities/getTokenJson'
 import buildFigmaData from './utilities/buildFigmaData'
-import settingsPrepare from './utilities/settingsPrepare'
-import { settingsKeys, getSettings, getPrivateSettings } from './utilities/settingsGetters'
-import { UserSettings, PrivateUserSettings } from '../types/settings'
+import { getSettings, setSettings } from './utilities/settings'
+import { getAccessToken, setAccessToken } from './utilities/accessToken'
 import currentVersion from './utilities/version'
 import semVerDifference from './utilities/semVerDifference'
 
-// Get the user settings
-const getUserSettings = (userSettings: string): UserSettings | undefined => userSettings.length > 0 ? JSON.parse(userSettings) : undefined
-const userSettings = getSettings(getUserSettings(figma.root.getPluginData(settingsKeys.settings)))
-// get private user settings
-const getPrivateUserSettings = async (): Promise<PrivateUserSettings> => await figma.clientStorage.getAsync(settingsKeys.privateSettings)
-/**
- * @name saveSettings
- * @description save the user settings and the private user settings to the "cache"
- * @param {UserSettings} settings
- * @param {PrivateUserSettings} secretSettings
- */
-const saveSettings = (settings: UserSettings, secretSettings: PrivateUserSettings) => {
-  // store public settings that should be shared across org
-  figma.root.setPluginData('settings', JSON.stringify(settings, null, 2))
-  // set secret server credentials
-  figma.clientStorage.setAsync('secretSettings', secretSettings)
+// set plugin id if it does not exist
+if (figma.root.getPluginData('fileId') === "") {
+  figma.root.setPluginData('fileId', figma.root.name +' ' + Math.floor(Math.random() * 1000000000))
 }
+const fileId = figma.root.getPluginData('fileId')
+// Get the user settings
+const userSettings = getSettings()
 /**
  * @name activateUtilitiesUi
  * @description activates the utilities ui to run utility functions
@@ -63,13 +52,40 @@ if (figma.command === 'export') {
     }
   })
 }
+// SEND TO URL
+// send tokens to url
+if (figma.command === 'urlExport') {
+  // activete utilities UI
+  activateUtilitiesUi()
+  // needed for getAccessToken async
+  const urlExport = async () => {
+    figma.ui.postMessage({
+      command: "urlExport",
+      data: {
+        url: userSettings.serverUrl,
+        accessToken: await getAccessToken(fileId),
+        authType: userSettings.authType,
+        data: { 
+          "event_type": userSettings.eventType, 
+          "client_payload": { 
+            "tokenFileName": `${userSettings.filename}.json`,
+            "tokens": `${getJson(figma, true)}`,
+            "filename": figma.root.name
+          }
+        }
+      }
+    })
+  }
+  // run export url function
+  urlExport()
+}
 // ---------------------------------
 // SETTINGS
 // settings for the design tokens
 if(figma.command === 'settings') {
   const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
   // height for the settings dialog
-  let settingsDialogHeight = 270
+  let settingsDialogHeight = 530
   // wrap in function because of async client Storage
   const openUi = async () => {
     // get version & version difference
@@ -88,19 +104,15 @@ if(figma.command === 'settings') {
     // @ts-ignore
     figma.showUI(__uiFiles__.settings, {
       visible: false,
-      width: 500,
+      width: 550,
       height: settingsDialogHeight
     })
-    // get user provate settings
-    const userPrivateSettings = await getPrivateUserSettings()
     // sent settings to UI
     figma.ui.postMessage({
       command: "getSettings",
-      data: {
-        settings: userSettings,
-        privateSettings: getPrivateSettings(userPrivateSettings),
-        versionDifference: versionDifference
-      }
+      settings: userSettings,
+      accessToken: await getAccessToken(fileId),
+      versionDifference: versionDifference
     })
     // @ts-ignore
     figma.ui.show(__uiFiles__.settings)
@@ -120,19 +132,19 @@ if (figma.command === 'help') {
 // CLOSE PLUGIN
 figma.ui.onmessage = async (message) => {
   if (message.command === 'closePlugin') {
+    // show notification if send
+    if (message.notification !== undefined && message.notification !== '') {
+      figma.notify(message.notification)
+    }
+    // close plugin
     figma.closePlugin()
   }
   // save settings
   if (message.command === 'saveSettings') {
-    // construct currentSettings object
-    const currentSettings = {
-      [settingsKeys.settings]: userSettings,
-      [settingsKeys.privateSettings]: await getPrivateUserSettings()
-    }
-    // prepare settings object
-    const preparedSettings = settingsPrepare(message.data, currentSettings)
     // store settings 
-    saveSettings(preparedSettings.settings, preparedSettings.privateSettings)
+    setSettings(message.settings)
+    // accessToken
+    await setAccessToken(fileId, message.accessToken)
     // close plugin
     figma.closePlugin()
   }

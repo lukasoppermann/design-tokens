@@ -2054,6 +2054,7 @@
   </style>
   <style>
     :root {
+      --black4: rgba(0, 0, 0, .4);
       --blue: rgb(24, 160, 351);
       --blue-10: rgba(24, 160, 351, 0.1);
       --blue-black: rgb(20, 45, 60);
@@ -2115,8 +2116,22 @@
     .flex-horizontal {
       display: flex;
     }
+    .flex-horizontal ~ .flex-horizontal {
+      margin-top: var(--size-xxsmall);
+    }
     .flex-horizontal .label {
       width: auto;
+      flex-shrink: 0;
+      align-items: flex-start;
+      padding-top: var(--size-xxsmall);
+    }
+    .label.label--info {
+      color: var(--black4);
+      flex-shrink: 1;
+      height: auto;
+    }
+    .flex-horizontal input {
+      min-width: 50px;
     }
     input:invalid {
       border: 1px solid var(--red);
@@ -2150,6 +2165,34 @@
       padding-top: var(--size-xxsmall);
       margin-top: var(--size-xsmall);
       border-top: 1px solid var(--silver);
+    }
+    #eventtype {
+      width: 130px;
+      flex-shrink: 0;
+    }
+    .select-css {
+      display: flex;
+      align-items: center;
+      border: 1px solid transparent;
+      height: 30px;
+      width: 100%;
+      margin: 1px 0 1px 0;
+      padding: 0px var(--size-xxsmall) 0px var(--size-xxsmall);
+      overflow-y: hidden;
+      background-color: var(--white);
+      margin: 1px 0 1px 0;
+      color: var(--black8);
+      border: 1px solid var(--black1);
+      border-radius: 1px;
+      font-size: var(--font-size-xsmall);
+    }
+    .select-css:hover {
+      border-color: var(--black1);
+    }
+    .select-css:focus {
+      border: 1px solid var(--blue);
+      outline: 1px solid var(--blue);
+      outline-offset: -2px;
     }
   </style>
 </head>
@@ -2186,6 +2229,32 @@
         <label class="switch__label" for="excludePrefix">Exclude<span class="toggleText"></span></label>
       </div>
     </div>
+    <div class="section-title">Push to server</div>
+    <div class="input flex-horizontal">
+      <div class="label" style="width: 110px !important">Event type:</div>
+      <input required pattern="^[\w\-\.\+@]+$" type="text" id="eventtype" class="input__field" placeholder="update-tokens" value="update-tokens">
+      <div class="label label--info">"event_type" property in post request</div>
+    </div>
+    <div class="input flex-horizontal">
+      <div class="label" style="width: 110px !important">Server url:</div>
+      <input type="text" pattern="^https://.*" id="serverurl" class="input__field" placeholder="https://api.github.com/repos/:username/:repo/dispatches">
+    </div>
+    <div class="input flex-horizontal">
+      <div class="label" style="width: 110px !important">Accept header:</div>
+      <input type="text" pattern="\S+" id="acceptHeader" class="input__field" placeholder="accept header" value='application/vnd.github.everest-preview+json'>
+    </div>
+    <div class="flex-horizontal">
+      <div class="label" style="width: 110px !important">Auth type:</div>
+      <select id="authType" class="select-css">
+        <option value="token">(Github) token</option>
+        <option value="Basic">Basic authentication</option>
+        <option value="Bearer">Bearer token authentication</option>
+      </select>
+    </div>
+    <div class="input flex-horizontal">
+      <div class="label" style="width: 110px !important">Access token:</div>
+      <input type="text" pattern="\S+" id="accesstoken" class="input__field" placeholder="your access token">
+    </div>
     <footer>
       <button id="cancel" class='button button--secondary' type="reset">Cancel</button>
       <button id="save" class='button button--primary' type="submit">Save changes</button>
@@ -2202,11 +2271,15 @@
     // when settings date is send to ui
     if (message.command === "getSettings") {
       // fill form with data
-      document.getElementById('filename').value = message.data.settings.filename
-      document.getElementById('prefix').value = message.data.settings.prefix
-      document.getElementById('excludePrefix').checked = message.data.settings.excludePrefix
+      document.getElementById('filename').value = message.settings.filename
+      document.getElementById('prefix').value = message.settings.prefix
+      document.getElementById('excludePrefix').checked = message.settings.excludePrefix
+      document.getElementById('serverurl').value = message.settings.serverUrl
+      document.getElementById('eventtype').value = message.settings.eventType
+      document.getElementById('authType').querySelector(`[value=${message.settings.authType}]`).selected = true
+      document.getElementById('accesstoken').value = message.accessToken
       // show update notice
-      if (message.data.versionDifference === 'major' || message.data.versionDifference === 'minor') {
+      if (message.versionDifference === 'major' || message.versionDifference === 'minor') {
         document.getElementById('versionNotice').classList.remove('hidden')
       }
     }
@@ -2220,11 +2293,15 @@
       // sent to index saveSettings method
       parent.postMessage({ pluginMessage: { 
         command: 'saveSettings',
-        data: {
+        settings: {
           filename: document.getElementById('filename').value,
           prefix: document.getElementById('prefix').value,
-          excludePrefix: document.getElementById('excludePrefix').checked
-        }
+          excludePrefix: document.getElementById('excludePrefix').checked,
+          serverUrl: document.getElementById('serverurl').value,
+          eventType: document.getElementById('eventtype').value,
+          authType: document.getElementById('authType').value
+        },
+        accessToken: document.getElementById('accesstoken').value
       } }, '*')
     }
   }

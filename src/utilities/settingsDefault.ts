@@ -1,23 +1,31 @@
 // settings structure & default values
 export default {
-  settings: {
-    filename: {
-      default: 'design-tokens',
-      empty: false
-    },
-    excludePrefix: {
-      default: true,
-      empty: false
-    },
-    prefix: {
-      default: '_',
-      empty: false
-    }
+  filename: {
+    default: 'design-tokens',
+    empty: false
   },
-  privateSettings: {
-    sendToUrl: {
-      default: false,
-      empty: false
-    },
+  excludePrefix: {
+    default: true,
+    empty: false
+  },
+  prefix: {
+    default: '_',
+    empty: false
+  },
+  serverUrl: {
+    default: '',
+    empty: true
+  },
+  eventType: {
+    default: 'update-tokens',
+    empty: false
+  },
+  acceptHeader: {
+    default: 'application/vnd.github.everest-preview+json',
+    empty: true
+  },
+  authType: {
+    default: 'token',
+    empty: false
   }
 }
