@@ -613,7 +613,7 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
     });
-    define("src/getTokenJson", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractSizes", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/styleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, groupByName_1, styleDictionaryTransformer_1) {
+    define("src/utilities/getTokenJson", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractSizes", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/styleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractSizes_1, extractBorders_1, extractRadii_1, groupByName_1, styleDictionaryTransformer_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         extractColors_1 = __importDefault(extractColors_1);
@@ -725,32 +725,43 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         // settings structure & default values
         exports.default = {
-            settings: {
-                filename: {
-                    default: 'design-tokens',
-                    empty: false
-                },
-                excludePrefix: {
-                    default: true,
-                    empty: false
-                },
-                prefix: {
-                    default: '_',
-                    empty: false
-                }
+            filename: {
+                default: 'design-tokens',
+                empty: false
             },
-            privateSettings: {
-                sendToUrl: {
-                    default: false,
-                    empty: false
-                },
+            excludePrefix: {
+                default: true,
+                empty: false
+            },
+            prefix: {
+                default: '_',
+                empty: false
+            },
+            serverUrl: {
+                default: '',
+                empty: true
+            },
+            eventType: {
+                default: 'update-tokens',
+                empty: false
+            },
+            acceptHeader: {
+                default: 'application/vnd.github.everest-preview+json',
+                empty: true
+            },
+            authType: {
+                default: 'token',
+                empty: false
             }
         };
     });
-    define("src/utilities/settingsPrepare", ["require", "exports", "src/utilities/settingsDefault"], function (require, exports, settingsDefault_1) {
+    define("src/utilities/settings", ["require", "exports", "src/utilities/settingsDefault"], function (require, exports, settingsDefault_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        exports.setSettings = exports.getSettings = exports.settingsKey = void 0;
         settingsDefault_1 = __importDefault(settingsDefault_1);
+        const settingsKey = 'settings';
+        exports.settingsKey = settingsKey;
         /**
          * Function sanitizes and prepares settings to be stored
          * @param newSettings
@@ -758,63 +769,48 @@
          */
         const settingsPrepare = (newSettings, currentSettings) => {
             // initialize object
-            const mergedSettings = {
-                settings: {},
-                secretSettings: {}
-            };
+            const mergedSettings = {};
             // add public settings
-            for (const [key, value] of Object.entries(settingsDefault_1.default.settings)) {
+            for (const [key, value] of Object.entries(settingsDefault_1.default)) {
                 // avoid empty values
                 if (typeof value.default === "string" && value.empty === false) {
                     if (newSettings[key].trim() === '') {
-                        newSettings[key] = currentSettings.settings[key] || value.default;
+                        newSettings[key] = currentSettings[key] || value.default;
                     }
                 }
                 // if valid new settings
                 if (typeof newSettings[key] === typeof value.default) {
-                    mergedSettings.settings[key] = newSettings[key];
+                    mergedSettings[key] = newSettings[key];
                 }
                 // if valid current settings
                 else if (typeof currentSettings[key] === typeof value.default) {
-                    mergedSettings.settings[key] = currentSettings[key];
+                    mergedSettings[key] = currentSettings[key];
                 }
                 else {
                     // if both new and old value don't fit, use default
-                    mergedSettings.settings[key] = value.default;
+                    mergedSettings[key] = value.default;
                 }
             }
             // return merged settings object
-            return {
-                // @ts-ignore
-                settings: mergedSettings.settings,
-                // @ts-ignore
-                secretSettings: mergedSettings.secretSettings
-            };
+            return mergedSettings;
         };
-        // expots
-        exports.default = settingsPrepare;
-    });
-    define("src/utilities/settingsGetters", ["require", "exports", "src/utilities/settingsDefault"], function (require, exports, settingsDefault_2) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        exports.getPrivateSettings = exports.getSettings = exports.settingsKeys = void 0;
-        settingsDefault_2 = __importDefault(settingsDefault_2);
-        const settingsKeys = {
-            settings: 'settings',
-            privateSettings: 'privateSettings'
-        };
-        exports.settingsKeys = settingsKeys;
         /**
          * get the current users settings
          * for settings that are not set, the defaults will be used
-         * @param userSettings object users current settings
          * @return object
          */
-        const getSettings = (userSettings) => {
+        const getSettings = () => {
+            let userSettings = figma.root.getPluginData(settingsKey);
+            if (userSettings.length > 0) {
+                userSettings = JSON.parse(userSettings);
+            }
+            else {
+                userSettings = undefined;
+            }
             // init settings object
             const settings = {};
             // fill with user settings or defaults
-            Object.entries(settingsDefault_2.default.settings).forEach(([key, value]) => {
+            Object.entries(settingsDefault_1.default).forEach(([key, value]) => {
                 if (userSettings !== undefined && userSettings[key] !== undefined) {
                     return settings[key] = userSettings[key];
                 }
@@ -824,23 +820,46 @@
         };
         exports.getSettings = getSettings;
         /**
-         * get the current users private settings
-         * for settings that are not set, the defaults will be used
-         * @param userPrivateSettings object users current settings
-         * @return object
+         * @name saveSettings
+         * @description save the user settings to the "cache"
+         * @param {UserSettings} settings
          */
-        const getPrivateSettings = (userPrivateSettings) => {
-            // init privateSettings object
-            const privateSettings = {};
-            // fill with user private settings or defaults
-            Object.entries(settingsDefault_2.default.privateSettings).forEach(([key, value]) => {
-                if (privateSettings !== undefined && privateSettings[key] !== undefined) {
-                    return privateSettings[key] = privateSettings[key];
-                }
-                return privateSettings[key] = value.default;
-            });
+        const setSettings = (settings) => {
+            settings = settingsPrepare(settings, getSettings());
+            // store public settings that should be shared across org
+            figma.root.setPluginData(settingsKey, JSON.stringify(settings, null, 2));
         };
-        exports.getPrivateSettings = getPrivateSettings;
+        exports.setSettings = setSettings;
+    });
+    define("src/utilities/accessToken", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.setAccessToken = exports.getAccessToken = void 0;
+        /**
+         * @name getAccessToken
+         * @description returns the access token for the current file or undefined
+         * @param fileId {string} — ID of the current file
+         */
+        const getAccessToken = (fileId) => __awaiter(void 0, void 0, void 0, function* () {
+            // retrieve the access token from the cache
+            const accessToken = (yield figma.clientStorage.getAsync('accessTokens'))[fileId];
+            // return the access token or an empty string
+            return accessToken || '';
+        });
+        exports.getAccessToken = getAccessToken;
+        /**
+         * @name setAccessToken
+         * @description store the access token for the current fiven file in the user clientStorage
+         * @param fileId {string} — ID of the current file
+         * @param fileId {string} — access token
+         */
+        const setAccessToken = (fileId, accessToken) => __awaiter(void 0, void 0, void 0, function* () {
+            // get the access token object
+            const accessTokens = (yield figma.clientStorage.getAsync('accessTokens')) || {};
+            // merge the new token into the object
+            return yield figma.clientStorage.setAsync('accessTokens', Object.assign(Object.assign({}, accessTokens), { [fileId]: accessToken }));
+        });
+        exports.setAccessToken = setAccessToken;
     });
     define("src/utilities/version", ["require", "exports"], function (require, exports) {
         "use strict";
@@ -865,31 +884,20 @@
             }
         };
     });
-    define("src/index", ["require", "exports", "src/getTokenJson", "src/utilities/buildFigmaData", "src/utilities/settingsPrepare", "src/utilities/settingsGetters", "src/utilities/version", "src/utilities/semVerDifference"], function (require, exports, getTokenJson_1, buildFigmaData_1, settingsPrepare_1, settingsGetters_1, version_1, semVerDifference_1) {
+    define("src/index", ["require", "exports", "src/utilities/getTokenJson", "src/utilities/buildFigmaData", "src/utilities/settings", "src/utilities/accessToken", "src/utilities/version", "src/utilities/semVerDifference"], function (require, exports, getTokenJson_1, buildFigmaData_1, settings_1, accessToken_1, version_1, semVerDifference_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         getTokenJson_1 = __importDefault(getTokenJson_1);
         buildFigmaData_1 = __importDefault(buildFigmaData_1);
-        settingsPrepare_1 = __importDefault(settingsPrepare_1);
         version_1 = __importDefault(version_1);
         semVerDifference_1 = __importDefault(semVerDifference_1);
+        // set plugin id if it does not exist
+        if (figma.root.getPluginData('fileId') === "") {
+            figma.root.setPluginData('fileId', figma.root.name + ' ' + Math.floor(Math.random() * 1000000000));
+        }
+        const fileId = figma.root.getPluginData('fileId');
         // Get the user settings
-        const getUserSettings = (userSettings) => userSettings.length > 0 ? JSON.parse(userSettings) : undefined;
-        const userSettings = settingsGetters_1.getSettings(getUserSettings(figma.root.getPluginData(settingsGetters_1.settingsKeys.settings)));
-        // get private user settings
-        const getPrivateUserSettings = () => __awaiter(void 0, void 0, void 0, function* () { return yield figma.clientStorage.getAsync(settingsGetters_1.settingsKeys.privateSettings); });
-        /**
-         * @name saveSettings
-         * @description save the user settings and the private user settings to the "cache"
-         * @param {UserSettings} settings
-         * @param {PrivateUserSettings} secretSettings
-         */
-        const saveSettings = (settings, secretSettings) => {
-            // store public settings that should be shared across org
-            figma.root.setPluginData('settings', JSON.stringify(settings, null, 2));
-            // set secret server credentials
-            figma.clientStorage.setAsync('secretSettings', secretSettings);
-        };
+        const userSettings = settings_1.getSettings();
         /**
          * @name activateUtilitiesUi
          * @description activates the utilities ui to run utility functions
@@ -930,13 +938,40 @@
                 }
             });
         }
+        // SEND TO URL
+        // send tokens to url
+        if (figma.command === 'urlExport') {
+            // activete utilities UI
+            activateUtilitiesUi();
+            // needed for getAccessToken async
+            const urlExport = () => __awaiter(void 0, void 0, void 0, function* () {
+                figma.ui.postMessage({
+                    command: "urlExport",
+                    data: {
+                        url: userSettings.serverUrl,
+                        accessToken: yield accessToken_1.getAccessToken(fileId),
+                        authType: userSettings.authType,
+                        data: {
+                            "event_type": userSettings.eventType,
+                            "client_payload": {
+                                "tokenFileName": `${userSettings.filename}.json`,
+                                "tokens": `${getJson(figma, true)}`,
+                                "filename": figma.root.name
+                            }
+                        }
+                    }
+                });
+            });
+            // run export url function
+            urlExport();
+        }
         // ---------------------------------
         // SETTINGS
         // settings for the design tokens
         if (figma.command === 'settings') {
             const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened';
             // height for the settings dialog
-            let settingsDialogHeight = 270;
+            let settingsDialogHeight = 530;
             // wrap in function because of async client Storage
             const openUi = () => __awaiter(void 0, void 0, void 0, function* () {
                 // get version & version difference
@@ -955,19 +990,15 @@
                 // @ts-ignore
                 figma.showUI(__uiFiles__.settings, {
                     visible: false,
-                    width: 500,
+                    width: 550,
                     height: settingsDialogHeight
                 });
-                // get user provate settings
-                const userPrivateSettings = yield getPrivateUserSettings();
                 // sent settings to UI
                 figma.ui.postMessage({
                     command: "getSettings",
-                    data: {
-                        settings: userSettings,
-                        privateSettings: settingsGetters_1.getPrivateSettings(userPrivateSettings),
-                        versionDifference: versionDifference
-                    }
+                    settings: userSettings,
+                    accessToken: yield accessToken_1.getAccessToken(fileId),
+                    versionDifference: versionDifference
                 });
                 // @ts-ignore
                 figma.ui.show(__uiFiles__.settings);
@@ -986,19 +1017,19 @@
         // CLOSE PLUGIN
         figma.ui.onmessage = (message) => __awaiter(void 0, void 0, void 0, function* () {
             if (message.command === 'closePlugin') {
+                // show notification if send
+                if (message.notification !== undefined && message.notification !== '') {
+                    figma.notify(message.notification);
+                }
+                // close plugin
                 figma.closePlugin();
             }
             // save settings
             if (message.command === 'saveSettings') {
-                // construct currentSettings object
-                const currentSettings = {
-                    [settingsGetters_1.settingsKeys.settings]: userSettings,
-                    [settingsGetters_1.settingsKeys.privateSettings]: yield getPrivateUserSettings()
-                };
-                // prepare settings object
-                const preparedSettings = settingsPrepare_1.default(message.data, currentSettings);
                 // store settings 
-                saveSettings(preparedSettings.settings, preparedSettings.privateSettings);
+                settings_1.setSettings(message.settings);
+                // accessToken
+                yield accessToken_1.setAccessToken(fileId, message.accessToken);
                 // close plugin
                 figma.closePlugin();
             }
