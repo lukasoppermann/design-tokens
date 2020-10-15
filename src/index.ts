@@ -5,6 +5,7 @@ import { getAccessToken, setAccessToken } from './utilities/accessToken'
 import currentVersion from './utilities/version'
 import semVerDifference from './utilities/semVerDifference'
 
+figma.clientStorage.setAsync('accessTokens', null)
 // set plugin id if it does not exist
 if (figma.root.getPluginData('fileId') === "") {
   figma.root.setPluginData('fileId', figma.root.name +' ' + Math.floor(Math.random() * 1000000000))

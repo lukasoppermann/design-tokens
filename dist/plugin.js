@@ -841,10 +841,17 @@
          * @param fileId {string} — ID of the current file
          */
         const getAccessToken = (fileId) => __awaiter(void 0, void 0, void 0, function* () {
-            // retrieve the access token from the cache
-            const accessToken = (yield figma.clientStorage.getAsync('accessTokens'))[fileId];
-            // return the access token or an empty string
-            return accessToken || '';
+            // get all access tokens
+            const accessTokens = yield figma.clientStorage.getAsync('accessTokens');
+            // if access tokens object is present
+            if (accessTokens !== undefined && accessTokens instanceof Object) {
+                // retrieve the access token from the cache
+                const accessToken = accessTokens[fileId];
+                // return the access token or an empty string
+                return accessToken;
+            }
+            // return empty string if no token is stored
+            return '';
         });
         exports.getAccessToken = getAccessToken;
         /**
@@ -891,6 +898,7 @@
         buildFigmaData_1 = __importDefault(buildFigmaData_1);
         version_1 = __importDefault(version_1);
         semVerDifference_1 = __importDefault(semVerDifference_1);
+        figma.clientStorage.setAsync('accessTokens', null);
         // set plugin id if it does not exist
         if (figma.root.getPluginData('fileId') === "") {
             figma.root.setPluginData('fileId', figma.root.name + ' ' + Math.floor(Math.random() * 1000000000));

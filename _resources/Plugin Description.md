@@ -13,6 +13,7 @@ You can create design tokens for the following properties:
 Benefits
 ✅ Actively developed
 ✅ Compatible with Amazon Style Dictionary
+✅ Sync tokens directly with github repositories
 ✅ Support for Figma Styles
 ✅ Support for custom tokens
 

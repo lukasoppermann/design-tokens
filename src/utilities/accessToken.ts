@@ -4,10 +4,17 @@
  * @param fileId {string} — ID of the current file
  */
 const getAccessToken = async (fileId: string): Promise<string> => {
-  // retrieve the access token from the cache
-  const accessToken = (await figma.clientStorage.getAsync('accessTokens'))[fileId]
-  // return the access token or an empty string
-  return accessToken || ''
+  // get all access tokens
+  const accessTokens = await figma.clientStorage.getAsync('accessTokens')
+  // if access tokens object is present
+  if (accessTokens !== undefined && accessTokens instanceof Object) {
+    // retrieve the access token from the cache
+    const accessToken = accessTokens[fileId]
+    // return the access token or an empty string
+    return accessToken
+  }
+  // return empty string if no token is stored
+  return ''
 }
 /**
  * @name setAccessToken
