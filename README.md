@@ -72,7 +72,7 @@ To allow for maximum customizability I decided to provide all values that Fimga 
 
 ## Settings
 
-![Design Tokens plugin settings](https://raw.githubusercontent.com/lukasoppermann/design-tokens/push/_resources/settings.png)
+![Design Tokens plugin settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/settings.png)
 
 ### Filename
 This allows you to define the file name that is used when exporting tokens. The `.json` extension will be automatically appended to the name.
