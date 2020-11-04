@@ -1,6 +1,8 @@
+import { PaintStyleObject } from './styles';
+
 export type figmaDataType = {
   tokenFrames: SceneNode[],
-  paintStyles: PaintStyle[],
+  paintStyles: PaintStyleObject[],
   gridStyles: GridStyle[],
   textStyles: TextStyle[],
   effectStyles: EffectStyle[]

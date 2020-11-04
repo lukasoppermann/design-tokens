@@ -6,3 +6,9 @@ export type BaseStyle = {
   name: string,
   description: string
 }
+
+export type PaintStyleObject = {
+  name: string,
+  description: string,
+  paints: any[]
+}
