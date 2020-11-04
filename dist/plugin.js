@@ -660,6 +660,27 @@
         };
         exports.default = filterByPropertyName;
     });
+    define("src/utilities/getPaintStyles", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        /**
+         * @function getPaintStyles
+         * @param {Array} paintStyles – the paintStyles from the figma file (somehow still connected)
+         */
+        const getPaintStyles = (paintStyles) => {
+            const paintStyleArray = [];
+            paintStyles.forEach(style => {
+                paintStyleArray.push({
+                    name: style.name,
+                    description: style.description,
+                    paints: style.paints
+                });
+            });
+            // return array
+            return paintStyleArray;
+        };
+        exports.default = getPaintStyles;
+    });
     define("src/utilities/getTokenFrames", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -698,11 +719,17 @@
         };
         exports.default = getTokenFrames;
     });
-    define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/filterByNameProperty", "src/utilities/getTokenFrames"], function (require, exports, filterByNameProperty_1, getTokenFrames_1) {
+    define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/filterByNameProperty", "src/utilities/getPaintStyles", "src/utilities/getTokenFrames"], function (require, exports, filterByNameProperty_1, getPaintStyles_1, getTokenFrames_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         filterByNameProperty_1 = __importDefault(filterByNameProperty_1);
+        getPaintStyles_1 = __importDefault(getPaintStyles_1);
         getTokenFrames_1 = __importDefault(getTokenFrames_1);
+        /**
+         * @function buildFigmaData – return an object with all styles & frame to use for export
+         * @param {PluginAPI} figma — the figma PluginAPI object
+         * @param options – options object
+         */
         const buildFigmaData = (figma, options = {
             prefix: '_',
             excludePrefix: true
@@ -712,7 +739,7 @@
             // get data from figma
             return {
                 tokenFrames: tokenFrames,
-                paintStyles: figma.getLocalPaintStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
+                paintStyles: getPaintStyles_1.default(figma.getLocalPaintStyles()).filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
                 gridStyles: figma.getLocalGridStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
                 textStyles: figma.getLocalTextStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
                 effectStyles: figma.getLocalEffectStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
@@ -871,7 +898,7 @@
     define("src/utilities/version", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const version = '1.2.1';
+        const version = '1.2.2';
         exports.default = version;
     });
     define("src/utilities/semVerDifference", ["require", "exports"], function (require, exports) {
