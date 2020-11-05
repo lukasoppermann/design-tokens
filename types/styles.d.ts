@@ -1,5 +1,3 @@
-type StyleType = "PAINT" | "TEXT" | "EFFECT" | "GRID"
-
 export type BaseStyle = {
   readonly id: string,
   readonly type: StyleType,
@@ -7,8 +5,40 @@ export type BaseStyle = {
   description: string
 }
 
-export type PaintStyleObject = {
+type GenericStyleObject = {
   name: string,
-  description: string,
+  description: string
+}
+
+export type PaintStyleObject = GenericStyleObject & {
   paints: any[]
+}
+
+type GridType = "GRID" | "ROWS" | "COLUMNS"
+type layoutGrid = {
+  pattern: GridType,
+  sectionSize?: number,
+  gutterSize?: number,
+  alignment?: string,
+  count?: any,
+  offset?: number
+}
+
+export type GridStyleObject = GenericStyleObject & {
+  layoutGrids: layoutGrid[]
+}
+
+export type TextStyleObject = GenericStyleObject & {
+  fontSize: number,
+  textDecoration: TextDecoration,
+  fontName: FontName,
+  letterSpacing: LetterSpacing,
+  lineHeight: LineHeight,
+  paragraphIndent: number,
+  paragraphSpacing: number,
+  textCase: TextCase
+}
+
+export type EffectStyleObject = GenericStyleObject & {
+  effects: Effect[]
 }

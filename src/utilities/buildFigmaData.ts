@@ -1,7 +1,10 @@
 import { figmaDataType } from '../../types/figmaDataType'
 import filterByNameProperty from './filterByNameProperty'
 import getPaintStyles from './getPaintStyles'
+import getGridStyles from './getGridStyles'
 import getTokenFrames from './getTokenFrames'
+import getTextStyles from './getTextStyles'
+import getEffectStyles from './getEffectStyles'
 
 /**
  * @function buildFigmaData – return an object with all styles & frame to use for export
@@ -18,9 +21,9 @@ const buildFigmaData = (figma: PluginAPI, options = {
   return {
     tokenFrames: tokenFrames,
     paintStyles: getPaintStyles(figma.getLocalPaintStyles()).filter(filterByNameProperty(options.prefix, options.excludePrefix)),
-    gridStyles: figma.getLocalGridStyles().filter(filterByNameProperty(options.prefix, options.excludePrefix)),
-    textStyles: figma.getLocalTextStyles().filter(filterByNameProperty(options.prefix, options.excludePrefix)),
-    effectStyles: figma.getLocalEffectStyles().filter(filterByNameProperty(options.prefix, options.excludePrefix)),
+    gridStyles: getGridStyles(figma.getLocalGridStyles()).filter(filterByNameProperty(options.prefix, options.excludePrefix)),
+    textStyles: getTextStyles(figma.getLocalTextStyles()).filter(filterByNameProperty(options.prefix, options.excludePrefix)),
+    effectStyles: getEffectStyles(figma.getLocalEffectStyles()).filter(filterByNameProperty(options.prefix, options.excludePrefix))
   }
 }
 

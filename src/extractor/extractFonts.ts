@@ -4,16 +4,16 @@ import { UnitTypePixel, TextCase, TextDecoration, NumericUnitTypes, PropertyType
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const textDecorations = {
-  'NONE': 'none',
-  'UNDERLINE': 'underline',
-  'STRIKETHROUGH': 'line-through'
+  NONE: 'none',
+  UNDERLINE: 'underline',
+  STRIKETHROUGH: 'line-through'
 }
 
 const textCases = {
-  "ORIGINAL": "none",
-  "UPPER": "uppercase",
-  "LOWER": "lowercase",
-  "TITLE": "capitalize"
+  ORIGINAL: 'none',
+  UPPER: 'uppercase',
+  LOWER: 'lowercase',
+  TITLE: 'capitalize'
 }
 
 const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontPropertyInterface[] => {
@@ -23,7 +23,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
     description: node.description || undefined,
     values: {
       fontSize: {
-        value: node.fontSize, 
+        value: node.fontSize,
         unit: 'pixel' as UnitTypePixel,
         type: 'number' as PropertyType
       },
@@ -48,7 +48,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
         // @ts-ignore
         value: roundWithDecimals(node.lineHeight.value) || 'normal',
         unit: node.lineHeight.unit.toLowerCase(),
-        type: (node.lineHeight.hasOwnProperty('value') ? 'number' : 'string') as PropertyType
+        type: (Object.prototype.hasOwnProperty.call(node.lineHeight, 'value') ? 'number' : 'string') as PropertyType
       },
       paragraphIndent: {
         value: node.paragraphIndent,
@@ -66,7 +66,6 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
       }
     }
   }))
-
 }
 
 export default extractFonts

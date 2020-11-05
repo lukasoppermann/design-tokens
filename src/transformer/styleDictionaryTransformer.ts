@@ -1,5 +1,5 @@
-import { propertyObject } from "../../types/propertyObject"
-import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from "../../types/styleDictionaryProperties"
+import { propertyObject } from '../../types/propertyObject'
+import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from '../../types/styleDictionaryProperties'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
 
 const defaultTransformer = propertyGroupValues => {
@@ -12,7 +12,7 @@ const defaultTransformer = propertyGroupValues => {
   // transform proeprties
   Object.keys(propertyGroupValues).forEach(function (key) {
     // if this is the final level
-    if (propertyGroupValues[key].hasOwnProperty('value')) {
+    if (Object.prototype.hasOwnProperty.call(propertyGroupValues[key], 'value')) {
       transformedProperties[key] = styleDictionaryFormat(propertyGroupValues[key])
     }
     // if there is more nesting
@@ -30,7 +30,7 @@ const defaultTransformer = propertyGroupValues => {
 }
 
 const sizeTransformer = propertyGroupValues => {
-  return styleDictionaryFormat(propertyGroupValues['width'])
+  return styleDictionaryFormat(propertyGroupValues.width)
 }
 
 const categoryTransformer = {
@@ -56,8 +56,8 @@ const styleDictionaryFormat = (property): StyleDictionaryPropertyObject => ({
   value: styleDictionaryConvertValue(property.value, property.type),
   type: property.type,
   // optional properties
-  ...(property.description != undefined && { comment: property.description }),
-  ...(property.unit != undefined && { unit: property.unit }),
+  ...(property.description !== undefined && { comment: property.description }),
+  ...(property.unit !== undefined && { unit: property.unit })
 })
 
 const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDictionaryPropertyGroup => {
@@ -67,7 +67,7 @@ const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDiction
   return {
     name: propertyGroup.name,
     category: propertyGroup.category,
-    ...(propertyGroup.description != undefined && { comment: propertyGroup.description }),
+    ...(propertyGroup.description !== undefined && { comment: propertyGroup.description }),
     ...transformedProperties
   }
 }

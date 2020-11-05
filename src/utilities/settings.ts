@@ -3,8 +3,8 @@ import UserSettings from '../../types/settings'
 const settingsKey = 'settings'
 /**
  * Function sanitizes and prepares settings to be stored
- * @param newSettings 
- * @param currentSettings 
+ * @param newSettings
+ * @param currentSettings
  */
 const settingsPrepare = (newSettings: UserSettings, currentSettings: UserSettings): UserSettings => {
   // initialize object
@@ -12,7 +12,7 @@ const settingsPrepare = (newSettings: UserSettings, currentSettings: UserSetting
   // add public settings
   for (const [key, value] of Object.entries(settingsDefault)) {
     // avoid empty values
-    if (typeof value.default === "string" && value.empty === false) {
+    if (typeof value.default === 'string' && value.empty === false) {
       if (newSettings[key].trim() === '') {
         newSettings[key] = currentSettings[key] || value.default
       }
@@ -50,12 +50,12 @@ const getSettings = (): UserSettings => {
   const settings = {}
   // fill with user settings or defaults
   Object.entries(settingsDefault).forEach(([key, value]) => {
-    if (userSettings !== undefined && userSettings[key] !== undefined ) {
+    if (userSettings !== undefined && userSettings[key] !== undefined) {
       return settings[key] = userSettings[key]
     }
     return settings[key] = value.default
   })
-  
+
   return <UserSettings>settings
 }
 
@@ -65,7 +65,7 @@ const getSettings = (): UserSettings => {
  * @param {UserSettings} settings
  */
 const setSettings = (settings: UserSettings) => {
-  settings = settingsPrepare(settings, getSettings()) 
+  settings = settingsPrepare(settings, getSettings())
   // store public settings that should be shared across org
   figma.root.setPluginData(settingsKey, JSON.stringify(settings, null, 2))
 }

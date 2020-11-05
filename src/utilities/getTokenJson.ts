@@ -16,7 +16,7 @@ const transformer = {
 
 const exportRawTokenArray = (figmaData: figmaDataType) => {
   // get tokens
-  return [ 
+  return [
     ...extractSizes(figmaData.tokenFrames),
     ...extractBorders(figmaData.tokenFrames),
     ...extractRadii(figmaData.tokenFrames),
@@ -31,7 +31,7 @@ const getTokenJson = (figmaData: figmaDataType, format: string = 'styleDictionar
   // get token array
   const tokenArray = exportRawTokenArray(figmaData)
   // format tokens
-  const formattedTokens = tokenArray.map((token: propertyObject )=> transformer[format](token))
+  const formattedTokens = tokenArray.map((token: propertyObject) => transformer[format](token))
   // group tokens
   const groupedTokens = groupByName(formattedTokens)
   // return group tokens
