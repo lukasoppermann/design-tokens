@@ -105,6 +105,18 @@ This is the `event_type` property that is send in the body of the request with t
 #### **Server url**
 The url the post request is send to. This must be SSL secured (using `https`) as Figma is a secure environment and thus does not allow non-secure requests.
 A limitation that comes with Figma is that the server must allow access from any origin and send the following header: `Access-Control-Allow-Origin: *`
+
+##### Pushing to Github
+If you push to github the server url must be in the format 
+```
+https://api.github.com/repo/:username/:repo/dispatches
+```
+
+For the repositiory `lukasoppermann/design-token-transformer` this would be:
+```
+https://api.github.com/repos/lukasoppermann/design-token-transformer/dispatches
+```
+
 #### **Auth header**
 This defines the authentication method used with the access token. The current choices are:
 - `token` (used for github)
