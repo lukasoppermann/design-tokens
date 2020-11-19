@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 // settings structure & default values
 export default {
   filename: {

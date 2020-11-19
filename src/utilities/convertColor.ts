@@ -15,7 +15,7 @@ export const roundRgba = (rgba: {
 
 export const convertPaintToRgba = (paint): ColorRgba => {
   if (paint.type === 'SOLID' && paint.visible === true) {
-    return roundRgba(paint.color, paint.opacity || null)
+    return roundRgba(paint.color, (paint.opacity || null))
   }
   return null
 }

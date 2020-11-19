@@ -1,10 +1,10 @@
-import extractorInterface from "../../types/extractorInterface"
+import extractorInterface from '../../types/extractorInterface'
 import { radiusPropertyInterface } from '../../types/propertyObject'
-import { customTokenNodes } from '../../types/tokenNodeTypes'
+import { customTokenNode } from '../../types/tokenNodeTypes'
 import { UnitTypePixel, PropertyType } from '../../types/valueTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
-const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiusPropertyInterface[] => {
+const extractRadii: extractorInterface = (tokenNodes: customTokenNode[]): radiusPropertyInterface[] => {
   const nodeName = 'radii'
   // get the type of the corner radius
   const getRadiusType = radius => {
@@ -37,13 +37,13 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
     }
   })
   // return as object
-  return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName ).map(node => ({
+  return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
     name: node.name,
     // @ts-ignore
     description: node.description || null,
     category: 'radius',
     values: {
-      ...(typeof node.cornerRadius === "number" && {
+      ...(typeof node.cornerRadius === 'number' && {
         radius: {
           value: node.cornerRadius,
           unit: 'pixel' as UnitTypePixel,
@@ -57,12 +57,11 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNodes[]): radiu
       radii: getRadii(node),
       smoothing: {
         value: roundWithDecimals(node.cornerSmoothing, 2),
-        comment: "Percent as decimal from 0.0 - 1.0",
+        comment: 'Percent as decimal from 0.0 - 1.0',
         type: 'number' as PropertyType
       }
     }
-  }))  
-
+  }))
 }
 
 export default extractRadii

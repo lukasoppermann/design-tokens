@@ -4,7 +4,8 @@ import { GridAlignment, GridPattern, PropertyType } from '../../types/valueTypes
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {
-    value: grid.pattern.toLowerCase() as GridPattern
+    value: grid.pattern.toLowerCase() as GridPattern,
+    type: 'string' as PropertyType
   },
   sectionSize: {
     value: grid.sectionSize,
@@ -32,11 +33,13 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
     type: 'string' as PropertyType
   },
   // undefined when aligment stretch
-  ...(grid.sectionSize !== undefined && {sectionSize: {
-    value: grid.sectionSize,
-    unit: 'pixel',
-    type: 'number' as PropertyType
-  }}),
+  ...(grid.sectionSize !== undefined && {
+    sectionSize: {
+      value: grid.sectionSize,
+      unit: 'pixel',
+      type: 'number' as PropertyType
+    }
+  }),
   gutterSize: {
     value: grid.gutterSize,
     unit: 'pixel',
@@ -48,11 +51,13 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
   },
   count: getCount(grid.count),
   // undefined when aligment centred
-  ...(grid.offset !== undefined && {offset: {
-    value: grid.offset,
-    unit: 'pixel',
-    type: 'number' as PropertyType
-  }})
+  ...(grid.offset !== undefined && {
+    offset: {
+      value: grid.offset,
+      unit: 'pixel',
+      type: 'number' as PropertyType
+    }
+  })
 })
 
 const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridPropertyInterface[] => {
@@ -61,7 +66,7 @@ const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridProperty
     name: node.name,
     description: node.description || null,
     category: 'grid',
-    values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
+    values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid))
   }))
 }
 

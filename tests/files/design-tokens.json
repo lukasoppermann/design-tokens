@@ -9,12 +9,14 @@
     },
     "frame": {
       "category": "size",
+      "comment": null,
       "value": 32,
       "type": "number",
       "unit": "pixel"
     },
     "rect": {
       "category": "size",
+      "comment": null,
       "value": 32,
       "type": "number",
       "unit": "pixel"
@@ -30,6 +32,8 @@
   "borders": {
     "unsupported": {
       "gradient borders": {
+        "category": "border",
+        "comment": null,
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -46,7 +50,7 @@
           "value": "miter",
           "type": "string"
         },
-        "strokeMiterAngle": {
+        "strokeMiterLimit": {
           "value": 4,
           "type": "number",
           "unit": "degree"
@@ -61,6 +65,8 @@
         }
       },
       "multiple borders": {
+        "category": "border",
+        "comment": null,
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -77,7 +83,7 @@
           "value": "miter",
           "type": "string"
         },
-        "strokeMiterAngle": {
+        "strokeMiterLimit": {
           "value": 4,
           "type": "number",
           "unit": "degree"
@@ -93,6 +99,8 @@
         }
       },
       "image borders": {
+        "category": "border",
+        "comment": null,
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -109,7 +117,7 @@
           "value": "miter",
           "type": "string"
         },
-        "strokeMiterAngle": {
+        "strokeMiterLimit": {
           "value": 4,
           "type": "number",
           "unit": "degree"
@@ -125,6 +133,8 @@
       }
     },
     "single": {
+      "category": "border",
+      "comment": null,
       "strokeAlign": {
         "value": "inside",
         "type": "string"
@@ -141,7 +151,7 @@
         "value": "miter",
         "type": "string"
       },
-      "strokeMiterAngle": {
+      "strokeMiterLimit": {
         "value": 4,
         "type": "number",
         "unit": "degree"
@@ -157,6 +167,8 @@
       }
     },
     "single (style)": {
+      "category": "border",
+      "comment": null,
       "strokeAlign": {
         "value": "inside",
         "type": "string"
@@ -173,7 +185,7 @@
         "value": "miter",
         "type": "string"
       },
-      "strokeMiterAngle": {
+      "strokeMiterLimit": {
         "value": 4,
         "type": "number",
         "unit": "degree"
@@ -189,6 +201,8 @@
       }
     },
     "dashed outside": {
+      "category": "border",
+      "comment": null,
       "strokeAlign": {
         "value": "outside",
         "type": "string"
@@ -205,7 +219,7 @@
         "value": "miter",
         "type": "string"
       },
-      "strokeMiterAngle": {
+      "strokeMiterLimit": {
         "value": 4,
         "type": "number",
         "unit": "degree"
@@ -263,6 +277,7 @@
     },
     "mixed": {
       "category": "radius",
+      "comment": null,
       "radiusType": {
         "value": "mixed",
         "type": "string"
@@ -305,10 +320,12 @@
         "value": "rgba(0, 0, 0, 0.1)",
         "type": "color"
       },
-      "category": "fill"
+      "category": "fill",
+      "comment": null
     },
     "single blue": {
       "category": "fill",
+      "comment": null,
       "value": "rgba(4, 74, 255, 1)",
       "type": "color"
     },
@@ -321,6 +338,7 @@
       },
       "änderung": {
         "category": "fill",
+        "comment": null,
         "value": "rgba(52, 86, 175, 1)",
         "type": "color"
       }
@@ -456,7 +474,8 @@
           "type": "number"
         }
       },
-      "category": "fill"
+      "category": "fill",
+      "comment": null
     },
     "single with multiple color stops": {
       "category": "fill",
@@ -705,7 +724,8 @@
       },
       "7": {
         "pattern": {
-          "value": "grid"
+          "value": "grid",
+          "type": "string"
         },
         "sectionSize": {
           "value": 8,
@@ -718,6 +738,7 @@
     },
     "single": {
       "category": "grid",
+      "comment": null,
       "pattern": {
         "value": "columns",
         "type": "string"
@@ -744,7 +765,8 @@
   },
   "invalid": {
     "no grid": {
-      "category": "grid"
+      "category": "grid",
+      "comment": null
     },
     "none": {
       "category": "effect",
@@ -753,6 +775,7 @@
   },
   "body": {
     "h3": {
+      "category": "font",
       "comment": "Comment for text style",
       "fontSize": {
         "value": 20,
@@ -797,6 +820,7 @@
       }
     },
     "h4 strike through": {
+      "category": "font",
       "comment": "With stylisitc options",
       "fontSize": {
         "value": 16,
@@ -973,10 +997,12 @@
           "unit": "pixel"
         }
       },
-      "category": "effect"
+      "category": "effect",
+      "comment": null
     },
     "layer blur": {
       "category": "effect",
+      "comment": null,
       "type": {
         "value": "layerBlur",
         "type": "string"
@@ -989,6 +1015,7 @@
     },
     "background blur": {
       "category": "effect",
+      "comment": null,
       "type": {
         "value": "backgroundBlur",
         "type": "string"

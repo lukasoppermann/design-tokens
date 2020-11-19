@@ -64,7 +64,7 @@
         });
         exports.convertPaintToRgba = (paint) => {
             if (paint.type === 'SOLID' && paint.visible === true) {
-                return exports.roundRgba(paint.color, paint.opacity || null);
+                return exports.roundRgba(paint.color, (paint.opacity || null));
             }
             return null;
         };
@@ -75,13 +75,13 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         roundWithDecimals_2 = __importDefault(roundWithDecimals_2);
         const gradientType = {
-            "GRADIENT_LINEAR": "linear",
-            "GRADIENT_RADIAL": "radial",
-            "GRADIENT_ANGULAR": "angular",
-            "GRADIENT_DIAMOND": "diamond"
+            GRADIENT_LINEAR: 'linear',
+            GRADIENT_RADIAL: 'radial',
+            GRADIENT_ANGULAR: 'angular',
+            GRADIENT_DIAMOND: 'diamond'
         };
         const extractFills = (paint) => {
-            if (paint.type === "SOLID") {
+            if (paint.type === 'SOLID') {
                 return {
                     fill: {
                         value: convertColor_1.convertPaintToRgba(paint),
@@ -89,28 +89,30 @@
                     }
                 };
             }
-            if (["GRADIENT_LINEAR", "GRADIENT_RADIAL", "GRADIENT_ANGULAR", "GRADIENT_DIAMOND"].includes(paint.type)) {
+            if (['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint.type)) {
                 return {
                     gradientType: {
                         value: gradientType[paint.type],
-                        type: "string"
+                        type: 'string'
                     },
                     stops: paint.gradientStops.map(stop => ({
                         position: {
                             value: roundWithDecimals_2.default(stop.position),
-                            type: "number"
+                            type: 'number'
                         },
                         color: {
                             value: convertColor_1.roundRgba(stop.color),
-                            type: "color"
+                            type: 'color'
                         }
                     })),
                     opacity: {
                         value: roundWithDecimals_2.default(paint.opacity),
-                        type: "number"
+                        type: 'number'
                     }
                 };
             }
+            // return null if no matching type
+            /* istanbul ignore next */
             return null;
         };
         const extractColors = (tokenNodes) => {
@@ -118,7 +120,7 @@
             return tokenNodes
                 // remove images fills from tokens
                 .map(node => {
-                node.paints = node.paints.filter(paint => paint.type !== "IMAGE");
+                node.paints = node.paints.filter(paint => paint.type !== 'IMAGE');
                 return node;
             })
                 // remove tokens with no fill
@@ -139,7 +141,8 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         const gridValues = (grid) => ({
             pattern: {
-                value: grid.pattern.toLowerCase()
+                value: grid.pattern.toLowerCase(),
+                type: 'string'
             },
             sectionSize: {
                 value: grid.sectionSize,
@@ -162,29 +165,33 @@
         const rowColumnValues = (grid) => (Object.assign(Object.assign(Object.assign({ pattern: {
                 value: grid.pattern.toLowerCase(),
                 type: 'string'
-            } }, (grid.sectionSize !== undefined && { sectionSize: {
+            } }, (grid.sectionSize !== undefined && {
+            sectionSize: {
                 value: grid.sectionSize,
                 unit: 'pixel',
                 type: 'number'
-            } })), { gutterSize: {
+            }
+        })), { gutterSize: {
                 value: grid.gutterSize,
                 unit: 'pixel',
                 type: 'number'
             }, alignment: {
                 value: grid.alignment.toLowerCase(),
                 type: 'string'
-            }, count: getCount(grid.count) }), (grid.offset !== undefined && { offset: {
+            }, count: getCount(grid.count) }), (grid.offset !== undefined && {
+            offset: {
                 value: grid.offset,
                 unit: 'pixel',
                 type: 'number'
-            } })));
+            }
+        })));
         const extractGrids = (tokenNodes) => {
             // get grid styles
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || null,
                 category: 'grid',
-                values: node.layoutGrids.map((grid) => grid.pattern === "GRID" ? gridValues(grid) : rowColumnValues(grid))
+                values: node.layoutGrids.map((grid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid))
             }));
         };
         exports.default = extractGrids;
@@ -194,21 +201,22 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         roundWithDecimals_3 = __importDefault(roundWithDecimals_3);
         const textDecorations = {
-            'NONE': 'none',
-            'UNDERLINE': 'underline',
-            'STRIKETHROUGH': 'line-through'
+            NONE: 'none',
+            UNDERLINE: 'underline',
+            STRIKETHROUGH: 'line-through'
         };
         const textCases = {
-            "ORIGINAL": "none",
-            "UPPER": "uppercase",
-            "LOWER": "lowercase",
-            "TITLE": "capitalize"
+            ORIGINAL: 'none',
+            UPPER: 'uppercase',
+            LOWER: 'lowercase',
+            TITLE: 'capitalize'
         };
         const extractFonts = (tokenNodes) => {
             // get raw text styles
             return tokenNodes.map(node => ({
                 name: node.name,
                 description: node.description || undefined,
+                category: 'font',
                 values: {
                     fontSize: {
                         value: node.fontSize,
@@ -236,7 +244,7 @@
                         // @ts-ignore
                         value: roundWithDecimals_3.default(node.lineHeight.value) || 'normal',
                         unit: node.lineHeight.unit.toLowerCase(),
-                        type: (node.lineHeight.hasOwnProperty('value') ? 'number' : 'string')
+                        type: (Object.prototype.hasOwnProperty.call(node.lineHeight, 'value') ? 'number' : 'string')
                     },
                     paragraphIndent: {
                         value: node.paragraphIndent,
@@ -261,10 +269,10 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const effectType = {
-            "LAYER_BLUR": 'layerBlur',
-            "BACKGROUND_BLUR": 'backgroundBlur',
-            "DROP_SHADOW": 'dropShadow',
-            "INNER_SHADOW": 'innerShadow'
+            LAYER_BLUR: 'layerBlur',
+            BACKGROUND_BLUR: 'backgroundBlur',
+            DROP_SHADOW: 'dropShadow',
+            INNER_SHADOW: 'innerShadow'
         };
         const blurValues = (effect) => ({
             type: {
@@ -315,7 +323,7 @@
                 name: node.name,
                 description: node.description || null,
                 category: 'effect',
-                values: node.effects.map((effect) => effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
+                values: node.effects.map((effect) => effect.type === 'LAYER_BLUR' || effect.type === 'BACKGROUND_BLUR'
                     ? blurValues(effect)
                     : shadowValues(effect))
             }));
@@ -350,19 +358,19 @@
         };
         exports.default = extractSizes;
     });
-    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/convertColor", "src/utilities/roundWithDecimals"], function (require, exports, convertColor_3, roundWithDecimals_5) {
+    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_5) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         roundWithDecimals_5 = __importDefault(roundWithDecimals_5);
         const strokeJoins = {
-            'MITER': 'miter',
-            'BEVEL': 'bevel',
-            'ROUND': 'round'
+            MITER: 'miter',
+            BEVEL: 'bevel',
+            ROUND: 'round'
         };
         const strokeAligns = {
-            'CENTER': 'center',
-            'INSIDE': 'inside',
-            'OUTSIDE': 'outside'
+            CENTER: 'center',
+            INSIDE: 'inside',
+            OUTSIDE: 'outside'
         };
         const extractBorders = (tokenNodes) => {
             const nodeName = 'borders';
@@ -375,6 +383,7 @@
                 // convert borders
                 .map(node => ({
                 name: node.name,
+                category: 'border',
                 // @ts-ignore
                 description: node.description || null,
                 values: {
@@ -394,7 +403,7 @@
                         value: strokeJoins[node.strokeJoin],
                         type: 'string'
                     },
-                    strokeMiterAngle: {
+                    strokeMiterLimit: {
                         value: roundWithDecimals_5.default(node.strokeMiterLimit),
                         unit: 'degree',
                         type: 'number'
@@ -408,7 +417,7 @@
                         type: 'number'
                     },
                     stroke: {
-                        value: convertColor_3.convertPaintToRgba((node.strokes[0])),
+                        value: node.strokes[0],
                         type: 'color'
                     }
                 }
@@ -458,7 +467,7 @@
                 // @ts-ignore
                 description: node.description || null,
                 category: 'radius',
-                values: Object.assign(Object.assign({}, (typeof node.cornerRadius === "number" && {
+                values: Object.assign(Object.assign({}, (typeof node.cornerRadius === 'number' && {
                     radius: {
                         value: node.cornerRadius,
                         unit: 'pixel',
@@ -469,7 +478,7 @@
                         type: 'string'
                     }, radii: getRadii(node), smoothing: {
                         value: roundWithDecimals_6.default(node.cornerSmoothing, 2),
-                        comment: "Percent as decimal from 0.0 - 1.0",
+                        comment: 'Percent as decimal from 0.0 - 1.0',
                         type: 'number'
                     } })
             }));
@@ -536,7 +545,7 @@
                 if (removeName === true) {
                     delete token.name;
                 }
-                // return 
+                // return
                 return nestedObjectFromArray(groupsFromName, token);
             });
             if (groupedTokens.length > 0) {
@@ -551,7 +560,7 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
     });
-    define("src/transformer/styleDictionaryTransformer", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_4) {
+    define("src/transformer/styleDictionaryTransformer", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const defaultTransformer = propertyGroupValues => {
@@ -564,7 +573,7 @@
             // transform proeprties
             Object.keys(propertyGroupValues).forEach(function (key) {
                 // if this is the final level
-                if (propertyGroupValues[key].hasOwnProperty('value')) {
+                if (Object.prototype.hasOwnProperty.call(propertyGroupValues[key], 'value')) {
                     transformedProperties[key] = styleDictionaryFormat(propertyGroupValues[key]);
                 }
                 // if there is more nesting
@@ -581,10 +590,12 @@
             return transformedProperties;
         };
         const sizeTransformer = propertyGroupValues => {
-            return styleDictionaryFormat(propertyGroupValues['width']);
+            return styleDictionaryFormat(propertyGroupValues.width);
         };
         const categoryTransformer = {
             default: defaultTransformer,
+            font: defaultTransformer,
+            border: defaultTransformer,
             size: sizeTransformer,
             grid: defaultTransformer,
             effect: defaultTransformer,
@@ -596,16 +607,17 @@
                 return;
             }
             if (type === 'color') {
-                return convertColor_4.convertRgbaObjectToString(value);
+                return convertColor_3.convertRgbaObjectToString(value);
             }
             return value;
         };
-        const styleDictionaryFormat = (property) => (Object.assign(Object.assign({ value: styleDictionaryConvertValue(property.value, property.type), type: property.type }, (property.description != undefined && { comment: property.description })), (property.unit != undefined && { unit: property.unit })));
+        const styleDictionaryFormat = (property) => (Object.assign(Object.assign({ value: styleDictionaryConvertValue(property.value, property.type), type: property.type }, (property.description !== undefined && { comment: property.description })), (property.unit !== undefined && { unit: property.unit })));
         const styleDictionaryTransformer = (propertyGroup) => {
             // transform to amazon style Dictionary structure
+            // THIS SHOULD BE FIXED TO CHECK IF categoryTransformer[propertyGroup.category] exsist ant otherwise use default!!!
             const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup.values);
             // return values
-            return Object.assign(Object.assign({ name: propertyGroup.name, category: propertyGroup.category }, (propertyGroup.description != undefined && { comment: propertyGroup.description })), transformedProperties);
+            return Object.assign(Object.assign({ name: propertyGroup.name, category: propertyGroup.category }, (propertyGroup.description !== undefined && { comment: propertyGroup.description })), transformedProperties);
         };
         exports.default = styleDictionaryTransformer;
     });
@@ -667,21 +679,46 @@
          * @function getPaintStyles
          * @param {Array} paintStyles – the paintStyles from the figma file (somehow still connected)
          */
-        const getPaintStyles = (paintStyles) => {
-            const paintStyleArray = [];
-            paintStyles.forEach(style => {
-                paintStyleArray.push({
+        const getPaintStyles = (styles) => {
+            // init styleArray
+            const styleArray = [];
+            // loop through Figma styles and add to array
+            styles.forEach(style => {
+                styleArray.push({
                     name: style.name,
                     description: style.description,
                     paints: style.paints
                 });
             });
             // return array
-            return paintStyleArray;
+            return styleArray;
         };
         exports.default = getPaintStyles;
     });
-    define("src/utilities/getTokenFrames", ["require", "exports"], function (require, exports) {
+    define("src/utilities/getGridStyles", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        /**
+         * @function getGridStyles
+         * @param {Array} gridStyles – the gridStyles from the figma file
+         */
+        const getGridStyles = (styles) => {
+            // init styleArray
+            const styleArray = [];
+            // loop through Figma styles and add to array
+            styles.forEach(style => {
+                styleArray.push({
+                    name: style.name,
+                    description: style.description,
+                    layoutGrids: style.layoutGrids
+                });
+            });
+            // return array
+            return styleArray;
+        };
+        exports.default = getGridStyles;
+    });
+    define("src/utilities/getTokenFrames", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         // the node types that can be used for tokens
@@ -693,9 +730,17 @@
         // the name that token frames have
         const tokenFrameName = '_tokens';
         // check if a frame is a _token frame
-        const isTokenFrame = (node) => node.type === "FRAME" && node.name.trim().toLowerCase().substr(0, tokenFrameName.length) === tokenFrameName;
+        const isTokenFrame = (node) => node.type === 'FRAME' && node.name.trim().toLowerCase().substr(0, tokenFrameName.length) === tokenFrameName;
         // return only nodes that are frames
         const getFrameNodes = (nodes) => nodes.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr]);
+        /**
+         * Return an array of solid stroke colors
+         */
+        const getSolidStrokes = (paints) => {
+            // clone without reference
+            return [...paints]
+                .map(paint => convertColor_4.convertPaintToRgba(paint));
+        };
         /**
          * check if a node is a valid token node type
          * Currently: 'COMPONENT' or 'RECTANGLE'
@@ -715,16 +760,94 @@
                 // check if children are of valide types
                 .findChildren(node => isTokenNode(node)))
                 // merges all children into one array
-                .reduce((flatten, arr) => [...flatten, ...arr], []);
+                .reduce((flatten, arr) => [...flatten, ...arr], [])
+                // export
+                .map(node => ({
+                name: node.name,
+                // @ts-ignore
+                description: node.description || undefined,
+                bottomLeftRadius: node.bottomLeftRadius,
+                bottomRightRadius: node.bottomRightRadius,
+                topLeftRadius: node.topLeftRadius,
+                topRightRadius: node.topRightRadius,
+                cornerRadius: node.cornerRadius || undefined,
+                cornerSmoothing: node.cornerSmoothing,
+                strokes: getSolidStrokes(node.strokes),
+                strokeWeight: node.strokeWeight,
+                strokeStyleId: node.strokeStyleId,
+                strokeMiterLimit: node.strokeMiterLimit,
+                strokeJoin: node.strokeJoin,
+                strokeCap: node.strokeCap,
+                dashPattern: node.dashPattern,
+                strokeAlign: node.strokeAlign,
+                width: node.width,
+                height: node.height
+            }));
         };
         exports.default = getTokenFrames;
     });
-    define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/filterByNameProperty", "src/utilities/getPaintStyles", "src/utilities/getTokenFrames"], function (require, exports, filterByNameProperty_1, getPaintStyles_1, getTokenFrames_1) {
+    define("src/utilities/getTextStyles", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        /**
+         * @function getTextStyles
+         * @param {Array<TextStyle>} styles – the paintStyles from the figma file (somehow still connected)
+         */
+        const getTextStyles = (styles) => {
+            // init styleArray
+            const styleArray = [];
+            // loop through Figma styles and add to array
+            styles.forEach(style => {
+                styleArray.push({
+                    name: style.name,
+                    description: style.description,
+                    fontSize: style.fontSize,
+                    textDecoration: style.textDecoration,
+                    fontName: style.fontName,
+                    letterSpacing: style.letterSpacing,
+                    lineHeight: style.lineHeight,
+                    paragraphIndent: style.paragraphIndent,
+                    paragraphSpacing: style.paragraphSpacing,
+                    textCase: style.textCase
+                });
+            });
+            // return array
+            return styleArray;
+        };
+        exports.default = getTextStyles;
+    });
+    define("src/utilities/getEffectStyles", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        /**
+         * @function getEffectStyles
+         * @param {Array<EffectStyle>} styles – the effectStyle from the figma file
+         */
+        const getEffectStyles = (styles) => {
+            // init styleArray
+            const styleArray = [];
+            // loop through Figma styles and add to array
+            styles.forEach(style => {
+                styleArray.push({
+                    name: style.name,
+                    description: style.description,
+                    effects: style.effects
+                });
+            });
+            // return array
+            return styleArray;
+        };
+        exports.default = getEffectStyles;
+    });
+    define("src/utilities/buildFigmaData", ["require", "exports", "src/utilities/filterByNameProperty", "src/utilities/getPaintStyles", "src/utilities/getGridStyles", "src/utilities/getTokenFrames", "src/utilities/getTextStyles", "src/utilities/getEffectStyles"], function (require, exports, filterByNameProperty_1, getPaintStyles_1, getGridStyles_1, getTokenFrames_1, getTextStyles_1, getEffectStyles_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         filterByNameProperty_1 = __importDefault(filterByNameProperty_1);
         getPaintStyles_1 = __importDefault(getPaintStyles_1);
+        getGridStyles_1 = __importDefault(getGridStyles_1);
         getTokenFrames_1 = __importDefault(getTokenFrames_1);
+        getTextStyles_1 = __importDefault(getTextStyles_1);
+        getEffectStyles_1 = __importDefault(getEffectStyles_1);
         /**
          * @function buildFigmaData – return an object with all styles & frame to use for export
          * @param {PluginAPI} figma — the figma PluginAPI object
@@ -740,9 +863,9 @@
             return {
                 tokenFrames: tokenFrames,
                 paintStyles: getPaintStyles_1.default(figma.getLocalPaintStyles()).filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
-                gridStyles: figma.getLocalGridStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
-                textStyles: figma.getLocalTextStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
-                effectStyles: figma.getLocalEffectStyles().filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
+                gridStyles: getGridStyles_1.default(figma.getLocalGridStyles()).filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
+                textStyles: getTextStyles_1.default(figma.getLocalTextStyles()).filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix)),
+                effectStyles: getEffectStyles_1.default(figma.getLocalEffectStyles()).filter(filterByNameProperty_1.default(options.prefix, options.excludePrefix))
             };
         };
         exports.default = buildFigmaData;
@@ -750,6 +873,7 @@
     define("src/utilities/settingsDefault", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        /* istanbul ignore file */
         // settings structure & default values
         exports.default = {
             filename: {
@@ -800,7 +924,7 @@
             // add public settings
             for (const [key, value] of Object.entries(settingsDefault_1.default)) {
                 // avoid empty values
-                if (typeof value.default === "string" && value.empty === false) {
+                if (typeof value.default === 'string' && value.empty === false) {
                     if (newSettings[key].trim() === '') {
                         newSettings[key] = currentSettings[key] || value.default;
                     }
@@ -898,13 +1022,14 @@
     define("src/utilities/version", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const version = '1.2.2';
+        /* istanbul ignore file */
+        const version = '1.3.0';
         exports.default = version;
     });
     define("src/utilities/semVerDifference", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        exports.default = (prevSemVers = '1.0.0', currentSemVer) => {
+        exports.default = (currentSemVer, prevSemVers = '1.0.0') => {
             const [pMajor, pMinor, pPatch] = prevSemVers.split('.');
             const [cMajor, cMinor, cPatch] = currentSemVer.split('.');
             if (pMajor < cMajor) {
@@ -1010,7 +1135,7 @@
             const openUi = () => __awaiter(void 0, void 0, void 0, function* () {
                 // get version & version difference
                 const lastVersionSettingsOpened = yield figma.clientStorage.getAsync(lastVersionSettingsOpenedKey);
-                const versionDifference = semVerDifference_1.default(lastVersionSettingsOpened, version_1.default);
+                const versionDifference = semVerDifference_1.default(version_1.default, lastVersionSettingsOpened);
                 // update version
                 if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== version_1.default) {
                     yield figma.clientStorage.setAsync(lastVersionSettingsOpenedKey, version_1.default);
