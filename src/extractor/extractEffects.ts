@@ -4,10 +4,10 @@ import { EffectType, UnitTypePixel, PropertyType } from '../../types/valueTypes'
 import { roundRgba } from '../utilities/convertColor'
 
 const effectType = {
-  "LAYER_BLUR": 'layerBlur',
-  "BACKGROUND_BLUR": 'backgroundBlur',
-  "DROP_SHADOW": 'dropShadow',
-  "INNER_SHADOW": 'innerShadow'
+  LAYER_BLUR: 'layerBlur',
+  BACKGROUND_BLUR: 'backgroundBlur',
+  DROP_SHADOW: 'dropShadow',
+  INNER_SHADOW: 'innerShadow'
 }
 
 const blurValues = (effect) => ({
@@ -62,11 +62,11 @@ const extractEffects: extractorInterface = (tokenNodes: EffectStyle[]): effectPr
     description: node.description || null,
     category: 'effect',
     values: node.effects.map(
-          (effect: Effect) => 
-            effect.type === "LAYER_BLUR" || effect.type === "BACKGROUND_BLUR"
-            ? blurValues(effect) 
-            : shadowValues(effect)
-          )
+      (effect: Effect) =>
+        effect.type === 'LAYER_BLUR' || effect.type === 'BACKGROUND_BLUR'
+          ? blurValues(effect)
+          : shadowValues(effect)
+    )
   }))
 }
 

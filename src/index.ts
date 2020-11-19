@@ -90,7 +90,7 @@ if(figma.command === 'settings') {
   const openUi = async () => {
     // get version & version difference
     const lastVersionSettingsOpened = await figma.clientStorage.getAsync(lastVersionSettingsOpenedKey)
-    const versionDifference = semVerDifference(lastVersionSettingsOpened, currentVersion)
+    const versionDifference = semVerDifference(currentVersion, lastVersionSettingsOpened)
     // update version
     if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== currentVersion) {
       await figma.clientStorage.setAsync(lastVersionSettingsOpenedKey, currentVersion)

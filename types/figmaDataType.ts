@@ -1,9 +1,10 @@
-import { PaintStyleObject } from './styles';
+import { EffectStyleObject, GridStyleObject, PaintStyleObject, TextStyleObject } from './styles'
+import { customTokenNode } from './tokenNodeTypes'
 
 export type figmaDataType = {
-  tokenFrames: SceneNode[],
+  tokenFrames: customTokenNode[],
   paintStyles: PaintStyleObject[],
-  gridStyles: GridStyle[],
-  textStyles: TextStyle[],
-  effectStyles: EffectStyle[]
+  gridStyles: GridStyleObject[],
+  textStyles: TextStyleObject[],
+  effectStyles: EffectStyleObject[]
 }

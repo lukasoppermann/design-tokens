@@ -9,12 +9,14 @@
     },
     "frame": {
       "category": "size",
+      "comment": null,
       "value": 32,
       "type": "number",
       "unit": "pixel"
     },
     "rect": {
       "category": "size",
+      "comment": null,
       "value": 32,
       "type": "number",
       "unit": "pixel"
@@ -30,6 +32,7 @@
   "borders": {
     "unsupported": {
       "gradient borders": {
+        "comment": null,
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -61,6 +64,7 @@
         }
       },
       "multiple borders": {
+        "comment": null,
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -93,6 +97,7 @@
         }
       },
       "image borders": {
+        "comment": null,
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -125,6 +130,7 @@
       }
     },
     "single": {
+      "comment": null,
       "strokeAlign": {
         "value": "inside",
         "type": "string"
@@ -157,6 +163,7 @@
       }
     },
     "single (style)": {
+      "comment": null,
       "strokeAlign": {
         "value": "inside",
         "type": "string"
@@ -189,6 +196,7 @@
       }
     },
     "dashed outside": {
+      "comment": null,
       "strokeAlign": {
         "value": "outside",
         "type": "string"
@@ -263,6 +271,7 @@
     },
     "mixed": {
       "category": "radius",
+      "comment": null,
       "radiusType": {
         "value": "mixed",
         "type": "string"
@@ -305,10 +314,12 @@
         "value": "rgba(0, 0, 0, 0.1)",
         "type": "color"
       },
-      "category": "fill"
+      "category": "fill",
+      "comment": null
     },
     "single blue": {
       "category": "fill",
+      "comment": null,
       "value": "rgba(4, 74, 255, 1)",
       "type": "color"
     },
@@ -321,6 +332,7 @@
       },
       "änderung": {
         "category": "fill",
+        "comment": null,
         "value": "rgba(52, 86, 175, 1)",
         "type": "color"
       }
@@ -456,7 +468,8 @@
           "type": "number"
         }
       },
-      "category": "fill"
+      "category": "fill",
+      "comment": null
     },
     "single with multiple color stops": {
       "category": "fill",
@@ -718,6 +731,7 @@
     },
     "single": {
       "category": "grid",
+      "comment": null,
       "pattern": {
         "value": "columns",
         "type": "string"
@@ -744,7 +758,8 @@
   },
   "invalid": {
     "no grid": {
-      "category": "grid"
+      "category": "grid",
+      "comment": null
     },
     "none": {
       "category": "effect",
@@ -973,10 +988,12 @@
           "unit": "pixel"
         }
       },
-      "category": "effect"
+      "category": "effect",
+      "comment": null
     },
     "layer blur": {
       "category": "effect",
+      "comment": null,
       "type": {
         "value": "layerBlur",
         "type": "string"
@@ -989,6 +1006,7 @@
     },
     "background blur": {
       "category": "effect",
+      "comment": null,
       "type": {
         "value": "backgroundBlur",
         "type": "string"
