@@ -1,162 +1,157 @@
 import extractBorders from '../../src/extractor/extractBorders'
 import { customTokenNode } from './data/customTokenNode.data'
 
-describe('extracting radii', () => {
+describe('extracting borders', () => {
   const nodeArray = [
     customTokenNode,
     { 
       ...customTokenNode,
-      ...{ name: 'radii/mixed' } 
+      ...{ name: 'borders/mixed' } 
     },
     { 
       ...customTokenNode,
       ...{ 
-        name: 'radii/5 no desc',
+        name: 'borders/blue',
         description: null,
-        cornerRadius: 5,
-        bottomLeftRadius: 5,
-        bottomRightRadius: 5,
-        topLeftRadius: 5,
-        topRightRadius: 5,
-        cornerSmoothing: 0
+        strokes: [
+          {r: 0, g: 0, b: 255, a: 1},
+          {r: 255, g: 230, b: 0, a: 1}
+        ]
       } 
     },
     { 
       ...customTokenNode,
       ...{ 
-        name: 'radii/0',
-        cornerRadius: 0,
-        bottomLeftRadius: null,
-        bottomRightRadius: null,
-        topLeftRadius: null,
-        topRightRadius: null,
-        cornerSmoothing: 0
+        name: 'borders/red',
+        strokeCap: Symbol('mixed')
       } 
     }
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
     expect(extractBorders(nodeArray)).toStrictEqual([{
-      category: 'radius',
+      category: 'borders',
       description: 'a description text',
-      name: 'radii/mixed',
+      name: 'borders/mixed',
       values: {
-        radii: {
-          bottomLeft: {
-            type: 'number',
-            unit: 'pixel',
-            value: 3
-          },
-          bottomRight: {
-            type: 'number',
-            unit: 'pixel',
-            value: 4
-          },
-          topLeft: {
-            type: 'number',
-            unit: 'pixel',
-            value: 5
-          },
-          topRight: {
-            type: 'number',
-            unit: 'pixel',
-            value: 0
+        dashPattern: {
+          type: 'string',
+          value: '2, 5'
+        },
+        stroke: {
+          type: 'color',
+          value: {
+            a: 1,
+            b: 0,
+            g: 230,
+            r: 255
           }
         },
-        radiusType: {
-          type: "string",
-          value: "mixed",
+        strokeAlign: {
+          type: 'string',
+          value: undefined
         },
-        smoothing: {
-          comment: "Percent as decimal from 0.0 - 1.0",
-          type: "number",
-          value: 0.35,
+        strokeCap: {
+          type: 'string',
+          value: 'round'
+        },
+        strokeJoin: {
+          type: 'string',
+          value: 'miter'
+        },
+        strokeMiterAngle: {
+          type: 'number',
+          unit: 'degree',
+          value: 25
+        },
+        strokeWeight: {
+          type: 'number',
+          unit: 'pixel',
+          value: 2
         }
       }
     },
     {
-      category: 'radius',
+      category: 'borders',
       description: null,
-      name: 'radii/5 no desc',
+      name: 'borders/blue',
       values: {
-        radii: {
-          bottomLeft: {
-            type: 'number',
-            unit: 'pixel',
-            value: 5
-          },
-          bottomRight: {
-            type: 'number',
-            unit: 'pixel',
-            value: 5
-          },
-          topLeft: {
-            type: 'number',
-            unit: 'pixel',
-            value: 5
-          },
-          topRight: {
-            type: 'number',
-            unit: 'pixel',
-            value: 5
+        dashPattern: {
+          type: 'string',
+          value: '2, 5'
+        },
+        stroke: {
+          type: 'color',
+          value: {
+            a: 1,
+            b: 255,
+            g: 0,
+            r: 0
           }
         },
-        radius: {
-          type: "number",
-          unit: "pixel",
-          value: 5
+        strokeAlign: {
+          type: 'string',
+          value: undefined
         },
-        radiusType: {
-          type: "string",
-          value: "single",
+        strokeCap: {
+          type: 'string',
+          value: 'round'
         },
-        smoothing: {
-          comment: "Percent as decimal from 0.0 - 1.0",
-          type: "number",
-          value: 0,
+        strokeJoin: {
+          type: 'string',
+          value: 'miter'
+        },
+        strokeMiterAngle: {
+          type: 'number',
+          unit: 'degree',
+          value: 25
+        },
+        strokeWeight: {
+          type: 'number',
+          unit: 'pixel',
+          value: 2
         }
       }
     },
     {
-      category: 'radius',
+      category: 'borders',
       description: 'a description text',
-      name: 'radii/0',
+      name: 'borders/red',
       values: {
-        radii: {
-          bottomLeft: {
-            type: 'number',
-            unit: 'pixel',
-            value: 0
-          },
-          bottomRight: {
-            type: 'number',
-            unit: 'pixel',
-            value: 0
-          },
-          topLeft: {
-            type: 'number',
-            unit: 'pixel',
-            value: 0
-          },
-          topRight: {
-            type: 'number',
-            unit: 'pixel',
-            value: 0
+        dashPattern: {
+          type: 'string',
+          value: '2, 5'
+        },
+        stroke: {
+          type: 'color',
+          value: {
+            a: 1,
+            b: 0,
+            g: 230,
+            r: 255
           }
         },
-        radius: {
-          type: "number",
-          unit: "pixel",
-          value: 0
+        strokeAlign: {
+          type: 'string',
+          value: undefined
         },
-        radiusType: {
-          type: "string",
-          value: "single",
+        strokeCap: {
+          type: 'string',
+          value: 'mixed'
         },
-        smoothing: {
-          comment: "Percent as decimal from 0.0 - 1.0",
-          type: "number",
-          value: 0,
+        strokeJoin: {
+          type: 'string',
+          value: 'miter'
+        },
+        strokeMiterAngle: {
+          type: 'number',
+          unit: 'degree',
+          value: 25
+        },
+        strokeWeight: {
+          type: 'number',
+          unit: 'pixel',
+          value: 2
         }
       }
     }
