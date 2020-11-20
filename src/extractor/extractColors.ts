@@ -1,5 +1,6 @@
 import extractorInterface from '../../types/extractorInterface'
 import { colorPropertyInterface, fillValuesType, gradientValuesType } from '../../types/propertyObject'
+import { PaintStyleObject } from '../../types/styles'
 import { GradientType, PropertyType } from '../../types/valueTypes'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import roundWithDecimals from '../utilities/roundWithDecimals'
@@ -45,7 +46,7 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
   return null
 }
 
-const extractColors: extractorInterface = (tokenNodes: PaintStyle[]): colorPropertyInterface[] => {
+const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[]): colorPropertyInterface[] => {
   // get all paint styles
   return tokenNodes
   // remove images fills from tokens
