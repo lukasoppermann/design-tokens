@@ -3,7 +3,7 @@
 
 <a href="https://www.producthunt.com/posts/figma-design-tokens-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-figma-design-tokens-2" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=273532&theme=light" alt="Figma Design Tokens - Export & convert design tokens or sync with github repo. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-[![Test status](https://github.com/lukasoppermann/design-tokens/workflows/Testing%20and%20linting/badge.svg)](https://github.com/lukasoppermann/design-tokens/actions?query=workflow%3A%22Testing+and+linting%22)
+[![Test status](https://github.com/lukasoppermann/design-tokens/workflows/Testing%20and%20linting/badge.svg)](https://github.com/lukasoppermann/design-tokens/actions?query=workflow%3A%22Testing+and+linting%22) [![Coverage Status](https://coveralls.io/repos/github/lukasoppermann/design-tokens/badge.svg?branch=main)](https://coveralls.io/github/lukasoppermann/design-tokens?branch=main)
 
 **Note:** This plugin is currently in a beta phase. If you find any bugs / issues or have feature ideas please [create an issue](https://github.com/lukasoppermann/design-tokens/issues/new).
 
