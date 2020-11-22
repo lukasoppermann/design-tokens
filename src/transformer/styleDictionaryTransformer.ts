@@ -64,6 +64,7 @@ const styleDictionaryFormat = (property): StyleDictionaryPropertyObject => ({
 
 const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDictionaryPropertyGroup => {
   // transform to amazon style Dictionary structure
+  // THIS SHOULD BE FIXED TO CHECK IF categoryTransformer[propertyGroup.category] exsist ant otherwise use default!!!
   const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup.values)
   // return values
   return {
