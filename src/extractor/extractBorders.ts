@@ -47,7 +47,7 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNode[]): bord
           value: strokeJoins[node.strokeJoin],
           type: 'string' as PropertyType
         },
-        strokeMiterAngle: {
+        strokeMiterLimit: {
           value: roundWithDecimals(node.strokeMiterLimit),
           unit: 'degree',
           type: 'number' as PropertyType

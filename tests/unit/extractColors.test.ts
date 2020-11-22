@@ -1,58 +1,84 @@
 import extractColors from '../../src/extractor/extractColors'
-import { paintStyleObject } from './data/paintStyleObject.data'
+import { paintStyleObjects } from './data/paintStyleObjects.data'
 
 describe('extracting color fills', () => {
-  const nodeArray = [
-    paintStyleObject,
-    { 
-      ...paintStyleObject,
-      ...{ name: 'sizes/10' } 
-    },
-    { 
-      ...paintStyleObject,
-      ...{ 
-        name: 'sizes/10 no desc',
-        description: null,
-        width: 10.2345,
-        height: .567
-      } 
-    }
-  ]
-
-  test('extracting only the token with correct name from customTokenNodesArray', () => {
-    expect(extractColors(nodeArray)).toStrictEqual([{
+  test('extract only valid colors', () => {
+    expect(extractColors(paintStyleObjects)).toStrictEqual([{
       category: 'fill',
       description: 'a description text',
-      name: 'sizes/10',
-      values: {
-        height: {
-          type: 'number',
-          unit: 'pixel',
-          value: 20,
+      name: 'colors/red',
+      values: [{
+        fill: {
+          type: 'color',
+          value: {
+            a: 0.5,
+            b: 186,
+            g: 26,
+            r: 255
+          }
         },
-        width: {
-          type: 'number',
-          unit: 'pixel',
-          value: 10,
-        }
-      }
+      }]
     },
     {
-      category: 'size',
+      category: 'fill',
       description: null,
-      name: 'sizes/10 no desc',
-      values: {
-        height: {
-          type: 'number',
-          unit: 'pixel',
-          value: 0.57,
+      name: 'colors/gradient and color',
+      values: [
+        {
+          gradientType: {
+            type: 'string',
+            value: 'linear',
+          },
+          opacity: {
+            type: 'number',
+            value: 0.35,
+          },
+          stops: [
+            {
+              color: {
+                type: 'color',
+                value: {
+                  a: 1,
+                  b: 0,
+                  g: 184,
+                  r: 255
+                }
+              },
+              position: {
+                type: 'number',
+                value: 0
+              }
+            },
+            {
+              color: {
+                type: 'color',
+                value: {
+                  a: 1,
+                  b: 77,
+                  g: 51,
+                  r: 255
+                }
+              },
+              position: {
+                type: 'number',
+                value: 1
+              }
+            }
+          ]
         },
-        width: {
-          type: 'number',
-          unit: 'pixel',
-          value: 10.23,
+        null,
+        {
+          fill: {
+            type: 'color',
+            value: {
+              a: 0.11,
+              b: 230,
+              g: 128,
+              r: 51
+            }
+          }
         }
-      }
+      ]
     }
   ])
   })

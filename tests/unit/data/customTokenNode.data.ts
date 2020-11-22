@@ -10,7 +10,6 @@ export const customTokenNode = {
   strokes: [{r: 255, g: 230, b: 0, a: 1}],
   strokeWeight: 2,
   // strokeStyleId: node.strokeStyleId,
-  strokeMiterAngle: 25,
   strokeMiterLimit: 25,
   strokeJoin: "MITER",
   strokeCap: "ROUND",

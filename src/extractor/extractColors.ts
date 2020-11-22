@@ -42,7 +42,8 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
       }
     }
   }
-
+  // return null if no matching type
+  /* istanbul ignore next */
   return null
 }
 

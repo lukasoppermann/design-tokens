@@ -59,7 +59,7 @@ describe('extracting borders', () => {
           type: 'string',
           value: 'miter'
         },
-        strokeMiterAngle: {
+        strokeMiterLimit: {
           type: 'number',
           unit: 'degree',
           value: 25
@@ -101,7 +101,7 @@ describe('extracting borders', () => {
           type: 'string',
           value: 'miter'
         },
-        strokeMiterAngle: {
+        strokeMiterLimit: {
           type: 'number',
           unit: 'degree',
           value: 25
@@ -143,7 +143,7 @@ describe('extracting borders', () => {
           type: 'string',
           value: 'miter'
         },
-        strokeMiterAngle: {
+        strokeMiterLimit: {
           type: 'number',
           unit: 'degree',
           value: 25

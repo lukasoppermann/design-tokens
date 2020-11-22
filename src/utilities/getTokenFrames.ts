@@ -61,8 +61,6 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
       strokes: getSolidStrokes(node.strokes),
       strokeWeight: node.strokeWeight,
       strokeStyleId: node.strokeStyleId,
-      // @ts-ignore
-      strokeMiterAngle: node.strokeMiterAngle || undefined,
       strokeMiterLimit: node.strokeMiterLimit,
       strokeJoin: node.strokeJoin,
       strokeCap: node.strokeCap,

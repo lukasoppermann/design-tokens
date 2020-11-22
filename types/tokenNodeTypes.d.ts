@@ -1,21 +1,21 @@
-// export type customTokenNodes = RectangleNode | ComponentNode | FrameNode
+import { ColorRgba } from './valueTypes'
+
 export type customTokenNode = {
-  name: any,
-  bottomLeftRadius: any,
-  bottomRightRadius: any,
-  topLeftRadius: any,
-  topRightRadius: any,
-  cornerRadius: any,
-  cornerSmoothing: any,
-  strokes: any[],
-  strokeWeight: any,
-  strokeStyleId: any,
-  strokeMiterLimit: any,
-  strokeMiterAngle: any,
+  name: string,
+  bottomLeftRadius?: number,
+  bottomRightRadius?: number,
+  topLeftRadius?: number,
+  topRightRadius?: number,
+  cornerRadius?: number | PluginAPI['mixed'],
+  cornerSmoothing?: number,
+  strokes: ColorRgba[],
+  strokeWeight: number,
+  strokeStyleId: string,
+  strokeMiterLimit: number,
   strokeJoin: StrokeJoin | PluginAPI['mixed'],
   strokeCap: StrokeCap | PluginAPI['mixed'],
-  dashPattern: any,
-  strokeAlign: any,
-  width: any,
-  height: any
+  dashPattern?: readonly number[],
+  strokeAlign: "CENTER" | "INSIDE" | "OUTSIDE",
+  width:  number,
+  height: number
 }

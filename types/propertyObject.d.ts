@@ -100,7 +100,7 @@ export type borderPropertyInterface = propertyObject & {
     strokeJoin: {
       value: StrokeJoin
     },
-    strokeMiterAngle: {
+    strokeMiterLimit: {
       value: number
     },
     dashPattern: {
