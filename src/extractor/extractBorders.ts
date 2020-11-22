@@ -27,7 +27,7 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNode[]): bord
     // convert borders
     .map(node => ({
       name: node.name,
-      category: 'borders',
+      category: 'border',
       // @ts-ignore
       description: node.description || null,
       values: {

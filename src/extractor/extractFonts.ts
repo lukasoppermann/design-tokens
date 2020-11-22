@@ -21,6 +21,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontProperty
   return tokenNodes.map(node => ({
     name: node.name,
     description: node.description || undefined,
+    category: 'font',
     values: {
       fontSize: {
         value: node.fontSize,
