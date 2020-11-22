@@ -35,6 +35,8 @@ const sizeTransformer = propertyGroupValues => {
 
 const categoryTransformer = {
   default: defaultTransformer,
+  font: defaultTransformer,
+  border: defaultTransformer,
   size: sizeTransformer,
   grid: defaultTransformer,
   effect: defaultTransformer,

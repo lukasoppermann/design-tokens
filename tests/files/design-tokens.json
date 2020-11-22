@@ -32,6 +32,7 @@
   "borders": {
     "unsupported": {
       "gradient borders": {
+        "category": "border",
         "comment": null,
         "strokeAlign": {
           "value": "inside",
@@ -49,7 +50,7 @@
           "value": "miter",
           "type": "string"
         },
-        "strokeMiterAngle": {
+        "strokeMiterLimit": {
           "value": 4,
           "type": "number",
           "unit": "degree"
@@ -64,6 +65,7 @@
         }
       },
       "multiple borders": {
+        "category": "border",
         "comment": null,
         "strokeAlign": {
           "value": "inside",
@@ -81,7 +83,7 @@
           "value": "miter",
           "type": "string"
         },
-        "strokeMiterAngle": {
+        "strokeMiterLimit": {
           "value": 4,
           "type": "number",
           "unit": "degree"
@@ -97,6 +99,7 @@
         }
       },
       "image borders": {
+        "category": "border",
         "comment": null,
         "strokeAlign": {
           "value": "inside",
@@ -114,7 +117,7 @@
           "value": "miter",
           "type": "string"
         },
-        "strokeMiterAngle": {
+        "strokeMiterLimit": {
           "value": 4,
           "type": "number",
           "unit": "degree"
@@ -130,6 +133,7 @@
       }
     },
     "single": {
+      "category": "border",
       "comment": null,
       "strokeAlign": {
         "value": "inside",
@@ -147,7 +151,7 @@
         "value": "miter",
         "type": "string"
       },
-      "strokeMiterAngle": {
+      "strokeMiterLimit": {
         "value": 4,
         "type": "number",
         "unit": "degree"
@@ -163,6 +167,7 @@
       }
     },
     "single (style)": {
+      "category": "border",
       "comment": null,
       "strokeAlign": {
         "value": "inside",
@@ -180,7 +185,7 @@
         "value": "miter",
         "type": "string"
       },
-      "strokeMiterAngle": {
+      "strokeMiterLimit": {
         "value": 4,
         "type": "number",
         "unit": "degree"
@@ -196,6 +201,7 @@
       }
     },
     "dashed outside": {
+      "category": "border",
       "comment": null,
       "strokeAlign": {
         "value": "outside",
@@ -213,7 +219,7 @@
         "value": "miter",
         "type": "string"
       },
-      "strokeMiterAngle": {
+      "strokeMiterLimit": {
         "value": 4,
         "type": "number",
         "unit": "degree"
@@ -718,7 +724,8 @@
       },
       "7": {
         "pattern": {
-          "value": "grid"
+          "value": "grid",
+          "type": "string"
         },
         "sectionSize": {
           "value": 8,
@@ -768,6 +775,7 @@
   },
   "body": {
     "h3": {
+      "category": "font",
       "comment": "Comment for text style",
       "fontSize": {
         "value": 20,
@@ -812,6 +820,7 @@
       }
     },
     "h4 strike through": {
+      "category": "font",
       "comment": "With stylisitc options",
       "fontSize": {
         "value": 16,
