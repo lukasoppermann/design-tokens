@@ -4,7 +4,8 @@ import { GridAlignment, GridPattern, PropertyType } from '../../types/valueTypes
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {
-    value: grid.pattern.toLowerCase() as GridPattern
+    value: grid.pattern.toLowerCase() as GridPattern,
+    type: 'string' as PropertyType
   },
   sectionSize: {
     value: grid.sectionSize,
