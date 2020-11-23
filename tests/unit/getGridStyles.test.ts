@@ -6,5 +6,4 @@ describe("Testing getGridStyles", () => {
     // @ts-ignore
     expect(getGridStyles(gridStyles)).toStrictEqual(gridStyleObjects)
   })
-
 })
