@@ -22,7 +22,7 @@ const getAccessToken = async (fileId: string): Promise<string> => {
  * @param fileId {string} — ID of the current file
  * @param fileId {string} — access token
  */
- /* istanbul ignore next */
+/* istanbul ignore next */
 const setAccessToken = async (fileId: string, accessToken: string) => {
   // get the access token object
   const accessTokens = (await figma.clientStorage.getAsync('accessTokens')) || {}
