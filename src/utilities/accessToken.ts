@@ -11,7 +11,7 @@ const getAccessToken = async (fileId: string): Promise<string> => {
     // retrieve the access token from the cache
     const accessToken = accessTokens[fileId]
     // return the access token or an empty string
-    return accessToken
+    return accessToken || ''
   }
   // return empty string if no token is stored
   return ''
@@ -22,14 +22,17 @@ const getAccessToken = async (fileId: string): Promise<string> => {
  * @param fileId {string} — ID of the current file
  * @param fileId {string} — access token
  */
+/* istanbul ignore next */
 const setAccessToken = async (fileId: string, accessToken: string) => {
   // get the access token object
   const accessTokens = (await figma.clientStorage.getAsync('accessTokens')) || {}
-  // merge the new token into the object
-  return await figma.clientStorage.setAsync('accessTokens', {
+  // merge tokens
+  const mergedTokens = {
     ...accessTokens,
     ...{ [fileId]: accessToken }
-  })
+  }
+  // merge the new token into the object
+  return await figma.clientStorage.setAsync('accessTokens', mergedTokens)
 }
 
 export { getAccessToken, setAccessToken }

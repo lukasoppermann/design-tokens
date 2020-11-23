@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 const convertSizeUnits = (valueObject: {
   unit: string,
   value: number
