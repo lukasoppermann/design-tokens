@@ -72,3 +72,6 @@ const setSettings = (settings: UserSettings) => {
 
 // exports
 export { settingsKey, getSettings, setSettings }
+export const __testing = {
+  settingsPrepare: settingsPrepare
+}
