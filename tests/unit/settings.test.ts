@@ -67,7 +67,7 @@ describe("Testing settingsPrepare", () => {
 })
 
 describe("Testing setSettings", () => {
-  test("add valid settings to empty array", () => {
+  test("setSettings function with valid data", () => {
     const currentSettings = {
       filename: '',
       excludePrefix: false,
@@ -105,5 +105,52 @@ describe("Testing setSettings", () => {
     expect(figma.root.getPluginData).toHaveReturnedWith(currentSettings)
     // @ts-ignore
     expect(figma.root.setPluginData).toHaveBeenCalledWith("settings", JSON.stringify(output, null, 2))
+  })
+})
+
+describe("Testing getSettings", () => {
+  test("get settings when valid settings are present", () => {
+    const currentSettings = {
+      filename: 'myFile',
+      excludePrefix: true,
+      prefix: '#',
+      serverUrl: 'https://test.com',
+      eventType: 'myEvent',
+      acceptHeader: 'yo',
+      authType: 'aType'
+    }
+    // @ts-ignore
+    figma.root.getPluginData.mockReturnValue(JSON.stringify(currentSettings, null, 2))
+
+    const output = {
+      filename: 'myFile',
+      excludePrefix: true,
+      prefix: '#',
+      serverUrl: 'https://test.com',
+      eventType: 'myEvent',
+      acceptHeader: 'yo',
+      authType: 'aType'
+    }
+    
+    // assert
+    expect(getSettings()).toStrictEqual(output)
+  })
+
+  test("get settings when novalid settings are present", () => {
+    // @ts-ignore
+    figma.root.getPluginData.mockReturnValue('')
+
+    const output = {
+      filename: 'design-tokens',
+      excludePrefix: true,
+      prefix: '_',
+      serverUrl: '',
+      eventType: 'update-tokens',
+      acceptHeader: 'application/vnd.github.everest-preview+json',
+      authType: 'token',
+    }
+
+    // assert
+    expect(getSettings()).toStrictEqual(output)
   })
 })
