@@ -1,6 +1,6 @@
 import buildFigmaData from '../../src/utilities/buildFigmaData'
 import getTokenFrames from '../../src/utilities/getTokenFrames'
-jest.mock('../../src/utilities/getTokenFrames', ()=> jest.fn())
+jest.mock('../../src/utilities/getTokenFrames', () => jest.fn())
 
 const defaultOutput = {
   effectStyles: [{
