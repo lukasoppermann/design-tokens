@@ -31,7 +31,9 @@ const getSolidStrokes = (paints: readonly Paint[]): ColorRgba[] => {
  * Currently: 'COMPONENT' or 'RECTANGLE'
  * @param SceneNode node
  */
-const isTokenNode = (node: SceneNode): boolean => tokenNodeTypes.includes(node.type)
+const isTokenNode = (node: SceneNode): boolean => {
+  return tokenNodeTypes.includes(node.type)
+}
 /**
  * Returns all frames from the file that have a name that starts with _tokens or the user defined token specifier
  *
@@ -44,7 +46,11 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
   // get all children of token frames
   return tokenFrames.map(frame => <RectangleNode[] | ComponentNode[] | FrameNode[]>frame
     // check if children are of valide types
-    .findChildren(node => isTokenNode(node)))
+    .findChildren(
+      /* istanbul ignore next */
+      node => isTokenNode(node)
+    )
+  )
     // merges all children into one array
     .reduce((flatten, arr) => [...flatten, ...arr], [])
     // export
@@ -72,3 +78,7 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
 }
 
 export default getTokenFrames
+export const __testing = {
+  isTokenNode: isTokenNode,
+  isTokenFrame: isTokenFrame
+}
