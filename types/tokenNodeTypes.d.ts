@@ -17,5 +17,6 @@ export type customTokenNode = {
   dashPattern?: readonly number[],
   strokeAlign: "CENTER" | "INSIDE" | "OUTSIDE",
   width:  number,
-  height: number
+  height: number,
+  reactions?: any[]
 }
