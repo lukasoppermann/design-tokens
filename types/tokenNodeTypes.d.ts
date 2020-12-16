@@ -18,5 +18,21 @@ export type customTokenNode = {
   strokeAlign: "CENTER" | "INSIDE" | "OUTSIDE",
   width:  number,
   height: number,
-  reactions?: readonly any[]
+  reactions?: readonly Reaction[]
+}
+
+export type nodeWithNodeTransition = customTokenNode & {
+  reactions: readonly { 
+    action: { 
+      readonly type: "NODE"
+      readonly destinationId: string | null
+      readonly navigation: Navigation
+      readonly transition: Transition | null
+      readonly preserveScrollPosition: boolean
+      // Only present if navigation == "OVERLAY" and the destination uses
+      // overlay position type "RELATIVE"
+      readonly overlayRelativePosition?: Vector
+    }, 
+    trigger: Trigger 
+  }[]
 }

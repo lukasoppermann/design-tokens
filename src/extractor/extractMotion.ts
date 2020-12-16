@@ -1,10 +1,10 @@
 import extractorInterface from '../../types/extractorInterface'
 import { motionPropertyInterface } from '../../types/propertyObject'
-import { customTokenNode } from '../../types/tokenNodeTypes'
+import { customTokenNode, nodeWithNodeTransition } from '../../types/tokenNodeTypes'
 import { UnitTypeMilliseconds, PropertyType } from '../../types/valueTypes'
 
 const direction = (transition): {} | null => {
-  if (Object.prototype.hasOwnProperty.call(direction, transition)) {
+  if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
     return {
       direction: {
         value: transition.direction,
@@ -39,7 +39,7 @@ const easing = (easing): {
   }
 } => {
   // return custom easing
-  if (easing.type === 'CUSTOM_CUBIC_BEZIER') {
+  if (Object.prototype.hasOwnProperty.call(easing, 'easingFunctionCubicBezier')) {
     return {
       easing: {
         value: 'cubic_bezier',
@@ -82,13 +82,13 @@ const extractMotion: extractorInterface = (tokenNodes: customTokenNode[]): motio
     .filter(node => node.name.substr(0, nodeName.length) === nodeName)
     // filter to only include items which have a transition property
     .filter(node => {
-      if (node.reactions.length > 0 && node.reactions[0].action.transition !== null) {
+      if (node.reactions.length > 0 && node.reactions[0].action.type === 'NODE' && node.reactions[0].action.transition !== null) {
         return true
       }
       return false
     })
     // retrieve values
-    .map(node => ({
+    .map((node: nodeWithNodeTransition) => ({
       name: node.name,
       // @ts-ignore
       description: node.description || null,

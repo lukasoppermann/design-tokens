@@ -16,5 +16,18 @@ export const customTokenNode = {
   dashPattern: '2, 5',
   strokeAlign: 'center',
   width: 10,
-  height: 20
+  height: 20,
+  reactions: [{
+    action: {
+      type: 'NODE',
+      transition: {
+        type: 'MOVE_IN',
+        duration: 0.32124124,
+        direction: 'LEFT',
+        easing: {
+          type: 'LINEAR'
+        }
+      }
+    }
+  }]
 }
