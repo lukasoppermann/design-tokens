@@ -1,4 +1,5 @@
 import { propertyObject } from '../../types/propertyObject'
+import { propertyCategory } from '../../types/propertyCategory'
 import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from '../../types/styleDictionaryProperties'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
 
@@ -62,10 +63,20 @@ const styleDictionaryFormat = (property): StyleDictionaryPropertyObject => ({
   ...(property.unit !== undefined && { unit: property.unit })
 })
 
+const propertyTransformer = (propertyGroup: propertyObject, category: propertyCategory): {
+  [key: string]: any
+} => {
+  // if custom transformer is defined
+  if (Object.prototype.hasOwnProperty.call(categoryTransformer, propertyGroup.category)) {
+    return categoryTransformer[propertyGroup.category](propertyGroup.values)
+  }
+  // otherwise return with default transformer
+  return defaultTransformer(propertyGroup.values)
+}
+
 const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDictionaryPropertyGroup => {
   // transform to amazon style Dictionary structure
-  // THIS SHOULD BE FIXED TO CHECK IF categoryTransformer[propertyGroup.category] exsist ant otherwise use default!!!
-  const transformedProperties = categoryTransformer[propertyGroup.category || 'default'](propertyGroup.values)
+  const transformedProperties = propertyTransformer(propertyGroup, propertyGroup.category as propertyCategory)
   // return values
   return {
     name: propertyGroup.name,
@@ -76,3 +87,7 @@ const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDiction
 }
 
 export default styleDictionaryTransformer
+export const __testing = {
+  styleDictionaryConvertValue: styleDictionaryConvertValue,
+  sizeTransformer: sizeTransformer
+}

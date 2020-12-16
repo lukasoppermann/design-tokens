@@ -787,11 +787,11 @@
         "type": "string"
       },
       "fontFamily": {
-        "value": "Roboto",
+        "value": "Akzidenz-Grotesk Pro",
         "type": "string"
       },
       "fontStyle": {
-        "value": "Medium",
+        "value": "Bold Condensed",
         "type": "string"
       },
       "letterSpacing": {
@@ -836,7 +836,7 @@
         "type": "string"
       },
       "fontStyle": {
-        "value": "Medium",
+        "value": "Medium Italic",
         "type": "string"
       },
       "letterSpacing": {

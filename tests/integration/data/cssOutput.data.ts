@@ -144,8 +144,8 @@ export default
   --grid-single-count: 5;
   --body-h-3-font-size: 20;
   --body-h-3-text-decoration: none;
-  --body-h-3-font-family: Roboto;
-  --body-h-3-font-style: Medium;
+  --body-h-3-font-family: Akzidenz-Grotesk Pro;
+  --body-h-3-font-style: Bold Condensed;
   --body-h-3-letter-spacing: 2;
   --body-h-3-line-height: 160;
   --body-h-3-paragraph-indent: 5;
@@ -154,7 +154,7 @@ export default
   --body-h-4-strike-through-font-size: 16;
   --body-h-4-strike-through-text-decoration: line-through;
   --body-h-4-strike-through-font-family: Roboto;
-  --body-h-4-strike-through-font-style: Medium;
+  --body-h-4-strike-through-font-style: Medium Italic;
   --body-h-4-strike-through-letter-spacing: 0;
   --body-h-4-strike-through-line-height: normal;
   --body-h-4-strike-through-paragraph-indent: 0;
