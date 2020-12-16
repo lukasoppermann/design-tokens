@@ -76,3 +76,7 @@ const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDiction
 }
 
 export default styleDictionaryTransformer
+export const __testing = {
+  styleDictionaryConvertValue: styleDictionaryConvertValue,
+  sizeTransformer: sizeTransformer
+}
