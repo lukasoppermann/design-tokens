@@ -54,6 +54,18 @@ describe("getTokenFrames", () => {
             strokeCap: "NONE",
             dashPattern: 0,
             strokeAlign: "CENTER",
+            reactions: [{
+              action: {
+                transition: {
+                  duration: 0.0032234,
+                  direction: 'LEFT',
+                  type: 'MOVE_IN',
+                  easing: {
+                    type: 'EASE_IN'
+                  }
+                }
+              }
+            }]
           }
         ])
       },
@@ -114,6 +126,18 @@ describe("getTokenFrames", () => {
         strokeCap: "NONE",
         dashPattern: 0,
         strokeAlign: "CENTER",
+        reactions: [{
+          action: {
+            transition: {
+              duration: 0.0032234,
+              direction: 'LEFT',
+              type: 'MOVE_IN',
+              easing: {
+                type: 'EASE_IN'
+              }
+            }
+          }
+        }]
       },
       {
         name: '20',
@@ -134,6 +158,7 @@ describe("getTokenFrames", () => {
         strokeCap: "NONE",
         dashPattern: 0,
         strokeAlign: "CENTER",
+        reactions: undefined
       }
     ])
   })

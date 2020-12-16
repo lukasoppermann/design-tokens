@@ -54,10 +54,6 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
     // merges all children into one array
     .reduce((flatten, arr) => [...flatten, ...arr], [])
     // export
-    .map(node => {
-      console.log(node)
-      return node
-    })
     .map(node => ({
       name: node.name,
       // @ts-ignore
@@ -78,7 +74,7 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
       strokeAlign: node.strokeAlign,
       width: node.width,
       height: node.height,
-      reactions: node.reactions
+      reactions: node.reactions || undefined
     }))
 }
 

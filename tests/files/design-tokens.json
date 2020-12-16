@@ -310,6 +310,77 @@
       }
     }
   },
+  "motion": {
+    "move in": {
+      "category": "motion",
+      "comment": null,
+      "type": {
+        "value": "MOVE_IN",
+        "type": "string"
+      },
+      "duration": {
+        "value": 300,
+        "type": "number",
+        "unit": "ms"
+      },
+      "easing": {
+        "value": "EASE_IN",
+        "type": "string"
+      }
+    },
+    "dissolve": {
+      "category": "motion",
+      "comment": null,
+      "type": {
+        "value": "DISSOLVE",
+        "type": "string"
+      },
+      "duration": {
+        "value": 449,
+        "type": "number",
+        "unit": "ms"
+      },
+      "easing": {
+        "value": "cubic_bezier",
+        "type": "string"
+      },
+      "easingFunction": {
+        "x1": {
+          "value": 0.6968395709991455,
+          "type": "number"
+        },
+        "x2": {
+          "value": 0.06683959811925888,
+          "type": "number"
+        },
+        "y1": {
+          "value": 0.052326660603284836,
+          "type": "number"
+        },
+        "y2": {
+          "value": 0.9323266744613647,
+          "type": "number"
+        }
+      }
+    },
+    "smart": {
+      "category": "motion",
+      "comment": null,
+      "type": {
+        "value": "SMART_ANIMATE",
+        "type": "string"
+      },
+      "duration": {
+        "value": 500,
+        "type": "number",
+        "unit": "ms"
+      },
+      "easing": {
+        "value": "LINEAR",
+        "type": "string"
+      }
+    }
+  },
   "colors": {
     "multiple fills": {
       "0": {

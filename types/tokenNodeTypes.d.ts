@@ -18,5 +18,5 @@ export type customTokenNode = {
   strokeAlign: "CENTER" | "INSIDE" | "OUTSIDE",
   width:  number,
   height: number,
-  reactions?: any[]
+  reactions?: readonly any[]
 }

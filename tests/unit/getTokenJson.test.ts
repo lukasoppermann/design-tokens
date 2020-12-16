@@ -6,6 +6,7 @@ import extractColors from '../../src/extractor/extractColors'
 import extractSizes from '../../src/extractor/extractSizes'
 import extractBorders from '../../src/extractor/extractBorders'
 import extractRadii from '../../src/extractor/extractRadii'
+import extractMotion from '../../src/extractor/extractMotion'
 import styleDictionaryTransformer from '../../src/transformer/styleDictionaryTransformer'
 jest.mock('../../src/extractor/extractFonts', () => jest.fn())
 jest.mock('../../src/extractor/extractEffects', () => jest.fn())
@@ -14,6 +15,7 @@ jest.mock('../../src/extractor/extractColors', () => jest.fn())
 jest.mock('../../src/extractor/extractSizes', () => jest.fn())
 jest.mock('../../src/extractor/extractBorders', () => jest.fn())
 jest.mock('../../src/extractor/extractRadii', () => jest.fn())
+jest.mock('../../src/extractor/extractMotion', () => jest.fn())
 jest.mock('../../src/transformer/styleDictionaryTransformer', () => jest.fn())
 
 describe("getJsonToken", () => {
@@ -32,6 +34,8 @@ describe("getJsonToken", () => {
     extractBorders.mockImplementation(() => [])
     // @ts-ignore
     extractRadii.mockImplementation(() => [])
+    // @ts-ignore
+    extractMotion.mockImplementation(() => [])
     // @ts-ignore
     expect(getTokenJson({})).toStrictEqual([])
   })
@@ -88,6 +92,13 @@ describe("getJsonToken", () => {
         values: 'this would be values'
       }
     ])
+    // @ts-ignore
+    extractMotion.mockImplementation(() => [
+      {
+        name: 'motion/basic',
+        values: 'this would be values'
+      }
+    ])
 
     const output = { 
       "color": { "basic": { "values": "this would be values" } },
@@ -96,7 +107,8 @@ describe("getJsonToken", () => {
       "grid": { "basic": { "values": "this would be values" } },
       "sizes": { "basic": { "values": "this would be values" } },
       "borders": { "basic": { "values": "this would be values" } },
-      "radii": { "basic": { "values": "this would be values" } }
+      "radii": { "basic": { "values": "this would be values" } },
+      "motion": { "basic": { "values": "this would be values" } }
     }
     // @ts-ignore
     expect(getTokenJson({})).toStrictEqual(output)
