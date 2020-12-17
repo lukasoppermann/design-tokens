@@ -1,5 +1,5 @@
 import extractorInterface from '../../types/extractorInterface'
-import { motionPropertyInterface } from '../../types/propertyObject'
+import { motionPropertyInterface, easingFunctionPropertyInterface } from '../../types/propertyObject'
 import { customTokenNode, nodeWithNodeTransition } from '../../types/tokenNodeTypes'
 import { UnitTypeMilliseconds, PropertyType } from '../../types/valueTypes'
 
@@ -7,10 +7,34 @@ const direction = (transition): {} | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
     return {
       direction: {
-        value: transition.direction,
+        value: transition.direction.toLowerCase(),
         type: 'string' as PropertyType
       }
     }
+  }
+}
+
+const easings = {
+  LINEAR: {
+    type: 'linear'
+  },
+  EASE_IN: {
+    type: 'ease-in'
+  },
+  EASE_OUT: {
+    type: 'ease-out'
+  },
+  EASE_IN_AND_OUT: {
+    type: 'ease-in-out'
+  },
+  EASE_IN_BACK: {
+    type: 'ease-in-back'
+  },
+  EASE_OUT_BACK: {
+    type: 'ease-out-back'
+  },
+  EASE_IN_AND_OUT_BACK: {
+    type: 'ease-in-out-back'
   }
 }
 
@@ -19,30 +43,13 @@ const easing = (easing): {
     value: string,
     type: PropertyType
   },
-  easingFunction?: {
-    x1: {
-      value: number,
-      type: PropertyType
-    },
-    x2: {
-      value: number,
-      type: PropertyType
-    },
-    y1: {
-      value: number,
-      type: PropertyType
-    },
-    y2: {
-      value: number,
-      type: PropertyType
-    }
-  }
+  easingFunction?: easingFunctionPropertyInterface
 } => {
   // return custom easing
   if (Object.prototype.hasOwnProperty.call(easing, 'easingFunctionCubicBezier')) {
     return {
       easing: {
-        value: 'cubic_bezier',
+        value: 'cubic-bezier',
         type: 'string' as PropertyType
       },
       easingFunction: {
@@ -68,7 +75,7 @@ const easing = (easing): {
   // return predefine easing
   return {
     easing: {
-      value: easing.type,
+      value: easings[easing.type].type,
       type: 'string' as PropertyType
     }
   }
@@ -95,7 +102,7 @@ const extractMotion: extractorInterface = (tokenNodes: customTokenNode[]): motio
       category: 'motion',
       values: {
         type: {
-          value: node.reactions[0].action.transition.type,
+          value: node.reactions[0].action.transition.type.toLocaleLowerCase(),
           type: 'string' as PropertyType
         },
         duration: {

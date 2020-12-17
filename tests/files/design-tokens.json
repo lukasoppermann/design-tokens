@@ -315,16 +315,20 @@
       "category": "motion",
       "comment": null,
       "type": {
-        "value": "MOVE_IN",
+        "value": "move_in",
         "type": "string"
       },
       "duration": {
-        "value": 300,
+        "value": 500,
         "type": "number",
         "unit": "ms"
       },
       "easing": {
-        "value": "EASE_IN",
+        "value": "ease-in",
+        "type": "string"
+      },
+      "direction": {
+        "value": "left",
         "type": "string"
       }
     },
@@ -332,7 +336,7 @@
       "category": "motion",
       "comment": null,
       "type": {
-        "value": "DISSOLVE",
+        "value": "dissolve",
         "type": "string"
       },
       "duration": {
@@ -341,7 +345,7 @@
         "unit": "ms"
       },
       "easing": {
-        "value": "cubic_bezier",
+        "value": "cubic-bezier",
         "type": "string"
       },
       "easingFunction": {
@@ -367,7 +371,7 @@
       "category": "motion",
       "comment": null,
       "type": {
-        "value": "SMART_ANIMATE",
+        "value": "smart_animate",
         "type": "string"
       },
       "duration": {
@@ -376,7 +380,28 @@
         "unit": "ms"
       },
       "easing": {
-        "value": "LINEAR",
+        "value": "linear",
+        "type": "string"
+      }
+    },
+    "push": {
+      "category": "motion",
+      "comment": null,
+      "type": {
+        "value": "push",
+        "type": "string"
+      },
+      "duration": {
+        "value": 500,
+        "type": "number",
+        "unit": "ms"
+      },
+      "easing": {
+        "value": "ease-in-back",
+        "type": "string"
+      },
+      "direction": {
+        "value": "left",
         "type": "string"
       }
     }

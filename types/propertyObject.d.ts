@@ -89,6 +89,24 @@ export type sizePropertyInterface = propertyObject & {
   }
 }
 
+export type easingFunctionPropertyInterface = {
+  x1: {
+    value: number,
+    type: PropertyType
+  },
+  x2: {
+    value: number,
+    type: PropertyType
+  },
+  y1: {
+    value: number,
+    type: PropertyType
+  },
+  y2: {
+    value: number,
+    type: PropertyType
+  }
+}
 
 export type motionPropertyInterface = propertyObject & {
   values: {
@@ -105,24 +123,7 @@ export type motionPropertyInterface = propertyObject & {
       value: string,
       type: PropertyType
     },
-    easingFunction?: {
-      x1: {
-        value: number,
-        type: PropertyType
-      },
-      x2: {
-        value: number,
-        type: PropertyType
-      },
-      y1: {
-        value: number,
-        type: PropertyType
-      },
-      y2: {
-        value: number,
-        type: PropertyType
-      }
-    },
+    easingFunction?: easingFunctionPropertyInterface,
     direction?: {
       value: string,
       type: PropertyType

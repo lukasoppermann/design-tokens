@@ -72,7 +72,7 @@ describe('extracting motion tokens', () => {
         name: 'motion/linear',
         values: {
           type: {
-            value: 'MOVE_IN',
+            value: 'move_in',
             type: 'string'
           },
           duration: {
@@ -81,22 +81,22 @@ describe('extracting motion tokens', () => {
             type: 'number'
           },
           easing: {
-            value: 'LINEAR',
+            value: 'linear',
             type: 'string'
           },
           direction: {
-            value: 'LEFT',
+            value: 'left',
             type: 'string'
           }
         }
       },
       {
         category: 'motion',
-        description: undefined,
+        description: null,
         name: 'motion/ease_in',
         values: {
           type: {
-            value: 'DISSOLVE',
+            value: 'dissolve',
             type: 'string'
           },
           duration: {
@@ -105,7 +105,7 @@ describe('extracting motion tokens', () => {
             type: 'number'
           },
           easing: {
-            value: 'EASE_IN',
+            value: 'ease-in',
             type: 'string'
           }
         }
@@ -116,7 +116,7 @@ describe('extracting motion tokens', () => {
         name: 'motion/smart',
         values: {
           type: {
-            value: 'SMART_ANIMATE',
+            value: 'smart_animate',
             type: 'string'
           },
           duration: {
@@ -125,7 +125,7 @@ describe('extracting motion tokens', () => {
             type: 'number'
           },
           easing: {
-            value: 'cubic_bezier',
+            value: 'cubic-bezier',
             type: 'string'
           },
           easingFunction: {
