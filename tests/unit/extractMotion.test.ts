@@ -50,6 +50,7 @@ describe('extracting motion tokens', () => {
               type: 'SMART_ANIMATE',
               duration: 0.600,
               easing: {
+                type: 'CUSTOM_CUBIC_BEZIER',
                 easingFunctionCubicBezier: {
                   x1: .345,
                   y1: .234,

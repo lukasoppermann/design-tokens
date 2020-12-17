@@ -15,26 +15,70 @@ const direction = (transition): {} | null => {
 }
 
 const easings = {
+  CUSTOM_CUBIC_BEZIER: {
+  },
   LINEAR: {
-    type: 'linear'
+    type: 'linear',
+    easingFunctionCubicBezier: {
+      x1: 0,
+      y1: 0,
+      x2: 1,
+      y2: 1
+    }
   },
   EASE_IN: {
-    type: 'ease-in'
+    type: 'ease-in',
+    easingFunctionCubicBezier: {
+      x1: 0.41999998688697815,
+      y1: 0,
+      x2: 1,
+      y2: 1
+    }
   },
   EASE_OUT: {
-    type: 'ease-out'
+    type: 'ease-out',
+    easingFunctionCubicBezier: {
+      x1: 0,
+      y1: 0,
+      x2: 0.5799999833106995,
+      y2: 1
+    }
   },
   EASE_IN_AND_OUT: {
-    type: 'ease-in-out'
+    type: 'ease-in-out',
+    easingFunctionCubicBezier: {
+      x1: 0.41999998688697815,
+      y1: 0,
+      x2: 0.5799999833106995,
+      y2: 1
+    }
   },
   EASE_IN_BACK: {
-    type: 'ease-in-back'
+    type: 'ease-in-back',
+    easingFunctionCubicBezier: {
+      x1: 0.30000001192092896,
+      y1: -0.05000000074505806,
+      x2: 0.699999988079071,
+      y2: -0.5
+    }
   },
   EASE_OUT_BACK: {
-    type: 'ease-out-back'
+    type: 'ease-out-back',
+    easingFunctionCubicBezier: {
+      x1: 0.44999998807907104,
+      y1: 1.4500000476837158,
+      x2: 0.800000011920929,
+      y2: 1
+    }
   },
   EASE_IN_AND_OUT_BACK: {
-    type: 'ease-in-out-back'
+    type: 'ease-in-out-back',
+    easingFunctionCubicBezier: {
+      x1: 0.699999988079071,
+      y1: -0.4000000059604645,
+      x2: 0.4000000059604645,
+      y2: 1.399999976158142
+    }
   }
 }
 
@@ -46,37 +90,42 @@ const easing = (easing): {
   easingFunction?: easingFunctionPropertyInterface
 } => {
   // return custom easing
-  if (Object.prototype.hasOwnProperty.call(easing, 'easingFunctionCubicBezier')) {
-    return {
-      easing: {
-        value: 'cubic-bezier',
-        type: 'string' as PropertyType
-      },
-      easingFunction: {
-        x1: {
-          value: easing.easingFunctionCubicBezier.x1,
-          type: 'number' as PropertyType
-        },
-        x2: {
-          value: easing.easingFunctionCubicBezier.x2,
-          type: 'number' as PropertyType
-        },
-        y1: {
-          value: easing.easingFunctionCubicBezier.y1,
-          type: 'number' as PropertyType
-        },
-        y2: {
-          value: easing.easingFunctionCubicBezier.y2,
-          type: 'number' as PropertyType
-        }
+  if (easing.type === 'CUSTOM_CUBIC_BEZIER') {
+    easings.CUSTOM_CUBIC_BEZIER = {
+      type: 'cubic-bezier',
+      easingFunctionCubicBezier: {
+        x1: easing.easingFunctionCubicBezier.x1,
+        y1: easing.easingFunctionCubicBezier.y1,
+        x2: easing.easingFunctionCubicBezier.x2,
+        y2: easing.easingFunctionCubicBezier.y2
       }
     }
   }
-  // return predefine easing
+
+  console.log(easing.type)
+
   return {
     easing: {
       value: easings[easing.type].type,
       type: 'string' as PropertyType
+    },
+    easingFunction: {
+      x1: {
+        value: easings[easing.type].easingFunctionCubicBezier.x1,
+        type: 'number' as PropertyType
+      },
+      x2: {
+        value: easings[easing.type].easingFunctionCubicBezier.x2,
+        type: 'number' as PropertyType
+      },
+      y1: {
+        value: easings[easing.type].easingFunctionCubicBezier.y1,
+        type: 'number' as PropertyType
+      },
+      y2: {
+        value: easings[easing.type].easingFunctionCubicBezier.y2,
+        type: 'number' as PropertyType
+      }
     }
   }
 }

@@ -54,28 +54,32 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
     // merges all children into one array
     .reduce((flatten, arr) => [...flatten, ...arr], [])
     // export
-    .map(node => ({
-      name: node.name,
+    .map(node => {
       // @ts-ignore
-      description: node.description || undefined,
-      bottomLeftRadius: node.bottomLeftRadius,
-      bottomRightRadius: node.bottomRightRadius,
-      topLeftRadius: node.topLeftRadius,
-      topRightRadius: node.topRightRadius,
-      cornerRadius: node.cornerRadius || undefined,
-      cornerSmoothing: node.cornerSmoothing,
-      strokes: getSolidStrokes(node.strokes),
-      strokeWeight: node.strokeWeight,
-      strokeStyleId: node.strokeStyleId,
-      strokeMiterLimit: node.strokeMiterLimit,
-      strokeJoin: node.strokeJoin,
-      strokeCap: node.strokeCap,
-      dashPattern: node.dashPattern,
-      strokeAlign: node.strokeAlign,
-      width: node.width,
-      height: node.height,
-      reactions: node.reactions || undefined
-    }))
+      // console.log(node.name, node.reactions[0].action.transition.easing)
+      return {
+        name: node.name,
+        // @ts-ignore
+        description: node.description || undefined,
+        bottomLeftRadius: node.bottomLeftRadius,
+        bottomRightRadius: node.bottomRightRadius,
+        topLeftRadius: node.topLeftRadius,
+        topRightRadius: node.topRightRadius,
+        cornerRadius: node.cornerRadius || undefined,
+        cornerSmoothing: node.cornerSmoothing,
+        strokes: getSolidStrokes(node.strokes),
+        strokeWeight: node.strokeWeight,
+        strokeStyleId: node.strokeStyleId,
+        strokeMiterLimit: node.strokeMiterLimit,
+        strokeJoin: node.strokeJoin,
+        strokeCap: node.strokeCap,
+        dashPattern: node.dashPattern,
+        strokeAlign: node.strokeAlign,
+        width: node.width,
+        height: node.height,
+        reactions: node.reactions || undefined
+      }
+    })
 }
 
 export default getTokenFrames
