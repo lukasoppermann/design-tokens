@@ -3,11 +3,11 @@ import { motionPropertyInterface, easingFunctionPropertyInterface } from '../../
 import { customTokenNode, nodeWithNodeTransition } from '../../types/tokenNodeTypes'
 import { UnitTypeMilliseconds, PropertyType } from '../../types/valueTypes'
 
-const direction = (transition): {} | null => {
+const direction = (transition: Transition): {} | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
     return {
       direction: {
-        value: transition.direction.toLowerCase(),
+        value: (<DirectionalTransition>transition).direction.toLowerCase(),
         type: 'string' as PropertyType
       }
     }
@@ -82,14 +82,19 @@ const easings = {
   }
 }
 
-const easing = (easing): {
+const easing = (easing: Easing): {
   easing: {
     value: string,
     type: PropertyType
   },
   easingFunction?: easingFunctionPropertyInterface
 } => {
+  // abort if invalif easing type
+  if (!Object.hasOwnProperty.call(easings, easing.type)) {
+    return undefined
+  }
   // return custom easing
+  // @ts-ignore
   if (easing.type === 'CUSTOM_CUBIC_BEZIER') {
     easings.CUSTOM_CUBIC_BEZIER = {
       type: 'cubic-bezier',
@@ -101,8 +106,6 @@ const easing = (easing): {
       }
     }
   }
-
-  console.log(easing.type)
 
   return {
     easing: {
@@ -167,3 +170,7 @@ const extractMotion: extractorInterface = (tokenNodes: customTokenNode[]): motio
 }
 
 export default extractMotion
+
+export const __testing = {
+  easing: easing
+}

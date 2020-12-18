@@ -55,8 +55,6 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
     .reduce((flatten, arr) => [...flatten, ...arr], [])
     // export
     .map(node => {
-      // @ts-ignore
-      // console.log(node.name, node.reactions[0].action.transition.easing)
       return {
         name: node.name,
         // @ts-ignore

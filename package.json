@@ -61,7 +61,10 @@
       "RowsColsLayoutGrid",
       "EffectStyle",
       "Effect",
-      "Paint"
+      "Paint",
+      "Transition",
+      "Easing",
+      "DirectionalTransition"
     ]
   },
   "eslintConfig": {
