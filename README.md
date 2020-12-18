@@ -1,4 +1,4 @@
-![Design Tokens plugin for figma](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Design%20Tokens%20Plugin%20Cover.png)
+![Design Tokens plugin for figma](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Design%20Tokens%20Plugin%20Cover%20+%20Github.png)
 # Design Tokens
 
 <a href="https://www.producthunt.com/posts/figma-design-tokens-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-figma-design-tokens-2" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=273532&theme=light" alt="Figma Design Tokens - Export & convert design tokens or sync with github repo. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
@@ -54,7 +54,7 @@ In the settings you can change the prefix to anything you want.
 
 
 ### Custom design tokens
-The plugin also supports custom tokens for `borders`, `radii` & `spaces`.
+The plugin also supports custom tokens for `borders`, `radii`, `spaces` & `motion`.
 
 - Every custom design token must be within a `Frame` with a name starting with `_tokens`.
 - The token itself has to have a name starting with `sizes`, `borders` or `radii` and has to be a `Frame`, `Rectangle` or `Main Component`. This is so that the plugin can identify what is and what isn't a token.
@@ -62,10 +62,22 @@ The plugin also supports custom tokens for `borders`, `radii` & `spaces`.
 
 If you wanted to create a custom spacer token for an `8px` space you would do the following:
 
-1. Create a new `Frame` and name ot `_tokens/spacers` (Note: It must start with `_tokens`)
+1. Create a new `Frame` and name it `_tokens/spacers` (Note: It must start with `_tokens`)
 2. Create a new `Component`, set its width to `8px` (currently only width is used for size elements)
 3. Name the new component `sizes/spacers/8px` (Note: It must start with `sizes`, `borders` or `radii`)
 4. Run the plugin `Design Tokens > Export Design Tokens`
+
+#### Motion Tokens
+Motion tokens are a combination of an `easing curve`, a `duration` and an animation type. 
+To create a motion token follow this flow:
+
+1. create a new `Frame` called `_tokens/motion`
+2. Create a new `Frame`, `Component` or `Rectangle` and give it a name e.g. `motion/ease-in`
+3. Enter `prototyping mode` and link the the element `motion/ease-in` to any other element
+4. Choose an `animation type`, `easing curve` and a `duration`
+
+When exporting your tokens you will now get a set of properties for this motion.
+
 
 ### Available properties
 To allow for maximum customizability I decided to provide all values that Figma provides. Many are not applicable to for example `css` but may be usable in other languages.

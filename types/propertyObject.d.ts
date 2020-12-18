@@ -1,4 +1,4 @@
-import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType, UnitTypeMilliseconds } from './valueTypes'
+import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType, UnitTypeSeconds } from './valueTypes'
 
 export type propertyObject = {
   name: string,
@@ -116,7 +116,7 @@ export type motionPropertyInterface = propertyObject & {
     },
     duration: {
       value: number,
-      unit: UnitTypeMilliseconds,
+      unit: UnitTypeSeconds,
       type: PropertyType
     },
     easing: {
