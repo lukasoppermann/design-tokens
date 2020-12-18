@@ -123,7 +123,7 @@ export type motionPropertyInterface = propertyObject & {
       value: string,
       type: PropertyType
     },
-    easingFunction?: easingFunctionPropertyInterface,
+    easingFunction: easingFunctionPropertyInterface,
     direction?: {
       value: string,
       type: PropertyType

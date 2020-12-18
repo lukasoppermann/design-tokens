@@ -60,6 +60,10 @@ export default
   --motion-move-in-type: move_in;
   --motion-move-in-duration: 500;
   --motion-move-in-easing: ease-in;
+  --motion-move-in-easing-function-x-1: 0.41999998688697815;
+  --motion-move-in-easing-function-x-2: 1;
+  --motion-move-in-easing-function-y-1: 0;
+  --motion-move-in-easing-function-y-2: 1;
   --motion-move-in-direction: left;
   --motion-dissolve-type: dissolve;
   --motion-dissolve-duration: 449;
@@ -71,9 +75,17 @@ export default
   --motion-smart-type: smart_animate;
   --motion-smart-duration: 500;
   --motion-smart-easing: linear;
+  --motion-smart-easing-function-x-1: 0;
+  --motion-smart-easing-function-x-2: 1;
+  --motion-smart-easing-function-y-1: 0;
+  --motion-smart-easing-function-y-2: 1;
   --motion-push-type: push;
   --motion-push-duration: 500;
   --motion-push-easing: ease-in-back;
+  --motion-push-easing-function-x-1: 0.30000001192092896;
+  --motion-push-easing-function-x-2: 0.699999988079071;
+  --motion-push-easing-function-y-1: -0.05000000074505806;
+  --motion-push-easing-function-y-2: -0.5;
   --motion-push-direction: left;
   --colors-multiple-fills-0: rgba(64, 255, 186, 1);
   --colors-multiple-fills-1: rgba(0, 0, 0, 0.1);
