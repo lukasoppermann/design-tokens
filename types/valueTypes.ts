@@ -10,6 +10,7 @@ export type GradientType = "linear" | "radial" | "angular" | "diamond"
 export type UnitTypeDegree = "degree"
 export type UnitTypePixel = "pixel"
 export type UnitTypePercent = "percent"
+export type UnitTypeMilliseconds = "ms"
 export type NumericUnitTypes = UnitTypeDegree | UnitTypePixel | UnitTypePercent
 
 export type TextCase = "none" | "uppercase" | "lowercase" | "capitalize"

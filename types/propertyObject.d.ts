@@ -1,4 +1,4 @@
-import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType } from './valueTypes'
+import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType, UnitTypeMilliseconds } from './valueTypes'
 
 export type propertyObject = {
   name: string,
@@ -84,6 +84,48 @@ export type sizePropertyInterface = propertyObject & {
     height: {
       value: number,
       unit: "pixel",
+      type: PropertyType
+    }
+  }
+}
+
+export type easingFunctionPropertyInterface = {
+  x1: {
+    value: number,
+    type: PropertyType
+  },
+  x2: {
+    value: number,
+    type: PropertyType
+  },
+  y1: {
+    value: number,
+    type: PropertyType
+  },
+  y2: {
+    value: number,
+    type: PropertyType
+  }
+}
+
+export type motionPropertyInterface = propertyObject & {
+  values: {
+    type: {
+      value: string,
+      type: PropertyType
+    },
+    duration: {
+      value: number,
+      unit: UnitTypeMilliseconds,
+      type: PropertyType
+    },
+    easing: {
+      value: string,
+      type: PropertyType
+    },
+    easingFunction: easingFunctionPropertyInterface,
+    direction?: {
+      value: string,
       type: PropertyType
     }
   }

@@ -310,6 +310,156 @@
       }
     }
   },
+  "motion": {
+    "move in": {
+      "category": "motion",
+      "comment": null,
+      "type": {
+        "value": "move_in",
+        "type": "string"
+      },
+      "duration": {
+        "value": 500,
+        "type": "number",
+        "unit": "ms"
+      },
+      "easing": {
+        "value": "ease-in",
+        "type": "string"
+      },
+      "easingFunction": {
+        "x1": {
+          "value": 0.41999998688697815,
+          "type": "number"
+        },
+        "x2": {
+          "value": 1,
+          "type": "number"
+        },
+        "y1": {
+          "value": 0,
+          "type": "number"
+        },
+        "y2": {
+          "value": 1,
+          "type": "number"
+        }
+      },
+      "direction": {
+        "value": "left",
+        "type": "string"
+      }
+    },
+    "dissolve": {
+      "category": "motion",
+      "comment": null,
+      "type": {
+        "value": "dissolve",
+        "type": "string"
+      },
+      "duration": {
+        "value": 449,
+        "type": "number",
+        "unit": "ms"
+      },
+      "easing": {
+        "value": "cubic-bezier",
+        "type": "string"
+      },
+      "easingFunction": {
+        "x1": {
+          "value": 0.6968395709991455,
+          "type": "number"
+        },
+        "x2": {
+          "value": 0.06683959811925888,
+          "type": "number"
+        },
+        "y1": {
+          "value": 0.052326660603284836,
+          "type": "number"
+        },
+        "y2": {
+          "value": 0.9323266744613647,
+          "type": "number"
+        }
+      }
+    },
+    "smart": {
+      "category": "motion",
+      "comment": null,
+      "type": {
+        "value": "smart_animate",
+        "type": "string"
+      },
+      "duration": {
+        "value": 500,
+        "type": "number",
+        "unit": "ms"
+      },
+      "easing": {
+        "value": "linear",
+        "type": "string"
+      },
+      "easingFunction": {
+        "x1": {
+          "value": 0,
+          "type": "number"
+        },
+        "x2": {
+          "value": 1,
+          "type": "number"
+        },
+        "y1": {
+          "value": 0,
+          "type": "number"
+        },
+        "y2": {
+          "value": 1,
+          "type": "number"
+        }
+      }
+    },
+    "push": {
+      "category": "motion",
+      "comment": null,
+      "type": {
+        "value": "push",
+        "type": "string"
+      },
+      "duration": {
+        "value": 500,
+        "type": "number",
+        "unit": "ms"
+      },
+      "easing": {
+        "value": "ease-in-back",
+        "type": "string"
+      },
+      "easingFunction": {
+        "x1": {
+          "value": 0.30000001192092896,
+          "type": "number"
+        },
+        "x2": {
+          "value": 0.699999988079071,
+          "type": "number"
+        },
+        "y1": {
+          "value": -0.05000000074505806,
+          "type": "number"
+        },
+        "y2": {
+          "value": -0.5,
+          "type": "number"
+        }
+      },
+      "direction": {
+        "value": "left",
+        "type": "string"
+      }
+    }
+  },
   "colors": {
     "multiple fills": {
       "0": {
