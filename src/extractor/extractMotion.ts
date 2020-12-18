@@ -87,7 +87,7 @@ const easing = (easing: Easing): {
     value: string,
     type: PropertyType
   },
-  easingFunction?: easingFunctionPropertyInterface
+  easingFunction: easingFunctionPropertyInterface
 } => {
   // abort if invalif easing type
   if (!Object.hasOwnProperty.call(easings, easing.type)) {
