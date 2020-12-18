@@ -319,9 +319,9 @@
         "type": "string"
       },
       "duration": {
-        "value": 500,
+        "value": 0.5,
         "type": "number",
-        "unit": "ms"
+        "unit": "s"
       },
       "easing": {
         "value": "ease-in",
@@ -358,9 +358,9 @@
         "type": "string"
       },
       "duration": {
-        "value": 449,
+        "value": 0.45,
         "type": "number",
-        "unit": "ms"
+        "unit": "s"
       },
       "easing": {
         "value": "cubic-bezier",
@@ -393,9 +393,9 @@
         "type": "string"
       },
       "duration": {
-        "value": 500,
+        "value": 0.5,
         "type": "number",
-        "unit": "ms"
+        "unit": "s"
       },
       "easing": {
         "value": "linear",
@@ -428,9 +428,9 @@
         "type": "string"
       },
       "duration": {
-        "value": 500,
+        "value": 0.5,
         "type": "number",
-        "unit": "ms"
+        "unit": "s"
       },
       "easing": {
         "value": "ease-in-back",
