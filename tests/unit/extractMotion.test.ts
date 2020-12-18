@@ -77,8 +77,8 @@ describe('extracting motion tokens', () => {
             type: 'string'
           },
           duration: {
-            value: 321,
-            unit: 'ms',
+            value: 0.321,
+            unit: 's',
             type: 'number'
           },
           easing: {
@@ -119,8 +119,8 @@ describe('extracting motion tokens', () => {
             type: 'string'
           },
           duration: {
-            value: 521,
-            unit: 'ms',
+            value: 0.521,
+            unit: 's',
             type: 'number'
           },
           easing: {
@@ -157,8 +157,8 @@ describe('extracting motion tokens', () => {
             type: 'string'
           },
           duration: {
-            value: 600,
-            unit: 'ms',
+            value: 0.6,
+            unit: 's',
             type: 'number'
           },
           easing: {

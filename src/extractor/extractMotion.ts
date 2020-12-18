@@ -1,7 +1,7 @@
 import extractorInterface from '../../types/extractorInterface'
 import { motionPropertyInterface, easingFunctionPropertyInterface } from '../../types/propertyObject'
 import { customTokenNode, nodeWithNodeTransition } from '../../types/tokenNodeTypes'
-import { UnitTypeMilliseconds, PropertyType } from '../../types/valueTypes'
+import { UnitTypeSeconds, PropertyType } from '../../types/valueTypes'
 
 const direction = (transition: Transition): {} | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
@@ -158,8 +158,8 @@ const extractMotion: extractorInterface = (tokenNodes: customTokenNode[]): motio
           type: 'string' as PropertyType
         },
         duration: {
-          value: Math.trunc(node.reactions[0].action.transition.duration * 1000),
-          unit: 'ms' as UnitTypeMilliseconds,
+          value: Math.round((node.reactions[0].action.transition.duration + Number.EPSILON) * 1000) / 1000,
+          unit: 's' as UnitTypeSeconds,
           type: 'number' as PropertyType
         },
         ...easing(node.reactions[0].action.transition.easing),
