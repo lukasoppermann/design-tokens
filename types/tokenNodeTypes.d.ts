@@ -18,7 +18,11 @@ export type customTokenNode = {
   strokeAlign: "CENTER" | "INSIDE" | "OUTSIDE",
   width:  number,
   height: number,
-  reactions?: readonly Reaction[]
+  reactions?: readonly Reaction[],
+  paddingTop?: number,
+  paddingRight?: number,
+  paddingBottom?: number,
+  paddingLeft?: number,
 }
 
 export type nodeWithNodeTransition = customTokenNode & {

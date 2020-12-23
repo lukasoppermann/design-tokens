@@ -89,6 +89,31 @@ export type sizePropertyInterface = propertyObject & {
   }
 }
 
+export type spacingPropertyInterface = propertyObject & {
+  values: {
+    top: {
+      value: number,
+      unit: "pixel",
+      type: PropertyType
+    },
+    right: {
+      value: number,
+      unit: "pixel",
+      type: PropertyType
+    },
+    bottom: {
+      value: number,
+      unit: "pixel",
+      type: PropertyType
+    },
+    left: {
+      value: number,
+      unit: "pixel",
+      type: PropertyType
+    }
+  }
+}
+
 export type easingFunctionPropertyInterface = {
   x1: {
     value: number,

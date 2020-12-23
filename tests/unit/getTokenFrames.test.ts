@@ -91,6 +91,10 @@ describe("getTokenFrames", () => {
             strokeCap: "NONE",
             dashPattern: 0,
             strokeAlign: "CENTER",
+            paddingTop: 20,
+            paddingRight: 20,
+            paddingBottom: 20,
+            paddingLeft: 20
           }
         ])
       },
@@ -137,7 +141,11 @@ describe("getTokenFrames", () => {
               }
             }
           }
-        }]
+        }],
+        paddingTop: 0,
+        paddingRight: 0,
+        paddingBottom: 0,
+        paddingLeft: 0
       },
       {
         name: '20',
@@ -158,7 +166,11 @@ describe("getTokenFrames", () => {
         strokeCap: "NONE",
         dashPattern: 0,
         strokeAlign: "CENTER",
-        reactions: undefined
+        reactions: undefined,
+        paddingTop: 20,
+        paddingRight: 20,
+        paddingBottom: 20,
+        paddingLeft: 20
       }
     ])
   })

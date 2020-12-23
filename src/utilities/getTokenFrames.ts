@@ -75,7 +75,15 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
         strokeAlign: node.strokeAlign,
         width: node.width,
         height: node.height,
-        reactions: node.reactions || undefined
+        reactions: node.reactions || undefined,
+        // @ts-ignore
+        paddingTop: node.paddingTop || 0,
+        // @ts-ignore
+        paddingRight: node.paddingRight || 0,
+        // @ts-ignore
+        paddingBottom: node.paddingBottom || 0,
+        // @ts-ignore
+        paddingLeft: node.paddingLeft || 0
       }
     })
 }
