@@ -6,15 +6,29 @@ describe('extracting spacing', () => {
     customTokenNode,
     { 
       ...customTokenNode,
-      ...{ name: 'padding/10' } 
+      ...{ 
+        name: 'spacing/padding/0',
+      }
     },
     { 
       ...customTokenNode,
       ...{ 
-        name: 'margin/mixed',
+        name: 'spacing/padding/10',
+        paddingTop: 10,
+        paddingRight: 10,
+        paddingBottom: 10,
+        paddingLeft: 10
+      } 
+    },
+    { 
+      ...customTokenNode,
+      ...{ 
+        name: 'spacing/margin/mixed',
         description: null,
-        width: 10.2345,
-        height: .567
+        paddingTop: 10,
+        paddingRight: 20,
+        paddingBottom: 30,
+        paddingLeft: 40
       } 
     }
   ]
@@ -23,34 +37,81 @@ describe('extracting spacing', () => {
     expect(extractSpacing(nodeArray)).toStrictEqual([{
       category: 'spacing',
       description: 'a description text',
-      name: 'spacing/10',
+      name: 'spacing/padding/0',
       values: {
-        height: {
-          type: 'number',
-          unit: 'pixel',
-          value: 20,
+        top: {
+          value: 0,
+          unit: "pixel",
+          type: 'number'
         },
-        width: {
-          type: 'number',
-          unit: 'pixel',
+        right: {
+          value: 0,
+          unit: "pixel",
+          type: 'number'
+        },
+        bottom: {
+          value: 0,
+          unit: "pixel",
+          type: 'number'
+        },
+        left: {
+          value: 0,
+          unit: "pixel",
+          type: 'number'
+        }
+      }
+    },
+    {
+      category: 'spacing',
+      description: 'a description text',
+      name: 'spacing/padding/10',
+      values: {
+        top: {
           value: 10,
+          unit: "pixel",
+          type: 'number'
+        },
+        right: {
+          value: 10,
+          unit: "pixel",
+          type: 'number'
+        },
+        bottom: {
+          value: 10,
+          unit: "pixel",
+          type: 'number'
+        },
+        left: {
+          value: 10,
+          unit: "pixel",
+          type: 'number'
         }
       }
     },
     {
       category: 'spacing',
       description: null,
-      name: 'spacing/10 no desc',
+      name: 'spacing/margin/mixed',
       values: {
-        height: {
-          type: 'number',
-          unit: 'pixel',
-          value: 0.57,
+        top: {
+          value: 10,
+          unit: "pixel",
+          type: 'number'
         },
-        width: {
-          type: 'number',
-          unit: 'pixel',
-          value: 10.23,
+        right: {
+          value: 20,
+          unit: "pixel",
+          type: 'number'
+        },
+        bottom: {
+          value: 30,
+          unit: "pixel",
+          type: 'number'
+        },
+        left: {
+          value: 40,
+          unit: "pixel",
+          type: 'number'
         }
       }
     }
