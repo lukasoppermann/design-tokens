@@ -6,8 +6,8 @@ import currentVersion from './utilities/version'
 import semVerDifference from './utilities/semVerDifference'
 
 // set plugin id if it does not exist
-if (figma.root.getPluginData('fileId') === "") {
-  figma.root.setPluginData('fileId', figma.root.name +' ' + Math.floor(Math.random() * 1000000000))
+if (figma.root.getPluginData('fileId') === '') {
+  figma.root.setPluginData('fileId', figma.root.name + ' ' + Math.floor(Math.random() * 1000000000))
 }
 const fileId = figma.root.getPluginData('fileId')
 // Get the user settings
@@ -23,7 +23,7 @@ const activateUtilitiesUi = () => {
 /**
  * @name getJson
  * @param {PluginAPI} figma
- * @param {boolean} stringify 
+ * @param {boolean} stringify
  */
 const getJson = (figma: PluginAPI, stringify: boolean = true) => {
   // construct figma data object
@@ -45,7 +45,7 @@ if (figma.command === 'export') {
   activateUtilitiesUi()
   // write tokens to json file
   figma.ui.postMessage({
-    command: "export",
+    command: 'export',
     data: {
       filename: `${userSettings.filename}.json`,
       data: getJson(figma)
@@ -60,17 +60,17 @@ if (figma.command === 'urlExport') {
   // needed for getAccessToken async
   const urlExport = async () => {
     figma.ui.postMessage({
-      command: "urlExport",
+      command: 'urlExport',
       data: {
         url: userSettings.serverUrl,
         accessToken: await getAccessToken(fileId),
         authType: userSettings.authType,
-        data: { 
-          "event_type": userSettings.eventType, 
-          "client_payload": { 
-            "tokenFileName": `${userSettings.filename}.json`,
-            "tokens": `${getJson(figma, true)}`,
-            "filename": figma.root.name
+        data: {
+          event_type: userSettings.eventType,
+          client_payload: {
+            tokenFileName: `${userSettings.filename}.json`,
+            tokens: `${getJson(figma, true)}`,
+            filename: figma.root.name
           }
         }
       }
@@ -82,7 +82,7 @@ if (figma.command === 'urlExport') {
 // ---------------------------------
 // SETTINGS
 // settings for the design tokens
-if(figma.command === 'settings') {
+if (figma.command === 'settings') {
   const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
   // height for the settings dialog
   let settingsDialogHeight = 530
@@ -109,7 +109,7 @@ if(figma.command === 'settings') {
     })
     // sent settings to UI
     figma.ui.postMessage({
-      command: "getSettings",
+      command: 'getSettings',
       settings: userSettings,
       accessToken: await getAccessToken(fileId),
       versionDifference: versionDifference
@@ -125,7 +125,7 @@ if(figma.command === 'settings') {
 if (figma.command === 'help') {
   activateUtilitiesUi()
   figma.ui.postMessage({
-    command: "help"
+    command: 'help'
   })
 }
 
@@ -142,7 +142,7 @@ figma.ui.onmessage = async (message) => {
   }
   // save settings
   if (message.command === 'saveSettings') {
-    // store settings 
+    // store settings
     setSettings(message.settings)
     // accessToken
     await setAccessToken(fileId, message.accessToken)

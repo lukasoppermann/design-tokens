@@ -7,6 +7,27 @@
       "type": "number",
       "unit": "pixel"
     },
+    "40": {
+      "category": "size",
+      "comment": null,
+      "value": 40,
+      "type": "number",
+      "unit": "pixel"
+    },
+    "60": {
+      "category": "size",
+      "comment": null,
+      "value": 60,
+      "type": "number",
+      "unit": "pixel"
+    },
+    "80": {
+      "category": "size",
+      "comment": null,
+      "value": 80,
+      "type": "number",
+      "unit": "pixel"
+    },
     "frame": {
       "category": "size",
       "comment": null,
@@ -27,6 +48,80 @@
       "value": 32,
       "type": "number",
       "unit": "pixel"
+    }
+  },
+  "spacing": {
+    "10": {
+      "category": "spacing",
+      "comment": null,
+      "top": {
+        "value": 10,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "right": {
+        "value": 10,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "bottom": {
+        "value": 10,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "left": {
+        "value": 10,
+        "type": "number",
+        "unit": "pixel"
+      }
+    },
+    "mixed": {
+      "category": "spacing",
+      "comment": null,
+      "top": {
+        "value": 10,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "right": {
+        "value": 20,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "bottom": {
+        "value": 30,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "left": {
+        "value": 20,
+        "type": "number",
+        "unit": "pixel"
+      }
+    },
+    "top": {
+      "category": "spacing",
+      "comment": null,
+      "top": {
+        "value": 10,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "right": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "bottom": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "left": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      }
     }
   },
   "borders": {

@@ -1,9 +1,24 @@
-export default 
+export default
 `:root {
   --sizes-32: 32.72; /* 32.72px spacer component */
+  --sizes-40: 40;
+  --sizes-60: 60;
+  --sizes-80: 80;
   --sizes-frame: 32;
   --sizes-rect: 32;
   --sizes-shape-in-component: 32; /* Should use 32px not 20 from inside shape */
+  --spacing-10-top: 10;
+  --spacing-10-right: 10;
+  --spacing-10-bottom: 10;
+  --spacing-10-left: 10;
+  --spacing-mixed-top: 10;
+  --spacing-mixed-right: 20;
+  --spacing-mixed-bottom: 30;
+  --spacing-mixed-left: 20;
+  --spacing-top-top: 10;
+  --spacing-top-right: 0;
+  --spacing-top-bottom: 0;
+  --spacing-top-left: 0;
   --borders-unsupported-gradient-borders-stroke-align: inside;
   --borders-unsupported-gradient-borders-dash-pattern: ;
   --borders-unsupported-gradient-borders-stroke-cap: none;
