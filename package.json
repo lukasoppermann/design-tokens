@@ -65,7 +65,8 @@
       "Paint",
       "Transition",
       "Easing",
-      "DirectionalTransition"
+      "DirectionalTransition",
+      "expect"
     ]
   },
   "eslintConfig": {
