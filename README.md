@@ -84,10 +84,10 @@ In the settings you can change the [prefix](#prefix-used-to-in-exclude-styles) f
 
 
 ### Custom design tokens
-The plugin also supports custom tokens for `borders`, `radii`, `sizes` & `motion`.
+The plugin also supports custom tokens for `borders`, `radii`, `sizes`, `spacing` & `motion`.
 
 - Every custom design token must be directly within a top-level `Frame` with a name starting with `_tokens`. This means you have a structure like this: `page` > `_tokens/sizes` > `sizes/8`. Nesting is not possible at this point.
-- The token itself has to have a name starting with `sizes`, `borders`, `radii` or `motion` and has to be a `Frame`, `Rectangle` or `Main Component`. This is so that the plugin can identify what is and what isn't a token.
+- The token itself has to have a name starting with `sizes`, `spacing`, `borders`, `radii` or `motion` and has to be a `Frame`, `Rectangle` or `Main Component`. This is so that the plugin can identify what is and what isn't a token.
 - The token has to be a direct child of a `_token` frame
 
 #### Sizes
@@ -107,6 +107,27 @@ The token will be exported, if you convert it to css the output would be somethi
 
 ![Example size tokens](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/example-sizes-tokens.png)
 <a href="https://www.figma.com/file/2MQ759R5kJtzQn4qSHuqR7/Design-Tokens-for-Figma?node-id=1260%3A44" target="_blank">Open example figma file</a>
+
+#### Spacing
+
+To create a *spacing token*, do the following:
+
+1. Create a `Frame` and name it `_tokens/spacing` 
+2. Create another `Frame`, `Rectangle` or `Main Component` and set the padding properties to `10` in the `auto layout`.
+3. Name it `spacing/10`. Note, it is important to use the `spacing/` prefix.
+
+
+The token will be exported, if you convert it to css the output would be something like this:
+
+```css
+  --spacing-10-top: 10;
+  --spacing-10-right: 10;
+  --spacing-10-bottom: 10;
+  --spacing-10-left: 10;
+```
+
+![Example spacing tokens](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/example-spacing-tokens.png)
+<a href="https://www.figma.com/file/2MQ759R5kJtzQn4qSHuqR7/Design-Tokens-for-Figma?node-id=1493%3A0" target="_blank">Open example figma file</a>
 
 #### Borders
 To create a *border token*, do the following:
