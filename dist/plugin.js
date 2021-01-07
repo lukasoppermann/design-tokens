@@ -518,10 +518,49 @@
         };
         exports.default = extractSizes;
     });
-    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_5) {
+    define("src/extractor/extractSpacing", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_5) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         roundWithDecimals_5 = __importDefault(roundWithDecimals_5);
+        const extractSpacing = (tokenNodes) => {
+            const nodeName = 'spacing';
+            // return as object
+            return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName)
+                .map(node => ({
+                name: node.name,
+                // @ts-ignore
+                description: node.description || null,
+                category: 'spacing',
+                values: {
+                    top: {
+                        value: roundWithDecimals_5.default(node.paddingTop, 2),
+                        unit: 'pixel',
+                        type: 'number'
+                    },
+                    right: {
+                        value: roundWithDecimals_5.default(node.paddingRight, 2),
+                        unit: 'pixel',
+                        type: 'number'
+                    },
+                    bottom: {
+                        value: roundWithDecimals_5.default(node.paddingBottom, 2),
+                        unit: 'pixel',
+                        type: 'number'
+                    },
+                    left: {
+                        value: roundWithDecimals_5.default(node.paddingLeft, 2),
+                        unit: 'pixel',
+                        type: 'number'
+                    }
+                }
+            }));
+        };
+        exports.default = extractSpacing;
+    });
+    define("src/extractor/extractBorders", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_6) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        roundWithDecimals_6 = __importDefault(roundWithDecimals_6);
         const strokeJoins = {
             MITER: 'miter',
             BEVEL: 'bevel',
@@ -564,7 +603,7 @@
                         type: 'string'
                     },
                     strokeMiterLimit: {
-                        value: roundWithDecimals_5.default(node.strokeMiterLimit),
+                        value: roundWithDecimals_6.default(node.strokeMiterLimit),
                         unit: 'degree',
                         type: 'number'
                     },
@@ -585,10 +624,10 @@
         };
         exports.default = extractBorders;
     });
-    define("src/extractor/extractRadii", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_6) {
+    define("src/extractor/extractRadii", ["require", "exports", "src/utilities/roundWithDecimals"], function (require, exports, roundWithDecimals_7) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        roundWithDecimals_6 = __importDefault(roundWithDecimals_6);
+        roundWithDecimals_7 = __importDefault(roundWithDecimals_7);
         const extractRadii = (tokenNodes) => {
             const nodeName = 'radii';
             // get the type of the corner radius
@@ -637,7 +676,7 @@
                         value: getRadiusType(node.cornerRadius),
                         type: 'string'
                     }, radii: getRadii(node), smoothing: {
-                        value: roundWithDecimals_6.default(node.cornerSmoothing, 2),
+                        value: roundWithDecimals_7.default(node.cornerSmoothing, 2),
                         comment: 'Percent as decimal from 0.0 - 1.0',
                         type: 'number'
                     } })
@@ -801,7 +840,7 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
     });
-    define("src/utilities/getTokenJson", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractMotion", "src/extractor/extractSizes", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/styleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractMotion_1, extractSizes_1, extractBorders_1, extractRadii_1, groupByName_1, styleDictionaryTransformer_1) {
+    define("src/utilities/getTokenJson", ["require", "exports", "src/extractor/extractColors", "src/extractor/extractGrids", "src/extractor/extractFonts", "src/extractor/extractEffects", "src/extractor/extractMotion", "src/extractor/extractSizes", "src/extractor/extractSpacing", "src/extractor/extractBorders", "src/extractor/extractRadii", "src/utilities/groupByName", "src/transformer/styleDictionaryTransformer"], function (require, exports, extractColors_1, extractGrids_1, extractFonts_1, extractEffects_1, extractMotion_1, extractSizes_1, extractSpacing_1, extractBorders_1, extractRadii_1, groupByName_1, styleDictionaryTransformer_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         extractColors_1 = __importDefault(extractColors_1);
@@ -810,6 +849,7 @@
         extractEffects_1 = __importDefault(extractEffects_1);
         extractMotion_1 = __importDefault(extractMotion_1);
         extractSizes_1 = __importDefault(extractSizes_1);
+        extractSpacing_1 = __importDefault(extractSpacing_1);
         extractBorders_1 = __importDefault(extractBorders_1);
         extractRadii_1 = __importDefault(extractRadii_1);
         groupByName_1 = __importDefault(groupByName_1);
@@ -821,6 +861,7 @@
             // get tokens
             return [
                 ...extractSizes_1.default(figmaData.tokenFrames),
+                ...extractSpacing_1.default(figmaData.tokenFrames),
                 ...extractBorders_1.default(figmaData.tokenFrames),
                 ...extractRadii_1.default(figmaData.tokenFrames),
                 ...extractMotion_1.default(figmaData.tokenFrames),
@@ -966,7 +1007,15 @@
                     strokeAlign: node.strokeAlign,
                     width: node.width,
                     height: node.height,
-                    reactions: node.reactions || undefined
+                    reactions: node.reactions || undefined,
+                    // @ts-ignore
+                    paddingTop: node.paddingTop || 0,
+                    // @ts-ignore
+                    paddingRight: node.paddingRight || 0,
+                    // @ts-ignore
+                    paddingBottom: node.paddingBottom || 0,
+                    // @ts-ignore
+                    paddingLeft: node.paddingLeft || 0
                 };
             });
         };
@@ -1247,7 +1296,7 @@
         version_1 = __importDefault(version_1);
         semVerDifference_1 = __importDefault(semVerDifference_1);
         // set plugin id if it does not exist
-        if (figma.root.getPluginData('fileId') === "") {
+        if (figma.root.getPluginData('fileId') === '') {
             figma.root.setPluginData('fileId', figma.root.name + ' ' + Math.floor(Math.random() * 1000000000));
         }
         const fileId = figma.root.getPluginData('fileId');
@@ -1286,7 +1335,7 @@
             activateUtilitiesUi();
             // write tokens to json file
             figma.ui.postMessage({
-                command: "export",
+                command: 'export',
                 data: {
                     filename: `${userSettings.filename}.json`,
                     data: getJson(figma)
@@ -1301,17 +1350,17 @@
             // needed for getAccessToken async
             const urlExport = () => __awaiter(void 0, void 0, void 0, function* () {
                 figma.ui.postMessage({
-                    command: "urlExport",
+                    command: 'urlExport',
                     data: {
                         url: userSettings.serverUrl,
                         accessToken: yield accessToken_1.getAccessToken(fileId),
                         authType: userSettings.authType,
                         data: {
-                            "event_type": userSettings.eventType,
-                            "client_payload": {
-                                "tokenFileName": `${userSettings.filename}.json`,
-                                "tokens": `${getJson(figma, true)}`,
-                                "filename": figma.root.name
+                            event_type: userSettings.eventType,
+                            client_payload: {
+                                tokenFileName: `${userSettings.filename}.json`,
+                                tokens: `${getJson(figma, true)}`,
+                                filename: figma.root.name
                             }
                         }
                     }
@@ -1350,7 +1399,7 @@
                 });
                 // sent settings to UI
                 figma.ui.postMessage({
-                    command: "getSettings",
+                    command: 'getSettings',
                     settings: userSettings,
                     accessToken: yield accessToken_1.getAccessToken(fileId),
                     versionDifference: versionDifference
@@ -1366,7 +1415,7 @@
         if (figma.command === 'help') {
             activateUtilitiesUi();
             figma.ui.postMessage({
-                command: "help"
+                command: 'help'
             });
         }
         // CLOSE PLUGIN
@@ -1382,7 +1431,7 @@
             }
             // save settings
             if (message.command === 'saveSettings') {
-                // store settings 
+                // store settings
                 settings_1.setSettings(message.settings);
                 // accessToken
                 yield accessToken_1.setAccessToken(fileId, message.accessToken);
