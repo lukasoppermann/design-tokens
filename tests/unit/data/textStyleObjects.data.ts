@@ -2,44 +2,44 @@ export const textStyles = [
   {
     name: 'fonts/basic',
     description: 'a font style',
-    type: "TEXT",
+    type: 'TEXT',
     fontSize: 16,
-    textDecoration: "NONE",
+    textDecoration: 'NONE',
     fontName: {
-      family: "Helvetica",
-      style: "slanted"
+      family: 'Helvetica',
+      style: 'Light Condensed'
     },
     letterSpacing: {
       value: 10,
-      unit: "PIXEL"
+      unit: 'PIXEL'
     },
     lineHeight: {
       value: 5,
-      unit: "PIXEL"
+      unit: 'PIXEL'
     },
     paragraphIndent: 3,
     paragraphSpacing: 2,
-    textCase: "UPPER"
+    textCase: 'UPPER'
   },
   {
     name: 'fonts/no description',
-    type: "TEXT",
+    type: 'TEXT',
     fontSize: 12,
-    textDecoration: "UNDERLINE",
+    textDecoration: 'UNDERLINE',
     fontName: {
-      family: "Helvetica",
-      style: "slanted"
+      family: 'Helvetica',
+      style: 'Extra Bold Condensed Italic'
     },
     letterSpacing: {
       value: 120,
-      unit: "PERCENT"
+      unit: 'PERCENT'
     },
     lineHeight: {
-      unit: "AUTO"
+      unit: 'AUTO'
     },
     paragraphIndent: 3,
     paragraphSpacing: 2,
-    textCase: "ORIGINAL"
+    textCase: 'ORIGINAL'
   }
 ]
 
@@ -48,42 +48,42 @@ export const textStyleObjects = [
     name: 'fonts/basic',
     description: 'a font style',
     fontSize: 16,
-    textDecoration: "NONE",
+    textDecoration: 'NONE',
     fontName: {
-      family: "Helvetica",
-      style: "slanted"
+      family: 'Helvetica',
+      style: 'Light Expanded'
     },
     letterSpacing: {
       value: 10,
-      unit: "PIXEL"
+      unit: 'PIXEL'
     },
     lineHeight: {
       value: 5,
-      unit: "PIXEL"
+      unit: 'PIXEL'
     },
     paragraphIndent: 3,
     paragraphSpacing: 2,
-    textCase: "UPPER"
+    textCase: 'UPPER'
   },
   {
     name: 'fonts/no description',
     description: undefined,
     fontSize: 12,
-    textDecoration: "UNDERLINE",
+    textDecoration: 'UNDERLINE',
     fontName: {
-      family: "Helvetica",
-      style: "slanted"
+      family: 'Helvetica',
+      style: 'Extra Bold Condensed Italic'
     },
     letterSpacing: {
       value: 120,
-      unit: "PERCENT"
+      unit: 'PERCENT'
     },
     lineHeight: {
-      unit: "AUTO"
+      unit: 'AUTO'
     },
     paragraphIndent: 3,
     paragraphSpacing: 2,
-    textCase: "ORIGINAL"
+    textCase: 'ORIGINAL'
   }
 ]
 
@@ -99,15 +99,27 @@ export const extractFontsOutput = [
         type: 'number'
       },
       textDecoration: {
-        value: "none",
+        value: 'none',
         type: 'string'
       },
       fontFamily: {
-        value: "Helvetica",
+        value: 'Helvetica',
+        type: 'string'
+      },
+      fontWeight: {
+        value: 300,
+        type: 'number'
+      },
+      fontStretch: {
+        value: 'expanded',
         type: 'string'
       },
       fontStyle: {
-        value: 'slanted',
+        value: 'normal',
+        type: 'string'
+      },
+      _fontStyleOld: {
+        value: 'Light Expanded',
         type: 'string'
       },
       letterSpacing: {
@@ -131,7 +143,7 @@ export const extractFontsOutput = [
         type: 'number'
       },
       textCase: {
-        value: "uppercase",
+        value: 'uppercase',
         type: 'string'
       }
     }
@@ -147,15 +159,27 @@ export const extractFontsOutput = [
         type: 'number'
       },
       textDecoration: {
-        value: "underline",
+        value: 'underline',
         type: 'string'
       },
       fontFamily: {
-        value: "Helvetica",
+        value: 'Helvetica',
+        type: 'string'
+      },
+      fontWeight: {
+        value: 800,
+        type: 'number'
+      },
+      fontStretch: {
+        value: 'condensed',
         type: 'string'
       },
       fontStyle: {
-        value: 'slanted',
+        value: 'italic',
+        type: 'string'
+      },
+      _fontStyleOld: {
+        value: 'Extra Bold Condensed Italic',
         type: 'string'
       },
       letterSpacing: {
@@ -179,7 +203,7 @@ export const extractFontsOutput = [
         type: 'number'
       },
       textCase: {
-        value: "none",
+        value: 'none',
         type: 'string'
       }
     }
