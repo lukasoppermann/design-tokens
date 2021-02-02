@@ -22,14 +22,28 @@ export type fontPropertyInterface = propertyObject & {
       value: TextDecoration
     },
     fontFamily: {
-      value: string
+      value: string,
+      type: PropertyType
+    },
+    fontWeight: {
+      value: number,
+      type: PropertyType
     },
     fontStyle: {
-      value: string
+      value: string,
+      type: PropertyType
+    },
+    fontStretch: {
+      value: string,
+      type: PropertyType
+    },
+    _fontStyleOld: {
+      value: string,
+      type: PropertyType
     },
     letterSpacing: numericPropertyType,
     lineHeight: {
-      value: number | "normal"
+      value: number | 'normal'
       unit: string // "pixel" | "percent" | "auto"
     },
     paragraphIndent: numericPropertyType,
@@ -78,12 +92,12 @@ export type sizePropertyInterface = propertyObject & {
   values: {
     width: {
       value: number,
-      unit: "pixel",
+      unit: 'pixel',
       type: PropertyType
     },
     height: {
       value: number,
-      unit: "pixel",
+      unit: 'pixel',
       type: PropertyType
     }
   }
@@ -93,22 +107,22 @@ export type spacingPropertyInterface = propertyObject & {
   values: {
     top: {
       value: number,
-      unit: "pixel",
+      unit: 'pixel',
       type: PropertyType
     },
     right: {
       value: number,
-      unit: "pixel",
+      unit: 'pixel',
       type: PropertyType
     },
     bottom: {
       value: number,
-      unit: "pixel",
+      unit: 'pixel',
       type: PropertyType
     },
     left: {
       value: number,
-      unit: "pixel",
+      unit: 'pixel',
       type: PropertyType
     }
   }
