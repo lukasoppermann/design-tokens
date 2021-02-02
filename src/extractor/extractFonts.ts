@@ -37,7 +37,8 @@ const fontWeights = {
 const fontStretch = {
   normal: 'normal',
   condensed: 'condensed',
-  expanded: 'expanded'
+  expanded: 'expanded',
+  extended: 'expanded'
 }
 
 const fontStyles = {
