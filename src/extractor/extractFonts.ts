@@ -30,7 +30,8 @@ const fontWeights = {
   extrabold: 800,
   ultabold: 800,
   black: 900,
-  heavy: 900
+  heavy: 900,
+  super: 900
 }
 
 const fontStretch = {
