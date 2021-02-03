@@ -1113,7 +1113,19 @@
         "value": "Akzidenz-Grotesk Pro",
         "type": "string"
       },
+      "fontWeight": {
+        "value": 700,
+        "type": "number"
+      },
       "fontStyle": {
+        "value": "normal",
+        "type": "string"
+      },
+      "fontStretch": {
+        "value": "condensed",
+        "type": "string"
+      },
+      "_fontStyleOld": {
         "value": "Bold Condensed",
         "type": "string"
       },
@@ -1158,8 +1170,244 @@
         "value": "Roboto",
         "type": "string"
       },
+      "fontWeight": {
+        "value": 500,
+        "type": "number"
+      },
       "fontStyle": {
+        "value": "italic",
+        "type": "string"
+      },
+      "fontStretch": {
+        "value": "normal",
+        "type": "string"
+      },
+      "_fontStyleOld": {
         "value": "Medium Italic",
+        "type": "string"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "type": "number",
+        "unit": "percent"
+      },
+      "lineHeight": {
+        "value": "normal",
+        "type": "string",
+        "unit": "auto"
+      },
+      "paragraphIndent": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "paragraphSpacing": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "textCase": {
+        "value": "none",
+        "type": "string"
+      }
+    },
+    "italic": {
+      "category": "font",
+      "fontSize": {
+        "value": 12,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "textDecoration": {
+        "value": "none",
+        "type": "string"
+      },
+      "fontFamily": {
+        "value": "Roboto",
+        "type": "string"
+      },
+      "fontWeight": {
+        "value": 400,
+        "type": "number"
+      },
+      "fontStyle": {
+        "value": "italic",
+        "type": "string"
+      },
+      "fontStretch": {
+        "value": "normal",
+        "type": "string"
+      },
+      "_fontStyleOld": {
+        "value": "Italic",
+        "type": "string"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "type": "number",
+        "unit": "percent"
+      },
+      "lineHeight": {
+        "value": "normal",
+        "type": "string",
+        "unit": "auto"
+      },
+      "paragraphIndent": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "paragraphSpacing": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "textCase": {
+        "value": "none",
+        "type": "string"
+      }
+    },
+    "extra bold condensed italic": {
+      "category": "font",
+      "fontSize": {
+        "value": 12,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "textDecoration": {
+        "value": "none",
+        "type": "string"
+      },
+      "fontFamily": {
+        "value": "Akzidenz-Grotesk Pro",
+        "type": "string"
+      },
+      "fontWeight": {
+        "value": 800,
+        "type": "number"
+      },
+      "fontStyle": {
+        "value": "italic",
+        "type": "string"
+      },
+      "fontStretch": {
+        "value": "condensed",
+        "type": "string"
+      },
+      "_fontStyleOld": {
+        "value": "Extra Bold Condensed Italic",
+        "type": "string"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "type": "number",
+        "unit": "percent"
+      },
+      "lineHeight": {
+        "value": "normal",
+        "type": "string",
+        "unit": "auto"
+      },
+      "paragraphIndent": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "paragraphSpacing": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "textCase": {
+        "value": "none",
+        "type": "string"
+      }
+    },
+    "medium extended italic": {
+      "category": "font",
+      "fontSize": {
+        "value": 20,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "textDecoration": {
+        "value": "none",
+        "type": "string"
+      },
+      "fontFamily": {
+        "value": "Akzidenz-Grotesk Pro",
+        "type": "string"
+      },
+      "fontWeight": {
+        "value": 500,
+        "type": "number"
+      },
+      "fontStyle": {
+        "value": "italic",
+        "type": "string"
+      },
+      "fontStretch": {
+        "value": "expanded",
+        "type": "string"
+      },
+      "_fontStyleOld": {
+        "value": "Medium Extended Italic",
+        "type": "string"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "type": "number",
+        "unit": "percent"
+      },
+      "lineHeight": {
+        "value": "normal",
+        "type": "string",
+        "unit": "auto"
+      },
+      "paragraphIndent": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "paragraphSpacing": {
+        "value": 0,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "textCase": {
+        "value": "none",
+        "type": "string"
+      }
+    },
+    "super": {
+      "category": "font",
+      "fontSize": {
+        "value": 22,
+        "type": "number",
+        "unit": "pixel"
+      },
+      "textDecoration": {
+        "value": "none",
+        "type": "string"
+      },
+      "fontFamily": {
+        "value": "Akzidenz-Grotesk Pro",
+        "type": "string"
+      },
+      "fontWeight": {
+        "value": 900,
+        "type": "number"
+      },
+      "fontStyle": {
+        "value": "normal",
+        "type": "string"
+      },
+      "fontStretch": {
+        "value": "normal",
+        "type": "string"
+      },
+      "_fontStyleOld": {
+        "value": "Super",
         "type": "string"
       },
       "letterSpacing": {

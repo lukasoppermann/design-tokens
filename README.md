@@ -64,7 +64,10 @@ Every property of a style will be converted to an individual token. For a `Text 
   --font-headline-3-font-size: 20;
   --font-headline-3-text-decoration: none;
   --font-headline-3-font-family: Roboto;
-  --font-headline-3-font-style: Medium;
+  --font-headline-3-font-style: italic;
+  --font-headline-3-font-weight: 500;
+  --font-headline-3-font-stretch: condensed;
+  --font-headline-3-font-style-old: Medium Italic Condensed; /* only to preserve original value */
   --font-headline-3-letter-spacing: 2;
   --font-headline-3-line-height: 160;
   --font-headline-3-paragraph-indent: 5;

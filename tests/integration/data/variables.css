@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 07 Jan 2021 08:09:51 GMT
+ * Generated on Tue, 02 Feb 2021 22:19:24 GMT
  */
 
 :root {
@@ -208,7 +208,10 @@
   --body-h-3-font-size: 20;
   --body-h-3-text-decoration: none;
   --body-h-3-font-family: Akzidenz-Grotesk Pro;
-  --body-h-3-font-style: Bold Condensed;
+  --body-h-3-font-weight: 700;
+  --body-h-3-font-style: normal;
+  --body-h-3-font-stretch: condensed;
+  --body-h-3-font-style-old: Bold Condensed;
   --body-h-3-letter-spacing: 2;
   --body-h-3-line-height: 160;
   --body-h-3-paragraph-indent: 5;
@@ -217,12 +220,63 @@
   --body-h-4-strike-through-font-size: 16;
   --body-h-4-strike-through-text-decoration: line-through;
   --body-h-4-strike-through-font-family: Roboto;
-  --body-h-4-strike-through-font-style: Medium Italic;
+  --body-h-4-strike-through-font-weight: 500;
+  --body-h-4-strike-through-font-style: italic;
+  --body-h-4-strike-through-font-stretch: normal;
+  --body-h-4-strike-through-font-style-old: Medium Italic;
   --body-h-4-strike-through-letter-spacing: 0;
   --body-h-4-strike-through-line-height: normal;
   --body-h-4-strike-through-paragraph-indent: 0;
   --body-h-4-strike-through-paragraph-spacing: 0;
   --body-h-4-strike-through-text-case: none;
+  --body-italic-font-size: 12;
+  --body-italic-text-decoration: none;
+  --body-italic-font-family: Roboto;
+  --body-italic-font-weight: 400;
+  --body-italic-font-style: italic;
+  --body-italic-font-stretch: normal;
+  --body-italic-font-style-old: Italic;
+  --body-italic-letter-spacing: 0;
+  --body-italic-line-height: normal;
+  --body-italic-paragraph-indent: 0;
+  --body-italic-paragraph-spacing: 0;
+  --body-italic-text-case: none;
+  --body-extra-bold-condensed-italic-font-size: 12;
+  --body-extra-bold-condensed-italic-text-decoration: none;
+  --body-extra-bold-condensed-italic-font-family: Akzidenz-Grotesk Pro;
+  --body-extra-bold-condensed-italic-font-weight: 800;
+  --body-extra-bold-condensed-italic-font-style: italic;
+  --body-extra-bold-condensed-italic-font-stretch: condensed;
+  --body-extra-bold-condensed-italic-font-style-old: Extra Bold Condensed Italic;
+  --body-extra-bold-condensed-italic-letter-spacing: 0;
+  --body-extra-bold-condensed-italic-line-height: normal;
+  --body-extra-bold-condensed-italic-paragraph-indent: 0;
+  --body-extra-bold-condensed-italic-paragraph-spacing: 0;
+  --body-extra-bold-condensed-italic-text-case: none;
+  --body-medium-extended-italic-font-size: 20;
+  --body-medium-extended-italic-text-decoration: none;
+  --body-medium-extended-italic-font-family: Akzidenz-Grotesk Pro;
+  --body-medium-extended-italic-font-weight: 500;
+  --body-medium-extended-italic-font-style: italic;
+  --body-medium-extended-italic-font-stretch: expanded;
+  --body-medium-extended-italic-font-style-old: Medium Extended Italic;
+  --body-medium-extended-italic-letter-spacing: 0;
+  --body-medium-extended-italic-line-height: normal;
+  --body-medium-extended-italic-paragraph-indent: 0;
+  --body-medium-extended-italic-paragraph-spacing: 0;
+  --body-medium-extended-italic-text-case: none;
+  --body-super-font-size: 22;
+  --body-super-text-decoration: none;
+  --body-super-font-family: Akzidenz-Grotesk Pro;
+  --body-super-font-weight: 900;
+  --body-super-font-style: normal;
+  --body-super-font-stretch: normal;
+  --body-super-font-style-old: Super;
+  --body-super-letter-spacing: 0;
+  --body-super-line-height: normal;
+  --body-super-paragraph-indent: 0;
+  --body-super-paragraph-spacing: 0;
+  --body-super-text-case: none;
   --effect-drop-shadow-single-type: dropShadow;
   --effect-drop-shadow-single-radius: 4;
   --effect-drop-shadow-single-color: rgba(0, 0, 0, 0.25);

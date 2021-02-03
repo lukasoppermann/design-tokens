@@ -214,6 +214,51 @@
             LOWER: 'lowercase',
             TITLE: 'capitalize'
         };
+        const fontWeights = {
+            thin: 100,
+            extralight: 200,
+            ultralight: 200,
+            light: 300,
+            normal: 400,
+            regular: 400,
+            medium: 500,
+            semibold: 600,
+            demibold: 600,
+            bold: 700,
+            extrabold: 800,
+            ultabold: 800,
+            black: 900,
+            heavy: 900,
+            super: 900
+        };
+        const fontStretch = {
+            normal: 'normal',
+            condensed: 'condensed',
+            expanded: 'expanded',
+            extended: 'expanded'
+        };
+        const fontStyles = {
+            normal: 'normal',
+            italic: 'italic',
+            oblique: 'oblique'
+        };
+        const parseFontWeight = (fontStyle) => {
+            const parts = fontStyle.toLowerCase().split(' ');
+            let weight = parts[0];
+            // merge if space after extra
+            if (['extra', 'ultra', 'semi', 'demi'].includes(parts[0]) && ['bold', 'light'].includes(parts[1])) {
+                weight = `${parts[0]}${parts[1]}`;
+            }
+            return fontWeights[weight] || 400;
+        };
+        const parseFontStretch = (fontStyle) => {
+            const parts = fontStyle.toLowerCase().split(' ');
+            return fontStretch[parts[parts.length - 1]] || fontStretch[parts[parts.length - 2]] || 'normal';
+        };
+        const parseFontStyle = (fontStyle) => {
+            const part = fontStyle.toLowerCase().split(' ').pop();
+            return fontStyles[part] || 'normal';
+        };
         const extractFonts = (tokenNodes) => {
             // get raw text styles
             return tokenNodes.map(node => ({
@@ -234,7 +279,19 @@
                         value: node.fontName.family,
                         type: 'string'
                     },
+                    fontWeight: {
+                        value: parseFontWeight(node.fontName.style),
+                        type: 'number'
+                    },
                     fontStyle: {
+                        value: parseFontStyle(node.fontName.style),
+                        type: 'string'
+                    },
+                    fontStretch: {
+                        value: parseFontStretch(node.fontName.style),
+                        type: 'string'
+                    },
+                    _fontStyleOld: {
                         value: node.fontName.style,
                         type: 'string'
                     },
