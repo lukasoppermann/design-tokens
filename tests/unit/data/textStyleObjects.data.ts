@@ -7,7 +7,7 @@ export const textStyles = [
     textDecoration: 'NONE',
     fontName: {
       family: 'Helvetica',
-      style: 'Light Condensed'
+      style: 'Light Expanded'
     },
     letterSpacing: {
       value: 10,
