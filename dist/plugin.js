@@ -1382,7 +1382,7 @@
                 return getTokenJson_1.default(figmaData);
             }
             // get tokens as stringified json
-            return JSON.stringify(getTokenJson_1.default(figmaData), null, 2);
+            return JSON.stringify(getTokenJson_1.default(figmaData));
         };
         // ---------------------------------
         // EXPORT TO FILE
