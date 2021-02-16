@@ -35,7 +35,7 @@ const getJson = (figma: PluginAPI, stringify: boolean = true) => {
     return getTokenJson(figmaData)
   }
   // get tokens as stringified json
-  return JSON.stringify(getTokenJson(figmaData), null, 2)
+  return JSON.stringify(getTokenJson(figmaData))
 }
 // ---------------------------------
 // EXPORT TO FILE
