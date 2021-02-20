@@ -1,4 +1,4 @@
-![Design Tokens plugin for figma](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Design%20Tokens%20Plugin%20Cover%20+%20Github.png)
+![Design Tokens plugin for figma](https://github.com/lukasoppermann/design-tokens/blob/main/_resources/Design%20Tokens%20Plugin%20Cover.png)
 # Design Tokens
 
 <a href="https://www.producthunt.com/posts/figma-design-tokens-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-figma-design-tokens-2" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=273532&theme=light" alt="Figma Design Tokens - Export & convert design tokens or sync with github repo. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
