@@ -234,7 +234,7 @@ A limitation that comes with Figma is that the server must allow access from any
 ##### Pushing to Github
 If you push to github the server url must be in the format 
 ```
-https://api.github.com/repo/:username/:repo/dispatches
+https://api.github.com/repos/:username/:repo/dispatches
 ```
 
 For the repositiory `lukasoppermann/design-token-transformer` this would be:
