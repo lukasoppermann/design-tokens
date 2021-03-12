@@ -1,4 +1,4 @@
-import {getAccessToken, setAccessToken} from '../../src/utilities/accessToken'
+import { getAccessToken } from '../../src/utilities/accessToken'
 
 beforeAll(() => {
   // @ts-ignore
@@ -7,11 +7,10 @@ beforeAll(() => {
       getAsync: jest.fn()
     }
   }
-
 })
 
-describe("Testing getAccessToken", () => {
-  test("return correct token object", () => {
+describe('Testing getAccessToken', () => {
+  test('return correct token object', () => {
     // @ts-ignore
     global.figma.clientStorage.getAsync.mockReturnValue(Promise.resolve({
       '125454sdaf': 'test'
@@ -22,7 +21,7 @@ describe("Testing getAccessToken", () => {
     })
   })
 
-  test("return string instead of token object", () => {
+  test('return string instead of token object', () => {
     // @ts-ignore
     global.figma.clientStorage.getAsync.mockReturnValue(Promise.resolve('wrong'))
 
@@ -31,7 +30,7 @@ describe("Testing getAccessToken", () => {
     })
   })
 
-  test("token does not exist", () => {
+  test('token does not exist', () => {
     // @ts-ignore
     global.figma.clientStorage.getAsync.mockReturnValue(Promise.resolve({
       '125454sdaf': 'test'

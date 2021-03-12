@@ -6,7 +6,7 @@ export default {
     empty: false
   },
   nameConversion: {
-    default: 'false',
+    default: 'default',
     empty: false
   },
   excludePrefix: {

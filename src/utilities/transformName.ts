@@ -1,5 +1,3 @@
-import { getSettings } from './settings'
-
 const toCamelCase = (string: string): string => {
   return string.toLowerCase()
     .replace(/['"]/g, '')
@@ -19,9 +17,7 @@ const toKebabCase = (string: string): string => {
     .replace(/ /g, '-')
 }
 
-const transformName = (name: string): string => {
-  // get user settings for name conversion
-  const { nameConversion } = getSettings()
+const transformName = (name: string, nameConversion: string = 'default'): string => {
   // if camelCase
   if (nameConversion === 'camelCase') {
     return toCamelCase(name)

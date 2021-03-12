@@ -32,10 +32,10 @@ const getJson = (figma: PluginAPI, stringify: boolean = true) => {
     excludePrefix: userSettings.excludePrefix
   })
   if (stringify === false) {
-    return getTokenJson(figmaData)
+    return getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion)
   }
   // get tokens as stringified json
-  return JSON.stringify(getTokenJson(figmaData))
+  return JSON.stringify(getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion))
 }
 // ---------------------------------
 // EXPORT TO FILE

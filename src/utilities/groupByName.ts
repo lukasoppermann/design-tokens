@@ -9,13 +9,13 @@ const nestedObjectFromArray = (array: string[], value: any) => {
   return array.reduceRight(reducer, value)
 }
 
-const groupByName = (tokenArray: propertyObject[], removeName: boolean = true) => {
+const groupByName = (tokenArray: propertyObject[], removeName: boolean = true, nameConversion: string) => {
   // nest tokens into object with hierachy defined by name using /
   const groupedTokens = tokenArray.map(token => {
     // split token name into array
     // remove leading and following whitespace for every item
     // transform items to lowerCase
-    const groupsFromName = token.name.split('/').map(group => transformName(group))
+    const groupsFromName = token.name.split('/').map(group => transformName(group, nameConversion))
     // remove name if not otherwise specified
     if (removeName === true) {
       delete token.name

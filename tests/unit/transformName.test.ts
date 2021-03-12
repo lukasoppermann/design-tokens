@@ -1,4 +1,4 @@
-import transformName, { __testing } from '../../src/utilities/transformName'
+import transformName from '../../src/utilities/transformName'
 
 const strings: string[] = [
   ' Foo      Bar',
@@ -13,22 +13,9 @@ const strings: string[] = [
   '  Equipment Class Name  '
 ]
 
-beforeAll(() => {
-  // @ts-ignore
-  global.figma = {
-    root: {
-      getPluginData: jest.fn()
-    }
-  }
-})
-
 describe('transformName', () => {
   // default case only transforms to lowercase and trims
   test('default case', () => {
-    // @ts-ignore
-    global.figma.root.getPluginData.mockReturnValue({
-      nameConversion: 'false'
-    })
     const transformed = strings.map(string => transformName(string))
     expect(transformed).toStrictEqual([
       'foo      bar',
@@ -46,7 +33,7 @@ describe('transformName', () => {
 
   // transform to camelCase and trim
   test('camelCase', () => {
-    const transformed = strings.map(string => __testing.toCamelCase(string))
+    const transformed = strings.map(string => transformName(string, 'camelCase'))
     expect(transformed).toStrictEqual([
       'fooBar',
       'fooBar',
@@ -63,7 +50,7 @@ describe('transformName', () => {
 
   // transform to kebab-case and trim
   test('kebab-case', () => {
-    const transformed = strings.map(string => __testing.toKebabCase(string))
+    const transformed = strings.map(string => transformName(string, 'kebabCase'))
     expect(transformed).toStrictEqual([
       'foo-bar',
       'foo-bar',

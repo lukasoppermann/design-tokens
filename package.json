@@ -46,6 +46,7 @@
       "@typescript-eslint"
     ],
     "global": [
+      "test",
       "__uiFiles__",
       "figma",
       "PluginAPI",
