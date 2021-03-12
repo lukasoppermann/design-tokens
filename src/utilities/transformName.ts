@@ -1,5 +1,6 @@
+import { getSettings } from './settings'
 
-const toCamelCase = (string: string) => {
+const toCamelCase = (string: string): string => {
   return string.toLowerCase()
     .replace(/['"]/g, '')
     .replace(/([-_ ]){1,}/g, ' ')
@@ -9,24 +10,31 @@ const toCamelCase = (string: string) => {
     .replace(/ /g, '')
 }
 
-const transformName = (name: string, style: string|false = false) => {
+const toKebabCase = (string: string): string => {
+  return string.toLowerCase()
+    .replace(/['"]/g, '')
+    .replace(/([-_ ]){1,}/g, ' ')
+    .replace(/\W+/g, ' ')
+    .trim()
+    .replace(/ /g, '-')
+}
+
+const transformName = (name: string): string => {
+  // get user settings for name conversion
+  const { nameConversion } = getSettings()
   // if camelCase
-  if (style === 'camelCase') {
+  if (nameConversion === 'camelCase') {
     return toCamelCase(name)
+  }
+  // if kebabCase
+  if (nameConversion === 'kebabCase') {
+    return toKebabCase(name)
   }
   return name.trim().toLowerCase()
 }
 
-// // console.log(toCamelCase('Foo      Bar'))
-// // console.log(toCamelCase('--foo-bar--'))
-// // console.log(toCamelCase('__FOO_BAR__-'))
-// // console.log(toCamelCase('foo123Bar'))
-// // console.log(toCamelCase('foo_Bar'))
-// // console.log(toCamelCase('foo.Bar:foo,bar;foo+bar*foo—bar'))
-
-// // console.log(toCamelCase('EquipmentClass name'))
-// // console.log(toCamelCase('Equipment className'))
-// // console.log(toCamelCase('equipment class name'))
-// // console.log(toCamelCase('Equipment Class Name'))
-
 export default transformName
+export const __testing = {
+  toCamelCase: toCamelCase,
+  toKebabCase: toKebabCase
+}

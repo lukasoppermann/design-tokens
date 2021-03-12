@@ -15,7 +15,7 @@ const groupByName = (tokenArray: propertyObject[], removeName: boolean = true) =
     // split token name into array
     // remove leading and following whitespace for every item
     // transform items to lowerCase
-    const groupsFromName = token.name.split('/').map(group => transformName(group, 'camelCase'))
+    const groupsFromName = token.name.split('/').map(group => transformName(group))
     // remove name if not otherwise specified
     if (removeName === true) {
       delete token.name

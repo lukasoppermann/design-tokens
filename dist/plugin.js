@@ -779,9 +779,129 @@
         };
         exports.default = deepMerge;
     });
-    define("src/utilities/transformName", ["require", "exports"], function (require, exports) {
+    define("src/utilities/settingsDefault", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        /* istanbul ignore file */
+        // settings structure & default values
+        exports.default = {
+            filename: {
+                default: 'design-tokens',
+                empty: false
+            },
+            nameConversion: {
+                default: 'false',
+                empty: false
+            },
+            excludePrefix: {
+                default: true,
+                empty: false
+            },
+            prefix: {
+                default: '_',
+                empty: false
+            },
+            serverUrl: {
+                default: '',
+                empty: true
+            },
+            eventType: {
+                default: 'update-tokens',
+                empty: false
+            },
+            acceptHeader: {
+                default: 'application/vnd.github.everest-preview+json',
+                empty: true
+            },
+            authType: {
+                default: 'token',
+                empty: false
+            }
+        };
+    });
+    define("src/utilities/settings", ["require", "exports", "src/utilities/settingsDefault"], function (require, exports, settingsDefault_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.__testing = exports.setSettings = exports.getSettings = exports.settingsKey = void 0;
+        settingsDefault_1 = __importDefault(settingsDefault_1);
+        const settingsKey = 'settings';
+        exports.settingsKey = settingsKey;
+        /**
+         * Function sanitizes and prepares settings to be stored
+         * @param newSettings
+         * @param currentSettings
+         */
+        const settingsPrepare = (newSettings, currentSettings) => {
+            // initialize object
+            const mergedSettings = {};
+            // add public settings
+            for (const [key, value] of Object.entries(settingsDefault_1.default)) {
+                // avoid empty values
+                if (typeof value.default === 'string' && value.empty === false) {
+                    if (newSettings[key].trim() === '') {
+                        newSettings[key] = currentSettings[key] || value.default;
+                    }
+                }
+                // if valid new settings
+                if (typeof newSettings[key] === typeof value.default) {
+                    mergedSettings[key] = newSettings[key];
+                }
+                // if valid current settings
+                else if (typeof currentSettings[key] === typeof value.default) {
+                    mergedSettings[key] = currentSettings[key];
+                }
+                else {
+                    // if both new and old value don't fit, use default
+                    mergedSettings[key] = value.default;
+                }
+            }
+            // return merged settings object
+            return mergedSettings;
+        };
+        /**
+         * get the current users settings
+         * for settings that are not set, the defaults will be used
+         * @return object
+         */
+        const getSettings = () => {
+            let userSettings = figma.root.getPluginData(settingsKey);
+            if (userSettings.length > 0) {
+                userSettings = JSON.parse(userSettings);
+            }
+            else {
+                userSettings = undefined;
+            }
+            // init settings object
+            const settings = {};
+            // fill with user settings or defaults
+            Object.entries(settingsDefault_1.default).forEach(([key, value]) => {
+                if (userSettings !== undefined && userSettings[key] !== undefined) {
+                    return settings[key] = userSettings[key];
+                }
+                return settings[key] = value.default;
+            });
+            return settings;
+        };
+        exports.getSettings = getSettings;
+        /**
+         * @name saveSettings
+         * @description save the user settings to the "cache"
+         * @param {UserSettings} settings
+         */
+        const setSettings = (settings) => {
+            settings = settingsPrepare(settings, getSettings());
+            // store public settings that should be shared across org
+            figma.root.setPluginData(settingsKey, JSON.stringify(settings, null, 2));
+        };
+        exports.setSettings = setSettings;
+        exports.__testing = {
+            settingsPrepare: settingsPrepare
+        };
+    });
+    define("src/utilities/transformName", ["require", "exports", "src/utilities/settings"], function (require, exports, settings_1) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.__testing = void 0;
         const toCamelCase = (string) => {
             return string.toLowerCase()
                 .replace(/['"]/g, '')
@@ -791,24 +911,32 @@
                 .replace(/ (.)/g, function ($1) { return $1.toUpperCase(); })
                 .replace(/ /g, '');
         };
-        const transformName = (name, style = false) => {
+        const toKebabCase = (string) => {
+            return string.toLowerCase()
+                .replace(/['"]/g, '')
+                .replace(/([-_ ]){1,}/g, ' ')
+                .replace(/\W+/g, ' ')
+                .trim()
+                .replace(/ /g, '-');
+        };
+        const transformName = (name) => {
+            // get user settings for name conversion
+            const { nameConversion } = settings_1.getSettings();
             // if camelCase
-            if (style === 'camelCase') {
+            if (nameConversion === 'camelCase') {
                 return toCamelCase(name);
+            }
+            // if kebabCase
+            if (nameConversion === 'kebabCase') {
+                return toKebabCase(name);
             }
             return name.trim().toLowerCase();
         };
-        // // console.log(toCamelCase('Foo      Bar'))
-        // // console.log(toCamelCase('--foo-bar--'))
-        // // console.log(toCamelCase('__FOO_BAR__-'))
-        // // console.log(toCamelCase('foo123Bar'))
-        // // console.log(toCamelCase('foo_Bar'))
-        // // console.log(toCamelCase('foo.Bar:foo,bar;foo+bar*foo—bar'))
-        // // console.log(toCamelCase('EquipmentClass name'))
-        // // console.log(toCamelCase('Equipment className'))
-        // // console.log(toCamelCase('equipment class name'))
-        // // console.log(toCamelCase('Equipment Class Name'))
         exports.default = transformName;
+        exports.__testing = {
+            toCamelCase: toCamelCase,
+            toKebabCase: toKebabCase
+        };
     });
     define("src/utilities/groupByName", ["require", "exports", "src/utilities/deepMerge", "src/utilities/transformName"], function (require, exports, deepMerge_1, transformName_1) {
         "use strict";
@@ -828,7 +956,7 @@
                 // split token name into array
                 // remove leading and following whitespace for every item
                 // transform items to lowerCase
-                const groupsFromName = token.name.split('/').map(group => transformName_1.default(group, 'camelCase'));
+                const groupsFromName = token.name.split('/').map(group => transformName_1.default(group));
                 // remove name if not otherwise specified
                 if (removeName === true) {
                     delete token.name;
@@ -1198,125 +1326,6 @@
         };
         exports.default = buildFigmaData;
     });
-    define("src/utilities/settingsDefault", ["require", "exports"], function (require, exports) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        /* istanbul ignore file */
-        // settings structure & default values
-        exports.default = {
-            filename: {
-                default: 'design-tokens',
-                empty: false
-            },
-            nameConversion: {
-                default: 'false',
-                empty: false
-            },
-            excludePrefix: {
-                default: true,
-                empty: false
-            },
-            prefix: {
-                default: '_',
-                empty: false
-            },
-            serverUrl: {
-                default: '',
-                empty: true
-            },
-            eventType: {
-                default: 'update-tokens',
-                empty: false
-            },
-            acceptHeader: {
-                default: 'application/vnd.github.everest-preview+json',
-                empty: true
-            },
-            authType: {
-                default: 'token',
-                empty: false
-            }
-        };
-    });
-    define("src/utilities/settings", ["require", "exports", "src/utilities/settingsDefault"], function (require, exports, settingsDefault_1) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        exports.__testing = exports.setSettings = exports.getSettings = exports.settingsKey = void 0;
-        settingsDefault_1 = __importDefault(settingsDefault_1);
-        const settingsKey = 'settings';
-        exports.settingsKey = settingsKey;
-        /**
-         * Function sanitizes and prepares settings to be stored
-         * @param newSettings
-         * @param currentSettings
-         */
-        const settingsPrepare = (newSettings, currentSettings) => {
-            // initialize object
-            const mergedSettings = {};
-            // add public settings
-            for (const [key, value] of Object.entries(settingsDefault_1.default)) {
-                // avoid empty values
-                if (typeof value.default === 'string' && value.empty === false) {
-                    if (newSettings[key].trim() === '') {
-                        newSettings[key] = currentSettings[key] || value.default;
-                    }
-                }
-                // if valid new settings
-                if (typeof newSettings[key] === typeof value.default) {
-                    mergedSettings[key] = newSettings[key];
-                }
-                // if valid current settings
-                else if (typeof currentSettings[key] === typeof value.default) {
-                    mergedSettings[key] = currentSettings[key];
-                }
-                else {
-                    // if both new and old value don't fit, use default
-                    mergedSettings[key] = value.default;
-                }
-            }
-            // return merged settings object
-            return mergedSettings;
-        };
-        /**
-         * get the current users settings
-         * for settings that are not set, the defaults will be used
-         * @return object
-         */
-        const getSettings = () => {
-            let userSettings = figma.root.getPluginData(settingsKey);
-            if (userSettings.length > 0) {
-                userSettings = JSON.parse(userSettings);
-            }
-            else {
-                userSettings = undefined;
-            }
-            // init settings object
-            const settings = {};
-            // fill with user settings or defaults
-            Object.entries(settingsDefault_1.default).forEach(([key, value]) => {
-                if (userSettings !== undefined && userSettings[key] !== undefined) {
-                    return settings[key] = userSettings[key];
-                }
-                return settings[key] = value.default;
-            });
-            return settings;
-        };
-        exports.getSettings = getSettings;
-        /**
-         * @name saveSettings
-         * @description save the user settings to the "cache"
-         * @param {UserSettings} settings
-         */
-        const setSettings = (settings) => {
-            settings = settingsPrepare(settings, getSettings());
-            // store public settings that should be shared across org
-            figma.root.setPluginData(settingsKey, JSON.stringify(settings, null, 2));
-        };
-        exports.setSettings = setSettings;
-        exports.__testing = {
-            settingsPrepare: settingsPrepare
-        };
-    });
     define("src/utilities/accessToken", ["require", "exports"], function (require, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
@@ -1381,7 +1390,7 @@
             }
         };
     });
-    define("src/index", ["require", "exports", "src/utilities/getTokenJson", "src/utilities/buildFigmaData", "src/utilities/settings", "src/utilities/accessToken", "src/utilities/version", "src/utilities/semVerDifference"], function (require, exports, getTokenJson_1, buildFigmaData_1, settings_1, accessToken_1, version_1, semVerDifference_1) {
+    define("src/index", ["require", "exports", "src/utilities/getTokenJson", "src/utilities/buildFigmaData", "src/utilities/settings", "src/utilities/accessToken", "src/utilities/version", "src/utilities/semVerDifference"], function (require, exports, getTokenJson_1, buildFigmaData_1, settings_2, accessToken_1, version_1, semVerDifference_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         getTokenJson_1 = __importDefault(getTokenJson_1);
@@ -1394,7 +1403,7 @@
         }
         const fileId = figma.root.getPluginData('fileId');
         // Get the user settings
-        const userSettings = settings_1.getSettings();
+        const userSettings = settings_2.getSettings();
         /**
          * @name activateUtilitiesUi
          * @description activates the utilities ui to run utility functions
@@ -1525,7 +1534,7 @@
             // save settings
             if (message.command === 'saveSettings') {
                 // store settings
-                settings_1.setSettings(message.settings);
+                settings_2.setSettings(message.settings);
                 // accessToken
                 yield accessToken_1.setAccessToken(fileId, message.accessToken);
                 // close plugin
