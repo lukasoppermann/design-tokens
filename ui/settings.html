@@ -2220,6 +2220,13 @@
       <input required pattern="^[\w\-\.\+@]+$" type="text" id="filename" class="input__field with-inside-label-behind-sm" placeholder="design-tokens" value="design-tokens">
       <div class="label inside-label-behind--sm">.json</div>
     </div>
+    <div class="flex-horizontal">
+      <div class="label" style="width: 130px !important">Name conversion:</div>
+      <select id="nameConversion" class="select-css">
+        <option value="false">Default</option>
+        <option value="camelCase">camelCase</option>
+      </select>
+    </div>
     <div class="section-title">Prefix</div>
     <div class="message-box">
       <div class="message message--info">Define a prefix for styles to be in-/excluded.</div>
@@ -2277,6 +2284,7 @@
     if (message.command === "getSettings") {
       // fill form with data
       document.getElementById('filename').value = message.settings.filename
+      document.getElementById('nameConversion').querySelector(`[value=${message.settings.nameConversion}]`).selected = true
       document.getElementById('prefix').value = message.settings.prefix
       document.getElementById('excludePrefix').checked = message.settings.excludePrefix
       document.getElementById('serverurl').value = message.settings.serverUrl
@@ -2300,6 +2308,7 @@
         command: 'saveSettings',
         settings: {
           filename: document.getElementById('filename').value,
+          nameConversion: document.getElementById('nameConversion').value,
           prefix: document.getElementById('prefix').value,
           excludePrefix: document.getElementById('excludePrefix').checked,
           serverUrl: document.getElementById('serverurl').value,

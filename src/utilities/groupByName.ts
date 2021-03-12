@@ -1,5 +1,6 @@
 import { propertyObject } from '../../types/propertyObject'
 import deepMerge from './deepMerge'
+import transformName from '../utilities/transformName'
 // create a nested object structure from the array (['style','colors','main','red'])
 const nestedObjectFromArray = (array: string[], value: any) => {
   // reducer
@@ -14,7 +15,7 @@ const groupByName = (tokenArray: propertyObject[], removeName: boolean = true) =
     // split token name into array
     // remove leading and following whitespace for every item
     // transform items to lowerCase
-    const groupsFromName = token.name.split('/').map(group => group.trim().toLowerCase())
+    const groupsFromName = token.name.split('/').map(group => transformName(group, 'camelCase'))
     // remove name if not otherwise specified
     if (removeName === true) {
       delete token.name

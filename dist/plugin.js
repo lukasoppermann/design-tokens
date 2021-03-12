@@ -779,10 +779,42 @@
         };
         exports.default = deepMerge;
     });
-    define("src/utilities/groupByName", ["require", "exports", "src/utilities/deepMerge"], function (require, exports, deepMerge_1) {
+    define("src/utilities/transformName", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const toCamelCase = (string) => {
+            return string.toLowerCase()
+                .replace(/['"]/g, '')
+                .replace(/([-_ ]){1,}/g, ' ')
+                .replace(/\W+/g, ' ')
+                .trim()
+                .replace(/ (.)/g, function ($1) { return $1.toUpperCase(); })
+                .replace(/ /g, '');
+        };
+        const transformName = (name, style = false) => {
+            // if camelCase
+            if (style === 'camelCase') {
+                return toCamelCase(name);
+            }
+            return name.trim().toLowerCase();
+        };
+        // // console.log(toCamelCase('Foo      Bar'))
+        // // console.log(toCamelCase('--foo-bar--'))
+        // // console.log(toCamelCase('__FOO_BAR__-'))
+        // // console.log(toCamelCase('foo123Bar'))
+        // // console.log(toCamelCase('foo_Bar'))
+        // // console.log(toCamelCase('foo.Bar:foo,bar;foo+bar*foo—bar'))
+        // // console.log(toCamelCase('EquipmentClass name'))
+        // // console.log(toCamelCase('Equipment className'))
+        // // console.log(toCamelCase('equipment class name'))
+        // // console.log(toCamelCase('Equipment Class Name'))
+        exports.default = transformName;
+    });
+    define("src/utilities/groupByName", ["require", "exports", "src/utilities/deepMerge", "src/utilities/transformName"], function (require, exports, deepMerge_1, transformName_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         deepMerge_1 = __importDefault(deepMerge_1);
+        transformName_1 = __importDefault(transformName_1);
         // create a nested object structure from the array (['style','colors','main','red'])
         const nestedObjectFromArray = (array, value) => {
             // reducer
@@ -796,7 +828,7 @@
                 // split token name into array
                 // remove leading and following whitespace for every item
                 // transform items to lowerCase
-                const groupsFromName = token.name.split('/').map(group => group.trim().toLowerCase());
+                const groupsFromName = token.name.split('/').map(group => transformName_1.default(group, 'camelCase'));
                 // remove name if not otherwise specified
                 if (removeName === true) {
                     delete token.name;
@@ -1176,6 +1208,10 @@
                 default: 'design-tokens',
                 empty: false
             },
+            nameConversion: {
+                default: 'false',
+                empty: false
+            },
             excludePrefix: {
                 default: true,
                 empty: false
@@ -1432,7 +1468,7 @@
         if (figma.command === 'settings') {
             const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened';
             // height for the settings dialog
-            let settingsDialogHeight = 530;
+            let settingsDialogHeight = 565;
             // wrap in function because of async client Storage
             const openUi = () => __awaiter(void 0, void 0, void 0, function* () {
                 // get version & version difference

@@ -5,6 +5,10 @@ export default {
     default: 'design-tokens',
     empty: false
   },
+  nameConversion: {
+    default: 'false',
+    empty: false
+  },
   excludePrefix: {
     default: true,
     empty: false

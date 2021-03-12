@@ -85,7 +85,7 @@ if (figma.command === 'urlExport') {
 if (figma.command === 'settings') {
   const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
   // height for the settings dialog
-  let settingsDialogHeight = 530
+  let settingsDialogHeight = 565
   // wrap in function because of async client Storage
   const openUi = async () => {
     // get version & version difference
