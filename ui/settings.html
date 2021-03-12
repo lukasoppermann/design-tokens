@@ -2133,6 +2133,13 @@
     .flex-horizontal input {
       min-width: 50px;
     }
+    .inside-label-behind--sm {
+      position: absolute;
+      right: var(--size-xxsmall);
+    }
+    .with-inside-label-behind-sm {
+      padding-right: 50px;
+    }
     input:invalid {
       border: 1px solid var(--red);
       outline: 1px solid var(--red);
@@ -2208,12 +2215,10 @@
       </div>
     </div>
     <h3>Design Token Settings</h3>
-    <div class="flex-horizontal">
-      <div class="input flex-horizontal">
-        <div class="label">Filename:</div>
-        <input required pattern="^[\w\-\.\+@]+$" type="text" id="filename" class="input__field" placeholder="design-tokens" value="design-tokens">
-        <div class="label">.json</div>
-      </div>
+    <div class="input flex-horizontal">
+      <div class="label">Filename:</div>
+      <input required pattern="^[\w\-\.\+@]+$" type="text" id="filename" class="input__field with-inside-label-behind-sm" placeholder="design-tokens" value="design-tokens">
+      <div class="label inside-label-behind--sm">.json</div>
     </div>
     <div class="section-title">Prefix</div>
     <div class="message-box">
