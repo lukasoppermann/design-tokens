@@ -205,6 +205,13 @@ To allow for maximum customizability I decided to provide all values that Figma 
 This allows you to define the file name that is used when exporting tokens. The `.json` extension will be automatically appended to the name.
 The filename will also be send to the server when sending design tokens to the server.
 
+### Name Conversion
+This option allows you to define how the token names will be converted when they are store in the json file, the available options are:
+
+- `Default` – spaces from the beginning and end are removed and the name is converted to lowercase
+- `camelCase` - spaces from the beginning and end are removed and the name is converted to [camelCase](https://en.wikipedia.org/wiki/Camel_case)
+- `kebab-case`  - spaces from the beginning and end are removed and the name is converted to kebab-case
+
 ### Prefix (used to in-/exclude styles)
 #### **Prefix**
 You can change the prefix from `_` to anything, e.g. `_tokens`.   
