@@ -11,13 +11,13 @@ beforeAll(() => {
       getAsync: jest.fn()
     }
   }
-
 })
 
-describe("Testing settingsPrepare", () => {
-  test("add valid settings to empty array", () => {
+describe('Testing settingsPrepare', () => {
+  test('add valid settings to empty array', () => {
     const newSettings = {
       filename: 'myFile',
+      nameConversion: 'default',
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -28,6 +28,7 @@ describe("Testing settingsPrepare", () => {
 
     const output = {
       filename: 'myFile',
+      nameConversion: 'default',
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -40,9 +41,10 @@ describe("Testing settingsPrepare", () => {
     expect(__testing.settingsPrepare(newSettings)).toStrictEqual(output)
   })
 
-  test("send empty settings", () => {
+  test('send empty settings', () => {
     const newSettings = {
       filename: '',
+      nameConversion: '',
       excludePrefix: false,
       prefix: '',
       eventType: '',
@@ -51,6 +53,7 @@ describe("Testing settingsPrepare", () => {
 
     const output = {
       filename: 'design-tokens',
+      nameConversion: 'default',
       excludePrefix: false,
       prefix: '_',
       serverUrl: '',
@@ -66,10 +69,11 @@ describe("Testing settingsPrepare", () => {
   })
 })
 
-describe("Testing setSettings", () => {
-  test("setSettings function with valid data", () => {
+describe('Testing setSettings', () => {
+  test('setSettings function with valid data', () => {
     const currentSettings = {
       filename: '',
+      nameConversion: 'default',
       excludePrefix: false,
       prefix: '',
       serverUrl: '',
@@ -82,6 +86,7 @@ describe("Testing setSettings", () => {
 
     const newSettings = {
       filename: 'myFile',
+      nameConversion: 'default',
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -92,6 +97,7 @@ describe("Testing setSettings", () => {
 
     const output = {
       filename: 'myFile',
+      nameConversion: 'default',
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -104,14 +110,15 @@ describe("Testing setSettings", () => {
     // @ts-ignore
     expect(figma.root.getPluginData).toHaveReturnedWith(currentSettings)
     // @ts-ignore
-    expect(figma.root.setPluginData).toHaveBeenCalledWith("settings", JSON.stringify(output, null, 2))
+    expect(figma.root.setPluginData).toHaveBeenCalledWith('settings', JSON.stringify(output, null, 2))
   })
 })
 
-describe("Testing getSettings", () => {
-  test("get settings when valid settings are present", () => {
+describe('Testing getSettings', () => {
+  test('get settings when valid settings are present', () => {
     const currentSettings = {
       filename: 'myFile',
+      nameConversion: 'default',
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -124,6 +131,7 @@ describe("Testing getSettings", () => {
 
     const output = {
       filename: 'myFile',
+      nameConversion: 'default',
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -131,23 +139,24 @@ describe("Testing getSettings", () => {
       acceptHeader: 'yo',
       authType: 'aType'
     }
-    
+
     // assert
     expect(getSettings()).toStrictEqual(output)
   })
 
-  test("get settings when novalid settings are present", () => {
+  test('get settings when novalid settings are present', () => {
     // @ts-ignore
     figma.root.getPluginData.mockReturnValue('')
 
     const output = {
       filename: 'design-tokens',
+      nameConversion: 'default',
       excludePrefix: true,
       prefix: '_',
       serverUrl: '',
       eventType: 'update-tokens',
       acceptHeader: 'application/vnd.github.everest-preview+json',
-      authType: 'token',
+      authType: 'token'
     }
 
     // assert

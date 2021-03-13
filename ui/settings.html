@@ -1875,7 +1875,7 @@
       letter-spacing: var(--font-letter-spacing-pos-xsmall);
       line-height: var(--font-line-height);
       margin-left: -16px;
-      padding: 0 var(--size-xsmall) 0 calc(var(--size-xlarge) - 2px);
+      padding: 0 var(--size-xsmall) 0 0;
       -webkit-user-select: none;
         -moz-user-select: none;
           -ms-user-select: none;
@@ -2133,6 +2133,13 @@
     .flex-horizontal input {
       min-width: 50px;
     }
+    .inside-label-behind--sm {
+      position: absolute;
+      right: var(--size-xxsmall);
+    }
+    .with-inside-label-behind-sm {
+      padding-right: 50px;
+    }
     input:invalid {
       border: 1px solid var(--red);
       outline: 1px solid var(--red);
@@ -2208,12 +2215,18 @@
       </div>
     </div>
     <h3>Design Token Settings</h3>
+    <div class="input flex-horizontal">
+      <div class="label">Filename:</div>
+      <input required pattern="^[\w\-\.\+@]+$" type="text" id="filename" class="input__field with-inside-label-behind-sm" placeholder="design-tokens" value="design-tokens">
+      <div class="label inside-label-behind--sm">.json</div>
+    </div>
     <div class="flex-horizontal">
-      <div class="input flex-horizontal">
-        <div class="label">Filename:</div>
-        <input required pattern="^[\w\-\.\+@]+$" type="text" id="filename" class="input__field" placeholder="design-tokens" value="design-tokens">
-        <div class="label">.json</div>
-      </div>
+      <div class="label" style="width: 130px !important">Name conversion:</div>
+      <select id="nameConversion" class="select-css">
+        <option value="default">Default</option>
+        <option value="camelCase">camelCase</option>
+        <option value="kebabCase">kebab-case</option>
+      </select>
     </div>
     <div class="section-title">Prefix</div>
     <div class="message-box">
@@ -2272,6 +2285,7 @@
     if (message.command === "getSettings") {
       // fill form with data
       document.getElementById('filename').value = message.settings.filename
+      document.getElementById('nameConversion').querySelector(`[value=${message.settings.nameConversion}]`).selected = true
       document.getElementById('prefix').value = message.settings.prefix
       document.getElementById('excludePrefix').checked = message.settings.excludePrefix
       document.getElementById('serverurl').value = message.settings.serverUrl
@@ -2295,6 +2309,7 @@
         command: 'saveSettings',
         settings: {
           filename: document.getElementById('filename').value,
+          nameConversion: document.getElementById('nameConversion').value,
           prefix: document.getElementById('prefix').value,
           excludePrefix: document.getElementById('excludePrefix').checked,
           serverUrl: document.getElementById('serverurl').value,

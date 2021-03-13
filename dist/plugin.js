@@ -779,10 +779,49 @@
         };
         exports.default = deepMerge;
     });
-    define("src/utilities/groupByName", ["require", "exports", "src/utilities/deepMerge"], function (require, exports, deepMerge_1) {
+    define("src/utilities/transformName", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.__testing = void 0;
+        const toCamelCase = (string) => {
+            return string.toLowerCase()
+                .replace(/['"]/g, '')
+                .replace(/([-_ ]){1,}/g, ' ')
+                .replace(/\W+/g, ' ')
+                .trim()
+                .replace(/ (.)/g, function ($1) { return $1.toUpperCase(); })
+                .replace(/ /g, '');
+        };
+        const toKebabCase = (string) => {
+            return string.toLowerCase()
+                .replace(/['"]/g, '')
+                .replace(/([-_ ]){1,}/g, ' ')
+                .replace(/\W+/g, ' ')
+                .trim()
+                .replace(/ /g, '-');
+        };
+        const transformName = (name, nameConversion = 'default') => {
+            // if camelCase
+            if (nameConversion === 'camelCase') {
+                return toCamelCase(name);
+            }
+            // if kebabCase
+            if (nameConversion === 'kebabCase') {
+                return toKebabCase(name);
+            }
+            return name.trim().toLowerCase();
+        };
+        exports.default = transformName;
+        exports.__testing = {
+            toCamelCase: toCamelCase,
+            toKebabCase: toKebabCase
+        };
+    });
+    define("src/utilities/groupByName", ["require", "exports", "src/utilities/deepMerge", "src/utilities/transformName"], function (require, exports, deepMerge_1, transformName_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         deepMerge_1 = __importDefault(deepMerge_1);
+        transformName_1 = __importDefault(transformName_1);
         // create a nested object structure from the array (['style','colors','main','red'])
         const nestedObjectFromArray = (array, value) => {
             // reducer
@@ -790,13 +829,13 @@
             // return reduced array
             return array.reduceRight(reducer, value);
         };
-        const groupByName = (tokenArray, removeName = true) => {
+        const groupByName = (tokenArray, removeName = true, nameConversion) => {
             // nest tokens into object with hierachy defined by name using /
             const groupedTokens = tokenArray.map(token => {
                 // split token name into array
                 // remove leading and following whitespace for every item
                 // transform items to lowerCase
-                const groupsFromName = token.name.split('/').map(group => group.trim().toLowerCase());
+                const groupsFromName = token.name.split('/').map(group => transformName_1.default(group, nameConversion));
                 // remove name if not otherwise specified
                 if (removeName === true) {
                     delete token.name;
@@ -928,13 +967,13 @@
                 ...extractEffects_1.default(figmaData.effectStyles)
             ];
         };
-        const getTokenJson = (figmaData, format = 'styleDictionary') => {
+        const getTokenJson = (figmaData, format = 'styleDictionary', nameConversion = 'default') => {
             // get token array
             const tokenArray = exportRawTokenArray(figmaData);
             // format tokens
             const formattedTokens = tokenArray.map((token) => transformer[format](token));
             // group tokens
-            const groupedTokens = groupByName_1.default(formattedTokens);
+            const groupedTokens = groupByName_1.default(formattedTokens, true, nameConversion);
             // return group tokens
             return groupedTokens;
         };
@@ -1176,6 +1215,10 @@
                 default: 'design-tokens',
                 empty: false
             },
+            nameConversion: {
+                default: 'default',
+                empty: false
+            },
             excludePrefix: {
                 default: true,
                 empty: false
@@ -1379,10 +1422,10 @@
                 excludePrefix: userSettings.excludePrefix
             });
             if (stringify === false) {
-                return getTokenJson_1.default(figmaData);
+                return getTokenJson_1.default(figmaData, 'styleDictionary', userSettings.nameConversion);
             }
             // get tokens as stringified json
-            return JSON.stringify(getTokenJson_1.default(figmaData));
+            return JSON.stringify(getTokenJson_1.default(figmaData, 'styleDictionary', userSettings.nameConversion));
         };
         // ---------------------------------
         // EXPORT TO FILE
@@ -1432,7 +1475,7 @@
         if (figma.command === 'settings') {
             const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened';
             // height for the settings dialog
-            let settingsDialogHeight = 530;
+            let settingsDialogHeight = 565;
             // wrap in function because of async client Storage
             const openUi = () => __awaiter(void 0, void 0, void 0, function* () {
                 // get version & version difference

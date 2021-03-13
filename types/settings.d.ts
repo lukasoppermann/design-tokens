@@ -1,5 +1,6 @@
 type Settings = {
   filename: string,
+  nameConversion: string,
   excludePrefix: boolean,
   prefix: string,
   serverUrl?: string,

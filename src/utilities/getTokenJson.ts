@@ -31,13 +31,13 @@ const exportRawTokenArray = (figmaData: figmaDataType) => {
   ]
 }
 
-const getTokenJson = (figmaData: figmaDataType, format: string = 'styleDictionary') => {
+const getTokenJson = (figmaData: figmaDataType, format: string = 'styleDictionary', nameConversion: string = 'default') => {
   // get token array
   const tokenArray = exportRawTokenArray(figmaData)
   // format tokens
   const formattedTokens = tokenArray.map((token: propertyObject) => transformer[format](token))
   // group tokens
-  const groupedTokens = groupByName(formattedTokens)
+  const groupedTokens = groupByName(formattedTokens, true, nameConversion)
   // return group tokens
   return groupedTokens
 }

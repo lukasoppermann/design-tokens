@@ -32,10 +32,10 @@ const getJson = (figma: PluginAPI, stringify: boolean = true) => {
     excludePrefix: userSettings.excludePrefix
   })
   if (stringify === false) {
-    return getTokenJson(figmaData)
+    return getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion)
   }
   // get tokens as stringified json
-  return JSON.stringify(getTokenJson(figmaData))
+  return JSON.stringify(getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion))
 }
 // ---------------------------------
 // EXPORT TO FILE
@@ -85,7 +85,7 @@ if (figma.command === 'urlExport') {
 if (figma.command === 'settings') {
   const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
   // height for the settings dialog
-  let settingsDialogHeight = 530
+  let settingsDialogHeight = 565
   // wrap in function because of async client Storage
   const openUi = async () => {
     // get version & version difference
