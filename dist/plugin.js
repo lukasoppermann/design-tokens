@@ -1368,7 +1368,7 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         /* istanbul ignore file */
-        const version = '2.0.0';
+        const version = '2.1.0';
         exports.default = version;
     });
     define("src/utilities/semVerDifference", ["require", "exports"], function (require, exports) {
