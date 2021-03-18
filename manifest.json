@@ -3,10 +3,7 @@
   "id": "888356646278934516",
   "api": "1.0.0",
   "main": "dist/plugin.js",
-  "ui": {
-    "utilities": "ui/utilities.html",
-    "settings": "ui/settings.html"
-  },
+  "ui": "dist/ui.html",
   "menu": [
     {"name": "Export Design Token File", "command": "export"},
     {"name": "Send Design Tokens to Url", "command": "urlExport"},

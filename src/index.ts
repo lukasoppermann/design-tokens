@@ -5,6 +5,13 @@ import { getAccessToken, setAccessToken } from './utilities/accessToken'
 import currentVersion from './utilities/version'
 import semVerDifference from './utilities/semVerDifference'
 
+// height for the settings dialog
+const settingsDialogHeight = 565
+figma.showUI(__html__, {
+  visible: false,
+  width: 550,
+  height: settingsDialogHeight
+})
 // set plugin id if it does not exist
 if (figma.root.getPluginData('fileId') === '') {
   figma.root.setPluginData('fileId', figma.root.name + ' ' + Math.floor(Math.random() * 1000000000))
@@ -18,7 +25,11 @@ const userSettings = getSettings()
  */
 const activateUtilitiesUi = () => {
   // register the utilities UI (hidden by default)
-  figma.showUI(__uiFiles__.utilities, { visible: false })
+  figma.showUI(__html__, {
+    visible: false,
+    width: 550,
+    height: settingsDialogHeight
+  })
 }
 /**
  * @name getJson
