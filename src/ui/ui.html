@@ -1,0 +1,70 @@
+<form id="settingsForm" class="plugin-ui-content">
+  <div id="versionNotice" class="notification notification--info hidden">
+    <div class="notification--icon">🎉</div>
+    <div class="notification--message">
+      The <a class="subtle" href="https://www.figma.com/community/plugin/888356646278934516/Design-Tokens" target="_blank">Design Token plugin</a> was
+      updated.<br />
+      Find out about changes & new features in the <a href="https://github.com/lukasoppermann/design-tokens/releases" target="_blank">release notes →</a>
+    </div>
+  </div>
+  <h3>Design Token Settings</h3>
+  <div class="input flex-horizontal">
+    <div class="label">Filename:</div>
+    <input required pattern="^[\w\-\.\+@]+$" type="text" id="filename" class="input__field with-inside-label-behind-sm" placeholder="design-tokens" value="design-tokens">
+    <div class="label inside-label-behind--sm">.json</div>
+  </div>
+  <div class="flex-horizontal">
+    <div class="label" style="width: 130px !important">Name conversion:</div>
+    <select id="nameConversion" class="select-css">
+      <option value="default">Default</option>
+      <option value="camelCase">camelCase</option>
+      <option value="kebabCase">kebab-case</option>
+    </select>
+  </div>
+  <div class="section-title">Prefix</div>
+  <div class="message-box">
+    <div class="message message--info">Define a prefix for styles to be in-/excluded.</div>
+  </div>
+  <div class="flex-horizontal">
+    <div class="input flex-horizontal">
+      <div class="label">Prefix:</div>
+      <input required pattern="\S+" type="text" id="prefix" class="input__field" placeholder="_" value="_">
+    </div>
+    <div class="switch">
+      <input class="switch__toggle" type="checkbox" id="excludePrefix" checked>
+      <label class="switch__label" for="excludePrefix">Exclude<span class="toggleText"></span></label>
+    </div>
+  </div>
+  <div class="section-title">Push to server</div>
+  <div class="input flex-horizontal">
+    <div class="label" style="width: 110px !important">Event type:</div>
+    <input required pattern="^[\w\-\.\+@]+$" type="text" id="eventtype" class="input__field" placeholder="update-tokens" value="update-tokens">
+    <div class="label label--info">"event_type" property in post request</div>
+  </div>
+  <div class="input flex-horizontal">
+    <div class="label" style="width: 110px !important">Server url:</div>
+    <input type="text" pattern="^https://.*" id="serverurl" class="input__field" placeholder="https://api.github.com/repos/:username/:repo/dispatches">
+  </div>
+  <div class="input flex-horizontal">
+    <div class="label" style="width: 110px !important">Accept header:</div>
+    <input type="text" pattern="\S+" id="acceptHeader" class="input__field" placeholder="accept header" value='application/vnd.github.everest-preview+json'>
+  </div>
+  <div class="flex-horizontal">
+    <div class="label" style="width: 110px !important">Auth type:</div>
+    <select id="authType" class="select-css">
+      <option value="token">(Github) token</option>
+      <option value="Basic">Basic authentication</option>
+      <option value="Bearer">Bearer token authentication</option>
+    </select>
+  </div>
+  <div class="input flex-horizontal">
+    <div class="label" style="width: 110px !important">Access token:</div>
+    <input type="text" pattern="\S+" id="accesstoken" class="input__field" placeholder="your access token">
+  </div>
+  <footer>
+    <button id="cancel" class='button button--secondary' type="reset">Cancel</button>
+    <button id="save" class='button button--primary' type="submit">Save changes</button>
+  </footer>
+</form>
+
+<a data-id="downloadLink"></a>
