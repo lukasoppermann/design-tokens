@@ -829,7 +829,7 @@
             // return reduced array
             return array.reduceRight(reducer, value);
         };
-        const groupByName = (tokenArray, removeName = true, nameConversion) => {
+        const groupByName = (tokenArray, removeName = true, nameConversion = 'default') => {
             // nest tokens into object with hierachy defined by name using /
             const groupedTokens = tokenArray.map(token => {
                 // split token name into array
