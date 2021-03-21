@@ -4,12 +4,15 @@ import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
 import currentVersion from './utilities/version'
 import semVerDifference from './utilities/semVerDifference'
+import { urlExportData } from '../types/urlExportData'
 
 // height for the settings dialog
 const settingsDialogHeight = 565
+const settingsDialogWidth = 550
+
 figma.showUI(__html__, {
   visible: false,
-  width: 550,
+  width: settingsDialogWidth,
   height: settingsDialogHeight
 })
 // set plugin id if it does not exist
@@ -27,7 +30,7 @@ const activateUtilitiesUi = () => {
   // register the utilities UI (hidden by default)
   figma.showUI(__html__, {
     visible: false,
-    width: 550,
+    width: settingsDialogWidth,
     height: settingsDialogHeight
   })
 }
@@ -52,8 +55,8 @@ const getJson = (figma: PluginAPI, stringify: boolean = true) => {
 // EXPORT TO FILE
 // exports the design tokens to a file
 if (figma.command === 'export') {
-  // activete utilities UI
-  activateUtilitiesUi()
+  // show UI
+  figma.ui.show()
   // write tokens to json file
   figma.ui.postMessage({
     command: 'export',
@@ -66,8 +69,6 @@ if (figma.command === 'export') {
 // SEND TO URL
 // send tokens to url
 if (figma.command === 'urlExport') {
-  // activete utilities UI
-  activateUtilitiesUi()
   // needed for getAccessToken async
   const urlExport = async () => {
     figma.ui.postMessage({
@@ -75,6 +76,7 @@ if (figma.command === 'urlExport') {
       data: {
         url: userSettings.serverUrl,
         accessToken: await getAccessToken(fileId),
+        acceptHeader: userSettings.acceptHeader,
         authType: userSettings.authType,
         data: {
           event_type: userSettings.eventType,
@@ -84,7 +86,7 @@ if (figma.command === 'urlExport') {
             filename: figma.root.name
           }
         }
-      }
+      } as urlExportData
     })
   }
   // run export url function
@@ -95,8 +97,6 @@ if (figma.command === 'urlExport') {
 // settings for the design tokens
 if (figma.command === 'settings') {
   const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
-  // height for the settings dialog
-  let settingsDialogHeight = 565
   // wrap in function because of async client Storage
   const openUi = async () => {
     // get version & version difference
@@ -108,12 +108,10 @@ if (figma.command === 'settings') {
     }
     // if minor or major update
     if (versionDifference === 'major' || versionDifference === 'minor') {
-      settingsDialogHeight += 60
+      figma.ui.resize(settingsDialogWidth, settingsDialogHeight + 60)
     }
     // register the settings UI
-    // by default it is hidden
-    // @ts-ignore
-    activateUtilitiesUi()
+    figma.ui.show()
     // sent settings to UI
     figma.ui.postMessage({
       command: 'getSettings',
@@ -130,7 +128,6 @@ if (figma.command === 'settings') {
 // HELP
 // Open github help page
 if (figma.command === 'help') {
-  activateUtilitiesUi()
   figma.ui.postMessage({
     command: 'help'
   })
@@ -145,6 +142,7 @@ figma.ui.onmessage = async (message) => {
     }
     // close plugin
     // console.log('Figma Plugin does not close')
+    figma.ui.hide()
     figma.closePlugin()
   }
   // save settings

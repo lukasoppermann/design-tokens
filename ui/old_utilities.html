@@ -89,15 +89,15 @@
         request.send(JSON.stringify(message.data.data, 0, 2))
       }
     }
-    // open help page
-    if (message.command === "help") {
-      window.open('https://github.com/lukasoppermann/design-tokens')
-      parent.postMessage({
-        pluginMessage: {
-          command: 'closePlugin'
-        }
-      }, '*')
-    }
+    // // open help page
+    // if (message.command === "help") {
+    //   window.open('https://github.com/lukasoppermann/design-tokens')
+    //   parent.postMessage({
+    //     pluginMessage: {
+    //       command: 'closePlugin'
+    //     }
+    //   }, '*')
+    // }
   }
 
 </script>
