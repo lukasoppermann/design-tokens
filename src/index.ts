@@ -113,11 +113,7 @@ if (figma.command === 'settings') {
     // register the settings UI
     // by default it is hidden
     // @ts-ignore
-    figma.showUI(__uiFiles__.settings, {
-      visible: false,
-      width: 550,
-      height: settingsDialogHeight
-    })
+    activateUtilitiesUi()
     // sent settings to UI
     figma.ui.postMessage({
       command: 'getSettings',
@@ -126,7 +122,7 @@ if (figma.command === 'settings') {
       versionDifference: versionDifference
     })
     // @ts-ignore
-    figma.ui.show(__uiFiles__.settings)
+    figma.ui.show()
   }
   // run function
   openUi()

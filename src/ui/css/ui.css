@@ -87,12 +87,12 @@ input:invalid {
 #excludePrefix ~ .switch__label > .toggleText::before {
   position: relative;
   display: inline-block;
-  content: "(prefix styles are included)";
+  content: "(ONLY prefixed styles are included)";
   padding-left: var(--size-xxxsmall);
   color: var(--dark-grey);
 }
 #excludePrefix:checked ~ .switch__label > .toggleText::before{
-  content: "(prefix styles are excluded)";
+  content: "(prefixed styles are excluded)";
 }
 footer {
   padding: var(--size-xxsmall) 0;

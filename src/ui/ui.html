@@ -38,12 +38,12 @@
   <div class="section-title">Push to server</div>
   <div class="input flex-horizontal">
     <div class="label" style="width: 110px !important">Event type:</div>
-    <input required pattern="^[\w\-\.\+@]+$" type="text" id="eventtype" class="input__field" placeholder="update-tokens" value="update-tokens">
+    <input required pattern="^[\w\-\.\+@]+$" type="text" id="eventType" class="input__field" placeholder="update-tokens" value="update-tokens">
     <div class="label label--info">"event_type" property in post request</div>
   </div>
   <div class="input flex-horizontal">
     <div class="label" style="width: 110px !important">Server url:</div>
-    <input type="text" pattern="^https://.*" id="serverurl" class="input__field" placeholder="https://api.github.com/repos/:username/:repo/dispatches">
+    <input type="text" pattern="^https://.*" id="serverUrl" class="input__field" placeholder="https://api.github.com/repos/:username/:repo/dispatches">
   </div>
   <div class="input flex-horizontal">
     <div class="label" style="width: 110px !important">Accept header:</div>
@@ -59,12 +59,12 @@
   </div>
   <div class="input flex-horizontal">
     <div class="label" style="width: 110px !important">Access token:</div>
-    <input type="text" pattern="\S+" id="accesstoken" class="input__field" placeholder="your access token">
+    <input type="text" pattern="\S+" id="accessToken" class="input__field" placeholder="your access token">
   </div>
   <footer>
-    <button id="cancel" class='button button--secondary' type="reset">Cancel</button>
-    <button id="save" class='button button--primary' type="submit">Save changes</button>
+    <button id="cancelButton" class='button button--secondary' type="reset">Cancel</button>
+    <button id="saveButton" class='button button--primary' type="submit">Save changes</button>
   </footer>
 </form>
 
-<a data-id="downloadLink"></a>
+<a id="downloadLink"></a>
