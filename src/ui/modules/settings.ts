@@ -35,6 +35,7 @@ const getFormSettings = (form: HTMLFormElement): { settings: Settings, accessTok
 }
 
 const setFormSettings = (form: HTMLFormElement, settings: Settings, accessToken?: string): void => {
+  console.log(settings);
   // set settings
   (form.querySelector(settingIds.filename) as HTMLInputElement).value = settings.filename;
   (form.querySelector(settingIds.nameConversion).querySelector(`[value=${settings.nameConversion}]`) as HTMLOptionElement).selected = true;

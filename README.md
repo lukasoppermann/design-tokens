@@ -262,6 +262,24 @@ You can use this feature to integrate tokens into your build pipeline. The ideal
 
 To learn how to set this up using `github` and `actions` check out the documentation and code examples in the [design token transformer repositry](https://github.com/lukasoppermann/design-token-transformer).
 
+## Errors
+
+### No tokens get exported
+There a different possible reasons for this to occur:
+1. Tokens are not placed inside a frame named `_tokens`
+2. Tokens are nested in groups or frames (they must be the first level children of the `_tokens` frame)
+3. You may have changed the `exclude prefix` setting to `false` which means only styles that include the prefix e.g. `_colors/blue` are exported
+
+### Sending tokens to the server returns an error
+#### 401
+You may be using a wrong access token or the access token is missing the correct permission (`public_repo`).
+#### 404
+You may be using a wrong `server url` or `auth type`. 
+Also assure your access token is valid.
+#### General error (custom server)
+The server may not have correct cors settings. If you send your tokens to github this probably means that you have a spelling mistake in the URL.
+
+
 ## Roadmap & PRs
 ### Roadmap
 This plugin is under active development. You can find all planned features in the [roadmap](https://github.com/lukasoppermann/design-tokens/issues/2).
