@@ -783,22 +783,34 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         exports.__testing = void 0;
+        const returnOrThrow = (convertedString, originalString, stringCase) => {
+            // return converted string if successful
+            if (typeof convertedString === 'string' && convertedString !== '') {
+                return convertedString;
+            }
+            // throw error
+            throw new Error(`converting "${originalString}" to ${stringCase}, resulting in "${convertedString}"`);
+        };
         const toCamelCase = (string) => {
-            return string.toLowerCase()
+            const convertedString = string.toLowerCase()
                 .replace(/['"]/g, '')
                 .replace(/([-_ ]){1,}/g, ' ')
                 .replace(/\W+/g, ' ')
                 .trim()
                 .replace(/ (.)/g, function ($1) { return $1.toUpperCase(); })
                 .replace(/ /g, '');
+            // return or throw
+            return returnOrThrow(convertedString, string, 'camelCase');
         };
         const toKebabCase = (string) => {
-            return string.toLowerCase()
+            const convertedString = string.toLowerCase()
                 .replace(/['"]/g, '')
                 .replace(/([-_ ]){1,}/g, ' ')
                 .replace(/\W+/g, ' ')
                 .trim()
                 .replace(/ /g, '-');
+            // return or throw
+            return returnOrThrow(convertedString, string, 'kebabCase');
         };
         const transformName = (name, nameConversion = 'default') => {
             // if camelCase
