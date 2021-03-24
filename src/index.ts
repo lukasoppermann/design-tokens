@@ -1,10 +1,10 @@
-import getTokenJson from './utilities/getTokenJson'
-import buildFigmaData from './utilities/buildFigmaData'
 import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
 import currentVersion from './utilities/version'
 import semVerDifference from './utilities/semVerDifference'
 import { urlExportData } from '../types/urlExportData'
+import getJson from './utilities/getJson'
+import UserSettings from '../types/settings'
 
 // height for the settings dialog
 const settingsDialogHeight = 565
@@ -21,36 +21,7 @@ if (figma.root.getPluginData('fileId') === '') {
 }
 const fileId = figma.root.getPluginData('fileId')
 // Get the user settings
-const userSettings = getSettings()
-/**
- * @name activateUtilitiesUi
- * @description activates the utilities ui to run utility functions
- */
-const activateUtilitiesUi = () => {
-  // register the utilities UI (hidden by default)
-  figma.showUI(__html__, {
-    visible: false,
-    width: settingsDialogWidth,
-    height: settingsDialogHeight
-  })
-}
-/**
- * @name getJson
- * @param {PluginAPI} figma
- * @param {boolean} stringify
- */
-const getJson = (figma: PluginAPI, stringify: boolean = true) => {
-  // construct figma data object
-  const figmaData = buildFigmaData(figma, {
-    prefix: userSettings.prefix,
-    excludePrefix: userSettings.excludePrefix
-  })
-  if (stringify === false) {
-    return getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion)
-  }
-  // get tokens as stringified json
-  return JSON.stringify(getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion))
-}
+const userSettings: UserSettings = getSettings()
 // ---------------------------------
 // EXPORT TO FILE
 // exports the design tokens to a file
@@ -62,7 +33,7 @@ if (figma.command === 'export') {
     command: 'export',
     data: {
       filename: `${userSettings.filename}.json`,
-      data: getJson(figma)
+      data: getJson(figma, userSettings)
     }
   })
 }
@@ -82,7 +53,7 @@ if (figma.command === 'urlExport') {
           event_type: userSettings.eventType,
           client_payload: {
             tokenFileName: `${userSettings.filename}.json`,
-            tokens: `${getJson(figma, true)}`,
+            tokens: `${getJson(figma, userSettings, true)}`,
             filename: figma.root.name
           }
         }
