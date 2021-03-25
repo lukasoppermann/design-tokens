@@ -1,20 +1,18 @@
 import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
-import currentVersion from './utilities/version'
-import semVerDifference from './utilities/semVerDifference'
 import { urlExportData } from '../types/urlExportData'
 import getJson from './utilities/getJson'
 import UserSettings from '../types/settings'
+import config from './utilities/config'
+import getVersionDifference from './utilities/getVersionDifference'
 
-// height for the settings dialog
-const settingsDialogHeight = 565
-const settingsDialogWidth = 550
-
+// initiate UI
 figma.showUI(__html__, {
   visible: false,
-  width: settingsDialogWidth,
-  height: settingsDialogHeight
+  width: config.settingsDialog.width,
+  height: config.settingsDialog.height
 })
+
 // set plugin id if it does not exist
 if (figma.root.getPluginData('fileId') === '') {
   figma.root.setPluginData('fileId', figma.root.name + ' ' + Math.floor(Math.random() * 1000000000))
@@ -67,19 +65,13 @@ if (figma.command === 'urlExport') {
 // SETTINGS
 // settings for the design tokens
 if (figma.command === 'settings') {
-  const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
   // wrap in function because of async client Storage
   const openUi = async () => {
-    // get version & version difference
-    const lastVersionSettingsOpened = await figma.clientStorage.getAsync(lastVersionSettingsOpenedKey)
-    const versionDifference = semVerDifference(currentVersion, lastVersionSettingsOpened)
-    // update version
-    if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== currentVersion) {
-      await figma.clientStorage.setAsync(lastVersionSettingsOpenedKey, currentVersion)
-    }
-    // if minor or major update
-    if (versionDifference === 'major' || versionDifference === 'minor') {
-      figma.ui.resize(settingsDialogWidth, settingsDialogHeight + 60)
+    // get the current version differences to the last time the plugin was opened
+    const versionDifference = await getVersionDifference(figma)
+    // resize UI if needed
+    if (versionDifference !== 'patch') {
+      figma.ui.resize(config.settingsDialog.width, config.settingsDialog.height + 60)
     }
     // register the settings UI
     figma.ui.show()
@@ -96,27 +88,37 @@ if (figma.command === 'settings') {
   // run function
   openUi()
 }
-// HELP
-// Open github help page
+/**
+ * Open Help
+ * Open github help page
+ */
 if (figma.command === 'help') {
   figma.ui.postMessage({
     command: 'help'
   })
 }
 
-// CLOSE PLUGIN
+/**
+ * React to messages
+ */
 figma.ui.onmessage = async (message) => {
+  /**
+   * on closePlugin
+   * close plugin and show notification if available
+   */
   if (message.command === 'closePlugin') {
     // show notification if send
     if (message.notification !== undefined && message.notification !== '') {
       figma.notify(message.notification)
     }
     // close plugin
-    // console.log('Figma Plugin does not close')
     figma.ui.hide()
     figma.closePlugin()
   }
-  // save settings
+  /**
+   * on saveSettings
+   * save settings, access token and close plugin
+   */
   if (message.command === 'saveSettings') {
     // store settings
     setSettings(message.settings)
