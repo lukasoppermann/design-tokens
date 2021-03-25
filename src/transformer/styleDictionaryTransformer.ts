@@ -2,6 +2,7 @@ import { propertyObject } from '../../types/propertyObject'
 import { propertyCategory } from '../../types/propertyCategory'
 import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from '../../types/styleDictionaryProperties'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
+import getDescription from './utilities/getDescription'
 
 const defaultTransformer = propertyGroupValues => {
   // turn array with only one item into normal object
@@ -81,7 +82,7 @@ const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDiction
   return {
     name: propertyGroup.name,
     category: propertyGroup.category,
-    ...(propertyGroup.description !== undefined && { comment: propertyGroup.description }),
+    ...getDescription(propertyGroup.description),
     ...transformedProperties
   }
 }
