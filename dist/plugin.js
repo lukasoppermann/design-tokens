@@ -871,10 +871,24 @@
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
     });
-    define("src/transformer/styleDictionaryTransformer", ["require", "exports", "src/utilities/convertColor"], function (require, exports, convertColor_3) {
+    define("src/transformer/utilities/getDescription", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const getDescription = (description, descriptionKey = 'comment') => {
+            // if valid description
+            if (description && typeof description === 'string' && description.length > 0) {
+                return { comment: description };
+            }
+            // if invalid description return an empty object
+            return {};
+        };
+        exports.default = getDescription;
+    });
+    define("src/transformer/styleDictionaryTransformer", ["require", "exports", "src/utilities/convertColor", "src/transformer/utilities/getDescription"], function (require, exports, convertColor_3, getDescription_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         exports.__testing = void 0;
+        getDescription_1 = __importDefault(getDescription_1);
         const defaultTransformer = propertyGroupValues => {
             // turn array with only one item into normal object
             if (Array.isArray(propertyGroupValues) && propertyGroupValues.length === 1) {
@@ -936,7 +950,7 @@
             // transform to amazon style Dictionary structure
             const transformedProperties = propertyTransformer(propertyGroup, propertyGroup.category);
             // return values
-            return Object.assign(Object.assign({ name: propertyGroup.name, category: propertyGroup.category }, (propertyGroup.description !== undefined && { comment: propertyGroup.description })), transformedProperties);
+            return Object.assign(Object.assign({ name: propertyGroup.name, category: propertyGroup.category }, getDescription_1.default(propertyGroup.description)), transformedProperties);
         };
         exports.default = styleDictionaryTransformer;
         exports.__testing = {
