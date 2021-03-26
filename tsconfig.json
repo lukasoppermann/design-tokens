@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
+    "lib": ["dom", "es2017"],
     "target": "es6",
-    "moduleResolution": "Node",
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma",
       "./types"
     ],
-    "outFile": "./dist/plugin.js",
-    "sourceMap": false,
     "esModuleInterop": true,
-    "rootDir": "./"
   },
   "include": ["src/**/*"],
   "exclude": [

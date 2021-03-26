@@ -1,0 +1,7 @@
+:root {
+  --black4: rgba(0, 0, 0, .4);
+  --blue: rgb(24, 160, 351);
+  --blue-10: rgba(24, 160, 351, 0.1);
+  --blue-black: rgb(20, 45, 60);
+  --dark-grey: rgb(100, 100, 100);
+}

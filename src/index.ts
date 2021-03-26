@@ -1,9 +1,17 @@
-import getTokenJson from './utilities/getTokenJson'
-import buildFigmaData from './utilities/buildFigmaData'
 import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
-import currentVersion from './utilities/version'
-import semVerDifference from './utilities/semVerDifference'
+import { urlExportData } from '../types/urlExportData'
+import getJson from './utilities/getJson'
+import UserSettings from '../types/settings'
+import config from './utilities/config'
+import getVersionDifference from './utilities/getVersionDifference'
+
+// initiate UI
+figma.showUI(__html__, {
+  visible: false,
+  width: config.settingsDialog.width,
+  height: config.settingsDialog.height
+})
 
 // set plugin id if it does not exist
 if (figma.root.getPluginData('fileId') === '') {
@@ -11,52 +19,25 @@ if (figma.root.getPluginData('fileId') === '') {
 }
 const fileId = figma.root.getPluginData('fileId')
 // Get the user settings
-const userSettings = getSettings()
-/**
- * @name activateUtilitiesUi
- * @description activates the utilities ui to run utility functions
- */
-const activateUtilitiesUi = () => {
-  // register the utilities UI (hidden by default)
-  figma.showUI(__uiFiles__.utilities, { visible: false })
-}
-/**
- * @name getJson
- * @param {PluginAPI} figma
- * @param {boolean} stringify
- */
-const getJson = (figma: PluginAPI, stringify: boolean = true) => {
-  // construct figma data object
-  const figmaData = buildFigmaData(figma, {
-    prefix: userSettings.prefix,
-    excludePrefix: userSettings.excludePrefix
-  })
-  if (stringify === false) {
-    return getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion)
-  }
-  // get tokens as stringified json
-  return JSON.stringify(getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion))
-}
+const userSettings: UserSettings = getSettings()
 // ---------------------------------
 // EXPORT TO FILE
 // exports the design tokens to a file
 if (figma.command === 'export') {
-  // activete utilities UI
-  activateUtilitiesUi()
+  // show UI
+  figma.ui.show()
   // write tokens to json file
   figma.ui.postMessage({
     command: 'export',
     data: {
       filename: `${userSettings.filename}.json`,
-      data: getJson(figma)
+      data: getJson(figma, userSettings)
     }
   })
 }
 // SEND TO URL
 // send tokens to url
 if (figma.command === 'urlExport') {
-  // activete utilities UI
-  activateUtilitiesUi()
   // needed for getAccessToken async
   const urlExport = async () => {
     figma.ui.postMessage({
@@ -64,16 +45,17 @@ if (figma.command === 'urlExport') {
       data: {
         url: userSettings.serverUrl,
         accessToken: await getAccessToken(fileId),
+        acceptHeader: userSettings.acceptHeader,
         authType: userSettings.authType,
         data: {
           event_type: userSettings.eventType,
           client_payload: {
             tokenFileName: `${userSettings.filename}.json`,
-            tokens: `${getJson(figma, true)}`,
+            tokens: `${getJson(figma, userSettings, true)}`,
             filename: figma.root.name
           }
         }
-      }
+      } as urlExportData
     })
   }
   // run export url function
@@ -83,30 +65,16 @@ if (figma.command === 'urlExport') {
 // SETTINGS
 // settings for the design tokens
 if (figma.command === 'settings') {
-  const lastVersionSettingsOpenedKey = 'lastVersionSettingsOpened'
-  // height for the settings dialog
-  let settingsDialogHeight = 565
   // wrap in function because of async client Storage
   const openUi = async () => {
-    // get version & version difference
-    const lastVersionSettingsOpened = await figma.clientStorage.getAsync(lastVersionSettingsOpenedKey)
-    const versionDifference = semVerDifference(currentVersion, lastVersionSettingsOpened)
-    // update version
-    if (!lastVersionSettingsOpened || lastVersionSettingsOpened !== currentVersion) {
-      await figma.clientStorage.setAsync(lastVersionSettingsOpenedKey, currentVersion)
-    }
-    // if minor or major update
-    if (versionDifference === 'major' || versionDifference === 'minor') {
-      settingsDialogHeight += 60
+    // get the current version differences to the last time the plugin was opened
+    const versionDifference = await getVersionDifference(figma)
+    // resize UI if needed
+    if (versionDifference !== 'patch') {
+      figma.ui.resize(config.settingsDialog.width, config.settingsDialog.height + 60)
     }
     // register the settings UI
-    // by default it is hidden
-    // @ts-ignore
-    figma.showUI(__uiFiles__.settings, {
-      visible: false,
-      width: 550,
-      height: settingsDialogHeight
-    })
+    figma.ui.show()
     // sent settings to UI
     figma.ui.postMessage({
       command: 'getSettings',
@@ -115,32 +83,42 @@ if (figma.command === 'settings') {
       versionDifference: versionDifference
     })
     // @ts-ignore
-    figma.ui.show(__uiFiles__.settings)
+    figma.ui.show()
   }
   // run function
   openUi()
 }
-// HELP
-// Open github help page
+/**
+ * Open Help
+ * Open github help page
+ */
 if (figma.command === 'help') {
-  activateUtilitiesUi()
   figma.ui.postMessage({
     command: 'help'
   })
 }
 
-// CLOSE PLUGIN
+/**
+ * React to messages
+ */
 figma.ui.onmessage = async (message) => {
+  /**
+   * on closePlugin
+   * close plugin and show notification if available
+   */
   if (message.command === 'closePlugin') {
     // show notification if send
     if (message.notification !== undefined && message.notification !== '') {
       figma.notify(message.notification)
     }
     // close plugin
-    // console.log('Figma Plugin does not close')
+    figma.ui.hide()
     figma.closePlugin()
   }
-  // save settings
+  /**
+   * on saveSettings
+   * save settings, access token and close plugin
+   */
   if (message.command === 'saveSettings') {
     // store settings
     setSettings(message.settings)

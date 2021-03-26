@@ -1,0 +1,141 @@
+.plugin-ui-content {
+  padding: 2px var(--size-xxsmall) 0;
+  margin-bottom: 0;
+}
+h3 {
+  padding: 0 var(--size-xxsmall);
+}
+.label {
+  color: var(--dark-grey);
+}
+.message-box {
+  padding: 0 var(--size-xxxsmall) var(--size-xxsmall) var(--size-xxsmall);
+}
+.message-box .message {
+  font-family: var(--font-stack);
+  font-size: var(--font-size-xsmall);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--font-letter-spacing-pos-xsmall);
+  line-height: var(--font-line-height);
+}
+.notification:not(.hidden) {
+  font-family: var(--font-stack);
+  font-size: var(--font-size-xsmall);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--font-letter-spacing-pos-xsmall);
+  line-height: var(--font-line-height);
+  margin-top: var(--size-xxsmall);
+  padding: var(--size-xxsmall);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+.notification--info {
+  position: relative;
+  background: var(--blue-10);
+  color: var(--blue-black);
+}
+.notification--info a {
+  color: var(--blue);
+}
+.notification--info a:hover {
+  text-decoration: none;
+}
+.notification--info a.subtle {
+  text-decoration: none;
+}
+.notification--info a.subtle:hover {
+  text-decoration: underline;
+}
+.notification--icon {
+  margin-right: var(--size-xxsmall);
+  margin-left: var(--size-xxxsmall);
+}
+.flex-horizontal {
+  display: flex;
+}
+.flex-horizontal ~ .flex-horizontal {
+  margin-top: var(--size-xxsmall);
+}
+.flex-horizontal .label {
+  width: auto;
+  flex-shrink: 0;
+  align-items: flex-start;
+  padding-top: var(--size-xxsmall);
+}
+.label.label--info {
+  color: var(--black4);
+  flex-shrink: 1;
+  height: auto;
+}
+.flex-horizontal input {
+  min-width: 50px;
+}
+.inside-label-behind--sm {
+  position: absolute;
+  right: var(--size-xxsmall);
+}
+.with-inside-label-behind-sm {
+  padding-right: 50px;
+}
+input:invalid {
+  border: 1px solid var(--red);
+  outline: 1px solid var(--red);
+  outline-offset: -2px;
+}
+#excludePrefix ~ .switch__label > .toggleText::before {
+  position: relative;
+  display: inline-block;
+  content: "(ONLY prefixed styles are included)";
+  padding-left: var(--size-xxxsmall);
+  color: var(--dark-grey);
+}
+#excludePrefix:checked ~ .switch__label > .toggleText::before{
+  content: "(prefixed styles are excluded)";
+}
+footer {
+  padding: var(--size-xxsmall) 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--size-xsmall);
+  border-top: 1px solid var(--silver);
+}
+footer > * {
+  margin-right: var(--size-xxsmall);
+}
+footer > :last-child{
+  margin-right: 0;
+}
+:not(h3) + .section-title {
+  padding-top: var(--size-xxsmall);
+  margin-top: var(--size-xsmall);
+  border-top: 1px solid var(--silver);
+}
+#eventtype {
+  width: 130px;
+  flex-shrink: 0;
+}
+.select-css {
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  height: 30px;
+  width: 100%;
+  margin: 1px 0 1px 0;
+  padding: 0px var(--size-xxsmall) 0px var(--size-xxsmall);
+  overflow-y: hidden;
+  background-color: var(--white);
+  margin: 1px 0 1px 0;
+  color: var(--black8);
+  border: 1px solid var(--black1);
+  border-radius: 1px;
+  font-size: var(--font-size-xsmall);
+}
+.select-css:hover {
+  border-color: var(--black1);
+}
+.select-css:focus {
+  border: 1px solid var(--blue);
+  outline: 1px solid var(--blue);
+  outline-offset: -2px;
+}
