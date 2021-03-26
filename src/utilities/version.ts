@@ -1,3 +1,3 @@
 /* istanbul ignore file */
-const version = '2.1.3'
+const version = '3.0.0'
 export default version
