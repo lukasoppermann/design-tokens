@@ -1,4 +1,5 @@
 const getDescription = (description: string|null|undefined, descriptionKey: string = 'comment'): { comment?: string } => {
+  // if valid description
   if (description && typeof description === 'string' && description.length > 0) {
     return { comment: description }
   }
