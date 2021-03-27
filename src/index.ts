@@ -5,6 +5,7 @@ import getJson from './utilities/getJson'
 import UserSettings from '../types/settings'
 import config from './utilities/config'
 import getVersionDifference from './utilities/getVersionDifference'
+import getFileId from './utilities/getFileId'
 
 // initiate UI
 figma.showUI(__html__, {
@@ -12,12 +13,6 @@ figma.showUI(__html__, {
   width: config.settingsDialog.width,
   height: config.settingsDialog.height
 })
-
-// set plugin id if it does not exist
-if (figma.root.getPluginData('fileId') === '') {
-  figma.root.setPluginData('fileId', figma.root.name + ' ' + Math.floor(Math.random() * 1000000000))
-}
-const fileId = figma.root.getPluginData('fileId')
 // Get the user settings
 const userSettings: UserSettings = getSettings()
 // ---------------------------------
@@ -44,7 +39,7 @@ if (figma.command === 'urlExport') {
       command: 'urlExport',
       data: {
         url: userSettings.serverUrl,
-        accessToken: await getAccessToken(fileId),
+        accessToken: await getAccessToken(getFileId()),
         acceptHeader: userSettings.acceptHeader,
         authType: userSettings.authType,
         data: {
@@ -70,7 +65,7 @@ if (figma.command === 'settings') {
     // get the current version differences to the last time the plugin was opened
     const versionDifference = await getVersionDifference(figma)
     // resize UI if needed
-    if (versionDifference !== 'patch') {
+    if (versionDifference !== undefined && versionDifference !== 'patch') {
       figma.ui.resize(config.settingsDialog.width, config.settingsDialog.height + 60)
     }
     // register the settings UI
@@ -79,7 +74,7 @@ if (figma.command === 'settings') {
     figma.ui.postMessage({
       command: 'getSettings',
       settings: userSettings,
-      accessToken: await getAccessToken(fileId),
+      accessToken: await getAccessToken(getFileId()),
       versionDifference: versionDifference
     })
     // @ts-ignore
@@ -123,7 +118,7 @@ figma.ui.onmessage = async (message) => {
     // store settings
     setSettings(message.settings)
     // accessToken
-    await setAccessToken(fileId, message.accessToken)
+    await setAccessToken(getFileId(), message.accessToken)
     // close plugin
     figma.closePlugin()
   }

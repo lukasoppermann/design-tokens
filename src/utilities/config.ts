@@ -5,6 +5,7 @@ export default {
     height: 565
   },
   key: {
-    lastVersionSettingsOpened: 'lastVersionSettingsOpened'
+    lastVersionSettingsOpened: 'lastVersionSettingsOpened',
+    fileId: 'fileId'
   }
 }
