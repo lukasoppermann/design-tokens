@@ -1,8 +1,6 @@
 import getFileId from '../../src/utilities/getFileId'
 import config from '../../src/utilities/config'
 
-// figma.root.getPluginData(config.key.fileId)
-// figma.root.setPluginData(config.key.fileId, figma.root.name + ' ' + Math.floor(Math.random() * 1000000000))
 describe('getFileId', () => {
   const figmaMock = {
     root: {
