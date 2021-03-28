@@ -88,7 +88,7 @@ In the settings you can change the [prefix](#prefix-used-to-in-exclude-styles) f
 The plugin also supports custom tokens for `borders`, `radii`, `sizes`, `spacing` & `motion`.
 
 - Every custom design token must be directly within a top-level `Frame` with a name starting with `_tokens`. This means you have a structure like this: `page` > `_tokens/sizes` > `sizes/8`. Nesting is not possible at this point.
-- The token itself has to have a name starting with `sizes`, `spacing`, `borders`, `radii` or `motion` and has to be a `Frame`, `Rectangle` or `Main Component`. This is so that the plugin can identify what is and what isn't a token.
+- The token itself has to have a name starting with `sizes`, `spacing`, `borders`, `radii` or `motion` and has to be a `Main Component`. This is so that the plugin can identify what is and what isn't a token.
 - The token has to be a direct child of a `_token` frame
 
 #### Sizes
@@ -96,7 +96,7 @@ The plugin also supports custom tokens for `borders`, `radii`, `sizes`, `spacing
 To create a *sizes token*, do the following:
 
 1. Create a `Frame` and name it `_tokens/sizes` 
-2. Create another `Frame`, `Rectangle` or `Main Component` and set the width property to your `8`.
+2. Create another `Main Component` and set the width property to your `8`.
 3. Name it `sizes/8`. Note, it is important to use the `sizes/` prefix.
 
 
@@ -114,7 +114,7 @@ The token will be exported, if you convert it to css the output would be somethi
 To create a *spacing token*, do the following:
 
 1. Create a `Frame` and name it `_tokens/spacing` 
-2. Create another `Frame`, `Rectangle` or `Main Component` and set the padding properties to `10` in the `auto layout`.
+2. Create another `Main Component` and set the padding properties to `10` in the `auto layout`.
 3. Name it `spacing/10`. Note, it is important to use the `spacing/` prefix.
 
 
@@ -134,7 +134,7 @@ The token will be exported, if you convert it to css the output would be somethi
 To create a *border token*, do the following:
 
 1. Create a `Frame` and name it `_tokens/borders` 
-2. Create another `Frame`, `Rectangle` or `Main Component` and set the stroke property to your desired values.
+2. Create another `Main Component` and set the stroke property to your desired values.
 3. Name it `borders/dashed-outside`. Note, it is important to use the `borders/` prefix.
 
 The token will be exported, if you convert it to css the output would be something like this:
@@ -153,7 +153,7 @@ The token will be exported, if you convert it to css the output would be somethi
 To create a *radius token*, do the following:
 
 1. Create a `Frame` and name it `_tokens/radii` 
-2. Create another `Frame`, `Rectangle` or `Main Component` and set the radius properties to your desired values.
+2. Create another `Main Component` and set the radius properties to your desired values.
 3. Name it `radii/same-with-smoothing`. Note, it is important to use the `radii/` prefix.
 
 
@@ -174,7 +174,7 @@ Motion tokens are a combination of an `easing curve`, a `duration` and an animat
 To create a motion token follow this flow:
 
 1. Create a new `Frame` called `_tokens/motion`
-2. Create a new `Frame`, `Component` or `Rectangle`
+2. Create a new `Main Component`
 3. Name it `motion/move-in`. Note, it is important to use the `motion/` prefix.
 4. Enter `prototyping mode` and link the element `motion/move-in` to any other element.
 5. Choose an `animation type`, `easing curve` and a `duration`
