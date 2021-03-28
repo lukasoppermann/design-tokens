@@ -1,6 +1,6 @@
 {
   "name": "design-tokens",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Export design tokens from Figma",
   "main": "code.js",
   "repository": {
@@ -53,7 +53,9 @@
     "webpack-cli": "^3.3.6"
   },
   "standardx": {
-    "env": [ "jest" ],
+    "env": [
+      "jest"
+    ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint"
