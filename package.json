@@ -53,6 +53,7 @@
     "webpack-cli": "^3.3.6"
   },
   "standardx": {
+    "env": [ "jest" ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint"

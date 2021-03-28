@@ -1,6 +1,6 @@
 import config from './config'
 
-const getFileId = (): string => {
+const getFileId = (figma: PluginAPI): string => {
   let fileId = figma.root.getPluginData(config.key.fileId)
   // set plugin id if it does not exist
   if (fileId === undefined || fileId === '') {
