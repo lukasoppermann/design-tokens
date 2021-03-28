@@ -39,7 +39,7 @@ if (figma.command === 'urlExport') {
       command: 'urlExport',
       data: {
         url: userSettings.serverUrl,
-        accessToken: await getAccessToken(getFileId()),
+        accessToken: await getAccessToken(getFileId(figma)),
         acceptHeader: userSettings.acceptHeader,
         authType: userSettings.authType,
         data: {
@@ -74,7 +74,7 @@ if (figma.command === 'settings') {
     figma.ui.postMessage({
       command: 'getSettings',
       settings: userSettings,
-      accessToken: await getAccessToken(getFileId()),
+      accessToken: await getAccessToken(getFileId(figma)),
       versionDifference: versionDifference
     })
     // @ts-ignore
@@ -118,7 +118,7 @@ figma.ui.onmessage = async (message) => {
     // store settings
     setSettings(message.settings)
     // accessToken
-    await setAccessToken(getFileId(), message.accessToken)
+    await setAccessToken(getFileId(figma), message.accessToken)
     // close plugin
     figma.closePlugin()
   }
