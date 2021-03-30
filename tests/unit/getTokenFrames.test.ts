@@ -29,6 +29,36 @@ describe("getTokenFrames", () => {
         type: 'FRAME',
         findChildren: jest.fn().mockReturnValue([
           {
+            type: 'COMPONENT_SET',
+            name: 'spacers',
+            children: [
+              {
+                type: 'COMPONENT',
+                name: 'size=8, _visible=True, .colored=false',
+                description: 'variant component',
+                width: 8,
+                height: 8,
+                cornerRadius: 5,
+                bottomLeftRadius: 5,
+                bottomRightRadius: 5,
+                topLeftRadius: 5,
+                topRightRadius: 5,
+                cornerSmoothing: 0.2,
+                strokes: [],
+                strokeWeight: 0,
+                strokeMiterLimit: 0,
+                strokeJoin: "MITER",
+                strokeCap: "NONE",
+                dashPattern: 0,
+                strokeAlign: "CENTER",
+                paddingTop: 0,
+                paddingRight: 0,
+                paddingBottom: 0,
+                paddingLeft: 0
+              }
+            ]
+          },
+          {
             type: 'FRAME',
             name: '10',
             width: 10,
@@ -106,6 +136,31 @@ describe("getTokenFrames", () => {
     ])
     // @ts-ignore
     expect(getTokenFrames(pages)).toStrictEqual([
+      {
+        name: 'spacers/8',
+        description: 'variant component',
+        width: 8,
+        height: 8,
+        cornerRadius: 5,
+        bottomLeftRadius: 5,
+        bottomRightRadius: 5,
+        topLeftRadius: 5,
+        topRightRadius: 5,
+        cornerSmoothing: .2,
+        strokes: [],
+        strokeStyleId: undefined,
+        strokeWeight: 0,
+        strokeMiterLimit: 0,
+        strokeJoin: "MITER",
+        strokeCap: "NONE",
+        dashPattern: 0,
+        strokeAlign: "CENTER",
+        reactions: undefined,
+        paddingTop: 0,
+        paddingRight: 0,
+        paddingBottom: 0,
+        paddingLeft: 0
+      },
       {
         name: '10',
         description: undefined,
