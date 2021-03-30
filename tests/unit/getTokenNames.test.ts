@@ -1,4 +1,4 @@
-import getTokenFrames, { __testing } from '../../src/utilities/getTokenFrames'
+import getTokenNodes, { __testing } from '../../src/utilities/getTokenNodes'
 
 const pages = [{
   findChildren: jest.fn().mockReturnValue([])
@@ -16,10 +16,10 @@ beforeAll(() => {
   }
 })
 
-describe("getTokenFrames", () => {
+describe("getTokenNodes", () => {
   test("empty input", () => {
     // @ts-ignore
-    expect(getTokenFrames(pages)).toStrictEqual([])
+    expect(getTokenNodes(pages)).toStrictEqual([])
   })
 
   test("page with input", () => {
@@ -156,7 +156,7 @@ describe("getTokenFrames", () => {
       }
     ])
     // @ts-ignore
-    expect(getTokenFrames(pages)).toStrictEqual([
+    expect(getTokenNodes(pages)).toStrictEqual([
       {
         name: 'spacers/8',
         description: 'variant component',

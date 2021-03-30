@@ -10,11 +10,11 @@ const getSolidStrokes = (paints: readonly Paint[]): ColorRgba[] => {
     .map(paint => convertPaintToRgba(paint))
 }
 /**
- * extractTokenNode
+ * extractTokenNodeValues
  * @param node: SceneNode
  * @returns node object
  */
-const extractTokenNode = (node: ComponentNode | RectangleNode | FrameNode): customTokenNode => ({
+const extractTokenNodeValues = (node: ComponentNode | RectangleNode | FrameNode): customTokenNode => ({
   name: node.name,
   // @ts-ignore
   description: node.description || undefined,
@@ -45,4 +45,4 @@ const extractTokenNode = (node: ComponentNode | RectangleNode | FrameNode): cust
   paddingLeft: node.paddingLeft || 0
 })
 
-export default extractTokenNode
+export default extractTokenNodeValues

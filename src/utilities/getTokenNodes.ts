@@ -1,13 +1,7 @@
 import { customTokenNode } from '../../types/tokenNodeTypes'
-import extractTokenNode from './extractTokenNodes'
+import extractTokenNodeValues from './extractTokenNodeValues'
+import isTokenNode from './isTokenNode'
 
-// the node types that can be used for tokens
-const tokenNodeTypes = [
-  'COMPONENT',
-  'COMPONENT_SET', // => variant
-  'RECTANGLE',
-  'FRAME'
-]
 // the name that token frames have
 const tokenFrameName = '_tokens'
 
@@ -16,15 +10,6 @@ const isTokenFrame = (node): boolean => node.type === 'FRAME' && node.name.trim(
 
 // return only nodes that are frames
 const getFrameNodes = (nodes): FrameNode[] => [...nodes.map(page => page.findChildren(node => isTokenFrame(node))).reduce((flatten, arr) => [...flatten, ...arr])]
-
-/**
- * check if a node is a valid token node type
- * Currently: 'COMPONENT' or 'RECTANGLE'
- * @param SceneNode node
- */
-const isTokenNode = (node: SceneNode): boolean => {
-  return node.parent.type !== 'COMPONENT_SET' && tokenNodeTypes.includes(node.type)
-}
 /**
  * getVariantName
  * creates the variant name of the parent and child name
@@ -47,7 +32,7 @@ const getVariantName = (parentName: string, childName: string): string => {
  *
  * @param pages PageNodes
  */
-const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
+const getTokenNodes = (pages: PageNode[]): customTokenNode[] => {
   // get token frames
   const tokenFrames = getFrameNodes(pages)
   // get all children of token frames
@@ -69,19 +54,19 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
         // TODO: Name is overwriting real object in figma
         // -> create clone and move to new array to return
         return item.children.map((child: ComponentNode) => ({
-          ...extractTokenNode(child),
+          ...extractTokenNodeValues(child),
           ...{ name: getVariantName(item.name, child.name) }
         }))
       }
       // return normal item as array to unpack later
       // @ts-ignore
-      return [extractTokenNode(item)]
+      return [extractTokenNodeValues(item)]
     })
     // merges the variant children into one array
     .reduce((flatten, arr) => [...flatten, ...arr], [])
 }
 
-export default getTokenFrames
+export default getTokenNodes
 export const __testing = {
   isTokenNode: isTokenNode,
   isTokenFrame: isTokenFrame

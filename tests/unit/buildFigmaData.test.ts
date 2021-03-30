@@ -1,6 +1,6 @@
 import buildFigmaData from '../../src/utilities/buildFigmaData'
-import getTokenFrames from '../../src/utilities/getTokenFrames'
-jest.mock('../../src/utilities/getTokenFrames', () => jest.fn())
+import getTokenNodes from '../../src/utilities/getTokenNodes'
+jest.mock('../../src/utilities/getTokenNodes', () => jest.fn())
 
 const defaultOutput = {
   effectStyles: [{
@@ -78,7 +78,7 @@ beforeAll(() => {
     name: '_HiddenEffectStyle'
   }])
   // @ts-ignore
-  getTokenFrames.mockImplementation(() => ['token'])
+  getTokenNodes.mockImplementation(() => ['token'])
 })
 
 describe("Testing buildFigmaData", () => {

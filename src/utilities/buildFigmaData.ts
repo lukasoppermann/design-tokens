@@ -2,7 +2,7 @@ import { figmaDataType } from '../../types/figmaDataType'
 import filterByNameProperty from './filterByNameProperty'
 import getPaintStyles from './getPaintStyles'
 import getGridStyles from './getGridStyles'
-import getTokenFrames from './getTokenFrames'
+import getTokenNodes from './getTokenNodes'
 import getTextStyles from './getTextStyles'
 import getEffectStyles from './getEffectStyles'
 
@@ -16,7 +16,7 @@ const buildFigmaData = (figma: PluginAPI, options = {
   excludePrefix: true
 }): figmaDataType => {
   // use spread operator because the original is readOnly
-  const tokenFrames = getTokenFrames([...figma.root.children])
+  const tokenFrames = getTokenNodes([...figma.root.children])
   // get data from figma
   return {
     tokenFrames: tokenFrames,
