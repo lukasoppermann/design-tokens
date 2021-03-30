@@ -25,15 +25,24 @@ describe("getTokenFrames", () => {
   test("page with input", () => {
     pages[0].findChildren.mockReturnValue([
       {
+        parent: {
+          type: 'PAGE'
+        },
         name: '_tokens/sizes',
         type: 'FRAME',
-        findChildren: jest.fn().mockReturnValue([
+        findAll: jest.fn().mockReturnValue([
           {
+            parent: {
+              type: 'FRAME'
+            },
             type: 'COMPONENT_SET',
             name: 'spacers',
             children: [
               {
                 type: 'COMPONENT',
+                parent: {
+                  type: 'COMPONENT_SET'
+                },
                 name: 'size=8, _visible=True, .colored=false',
                 description: 'variant component',
                 width: 8,
@@ -59,6 +68,9 @@ describe("getTokenFrames", () => {
             ]
           },
           {
+            parent: {
+              type: 'FRAME'
+            },
             type: 'FRAME',
             name: '10',
             width: 10,
@@ -100,10 +112,16 @@ describe("getTokenFrames", () => {
         ])
       },
       {
+        parent: {
+          type: 'PAGE'
+        },
         name: '_tokens/width',
         type: 'FRAME',
-        findChildren: jest.fn().mockReturnValue([
+        findAll: jest.fn().mockReturnValue([
           {
+            parent: {
+              type: 'FRAME'
+            },
             type: 'FRAME',
             name: '20',
             description: 'A frame',
@@ -129,9 +147,12 @@ describe("getTokenFrames", () => {
         ])
       },
       {
+        parent: {
+          type: 'PAGE'
+        },
         name: '_tokens/sizes',
         type: 'RECTANGLE',
-        findChildren: jest.fn().mockReturnValue([])
+        findAll: jest.fn().mockReturnValue([])
       }
     ])
     // @ts-ignore
@@ -230,20 +251,48 @@ describe("getTokenFrames", () => {
     ])
   })
 
-  test("isTokenNode valid tokenNode", () => {
-    // @ts-ignore
-    expect(__testing.isTokenNode({ type: "FRAME" })).toStrictEqual(true)
-    // @ts-ignore
-    expect(__testing.isTokenNode({ type: "RECTANGLE" })).toStrictEqual(true)
-    // @ts-ignore
-    expect(__testing.isTokenNode({ type: "COMPONENT" })).toStrictEqual(true)
+  test('isTokenNode valid tokenNode', () => {
+    expect(__testing.isTokenNode({
+      // @ts-ignore
+      parent: {
+        type: 'FRAME'
+      },
+      // @ts-ignore
+      type: 'FRAME'
+    })).toStrictEqual(true)
+    expect(__testing.isTokenNode({
+      // @ts-ignore
+      parent: {
+        type: 'FRAME'
+      },
+      type: 'RECTANGLE'
+    })).toStrictEqual(true)
+    expect(__testing.isTokenNode({
+      // @ts-ignore
+      parent: {
+        type: 'FRAME'
+      },
+      type: 'COMPONENT'
+    })).toStrictEqual(true)
   })
 
-  test("isTokenNode invalid tokenNode", () => {
+  test('isTokenNode invalid tokenNode', () => {
+    expect(__testing.isTokenNode({
+      // @ts-ignore
+      parent: {
+        type: 'FRAME'
+      },
+      // @ts-ignore
+      type: 'frame'
+    })).toStrictEqual(false)
     // @ts-ignore
-    expect(__testing.isTokenNode({ type: "frame" })).toStrictEqual(false)
-    // @ts-ignore
-    expect(__testing.isTokenNode({ type: "LINE" })).toStrictEqual(false)
+    expect(__testing.isTokenNode({
+      // @ts-ignore
+      parent: {
+        type: 'FRAME'
+      },
+      type: 'LINE'
+    })).toStrictEqual(false)
   })
 
 

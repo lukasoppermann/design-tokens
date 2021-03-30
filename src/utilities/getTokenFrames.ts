@@ -23,7 +23,7 @@ const getFrameNodes = (nodes): FrameNode[] => [...nodes.map(page => page.findChi
  * @param SceneNode node
  */
 const isTokenNode = (node: SceneNode): boolean => {
-  return tokenNodeTypes.includes(node.type)
+  return node.parent.type !== 'COMPONENT_SET' && tokenNodeTypes.includes(node.type)
 }
 /**
  * getVariantName
@@ -42,7 +42,6 @@ const getVariantName = (parentName: string, childName: string): string => {
   // return full name
   return `${parentName}/${childName}`
 }
-
 /**
  * Returns all frames from the file that have a name that starts with _tokens or the user defined token specifier
  *
@@ -54,7 +53,7 @@ const getTokenFrames = (pages: PageNode[]): customTokenNode[] => {
   // get all children of token frames
   return tokenFrames.map(frame => <ComponentSetNode[] | ComponentNode[] | RectangleNode[] | FrameNode[]>frame
     // check if children are of valide types
-    .findChildren(
+    .findAll(
       /* istanbul ignore next */
       node => isTokenNode(node)
     ))
