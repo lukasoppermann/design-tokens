@@ -88,7 +88,14 @@ In the settings you can change the [prefix](#prefix-used-to-in-exclude-styles) f
 The plugin also supports custom tokens for `borders`, `radii`, `sizes`, `spacing` & `motion`.
 
 - Every custom design token must be within a top-level `Frame` with a name starting with `_tokens`. This means you have a structure like this: `page` > `_tokens/sizes` > `sizes/8`.
-- The token itself has to have a name starting with `sizes`, `spacing`, `borders`, `radii` or `motion` and has to be a `Main Component`. This is so that the plugin can identify what is and what isn't a token.
+- The token itself has to have a name starting with `sizes`, `spacing`, `borders`, `radii` or `motion` and has to be a `Main Component` or `variant`. This is so that the plugin can identify what is and what isn't a token.
+
+#### Variants
+**Naming:** The name for the design token will be created by combining the main name with the property value e.g. variant `sizes` with the property `size` with the values `8` and `16` will result in 2 tokens
+- `sizes/8`
+- `sizes/16`
+
+**Ignore properties:** If you want a property to be ignored you can prefix it with an `_`, e.g. the property `_hidden` will be ignored.
 
 #### Sizes
 
