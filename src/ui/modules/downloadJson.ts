@@ -23,7 +23,7 @@ const downloadJson = (parent, link: HTMLLinkElement, filename: string, json: str
     // send success messgae
     parent.postMessage({
       pluginMessage: {
-        // command: 'closePlugin',
+        command: 'closePlugin',
         notification: '🎉 Design token export succesfull!'
       }
     }, '*')

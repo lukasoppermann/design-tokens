@@ -19,8 +19,6 @@ const userSettings: UserSettings = getSettings()
 // EXPORT TO FILE
 // exports the design tokens to a file
 if (figma.command === 'export') {
-  // show UI
-  figma.ui.show()
   // write tokens to json file
   figma.ui.postMessage({
     command: 'export',

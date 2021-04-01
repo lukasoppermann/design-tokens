@@ -87,9 +87,8 @@ In the settings you can change the [prefix](#prefix-used-to-in-exclude-styles) f
 ### Custom design tokens
 The plugin also supports custom tokens for `borders`, `radii`, `sizes`, `spacing` & `motion`.
 
-- Every custom design token must be directly within a top-level `Frame` with a name starting with `_tokens`. This means you have a structure like this: `page` > `_tokens/sizes` > `sizes/8`. Nesting is not possible at this point.
+- Every custom design token must be within a top-level `Frame` with a name starting with `_tokens`. This means you have a structure like this: `page` > `_tokens/sizes` > `sizes/8`.
 - The token itself has to have a name starting with `sizes`, `spacing`, `borders`, `radii` or `motion` and has to be a `Main Component`. This is so that the plugin can identify what is and what isn't a token.
-- The token has to be a direct child of a `_token` frame
 
 #### Sizes
 
