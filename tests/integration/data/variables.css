@@ -3,6 +3,12 @@
   --sizes-40: 40;
   --sizes-60: 60;
   --sizes-80: 80;
+  --sizes-plain-token: 200;
+  --sizes-token-in-frame: 200;
+  --sizes-token-in-group: 200;
+  --sizes-in-variant-60: 60;
+  --sizes-in-variant-90: 90;
+  --sizes-in-variant-120: 120;
   --sizes-frame: 32;
   --sizes-rect: 32;
   --sizes-shape-in-component: 32; /* Should use 32px not 20 from inside shape */

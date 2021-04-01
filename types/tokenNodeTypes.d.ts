@@ -15,8 +15,8 @@ export type customTokenNode = {
   strokeJoin: StrokeJoin | PluginAPI['mixed'],
   strokeCap: StrokeCap | PluginAPI['mixed'],
   dashPattern?: readonly number[],
-  strokeAlign: "CENTER" | "INSIDE" | "OUTSIDE",
-  width:  number,
+  strokeAlign: 'CENTER' | 'INSIDE' | 'OUTSIDE',
+  width: number,
   height: number,
   reactions?: readonly Reaction[],
   paddingTop?: number,
@@ -26,9 +26,9 @@ export type customTokenNode = {
 }
 
 export type nodeWithNodeTransition = customTokenNode & {
-  reactions: readonly { 
-    action: { 
-      readonly type: "NODE"
+  reactions: readonly {
+    action: {
+      readonly type: 'NODE'
       readonly destinationId: string | null
       readonly navigation: Navigation
       readonly transition: Transition | null
@@ -36,7 +36,7 @@ export type nodeWithNodeTransition = customTokenNode & {
       // Only present if navigation == "OVERLAY" and the destination uses
       // overlay position type "RELATIVE"
       readonly overlayRelativePosition?: Vector
-    }, 
-    trigger: Trigger 
+    },
+    trigger: Trigger
   }[]
 }

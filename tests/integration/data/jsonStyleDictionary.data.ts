@@ -25,6 +25,42 @@ export default {
       type: 'number',
       unit: 'pixel'
     },
+    'plain token': {
+      category: 'size',
+      value: 200,
+      type: 'number',
+      unit: 'pixel'
+    },
+    'token in frame': {
+      category: 'size',
+      value: 200,
+      type: 'number',
+      unit: 'pixel'
+    },
+    'token in group': {
+      category: 'size',
+      value: 200,
+      type: 'number',
+      unit: 'pixel'
+    },
+    'in variant 60': {
+      category: 'size',
+      value: 60,
+      type: 'number',
+      unit: 'pixel'
+    },
+    'in variant 90': {
+      category: 'size',
+      value: 90,
+      type: 'number',
+      unit: 'pixel'
+    },
+    'in variant 120': {
+      category: 'size',
+      value: 120,
+      type: 'number',
+      unit: 'pixel'
+    },
     frame: {
       category: 'size',
       value: 32,
