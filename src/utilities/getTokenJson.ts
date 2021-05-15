@@ -7,6 +7,7 @@ import extractSizes from '../extractor/extractSizes'
 import extractSpacing from '../extractor/extractSpacing'
 import extractBorders from '../extractor/extractBorders'
 import extractRadii from '../extractor/extractRadii'
+import extractBreakpoints from '../extractor/extractBreakpoints'
 import groupByName from './groupByName'
 import styleDictionaryTransformer from '../transformer/styleDictionaryTransformer'
 import { propertyObject } from '../../types/propertyObject'
@@ -20,6 +21,7 @@ const exportRawTokenArray = (figmaData: figmaDataType) => {
   // get tokens
   return [
     ...extractSizes(figmaData.tokenFrames),
+    ...extractBreakpoints(figmaData.tokenFrames),
     ...extractSpacing(figmaData.tokenFrames),
     ...extractBorders(figmaData.tokenFrames),
     ...extractRadii(figmaData.tokenFrames),

@@ -88,6 +88,16 @@ export type colorPropertyInterface = propertyObject & {
   values: (fillValuesType | gradientValuesType)[]
 }
 
+export type breakpointPropertyInterface = propertyObject & {
+  values: {
+    width: {
+      value: number,
+      unit: 'pixel',
+      type: PropertyType
+    }
+  }
+}
+
 export type sizePropertyInterface = propertyObject & {
   values: {
     width: {

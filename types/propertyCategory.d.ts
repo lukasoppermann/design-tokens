@@ -1,1 +1,1 @@
-export type propertyCategory = 'font' | 'border' | 'size' | 'grid' | 'effect' | 'radius' | 'radius'
+export type propertyCategory = 'font' | 'border' | 'size' | 'grid' | 'effect' | 'radius' | 'radius'| 'breakpoint'
