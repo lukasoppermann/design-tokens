@@ -136,6 +136,21 @@ The token will be exported, if you convert it to css the output would be somethi
 ![Example spacing tokens](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/example-spacing-tokens.png)
 <a href="https://www.figma.com/file/2MQ759R5kJtzQn4qSHuqR7/Design-Tokens-for-Figma?node-id=1493%3A0" target="_blank">Open example figma file</a>
 
+#### Breakpoints
+To create a *breakpoint token*, do the following:
+
+1. Create a `Frame` and name it `_tokens/breakpoints` 
+2. Create another `Main Component` and set the width property to your desired values (example for `lg` -> `1280` ).
+3. Name it `breakpoints/lg`. Note, it is important to use the `breakpoints/` prefix.
+
+The token will be exported, if you convert it to css the output would be something like this:
+
+```css
+  --breakpoints-lg: 1280;
+```
+
+![Example breakpoints tokens](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/example-breakpoints-tokens.png)
+
 #### Borders
 To create a *border token*, do the following:
 
