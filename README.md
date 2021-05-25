@@ -17,6 +17,8 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
     - [Border tokens](#borders)
     - [Radii token](#radii)
     - [Size token](#sizes)
+    - [Spacing token](#spacing)
+    - [Breakpoints token](#breakpoints)
     - [Motion token](#motion)
   - [Available properties](#available-properties)
 - [Settings](#settings)
