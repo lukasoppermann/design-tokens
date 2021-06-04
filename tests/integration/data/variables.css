@@ -12,6 +12,9 @@
   --sizes-frame: 32;
   --sizes-rect: 32;
   --sizes-shape-in-component: 32; /* Should use 32px not 20 from inside shape */
+  --breakpoints-lg: 1280;
+  --breakpoints-sm: 768;
+  --breakpoints-md: 1024;
   --spacing-10-top: 10;
   --spacing-10-right: 10;
   --spacing-10-bottom: 10;

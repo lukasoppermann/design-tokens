@@ -648,6 +648,26 @@ export default {
       }
     }
   },
+  "breakpoints": {
+    "lg": {
+      "category": "breakpoint",
+      "type": "number",
+      "unit": "pixel",
+      "value": 1280,
+    },
+    "md": {
+      "category": "breakpoint",
+      "type": "number",
+      "unit": "pixel",
+      "value": 1024,
+    },
+    "sm": {
+      "category": "breakpoint",
+      "type": "number",
+      "unit": "pixel",
+      "value": 768,
+    },
+  },
   colors: {
     'multiple fills': {
       0: {
