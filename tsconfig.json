@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "lib": ["dom", "es2017"],
     "target": "es6",
     "typeRoots": [
