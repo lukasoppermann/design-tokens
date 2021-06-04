@@ -33,6 +33,9 @@ if (figma.command === 'export') {
 if (figma.command === 'urlExport') {
   // needed for getAccessToken async
   const urlExport = async () => {
+    // always set compression true for url export
+    userSettings.compression = true
+    //
     figma.ui.postMessage({
       command: 'urlExport',
       data: {

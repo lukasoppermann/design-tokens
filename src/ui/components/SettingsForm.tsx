@@ -45,28 +45,41 @@ const SettingsForm = () => {
         <div className='label inside-label-behind--sm'>.json</div>
       </div>
       <div className='flex-horizontal'>
-        <div className='label' data-style='width: 130px !important'>Name conversion:</div>
-        <Select
-          defaultValue={settings.nameConversion}
-          onChange={({ value }) => {
-            dispatchSettings({ type: 'update', fieldName: 'nameConversion', payload: value })
-          }}
-          placeholder='Name conversion'
-          options={[
-            {
-              label: 'Default',
-              value: 'default'
-            },
-            {
-              label: 'camelCase',
-              value: 'camelCase'
-            },
-            {
-              label: 'kebab-case',
-              value: 'kebabCase'
-            }
-          ]}
-        />
+        <div className='flex-half'>
+          <div className='label' data-style='width: 130px !important'>Name conversion</div>
+          <Select
+            defaultValue={settings.nameConversion}
+            onChange={({ value }) => {
+              dispatchSettings({ type: 'update', fieldName: 'nameConversion', payload: value })
+            }}
+            placeholder='Name conversion'
+            options={[
+              {
+                label: 'Default',
+                value: 'default'
+              },
+              {
+                label: 'camelCase',
+                value: 'camelCase'
+              },
+              {
+                label: 'kebab-case',
+                value: 'kebabCase'
+              }
+            ]}
+          />
+        </div>
+        <div className='flex-half'>
+          <div className='label' data-style='width: 130px !important'>Compression</div>
+          <Checkbox
+            label='Compress JSON output file'
+            type='switch'
+            checked={settings.compression}
+            onChange={(value) => {
+              dispatchSettings({ type: 'update', fieldName: 'compression', payload: value })
+            }}
+          />
+        </div>
       </div>
       <div className='section-title'>Prefix</div>
       <div className='message-box'>

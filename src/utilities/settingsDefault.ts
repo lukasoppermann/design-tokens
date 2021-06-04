@@ -9,6 +9,10 @@ export default {
     default: 'default',
     empty: false
   },
+  compression: {
+    default: false,
+    empty: false
+  },
   excludePrefix: {
     default: true,
     empty: false

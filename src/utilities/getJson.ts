@@ -16,7 +16,11 @@ const getJson = (figma: PluginAPI, userSettings: UserSettings, stringify: boolea
     return getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion)
   }
   // get tokens as stringified json
-  return JSON.stringify(getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion))
+  if (userSettings.compression === true) {
+    return JSON.stringify(getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion))
+  }
+  // return uncompressed
+  return JSON.stringify(getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion), null, 2)
 }
 
 export default getJson

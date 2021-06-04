@@ -21,6 +21,10 @@ h3 {
 .flex-horizontal {
   display: flex;
 }
+.flex-half {
+  flex: 0;
+  flex-basis: 50%;
+}
 .flex-horizontal ~ .flex-horizontal {
   margin-top: var(--size-xxsmall);
 }
