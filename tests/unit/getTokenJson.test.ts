@@ -8,6 +8,7 @@ import extractSpacing from '../../src/extractor/extractSpacing'
 import extractBorders from '../../src/extractor/extractBorders'
 import extractRadii from '../../src/extractor/extractRadii'
 import extractMotion from '../../src/extractor/extractMotion'
+import extractBreakpoints from '../../src/extractor/extractBreakpoints'
 import styleDictionaryTransformer from '../../src/transformer/styleDictionaryTransformer'
 jest.mock('../../src/extractor/extractFonts', () => jest.fn())
 jest.mock('../../src/extractor/extractEffects', () => jest.fn())
@@ -18,6 +19,7 @@ jest.mock('../../src/extractor/extractSpacing', () => jest.fn())
 jest.mock('../../src/extractor/extractBorders', () => jest.fn())
 jest.mock('../../src/extractor/extractRadii', () => jest.fn())
 jest.mock('../../src/extractor/extractMotion', () => jest.fn())
+jest.mock('../../src/extractor/extractBreakpoints', () => jest.fn())
 jest.mock('../../src/transformer/styleDictionaryTransformer', () => jest.fn())
 
 describe('getJsonToken', () => {
@@ -40,6 +42,8 @@ describe('getJsonToken', () => {
     extractRadii.mockImplementation(() => [])
     // @ts-ignore
     extractMotion.mockImplementation(() => [])
+    // @ts-ignore
+    extractBreakpoints.mockImplementation(() => [])
     // @ts-ignore
     expect(getTokenJson({})).toStrictEqual([])
   })

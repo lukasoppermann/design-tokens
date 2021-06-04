@@ -3,16 +3,11 @@ import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting breakpoints', () => {
     const nodeArray = [
-        customTokenNode,
         {
             ...customTokenNode,
-            ...{ name: 'breakpoints/desktop' }
-        },
-        {
-            ...customTokenNode,
-            ...{
-                name: 'breakpoints/desktop no desc',
-                description: null,
+            ...{ 
+                name: 'breakpoints/desktop',
+                description: 'the width will be set as a max-width for desktop',
                 width: 1440
             }
         }
@@ -28,42 +23,6 @@ describe('extracting breakpoints', () => {
                     type: 'number',
                     unit: 'pixel',
                     value: 1440,
-                }
-            }
-        },
-        {
-            category: 'breakpoint',
-            description: null,
-            name: 'breakpoints/desktop no desc',
-            values: {
-                width: {
-                    type: 'number',
-                    unit: 'pixel',
-                    value: 1440,
-                }
-            }
-        },
-        {
-            category: 'breakpoint',
-            description: null,
-            name: 'breakpoints/tablet no desc',
-            values: {
-                width: {
-                    type: 'number',
-                    unit: 'pixel',
-                    value: 834,
-                }
-            }
-        },
-        {
-            category: 'breakpoint',
-            description: null,
-            name: 'breakpoints/mobile no desc',
-            values: {
-                width: {
-                    type: 'number',
-                    unit: 'pixel',
-                    value: 375,
                 }
             }
         }
