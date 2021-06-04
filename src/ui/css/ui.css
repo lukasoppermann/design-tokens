@@ -18,39 +18,6 @@ h3 {
   letter-spacing: var(--font-letter-spacing-pos-xsmall);
   line-height: var(--font-line-height);
 }
-.notification:not(.hidden) {
-  font-family: var(--font-stack);
-  font-size: var(--font-size-xsmall);
-  font-weight: var(--font-weight-normal);
-  letter-spacing: var(--font-letter-spacing-pos-xsmall);
-  line-height: var(--font-line-height);
-  margin-top: var(--size-xxsmall);
-  padding: var(--size-xxsmall);
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-}
-.notification--info {
-  position: relative;
-  background: var(--blue-10);
-  color: var(--blue-black);
-}
-.notification--info a {
-  color: var(--blue);
-}
-.notification--info a:hover {
-  text-decoration: none;
-}
-.notification--info a.subtle {
-  text-decoration: none;
-}
-.notification--info a.subtle:hover {
-  text-decoration: underline;
-}
-.notification--icon {
-  margin-right: var(--size-xxsmall);
-  margin-left: var(--size-xxxsmall);
-}
 .flex-horizontal {
   display: flex;
 }
