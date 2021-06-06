@@ -35,7 +35,7 @@ h3 {
   flex-shrink: 1;
   height: auto;
 }
-.flex-horizontal input {
+.flex-horizontal input[type="text"] {
   min-width: 50px;
 }
 .inside-label-behind--sm {
@@ -50,7 +50,7 @@ input:invalid {
   outline: 1px solid var(--red);
   outline-offset: -2px;
 }
-#excludePrefix ~ .switch__label > .toggleText::before {
+/* #excludePrefix ~ .switch__label > .toggleText::before {
   position: relative;
   display: inline-block;
   content: "(ONLY prefixed styles are included)";
@@ -59,7 +59,7 @@ input:invalid {
 }
 #excludePrefix:checked ~ .switch__label > .toggleText::before{
   content: "(prefixed styles are excluded)";
-}
+} */
 footer {
   padding: var(--size-xxsmall) 0;
   display: flex;

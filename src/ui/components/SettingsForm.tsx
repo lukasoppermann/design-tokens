@@ -1,127 +1,149 @@
 import * as React from 'react'
-import { Button, Checkbox } from "react-figma-plugin-ds"
+import { Button, Checkbox } from 'react-figma-plugin-ds'
 import { CancelButton } from './CancelButton'
 import { VersionNotice } from './VersionNotice'
-import { setFormSettings, getFormSettings } from '../modules/settings'
-import { useContext, useEffect, useRef } from 'react'
+// import { getFormSettings } from '../modules/settings'
+import { useContext } from 'react'
 import { FigmaContext } from '../context/FigmaContext'
+import { SettingsContext } from '../context/SettingsContext'
 
-interface SettingsFormProps {
-  
-}
+// interface SettingsFormProps {
 
-
-// saveButton.addEventListener('click', () => {
-//   // if form is valid
-//   if (settingsForm.checkValidity() === true) {
-//     // get values from form
-//     const { settings, accessToken } = getFormSettings(settingsForm)
-//     // sent to index saveSettings method
-//     figmaUIApi.postMessage({
-//       pluginMessage: {
-//         command: 'saveSettings',
-//         settings: settings,
-//         accessToken: accessToken
-//       }
-//     // @ts-ignore
-//     }, '*')
-//   }
-// })
+// }
 
 const SettingsForm = () => {
   const figmaUIApi = useContext(FigmaContext)
-  const filenameInputRef = useRef(null);
+  const { state: settings, dispatch: dispatchSettings } = useContext(SettingsContext)
 
-  const saveSettingsHandler = (e) => {
-    const settingsForm = e.target.closest('form')
-    // check form
+  const settingsFormSubmitHandler = (event) => {
+    const settingsForm = event.target
     if (settingsForm.checkValidity() === true) {
-      // get values from form
-      const { settings, accessToken } = getFormSettings(settingsForm)
-      // sent to index saveSettings method
+      const { accessToken, ...pluginSettings } = settings
+      // save date to local storage
       figmaUIApi.postMessage({
         pluginMessage: {
           command: 'saveSettings',
-          settings: settings,
+          settings: pluginSettings,
           accessToken: accessToken
         }
       // @ts-ignore
       }, '*')
     }
   }
-
-  useEffect(() => {
-    filenameInputRef.current.focus()
-  })
-
-  
-  return <form id="settingsForm" className="plugin-ui-content">
-    <VersionNotice />
-    <h3>Design Token Settings</h3>
-    <div className="input flex-horizontal">
-      <div className="label">Filename:</div>
-      <input required pattern="^[\w\-\.\+@]+$" ref={filenameInputRef} type="text" id="filename" className="input__field with-inside-label-behind-sm" placeholder="design-tokens" value="design-tokens" />
-      <div className="label inside-label-behind--sm">.json</div>
-    </div>
-    <div className="flex-horizontal">
-      <div className="label" data-style="width: 130px !important">Name conversion:</div>
-      <select id="nameConversion" className="select-css">
-        <option value="default">Default</option>
-        <option value="camelCase">camelCase</option>
-        <option value="kebabCase">kebab-case</option>
-      </select>
-    </div>
-    <div className="section-title">Prefix</div>
-    <div className="message-box">
-      <div className="message message--info">Define a prefix for styles to be in-/excluded.</div>
-    </div>
-    <div className="flex-horizontal">
-      <div className="input flex-horizontal">
-        <div className="label">Prefix:</div>
-        <input required pattern="\S+" type="text" id="prefix" className="input__field" placeholder="_" value="_" />
-      </div>
-      <div className="switch">
-        {/* <input className="switch__toggle" type="checkbox" id="excludePrefix" checked /> */}
-        <Checkbox
-          label="Toggle me"
-          type="switch"
-          id="excludePrefix"
+  console.log('test', settings.excludePrefix)
+  return (
+    <form id='settingsForm' className='plugin-ui-content' onSubmit={settingsFormSubmitHandler}>
+      <VersionNotice />
+      <h3>Design Token Settings</h3>
+      <div className='input flex-horizontal'>
+        <div className='label'>Filename:</div>
+        <input
+          autoFocus required pattern='^[\w\-\.\+@]+$' type='text' id='filename' className='input__field with-inside-label-behind-sm' placeholder='design-tokens' value={settings.filename}
+          onChange={(e) => {
+            dispatchSettings({ type: 'update', fieldName: 'filename', payload: e.target.value })
+          }}
         />
-        <label className="switch__label" htmlFor="excludePrefix">Exclude<span className="toggleText"></span></label>
+        <div className='label inside-label-behind--sm'>.json</div>
       </div>
-    </div>
-    <div className="section-title">Push to server</div>
-    <div className="input flex-horizontal">
-      <div className="label" data-style="width: 110px !important">Event type:</div>
-      <input required pattern="^[\w\-\.\+@]+$" type="text" id="eventType" className="input__field" placeholder="update-tokens" value="update-tokens" />
-      <div className="label label--info">"event_type" property in post request</div>
-    </div>
-    <div className="input flex-horizontal">
-      <div className="label" data-style="width: 110px !important">Server url:</div>
-      <input type="text" pattern="^https://.*" id="serverUrl" className="input__field" placeholder="https://api.github.com/repos/:username/:repo/dispatches" />
-    </div>
-    <div className="input flex-horizontal">
-      <div className="label" data-style="width: 110px !important">Accept header:</div>
-      <input type="text" pattern="\S+" id="acceptHeader" className="input__field" placeholder="accept header" value='application/vnd.github.everest-preview+json' />
-    </div>
-    <div className="flex-horizontal">
-      <div className="label" data-style="width: 110px !important">Auth type:</div>
-      <select id="authType" className="select-css">
-        <option value="token">(Github) token</option>
-        <option value="Basic">Basic authentication</option>
-        <option value="Bearer">Bearer token authentication</option>
-      </select>
-    </div>
-    <div className="input flex-horizontal">
-      <div className="label" data-style="width: 110px !important">Access token:</div>
-      <input type="text" pattern="\S+" id="accessToken" className="input__field" placeholder="your access token" />
-    </div>
-    <footer>
-      <CancelButton />
-      <Button onClick={saveSettingsHandler}>Save changes!!!</Button>
-      {/* <button id="saveButton" className='button button--primary' type="submit">Save changes</button> */}
-    </footer>
-  </form>
+      <div className='flex-horizontal'>
+        <div className='label' data-style='width: 130px !important'>Name conversion:</div>
+        <select
+          value={settings.nameConversion}
+          id='nameConversion' className='select-css' onChange={(e) => {
+            dispatchSettings({ type: 'update', fieldName: 'nameConversion', payload: e.target.value })
+          }}
+        >
+          <option value='default'>Default</option>
+          <option value='camelCase'>camelCase</option>
+          <option value='kebabCase'>kebab-case</option>
+        </select>
+      </div>
+      <div className='section-title'>Prefix</div>
+      <div className='message-box'>
+        <div className='message message--info'>Define a prefix for styles to be in-/excluded.</div>
+      </div>
+      <div className='flex-horizontal'>
+        <div className='input flex-horizontal'>
+          <div className='label'>Prefix:</div>
+          <input
+            required pattern='\S+' type='text' id='prefix' className='input__field' placeholder='_' value={settings.prefix}
+            onChange={(e) => {
+              dispatchSettings({ type: 'update', fieldName: 'prefix', payload: e.target.value })
+            }}
+          />
+        </div>
+        <Checkbox
+          label={settings.excludePrefix ? 'Exclude (ONLY prefixed styles are included)' : 'Exclude (prefixed styles are excluded)'}
+          type='switch'
+          defaultValue={settings.excludePrefix}
+          onChange={(value) => {
+            dispatchSettings({ type: 'update', fieldName: 'excludePrefix', payload: value })
+          }}
+        />
+        <input type='checkbox' checked={settings.excludePrefix} />
+      </div>
+      <div className='section-title'>Push to server</div>
+      <div className='input flex-horizontal'>
+        <div className='label' data-style='width: 110px !important'>Event type:</div>
+        <input
+          required pattern='^[\w\-\.\+@]+$' type='text' id='eventType' className='input__field' placeholder='update-tokens'
+          value={settings.eventType}
+          onChange={(e) => {
+            dispatchSettings({ type: 'update', fieldName: 'eventType', payload: e.target.value })
+          }}
+        />
+        <div className='label label--info'>"event_type" property in post request</div>
+      </div>
+      <div className='input flex-horizontal'>
+        <div className='label' data-style='width: 110px !important'>Server url:</div>
+        <input
+          type='text' pattern='^https://.*' id='serverUrl' className='input__field' placeholder='https://api.github.com/repos/:username/:repo/dispatches'
+          value={settings.serverUrl}
+          onChange={(e) => {
+            dispatchSettings({ type: 'update', fieldName: 'serverUrl', payload: e.target.value })
+          }}
+        />
+      </div>
+      <div className='input flex-horizontal'>
+        <div className='label' data-style='width: 110px !important'>Accept header:</div>
+        <input
+          type='text' pattern='\S+' id='acceptHeader' className='input__field' placeholder='accept header'
+          // value='application/vnd.github.everest-preview+json'
+          value={settings.acceptHeader}
+          onChange={(e) => {
+            dispatchSettings({ type: 'update', fieldName: 'acceptHeader', payload: e.target.value })
+          }}
+        />
+      </div>
+      <div className='flex-horizontal'>
+        <div className='label' data-style='width: 110px !important'>Auth type:</div>
+        <select
+          id='authType' className='select-css' value={settings.authType}
+          onChange={(e) => {
+            dispatchSettings({ type: 'update', fieldName: 'authType', payload: e.target.value })
+          }}
+        >
+          <option value='token'>(Github) token</option>
+          <option value='Basic'>Basic authentication</option>
+          <option value='Bearer'>Bearer token authentication</option>
+        </select>
+      </div>
+      <div className='input flex-horizontal'>
+        <div className='label' data-style='width: 110px !important'>Access token:</div>
+        <input
+          type='text' pattern='\S+' id='accessToken' className='input__field' placeholder='your access token'
+          value={settings.accessToken}
+          onChange={(e) => {
+            dispatchSettings({ type: 'update', fieldName: 'accessToken', payload: e.target.value })
+          }}
+        />
+      </div>
+      <footer>
+        <CancelButton />
+        <Button>Save changes</Button>
+      </footer>
+    </form>
+  )
 }
 
 export { SettingsForm }

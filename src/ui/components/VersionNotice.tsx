@@ -40,15 +40,14 @@ interface VersionNoticeProps {
   hidden?: boolean
 }
 
-export const VersionNotice = ({hidden}: VersionNoticeProps) => {
-
+export const VersionNotice = ({ hidden }: VersionNoticeProps) => {
   return (
-    <div id="versionNotice" className={`${style} ${hidden ? 'is-hidden': ''}`}>
-      <div className="icon">🎉</div>
+    <div id='versionNotice' className={`${style} ${hidden ? 'is-hidden' : ''}`}>
+      <div className='icon'>🎉</div>
       <div>
-        The <a className="subtle" href="https://www.figma.com/community/plugin/888356646278934516/Design-Tokens" target="_blank">Design Token plugin</a> was
+        The <a className='subtle' href='https://www.figma.com/community/plugin/888356646278934516/Design-Tokens' target='_blank' rel='noreferrer'>Design Token plugin</a> was
         updated.<br />
-        Find out about changes & new features in the <a href="https://github.com/lukasoppermann/design-tokens/releases" target="_blank">release notes →</a>
+        Find out about changes & new features in the <a href='https://github.com/lukasoppermann/design-tokens/releases' target='_blank' rel='noreferrer'>release notes →</a>
       </div>
     </div>
   )

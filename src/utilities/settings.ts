@@ -1,5 +1,5 @@
 import settingsDefault from './settingsDefault'
-import UserSettings from '../../types/settings'
+import { Settings as UserSettings } from '../../types/settings'
 const settingsKey = 'settings'
 /**
  * Function sanitizes and prepares settings to be stored
