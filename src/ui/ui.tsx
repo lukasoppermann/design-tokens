@@ -78,7 +78,7 @@ const PluginUi = () => {
         }, '*')
       }
     }
-  })
+  }, [])
 
   return (
     <FigmaContext.Provider value={figmaUIApi}>

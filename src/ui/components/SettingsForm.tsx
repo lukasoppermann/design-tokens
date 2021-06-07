@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Button, Checkbox } from 'react-figma-plugin-ds'
+import { Button, Checkbox, Select } from 'react-figma-plugin-ds'
 import { CancelButton } from './CancelButton'
 import { VersionNotice } from './VersionNotice'
-// import { getFormSettings } from '../modules/settings'
+// import { getFormSettings } from '../modules/settings'xx
 import { useContext } from 'react'
 import { FigmaContext } from '../context/FigmaContext'
 import { SettingsContext } from '../context/SettingsContext'
@@ -30,10 +30,9 @@ const SettingsForm = () => {
       }, '*')
     }
   }
-  console.log('test', settings.excludePrefix)
   return (
     <form id='settingsForm' className='plugin-ui-content' onSubmit={settingsFormSubmitHandler}>
-      <VersionNotice />
+      <VersionNotice versionDifference={settings.versionDifferece} />
       <h3>Design Token Settings</h3>
       <div className='input flex-horizontal'>
         <div className='label'>Filename:</div>
@@ -47,16 +46,27 @@ const SettingsForm = () => {
       </div>
       <div className='flex-horizontal'>
         <div className='label' data-style='width: 130px !important'>Name conversion:</div>
-        <select
-          value={settings.nameConversion}
-          id='nameConversion' className='select-css' onChange={(e) => {
-            dispatchSettings({ type: 'update', fieldName: 'nameConversion', payload: e.target.value })
+        <Select
+          defaultValue={settings.nameConversion}
+          onChange={({ value }) => {
+            dispatchSettings({ type: 'update', fieldName: 'nameConversion', payload: value })
           }}
-        >
-          <option value='default'>Default</option>
-          <option value='camelCase'>camelCase</option>
-          <option value='kebabCase'>kebab-case</option>
-        </select>
+          placeholder='Name conversion'
+          options={[
+            {
+              label: 'Default',
+              value: 'default'
+            },
+            {
+              label: 'camelCase',
+              value: 'camelCase'
+            },
+            {
+              label: 'kebab-case',
+              value: 'kebabCase'
+            }
+          ]}
+        />
       </div>
       <div className='section-title'>Prefix</div>
       <div className='message-box'>
@@ -75,12 +85,11 @@ const SettingsForm = () => {
         <Checkbox
           label={settings.excludePrefix ? 'Exclude (ONLY prefixed styles are included)' : 'Exclude (prefixed styles are excluded)'}
           type='switch'
-          defaultValue={settings.excludePrefix}
+          checked={settings.excludePrefix}
           onChange={(value) => {
             dispatchSettings({ type: 'update', fieldName: 'excludePrefix', payload: value })
           }}
         />
-        <input type='checkbox' checked={settings.excludePrefix} />
       </div>
       <div className='section-title'>Push to server</div>
       <div className='input flex-horizontal'>
@@ -117,16 +126,27 @@ const SettingsForm = () => {
       </div>
       <div className='flex-horizontal'>
         <div className='label' data-style='width: 110px !important'>Auth type:</div>
-        <select
-          id='authType' className='select-css' value={settings.authType}
-          onChange={(e) => {
-            dispatchSettings({ type: 'update', fieldName: 'authType', payload: e.target.value })
+        <Select
+          defaultValue={settings.authType}
+          onChange={({ value }) => {
+            dispatchSettings({ type: 'update', fieldName: 'authType', payload: value })
           }}
-        >
-          <option value='token'>(Github) token</option>
-          <option value='Basic'>Basic authentication</option>
-          <option value='Bearer'>Bearer token authentication</option>
-        </select>
+          placeholder='Name conversion'
+          options={[
+            {
+              label: '(Github) token',
+              value: 'token'
+            },
+            {
+              label: 'Basic authentication',
+              value: 'Basic'
+            },
+            {
+              label: 'Bearer token authentication',
+              value: 'Bearer'
+            }
+          ]}
+        />
       </div>
       <div className='input flex-horizontal'>
         <div className='label' data-style='width: 110px !important'>Access token:</div>

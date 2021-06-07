@@ -1,5 +1,6 @@
 import { css } from '@emotion/css'
 import * as React from 'react'
+import { versionDifference } from '../../utilities/semVerDifference'
 
 const style = css`
   font-family: var(--font-stack);
@@ -37,12 +38,15 @@ const style = css`
 `
 
 interface VersionNoticeProps {
-  hidden?: boolean
+  versionDifference?: versionDifference
 }
 
-export const VersionNotice = ({ hidden }: VersionNoticeProps) => {
+export const VersionNotice = ({ versionDifference }: VersionNoticeProps) => {
+  if (versionDifference !== 'major' && versionDifference !== 'minor') {
+    return <></>
+  }
   return (
-    <div id='versionNotice' className={`${style} ${hidden ? 'is-hidden' : ''}`}>
+    <div id='versionNotice' className={style}>
       <div className='icon'>🎉</div>
       <div>
         The <a className='subtle' href='https://www.figma.com/community/plugin/888356646278934516/Design-Tokens' target='_blank' rel='noreferrer'>Design Token plugin</a> was

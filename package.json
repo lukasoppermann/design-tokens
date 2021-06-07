@@ -48,7 +48,7 @@
     "immer": "^9.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-figma-plugin-ds": "^2.2.0",
+    "react-figma-plugin-ds": "git+https://github.com/lukasoppermann/react-figma-plugin-ds.git",
     "style-loader": "^2.0.0",
     "ts-jest": "^26.5.6",
     "ts-loader": "^8.3.0",
