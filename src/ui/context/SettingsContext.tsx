@@ -6,6 +6,7 @@ export const SettingsContext = React.createContext(null)
 export const initialState: Settings = {
   filename: 'design-tokens',
   nameConversion: 'default',
+  compression: false,
   prefix: '_',
   excludePrefix: true,
   serverUrl: undefined,

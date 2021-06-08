@@ -6,6 +6,7 @@ export type nameConversionType =
 export type Settings = {
   filename: string,
   nameConversion: nameConversionType,
+  compression: boolean,
   excludePrefix: boolean,
   prefix: string,
   serverUrl?: string,
