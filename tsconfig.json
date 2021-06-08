@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "lib": ["dom", "es2017"],
     "target": "es6",
+    "moduleResolution": "node",
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma",

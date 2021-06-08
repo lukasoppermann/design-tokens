@@ -1,4 +1,5 @@
 import { getSettings, setSettings, __testing } from '../../src/utilities/settings'
+import { nameConversionType } from '../../types/settings'
 
 beforeAll(() => {
   // @ts-ignore
@@ -86,7 +87,7 @@ describe('Testing setSettings', () => {
 
     const newSettings = {
       filename: 'myFile',
-      nameConversion: 'default',
+      nameConversion: 'default' as nameConversionType,
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -97,7 +98,7 @@ describe('Testing setSettings', () => {
 
     const output = {
       filename: 'myFile',
-      nameConversion: 'default',
+      nameConversion: 'default' as nameConversionType,
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -105,6 +106,7 @@ describe('Testing setSettings', () => {
       acceptHeader: 'yo',
       authType: 'aType'
     }
+
     setSettings(newSettings)
     // assert
     // @ts-ignore

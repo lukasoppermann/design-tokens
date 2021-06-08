@@ -1,5 +1,5 @@
 /* eslint-env browser */
-import Settings from '../../../types/settings'
+import { Settings } from '../../../types/settings'
 
 const settingIds = {
   accessToken: '#accessToken',
@@ -29,6 +29,7 @@ const getFormSettings = (form: HTMLFormElement): { settings: Settings, accessTok
   const accessToken: string = (form.querySelector(settingIds.accessToken) as HTMLInputElement).value
   // return values
   return {
+    // @ts-ignore
     settings: settings,
     accessToken: accessToken
   }
