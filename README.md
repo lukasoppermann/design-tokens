@@ -236,6 +236,11 @@ This option allows you to define how the token names will be converted when they
 - `camelCase` - spaces from the beginning and end are removed and the name is converted to [camelCase](https://en.wikipedia.org/wiki/Camel_case)
 - `kebab-case`  - spaces from the beginning and end are removed and the name is converted to kebab-case
 
+### Compression for json output file
+**Does not apply to the json send to the server (always compressed).**
+
+This option allows you to toggle the file compression. When enabled the json file will be minified meaning whitespace and linebreaks will be removed.
+
 ### Prefix (used to in-/exclude styles)
 #### **Prefix**
 You can change the prefix from `_` to anything, e.g. `_tokens`.   
