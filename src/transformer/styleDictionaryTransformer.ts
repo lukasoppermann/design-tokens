@@ -4,6 +4,24 @@ import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from '../
 import { convertRgbaObjectToString } from '../utilities/convertColor'
 import getDescription from './utilities/getDescription'
 
+const styleDictionaryConvertValue = (value, type: string) => {
+  if (value === undefined || value === null) {
+    return
+  }
+  if (type === 'color') {
+    return convertRgbaObjectToString(value)
+  }
+  return value
+}
+
+const styleDictionaryFormat = (property): StyleDictionaryPropertyObject => ({
+  value: styleDictionaryConvertValue(property.value, property.type),
+  type: property.type,
+  // optional properties
+  ...(property.description !== undefined && { comment: property.description }),
+  ...(property.unit !== undefined && { unit: property.unit })
+})
+
 const defaultTransformer = propertyGroupValues => {
   // turn array with only one item into normal object
   if (Array.isArray(propertyGroupValues) && propertyGroupValues.length === 1) {
@@ -45,24 +63,6 @@ const categoryTransformer = {
   radius: defaultTransformer,
   fill: defaultTransformer
 }
-
-const styleDictionaryConvertValue = (value, type: string) => {
-  if (value === undefined || value === null) {
-    return
-  }
-  if (type === 'color') {
-    return convertRgbaObjectToString(value)
-  }
-  return value
-}
-
-const styleDictionaryFormat = (property): StyleDictionaryPropertyObject => ({
-  value: styleDictionaryConvertValue(property.value, property.type),
-  type: property.type,
-  // optional properties
-  ...(property.description !== undefined && { comment: property.description }),
-  ...(property.unit !== undefined && { unit: property.unit })
-})
 
 const propertyTransformer = (propertyGroup: propertyObject, category: propertyCategory): {
   [key: string]: any
