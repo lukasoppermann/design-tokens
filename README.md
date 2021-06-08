@@ -22,6 +22,7 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
     - [Motion token](#motion)
   - [Available properties](#available-properties)
 - [Settings](#settings)
+  - [Push tokens to Github / Server](#push-to-server)
 - [Roadmap & PRs](#roadmap--prs)
 
 ## Installation
