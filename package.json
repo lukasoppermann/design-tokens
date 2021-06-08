@@ -24,11 +24,11 @@
   "devDependencies": {
     "@figma/plugin-typings": "^1.23.0",
     "@types/jest": "^26.0.23",
-    "@types/node": "^15.12.1",
+    "@types/node": "^15.12.2",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
     "css-loader": "^5.2.6",
     "eslint-plugin-typescript": "^0.14.0",
     "figma-plugin-ds": "^1.0.1",
@@ -39,7 +39,7 @@
     "replace-in-files-cli": "^1.0.0",
     "snazzy": "^9.0.0",
     "standardx": "^7.0.0",
-    "style-dictionary": "^3.0.0"
+    "style-dictionary": "^3.0.1"
   },
   "dependencies": {
     "@emotion/css": "^11.1.3",
