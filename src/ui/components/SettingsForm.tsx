@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { FigmaContext } from '../context/FigmaContext'
 import { SettingsContext } from '../context/SettingsContext'
 import config from '../../utilities/config'
+import { Footer } from './Footer'
 
 // interface SettingsFormProps {
 
@@ -172,10 +173,10 @@ const SettingsForm = () => {
           }}
         />
       </div>
-      <footer>
+      <Footer>
         <CancelButton />
         <Button>Save changes</Button>
-      </footer>
+      </Footer>
     </form>
   )
 }

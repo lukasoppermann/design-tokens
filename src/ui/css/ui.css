@@ -54,29 +54,6 @@ input:invalid {
   outline: 1px solid var(--red);
   outline-offset: -2px;
 }
-/* #excludePrefix ~ .switch__label > .toggleText::before {
-  position: relative;
-  display: inline-block;
-  content: "(ONLY prefixed styles are included)";
-  padding-left: var(--size-xxxsmall);
-  color: var(--dark-grey);
-}
-#excludePrefix:checked ~ .switch__label > .toggleText::before{
-  content: "(prefixed styles are excluded)";
-} */
-footer {
-  padding: var(--size-xxsmall) 0;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: var(--size-xsmall);
-  border-top: 1px solid var(--silver);
-}
-footer > * {
-  margin-right: var(--size-xxsmall);
-}
-footer > :last-child{
-  margin-right: 0;
-}
 :not(h3) + .section-title {
   padding-top: var(--size-xxsmall);
   margin-top: var(--size-xsmall);
