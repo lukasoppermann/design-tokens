@@ -6,6 +6,8 @@ import { VersionNotice } from './VersionNotice'
 import { useContext } from 'react'
 import { FigmaContext } from '../context/FigmaContext'
 import { SettingsContext } from '../context/SettingsContext'
+import config from '../../utilities/config'
+import { Footer } from './Footer'
 
 // interface SettingsFormProps {
 
@@ -22,7 +24,7 @@ const SettingsForm = () => {
       // save date to local storage
       figmaUIApi.postMessage({
         pluginMessage: {
-          command: 'saveSettings',
+          command: config.commands.saveSettings,
           settings: pluginSettings,
           accessToken: accessToken
         }
@@ -171,10 +173,10 @@ const SettingsForm = () => {
           }}
         />
       </div>
-      <footer>
+      <Footer>
         <CancelButton />
         <Button>Save changes</Button>
-      </footer>
+      </Footer>
     </form>
   )
 }

@@ -19,6 +19,7 @@ describe('Testing settingsPrepare', () => {
     const newSettings = {
       filename: 'myFile',
       nameConversion: 'default',
+      compression: false,
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -30,6 +31,7 @@ describe('Testing settingsPrepare', () => {
     const output = {
       filename: 'myFile',
       nameConversion: 'default',
+      compression: false,
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -46,6 +48,7 @@ describe('Testing settingsPrepare', () => {
     const newSettings = {
       filename: '',
       nameConversion: '',
+      compression: false,
       excludePrefix: false,
       prefix: '',
       eventType: '',
@@ -55,6 +58,7 @@ describe('Testing settingsPrepare', () => {
     const output = {
       filename: 'design-tokens',
       nameConversion: 'default',
+      compression: false,
       excludePrefix: false,
       prefix: '_',
       serverUrl: '',
@@ -75,6 +79,7 @@ describe('Testing setSettings', () => {
     const currentSettings = {
       filename: '',
       nameConversion: 'default',
+      compression: true,
       excludePrefix: false,
       prefix: '',
       serverUrl: '',
@@ -89,6 +94,7 @@ describe('Testing setSettings', () => {
       filename: 'myFile',
       nameConversion: 'default' as nameConversionType,
       excludePrefix: true,
+      compression: false,
       prefix: '#',
       serverUrl: 'https://test.com',
       eventType: 'myEvent',
@@ -99,6 +105,7 @@ describe('Testing setSettings', () => {
     const output = {
       filename: 'myFile',
       nameConversion: 'default' as nameConversionType,
+      compression: false,
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -121,6 +128,7 @@ describe('Testing getSettings', () => {
     const currentSettings = {
       filename: 'myFile',
       nameConversion: 'default',
+      compression: true,
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -134,6 +142,7 @@ describe('Testing getSettings', () => {
     const output = {
       filename: 'myFile',
       nameConversion: 'default',
+      compression: true,
       excludePrefix: true,
       prefix: '#',
       serverUrl: 'https://test.com',
@@ -153,6 +162,7 @@ describe('Testing getSettings', () => {
     const output = {
       filename: 'design-tokens',
       nameConversion: 'default',
+      compression: false,
       excludePrefix: true,
       prefix: '_',
       serverUrl: '',

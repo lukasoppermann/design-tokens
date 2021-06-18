@@ -8,7 +8,7 @@
     {"name": "Export Design Token File", "command": "export"},
     {"name": "Send Design Tokens to Url", "command": "urlExport"},
     {"separator": true},
-    {"name": "Settings", "command": "settings"},
+    {"name": "Settings", "command": "generalSettings"},
     {"separator": true},
     {"name": "Help", "command": "help"}
   ]

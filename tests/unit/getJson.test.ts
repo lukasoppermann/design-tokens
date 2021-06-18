@@ -12,9 +12,10 @@ jest.mock('../../src/utilities/buildFigmaData', () => () => ({
   effectStyles: []
 }))
 
-let userSettings = {
+const userSettings = {
   nameConversion: 'default',
   prefix: '_',
+  compression: true,
   excludePrefix: true
 }
 
