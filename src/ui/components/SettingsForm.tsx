@@ -6,6 +6,7 @@ import { VersionNotice } from './VersionNotice'
 import { useContext } from 'react'
 import { FigmaContext } from '../context/FigmaContext'
 import { SettingsContext } from '../context/SettingsContext'
+import config from '../../utilities/config'
 
 // interface SettingsFormProps {
 
@@ -22,7 +23,7 @@ const SettingsForm = () => {
       // save date to local storage
       figmaUIApi.postMessage({
         pluginMessage: {
-          command: 'saveSettings',
+          command: config.commands.saveSettings,
           settings: pluginSettings,
           accessToken: accessToken
         }
