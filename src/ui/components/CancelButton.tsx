@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useContext } from 'react'
 import { Button } from 'react-figma-plugin-ds'
+import config from '../../utilities/config'
 import { FigmaContext } from '../context/FigmaContext'
 
 const CancelButton = () => {
@@ -10,7 +11,7 @@ const CancelButton = () => {
     // close the plugin
     figmaUIApi.postMessage({
       pluginMessage: {
-        command: 'closePlugin'
+        command: config.commands.closePlugin
       }
     // @ts-ignore
     }, '*')

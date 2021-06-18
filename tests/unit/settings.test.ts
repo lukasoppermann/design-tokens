@@ -48,6 +48,7 @@ describe('Testing settingsPrepare', () => {
     const newSettings = {
       filename: '',
       nameConversion: '',
+      compression: false,
       excludePrefix: false,
       prefix: '',
       eventType: '',
@@ -78,6 +79,7 @@ describe('Testing setSettings', () => {
     const currentSettings = {
       filename: '',
       nameConversion: 'default',
+      compression: true,
       excludePrefix: false,
       prefix: '',
       serverUrl: '',
