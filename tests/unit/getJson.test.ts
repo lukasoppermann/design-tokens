@@ -15,8 +15,8 @@ jest.mock('../../src/utilities/buildFigmaData', () => () => ({
 const userSettings = {
   nameConversion: 'default',
   prefix: '_',
-  excludePrefix: true,
-  compression: true
+  compression: true,
+  excludePrefix: true
 }
 
 describe('getJson', () => {
