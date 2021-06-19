@@ -8,7 +8,6 @@ const style = css`
   font-weight: var(--font-weight-normal);
   letter-spacing: var(--font-letter-spacing-pos-xsmall);
   line-height: var(--font-line-height);
-  margin-top: var(--size-xxsmall);
   padding: var(--size-xxsmall);
   border-radius: 3px;
   display: flex;

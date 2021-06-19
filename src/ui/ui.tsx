@@ -10,17 +10,25 @@ import downloadJson from './modules/downloadJson'
 // import { setFormSettings } from './modules/settings'
 import { urlExport } from './modules/urlExport'
 import { GeneralSettings } from './components/GeneralSettings'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FigmaContext } from './context/FigmaContext'
 import { SettingsContext, settingsReducer, initialSettings } from './context/SettingsContext'
 import { useImmerReducer } from 'use-immer'
 import config from '../utilities/config'
+import { VersionNotice } from './components/VersionNotice'
+import { css } from '@emotion/css'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
 
+const style = css`
+  padding: 8px var(--size-xxsmall) 0;
+  margin-bottom: 0;
+`
+
 const PluginUi = () => {
   const [state, dispatch] = useImmerReducer(settingsReducer, initialSettings)
+  const [versionDifference, setVersionDifference] = useState(null)
 
   useEffect(() => {
     // ---------------------------------
@@ -60,11 +68,7 @@ const PluginUi = () => {
             ...{ versionDifference: message.versionDifference }
           }
         })
-        // setFormSettings(settingsForm, message.settings, message.accessToken)
-        // show update notice
-        // if (message.versionDifference === 'major' || message.versionDifference === 'minor') {
-        //   versionNotice.classList.remove('hidden')
-        // }
+        setVersionDifference(message.versionDifference)
       }
       // open help page
       if (message.command === config.commands.help) {
@@ -81,8 +85,11 @@ const PluginUi = () => {
   return (
     <FigmaContext.Provider value={figmaUIApi}>
       <SettingsContext.Provider value={{ state, dispatch }}>
-        <GeneralSettings />
-        <a id='downloadLink' />
+        <main className={style}>
+          <VersionNotice versionDifference={versionDifference} />
+          <GeneralSettings />
+          <a id='downloadLink' />
+        </main>
       </SettingsContext.Provider>
     </FigmaContext.Provider>
   )

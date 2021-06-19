@@ -1,9 +1,8 @@
-.plugin-ui-content {
-  padding: 2px var(--size-xxsmall) 0;
-  margin-bottom: 0;
-}
 h3 {
   padding: 0 var(--size-xxsmall);
+}
+h3:first-child {
+  margin-top: 8px;
 }
 .label {
   color: var(--dark-grey);
