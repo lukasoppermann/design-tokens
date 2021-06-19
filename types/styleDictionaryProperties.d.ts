@@ -9,6 +9,7 @@ export type StyleDictionaryPropertyObject = {
 
 export type StyleDictionaryPropertyGroup = {
   name: string,
+  exportKey: string,
   comment?: string,
 } & {
   [key: string]: StyleDictionaryPropertyObject | any

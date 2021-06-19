@@ -1,5 +1,4 @@
-export type PluginCommands =
-  'generalSettings' |
+export type PluginCommands = 'generalSettings' |
   'exportSettings' |
   'sendSettings' |
   'saveSettings' |

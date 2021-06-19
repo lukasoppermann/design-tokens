@@ -2,6 +2,7 @@
   "sizes": {
     "32": {
       "category": "size",
+      "exportKey": "size",
       "comment": "32.72px spacer component",
       "value": 32.72,
       "type": "number",
@@ -9,72 +10,84 @@
     },
     "40": {
       "category": "size",
+      "exportKey": "size",
       "value": 40,
       "type": "number",
       "unit": "pixel"
     },
     "60": {
       "category": "size",
+      "exportKey": "size",
       "value": 60,
       "type": "number",
       "unit": "pixel"
     },
     "80": {
       "category": "size",
+      "exportKey": "size",
       "value": 80,
       "type": "number",
       "unit": "pixel"
     },
     "plain token": {
       "category": "size",
+      "exportKey": "size",
       "value": 200,
       "type": "number",
       "unit": "pixel"
     },
     "token in frame": {
       "category": "size",
+      "exportKey": "size",
       "value": 200,
       "type": "number",
       "unit": "pixel"
     },
     "token in group": {
       "category": "size",
+      "exportKey": "size",
       "value": 200,
       "type": "number",
       "unit": "pixel"
     },
     "in variant 60": {
       "category": "size",
+      "exportKey": "size",
       "value": 60,
       "type": "number",
       "unit": "pixel"
     },
     "in variant 90": {
       "category": "size",
+      "exportKey": "size",
       "value": 90,
       "type": "number",
       "unit": "pixel"
     },
     "in variant 120": {
       "category": "size",
+      "exportKey": "size",
       "value": 120,
       "type": "number",
       "unit": "pixel"
     },
     "frame": {
       "category": "size",
+      "exportKey": "size",
       "value": 32,
       "type": "number",
       "unit": "pixel"
     },
     "rect": {
       "category": "size",
+      "exportKey": "size",
       "value": 32,
       "type": "number",
       "unit": "pixel"
     },
     "shape in component": {
       "category": "size",
+      "exportKey": "size",
       "comment": "Should use 32px not 20 from inside shape",
       "value": 32,
       "type": "number",
@@ -84,18 +97,21 @@
   "breakpoints": {
     "lg": {
       "category": "breakpoint",
+      "exportKey": "breakpoint",
       "value": 1280,
       "type": "number",
       "unit": "pixel"
     },
     "sm": {
       "category": "breakpoint",
+      "exportKey": "breakpoint",
       "value": 768,
       "type": "number",
       "unit": "pixel"
     },
     "md": {
       "category": "breakpoint",
+      "exportKey": "breakpoint",
       "value": 1024,
       "type": "number",
       "unit": "pixel"
@@ -104,6 +120,7 @@
   "spacing": {
     "10": {
       "category": "spacing",
+      "exportKey": "spacing",
       "top": {
         "value": 10,
         "type": "number",
@@ -127,6 +144,7 @@
     },
     "mixed": {
       "category": "spacing",
+      "exportKey": "spacing",
       "top": {
         "value": 10,
         "type": "number",
@@ -150,6 +168,7 @@
     },
     "top": {
       "category": "spacing",
+      "exportKey": "spacing",
       "top": {
         "value": 10,
         "type": "number",
@@ -176,6 +195,7 @@
     "unsupported": {
       "gradient borders": {
         "category": "border",
+        "exportKey": "border",
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -208,6 +228,7 @@
       },
       "multiple borders": {
         "category": "border",
+        "exportKey": "border",
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -241,6 +262,7 @@
       },
       "image borders": {
         "category": "border",
+        "exportKey": "border",
         "strokeAlign": {
           "value": "inside",
           "type": "string"
@@ -274,6 +296,7 @@
     },
     "single": {
       "category": "border",
+      "exportKey": "border",
       "strokeAlign": {
         "value": "inside",
         "type": "string"
@@ -307,6 +330,7 @@
     },
     "single (style)": {
       "category": "border",
+      "exportKey": "border",
       "strokeAlign": {
         "value": "inside",
         "type": "string"
@@ -340,6 +364,7 @@
     },
     "dashed outside": {
       "category": "border",
+      "exportKey": "border",
       "strokeAlign": {
         "value": "outside",
         "type": "string"
@@ -375,6 +400,7 @@
   "radii": {
     "5": {
       "category": "radius",
+      "exportKey": "radius",
       "radius": {
         "value": 5,
         "type": "number",
@@ -413,6 +439,7 @@
     },
     "smoothing": {
       "category": "radius",
+      "exportKey": "radius",
       "radius": {
         "value": 10,
         "type": "number",
@@ -451,6 +478,7 @@
     },
     "mixed": {
       "category": "radius",
+      "exportKey": "radius",
       "radiusType": {
         "value": "mixed",
         "type": "string"
@@ -484,6 +512,7 @@
     },
     "same with smoothing": {
       "category": "radius",
+      "exportKey": "radius",
       "comment": "Radius 5 with corner smoothing",
       "radius": {
         "value": 5,
@@ -525,6 +554,7 @@
   "motion": {
     "move in": {
       "category": "motion",
+      "exportKey": "motion",
       "type": {
         "value": "move_in",
         "type": "string"
@@ -563,6 +593,7 @@
     },
     "dissolve": {
       "category": "motion",
+      "exportKey": "motion",
       "type": {
         "value": "dissolve",
         "type": "string"
@@ -597,6 +628,7 @@
     },
     "smart": {
       "category": "motion",
+      "exportKey": "motion",
       "type": {
         "value": "smart_animate",
         "type": "string"
@@ -631,6 +663,7 @@
     },
     "push": {
       "category": "motion",
+      "exportKey": "motion",
       "type": {
         "value": "push",
         "type": "string"
@@ -678,22 +711,26 @@
         "value": "rgba(0, 0, 0, 0.1)",
         "type": "color"
       },
-      "category": "fill"
+      "category": "fill",
+      "exportKey": "color"
     },
     "single blue": {
       "category": "fill",
+      "exportKey": "color",
       "value": "rgba(4, 74, 255, 1)",
       "type": "color"
     },
     "special characters": {
       "😅": {
         "category": "fill",
+        "exportKey": "color",
         "comment": "Emoji",
         "value": "rgba(64, 223, 80, 1)",
         "type": "color"
       },
       "änderung": {
         "category": "fill",
+        "exportKey": "color",
         "value": "rgba(52, 86, 175, 1)",
         "type": "color"
       }
@@ -829,10 +866,12 @@
           "type": "number"
         }
       },
-      "category": "fill"
+      "category": "fill",
+      "exportKey": "color"
     },
     "single with multiple color stops": {
       "category": "fill",
+      "exportKey": "color",
       "comment": "Four color stops from yellow to red",
       "gradientType": {
         "value": "radial",
@@ -1088,10 +1127,12 @@
         }
       },
       "category": "grid",
+      "exportKey": "grid",
       "comment": "Grid / multiple description text"
     },
     "single": {
       "category": "grid",
+      "exportKey": "grid",
       "pattern": {
         "value": "columns",
         "type": "string"
@@ -1118,16 +1159,19 @@
   },
   "invalid": {
     "no grid": {
-      "category": "grid"
+      "category": "grid",
+      "exportKey": "grid"
     },
     "none": {
       "category": "effect",
+      "exportKey": "effect",
       "comment": "Effect without effect"
     }
   },
   "body": {
     "h3": {
       "category": "font",
+      "exportKey": "font",
       "comment": "Comment for text style",
       "fontSize": {
         "value": 20,
@@ -1185,6 +1229,7 @@
     },
     "h4 strike through": {
       "category": "font",
+      "exportKey": "font",
       "comment": "With stylisitc options",
       "fontSize": {
         "value": 16,
@@ -1242,6 +1287,7 @@
     },
     "italic": {
       "category": "font",
+      "exportKey": "font",
       "fontSize": {
         "value": 12,
         "type": "number",
@@ -1298,6 +1344,7 @@
     },
     "extra bold condensed italic": {
       "category": "font",
+      "exportKey": "font",
       "fontSize": {
         "value": 12,
         "type": "number",
@@ -1354,6 +1401,7 @@
     },
     "medium extended italic": {
       "category": "font",
+      "exportKey": "font",
       "fontSize": {
         "value": 20,
         "type": "number",
@@ -1410,6 +1458,7 @@
     },
     "super": {
       "category": "font",
+      "exportKey": "font",
       "fontSize": {
         "value": 22,
         "type": "number",
@@ -1468,6 +1517,7 @@
   "effect": {
     "drop shadow (single)": {
       "category": "effect",
+      "exportKey": "effect",
       "comment": "Drop shadow single description",
       "type": {
         "value": "dropShadow",
@@ -1597,10 +1647,12 @@
           "unit": "pixel"
         }
       },
-      "category": "effect"
+      "category": "effect",
+      "exportKey": "effect"
     },
     "layer blur": {
       "category": "effect",
+      "exportKey": "effect",
       "type": {
         "value": "layerBlur",
         "type": "string"
@@ -1613,6 +1665,7 @@
     },
     "background blur": {
       "category": "effect",
+      "exportKey": "effect",
       "type": {
         "value": "backgroundBlur",
         "type": "string"

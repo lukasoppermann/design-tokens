@@ -2,6 +2,7 @@ import { ColorRgba } from './valueTypes'
 
 export type customTokenNode = {
   name: string,
+  description?: string,
   bottomLeftRadius?: number,
   bottomRightRadius?: number,
   topLeftRadius?: number,

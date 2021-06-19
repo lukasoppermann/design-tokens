@@ -41,7 +41,7 @@ const defaultTransformer = propertyGroupValues => {
     }
   })
   // if only one property is in object (e.g. only fill for color)
-  // return teh value of this property directly (e.g. color-blue: #0000AA instead of color-blue-fill: #0000AA)
+  // return the value of this property directly (e.g. color-blue: #0000AA instead of color-blue-fill: #0000AA)
   if (Object.keys(transformedProperties).length === 1) {
     return Object.values(transformedProperties)[0]
   }
@@ -82,6 +82,7 @@ const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDiction
   return {
     name: propertyGroup.name,
     category: propertyGroup.category,
+    exportKey: propertyGroup.exportKey,
     ...getDescription(propertyGroup.description),
     ...transformedProperties
   }

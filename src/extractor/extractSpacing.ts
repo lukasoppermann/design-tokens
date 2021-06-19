@@ -2,6 +2,7 @@ import extractorInterface from '../../types/extractorInterface'
 import { spacingPropertyInterface } from '../../types/propertyObject'
 import { customTokenNode } from '../../types/tokenNodeTypes'
 import { UnitTypePixel, PropertyType } from '../../types/valueTypes'
+import config from '../utilities/config'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const extractSpacing: extractorInterface = (tokenNodes: customTokenNode[]): spacingPropertyInterface[] => {
@@ -10,9 +11,9 @@ const extractSpacing: extractorInterface = (tokenNodes: customTokenNode[]): spac
   return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName)
     .map(node => ({
       name: node.name,
-      // @ts-ignore
-      description: node.description || null,
       category: 'spacing',
+      exportKey: config.exports.spacing.key,
+      description: node.description || null,
       values: {
         top: {
           value: roundWithDecimals(node.paddingTop, 2),
