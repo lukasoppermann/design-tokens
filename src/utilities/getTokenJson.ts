@@ -17,7 +17,7 @@ const transformer = {
   styleDictionary: styleDictionaryTransformer
 }
 
-const exportRawTokenArray = (figmaData: figmaDataType) => {
+export const exportRawTokenArray = (figmaData: figmaDataType) => {
   // get tokens
   return [
     ...extractSizes(figmaData.tokenFrames),
