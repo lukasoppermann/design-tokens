@@ -2,6 +2,7 @@ import extractorInterface from '../../types/extractorInterface'
 import { radiusPropertyInterface } from '../../types/propertyObject'
 import { customTokenNode } from '../../types/tokenNodeTypes'
 import { UnitTypePixel, PropertyType } from '../../types/valueTypes'
+import config from '../utilities/config'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const extractRadii: extractorInterface = (tokenNodes: customTokenNode[]): radiusPropertyInterface[] => {
@@ -39,9 +40,9 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNode[]): radius
   // return as object
   return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
     name: node.name,
-    // @ts-ignore
-    description: node.description || null,
     category: 'radius',
+    exportKey: config.exports.radius.key,
+    description: node.description || null,
     values: {
       ...(typeof node.cornerRadius === 'number' && {
         radius: {

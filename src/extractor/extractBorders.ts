@@ -3,6 +3,7 @@ import { borderPropertyInterface } from '../../types/propertyObject'
 import { StrokeCap, StrokeAlign, PropertyType } from '../../types/valueTypes'
 import { customTokenNode } from '../../types/tokenNodeTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
+import config from '../utilities/config'
 
 const strokeJoins = {
   MITER: 'miter',
@@ -28,7 +29,7 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNode[]): bord
     .map(node => ({
       name: node.name,
       category: 'border',
-      // @ts-ignore
+      exportKey: config.exports.border.key,
       description: node.description || null,
       values: {
         strokeAlign: {

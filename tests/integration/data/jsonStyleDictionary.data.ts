@@ -2,6 +2,7 @@ export default {
   sizes: {
     32: {
       category: 'size',
+      exportKey: 'size',
       comment: '32.72px spacer component',
       value: 32.72,
       type: 'number',
@@ -9,72 +10,84 @@ export default {
     },
     40: {
       category: 'size',
+      exportKey: 'size',
       value: 40,
       type: 'number',
       unit: 'pixel'
     },
     60: {
       category: 'size',
+      exportKey: 'size',
       value: 60,
       type: 'number',
       unit: 'pixel'
     },
     80: {
       category: 'size',
+      exportKey: 'size',
       value: 80,
       type: 'number',
       unit: 'pixel'
     },
     'plain token': {
       category: 'size',
+      exportKey: 'size',
       value: 200,
       type: 'number',
       unit: 'pixel'
     },
     'token in frame': {
       category: 'size',
+      exportKey: 'size',
       value: 200,
       type: 'number',
       unit: 'pixel'
     },
     'token in group': {
       category: 'size',
+      exportKey: 'size',
       value: 200,
       type: 'number',
       unit: 'pixel'
     },
     'in variant 60': {
       category: 'size',
+      exportKey: 'size',
       value: 60,
       type: 'number',
       unit: 'pixel'
     },
     'in variant 90': {
       category: 'size',
+      exportKey: 'size',
       value: 90,
       type: 'number',
       unit: 'pixel'
     },
     'in variant 120': {
       category: 'size',
+      exportKey: 'size',
       value: 120,
       type: 'number',
       unit: 'pixel'
     },
     frame: {
       category: 'size',
+      exportKey: 'size',
       value: 32,
       type: 'number',
       unit: 'pixel'
     },
     rect: {
       category: 'size',
+      exportKey: 'size',
       value: 32,
       type: 'number',
       unit: 'pixel'
     },
     'shape in component': {
       category: 'size',
+      exportKey: 'size',
       comment: 'Should use 32px not 20 from inside shape',
       value: 32,
       type: 'number',
@@ -84,6 +97,7 @@ export default {
   spacing: {
     10: {
       category: 'spacing',
+      exportKey: 'spacing',
       top: {
         value: 10,
         type: 'number',
@@ -107,6 +121,7 @@ export default {
     },
     mixed: {
       category: 'spacing',
+      exportKey: 'spacing',
       top: {
         value: 10,
         type: 'number',
@@ -130,6 +145,7 @@ export default {
     },
     top: {
       category: 'spacing',
+      exportKey: 'spacing',
       top: {
         value: 10,
         type: 'number',
@@ -156,6 +172,7 @@ export default {
     unsupported: {
       'gradient borders': {
         category: 'border',
+        exportKey: 'border',
         strokeAlign: {
           value: 'inside',
           type: 'string'
@@ -188,6 +205,7 @@ export default {
       },
       'multiple borders': {
         category: 'border',
+        exportKey: 'border',
         strokeAlign: {
           value: 'inside',
           type: 'string'
@@ -221,6 +239,7 @@ export default {
       },
       'image borders': {
         category: 'border',
+        exportKey: 'border',
         strokeAlign: {
           value: 'inside',
           type: 'string'
@@ -254,6 +273,7 @@ export default {
     },
     single: {
       category: 'border',
+      exportKey: 'border',
       strokeAlign: {
         value: 'inside',
         type: 'string'
@@ -287,6 +307,7 @@ export default {
     },
     'single (style)': {
       category: 'border',
+      exportKey: 'border',
       strokeAlign: {
         value: 'inside',
         type: 'string'
@@ -320,6 +341,7 @@ export default {
     },
     'dashed outside': {
       category: 'border',
+      exportKey: 'border',
       strokeAlign: {
         value: 'outside',
         type: 'string'
@@ -355,6 +377,7 @@ export default {
   radii: {
     5: {
       category: 'radius',
+      exportKey: 'radius',
       radius: {
         value: 5,
         type: 'number',
@@ -393,6 +416,7 @@ export default {
     },
     smoothing: {
       category: 'radius',
+      exportKey: 'radius',
       radius: {
         value: 10,
         type: 'number',
@@ -431,6 +455,7 @@ export default {
     },
     mixed: {
       category: 'radius',
+      exportKey: 'radius',
       radiusType: {
         value: 'mixed',
         type: 'string'
@@ -464,6 +489,7 @@ export default {
     },
     'same with smoothing': {
       category: 'radius',
+      exportKey: 'radius',
       comment: 'Radius 5 with corner smoothing',
       radius: {
         value: 5,
@@ -505,6 +531,7 @@ export default {
   motion: {
     'move in': {
       category: 'motion',
+      exportKey: 'motion',
       type: {
         value: 'move_in',
         type: 'string'
@@ -543,6 +570,7 @@ export default {
     },
     dissolve: {
       category: 'motion',
+      exportKey: 'motion',
       type: {
         value: 'dissolve',
         type: 'string'
@@ -577,6 +605,7 @@ export default {
     },
     smart: {
       category: 'motion',
+      exportKey: 'motion',
       type: {
         value: 'smart_animate',
         type: 'string'
@@ -611,6 +640,7 @@ export default {
     },
     push: {
       category: 'motion',
+      exportKey: 'motion',
       type: {
         value: 'push',
         type: 'string'
@@ -648,25 +678,28 @@ export default {
       }
     }
   },
-  "breakpoints": {
-    "lg": {
-      "category": "breakpoint",
-      "type": "number",
-      "unit": "pixel",
-      "value": 1280,
+  breakpoints: {
+    lg: {
+      category: 'breakpoint',
+      exportKey: 'breakpoint',
+      type: 'number',
+      unit: 'pixel',
+      value: 1280
     },
-    "md": {
-      "category": "breakpoint",
-      "type": "number",
-      "unit": "pixel",
-      "value": 1024,
+    md: {
+      category: 'breakpoint',
+      exportKey: 'breakpoint',
+      type: 'number',
+      unit: 'pixel',
+      value: 1024
     },
-    "sm": {
-      "category": "breakpoint",
-      "type": "number",
-      "unit": "pixel",
-      "value": 768,
-    },
+    sm: {
+      category: 'breakpoint',
+      exportKey: 'breakpoint',
+      type: 'number',
+      unit: 'pixel',
+      value: 768
+    }
   },
   colors: {
     'multiple fills': {
@@ -678,22 +711,26 @@ export default {
         value: 'rgba(0, 0, 0, 0.1)',
         type: 'color'
       },
-      category: 'fill'
+      category: 'fill',
+      exportKey: 'color'
     },
     'single blue': {
       category: 'fill',
+      exportKey: 'color',
       value: 'rgba(4, 74, 255, 1)',
       type: 'color'
     },
     'special characters': {
       '😅': {
         category: 'fill',
+        exportKey: 'color',
         comment: 'Emoji',
         value: 'rgba(64, 223, 80, 1)',
         type: 'color'
       },
       änderung: {
         category: 'fill',
+        exportKey: 'color',
         value: 'rgba(52, 86, 175, 1)',
         type: 'color'
       }
@@ -829,10 +866,12 @@ export default {
           type: 'number'
         }
       },
-      category: 'fill'
+      category: 'fill',
+      exportKey: 'color'
     },
     'single with multiple color stops': {
       category: 'fill',
+      exportKey: 'color',
       comment: 'Four color stops from yellow to red',
       gradientType: {
         value: 'radial',
@@ -1088,10 +1127,12 @@ export default {
         }
       },
       category: 'grid',
+      exportKey: 'grid',
       comment: 'Grid / multiple description text'
     },
     single: {
       category: 'grid',
+      exportKey: 'grid',
       pattern: {
         value: 'columns',
         type: 'string'
@@ -1118,16 +1159,19 @@ export default {
   },
   invalid: {
     'no grid': {
-      category: 'grid'
+      category: 'grid',
+      exportKey: 'grid'
     },
     none: {
       category: 'effect',
+      exportKey: 'effect',
       comment: 'Effect without effect'
     }
   },
   body: {
     h3: {
       category: 'font',
+      exportKey: 'font',
       comment: 'Comment for text style',
       fontSize: {
         value: 20,
@@ -1185,6 +1229,7 @@ export default {
     },
     'h4 strike through': {
       category: 'font',
+      exportKey: 'font',
       comment: 'With stylisitc options',
       fontSize: {
         value: 16,
@@ -1242,6 +1287,7 @@ export default {
     },
     italic: {
       category: 'font',
+      exportKey: 'font',
       fontSize: {
         value: 12,
         type: 'number',
@@ -1298,6 +1344,7 @@ export default {
     },
     'extra bold condensed italic': {
       category: 'font',
+      exportKey: 'font',
       fontSize: {
         value: 12,
         type: 'number',
@@ -1354,6 +1401,7 @@ export default {
     },
     'medium extended italic': {
       category: 'font',
+      exportKey: 'font',
       fontSize: {
         value: 20,
         type: 'number',
@@ -1410,6 +1458,7 @@ export default {
     },
     super: {
       category: 'font',
+      exportKey: 'font',
       fontSize: {
         value: 22,
         type: 'number',
@@ -1468,6 +1517,7 @@ export default {
   effect: {
     'drop shadow (single)': {
       category: 'effect',
+      exportKey: 'effect',
       comment: 'Drop shadow single description',
       type: {
         value: 'dropShadow',
@@ -1597,10 +1647,12 @@ export default {
           unit: 'pixel'
         }
       },
-      category: 'effect'
+      category: 'effect',
+      exportKey: 'effect'
     },
     'layer blur': {
       category: 'effect',
+      exportKey: 'effect',
       type: {
         value: 'layerBlur',
         type: 'string'
@@ -1613,6 +1665,7 @@ export default {
     },
     'background blur': {
       category: 'effect',
+      exportKey: 'effect',
       type: {
         value: 'backgroundBlur',
         type: 'string'
