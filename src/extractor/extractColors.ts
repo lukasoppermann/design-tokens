@@ -2,6 +2,7 @@ import extractorInterface from '../../types/extractorInterface'
 import { colorPropertyInterface, fillValuesType, gradientValuesType } from '../../types/propertyObject'
 import { PaintStyleObject } from '../../types/styles'
 import { GradientType, PropertyType } from '../../types/valueTypes'
+import config from '../utilities/config'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
@@ -60,9 +61,9 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[]): colo
     // transform style
     .map(node => ({
       name: node.name,
-      // id: node.id,
-      description: node.description || null,
       category: 'fill',
+      exportKey: config.exports.color.key,
+      description: node.description || null,
       values: node.paints.map(paint => extractFills(paint))
     }))
 }

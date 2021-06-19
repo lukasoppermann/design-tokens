@@ -4,6 +4,7 @@ export type propertyObject = {
   name: string,
   description?: string,
   category?: string,
+  exportKey: string,
   values?: {
     [key: string]: any
   }
