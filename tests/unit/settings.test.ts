@@ -1,5 +1,6 @@
 import { getSettings, setSettings, __testing } from '../../src/utilities/settings'
 import { nameConversionType } from '../../types/settings'
+import { defaultSettings } from '../../src/config/defaultSettings'
 
 beforeAll(() => {
   // @ts-ignore
@@ -14,164 +15,123 @@ beforeAll(() => {
   }
 })
 
+const baseSettings = {
+  filename: 'myBaseFile',
+  extension: '.json',
+  nameConversion: 'default' as nameConversionType,
+  compression: false,
+  excludePrefix: true,
+  prefix: '#Base',
+  serverUrl: 'https://test.com',
+  eventType: 'baseEvent',
+  acceptHeader: 'baseHeader',
+  authType: 'baseAuthType',
+  keyInName: false,
+  exports: {
+    color: true,
+    font: true,
+    effect: true,
+    grid: true,
+    border: true,
+    breakpoint: true,
+    radius: true,
+    size: true,
+    spacing: true,
+    motion: true
+  }
+}
+
 describe('Testing settingsPrepare', () => {
   test('add valid settings to empty array', () => {
-    const newSettings = {
-      filename: 'myFile',
-      nameConversion: 'default',
-      compression: false,
-      excludePrefix: true,
-      prefix: '#',
-      serverUrl: 'https://test.com',
-      eventType: 'myEvent',
-      acceptHeader: 'yo',
-      authType: 'aType'
-    }
-
-    const output = {
-      filename: 'myFile',
-      nameConversion: 'default',
-      compression: false,
-      excludePrefix: true,
-      prefix: '#',
-      serverUrl: 'https://test.com',
-      eventType: 'myEvent',
-      acceptHeader: 'yo',
-      authType: 'aType'
-    }
+    const newSettings = { ...baseSettings }
+    newSettings.authType = 'aType'
     // assert
     // @ts-ignore
-    expect(__testing.settingsPrepare(newSettings)).toStrictEqual(output)
+    expect(__testing.settingsPrepare(newSettings)).toStrictEqual(newSettings)
   })
 
   test('send empty settings', () => {
     const newSettings = {
-      filename: '',
-      nameConversion: '',
-      compression: false,
-      excludePrefix: false,
-      prefix: '',
-      eventType: '',
-      authType: ''
+      ...baseSettings,
+      ...{
+        filename: '',
+        nameConversion: '',
+        prefix: '',
+        eventType: '',
+        authType: ''
+      }
     }
 
     const output = {
-      filename: 'design-tokens',
-      nameConversion: 'default',
-      compression: false,
-      excludePrefix: false,
-      prefix: '_',
-      serverUrl: '',
-      eventType: 'update-tokens',
-      acceptHeader: 'test',
-      authType: 'token'
+      ...baseSettings,
+      ...{
+        acceptHeader: 'baseHeader',
+        authType: 'token',
+        eventType: 'update-tokens',
+        filename: 'design-tokens',
+        prefix: '_'
+      }
     }
     // assert
     // @ts-ignore
-    expect(__testing.settingsPrepare(newSettings, {
+    expect(output).toStrictEqual(__testing.settingsPrepare(newSettings, {
       acceptHeader: 'test'
-    })).toStrictEqual(output)
+    }))
   })
 })
 
 describe('Testing setSettings', () => {
   test('setSettings function with valid data', () => {
-    const currentSettings = {
-      filename: '',
-      nameConversion: 'default',
-      compression: true,
-      excludePrefix: false,
-      prefix: '',
-      serverUrl: '',
-      eventType: '',
-      acceptHeader: '',
-      authType: ''
-    }
     // @ts-ignore
-    figma.root.getPluginData.mockReturnValue(currentSettings)
+    figma.root.getPluginData.mockReturnValue(baseSettings)
 
-    const newSettings = {
-      filename: 'myFile',
-      nameConversion: 'default' as nameConversionType,
-      excludePrefix: true,
-      compression: false,
-      prefix: '#',
-      serverUrl: 'https://test.com',
-      eventType: 'myEvent',
-      acceptHeader: 'yo',
-      authType: 'aType'
-    }
-
-    const output = {
-      filename: 'myFile',
-      nameConversion: 'default' as nameConversionType,
-      compression: false,
-      excludePrefix: true,
-      prefix: '#',
-      serverUrl: 'https://test.com',
-      eventType: 'myEvent',
-      acceptHeader: 'yo',
-      authType: 'aType'
-    }
-
-    setSettings(newSettings)
+    setSettings(baseSettings)
     // assert
     // @ts-ignore
-    expect(figma.root.getPluginData).toHaveReturnedWith(currentSettings)
+    expect(figma.root.getPluginData).toHaveReturnedWith(baseSettings)
     // @ts-ignore
-    expect(figma.root.setPluginData).toHaveBeenCalledWith('settings', JSON.stringify(output, null, 2))
+    expect(figma.root.setPluginData).toHaveBeenCalledWith('settings', JSON.stringify(baseSettings, null, 2))
   })
 })
 
 describe('Testing getSettings', () => {
   test('get settings when valid settings are present', () => {
-    const currentSettings = {
-      filename: 'myFile',
-      nameConversion: 'default',
-      compression: true,
-      excludePrefix: true,
-      prefix: '#',
-      serverUrl: 'https://test.com',
-      eventType: 'myEvent',
-      acceptHeader: 'yo',
-      authType: 'aType'
+    const newSettings = {
+      ...baseSettings,
+      ...{
+        filename: 'myFile',
+        nameConversion: 'default',
+        compression: true,
+        excludePrefix: true,
+        prefix: '#',
+        serverUrl: 'https://test.com',
+        eventType: 'myEvent',
+        acceptHeader: 'yo',
+        authType: 'aType'
+      }
     }
     // @ts-ignore
-    figma.root.getPluginData.mockReturnValue(JSON.stringify(currentSettings, null, 2))
-
-    const output = {
-      filename: 'myFile',
-      nameConversion: 'default',
-      compression: true,
-      excludePrefix: true,
-      prefix: '#',
-      serverUrl: 'https://test.com',
-      eventType: 'myEvent',
-      acceptHeader: 'yo',
-      authType: 'aType'
-    }
+    figma.root.getPluginData.mockReturnValue(JSON.stringify(newSettings, null, 2))
 
     // assert
-    expect(getSettings()).toStrictEqual(output)
+    expect(getSettings()).toStrictEqual(newSettings)
   })
 
   test('get settings when novalid settings are present', () => {
     // @ts-ignore
     figma.root.getPluginData.mockReturnValue('')
-
     const output = {
-      filename: 'design-tokens',
-      nameConversion: 'default',
-      compression: false,
-      excludePrefix: true,
-      prefix: '_',
-      serverUrl: '',
-      eventType: 'update-tokens',
-      acceptHeader: 'application/vnd.github.everest-preview+json',
-      authType: 'token'
+      ...defaultSettings,
+      ...{
+        exports: {},
+        serverUrl: '',
+        accessToken: ''
+      }
     }
 
+    const getSettingsOutput = getSettings()
+    getSettingsOutput.accessToken = ''
     // assert
-    expect(getSettings()).toStrictEqual(output)
+    expect(output).toStrictEqual(getSettingsOutput)
   })
 })

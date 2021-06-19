@@ -4,13 +4,13 @@ import { customTokenNode } from './data/customTokenNode.data'
 describe('extracting radii', () => {
   const nodeArray = [
     customTokenNode,
-    { 
+    {
       ...customTokenNode,
-      ...{ name: 'radii/mixed' } 
+      ...{ name: 'radii/mixed' }
     },
-    { 
+    {
       ...customTokenNode,
-      ...{ 
+      ...{
         name: 'radii/5 no desc',
         description: null,
         cornerRadius: 5,
@@ -19,11 +19,11 @@ describe('extracting radii', () => {
         topLeftRadius: 5,
         topRightRadius: 5,
         cornerSmoothing: 0
-      } 
+      }
     },
-    { 
+    {
       ...customTokenNode,
-      ...{ 
+      ...{
         name: 'radii/0',
         cornerRadius: 0,
         bottomLeftRadius: null,
@@ -31,13 +31,14 @@ describe('extracting radii', () => {
         topLeftRadius: null,
         topRightRadius: null,
         cornerSmoothing: 0
-      } 
+      }
     }
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
     expect(extractRadii(nodeArray)).toStrictEqual([{
       category: 'radius',
+      exportKey: 'radius',
       description: 'a description text',
       name: 'radii/mixed',
       values: {
@@ -64,18 +65,19 @@ describe('extracting radii', () => {
           }
         },
         radiusType: {
-          type: "string",
-          value: "mixed",
+          type: 'string',
+          value: 'mixed'
         },
         smoothing: {
-          comment: "Percent as decimal from 0.0 - 1.0",
-          type: "number",
-          value: 0.35,
+          comment: 'Percent as decimal from 0.0 - 1.0',
+          type: 'number',
+          value: 0.35
         }
       }
     },
     {
       category: 'radius',
+      exportKey: 'radius',
       description: null,
       name: 'radii/5 no desc',
       values: {
@@ -102,23 +104,24 @@ describe('extracting radii', () => {
           }
         },
         radius: {
-          type: "number",
-          unit: "pixel",
+          type: 'number',
+          unit: 'pixel',
           value: 5
         },
         radiusType: {
-          type: "string",
-          value: "single",
+          type: 'string',
+          value: 'single'
         },
         smoothing: {
-          comment: "Percent as decimal from 0.0 - 1.0",
-          type: "number",
-          value: 0,
+          comment: 'Percent as decimal from 0.0 - 1.0',
+          type: 'number',
+          value: 0
         }
       }
     },
     {
       category: 'radius',
+      exportKey: 'radius',
       description: 'a description text',
       name: 'radii/0',
       values: {
@@ -145,21 +148,21 @@ describe('extracting radii', () => {
           }
         },
         radius: {
-          type: "number",
-          unit: "pixel",
+          type: 'number',
+          unit: 'pixel',
           value: 0
         },
         radiusType: {
-          type: "string",
-          value: "single",
+          type: 'string',
+          value: 'single'
         },
         smoothing: {
-          comment: "Percent as decimal from 0.0 - 1.0",
-          type: "number",
-          value: 0,
+          comment: 'Percent as decimal from 0.0 - 1.0',
+          type: 'number',
+          value: 0
         }
       }
     }
-  ])
+    ])
   })
 })

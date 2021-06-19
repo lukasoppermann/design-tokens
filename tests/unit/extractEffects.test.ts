@@ -5,6 +5,7 @@ describe('extracting effects', () => {
   test('extract only valid effects', () => {
     expect(extractEffects(effectStyleObjects)).toStrictEqual([{
       category: 'effect',
+      exportKey: 'effect',
       description: 'an effect style',
       name: 'effect/shadow',
       values: [{
@@ -53,11 +54,12 @@ describe('extracting effects', () => {
         type: {
           value: 'backgroundBlur',
           type: 'string'
-        },
+        }
       }]
     },
     {
       category: 'effect',
+      exportKey: 'effect',
       description: null,
       name: 'effect/blur no description',
       values: [{
@@ -69,9 +71,9 @@ describe('extracting effects', () => {
         type: {
           value: 'layerBlur',
           type: 'string'
-        },
+        }
       }]
     }
-  ])
+    ])
   })
 })

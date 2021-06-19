@@ -3,18 +3,21 @@ import groupByName from '../../src/utilities/groupByName'
 describe('groupByName', () => {
   test('group tokens with name', () => {
     expect(groupByName([
+      // @ts-ignore
       {
         name: 'token/one/first',
         values: {
           token: 'one first'
         }
       },
+      // @ts-ignore
       {
         name: 'token/one / second',
         values: {
           token: 'one second'
         }
       },
+      // @ts-ignore
       {
         name: 'token/two /first',
         values: {
@@ -46,6 +49,7 @@ describe('groupByName', () => {
     expect(groupByName([
       {
         name: 'token/one/first',
+        exportKey: 'color',
         values: {
           token: 'one first',
           deep: {
@@ -55,6 +59,7 @@ describe('groupByName', () => {
       },
       {
         name: 'token/one/first',
+        exportKey: 'color',
         values: {
           token: 'one second',
           deep: {
@@ -67,6 +72,7 @@ describe('groupByName', () => {
         one: {
           first: {
             name: 'token/one/first',
+            exportKey: 'color',
             values: {
               token: 'one second',
               deep: {
@@ -83,18 +89,21 @@ describe('groupByName', () => {
     expect(groupByName([
       {
         name: 'token/one/first',
+        exportKey: 'color',
         values: {
           token: 'one first'
         }
       },
       {
         name: 'token/one / second',
+        exportKey: 'color',
         values: {
           token: 'one second'
         }
       },
       {
         name: 'token/two /first',
+        exportKey: 'color',
         values: {
           token: 'two first'
         }
@@ -103,14 +112,19 @@ describe('groupByName', () => {
       token: {
         one: {
           first: {
+            exportKey: 'color',
             values: { token: 'one first' }
           },
           second: {
+            exportKey: 'color',
             values: { token: 'one second' }
           }
         },
         two: {
-          first: { values: { token: 'two first' } }
+          first: {
+            exportKey: 'color',
+            values: { token: 'two first' }
+          }
         }
       }
     })

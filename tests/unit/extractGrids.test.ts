@@ -5,6 +5,7 @@ describe('extracting grids', () => {
   test('extracting only the token with correct name from customTokenNodesArray', () => {
     expect(extractGrids(gridStyleObjects)).toStrictEqual([{
       category: 'grid',
+      exportKey: 'grid',
       description: 'a description grid',
       name: 'grid/rows & columns',
       values: [{
@@ -63,6 +64,7 @@ describe('extracting grids', () => {
     },
     {
       category: 'grid',
+      exportKey: 'grid',
       description: null,
       name: 'grid/grid no description',
       values: [{
@@ -77,6 +79,6 @@ describe('extracting grids', () => {
         }
       }]
     }
-  ])
+    ])
   })
 })

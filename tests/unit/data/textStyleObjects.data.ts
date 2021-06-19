@@ -90,6 +90,7 @@ export const textStyleObjects = [
 export const extractFontsOutput = [
   {
     category: 'font',
+    exportKey: 'font',
     description: 'a font style',
     name: 'fonts/basic',
     values: {
@@ -150,6 +151,7 @@ export const extractFontsOutput = [
   },
   {
     category: 'font',
+    exportKey: 'font',
     description: undefined,
     name: 'fonts/no description',
     values: {

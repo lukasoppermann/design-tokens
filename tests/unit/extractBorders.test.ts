@@ -4,33 +4,39 @@ import { customTokenNode } from './data/customTokenNode.data'
 describe('extracting borders', () => {
   const nodeArray = [
     customTokenNode,
-    { 
+    {
       ...customTokenNode,
-      ...{ name: 'borders/mixed' } 
+      ...{
+        name: 'borders/mixed',
+        exportKey: 'border'
+      }
     },
-    { 
+    {
       ...customTokenNode,
-      ...{ 
+      ...{
         name: 'borders/blue',
+        exportKey: 'border',
         description: null,
         strokes: [
-          {r: 0, g: 0, b: 255, a: 1},
-          {r: 255, g: 230, b: 0, a: 1}
+          { r: 0, g: 0, b: 255, a: 1 },
+          { r: 255, g: 230, b: 0, a: 1 }
         ]
-      } 
+      }
     },
-    { 
+    {
       ...customTokenNode,
-      ...{ 
+      ...{
         name: 'borders/red',
+        exportKey: 'border',
         strokeCap: Symbol('mixed')
-      } 
+      }
     }
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
     expect(extractBorders(nodeArray)).toStrictEqual([{
       category: 'border',
+      exportKey: 'border',
       description: 'a description text',
       name: 'borders/mixed',
       values: {
@@ -73,6 +79,7 @@ describe('extracting borders', () => {
     },
     {
       category: 'border',
+      exportKey: 'border',
       description: null,
       name: 'borders/blue',
       values: {
@@ -115,6 +122,7 @@ describe('extracting borders', () => {
     },
     {
       category: 'border',
+      exportKey: 'border',
       description: 'a description text',
       name: 'borders/red',
       values: {
@@ -155,6 +163,6 @@ describe('extracting borders', () => {
         }
       }
     }
-  ])
+    ])
   })
 })

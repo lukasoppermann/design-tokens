@@ -5,6 +5,7 @@ describe('extracting color fills', () => {
   test('extract only valid colors', () => {
     expect(extractColors(paintStyleObjects)).toStrictEqual([{
       category: 'fill',
+      exportKey: 'color',
       description: 'a description text',
       name: 'colors/red',
       values: [{
@@ -16,22 +17,23 @@ describe('extracting color fills', () => {
             g: 26,
             r: 255
           }
-        },
+        }
       }]
     },
     {
       category: 'fill',
+      exportKey: 'color',
       description: null,
       name: 'colors/gradient and color',
       values: [
         {
           gradientType: {
             type: 'string',
-            value: 'linear',
+            value: 'linear'
           },
           opacity: {
             type: 'number',
-            value: 0.35,
+            value: 0.35
           },
           stops: [
             {
@@ -80,6 +82,6 @@ describe('extracting color fills', () => {
         }
       ]
     }
-  ])
+    ])
   })
 })

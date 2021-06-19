@@ -5,7 +5,7 @@ export type nameConversionType =
 
 export type Settings = {
   filename: string,
-  extension: '.json',
+  extension: string,
   nameConversion: nameConversionType,
   compression: boolean,
   excludePrefix: boolean,
@@ -14,7 +14,7 @@ export type Settings = {
   eventType: string,
   accessToken?: string,
   acceptHeader?: string,
-  authType: string
+  authType: string,
   keyInName: boolean,
   exports: {
     color: boolean,

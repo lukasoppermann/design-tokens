@@ -4,13 +4,13 @@ import { customTokenNode } from './data/customTokenNode.data'
 describe('extracting motion tokens', () => {
   const nodeArray = [
     customTokenNode,
-    { 
+    {
       ...customTokenNode,
-      ...{ name: 'motion/linear' } 
+      ...{ name: 'motion/linear' }
     },
-    { 
+    {
       ...customTokenNode,
-      ...{ 
+      ...{
         name: 'motion/instant',
         reactions: [{
           action: {
@@ -18,11 +18,11 @@ describe('extracting motion tokens', () => {
             transition: null
           }
         }]
-      } 
+      }
     },
-    { 
+    {
       ...customTokenNode,
-      ...{ 
+      ...{
         name: 'motion/ease_in',
         description: undefined,
         reactions: [{
@@ -37,11 +37,11 @@ describe('extracting motion tokens', () => {
             }
           }
         }]
-      } 
+      }
     },
-    { 
+    {
       ...customTokenNode,
-      ...{ 
+      ...{
         name: 'motion/smart',
         reactions: [{
           action: {
@@ -52,16 +52,16 @@ describe('extracting motion tokens', () => {
               easing: {
                 type: 'CUSTOM_CUBIC_BEZIER',
                 easingFunctionCubicBezier: {
-                  x1: .345,
-                  y1: .234,
-                  x2: .334,
-                  y2: .9744
+                  x1: 0.345,
+                  y1: 0.234,
+                  x2: 0.334,
+                  y2: 0.9744
                 }
               }
             }
           }
         }]
-      } 
+      }
     }
   ]
 
@@ -69,6 +69,7 @@ describe('extracting motion tokens', () => {
     expect(extractMotion(nodeArray)).toStrictEqual([
       {
         category: 'motion',
+        exportKey: 'motion',
         description: 'a description text',
         name: 'motion/linear',
         values: {
@@ -111,6 +112,7 @@ describe('extracting motion tokens', () => {
       },
       {
         category: 'motion',
+        exportKey: 'motion',
         description: null,
         name: 'motion/ease_in',
         values: {
@@ -149,6 +151,7 @@ describe('extracting motion tokens', () => {
       },
       {
         category: 'motion',
+        exportKey: 'motion',
         description: 'a description text',
         name: 'motion/smart',
         values: {

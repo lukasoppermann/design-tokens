@@ -11,7 +11,7 @@ export default {
   },
   commands: {
     generalSettings: 'generalSettings' as PluginCommands,
-    exportSettings: 'exportSettings' as PluginCommands,
+    export: 'export' as PluginCommands,
     sendSettings: 'sendSettings' as PluginCommands,
     urlExport: 'urlExport' as PluginCommands,
     help: 'help' as PluginCommands,

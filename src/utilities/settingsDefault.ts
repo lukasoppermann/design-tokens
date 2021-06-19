@@ -5,6 +5,10 @@ export default {
     default: 'design-tokens',
     empty: false
   },
+  extension: {
+    default: '.json',
+    empty: false
+  },
   nameConversion: {
     default: 'default',
     empty: false
@@ -35,6 +39,14 @@ export default {
   },
   authType: {
     default: 'token',
+    empty: false
+  },
+  keyInName: {
+    default: true,
+    empty: false
+  },
+  exports: {
+    default: {},
     empty: false
   }
 }
