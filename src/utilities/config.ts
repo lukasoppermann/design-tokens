@@ -1,4 +1,4 @@
-import { PluginCommands } from '../../types/pluginEvent'
+import { PluginCommands } from '../../types/pluginEvent.d'
 /* istanbul ignore file */
 export default {
   settingsDialog: {
