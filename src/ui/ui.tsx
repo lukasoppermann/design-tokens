@@ -9,10 +9,10 @@ import './css/ui.css'
 import downloadJson from './modules/downloadJson'
 // import { setFormSettings } from './modules/settings'
 import { urlExport } from './modules/urlExport'
-import { SettingsForm } from './components/SettingsForm'
+import { GeneralSettings } from './components/GeneralSettings'
 import { useEffect } from 'react'
 import { FigmaContext } from './context/FigmaContext'
-import { SettingsContext, settingsReducer, initialState as initialSettings } from './context/SettingsContext'
+import { SettingsContext, settingsReducer, initialSettings } from './context/SettingsContext'
 import { useImmerReducer } from 'use-immer'
 import config from '../utilities/config'
 // ---------------------------------
@@ -81,7 +81,7 @@ const PluginUi = () => {
   return (
     <FigmaContext.Provider value={figmaUIApi}>
       <SettingsContext.Provider value={{ state, dispatch }}>
-        <SettingsForm />
+        <GeneralSettings />
         <a id='downloadLink' />
       </SettingsContext.Provider>
     </FigmaContext.Provider>

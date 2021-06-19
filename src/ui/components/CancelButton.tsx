@@ -17,6 +17,6 @@ const CancelButton = () => {
     }, '*')
   }
 
-  return <Button isSecondary onClick={closePlugin}>Cancel</Button>
+  return <Button isSecondary type='reset' onClick={closePlugin}>Cancel</Button>
 }
 export { CancelButton }

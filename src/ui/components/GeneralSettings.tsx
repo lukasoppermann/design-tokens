@@ -6,14 +6,22 @@ import { VersionNotice } from './VersionNotice'
 import { useContext } from 'react'
 import { FigmaContext } from '../context/FigmaContext'
 import { SettingsContext } from '../context/SettingsContext'
+import { css } from '@emotion/css'
 import config from '../../utilities/config'
 import { Footer } from './Footer'
+
+const style = css`
+  display: flex;
+  flex-direction: column;
+  padding: 2px var(--size-xxsmall) 0;
+  margin-bottom: 0;
+`
 
 // interface SettingsFormProps {
 
 // }
 
-const SettingsForm = () => {
+export const GeneralSettings = () => {
   const figmaUIApi = useContext(FigmaContext)
   const { state: settings, dispatch: dispatchSettings } = useContext(SettingsContext)
 
@@ -33,7 +41,7 @@ const SettingsForm = () => {
     }
   }
   return (
-    <form id='settingsForm' className='plugin-ui-content' onSubmit={settingsFormSubmitHandler}>
+    <form id='settingsForm' className={style} onSubmit={settingsFormSubmitHandler}>
       <VersionNotice versionDifference={settings.versionDifferece} />
       <h3>Design Token Settings</h3>
       <div className='input flex-horizontal'>
@@ -180,5 +188,3 @@ const SettingsForm = () => {
     </form>
   )
 }
-
-export { SettingsForm }

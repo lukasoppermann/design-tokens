@@ -1,4 +1,4 @@
-import getTokenJson from './getTokenJson'
+import getTokenJson, { exportRawTokenArray } from './getTokenJson'
 import buildFigmaData from './buildFigmaData'
 import { Settings as UserSettings } from '../../types/settings'
 /**
@@ -21,6 +21,21 @@ const getJson = (figma: PluginAPI, userSettings: UserSettings, stringify: boolea
   }
   // return uncompressed
   return JSON.stringify(getTokenJson(figmaData, 'styleDictionary', userSettings.nameConversion), null, 2)
+}
+
+/**
+ * @name getJsonString
+ * @param {PluginAPI} figma
+ * @param {UserSettings} userSettings
+ */
+export const getJsonString = (figma: PluginAPI, userSettings: UserSettings) => {
+  // construct figma data object
+  const figmaData = buildFigmaData(figma, {
+    prefix: userSettings.prefix,
+    excludePrefix: userSettings.excludePrefix
+  })
+
+  return JSON.stringify(exportRawTokenArray(figmaData))
 }
 
 export default getJson
