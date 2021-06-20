@@ -7,11 +7,11 @@ import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import './css/variables.css'
 import './css/ui.css'
 import downloadJson from './modules/downloadJson'
-// import { setFormSettings } from './modules/settings'
 import { urlExport } from './modules/urlExport'
 import { GeneralSettings } from './components/GeneralSettings'
 import { useEffect, useState } from 'react'
-import { FigmaContext, SettingsContext, settingsReducer, initialSettings } from './context'
+import { FigmaContext, SettingsContext, settingsReducer } from './context'
+import { defaultSettings } from '../config/defaultSettings'
 import { useImmerReducer } from 'use-immer'
 import config from '../utilities/config'
 import { VersionNotice } from './components/VersionNotice'
@@ -26,7 +26,7 @@ const style = css`
 `
 
 const PluginUi = () => {
-  const [state, dispatch] = useImmerReducer(settingsReducer, initialSettings)
+  const [state, dispatch] = useImmerReducer(settingsReducer, defaultSettings)
   const [versionDifference, setVersionDifference] = useState(null)
 
   useEffect(() => {
