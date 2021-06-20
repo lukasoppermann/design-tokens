@@ -10,12 +10,12 @@ import downloadJson from './modules/downloadJson'
 import { urlExport } from './modules/urlExport'
 import { GeneralSettings } from './components/GeneralSettings'
 import { useEffect, useState } from 'react'
-import { FigmaContext, SettingsContext, settingsReducer } from './context'
-import { defaultSettings } from '../config/defaultSettings'
-import { useImmerReducer } from 'use-immer'
+import { FigmaContext, SettingsContext } from './context'
+import { useImmer } from 'use-immer'
 import config from '../utilities/config'
 import { VersionNotice } from './components/VersionNotice'
 import { css } from '@emotion/css'
+import { defaultSettings } from '../config/defaultSettings'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
@@ -26,8 +26,8 @@ const style = css`
 `
 
 const PluginUi = () => {
-  const [state, dispatch] = useImmerReducer(settingsReducer, defaultSettings)
   const [versionDifference, setVersionDifference] = useState(null)
+  const [settings, updateSettings] = useImmer(defaultSettings)
 
   useEffect(() => {
     // ---------------------------------
@@ -58,15 +58,12 @@ const PluginUi = () => {
       }
       // when settings date is send to ui
       if (message.command === 'getSettings') {
-        // fill form with data
-        dispatch({
-          type: 'load',
-          payload: {
-            ...message.settings,
-            ...{ accessToken: message.accessToken },
-            ...{ versionDifference: message.versionDifference }
-          }
+        // load data
+        updateSettings({
+          ...message.settings,
+          ...{ accessToken: message.accessToken }
         })
+        // load version difference
         setVersionDifference(message.versionDifference)
       }
       // open help page
@@ -83,7 +80,7 @@ const PluginUi = () => {
 
   return (
     <FigmaContext.Provider value={figmaUIApi}>
-      <SettingsContext.Provider value={{ state, dispatch }}>
+      <SettingsContext.Provider value={{ settings, updateSettings }}>
         <main className={style}>
           <VersionNotice versionDifference={versionDifference} />
           <GeneralSettings />
