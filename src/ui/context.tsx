@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { Settings } from '../../../types/settings'
+import { Settings } from '../../types/settings'
+
+export const FigmaContext = React.createContext(null)
 
 export const SettingsContext = React.createContext(null)
 

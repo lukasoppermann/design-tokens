@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { Button, Checkbox, Select } from 'react-figma-plugin-ds'
 import { CancelButton } from './CancelButton'
-// import { getFormSettings } from '../modules/settings'xx
 import { useContext } from 'react'
-import { FigmaContext } from '../context/FigmaContext'
-import { SettingsContext } from '../context/SettingsContext'
+import { FigmaContext, SettingsContext } from '../context'
+
 import { css } from '@emotion/css'
 import config from '../../utilities/config'
 import { Footer } from './Footer'
