@@ -7,6 +7,7 @@ import { FigmaContext, SettingsContext } from '../context'
 import { css } from '@emotion/css'
 import config from '../../utilities/config'
 import { Footer } from './Footer'
+import { nameConversionType, Settings } from '../../../types/settings'
 
 const style = css`
   display: flex;
@@ -15,7 +16,7 @@ const style = css`
 
 export const GeneralSettings = () => {
   const figmaUIApi = useContext(FigmaContext)
-  const { state: settings, dispatch: dispatchSettings } = useContext(SettingsContext)
+  const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
 
   const settingsFormSubmitHandler = (event) => {
     const settingsForm = event.target
@@ -33,14 +34,14 @@ export const GeneralSettings = () => {
     }
   }
   return (
-    <form id='settingsForm' className={style} onSubmit={settingsFormSubmitHandler}>
+    <form className={style} onSubmit={settingsFormSubmitHandler}>
       <h3>Design Token Settings</h3>
       <div className='input flex-horizontal'>
         <div className='label'>Filename:</div>
         <input
           autoFocus required pattern='^[\w\-\.\+@]+$' type='text' id='filename' className='input__field with-inside-label-behind-sm' placeholder='design-tokens' value={settings.filename}
           onChange={(e) => {
-            dispatchSettings({ type: 'update', fieldName: 'filename', payload: e.target.value })
+            updateSettings((draft: Settings) => { draft.filename = e.target.value })
           }}
         />
         <div className='label inside-label-behind--sm'>.json</div>
@@ -51,7 +52,7 @@ export const GeneralSettings = () => {
           <Select
             defaultValue={settings.nameConversion}
             onChange={({ value }) => {
-              dispatchSettings({ type: 'update', fieldName: 'nameConversion', payload: value })
+              updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })
             }}
             placeholder='Name conversion'
             options={[
@@ -77,7 +78,7 @@ export const GeneralSettings = () => {
             type='switch'
             checked={settings.compression}
             onChange={(value) => {
-              dispatchSettings({ type: 'update', fieldName: 'compression', payload: value })
+              updateSettings(draft => { draft.compression = value })
             }}
           />
         </div>
@@ -92,7 +93,7 @@ export const GeneralSettings = () => {
           <input
             required pattern='\S+' type='text' id='prefix' className='input__field' placeholder='_' value={settings.prefix}
             onChange={(e) => {
-              dispatchSettings({ type: 'update', fieldName: 'prefix', payload: e.target.value })
+              updateSettings(draft => { draft.prefix = e.target.value })
             }}
           />
         </div>
@@ -101,7 +102,7 @@ export const GeneralSettings = () => {
           type='switch'
           checked={settings.excludePrefix}
           onChange={(value) => {
-            dispatchSettings({ type: 'update', fieldName: 'excludePrefix', payload: value })
+            updateSettings(draft => { draft.excludePrefix = value })
           }}
         />
       </div>
@@ -112,7 +113,7 @@ export const GeneralSettings = () => {
           required pattern='^[\w\-\.\+@]+$' type='text' id='eventType' className='input__field' placeholder='update-tokens'
           value={settings.eventType}
           onChange={(e) => {
-            dispatchSettings({ type: 'update', fieldName: 'eventType', payload: e.target.value })
+            updateSettings(draft => { draft.eventType = e.target.value })
           }}
         />
         <div className='label label--info'>"event_type" property in post request</div>
@@ -123,7 +124,7 @@ export const GeneralSettings = () => {
           type='text' pattern='^https://.*' id='serverUrl' className='input__field' placeholder='https://api.github.com/repos/:username/:repo/dispatches'
           value={settings.serverUrl}
           onChange={(e) => {
-            dispatchSettings({ type: 'update', fieldName: 'serverUrl', payload: e.target.value })
+            updateSettings(draft => { draft.serverUrl = e.target.value })
           }}
         />
       </div>
@@ -134,7 +135,7 @@ export const GeneralSettings = () => {
           // value='application/vnd.github.everest-preview+json'
           value={settings.acceptHeader}
           onChange={(e) => {
-            dispatchSettings({ type: 'update', fieldName: 'acceptHeader', payload: e.target.value })
+            updateSettings(draft => { draft.acceptHeader = e.target.value })
           }}
         />
       </div>
@@ -143,7 +144,7 @@ export const GeneralSettings = () => {
         <Select
           defaultValue={settings.authType}
           onChange={({ value }) => {
-            dispatchSettings({ type: 'update', fieldName: 'authType', payload: value })
+            updateSettings(draft => { draft.authType = value })
           }}
           placeholder='Name conversion'
           options={[
@@ -168,7 +169,7 @@ export const GeneralSettings = () => {
           type='text' pattern='\S+' id='accessToken' className='input__field' placeholder='your access token'
           value={settings.accessToken}
           onChange={(e) => {
-            dispatchSettings({ type: 'update', fieldName: 'accessToken', payload: e.target.value })
+            updateSettings(draft => { draft.accessToken = e.target.value })
           }}
         />
       </div>
