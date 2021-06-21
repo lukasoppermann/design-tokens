@@ -16,6 +16,7 @@ import config from '@config/config'
 import { VersionNotice } from '@components/VersionNotice'
 import { css } from '@emotion/css'
 import { defaultSettings } from '@config/defaultSettings'
+import { globalKeyPressed } from './modules/globalKeyPressed'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
@@ -87,7 +88,7 @@ const PluginUi = () => {
     <FigmaContext.Provider value={figmaUIApi}>
       <SettingsContext.Provider value={{ settings, updateSettings }}>
         <TokenContext.Provider value={{ tokens, setTokens }}>
-          <main className={style}>
+          <main className={style} onKeyDown={e => globalKeyPressed(e, figmaUIApi)}>
             <VersionNotice versionDifference={versionDifference} />
             <GeneralSettings />
             <a

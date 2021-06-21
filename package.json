@@ -99,7 +99,8 @@
   },
   "eslintConfig": {
     "env": {
-      "browser": true
+      "browser": true,
+      "es6": true
     },
     "rules": {
       "default-param-last": 0,
