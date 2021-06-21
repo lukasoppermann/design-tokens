@@ -23,6 +23,7 @@ if (figma.command === 'export') {
   figma.ui.postMessage({
     command: 'export',
     data: {
+      settings: userSettings,
       filename: `${userSettings.filename}.json`,
       data: getJson(figma, userSettings)
     }

@@ -97,6 +97,9 @@
     ]
   },
   "eslintConfig": {
+    "env": {
+      "browser": true
+    },
     "rules": {
       "default-param-last": 0,
       "no-return-assign": 0,

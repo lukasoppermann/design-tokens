@@ -1,4 +1,4 @@
-const downloadJson = (parent, link: HTMLLinkElement, filename: string, json: string) => {
+export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
   // if no tokens are present
   if (json === '[]') {
     parent.postMessage({
@@ -10,12 +10,6 @@ const downloadJson = (parent, link: HTMLLinkElement, filename: string, json: str
     // abort
     return
   }
-  // set name
-  // @ts-ignore
-  link.download = filename || 'design-tokens'
-  link.title = filename || 'design-tokens'
-  // Create an object URL for the blob object
-  link.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(json)
   // try to export tokens
   try {
     // Programmatically trigger a click on the anchor element
@@ -39,5 +33,3 @@ const downloadJson = (parent, link: HTMLLinkElement, filename: string, json: str
     console.error('Export error: ', error)
   }
 }
-
-export default downloadJson
