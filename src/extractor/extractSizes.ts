@@ -1,8 +1,8 @@
-import extractorInterface from '../../types/extractorInterface'
-import { sizePropertyInterface } from '../../types/propertyObject'
-import { customTokenNode } from '../../types/tokenNodeTypes'
-import { UnitTypePixel, PropertyType } from '../../types/valueTypes'
-import config from '../utilities/config'
+import extractorInterface from '@typings/extractorInterface'
+import { sizePropertyInterface } from '@typings/propertyObject'
+import { customTokenNode } from '@typings/tokenNodeTypes'
+import { UnitTypePixel, PropertyType } from '@typings/valueTypes'
+import config from '@config/config'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const extractSizes: extractorInterface = (tokenNodes: customTokenNode[]): sizePropertyInterface[] => {

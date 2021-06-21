@@ -2,12 +2,12 @@ import * as React from 'react'
 import { Button, Checkbox, Select } from 'react-figma-plugin-ds'
 import { CancelButton } from './CancelButton'
 import { useContext } from 'react'
-import { FigmaContext, SettingsContext } from '../context'
+import { FigmaContext, SettingsContext } from '@ui/context'
 
 import { css } from '@emotion/css'
-import config from '../../utilities/config'
+import config from '@config/config'
 import { Footer } from './Footer'
-import { nameConversionType, Settings } from '../../../types/settings'
+import { nameConversionType, Settings } from '@typings/settings'
 
 const style = css`
   display: flex;

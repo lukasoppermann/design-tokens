@@ -1,4 +1,4 @@
-import config from './config'
+import config from '@config/config'
 
 const getFileId = (figma: PluginAPI): string => {
   let fileId = figma.root.getPluginData(config.key.fileId)

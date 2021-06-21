@@ -1,6 +1,6 @@
-import { propertyObject } from '../../types/propertyObject'
-import { propertyCategory } from '../../types/propertyCategory'
-import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from '../../types/styleDictionaryProperties'
+import { propertyObject } from '@typings/propertyObject'
+import { propertyCategory } from '@typings/propertyCategory'
+import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from '@typings/styleDictionaryProperties'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
 import getDescription from './utilities/getDescription'
 

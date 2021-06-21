@@ -1,5 +1,5 @@
-import { customTokenNode } from '../../types/tokenNodeTypes'
-import { ColorRgba } from '../../types/valueTypes'
+import { customTokenNode } from '@typings/tokenNodeTypes'
+import { ColorRgba } from '@typings/valueTypes'
 import { convertPaintToRgba } from './convertColor'
 /**
  * Return an array of solid stroke colors

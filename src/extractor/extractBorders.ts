@@ -1,9 +1,9 @@
-import extractorInterface from '../../types/extractorInterface'
-import { borderPropertyInterface } from '../../types/propertyObject'
-import { StrokeCap, StrokeAlign, PropertyType } from '../../types/valueTypes'
-import { customTokenNode } from '../../types/tokenNodeTypes'
+import extractorInterface from '@typings/extractorInterface'
+import { borderPropertyInterface } from '@typings/propertyObject'
+import { StrokeCap, StrokeAlign, PropertyType } from '@typings/valueTypes'
+import { customTokenNode } from '@typings/tokenNodeTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
-import config from '../utilities/config'
+import config from '@config/config'
 
 const strokeJoins = {
   MITER: 'miter',

@@ -1,6 +1,6 @@
 import semVerDifference, { versionDifference } from './semVerDifference'
 import currentVersion from './version'
-import config from './config'
+import config from '@config/config'
 
 const getVersionDifference = async (figma: PluginAPI): Promise<versionDifference> => {
   // get version & version difference

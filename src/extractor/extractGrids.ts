@@ -1,7 +1,7 @@
-import extractorInterface from '../../types/extractorInterface'
-import { gridPropertyInterface } from '../../types/propertyObject'
-import { GridAlignment, GridPattern, PropertyType } from '../../types/valueTypes'
-import config from '../utilities/config'
+import extractorInterface from '@typings/extractorInterface'
+import { gridPropertyInterface } from '@typings/propertyObject'
+import { GridAlignment, GridPattern, PropertyType } from '@typings/valueTypes'
+import config from '@config/config'
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {

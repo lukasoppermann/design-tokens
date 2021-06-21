@@ -1,6 +1,6 @@
 import getTokenJson, { exportRawTokenArray } from './getTokenJson'
 import buildFigmaData from './buildFigmaData'
-import { Settings as UserSettings } from '../../types/settings'
+import { Settings as UserSettings } from '@typings/settings'
 /**
  * @name getJson
  * @param {PluginAPI} figma

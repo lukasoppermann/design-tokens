@@ -1,9 +1,9 @@
 import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
-import { urlExportData } from '../types/urlExportData'
+import { urlExportData } from '@typings/urlExportData'
 import getJson from './utilities/getJson'
-import { Settings as UserSettings } from '../types/settings'
-import config from './utilities/config'
+import { Settings as UserSettings } from '@typings/settings'
+import config from '@config/config'
 import getVersionDifference from './utilities/getVersionDifference'
 import getFileId from './utilities/getFileId'
 

@@ -1,4 +1,4 @@
-import { PaintStyleObject } from '../../types/styles'
+import { PaintStyleObject } from '@typings/styles'
 
 /**
  * @function getPaintStyles

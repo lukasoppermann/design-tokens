@@ -1,8 +1,8 @@
-import extractorInterface from '../../types/extractorInterface'
-import { colorPropertyInterface, fillValuesType, gradientValuesType } from '../../types/propertyObject'
-import { PaintStyleObject } from '../../types/styles'
-import { GradientType, PropertyType } from '../../types/valueTypes'
-import config from '../utilities/config'
+import extractorInterface from '@typings/extractorInterface'
+import { colorPropertyInterface, fillValuesType, gradientValuesType } from '@typings/propertyObject'
+import { PaintStyleObject } from '@typings/styles'
+import { GradientType, PropertyType } from '@typings/valueTypes'
+import config from '@config/config'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 

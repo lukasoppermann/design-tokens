@@ -1,7 +1,7 @@
-import extractorInterface from '../../types/extractorInterface'
-import { fontPropertyInterface } from '../../types/propertyObject'
-import { UnitTypePixel, FontStyle, TextCase, TextDecoration, NumericUnitTypes, PropertyType, FontStretch } from '../../types/valueTypes'
-import config from '../utilities/config'
+import extractorInterface from '@typings/extractorInterface'
+import { fontPropertyInterface } from '@typings/propertyObject'
+import { UnitTypePixel, FontStyle, TextCase, TextDecoration, NumericUnitTypes, PropertyType, FontStretch } from '@typings/valueTypes'
+import config from '@config/config'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const textDecorations = {

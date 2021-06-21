@@ -1,4 +1,4 @@
-import { ColorRgba } from '../../types/valueTypes'
+import { ColorRgba } from '@typings/valueTypes'
 import roundWithDecimals from './roundWithDecimals'
 
 export const roundRgba = (rgba: {

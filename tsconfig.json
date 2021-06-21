@@ -10,6 +10,24 @@
       "./types"
     ],
     "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [
+        "src/ui/components/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@src/*": [
+        "src/*"
+      ],
+      "@ui/*": [
+        "src/ui/*"
+      ],
+      "@typings/*": [
+        "types/*"
+      ]
+    }
   },
   "include": ["src/**/*"],
   "exclude": [

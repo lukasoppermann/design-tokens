@@ -1,4 +1,4 @@
-import { EffectStyleObject } from '../../types/styles'
+import { EffectStyleObject } from '@typings/styles'
 
 /**
  * @function getEffectStyles

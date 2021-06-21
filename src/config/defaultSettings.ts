@@ -1,4 +1,4 @@
-import { Settings } from '../../types/settings'
+import { Settings } from '@typings/settings'
 
 export const defaultSettings: Settings = {
   filename: 'design-tokens',

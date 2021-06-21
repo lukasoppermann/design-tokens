@@ -1,4 +1,4 @@
-import { propertyObject } from '../../types/propertyObject'
+import { propertyObject } from '@typings/propertyObject'
 import deepMerge from './deepMerge'
 import transformName from '../utilities/transformName'
 // create a nested object structure from the array (['style','colors','main','red'])

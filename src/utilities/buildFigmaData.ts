@@ -1,4 +1,4 @@
-import { figmaDataType } from '../../types/figmaDataType'
+import { figmaDataType } from '@typings/figmaDataType'
 import filterByNameProperty from './filterByNameProperty'
 import getPaintStyles from './getPaintStyles'
 import getGridStyles from './getGridStyles'

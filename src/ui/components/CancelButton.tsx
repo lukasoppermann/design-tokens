@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useContext } from 'react'
 import { Button } from 'react-figma-plugin-ds'
-import config from '../../utilities/config'
-import { FigmaContext } from '../context'
+import config from '@config/config'
+import { FigmaContext } from '@ui/context'
 
 const CancelButton = () => {
   const figmaUIApi = useContext(FigmaContext)

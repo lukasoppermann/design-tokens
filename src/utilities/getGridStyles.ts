@@ -1,4 +1,4 @@
-import { GridStyleObject } from '../../types/styles'
+import { GridStyleObject } from '@typings/styles'
 
 /**
  * @function getGridStyles

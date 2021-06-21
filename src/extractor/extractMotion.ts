@@ -1,8 +1,8 @@
-import extractorInterface from '../../types/extractorInterface'
-import { motionPropertyInterface, easingFunctionPropertyInterface } from '../../types/propertyObject'
-import { customTokenNode, nodeWithNodeTransition } from '../../types/tokenNodeTypes'
-import { UnitTypeSeconds, PropertyType } from '../../types/valueTypes'
-import config from '../utilities/config'
+import extractorInterface from '@typings/extractorInterface'
+import { motionPropertyInterface, easingFunctionPropertyInterface } from '@typings/propertyObject'
+import { customTokenNode, nodeWithNodeTransition } from '@typings/tokenNodeTypes'
+import { UnitTypeSeconds, PropertyType } from '@typings/valueTypes'
+import config from '@config/config'
 
 const direction = (transition: Transition): {} | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {

@@ -1,4 +1,4 @@
-import { customTokenNode } from '../../types/tokenNodeTypes'
+import { customTokenNode } from '@typings/tokenNodeTypes'
 import extractTokenNodeValues from './extractTokenNodeValues'
 import isTokenNode from './isTokenNode'
 

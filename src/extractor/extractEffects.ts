@@ -1,7 +1,7 @@
-import extractorInterface from '../../types/extractorInterface'
-import { effectPropertyInterface } from '../../types/propertyObject'
-import { EffectType, UnitTypePixel, PropertyType } from '../../types/valueTypes'
-import config from '../utilities/config'
+import extractorInterface from '@typings/extractorInterface'
+import { effectPropertyInterface } from '@typings/propertyObject'
+import { EffectType, UnitTypePixel, PropertyType } from '@typings/valueTypes'
+import config from '@config/config'
 import { roundRgba } from '../utilities/convertColor'
 
 const effectType = {

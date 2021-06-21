@@ -1,4 +1,4 @@
-import { TextStyleObject } from '../../types/styles'
+import { TextStyleObject } from '@typings/styles'
 
 /**
  * @function getTextStyles

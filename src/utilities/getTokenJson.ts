@@ -10,8 +10,8 @@ import extractRadii from '../extractor/extractRadii'
 import extractBreakpoints from '../extractor/extractBreakpoints'
 import groupByName from './groupByName'
 import styleDictionaryTransformer from '../transformer/styleDictionaryTransformer'
-import { propertyObject } from '../../types/propertyObject'
-import { figmaDataType } from '../../types/figmaDataType'
+import { propertyObject } from '@typings/propertyObject'
+import { figmaDataType } from '@typings/figmaDataType'
 
 const transformer = {
   styleDictionary: styleDictionaryTransformer
