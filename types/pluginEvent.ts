@@ -1,10 +1,4 @@
-export type PluginCommands = 'generalSettings' |
-  'export' |
-  'sendSettings' |
-  'saveSettings' |
-  'help' |
-  'urlExport' |
-  'closePlugin'
+import { PluginCommands } from '../src/config/commands'
 
 export type PluginMessage = {
   command: PluginCommands

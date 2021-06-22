@@ -3,9 +3,8 @@ import { Button, Checkbox, Select } from 'react-figma-plugin-ds'
 import { CancelButton } from './CancelButton'
 import { useContext } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
-
 import { css } from '@emotion/css'
-import config from '@config/config'
+import { commands } from '@config/commands'
 import { Footer } from './Footer'
 import { nameConversionType, Settings } from '@typings/settings'
 
@@ -25,7 +24,7 @@ export const GeneralSettings = () => {
       // save date to local storage
       figmaUIApi.postMessage({
         pluginMessage: {
-          command: config.commands.saveSettings,
+          command: commands.saveSettings,
           settings: pluginSettings,
           accessToken: accessToken
         }
@@ -33,6 +32,7 @@ export const GeneralSettings = () => {
       }, '*')
     }
   }
+
   return (
     <form className={style} onSubmit={settingsFormSubmitHandler}>
       <h3>Design Token Settings</h3>
@@ -40,9 +40,7 @@ export const GeneralSettings = () => {
         <div className='label'>Filename:</div>
         <input
           autoFocus required pattern='^[\w\-\.\+@]+$' type='text' id='filename' className='input__field with-inside-label-behind-sm' placeholder='design-tokens' value={settings.filename}
-          onChange={(e) => {
-            updateSettings((draft: Settings) => { draft.filename = e.target.value })
-          }}
+          onChange={e => updateSettings((draft: Settings) => { draft.filename = e.target.value })}
         />
         <div className='label inside-label-behind--sm'>.json</div>
       </div>
@@ -51,9 +49,7 @@ export const GeneralSettings = () => {
           <div className='label' data-style='width: 130px !important'>Name conversion</div>
           <Select
             defaultValue={settings.nameConversion}
-            onChange={({ value }) => {
-              updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })
-            }}
+            onChange={({ value }) => updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })}
             placeholder='Name conversion'
             options={[
               {
@@ -77,9 +73,7 @@ export const GeneralSettings = () => {
             label='Compress JSON output file'
             type='switch'
             checked={settings.compression}
-            onChange={(value) => {
-              updateSettings(draft => { draft.compression = value })
-            }}
+            onChange={(value) => updateSettings(draft => { draft.compression = value })}
           />
         </div>
       </div>
@@ -92,18 +86,14 @@ export const GeneralSettings = () => {
           <div className='label'>Prefix:</div>
           <input
             required pattern='\S+' type='text' id='prefix' className='input__field' placeholder='_' value={settings.prefix}
-            onChange={(e) => {
-              updateSettings(draft => { draft.prefix = e.target.value })
-            }}
+            onChange={(e) => updateSettings(draft => { draft.prefix = e.target.value })}
           />
         </div>
         <Checkbox
-          label={settings.excludePrefix ? 'Exclude (ONLY prefixed styles are included)' : 'Exclude (prefixed styles are excluded)'}
+          label={settings.excludePrefix ? 'Exclude (prefixed styles are excluded)' : 'Exclude (ONLY prefixed styles are included)'}
           type='switch'
           checked={settings.excludePrefix}
-          onChange={(value) => {
-            updateSettings(draft => { draft.excludePrefix = value })
-          }}
+          onChange={value => updateSettings(draft => { draft.excludePrefix = value })}
         />
       </div>
       <div className='section-title'>Push to server</div>
@@ -112,9 +102,7 @@ export const GeneralSettings = () => {
         <input
           required pattern='^[\w\-\.\+@]+$' type='text' id='eventType' className='input__field' placeholder='update-tokens'
           value={settings.eventType}
-          onChange={(e) => {
-            updateSettings(draft => { draft.eventType = e.target.value })
-          }}
+          onChange={e => updateSettings(draft => { draft.eventType = e.target.value })}
         />
         <div className='label label--info'>"event_type" property in post request</div>
       </div>
@@ -123,9 +111,7 @@ export const GeneralSettings = () => {
         <input
           type='text' pattern='^https://.*' id='serverUrl' className='input__field' placeholder='https://api.github.com/repos/:username/:repo/dispatches'
           value={settings.serverUrl}
-          onChange={(e) => {
-            updateSettings(draft => { draft.serverUrl = e.target.value })
-          }}
+          onChange={e => updateSettings(draft => { draft.serverUrl = e.target.value })}
         />
       </div>
       <div className='input flex-horizontal'>
@@ -134,18 +120,14 @@ export const GeneralSettings = () => {
           type='text' pattern='\S+' id='acceptHeader' className='input__field' placeholder='accept header'
           // value='application/vnd.github.everest-preview+json'
           value={settings.acceptHeader}
-          onChange={(e) => {
-            updateSettings(draft => { draft.acceptHeader = e.target.value })
-          }}
+          onChange={e => updateSettings(draft => { draft.acceptHeader = e.target.value })}
         />
       </div>
       <div className='flex-horizontal'>
         <div className='label' data-style='width: 110px !important'>Auth type:</div>
         <Select
           defaultValue={settings.authType}
-          onChange={({ value }) => {
-            updateSettings(draft => { draft.authType = value })
-          }}
+          onChange={({ value }) => updateSettings(draft => { draft.authType = value })}
           placeholder='Name conversion'
           options={[
             {
@@ -168,9 +150,7 @@ export const GeneralSettings = () => {
         <input
           type='text' pattern='\S+' id='accessToken' className='input__field' placeholder='your access token'
           value={settings.accessToken}
-          onChange={(e) => {
-            updateSettings(draft => { draft.accessToken = e.target.value })
-          }}
+          onChange={e => updateSettings(draft => { draft.accessToken = e.target.value })}
         />
       </div>
       <Footer>

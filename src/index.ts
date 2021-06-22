@@ -4,8 +4,10 @@ import { urlExportData } from '@typings/urlExportData'
 import getJson from './utilities/getJson'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
+import { commands, PluginCommands } from '@config/commands'
 import getVersionDifference from './utilities/getVersionDifference'
 import getFileId from './utilities/getFileId'
+import { PluginMessage } from '../types/pluginEvent'
 
 // initiate UI
 figma.showUI(__html__, {
@@ -22,24 +24,24 @@ if (figma.command === 'export') {
   // write tokens to json file
   figma.ui.postMessage({
     command: 'export',
-    data: {
+    payload: {
       settings: userSettings,
       filename: `${userSettings.filename}.json`,
       data: getJson(figma, userSettings)
     }
-  })
+  } as PluginMessage)
 }
 // SEND TO URL
 // send tokens to url
-if (figma.command === config.commands.urlExport) {
+if (figma.command === commands.urlExport) {
   // needed for getAccessToken async
   const urlExport = async () => {
     // always set compression true for url export
     userSettings.compression = true
     //
     figma.ui.postMessage({
-      command: config.commands.urlExport,
-      data: {
+      command: commands.urlExport,
+      payload: {
         url: userSettings.serverUrl,
         accessToken: await getAccessToken(getFileId(figma)),
         acceptHeader: userSettings.acceptHeader,
@@ -53,7 +55,7 @@ if (figma.command === config.commands.urlExport) {
           }
         }
       } as urlExportData
-    })
+    } as PluginMessage)
   }
   // run export url function
   urlExport()
@@ -61,7 +63,7 @@ if (figma.command === config.commands.urlExport) {
 // ---------------------------------
 // SETTINGS
 // settings for the design tokens
-if (figma.command === config.commands.generalSettings) {
+if (figma.command === commands.generalSettings) {
   // wrap in function because of async client Storage
   const openUi = async () => {
     // get the current version differences to the last time the plugin was opened
@@ -74,11 +76,14 @@ if (figma.command === config.commands.generalSettings) {
     figma.ui.show()
     // sent settings to UI
     figma.ui.postMessage({
-      command: 'getSettings',
-      settings: userSettings,
-      accessToken: await getAccessToken(getFileId(figma)),
-      versionDifference: versionDifference
-    })
+      // @ts-ignore
+      command: 'getSettings' as PluginCommands,
+      payload: {
+        settings: userSettings,
+        accessToken: await getAccessToken(getFileId(figma)),
+        versionDifference: versionDifference
+      }
+    } as PluginMessage)
     // @ts-ignore
     figma.ui.show()
   }
@@ -89,10 +94,10 @@ if (figma.command === config.commands.generalSettings) {
  * Open Help
  * Open github help page
  */
-if (figma.command === config.commands.help) {
+if (figma.command === commands.help) {
   figma.ui.postMessage({
-    command: config.commands.help
-  })
+    command: commands.help
+  } as PluginMessage)
 }
 
 /**
@@ -103,7 +108,7 @@ figma.ui.onmessage = async (message) => {
    * on closePlugin
    * close plugin and show notification if available
    */
-  if (message.command === config.commands.closePlugin) {
+  if (message.command === commands.closePlugin) {
     // show notification if send
     if (message.notification !== undefined && message.notification !== '') {
       figma.notify(message.notification)
@@ -116,7 +121,7 @@ figma.ui.onmessage = async (message) => {
    * on saveSettings
    * save settings, access token and close plugin
    */
-  if (message.command === config.commands.saveSettings) {
+  if (message.command === commands.saveSettings) {
     // store settings
     setSettings(message.settings)
     // accessToken

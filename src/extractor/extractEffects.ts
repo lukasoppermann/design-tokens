@@ -1,7 +1,7 @@
 import extractorInterface from '@typings/extractorInterface'
 import { effectPropertyInterface } from '@typings/propertyObject'
 import { EffectType, UnitTypePixel, PropertyType } from '@typings/valueTypes'
-import config from '@config/config'
+import { tokenTypes } from '@config/tokenTypes'
 import { roundRgba } from '../utilities/convertColor'
 
 const effectType = {
@@ -61,7 +61,7 @@ const extractEffects: extractorInterface = (tokenNodes: EffectStyle[]): effectPr
   return tokenNodes.map(node => ({
     name: node.name,
     category: 'effect',
-    exportKey: config.exports.effect.key,
+    exportKey: tokenTypes.effect.key,
     description: node.description || null,
     values: node.effects.map(
       (effect: Effect) =>

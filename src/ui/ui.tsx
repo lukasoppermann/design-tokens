@@ -9,11 +9,11 @@ import { GeneralSettings } from '@components/GeneralSettings'
 import { useRef, useState } from 'react'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 import { useImmer } from 'use-immer'
-import config from '@config/config'
 import { VersionNotice } from '@components/VersionNotice'
 import { css } from '@emotion/css'
 import { defaultSettings } from '@config/defaultSettings'
 import { closeOnEsc } from './modules/closeOnEsc'
+import { commands, PluginCommands } from '@config/commands'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
@@ -31,48 +31,49 @@ const PluginUi = () => {
 
   // listen to messages
   // eslint-disable-next-line
-    onmessage = (event: Event) => {
+  onmessage = (event: Event) => {
     // capture message
     // @ts-ignore
-    const message = event.data.pluginMessage
+    const { command, payload } = event.data.pluginMessage as {command: PluginCommands, payload: any}
     // export json file
-    if (message.command === 'export') {
+    if (command === 'export') {
       // load data
-      updateSettings(message.data.settings)
-      setTokens(message.data.data)
+      updateSettings(payload.settings)
+      setTokens(payload.data)
       // download
-      downloadJson(parent, downloadLinkRef.current as HTMLLinkElement, message.data.data)
+      downloadJson(parent, downloadLinkRef.current as HTMLLinkElement, payload.data)
     }
     // send to url
-    if (message.command === config.commands.urlExport) {
+    if (command === commands.urlExport) {
       // only run of a valid url is provided
-      if (message.data.url === '') {
+      if (payload.url === '') {
         window.parent.postMessage({
           pluginMessage: {
-            command: config.commands.closePlugin,
+            command: commands.closePlugin,
             notification: '🚨 No server url was provided, push aborted!'
           }
         }, '*')
       } else {
-        urlExport(message.data)
+        urlExport(payload)
       }
     }
     // when settings date is send to ui
-    if (message.command === 'getSettings') {
+    // @ts-ignore
+    if (command === 'getSettings') {
       // load data
       updateSettings({
-        ...message.settings,
-        ...{ accessToken: message.accessToken }
+        ...payload.settings,
+        ...{ accessToken: payload.accessToken }
       })
       // load version difference
-      setVersionDifference(message.versionDifference)
+      setVersionDifference(payload.versionDifference)
     }
     // open help page
-    if (message.command === config.commands.help) {
+    if (command === commands.help) {
       window.open('https://github.com/lukasoppermann/design-tokens')
       parent.postMessage({
         pluginMessage: {
-          command: config.commands.closePlugin
+          command: commands.closePlugin
         }
       }, '*')
     }

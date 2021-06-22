@@ -2,7 +2,7 @@ import extractorInterface from '@typings/extractorInterface'
 import { sizePropertyInterface } from '@typings/propertyObject'
 import { customTokenNode } from '@typings/tokenNodeTypes'
 import { UnitTypePixel, PropertyType } from '@typings/valueTypes'
-import config from '@config/config'
+import { tokenTypes } from '@config/tokenTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const extractSizes: extractorInterface = (tokenNodes: customTokenNode[]): sizePropertyInterface[] => {
@@ -11,7 +11,7 @@ const extractSizes: extractorInterface = (tokenNodes: customTokenNode[]): sizePr
   return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
     name: node.name,
     category: 'size',
-    exportKey: config.exports.size.key,
+    exportKey: tokenTypes.size.key,
     description: node.description || null,
     values: {
       width: {

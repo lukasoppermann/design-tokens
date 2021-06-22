@@ -2,7 +2,7 @@ import extractorInterface from '@typings/extractorInterface'
 import { motionPropertyInterface, easingFunctionPropertyInterface } from '@typings/propertyObject'
 import { customTokenNode, nodeWithNodeTransition } from '@typings/tokenNodeTypes'
 import { UnitTypeSeconds, PropertyType } from '@typings/valueTypes'
-import config from '@config/config'
+import { tokenTypes } from '@config/tokenTypes'
 
 const direction = (transition: Transition): {} | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
@@ -151,7 +151,7 @@ const extractMotion: extractorInterface = (tokenNodes: customTokenNode[]): motio
     .map((node: nodeWithNodeTransition) => ({
       name: node.name,
       category: 'motion',
-      exportKey: config.exports.motion.key,
+      exportKey: tokenTypes.motion.key,
       description: node.description || null,
       values: {
         type: {

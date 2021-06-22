@@ -1,10 +1,10 @@
-import config from '@config/config'
+import { commands } from '@config/commands'
 
 export const closeOnEsc = (event, figmaUIApi) => {
   if (event.code === 'Escape') {
     figmaUIApi.postMessage({
       pluginMessage: {
-        command: config.commands.closePlugin
+        command: commands.closePlugin
       }
     // @ts-ignore
     }, '*')
