@@ -1,22 +1,19 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-
-/* eslint-env browser */
-// @ts-nocheck
 import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import './css/variables.css'
 import './css/ui.css'
 import { downloadJson } from '@ui/modules/downloadJson'
 import { urlExport } from '@ui/modules/urlExport'
 import { GeneralSettings } from '@components/GeneralSettings'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 import { useImmer } from 'use-immer'
 import config from '@config/config'
 import { VersionNotice } from '@components/VersionNotice'
 import { css } from '@emotion/css'
 import { defaultSettings } from '@config/defaultSettings'
-import { globalKeyPressed } from './modules/globalKeyPressed'
+import { closeOnEsc } from './modules/closeOnEsc'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
@@ -32,63 +29,60 @@ const PluginUi = () => {
   const [settings, updateSettings] = useImmer(defaultSettings)
   const downloadLinkRef = useRef()
 
-  useEffect(() => {
-    // ---------------------------------
-    // listen to messages
-    // eslint-disable-next-line
+  // listen to messages
+  // eslint-disable-next-line
     onmessage = (event: Event) => {
-      // capture message
-      // @ts-ignore
-      const message = event.data.pluginMessage
-      // export json file
-      if (message.command === 'export') {
-        // load data
-        updateSettings(message.data.settings)
-        setTokens(message.data.data)
-        // download
-        downloadJson(parent, downloadLinkRef.current as HTMLLinkElement, message.data.data)
-      }
-      // send to url
-      if (message.command === config.commands.urlExport) {
-        // only run of a valid url is provided
-        if (message.data.url === '') {
-          window.parent.postMessage({
-            pluginMessage: {
-              command: config.commands.closePlugin,
-              notification: '🚨 No server url was provided, push aborted!'
-            }
-          }, '*')
-        } else {
-          urlExport(message.data)
-        }
-      }
-      // when settings date is send to ui
-      if (message.command === 'getSettings') {
-        // load data
-        updateSettings({
-          ...message.settings,
-          ...{ accessToken: message.accessToken }
-        })
-        // load version difference
-        setVersionDifference(message.versionDifference)
-      }
-      // open help page
-      if (message.command === config.commands.help) {
-        window.open('https://github.com/lukasoppermann/design-tokens')
-        parent.postMessage({
+    // capture message
+    // @ts-ignore
+    const message = event.data.pluginMessage
+    // export json file
+    if (message.command === 'export') {
+      // load data
+      updateSettings(message.data.settings)
+      setTokens(message.data.data)
+      // download
+      downloadJson(parent, downloadLinkRef.current as HTMLLinkElement, message.data.data)
+    }
+    // send to url
+    if (message.command === config.commands.urlExport) {
+      // only run of a valid url is provided
+      if (message.data.url === '') {
+        window.parent.postMessage({
           pluginMessage: {
-            command: config.commands.closePlugin
+            command: config.commands.closePlugin,
+            notification: '🚨 No server url was provided, push aborted!'
           }
         }, '*')
+      } else {
+        urlExport(message.data)
       }
     }
-  })
+    // when settings date is send to ui
+    if (message.command === 'getSettings') {
+      // load data
+      updateSettings({
+        ...message.settings,
+        ...{ accessToken: message.accessToken }
+      })
+      // load version difference
+      setVersionDifference(message.versionDifference)
+    }
+    // open help page
+    if (message.command === config.commands.help) {
+      window.open('https://github.com/lukasoppermann/design-tokens')
+      parent.postMessage({
+        pluginMessage: {
+          command: config.commands.closePlugin
+        }
+      }, '*')
+    }
+  }
 
   return (
     <FigmaContext.Provider value={figmaUIApi}>
       <SettingsContext.Provider value={{ settings, updateSettings }}>
         <TokenContext.Provider value={{ tokens, setTokens }}>
-          <main className={style} onKeyDown={e => globalKeyPressed(e, figmaUIApi)}>
+          <main className={style} onKeyDown={e => closeOnEsc(e, figmaUIApi)}>
             <VersionNotice versionDifference={versionDifference} />
             <GeneralSettings />
             <a
