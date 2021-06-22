@@ -3,10 +3,9 @@ import * as ReactDOM from 'react-dom'
 import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import './css/variables.css'
 import './css/ui.css'
-import { downloadJson } from '@ui/modules/downloadJson'
 import { urlExport } from '@ui/modules/urlExport'
 import { GeneralSettings } from '@components/GeneralSettings'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 import { useImmer } from 'use-immer'
 import { VersionNotice } from '@components/VersionNotice'
@@ -15,6 +14,7 @@ import { defaultSettings } from '@config/defaultSettings'
 import { closeOnEsc } from './modules/closeOnEsc'
 import { commands, PluginCommands } from '@config/commands'
 import { PluginEvent } from '@typings/pluginEvent'
+import { FileExportSettings } from '@components/FileExportSettings'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
@@ -26,38 +26,33 @@ const style = css`
 
 const PluginUi = () => {
   const [versionDifference, setVersionDifference] = useState(null)
+  const [activePage, setActivePage] = useState(null)
   const [tokens, setTokens] = useState(null)
   const [settings, updateSettings] = useImmer(defaultSettings)
-  const downloadLinkRef = useRef()
 
   // listen to messages
   // eslint-disable-next-line
   onmessage = (event: PluginEvent) => {
     // capture message
-    // @ts-ignore
     const { command, payload } = event.data.pluginMessage as {command: PluginCommands, payload: any}
-    // export json file
-    if (command === commands.export) {
-      // load data
+    // set settings
+    if ([commands.export, commands.generalSettings].includes(command)) {
       updateSettings(payload.settings)
+      setVersionDifference(payload.versionDifference)
+    }
+    // export
+    if (command === commands.export) {
       setTokens(payload.data)
-      // download
-      downloadJson(parent, downloadLinkRef.current as HTMLLinkElement, payload.data)
+      // activate view
+      setActivePage(commands.export)
     }
     // send to url
     if (command === commands.urlExport) {
       urlExport(payload)
     }
     // when settings date is send to ui
-    // @ts-ignore
-    if (command === 'getSettings') {
-      // load data
-      updateSettings({
-        ...payload.settings,
-        ...{ accessToken: payload.accessToken }
-      })
-      // load version difference
-      setVersionDifference(payload.versionDifference)
+    if (command === commands.generalSettings) {
+      setActivePage(commands.generalSettings)
     }
     // open help page
     if (command === commands.help) {
@@ -76,13 +71,8 @@ const PluginUi = () => {
         <TokenContext.Provider value={{ tokens, setTokens }}>
           <main className={style} onKeyDown={e => closeOnEsc(e, figmaUIApi)}>
             <VersionNotice versionDifference={versionDifference} />
-            <GeneralSettings />
-            <a
-              ref={downloadLinkRef}
-              download={`${settings.filename ?? 'design-tokens'}${settings.extension}`}
-              title={`${settings.filename ?? 'design-tokens'}${settings.extension}`}
-              href={`data:text/json;charset=utf-8,${encodeURIComponent(tokens)}`}
-            />
+            {activePage === commands.generalSettings && <GeneralSettings />}
+            {activePage === commands.export && <FileExportSettings />}
           </main>
         </TokenContext.Provider>
       </SettingsContext.Provider>

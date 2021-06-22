@@ -10,6 +10,9 @@ export type propertyObject = {
   }
 }
 
+export type internalTokenInterface = propertyObject
+export type tokenCategoryTypes = 'font' | 'border' | 'size' | 'grid' | 'effect' | 'radius' | 'radius'| 'breakpoint'
+
 export type numericPropertyType = {
   value: number,
   unit?: NumericUnitTypes,
