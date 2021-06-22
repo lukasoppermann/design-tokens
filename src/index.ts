@@ -4,7 +4,7 @@ import { urlExportData } from '@typings/urlExportData'
 import getJson from './utilities/getJson'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
-import { commands, PluginCommands } from '@config/commands'
+import { commands } from '@config/commands'
 import getVersionDifference from './utilities/getVersionDifference'
 import getFileId from './utilities/getFileId'
 import { PluginMessage } from '../types/pluginEvent'
@@ -20,16 +20,29 @@ const userSettings: UserSettings = getSettings()
 // ---------------------------------
 // EXPORT TO FILE
 // exports the design tokens to a file
-if (figma.command === 'export') {
-  // write tokens to json file
-  figma.ui.postMessage({
-    command: 'export',
-    payload: {
-      settings: userSettings,
-      filename: `${userSettings.filename}.json`,
-      data: getJson(figma, userSettings)
+if (figma.command === commands.export) {
+  // wrap in function because of async client Storage
+  const openUi = async () => {
+    // get the current version differences to the last time the plugin was opened
+    const versionDifference = await getVersionDifference(figma)
+    // resize UI if needed
+    if (versionDifference !== undefined && versionDifference !== 'patch') {
+      figma.ui.resize(config.settingsDialog.width, config.settingsDialog.height + 60)
     }
-  } as PluginMessage)
+    // write tokens to json file
+    figma.ui.postMessage({
+      command: commands.export,
+      payload: {
+        settings: userSettings,
+        data: 'getJsonString(figma, userSettings)',
+        versionDifference: versionDifference
+      }
+    } as PluginMessage)
+    // register the settings UI
+    figma.ui.show()
+  }
+  // run function
+  openUi()
 }
 // SEND TO URL
 // send tokens to url
@@ -77,10 +90,12 @@ if (figma.command === commands.generalSettings) {
     // sent settings to UI
     figma.ui.postMessage({
       // @ts-ignore
-      command: 'getSettings' as PluginCommands,
+      command: commands.generalSettings,
       payload: {
-        settings: userSettings,
-        accessToken: await getAccessToken(getFileId(figma)),
+        settings: {
+          ...userSettings,
+          ...{ accessToken: await getAccessToken(getFileId(figma)) }
+        },
         versionDifference: versionDifference
       }
     } as PluginMessage)

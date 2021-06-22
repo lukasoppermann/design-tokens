@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { useContext, useRef } from 'react'
-import { Button, Checkbox, Title } from 'react-figma-plugin-ds'
+import { Button, Title } from 'react-figma-plugin-ds'
 import { FigmaContext, SettingsContext, TokenContext } from '../context'
-import { downloadJson } from '../modules/downloadJson'
-import { prepareExport } from '../../utilities/prepareExport'
+// import { downloadJson } from '../modules/downloadJson'
+// import { prepareExport } from '../../utilities/prepareExport'
 import { CancelButton } from './CancelButton'
-import { Settings } from '../../../types/settings'
+// import { Settings } from '../../../types/settings'
 import { css } from '@emotion/css'
 import { Footer } from './Footer'
-import { Info } from './Info'
-import { Row } from './Row'
-import { tokenTypes } from '@config/tokenTypes'
+// import { Info } from './Info'
+// import { Row } from './Row'
+// import { tokenTypes } from '@config/tokenTypes'
 
 const style = css`
   display: flex;
@@ -22,36 +22,37 @@ const style = css`
 `
 
 export const FileExportSettings = () => {
-  const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
+  const { settings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
-  const figmaUIApi = useContext(FigmaContext)
+  // const figmaUIApi = useContext(FigmaContext)
   const downloadLinkRef = useRef()
 
   const handleFormSubmit = (event) => {
-    const exportSettingsForm = event.target
-    if (exportSettingsForm.checkValidity() === true) {
-      const { accessToken, ...pluginSettings } = settings
-      // save settings to local storage
-      figmaUIApi.postMessage({
-        pluginMessage: {
-          command: 'saveSettings',
-          settings: pluginSettings,
-          accessToken: accessToken
-        }
-      // @ts-ignore
-      }, '*')
-      // prepare token json
-      const tokensToExport = prepareExport(tokens, pluginSettings)
-      setTokens(tokensToExport)
-      // download tokes
-      downloadJson(parent, downloadLinkRef.current, tokens)
-    }
+    // const exportSettingsForm = event.target
+    // if (exportSettingsForm.checkValidity() === true) {
+    //   const { accessToken, ...pluginSettings } = settings
+    //   // save settings to local storage
+    //   figmaUIApi.postMessage({
+    //     pluginMessage: {
+    //       command: 'saveSettings',
+    //       settings: pluginSettings,
+    //       accessToken: accessToken
+    //     }
+    //   // @ts-ignore
+    //   }, '*')
+    //   // prepare token json
+    //   const tokensToExport = 'prepareExport(tokens, pluginSettings)'
+    //   setTokens(tokensToExport)
+    //   // download tokes
+    //   downloadJson(parent, downloadLinkRef.current, tokens)
+    // }
+    console.log('submit')
   }
 
   return (
     <form onSubmit={(event) => handleFormSubmit(event)} className={style}>
       <Title size='xlarge' weight='bold'>File Export settings</Title>
-      <Row>
+      {/* <Row>
         <Checkbox
           label='Add type to name'
           type='switch'
@@ -69,14 +70,14 @@ export const FileExportSettings = () => {
             checked={settings.exports[key]}
             onChange={value => updateSettings((draft: Settings) => { draft.exports[key] = value })}
           />)}
-      </div>
+      </div> */}
       <Footer>
-        <Button
+        {/* <Button
           type='button' onClick={() => {
             const { accessToken, ...pluginSettings } = settings
             prepareExport(tokens, pluginSettings) }}
         >Test
-        </Button>
+        </Button> */}
         <CancelButton />
         <Button autofocus>Save & Export</Button>
       </Footer>
