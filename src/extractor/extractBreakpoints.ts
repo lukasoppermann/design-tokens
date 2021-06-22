@@ -2,7 +2,7 @@ import extractorInterface from '@typings/extractorInterface'
 import { breakpointPropertyInterface } from '@typings/propertyObject'
 import { customTokenNode } from '@typings/tokenNodeTypes'
 import { UnitTypePixel, PropertyType } from '@typings/valueTypes'
-import config from '@config/config'
+import { tokenTypes } from '@config/tokenTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const extractBreakpoints: extractorInterface = (tokenNodes: customTokenNode[]): breakpointPropertyInterface[] => {
@@ -11,7 +11,7 @@ const extractBreakpoints: extractorInterface = (tokenNodes: customTokenNode[]): 
   return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName).map(node => ({
     name: node.name,
     category: 'breakpoint',
-    exportKey: config.exports.breakpoint.key,
+    exportKey: tokenTypes.breakpoint.key,
     description: node.description || null,
     values: {
       width: {

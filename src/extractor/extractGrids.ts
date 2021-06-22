@@ -1,7 +1,7 @@
 import extractorInterface from '@typings/extractorInterface'
 import { gridPropertyInterface } from '@typings/propertyObject'
 import { GridAlignment, GridPattern, PropertyType } from '@typings/valueTypes'
-import config from '@config/config'
+import { tokenTypes } from '@config/tokenTypes'
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {
@@ -66,7 +66,7 @@ const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridProperty
   return tokenNodes.map(node => ({
     name: node.name,
     category: 'grid',
-    exportKey: config.exports.grid.key,
+    exportKey: tokenTypes.grid.key,
     description: node.description || null,
     values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid))
   }))
