@@ -9,11 +9,11 @@ import { GeneralSettings } from '@components/GeneralSettings'
 import { useRef, useState } from 'react'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 import { useImmer } from 'use-immer'
-import config from '@config/config'
 import { VersionNotice } from '@components/VersionNotice'
 import { css } from '@emotion/css'
 import { defaultSettings } from '@config/defaultSettings'
 import { closeOnEsc } from './modules/closeOnEsc'
+import { commands } from '@config/commands'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
@@ -31,7 +31,7 @@ const PluginUi = () => {
 
   // listen to messages
   // eslint-disable-next-line
-    onmessage = (event: Event) => {
+  onmessage = (event: Event) => {
     // capture message
     // @ts-ignore
     const message = event.data.pluginMessage
@@ -44,12 +44,12 @@ const PluginUi = () => {
       downloadJson(parent, downloadLinkRef.current as HTMLLinkElement, message.data.data)
     }
     // send to url
-    if (message.command === config.commands.urlExport) {
+    if (message.command === commands.urlExport) {
       // only run of a valid url is provided
       if (message.data.url === '') {
         window.parent.postMessage({
           pluginMessage: {
-            command: config.commands.closePlugin,
+            command: commands.closePlugin,
             notification: '🚨 No server url was provided, push aborted!'
           }
         }, '*')
@@ -68,11 +68,11 @@ const PluginUi = () => {
       setVersionDifference(message.versionDifference)
     }
     // open help page
-    if (message.command === config.commands.help) {
+    if (message.command === commands.help) {
       window.open('https://github.com/lukasoppermann/design-tokens')
       parent.postMessage({
         pluginMessage: {
-          command: config.commands.closePlugin
+          command: commands.closePlugin
         }
       }, '*')
     }

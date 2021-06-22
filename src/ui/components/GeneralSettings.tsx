@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
 
 import { css } from '@emotion/css'
-import config from '@config/config'
+import { commands } from '@config/commands'
 import { Footer } from './Footer'
 import { nameConversionType, Settings } from '@typings/settings'
 
@@ -25,7 +25,7 @@ export const GeneralSettings = () => {
       // save date to local storage
       figmaUIApi.postMessage({
         pluginMessage: {
-          command: config.commands.saveSettings,
+          command: commands.saveSettings,
           settings: pluginSettings,
           accessToken: accessToken
         }
