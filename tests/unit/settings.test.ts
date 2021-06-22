@@ -123,7 +123,6 @@ describe('Testing getSettings', () => {
     const output = {
       ...defaultSettings,
       ...{
-        exports: {},
         serverUrl: '',
         accessToken: ''
       }

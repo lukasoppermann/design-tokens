@@ -34,7 +34,6 @@ export const getJsonString = (figma: PluginAPI, userSettings: UserSettings) => {
     prefix: userSettings.prefix,
     excludePrefix: userSettings.excludePrefix
   })
-
   return JSON.stringify(exportRawTokenArray(figmaData))
 }
 

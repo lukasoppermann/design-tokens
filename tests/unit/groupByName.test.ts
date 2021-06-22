@@ -1,4 +1,4 @@
-import groupByName from '../../src/utilities/groupByName'
+import { groupByName } from '../../src/utilities/groupByName'
 
 describe('groupByName', () => {
   test('group tokens with name', () => {

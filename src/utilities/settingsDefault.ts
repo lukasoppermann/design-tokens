@@ -42,11 +42,22 @@ export default {
     empty: false
   },
   keyInName: {
-    default: true,
+    default: false,
     empty: false
   },
   exports: {
-    default: {},
+    default: {
+      color: true,
+      font: true,
+      effect: true,
+      grid: true,
+      border: true,
+      breakpoint: true,
+      radius: true,
+      size: true,
+      spacing: true,
+      motion: true
+    },
     empty: false
   }
 }

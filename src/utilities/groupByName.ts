@@ -9,7 +9,7 @@ const nestedObjectFromArray = (array: string[], value: any) => {
   return array.reduceRight(reducer, value)
 }
 
-const groupByName = (tokenArray: propertyObject[], removeName: boolean = true, nameConversion: string = 'default') => {
+export const groupByName = (tokenArray: propertyObject[], removeName: boolean = true, nameConversion: string = 'default') => {
   // nest tokens into object with hierachy defined by name using /
   const groupedTokens = tokenArray.map(token => {
     // split token name into array
@@ -30,5 +30,3 @@ const groupByName = (tokenArray: propertyObject[], removeName: boolean = true, n
   }
   return []
 }
-
-export default groupByName

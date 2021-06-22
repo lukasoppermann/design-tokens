@@ -24,6 +24,9 @@
       "@ui/*": [
         "src/ui/*"
       ],
+      "@utils/*": [
+        "src/utilities/*"
+      ],
       "@typings/*": [
         "types/*"
       ]

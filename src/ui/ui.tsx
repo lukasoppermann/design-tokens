@@ -14,6 +14,7 @@ import { css } from '@emotion/css'
 import { defaultSettings } from '@config/defaultSettings'
 import { closeOnEsc } from './modules/closeOnEsc'
 import { commands, PluginCommands } from '@config/commands'
+import { PluginEvent } from '@typings/pluginEvent'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
@@ -31,12 +32,12 @@ const PluginUi = () => {
 
   // listen to messages
   // eslint-disable-next-line
-  onmessage = (event: Event) => {
+  onmessage = (event: PluginEvent) => {
     // capture message
     // @ts-ignore
     const { command, payload } = event.data.pluginMessage as {command: PluginCommands, payload: any}
     // export json file
-    if (command === 'export') {
+    if (command === commands.export) {
       // load data
       updateSettings(payload.settings)
       setTokens(payload.data)
@@ -45,17 +46,7 @@ const PluginUi = () => {
     }
     // send to url
     if (command === commands.urlExport) {
-      // only run of a valid url is provided
-      if (payload.url === '') {
-        window.parent.postMessage({
-          pluginMessage: {
-            command: commands.closePlugin,
-            notification: '🚨 No server url was provided, push aborted!'
-          }
-        }, '*')
-      } else {
-        urlExport(payload)
-      }
+      urlExport(payload)
     }
     // when settings date is send to ui
     // @ts-ignore

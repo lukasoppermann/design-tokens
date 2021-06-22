@@ -1,4 +1,5 @@
 /* eslint-env browser */
+import { commands } from '@config/commands'
 import { urlExportData } from '../../../types/urlExportData'
 
 const responeHandler = (request: XMLHttpRequest): string => {
@@ -19,6 +20,16 @@ const responeHandler = (request: XMLHttpRequest): string => {
 }
 
 const urlExport = (messageData: urlExportData) => {
+  // abort on missing url
+  if (messageData.url === '') {
+    // @ts-ignore
+    window.parent.postMessage({
+      pluginMessage: {
+        command: commands.closePlugin,
+        notification: '🚨 No server url was provided, push aborted!'
+      }
+    }, '*')
+  }
   // init request
   const request = new XMLHttpRequest()
   // send to user defined url
