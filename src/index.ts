@@ -1,7 +1,7 @@
 import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
 import { urlExportData } from '@typings/urlExportData'
-import getJson from './utilities/getJson'
+import getJson, { getJsonString } from './utilities/getJson'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
 import { commands } from '@config/commands'
@@ -34,7 +34,7 @@ if (figma.command === commands.export) {
       command: commands.export,
       payload: {
         settings: userSettings,
-        data: 'getJsonString(figma, userSettings)',
+        data: getJsonString(figma, userSettings),
         versionDifference: versionDifference
       }
     } as PluginMessage)

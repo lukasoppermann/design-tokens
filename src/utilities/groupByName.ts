@@ -30,3 +30,28 @@ export const groupByName = (tokenArray: propertyObject[], removeName: boolean = 
   }
   return []
 }
+
+export const groupByKeyAndName = (tokenArray: propertyObject[], includeKey: boolean = true, nameConversion: string = 'default') => {
+  const removeName: boolean = true
+  // guard
+  if (tokenArray.length <= 0) return []
+  // nest tokens into object with hierachy defined by name using /
+  const groupedTokens = tokenArray.map(token => {
+    // add key to name if desired
+    if (includeKey) {
+      token.name = `${token.exportKey}/${token.name}`
+    }
+    // split token name into array
+    // remove leading and following whitespace for every item
+    // transform items to lowerCase
+    const groupsFromName = token.name.split('/').map(group => transformName(group, nameConversion))
+    // remove name if not otherwise specified
+    if (removeName === true) {
+      delete token.name
+    }
+    // return
+    return nestedObjectFromArray(groupsFromName, token)
+  })
+  // return merged object of tokens grouped by name hierachy
+  return groupedTokens.reduce((accumulator = {}, currentValue) => deepMerge(accumulator, currentValue))
+}
