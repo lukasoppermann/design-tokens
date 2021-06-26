@@ -14,3 +14,11 @@ export type StyleDictionaryPropertyGroup = {
 } & {
   [key: string]: StyleDictionaryPropertyObject | any
 }
+
+export type StyleDictionaryTokenInterface = {
+  name: string,
+  exportKey: string,
+  comment?: string,
+} & {
+  [key: string]: StyleDictionaryPropertyObject | any
+}

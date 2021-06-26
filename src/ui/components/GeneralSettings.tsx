@@ -67,15 +67,6 @@ export const GeneralSettings = () => {
             ]}
           />
         </div>
-        <div className='flex-half'>
-          <div className='label' data-style='width: 130px !important'>Compression</div>
-          <Checkbox
-            label='Compress JSON output file'
-            type='switch'
-            checked={settings.compression}
-            onChange={(value) => updateSettings(draft => { draft.compression = value })}
-          />
-        </div>
       </div>
       <div className='section-title'>Prefix</div>
       <div className='message-box'>
