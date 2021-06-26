@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useContext, useRef } from 'react'
-import { Button, Title } from 'react-figma-plugin-ds'
-import { SettingsContext, TokenContext } from '../context'
+import { Button, Checkbox, Title } from 'react-figma-plugin-ds'
+import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 // import { downloadJson } from '../modules/downloadJson'
 // import { prepareExport } from '../../utilities/prepareExport'
 import { CancelButton } from './CancelButton'
@@ -13,8 +13,8 @@ import { prepareExport } from '@src/utilities/prepareExport'
 import { Settings } from '@typings/settings'
 import { defaultSettings } from '@config/defaultSettings'
 import { stringifyJson } from '@src/utilities/stringifyJson'
-// import { Info } from './Info'
-// import { Row } from './Row'
+import { Info } from '@components/Info'
+import { Row } from '@components/Row'
 // import { tokenTypes } from '@config/tokenTypes'
 
 const style = css`
@@ -27,25 +27,24 @@ const style = css`
 `
 
 export const FileExportSettings = () => {
-  const { settings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
+  const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
-  // const figmaUIApi = useContext(FigmaContext)
+  const figmaUIApi = useContext(FigmaContext)
   const downloadLinkRef = useRef()
 
   const handleFormSubmit = (event) => {
     const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
-
       // save settings to local storage
-      // figmaUIApi.postMessage({
-      //   pluginMessage: {
-      //     command: 'saveSettings',
-      //     settings: pluginSettings,
-      //     accessToken: accessToken
-      //   }
-      // // @ts-ignore
-      // }, '*')
+      figmaUIApi.postMessage({
+        pluginMessage: {
+          command: 'saveSettings',
+          settings: pluginSettings,
+          accessToken: accessToken
+        }
+      // @ts-ignore
+      }, '*')
       // prepare token json
       pluginSettings.exports = defaultSettings.exports
       pluginSettings.keyInName = defaultSettings.keyInName
@@ -59,6 +58,15 @@ export const FileExportSettings = () => {
   return (
     <form onSubmit={(event) => handleFormSubmit(event)} className={style}>
       <Title size='xlarge' weight='bold'>File Export settings</Title>
+      <Row>
+        <Checkbox
+          label='Compress JSON output file'
+          type='switch'
+          checked={settings.compression}
+          onChange={(value) => updateSettings(draft => { draft.compression = value })}
+        />
+        <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
+      </Row>
       {/* <Row>
         <Checkbox
           label='Add type to name'
