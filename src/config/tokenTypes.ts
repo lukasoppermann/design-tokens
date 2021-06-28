@@ -1,6 +1,6 @@
 export const tokenTypes = {
   color: {
-    label: 'Colors & gradiets',
+    label: 'Colors & Gradients',
     key: 'color'
   },
   font: {
