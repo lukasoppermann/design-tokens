@@ -1,7 +1,7 @@
 import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
-import { urlExportData } from '@typings/urlExportData'
-import getJson, { getJsonString } from './utilities/getJson'
+// import { urlExportData } from '@typings/urlExportData'
+import { getJsonString } from './utilities/getJson'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
 import { commands } from '@config/commands'
@@ -47,31 +47,56 @@ if (figma.command === commands.export) {
 // SEND TO URL
 // send tokens to url
 if (figma.command === commands.urlExport) {
-  // needed for getAccessToken async
-  const urlExport = async () => {
-    // always set compression true for url export
-    userSettings.compression = true
-    //
+  // wrap in function because of async client Storage
+  const openUi = async () => {
+    // get the current version differences to the last time the plugin was opened
+    const versionDifference = await getVersionDifference(figma)
+    // resize UI if needed
+    if (versionDifference !== undefined && versionDifference !== 'patch') {
+      figma.ui.resize(config.settingsDialog.width, config.settingsDialog.height + 60)
+    }
+    // write tokens to json file
     figma.ui.postMessage({
       command: commands.urlExport,
       payload: {
-        url: userSettings.serverUrl,
-        accessToken: await getAccessToken(getFileId(figma)),
-        acceptHeader: userSettings.acceptHeader,
-        authType: userSettings.authType,
-        data: {
-          event_type: userSettings.eventType,
-          client_payload: {
-            tokenFileName: `${userSettings.filename}.json`,
-            tokens: `${getJson(figma, userSettings, true)}`,
-            filename: figma.root.name
-          }
-        }
-      } as urlExportData
+        settings: {
+          ...userSettings,
+          ...{ accessToken: await getAccessToken(getFileId(figma)) }
+        },
+        data: getJsonString(figma, userSettings),
+        versionDifference: versionDifference
+      }
     } as PluginMessage)
+    // register the settings UI
+    figma.ui.show()
   }
-  // run export url function
-  urlExport()
+  // run function
+  openUi()
+  // // needed for getAccessToken async
+  // const urlExport = async () => {
+  //   // always set compression true for url export
+  //   userSettings.compression = true
+  //   //
+  //   figma.ui.postMessage({
+  //     command: commands.urlExport,
+  //     payload: {
+  //       url: userSettings.serverUrl,
+  //       accessToken: await getAccessToken(getFileId(figma)),
+  //       acceptHeader: userSettings.acceptHeader,
+  //       authType: userSettings.authType,
+  //       data: {
+  //         event_type: userSettings.eventType,
+  //         client_payload: {
+  //           tokenFileName: `${userSettings.filename}.json`,
+  //           tokens: `${getJson(figma, userSettings, true)}`,
+  //           filename: figma.root.name
+  //         }
+  //       }
+  //     } as urlExportData
+  //   } as PluginMessage)
+  // }
+  // // run export url function
+  // urlExport()
 }
 // ---------------------------------
 // SETTINGS

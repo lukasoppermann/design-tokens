@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom'
 import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import './css/variables.css'
 import './css/ui.css'
-import { urlExport } from '@ui/modules/urlExport'
 import { GeneralSettings } from '@components/GeneralSettings'
 import { useState } from 'react'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
@@ -15,6 +14,7 @@ import { closeOnEsc } from './modules/closeOnEsc'
 import { commands, PluginCommands } from '@config/commands'
 import { PluginEvent } from '@typings/pluginEvent'
 import { FileExportSettings } from '@components/FileExportSettings'
+import { UrlExportSettings } from '@components/UrlExportSettings'
 // ---------------------------------
 // @ts-ignore
 const figmaUIApi: UIAPI = parent as UIAPI
@@ -36,18 +36,20 @@ const PluginUi = () => {
     // capture message
     const { command, payload } = event.data.pluginMessage as {command: PluginCommands, payload: any}
     // set settings
-    if ([commands.export, commands.generalSettings].includes(command)) {
+    if ([commands.urlExport, commands.export, commands.generalSettings].includes(command)) {
       updateSettings(payload.settings)
       setVersionDifference(payload.versionDifference)
     }
     // export json file
     if (command === commands.export) {
       setTokens(payload.data)
-      setActivePage(commands.export)
+      setActivePage(command)
     }
     // send to url
     if (command === commands.urlExport) {
-      urlExport(payload)
+      setTokens(payload.data)
+      setActivePage(command)
+      // urlExport(payload)
     }
     // when settings date is send to ui
     if (command === commands.generalSettings) {
@@ -72,6 +74,7 @@ const PluginUi = () => {
             <VersionNotice versionDifference={versionDifference} />
             {activePage === commands.generalSettings && <GeneralSettings />}
             {activePage === commands.export && <FileExportSettings />}
+            {activePage === commands.urlExport && <UrlExportSettings />}
           </main>
         </TokenContext.Provider>
       </SettingsContext.Provider>

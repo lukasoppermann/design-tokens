@@ -61,15 +61,6 @@ export const FileExportSettings = () => {
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
-      <Row>
-        <Checkbox
-          label='Add token type to name of the token'
-          type='switch'
-          checked={settings.keyInName}
-          onChange={value => updateSettings(draft => { draft.keyInName = value })}
-        />
-        <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
-      </Row>
       <Title size='large' weight='bold'>Include type in export</Title>
       <div className='grid-3-col'>
         {Object.entries(tokenTypes).map(([, { key, label }]) =>

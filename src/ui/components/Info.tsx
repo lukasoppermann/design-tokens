@@ -9,6 +9,7 @@ type InfoProps = {
 const style = css`
   position: relative;
   cursor: help;
+  display: inline-block;
   svg path {
     fill: var(--ui-contrast);
   }
@@ -16,6 +17,7 @@ const style = css`
     pointer-events: none;
     background: var(--ui-contrast);
     font-size: var(--font-size-xsmall);
+    font-weight: normal;
     color: var(--on--ui-contrast);
     padding: 4px 6px;
     border-radius: 3px;
