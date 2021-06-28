@@ -2,20 +2,16 @@ import * as React from 'react'
 import { useContext, useRef } from 'react'
 import { Button, Checkbox, Title } from 'react-figma-plugin-ds'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
-// import { downloadJson } from '../modules/downloadJson'
-// import { prepareExport } from '../../utilities/prepareExport'
 import { CancelButton } from './CancelButton'
-// import { Settings } from '../../../types/settings'
 import { css } from '@emotion/css'
 import { Footer } from './Footer'
 import { downloadJson } from '../modules/downloadJson'
 import { prepareExport } from '@src/utilities/prepareExport'
 import { Settings } from '@typings/settings'
-import { defaultSettings } from '@config/defaultSettings'
 import { stringifyJson } from '@src/utilities/stringifyJson'
 import { Info } from '@components/Info'
 import { Row } from '@components/Row'
-// import { tokenTypes } from '@config/tokenTypes'
+import { tokenTypes } from '@config/tokenTypes'
 
 const style = css`
   display: flex;
@@ -46,8 +42,6 @@ export const FileExportSettings = () => {
       // @ts-ignore
       }, '*')
       // prepare token json
-      pluginSettings.exports = defaultSettings.exports
-      pluginSettings.keyInName = defaultSettings.keyInName
       const tokensToExport = prepareExport(tokens, pluginSettings)
       setTokens(tokensToExport)
       // download tokes
@@ -67,9 +61,9 @@ export const FileExportSettings = () => {
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
-      {/* <Row>
+      <Row>
         <Checkbox
-          label='Add type to name'
+          label='Add token type to name of the token'
           type='switch'
           checked={settings.keyInName}
           onChange={value => updateSettings(draft => { draft.keyInName = value })}
@@ -85,7 +79,7 @@ export const FileExportSettings = () => {
             checked={settings.exports[key]}
             onChange={value => updateSettings((draft: Settings) => { draft.exports[key] = value })}
           />)}
-      </div> */}
+      </div>
       <Footer>
         <CancelButton />
         <Button autofocus>Save & Export</Button>
