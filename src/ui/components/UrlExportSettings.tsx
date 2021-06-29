@@ -9,6 +9,11 @@ import { prepareExport } from '@src/utilities/prepareExport'
 import { Settings } from '@typings/settings'
 import { Info } from '@components/Info'
 import { Row } from '@components/Row'
+import { urlExport } from '../modules/urlExport'
+import { urlExportData } from '@typings/urlExportData'
+import { PluginMessage } from '@typings/pluginEvent'
+import { commands } from '@config/commands'
+import { stringifyJson } from '@src/utilities/stringifyJson'
 
 const style = css`
   display: flex;
@@ -22,7 +27,7 @@ const style = css`
 export const UrlExportSettings = () => {
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
-  const figmaUIApi = useContext(FigmaContext)
+  const { figmaUIApi, figmaMetaData } = useContext(FigmaContext)
 
   const handleFormSubmit = (event) => {
     const exportSettingsForm = event.target
@@ -31,18 +36,34 @@ export const UrlExportSettings = () => {
       // save settings to local storage
       figmaUIApi.postMessage({
         pluginMessage: {
-          command: 'saveSettings',
-          settings: pluginSettings,
-          accessToken: accessToken
-        }
+          command: commands.saveSettings,
+          payload: {
+            settings: pluginSettings,
+            accessToken: accessToken
+          }
+        } as PluginMessage
       // @ts-ignore
       }, '*')
       // prepare token json
       const tokensToExport = prepareExport(tokens, pluginSettings)
       setTokens(tokensToExport)
+      console.log('tokensToExport', JSON.stringify(tokensToExport))
+
       // download tokes
-      console.log(pluginSettings)
-      console.log(tokensToExport)
+      urlExport(parent, {
+        url: settings.serverUrl,
+        accessToken: settings.accessToken,
+        acceptHeader: settings.acceptHeader,
+        authType: settings.authType,
+        data: {
+          event_type: settings.eventType,
+          client_payload: {
+            tokenFileName: `${settings.filename}.json`,
+            tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
+            filename: figmaMetaData.filename
+          }
+        }
+      } as urlExportData)
     }
   }
 
@@ -51,10 +72,10 @@ export const UrlExportSettings = () => {
       <Title size='xlarge' weight='bold'>Url Export settings</Title>
       <Row>
         <Checkbox
-          label='Compress JSON output file'
+          label='Compress JSON output'
           type='switch'
-          checked={settings.compression}
-          onChange={(value) => updateSettings(draft => { draft.compression = value })}
+          checked={settings.urlJsonCompression}
+          onChange={(value) => updateSettings(draft => { draft.urlJsonCompression = value })}
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
@@ -89,7 +110,7 @@ export const UrlExportSettings = () => {
           type='text'
           required
           pattern='\S+'
-          placeholder='application/vnd.github.everest-preview+json'
+          placeholder='application/vnd.github.v3+json'
           value={settings.acceptHeader}
           onChange={value => updateSettings(draft => { draft.acceptHeader = value })}
         />
@@ -130,8 +151,7 @@ export const UrlExportSettings = () => {
       </Row>
       <Footer>
         <CancelButton />
-        <Button type='button' onClick={handleFormSubmit}>Test</Button>
-        <Button autofocus>Save & Export</Button>
+        <Button type='button' onClick={handleFormSubmit} autofocus>Save & Export</Button>
       </Footer>
     </form>
   )

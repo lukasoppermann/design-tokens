@@ -19,11 +19,12 @@ const responeHandler = (request: XMLHttpRequest): string => {
   return '🎉 Design tokens pushed to server!'
 }
 
-const urlExport = (messageData: urlExportData) => {
+const urlExport = (parent, messageData: urlExportData) => {
+  console.log(JSON.stringify(messageData))
   // abort on missing url
   if (messageData.url === '') {
     // @ts-ignore
-    window.parent.postMessage({
+    parent.postMessage({
       pluginMessage: {
         command: commands.closePlugin,
         notification: '🚨 No server url was provided, push aborted!'
@@ -42,10 +43,12 @@ const urlExport = (messageData: urlExportData) => {
   if (messageData.accessToken !== '' && messageData.authType !== '') {
     request.setRequestHeader('Authorization', `${messageData.authType} ${messageData.accessToken}`)
   }
+  console.log(request)
   // on error
   request.onerror = (event) => {
+    console.log(event)
     // @ts-ignore
-    window.parent.postMessage({
+    parent.postMessage({
       pluginMessage: {
         command: 'closePlugin',
         notification: '🚨 An error occured while sending the tokens: check your settings & your server.'
@@ -54,14 +57,17 @@ const urlExport = (messageData: urlExportData) => {
   }
   // show message on successful push
   request.onload = (progressEvent: ProgressEvent) => {
+    console.log(progressEvent)
     // @ts-ignore
-    window.parent.postMessage({
+    parent.postMessage({
       pluginMessage: {
         command: 'closePlugin',
         notification: responeHandler(progressEvent.target as XMLHttpRequest)
       }
     }, '*')
   }
+  console.log(request)
+  console.log(JSON.stringify(messageData.data, null, 2))
   // send request
   request.send(JSON.stringify(messageData.data, null, 2))
 }

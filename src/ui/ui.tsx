@@ -28,6 +28,7 @@ const PluginUi = () => {
   const [versionDifference, setVersionDifference] = useState(null)
   const [activePage, setActivePage] = useState(null)
   const [tokens, setTokens] = useState(null)
+  const [figmaMetaData, setFigmaMetaData] = useState(null)
   const [settings, updateSettings] = useImmer(defaultSettings)
 
   // listen to messages
@@ -39,6 +40,7 @@ const PluginUi = () => {
     if ([commands.urlExport, commands.export, commands.generalSettings].includes(command)) {
       updateSettings(payload.settings)
       setVersionDifference(payload.versionDifference)
+      setFigmaMetaData(payload.metadata)
     }
     // export json file
     if (command === commands.export) {
@@ -67,7 +69,7 @@ const PluginUi = () => {
   }
 
   return (
-    <FigmaContext.Provider value={figmaUIApi}>
+    <FigmaContext.Provider value={{ figmaUIApi, figmaMetaData }}>
       <SettingsContext.Provider value={{ settings, updateSettings }}>
         <TokenContext.Provider value={{ tokens, setTokens }}>
           <main className={style} onKeyDown={e => closeOnEsc(e, figmaUIApi)}>

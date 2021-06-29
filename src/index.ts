@@ -35,7 +35,10 @@ if (figma.command === commands.export) {
       payload: {
         settings: userSettings,
         data: getJsonString(figma, userSettings),
-        versionDifference: versionDifference
+        versionDifference: versionDifference,
+        metadata: {
+          filename: figma.root.name
+        }
       }
     } as PluginMessage)
     // register the settings UI
@@ -64,7 +67,10 @@ if (figma.command === commands.urlExport) {
           ...{ accessToken: await getAccessToken(getFileId(figma)) }
         },
         data: getJsonString(figma, userSettings),
-        versionDifference: versionDifference
+        versionDifference: versionDifference,
+        metadata: {
+          filename: figma.root.name
+        }
       }
     } as PluginMessage)
     // register the settings UI
@@ -121,7 +127,10 @@ if (figma.command === commands.generalSettings) {
           ...userSettings,
           ...{ accessToken: await getAccessToken(getFileId(figma)) }
         },
-        versionDifference: versionDifference
+        versionDifference: versionDifference,
+        metadata: {
+          filename: figma.root.name
+        }
       }
     } as PluginMessage)
     // @ts-ignore
@@ -163,10 +172,12 @@ figma.ui.onmessage = async (message) => {
    */
   if (message.command === commands.saveSettings) {
     // store settings
-    setSettings(message.settings)
+    setSettings(message.payload.settings)
     // accessToken
-    await setAccessToken(getFileId(figma), message.accessToken)
+    await setAccessToken(getFileId(figma), message.payload.accessToken)
     // close plugin
-    figma.closePlugin()
+    if (message.payload.closePlugin && message.payload.closePlugin === true) {
+      figma.closePlugin()
+    }
   }
 }

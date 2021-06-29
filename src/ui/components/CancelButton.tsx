@@ -5,9 +5,9 @@ import { commands } from '@config/commands'
 import { FigmaContext } from '@ui/context'
 
 const CancelButton = () => {
-  const figmaUIApi = useContext(FigmaContext)
+  const { figmaUIApi } = useContext(FigmaContext)
 
-  const closePlugin = (e) => {
+  const closePlugin = () => {
     // close the plugin
     figmaUIApi.postMessage({
       pluginMessage: {

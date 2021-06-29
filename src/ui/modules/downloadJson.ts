@@ -1,9 +1,11 @@
+import { commands } from '@config/commands'
+
 export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
   // if no tokens are present
   if (json === '[]') {
     parent.postMessage({
       pluginMessage: {
-        command: 'closePlugin',
+        command: commands.closePlugin,
         notification: '⛔️ No design token detected!'
       }
     }, '*')
@@ -18,7 +20,7 @@ export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
     // send success messgae
     parent.postMessage({
       pluginMessage: {
-        command: 'closePlugin',
+        command: commands.closePlugin,
         notification: '🎉 Design token export succesfull!'
       }
     }, '*')
@@ -26,7 +28,7 @@ export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
     // send success messgae
     parent.postMessage({
       pluginMessage: {
-        command: 'closePlugin',
+        command: commands.closePlugin,
         notification: '⛔️ Design token failed!'
       }
     }, '*')

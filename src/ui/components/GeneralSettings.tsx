@@ -16,7 +16,7 @@ const style = css`
 `
 
 export const GeneralSettings = () => {
-  const figmaUIApi = useContext(FigmaContext)
+  const { figmaUIApi } = useContext(FigmaContext)
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
 
   const settingsFormSubmitHandler = (event) => {
@@ -27,8 +27,11 @@ export const GeneralSettings = () => {
       figmaUIApi.postMessage({
         pluginMessage: {
           command: commands.saveSettings,
-          settings: pluginSettings,
-          accessToken: accessToken
+          payload: {
+            closePlugin: true,
+            settings: pluginSettings,
+            accessToken: accessToken
+          }
         }
       // @ts-ignore
       }, '*')
