@@ -41,21 +41,9 @@ const PluginUi = () => {
       updateSettings(payload.settings)
       setVersionDifference(payload.versionDifference)
       setFigmaMetaData(payload.metadata)
-    }
-    // export json file
-    if (command === commands.export) {
       setTokens(payload.data)
+      // activate page
       setActivePage(command)
-    }
-    // send to url
-    if (command === commands.urlExport) {
-      setTokens(payload.data)
-      setActivePage(command)
-      // urlExport(payload)
-    }
-    // when settings date is send to ui
-    if (command === commands.generalSettings) {
-      setActivePage(commands.generalSettings)
     }
     // open help page
     if (command === commands.help) {

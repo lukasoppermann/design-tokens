@@ -10,7 +10,7 @@ import { Settings } from '@typings/settings'
 import { Info } from '@components/Info'
 import { Row } from '@components/Row'
 import { urlExport } from '../modules/urlExport'
-import { urlExportData } from '@typings/urlExportData'
+import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
 import { PluginMessage } from '@typings/pluginEvent'
 import { commands } from '@config/commands'
 import { stringifyJson } from '@src/utilities/stringifyJson'
@@ -47,23 +47,21 @@ export const UrlExportSettings = () => {
       // prepare token json
       const tokensToExport = prepareExport(tokens, pluginSettings)
       setTokens(tokensToExport)
-      console.log('tokensToExport', JSON.stringify(tokensToExport))
-
       // download tokes
       urlExport(parent, {
         url: settings.serverUrl,
         accessToken: settings.accessToken,
         acceptHeader: settings.acceptHeader,
-        authType: settings.authType,
-        data: {
-          event_type: settings.eventType,
-          client_payload: {
-            tokenFileName: `${settings.filename}.json`,
-            tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
-            filename: figmaMetaData.filename
-          }
+        authType: settings.authType
+      } as urlExportSettings,
+      {
+        event_type: settings.eventType,
+        client_payload: {
+          tokenFileName: `${settings.filename}.json`,
+          tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
+          filename: figmaMetaData.filename
         }
-      } as urlExportData)
+      } as urlExportRequestBody)
     }
   }
 
@@ -81,7 +79,7 @@ export const UrlExportSettings = () => {
       </Row>
       <Title size='xlarge' weight='bold'>Server settings</Title>
       <h3>Event type<Info width={150} label='"event_type" property in post request' /></h3>
-      <Row>
+      <Row fill>
         <Input
           type='text'
           required
@@ -93,7 +91,7 @@ export const UrlExportSettings = () => {
       </Row>
 
       <h3>Server url<Info width={150} label='Url the request is sent to, must be https' /></h3>
-      <Row>
+      <Row fill>
         <Input
           type='text'
           required
@@ -105,7 +103,7 @@ export const UrlExportSettings = () => {
       </Row>
 
       <h3>Accept header</h3>
-      <Row>
+      <Row fill>
         <Input
           type='text'
           required
@@ -117,7 +115,7 @@ export const UrlExportSettings = () => {
       </Row>
 
       <h3>Auth type</h3>
-      <Row>
+      <Row fill>
         <Select
           defaultValue={settings.authType}
           onChange={({ value }) => updateSettings(draft => { draft.authType = value })}
@@ -140,7 +138,7 @@ export const UrlExportSettings = () => {
       </Row>
 
       <h3>Access token</h3>
-      <Row>
+      <Row fill>
         <Input
           type='text'
           pattern='\S+'

@@ -3,7 +3,7 @@ import * as React from 'react'
 
 const style = css`
   display: flex;
-  & > * {
+  &.fill > * {
     flex-grow: 1;
   }
 `
