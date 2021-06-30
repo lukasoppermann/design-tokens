@@ -6,6 +6,7 @@ export default {
   },
   key: {
     lastVersionSettingsOpened: 'lastVersionSettingsOpened',
-    fileId: 'fileId'
+    fileId: 'fileId',
+    settings: 'settings'
   }
 }

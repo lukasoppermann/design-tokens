@@ -1,6 +1,7 @@
 import settingsDefault from './settingsDefault'
+// import { defaultSettings } from '@config/defaultSettings'
 import { Settings as UserSettings } from '@typings/settings'
-const settingsKey = 'settings'
+import config from '@config/config'
 /**
  * Function sanitizes and prepares settings to be stored
  * @param newSettings
@@ -39,7 +40,7 @@ const settingsPrepare = (newSettings: UserSettings, currentSettings: UserSetting
  * @return object
  */
 const getSettings = (): UserSettings => {
-  let userSettings = figma.root.getPluginData(settingsKey)
+  let userSettings = figma.root.getPluginData(config.key.settings)
   if (userSettings.length > 0) {
     userSettings = JSON.parse(userSettings)
   }
@@ -67,11 +68,11 @@ const getSettings = (): UserSettings => {
 const setSettings = (settings: UserSettings) => {
   settings = settingsPrepare(settings, getSettings())
   // store public settings that should be shared across org
-  figma.root.setPluginData(settingsKey, JSON.stringify(settings, null, 2))
+  figma.root.setPluginData(config.key.settings, JSON.stringify(settings, null, 2))
 }
 
 // exports
-export { settingsKey, getSettings, setSettings }
+export { getSettings, setSettings }
 export const __testing = {
   settingsPrepare: settingsPrepare
 }
