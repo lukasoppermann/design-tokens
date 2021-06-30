@@ -1,6 +1,7 @@
 /* eslint-env browser */
 import { commands } from '@config/commands'
-import { urlExportData } from '../../../types/urlExportData'
+import { PluginMessage } from '@typings/pluginEvent'
+import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
 
 const responeHandler = (request: XMLHttpRequest): string => {
   // 401
@@ -19,51 +20,57 @@ const responeHandler = (request: XMLHttpRequest): string => {
   return '🎉 Design tokens pushed to server!'
 }
 
-const urlExport = (messageData: urlExportData) => {
+const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlExportRequestBody) => {
   // abort on missing url
-  if (messageData.url === '') {
+  if (exportSettings.url === '') {
     // @ts-ignore
-    window.parent.postMessage({
+    parent.postMessage({
       pluginMessage: {
         command: commands.closePlugin,
-        notification: '🚨 No server url was provided, push aborted!'
-      }
+        payload: {
+          notification: '🚨 No server url was provided, push aborted!'
+        }
+      } as PluginMessage
     }, '*')
   }
   // init request
   const request = new XMLHttpRequest()
   // send to user defined url
-  request.open('POST', messageData.url)
+  request.open('POST', exportSettings.url)
   // set request header if provided
-  if (messageData.acceptHeader !== '') {
+  if (exportSettings.acceptHeader !== '') {
     request.setRequestHeader('Accept', 'application/vnd.github.everest-preview+json')
   }
   // add access token of provided
-  if (messageData.accessToken !== '' && messageData.authType !== '') {
-    request.setRequestHeader('Authorization', `${messageData.authType} ${messageData.accessToken}`)
+  if (exportSettings.accessToken !== '' && exportSettings.authType !== '') {
+    request.setRequestHeader('Authorization', `${exportSettings.authType} ${exportSettings.accessToken}`)
   }
   // on error
   request.onerror = (event) => {
     // @ts-ignore
-    window.parent.postMessage({
+    parent.postMessage({
       pluginMessage: {
-        command: 'closePlugin',
-        notification: '🚨 An error occured while sending the tokens: check your settings & your server.'
-      }
+        command: commands.closePlugin,
+        payload: {
+          notification: '🚨 An error occured while sending the tokens: check your settings & your server.'
+        }
+      } as PluginMessage
     }, '*')
   }
   // show message on successful push
   request.onload = (progressEvent: ProgressEvent) => {
     // @ts-ignore
-    window.parent.postMessage({
+    parent.postMessage({
       pluginMessage: {
-        command: 'closePlugin',
-        notification: responeHandler(progressEvent.target as XMLHttpRequest)
-      }
+        command: commands.closePlugin,
+        payload: {
+          notification: responeHandler(progressEvent.target as XMLHttpRequest)
+        }
+      } as PluginMessage
     }, '*')
   }
   // send request
-  request.send(JSON.stringify(messageData.data, null, 2))
+  request.send(JSON.stringify(requestBody, null, 2))
 }
 
 export { urlExport }

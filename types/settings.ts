@@ -8,6 +8,7 @@ export type Settings = {
   extension: string,
   nameConversion: nameConversionType,
   compression: boolean,
+  urlJsonCompression: boolean,
   excludePrefix: boolean,
   prefix: string,
   serverUrl?: string,

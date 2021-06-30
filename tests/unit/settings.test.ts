@@ -20,6 +20,7 @@ const baseSettings = {
   extension: '.json',
   nameConversion: 'default' as nameConversionType,
   compression: false,
+  urlJsonCompression: true,
   excludePrefix: true,
   prefix: '#Base',
   serverUrl: 'https://test.com',

@@ -17,6 +17,10 @@ export default {
     default: false,
     empty: false
   },
+  urlJsonCompression: {
+    default: true,
+    empty: false
+  },
   excludePrefix: {
     default: true,
     empty: false

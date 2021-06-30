@@ -1,11 +1,16 @@
+import { commands } from '@config/commands'
+import { PluginMessage } from '@typings/pluginEvent'
+
 export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
   // if no tokens are present
   if (json === '[]') {
     parent.postMessage({
       pluginMessage: {
-        command: 'closePlugin',
-        notification: '⛔️ No design token detected!'
-      }
+        command: commands.closePlugin,
+        payload: {
+          notification: '⛔️ No design token detected!'
+        }
+      } as PluginMessage
     }, '*')
     // abort
     return
@@ -18,17 +23,21 @@ export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
     // send success messgae
     parent.postMessage({
       pluginMessage: {
-        command: 'closePlugin',
-        notification: '🎉 Design token export succesfull!'
-      }
+        command: commands.closePlugin,
+        payload: {
+          notification: '🎉 Design token export succesfull!'
+        }
+      } as PluginMessage
     }, '*')
   } catch (error) {
     // send success messgae
     parent.postMessage({
       pluginMessage: {
-        command: 'closePlugin',
-        notification: '⛔️ Design token failed!'
-      }
+        command: commands.closePlugin,
+        payload: {
+          notification: '⛔️ Design token failed!'
+        }
+      } as PluginMessage
     }, '*')
     // log error
     console.error('Export error: ', error)

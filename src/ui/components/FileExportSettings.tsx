@@ -12,6 +12,7 @@ import { stringifyJson } from '@src/utilities/stringifyJson'
 import { Info } from '@components/Info'
 import { Row } from '@components/Row'
 import { tokenTypes } from '@config/tokenTypes'
+import { commands } from '@config/commands'
 
 const style = css`
   display: flex;
@@ -25,7 +26,7 @@ const style = css`
 export const FileExportSettings = () => {
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
-  const figmaUIApi = useContext(FigmaContext)
+  const { figmaUIApi } = useContext(FigmaContext)
   const downloadLinkRef = useRef()
 
   const handleFormSubmit = (event) => {
@@ -35,9 +36,11 @@ export const FileExportSettings = () => {
       // save settings to local storage
       figmaUIApi.postMessage({
         pluginMessage: {
-          command: 'saveSettings',
-          settings: pluginSettings,
-          accessToken: accessToken
+          command: commands.saveSettings,
+          payload: {
+            settings: pluginSettings,
+            accessToken: accessToken
+          }
         }
       // @ts-ignore
       }, '*')
@@ -60,15 +63,6 @@ export const FileExportSettings = () => {
           onChange={(value) => updateSettings(draft => { draft.compression = value })}
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
-      </Row>
-      <Row>
-        <Checkbox
-          label='Add token type to name of the token'
-          type='switch'
-          checked={settings.keyInName}
-          onChange={value => updateSettings(draft => { draft.keyInName = value })}
-        />
-        <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
       </Row>
       <Title size='large' weight='bold'>Include type in export</Title>
       <div className='grid-3-col'>

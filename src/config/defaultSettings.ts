@@ -5,6 +5,7 @@ export const defaultSettings: Settings = {
   extension: '.json',
   nameConversion: 'default',
   compression: false,
+  urlJsonCompression: true,
   prefix: '_',
   excludePrefix: true,
   serverUrl: undefined,

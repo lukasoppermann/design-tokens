@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { Button, Checkbox, Select } from 'react-figma-plugin-ds'
-import { CancelButton } from './CancelButton'
+import { CancelButton } from '@components/CancelButton'
 import { useContext } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
 import { css } from '@emotion/css'
 import { commands } from '@config/commands'
-import { Footer } from './Footer'
+import { Footer } from '@components/Footer'
 import { nameConversionType, Settings } from '@typings/settings'
+import { Row } from '@components/Row'
+import { Info } from '@components/Info'
 
 const style = css`
   display: flex;
@@ -14,7 +16,7 @@ const style = css`
 `
 
 export const GeneralSettings = () => {
-  const figmaUIApi = useContext(FigmaContext)
+  const { figmaUIApi } = useContext(FigmaContext)
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
 
   const settingsFormSubmitHandler = (event) => {
@@ -25,8 +27,11 @@ export const GeneralSettings = () => {
       figmaUIApi.postMessage({
         pluginMessage: {
           command: commands.saveSettings,
-          settings: pluginSettings,
-          accessToken: accessToken
+          payload: {
+            closePlugin: true,
+            settings: pluginSettings,
+            accessToken: accessToken
+          }
         }
       // @ts-ignore
       }, '*')
@@ -68,6 +73,15 @@ export const GeneralSettings = () => {
           />
         </div>
       </div>
+      <Row>
+        <Checkbox
+          label='Add token type to name of the token'
+          type='switch'
+          checked={settings.keyInName}
+          onChange={value => updateSettings(draft => { draft.keyInName = value })}
+        />
+        <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
+      </Row>
       <div className='section-title'>Prefix</div>
       <div className='message-box'>
         <div className='message message--info'>Define a prefix for styles to be in-/excluded.</div>
@@ -85,63 +99,6 @@ export const GeneralSettings = () => {
           type='switch'
           checked={settings.excludePrefix}
           onChange={value => updateSettings(draft => { draft.excludePrefix = value })}
-        />
-      </div>
-      <div className='section-title'>Push to server</div>
-      <div className='input flex-horizontal'>
-        <div className='label' data-style='width: 110px !important'>Event type:</div>
-        <input
-          required pattern='^[\w\-\.\+@]+$' type='text' id='eventType' className='input__field' placeholder='update-tokens'
-          value={settings.eventType}
-          onChange={e => updateSettings(draft => { draft.eventType = e.target.value })}
-        />
-        <div className='label label--info'>"event_type" property in post request</div>
-      </div>
-      <div className='input flex-horizontal'>
-        <div className='label' data-style='width: 110px !important'>Server url:</div>
-        <input
-          type='text' pattern='^https://.*' id='serverUrl' className='input__field' placeholder='https://api.github.com/repos/:username/:repo/dispatches'
-          value={settings.serverUrl}
-          onChange={e => updateSettings(draft => { draft.serverUrl = e.target.value })}
-        />
-      </div>
-      <div className='input flex-horizontal'>
-        <div className='label' data-style='width: 110px !important'>Accept header:</div>
-        <input
-          type='text' pattern='\S+' id='acceptHeader' className='input__field' placeholder='accept header'
-          // value='application/vnd.github.everest-preview+json'
-          value={settings.acceptHeader}
-          onChange={e => updateSettings(draft => { draft.acceptHeader = e.target.value })}
-        />
-      </div>
-      <div className='flex-horizontal'>
-        <div className='label' data-style='width: 110px !important'>Auth type:</div>
-        <Select
-          defaultValue={settings.authType}
-          onChange={({ value }) => updateSettings(draft => { draft.authType = value })}
-          placeholder='Name conversion'
-          options={[
-            {
-              label: '(Github) token',
-              value: 'token'
-            },
-            {
-              label: 'Basic authentication',
-              value: 'Basic'
-            },
-            {
-              label: 'Bearer token authentication',
-              value: 'Bearer'
-            }
-          ]}
-        />
-      </div>
-      <div className='input flex-horizontal'>
-        <div className='label' data-style='width: 110px !important'>Access token:</div>
-        <input
-          type='text' pattern='\S+' id='accessToken' className='input__field' placeholder='your access token'
-          value={settings.accessToken}
-          onChange={e => updateSettings(draft => { draft.accessToken = e.target.value })}
         />
       </div>
       <Footer>

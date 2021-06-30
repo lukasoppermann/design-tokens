@@ -1,10 +1,10 @@
 import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
-import { urlExportData } from '@typings/urlExportData'
-import getJson, { getJsonString } from './utilities/getJson'
+// import { urlExportData } from '@typings/urlExportData'
+import { getJsonString } from './utilities/getJson'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
-import { commands } from '@config/commands'
+import { commands, PluginCommands } from '@config/commands'
 import getVersionDifference from './utilities/getVersionDifference'
 import getFileId from './utilities/getFileId'
 import { PluginMessage } from '../types/pluginEvent'
@@ -18,9 +18,8 @@ figma.showUI(__html__, {
 // Get the user settings
 const userSettings: UserSettings = getSettings()
 // ---------------------------------
-// EXPORT TO FILE
-// exports the design tokens to a file
-if (figma.command === commands.export) {
+// open UI
+if ([commands.export, commands.urlExport, commands.generalSettings].includes(figma.command as PluginCommands)) {
   // wrap in function because of async client Storage
   const openUi = async () => {
     // get the current version differences to the last time the plugin was opened
@@ -31,75 +30,20 @@ if (figma.command === commands.export) {
     }
     // write tokens to json file
     figma.ui.postMessage({
-      command: commands.export,
-      payload: {
-        settings: userSettings,
-        data: getJsonString(figma, userSettings),
-        versionDifference: versionDifference
-      }
-    } as PluginMessage)
-    // register the settings UI
-    figma.ui.show()
-  }
-  // run function
-  openUi()
-}
-// SEND TO URL
-// send tokens to url
-if (figma.command === commands.urlExport) {
-  // needed for getAccessToken async
-  const urlExport = async () => {
-    // always set compression true for url export
-    userSettings.compression = true
-    //
-    figma.ui.postMessage({
-      command: commands.urlExport,
-      payload: {
-        url: userSettings.serverUrl,
-        accessToken: await getAccessToken(getFileId(figma)),
-        acceptHeader: userSettings.acceptHeader,
-        authType: userSettings.authType,
-        data: {
-          event_type: userSettings.eventType,
-          client_payload: {
-            tokenFileName: `${userSettings.filename}.json`,
-            tokens: `${getJson(figma, userSettings, true)}`,
-            filename: figma.root.name
-          }
-        }
-      } as urlExportData
-    } as PluginMessage)
-  }
-  // run export url function
-  urlExport()
-}
-// ---------------------------------
-// SETTINGS
-// settings for the design tokens
-if (figma.command === commands.generalSettings) {
-  // wrap in function because of async client Storage
-  const openUi = async () => {
-    // get the current version differences to the last time the plugin was opened
-    const versionDifference = await getVersionDifference(figma)
-    // resize UI if needed
-    if (versionDifference !== undefined && versionDifference !== 'patch') {
-      figma.ui.resize(config.settingsDialog.width, config.settingsDialog.height + 60)
-    }
-    // register the settings UI
-    figma.ui.show()
-    // sent settings to UI
-    figma.ui.postMessage({
-      // @ts-ignore
-      command: commands.generalSettings,
+      command: figma.command as PluginCommands,
       payload: {
         settings: {
           ...userSettings,
           ...{ accessToken: await getAccessToken(getFileId(figma)) }
         },
-        versionDifference: versionDifference
+        data: getJsonString(figma, userSettings),
+        versionDifference: versionDifference,
+        metadata: {
+          filename: figma.root.name
+        }
       }
     } as PluginMessage)
-    // @ts-ignore
+    // register the settings UI
     figma.ui.show()
   }
   // run function
@@ -118,15 +62,16 @@ if (figma.command === commands.help) {
 /**
  * React to messages
  */
-figma.ui.onmessage = async (message) => {
+figma.ui.onmessage = async (message: PluginMessage) => {
+  const { command, payload } = message
   /**
    * on closePlugin
    * close plugin and show notification if available
    */
-  if (message.command === commands.closePlugin) {
+  if (command === commands.closePlugin) {
     // show notification if send
-    if (message.notification !== undefined && message.notification !== '') {
-      figma.notify(message.notification)
+    if (payload?.notification !== undefined && payload?.notification !== '') {
+      figma.notify(payload.notification)
     }
     // close plugin
     figma.ui.hide()
@@ -136,12 +81,14 @@ figma.ui.onmessage = async (message) => {
    * on saveSettings
    * save settings, access token and close plugin
    */
-  if (message.command === commands.saveSettings) {
+  if (command === commands.saveSettings) {
     // store settings
-    setSettings(message.settings)
+    setSettings(payload.settings)
     // accessToken
-    await setAccessToken(getFileId(figma), message.accessToken)
+    await setAccessToken(getFileId(figma), payload.accessToken)
     // close plugin
-    figma.closePlugin()
+    if (payload.closePlugin && payload.closePlugin === true) {
+      figma.closePlugin()
+    }
   }
 }
