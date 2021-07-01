@@ -2,6 +2,9 @@
 .switch__label {
   padding-right: 0 !important;
 }
+.switch__toggle:focus-visible + .switch__label:before {
+  box-shadow: 0 0 0 2px var(--blue);
+}
 /* Normal css */
 h3 {
   padding: 0 var(--size-xxsmall);
