@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { Settings } from '@typings/settings'
 
 export const defaultSettings: Settings = {
