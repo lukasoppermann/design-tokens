@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export type PluginCommands = 'generalSettings' |
   'export' |
   'sendSettings' |

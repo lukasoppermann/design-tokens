@@ -1,6 +1,6 @@
-import { getSettings, setSettings, __testing } from '../../src/utilities/settings'
+import { getSettings, setSettings } from '../../src/utilities/settings'
+import { stringifyJson } from '../../src/utilities/stringifyJson'
 import { nameConversionType } from '../../types/settings'
-import { defaultSettings } from '../../src/config/defaultSettings'
 
 beforeAll(() => {
   // @ts-ignore
@@ -21,10 +21,11 @@ const baseSettings = {
   nameConversion: 'default' as nameConversionType,
   compression: false,
   urlJsonCompression: true,
-  excludePrefix: true,
   prefix: '#Base',
+  excludePrefix: true,
   serverUrl: 'https://test.com',
   eventType: 'baseEvent',
+  accessToken: 'test',
   acceptHeader: 'baseHeader',
   authType: 'baseAuthType',
   keyInName: false,
@@ -41,57 +42,14 @@ const baseSettings = {
     motion: true
   }
 }
-
-describe('Testing settingsPrepare', () => {
-  test('add valid settings to empty array', () => {
-    const newSettings = { ...baseSettings }
-    newSettings.authType = 'aType'
-    // assert
-    // @ts-ignore
-    expect(__testing.settingsPrepare(newSettings)).toStrictEqual(newSettings)
-  })
-
-  test('send empty settings', () => {
-    const newSettings = {
-      ...baseSettings,
-      ...{
-        filename: '',
-        nameConversion: '',
-        prefix: '',
-        eventType: '',
-        authType: ''
-      }
-    }
-
-    const output = {
-      ...baseSettings,
-      ...{
-        acceptHeader: 'baseHeader',
-        authType: 'token',
-        eventType: 'update-tokens',
-        filename: 'design-tokens',
-        prefix: '_'
-      }
-    }
-    // assert
-    // @ts-ignore
-    expect(output).toStrictEqual(__testing.settingsPrepare(newSettings, {
-      acceptHeader: 'test'
-    }))
-  })
-})
-
 describe('Testing setSettings', () => {
   test('setSettings function with valid data', () => {
     // @ts-ignore
     figma.root.getPluginData.mockReturnValue(baseSettings)
-
     setSettings(baseSettings)
     // assert
     // @ts-ignore
-    expect(figma.root.getPluginData).toHaveReturnedWith(baseSettings)
-    // @ts-ignore
-    expect(figma.root.setPluginData).toHaveBeenCalledWith('settings', JSON.stringify(baseSettings, null, 2))
+    expect(figma.root.setPluginData).toHaveBeenCalledWith('settings', stringifyJson(baseSettings, true))
   })
 })
 
@@ -113,25 +71,8 @@ describe('Testing getSettings', () => {
     }
     // @ts-ignore
     figma.root.getPluginData.mockReturnValue(JSON.stringify(newSettings, null, 2))
-
+    console.log(getSettings())
     // assert
     expect(getSettings()).toStrictEqual(newSettings)
-  })
-
-  test('get settings when novalid settings are present', () => {
-    // @ts-ignore
-    figma.root.getPluginData.mockReturnValue('')
-    const output = {
-      ...defaultSettings,
-      ...{
-        serverUrl: '',
-        accessToken: ''
-      }
-    }
-
-    const getSettingsOutput = getSettings()
-    getSettingsOutput.accessToken = ''
-    // assert
-    expect(output).toStrictEqual(getSettingsOutput)
   })
 })
