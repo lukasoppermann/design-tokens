@@ -1,4 +1,4 @@
-import getTokenJson from '../../src/utilities/getTokenJson'
+import { exportRawTokenArray } from '../../src/utilities/getTokenJson'
 import extractFonts from '../../src/extractor/extractFonts'
 import extractEffects from '../../src/extractor/extractEffects'
 import extractGrids from '../../src/extractor/extractGrids'
@@ -9,7 +9,7 @@ import extractBorders from '../../src/extractor/extractBorders'
 import extractRadii from '../../src/extractor/extractRadii'
 import extractMotion from '../../src/extractor/extractMotion'
 import extractBreakpoints from '../../src/extractor/extractBreakpoints'
-import styleDictionaryTransformer from '../../src/transformer/styleDictionaryTransformer'
+import buildFigmaData from '../../src/utilities/buildFigmaData'
 jest.mock('../../src/extractor/extractFonts', () => jest.fn())
 jest.mock('../../src/extractor/extractEffects', () => jest.fn())
 jest.mock('../../src/extractor/extractGrids', () => jest.fn())
@@ -20,10 +20,12 @@ jest.mock('../../src/extractor/extractBorders', () => jest.fn())
 jest.mock('../../src/extractor/extractRadii', () => jest.fn())
 jest.mock('../../src/extractor/extractMotion', () => jest.fn())
 jest.mock('../../src/extractor/extractBreakpoints', () => jest.fn())
-jest.mock('../../src/transformer/styleDictionaryTransformer', () => jest.fn())
+jest.mock('../../src/utilities/buildFigmaData', () => jest.fn())
 
-describe('getJsonToken', () => {
+describe('exportRawTokenArray', () => {
   test('empty input', () => {
+    // @ts-ignore
+    buildFigmaData.mockImplementation(() => [])
     // @ts-ignore
     extractFonts.mockImplementation(() => [])
     // @ts-ignore
@@ -45,12 +47,12 @@ describe('getJsonToken', () => {
     // @ts-ignore
     extractBreakpoints.mockImplementation(() => [])
     // @ts-ignore
-    expect(getTokenJson({})).toStrictEqual([])
+    expect(exportRawTokenArray('')).toStrictEqual([])
   })
 
   test('with input', () => {
     // @ts-ignore
-    styleDictionaryTransformer.mockImplementation((input) => input)
+    buildFigmaData.mockImplementation(() => [])
     // @ts-ignore
     extractFonts.mockImplementation(() => [
       {
@@ -115,18 +117,45 @@ describe('getJsonToken', () => {
       }
     ])
 
-    const output = {
-      color: { basic: { values: 'this would be values' } },
-      effect: { basic: { values: 'this would be values' } },
-      fonts: { basic: { values: 'this would be values' } },
-      grid: { basic: { values: 'this would be values' } },
-      sizes: { basic: { values: 'this would be values' } },
-      borders: { basic: { values: 'this would be values' } },
-      radii: { basic: { values: 'this would be values' } },
-      motion: { basic: { values: 'this would be values' } },
-      spacing: { basic: { values: 'this would be values' } }
-    }
+    const output = [
+      {
+        name: 'sizes/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'spacing/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'borders/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'radii/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'motion/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'color/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'grid/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'fonts/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'effect/basic',
+        values: 'this would be values'
+      }
+    ]
     // @ts-ignore
-    expect(getTokenJson({})).toStrictEqual(output)
+    expect(exportRawTokenArray('')).toStrictEqual(output)
   })
 })

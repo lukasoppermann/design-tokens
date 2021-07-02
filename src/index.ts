@@ -1,13 +1,13 @@
 import { getSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
-// import { urlExportData } from '@typings/urlExportData'
-import { getJsonString } from './utilities/getJson'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
 import { commands, PluginCommands } from '@config/commands'
 import getVersionDifference from './utilities/getVersionDifference'
 import getFileId from './utilities/getFileId'
 import { PluginMessage } from '../types/pluginEvent'
+import { exportRawTokenArray } from './utilities/getTokenJson'
+import { stringifyJson } from './utilities/stringifyJson'
 
 // initiate UI
 figma.showUI(__html__, {
@@ -36,7 +36,7 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
           ...userSettings,
           ...{ accessToken: await getAccessToken(getFileId(figma)) }
         },
-        data: getJsonString(figma, userSettings),
+        data: stringifyJson(exportRawTokenArray(figma)),
         versionDifference: versionDifference,
         metadata: {
           filename: figma.root.name
