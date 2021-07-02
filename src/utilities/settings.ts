@@ -1,4 +1,3 @@
-// import settingsDefault from './settingsDefault'
 import { defaultSettings } from '@config/defaultSettings'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'

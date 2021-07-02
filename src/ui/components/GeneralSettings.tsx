@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Checkbox, Select } from 'react-figma-plugin-ds'
+import { Button, Checkbox, Select, Title } from 'react-figma-plugin-ds'
 import { CancelButton } from '@components/CancelButton'
 import { useContext } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
@@ -40,39 +40,29 @@ export const GeneralSettings = () => {
 
   return (
     <form className={style} onSubmit={settingsFormSubmitHandler}>
-      <h3>Design Token Settings</h3>
-      <div className='input flex-horizontal'>
-        <div className='label'>Filename:</div>
-        <input
-          autoFocus required pattern='^[\w\-\.\+@]+$' type='text' id='filename' className='input__field with-inside-label-behind-sm' placeholder='design-tokens' value={settings.filename}
-          onChange={e => updateSettings((draft: Settings) => { draft.filename = e.target.value })}
+      <Title size='xlarge' weight='bold'>Design Token Settings</Title>
+      <h3>Name conversion</h3>
+      <Row fill>
+        <Select
+          defaultValue={settings.nameConversion}
+          onChange={({ value }) => updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })}
+          placeholder='Name conversion'
+          options={[
+            {
+              label: 'Default',
+              value: 'default'
+            },
+            {
+              label: 'camelCase',
+              value: 'camelCase'
+            },
+            {
+              label: 'kebab-case',
+              value: 'kebabCase'
+            }
+          ]}
         />
-        <div className='label inside-label-behind--sm'>.json</div>
-      </div>
-      <div className='flex-horizontal'>
-        <div className='flex-half'>
-          <div className='label' data-style='width: 130px !important'>Name conversion</div>
-          <Select
-            defaultValue={settings.nameConversion}
-            onChange={({ value }) => updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })}
-            placeholder='Name conversion'
-            options={[
-              {
-                label: 'Default',
-                value: 'default'
-              },
-              {
-                label: 'camelCase',
-                value: 'camelCase'
-              },
-              {
-                label: 'kebab-case',
-                value: 'kebabCase'
-              }
-            ]}
-          />
-        </div>
-      </div>
+      </Row>
       <Row>
         <Checkbox
           label='Add token type to name of the token'

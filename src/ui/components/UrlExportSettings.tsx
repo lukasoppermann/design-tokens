@@ -57,7 +57,6 @@ export const UrlExportSettings = () => {
       {
         event_type: settings.eventType,
         client_payload: {
-          tokenFileName: `${settings.filename}.json`,
           tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
           filename: figmaMetaData.filename
         }
