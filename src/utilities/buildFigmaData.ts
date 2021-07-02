@@ -1,5 +1,5 @@
 import { figmaDataType } from '@typings/figmaDataType'
-import filterByNameProperty from './filterByNameProperty'
+import filterByPropertyName from './filterByNameProperty'
 import getPaintStyles from './getPaintStyles'
 import getGridStyles from './getGridStyles'
 import getTokenNodes from './getTokenNodes'
@@ -17,10 +17,10 @@ const buildFigmaData = (figma: PluginAPI): figmaDataType => {
   // get data from figma
   return {
     tokenFrames: tokenFrames,
-    paintStyles: getPaintStyles(figma.getLocalPaintStyles()).filter(filterByNameProperty),
-    gridStyles: getGridStyles(figma.getLocalGridStyles()).filter(filterByNameProperty),
-    textStyles: getTextStyles(figma.getLocalTextStyles()).filter(filterByNameProperty),
-    effectStyles: getEffectStyles(figma.getLocalEffectStyles()).filter(filterByNameProperty)
+    paintStyles: getPaintStyles(figma.getLocalPaintStyles()).filter(filterByPropertyName),
+    gridStyles: getGridStyles(figma.getLocalGridStyles()).filter(filterByPropertyName),
+    textStyles: getTextStyles(figma.getLocalTextStyles()).filter(filterByPropertyName),
+    effectStyles: getEffectStyles(figma.getLocalEffectStyles()).filter(filterByPropertyName)
   }
 }
 

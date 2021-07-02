@@ -14,6 +14,12 @@ describe('getTokenStyles', () => {
         type: 'PAINT',
         name: '_invalid',
         description: ''
+      },
+      {
+        id: 'invalid',
+        type: 'PAINT',
+        name: '.invalid',
+        description: ''
       }
     ].filter(filterByNameProperty)).toStrictEqual([
       {
