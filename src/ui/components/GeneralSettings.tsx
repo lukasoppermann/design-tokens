@@ -82,25 +82,6 @@ export const GeneralSettings = () => {
         />
         <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
       </Row>
-      <div className='section-title'>Prefix</div>
-      <div className='message-box'>
-        <div className='message message--info'>Define a prefix for styles to be in-/excluded.</div>
-      </div>
-      <div className='flex-horizontal'>
-        <div className='input flex-horizontal'>
-          <div className='label'>Prefix:</div>
-          <input
-            required pattern='\S+' type='text' id='prefix' className='input__field' placeholder='_' value={settings.prefix}
-            onChange={(e) => updateSettings(draft => { draft.prefix = e.target.value })}
-          />
-        </div>
-        <Checkbox
-          label={settings.excludePrefix ? 'Exclude (prefixed styles are excluded)' : 'Exclude (ONLY prefixed styles are included)'}
-          type='switch'
-          checked={settings.excludePrefix}
-          onChange={value => updateSettings(draft => { draft.excludePrefix = value })}
-        />
-      </div>
       <Footer>
         <CancelButton />
         <Button>Save changes</Button>

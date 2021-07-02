@@ -8,16 +8,11 @@ import extractSpacing from '../extractor/extractSpacing'
 import extractBorders from '../extractor/extractBorders'
 import extractRadii from '../extractor/extractRadii'
 import extractBreakpoints from '../extractor/extractBreakpoints'
-import { groupByName } from './groupByName'
-import styleDictionaryTransformer from '../transformer/styleDictionaryTransformer'
-import { propertyObject } from '@typings/propertyObject'
 import { figmaDataType } from '@typings/figmaDataType'
+import buildFigmaData from './buildFigmaData'
 
-const transformer = {
-  styleDictionary: styleDictionaryTransformer
-}
-
-export const exportRawTokenArray = (figmaData: figmaDataType) => {
+export const exportRawTokenArray = (figma: PluginAPI) => {
+  const figmaData: figmaDataType = buildFigmaData(figma)
   // get tokens
   return [
     ...extractSizes(figmaData.tokenFrames),
@@ -32,16 +27,3 @@ export const exportRawTokenArray = (figmaData: figmaDataType) => {
     ...extractEffects(figmaData.effectStyles)
   ]
 }
-
-const getTokenJson = (figmaData: figmaDataType, format: string = 'styleDictionary', nameConversion: string = 'default') => {
-  // get token array
-  const tokenArray = exportRawTokenArray(figmaData)
-  // format tokens
-  const formattedTokens = tokenArray.map((token: propertyObject) => transformer[format](token))
-  // group tokens
-  const groupedTokens = groupByName(formattedTokens, true, nameConversion)
-  // return group tokens
-  return groupedTokens
-}
-
-export default getTokenJson

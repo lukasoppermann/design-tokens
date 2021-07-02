@@ -8,5 +8,6 @@ export default {
     lastVersionSettingsOpened: 'lastVersionSettingsOpened',
     fileId: 'fileId',
     settings: 'settings'
-  }
+  },
+  excludePrefix: ['_', '.']
 }

@@ -1,6 +1,6 @@
 import { propertyObject } from '@typings/propertyObject'
 import { Settings } from '../../types/settings'
-import { transformer as styleDictionaryTransformer } from '@src/transformer/styleDictionaryTransformerNEW'
+import { transformer as styleDictionaryTransformer } from '@src/transformer/styleDictionaryTransformer'
 import { groupByKeyAndName } from '@utils/groupByName'
 
 const tokenTransformer = {

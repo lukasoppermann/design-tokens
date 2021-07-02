@@ -1,8 +1,8 @@
-import { groupByName } from '../../src/utilities/groupByName'
+import { groupByKeyAndName } from '../../src/utilities/groupByName'
 
 describe('groupByName', () => {
   test('group tokens with name', () => {
-    expect(groupByName([
+    expect(groupByKeyAndName([
       // @ts-ignore
       {
         name: 'token/one/first',
@@ -28,17 +28,14 @@ describe('groupByName', () => {
       token: {
         one: {
           first: {
-            name: 'token/one/first',
             values: { token: 'one first' }
           },
           second: {
-            name: 'token/one / second',
             values: { token: 'one second' }
           }
         },
         two: {
           first: {
-            name: 'token/two /first',
             values: { token: 'two first' }
           }
         }
@@ -46,7 +43,7 @@ describe('groupByName', () => {
     })
   })
   test('group tokens deep', () => {
-    expect(groupByName([
+    expect(groupByKeyAndName([
       {
         name: 'token/one/first',
         exportKey: 'color',
@@ -71,7 +68,6 @@ describe('groupByName', () => {
       token: {
         one: {
           first: {
-            name: 'token/one/first',
             exportKey: 'color',
             values: {
               token: 'one second',
@@ -86,7 +82,7 @@ describe('groupByName', () => {
   })
 
   test('group tokens & remove name', () => {
-    expect(groupByName([
+    expect(groupByKeyAndName([
       {
         name: 'token/one/first',
         exportKey: 'color',
@@ -109,21 +105,23 @@ describe('groupByName', () => {
         }
       }
     ])).toStrictEqual({
-      token: {
-        one: {
-          first: {
-            exportKey: 'color',
-            values: { token: 'one first' }
+      color: {
+        token: {
+          one: {
+            first: {
+              exportKey: 'color',
+              values: { token: 'one first' }
+            },
+            second: {
+              exportKey: 'color',
+              values: { token: 'one second' }
+            }
           },
-          second: {
-            exportKey: 'color',
-            values: { token: 'one second' }
-          }
-        },
-        two: {
-          first: {
-            exportKey: 'color',
-            values: { token: 'two first' }
+          two: {
+            first: {
+              exportKey: 'color',
+              values: { token: 'two first' }
+            }
           }
         }
       }
@@ -131,6 +129,6 @@ describe('groupByName', () => {
   })
 
   test('no tokens', () => {
-    expect(groupByName([])).toStrictEqual([])
+    expect(groupByKeyAndName([])).toStrictEqual([])
   })
 })
