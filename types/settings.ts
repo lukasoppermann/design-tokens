@@ -9,8 +9,6 @@ export type Settings = {
   nameConversion: nameConversionType,
   compression: boolean,
   urlJsonCompression: boolean,
-  excludePrefix: boolean,
-  prefix: string,
   serverUrl?: string,
   eventType: string,
   accessToken?: string,

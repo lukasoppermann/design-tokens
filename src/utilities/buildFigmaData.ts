@@ -11,19 +11,16 @@ import getEffectStyles from './getEffectStyles'
  * @param {PluginAPI} figma — the figma PluginAPI object
  * @param options – options object
  */
-const buildFigmaData = (figma: PluginAPI, options = {
-  prefix: '_',
-  excludePrefix: true
-}): figmaDataType => {
+const buildFigmaData = (figma: PluginAPI): figmaDataType => {
   // use spread operator because the original is readOnly
   const tokenFrames = getTokenNodes([...figma.root.children])
   // get data from figma
   return {
     tokenFrames: tokenFrames,
-    paintStyles: getPaintStyles(figma.getLocalPaintStyles()).filter(filterByNameProperty(options.prefix, options.excludePrefix)),
-    gridStyles: getGridStyles(figma.getLocalGridStyles()).filter(filterByNameProperty(options.prefix, options.excludePrefix)),
-    textStyles: getTextStyles(figma.getLocalTextStyles()).filter(filterByNameProperty(options.prefix, options.excludePrefix)),
-    effectStyles: getEffectStyles(figma.getLocalEffectStyles()).filter(filterByNameProperty(options.prefix, options.excludePrefix))
+    paintStyles: getPaintStyles(figma.getLocalPaintStyles()).filter(filterByNameProperty),
+    gridStyles: getGridStyles(figma.getLocalGridStyles()).filter(filterByNameProperty),
+    textStyles: getTextStyles(figma.getLocalTextStyles()).filter(filterByNameProperty),
+    effectStyles: getEffectStyles(figma.getLocalEffectStyles()).filter(filterByNameProperty)
   }
 }
 

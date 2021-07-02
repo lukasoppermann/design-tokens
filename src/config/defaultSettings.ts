@@ -7,8 +7,6 @@ export const defaultSettings: Settings = {
   nameConversion: 'default',
   compression: false,
   urlJsonCompression: true,
-  prefix: '_',
-  excludePrefix: true,
   serverUrl: undefined,
   eventType: 'update-tokens',
   accessToken: undefined,

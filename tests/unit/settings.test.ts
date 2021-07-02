@@ -21,8 +21,6 @@ const baseSettings = {
   nameConversion: 'default' as nameConversionType,
   compression: false,
   urlJsonCompression: true,
-  prefix: '#Base',
-  excludePrefix: true,
   serverUrl: 'https://test.com',
   eventType: 'baseEvent',
   accessToken: 'test',
