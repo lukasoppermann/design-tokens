@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Checkbox, Select, Title } from 'react-figma-plugin-ds'
+import { Button, Checkbox, Input, Select, Title } from 'react-figma-plugin-ds'
 import { CancelButton } from '@components/CancelButton'
 import { useContext } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
@@ -41,7 +41,36 @@ export const GeneralSettings = () => {
   return (
     <form className={style} onSubmit={settingsFormSubmitHandler}>
       <Title size='xlarge' weight='bold'>Design Token Settings</Title>
-      <h3>Name conversion</h3>
+      <Row>
+        <Checkbox
+          label='Add token type to name of the token'
+          type='switch'
+          checked={settings.keyInName}
+          onChange={value => updateSettings(draft => { draft.keyInName = value })}
+        />
+        <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
+      </Row>
+      <h3>Token prefixes <Info width={240} label='Use commas to separate multiple prefixed' /></h3>
+      <Row fill>
+        Color
+        <Input
+          type='text'
+          pattern='^[\w\-@,\s]+$'
+          placeholder='Color'
+          value={settings.prefix.color}
+          onChange={value => updateSettings((draft: Settings) => { draft.prefix.color = value })}
+        />
+      </Row>
+      <Row fill>
+        <Input
+          type='text'
+          pattern='^[\w\-@,\s]+$'
+          placeholder='Radius'
+          value={settings.prefix.radius}
+          onChange={value => updateSettings((draft: Settings) => { draft.prefix.radius = value })}
+        />
+      </Row>
+      <Title size='small' weight='bold'>Name conversion</Title>
       <Row fill>
         <Select
           defaultValue={settings.nameConversion}
@@ -62,15 +91,6 @@ export const GeneralSettings = () => {
             }
           ]}
         />
-      </Row>
-      <Row>
-        <Checkbox
-          label='Add token type to name of the token'
-          type='switch'
-          checked={settings.keyInName}
-          onChange={value => updateSettings(draft => { draft.keyInName = value })}
-        />
-        <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
       </Row>
       <Footer>
         <CancelButton />

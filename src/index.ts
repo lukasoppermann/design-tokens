@@ -36,7 +36,7 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
           ...userSettings,
           ...{ accessToken: await getAccessToken(getFileId(figma)) }
         },
-        data: stringifyJson(exportRawTokenArray(figma)),
+        data: stringifyJson(exportRawTokenArray(figma, userSettings)),
         versionDifference: versionDifference,
         metadata: {
           filename: figma.root.name

@@ -91,7 +91,7 @@ const easing = (easing: Easing): {
   easingFunction: easingFunctionPropertyInterface
 } => {
   // abort if invalif easing type
-  if (!Object.hasOwnProperty.call(easings, easing.type)) {
+  if (!('type' in easing)) {
     return undefined
   }
   // return custom easing
@@ -142,7 +142,7 @@ const extractMotion: extractorInterface = (tokenNodes: customTokenNode[]): motio
     .filter(node => node.name.substr(0, nodeName.length) === nodeName)
     // filter to only include items which have a transition property
     .filter(node => {
-      if (node.reactions.length > 0 && node.reactions[0].action.type === 'NODE' && node.reactions[0].action.transition !== null) {
+      if (node.reactions.length > 0 && node.reactions[0].action?.type === 'NODE' && node.reactions[0].action.transition !== null) {
         return true
       }
       return false

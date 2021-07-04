@@ -462,68 +462,28 @@ export default {
       },
       radii: {
         topLeft: {
-          value: 1,
+          value: 5,
           type: 'number',
           unit: 'pixel'
         },
         topRight: {
-          value: 2,
+          value: 10,
           type: 'number',
           unit: 'pixel'
         },
         bottomRight: {
-          value: 3.5,
+          value: 15,
           type: 'number',
           unit: 'pixel'
         },
         bottomLeft: {
-          value: 0,
+          value: 20,
           type: 'number',
           unit: 'pixel'
         }
       },
       smoothing: {
         value: 0,
-        type: 'number'
-      }
-    },
-    'same with smoothing': {
-      category: 'radius',
-      exportKey: 'radius',
-      comment: 'Radius 5 with corner smoothing',
-      radius: {
-        value: 5,
-        type: 'number',
-        unit: 'pixel'
-      },
-      radiusType: {
-        value: 'single',
-        type: 'string'
-      },
-      radii: {
-        topLeft: {
-          value: 5,
-          type: 'number',
-          unit: 'pixel'
-        },
-        topRight: {
-          value: 5,
-          type: 'number',
-          unit: 'pixel'
-        },
-        bottomRight: {
-          value: 5,
-          type: 'number',
-          unit: 'pixel'
-        },
-        bottomLeft: {
-          value: 5,
-          type: 'number',
-          unit: 'pixel'
-        }
-      },
-      smoothing: {
-        value: 0.65,
         type: 'number'
       }
     }

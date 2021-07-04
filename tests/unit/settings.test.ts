@@ -59,7 +59,6 @@ describe('Testing getSettings', () => {
         filename: 'myFile',
         nameConversion: 'default',
         compression: true,
-        excludePrefix: true,
         prefix: '#',
         serverUrl: 'https://test.com',
         eventType: 'myEvent',

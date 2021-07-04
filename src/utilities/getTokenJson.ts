@@ -10,8 +10,11 @@ import extractRadii from '../extractor/extractRadii'
 import extractBreakpoints from '../extractor/extractBreakpoints'
 import { figmaDataType } from '@typings/figmaDataType'
 import buildFigmaData from './buildFigmaData'
+import { Settings } from '@typings/settings'
 
-export const exportRawTokenArray = (figma: PluginAPI) => {
+const getPrefixArray = (prefixString: string) => prefixString.split(',').map(item => item.replace(/\s+/g, ''))
+
+export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
   const figmaData: figmaDataType = buildFigmaData(figma)
   // get tokens
   return [
@@ -19,7 +22,7 @@ export const exportRawTokenArray = (figma: PluginAPI) => {
     ...extractBreakpoints(figmaData.tokenFrames),
     ...extractSpacing(figmaData.tokenFrames),
     ...extractBorders(figmaData.tokenFrames),
-    ...extractRadii(figmaData.tokenFrames),
+    ...extractRadii(figmaData.tokenFrames, getPrefixArray(settings.prefix.radius)),
     ...extractMotion(figmaData.tokenFrames),
     ...extractColors(figmaData.paintStyles),
     ...extractGrids(figmaData.gridStyles),
