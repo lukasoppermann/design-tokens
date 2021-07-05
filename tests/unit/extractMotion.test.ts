@@ -66,7 +66,7 @@ describe('extracting motion tokens', () => {
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
-    expect(extractMotion(nodeArray)).toStrictEqual([
+    expect(extractMotion(nodeArray, ['motion'])).toStrictEqual([
       {
         category: 'motion',
         exportKey: 'motion',

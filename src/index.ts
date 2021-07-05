@@ -22,7 +22,6 @@ const userSettings: UserSettings = getSettings()
 if ([commands.export, commands.urlExport, commands.generalSettings].includes(figma.command as PluginCommands)) {
   // wrap in function because of async client Storage
   const openUi = async () => {
-    console.log('userSettings', userSettings)
     // get the current version differences to the last time the plugin was opened
     const versionDifference = await getVersionDifference(figma)
     // resize UI if needed

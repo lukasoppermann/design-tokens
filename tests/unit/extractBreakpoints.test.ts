@@ -14,7 +14,7 @@ describe('extracting breakpoints', () => {
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
-    expect(extractBreakpoints(nodeArray)).toStrictEqual([{
+    expect(extractBreakpoints(nodeArray, ['breakpoints'])).toStrictEqual([{
       category: 'breakpoint',
       description: 'the width will be set as a max-width for desktop',
       exportKey: 'breakpoint',

@@ -79,7 +79,6 @@ describe('Testing getSettings', () => {
     }
     // @ts-ignore
     figma.root.getPluginData.mockReturnValue(JSON.stringify(newSettings, null, 2))
-    console.log(getSettings())
     // assert
     expect(getSettings()).toStrictEqual(newSettings)
   })

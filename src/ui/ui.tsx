@@ -38,8 +38,6 @@ const PluginUi = () => {
     const { command, payload } = event.data.pluginMessage as {command: PluginCommands, payload: any}
     // set settings
     if ([commands.urlExport, commands.export, commands.generalSettings].includes(command)) {
-      console.log('payload.settings', payload.settings)
-
       updateSettings(payload.settings)
       setVersionDifference(payload.versionDifference)
       setFigmaMetaData(payload.metadata)
