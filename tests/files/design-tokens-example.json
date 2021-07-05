@@ -397,15 +397,10 @@
       }
     }
   },
-  "radii": {
+  "radius": {
     "5": {
       "category": "radius",
       "exportKey": "radius",
-      "radius": {
-        "value": 5,
-        "type": "number",
-        "unit": "pixel"
-      },
       "radiusType": {
         "value": "single",
         "type": "string"
@@ -435,8 +430,15 @@
       "smoothing": {
         "value": 0,
         "type": "number"
+      },
+      "radius": {
+        "value": 5,
+        "type": "number",
+        "unit": "pixel"
       }
-    },
+    }
+  },
+  "radii": {
     "smoothing": {
       "category": "radius",
       "exportKey": "radius",
@@ -485,7 +487,7 @@
       },
       "radii": {
         "topLeft": {
-          "value": 5,
+          "value": 5.5,
           "type": "number",
           "unit": "pixel"
         },

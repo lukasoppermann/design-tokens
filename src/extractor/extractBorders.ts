@@ -4,6 +4,7 @@ import { StrokeCap, StrokeAlign, PropertyType } from '@typings/valueTypes'
 import { customTokenNode } from '@typings/tokenNodeTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { tokenTypes } from '@config/tokenTypes'
+import { filterByPrefix } from './extractUtilities'
 
 const strokeJoins = {
   MITER: 'miter',
@@ -17,12 +18,9 @@ const strokeAligns = {
   OUTSIDE: 'outside'
 }
 
-const extractBorders: extractorInterface = (tokenNodes: customTokenNode[]): borderPropertyInterface[] => {
-  const nodeName = 'borders'
+const extractBorders: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): borderPropertyInterface[] => {
   // return as object
-  return tokenNodes
-    // only get border nodes
-    .filter(node => node.name.substr(0, nodeName.length) === nodeName)
+  return tokenNodes.filter(filterByPrefix(prefixArray))
     // remove nodes with no border property
     .filter(node => node.strokes.length > 0)
     // convert borders

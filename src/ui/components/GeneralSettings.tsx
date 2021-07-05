@@ -51,25 +51,18 @@ export const GeneralSettings = () => {
         <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
       </Row>
       <h3>Token prefixes <Info width={240} label='Use commas to separate multiple prefixed' /></h3>
-      <Row fill>
-        Color
-        <Input
-          type='text'
-          pattern='^[\w\-@,\s]+$'
-          placeholder='Color'
-          value={settings.prefix.color}
-          onChange={value => updateSettings((draft: Settings) => { draft.prefix.color = value })}
-        />
-      </Row>
-      <Row fill>
-        <Input
-          type='text'
-          pattern='^[\w\-@,\s]+$'
-          placeholder='Radius'
-          value={settings.prefix.radius}
-          onChange={value => updateSettings((draft: Settings) => { draft.prefix.radius = value })}
-        />
-      </Row>
+      {Object.entries(settings.prefix).map(([key, currentValue]) =>
+        <Row fill key={key}>
+          {key}
+          <Input
+            type='text'
+            pattern='^[\w\-@,\s]+$'
+            placeholder='Color'
+            value={currentValue}
+            onChange={value => updateSettings((draft: Settings) => { draft.prefix[key] = value })}
+          />
+        </Row>
+      )}
       <Title size='small' weight='bold'>Name conversion</Title>
       <Row fill>
         <Select

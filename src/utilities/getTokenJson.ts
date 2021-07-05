@@ -16,14 +16,15 @@ const getPrefixArray = (prefixString: string) => prefixString.split(',').map(ite
 
 export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
   const figmaData: figmaDataType = buildFigmaData(figma)
+  console.log(settings.prefix.size, getPrefixArray(settings.prefix.size))
   // get tokens
   return [
-    ...extractSizes(figmaData.tokenFrames),
-    ...extractBreakpoints(figmaData.tokenFrames),
-    ...extractSpacing(figmaData.tokenFrames),
-    ...extractBorders(figmaData.tokenFrames),
+    ...extractSizes(figmaData.tokenFrames, getPrefixArray(settings.prefix.size)),
+    ...extractBreakpoints(figmaData.tokenFrames, getPrefixArray(settings.prefix.breakpoint)),
+    ...extractSpacing(figmaData.tokenFrames, getPrefixArray(settings.prefix.spacing)),
+    ...extractBorders(figmaData.tokenFrames, getPrefixArray(settings.prefix.border)),
     ...extractRadii(figmaData.tokenFrames, getPrefixArray(settings.prefix.radius)),
-    ...extractMotion(figmaData.tokenFrames),
+    ...extractMotion(figmaData.tokenFrames, getPrefixArray(settings.prefix.motion)),
     ...extractColors(figmaData.paintStyles),
     ...extractGrids(figmaData.gridStyles),
     ...extractFonts(figmaData.textStyles),

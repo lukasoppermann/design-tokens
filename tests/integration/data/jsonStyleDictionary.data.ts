@@ -375,36 +375,31 @@ export default {
     }
   },
   radii: {
-    5: {
+    mixed: {
       category: 'radius',
       exportKey: 'radius',
-      radius: {
-        value: 5,
-        type: 'number',
-        unit: 'pixel'
-      },
       radiusType: {
-        value: 'single',
+        value: 'mixed',
         type: 'string'
       },
       radii: {
         topLeft: {
-          value: 5,
+          value: 5.5,
           type: 'number',
           unit: 'pixel'
         },
         topRight: {
-          value: 5,
+          value: 10,
           type: 'number',
           unit: 'pixel'
         },
         bottomRight: {
-          value: 5,
+          value: 15,
           type: 'number',
           unit: 'pixel'
         },
         bottomLeft: {
-          value: 5,
+          value: 20,
           type: 'number',
           unit: 'pixel'
         }
@@ -452,12 +447,19 @@ export default {
         value: 0.75,
         type: 'number'
       }
-    },
-    mixed: {
+    }
+  },
+  radius: {
+    5: {
       category: 'radius',
       exportKey: 'radius',
+      radius: {
+        value: 5,
+        type: 'number',
+        unit: 'pixel'
+      },
       radiusType: {
-        value: 'mixed',
+        value: 'single',
         type: 'string'
       },
       radii: {
@@ -467,17 +469,17 @@ export default {
           unit: 'pixel'
         },
         topRight: {
-          value: 10,
+          value: 5,
           type: 'number',
           unit: 'pixel'
         },
         bottomRight: {
-          value: 15,
+          value: 5,
           type: 'number',
           unit: 'pixel'
         },
         bottomLeft: {
-          value: 20,
+          value: 5,
           type: 'number',
           unit: 'pixel'
         }

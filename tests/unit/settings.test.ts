@@ -27,6 +27,18 @@ const baseSettings = {
   acceptHeader: 'baseHeader',
   authType: 'baseAuthType',
   keyInName: false,
+  prefix: {
+    color: 'color',
+    font: 'font',
+    effect: 'effect',
+    grid: 'grid',
+    border: 'border',
+    breakpoint: 'breakpoint',
+    radius: 'radius, radii',
+    size: 'size',
+    spacing: 'spacing',
+    motion: 'motion'
+  },
   exports: {
     color: true,
     font: true,
@@ -59,7 +71,6 @@ describe('Testing getSettings', () => {
         filename: 'myFile',
         nameConversion: 'default',
         compression: true,
-        prefix: '#',
         serverUrl: 'https://test.com',
         eventType: 'myEvent',
         acceptHeader: 'yo',
