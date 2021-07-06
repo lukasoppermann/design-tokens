@@ -3,7 +3,6 @@ import * as React from 'react'
 
 const style = css`
   display: flex;
-  justify-content: space-between;
   &.fill > * {
     flex-grow: 1;
   }
