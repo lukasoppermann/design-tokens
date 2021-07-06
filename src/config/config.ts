@@ -1,8 +1,18 @@
 /* istanbul ignore file */
 export default {
-  settingsDialog: {
-    width: 550,
-    height: 595
+  ui: {
+    generalSettings: {
+      width: 550,
+      height: 620
+    },
+    export: {
+      width: 550,
+      height: 430
+    },
+    urlExport: {
+      width: 550,
+      height: 595
+    }
   },
   key: {
     lastVersionSettingsOpened: 'lastVersionSettingsOpened',

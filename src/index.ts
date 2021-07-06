@@ -11,9 +11,7 @@ import { stringifyJson } from './utilities/stringifyJson'
 
 // initiate UI
 figma.showUI(__html__, {
-  visible: false,
-  width: config.settingsDialog.width,
-  height: config.settingsDialog.height
+  visible: false
 })
 // Get the user settings
 const userSettings: UserSettings = getSettings()
@@ -25,8 +23,9 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
     // get the current version differences to the last time the plugin was opened
     const versionDifference = await getVersionDifference(figma)
     // resize UI if needed
+    figma.ui.resize(config.ui[figma.command].width, config.ui[figma.command].height)
     if (versionDifference !== undefined && versionDifference !== 'patch') {
-      figma.ui.resize(config.settingsDialog.width, config.settingsDialog.height + 60)
+      figma.ui.resize(config.ui[figma.command].width, config.ui[figma.command].height + 60)
     }
     // write tokens to json file
     figma.ui.postMessage({
