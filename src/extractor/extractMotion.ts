@@ -91,7 +91,6 @@ const easing = (easing: Easing): {
   },
   easingFunction: easingFunctionPropertyInterface
 } => {
-  console.log(easing)
   // abort if invalif easing type
   if (!('type' in easing) || easings[easing.type] === undefined) {
     return undefined

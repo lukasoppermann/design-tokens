@@ -12,6 +12,17 @@ const gradientType = {
   GRADIENT_ANGULAR: 'angular',
   GRADIENT_DIAMOND: 'diamond'
 }
+
+const paintCategory = (paint): 'color' | 'gradient' | 'fill' => {
+  if (paint.type === 'SOLID') {
+    return 'color'
+  }
+  if (['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint.type)) {
+    return 'gradient'
+  }
+  return 'fill'
+}
+
 const extractFills = (paint): fillValuesType | gradientValuesType => {
   if (paint.type === 'SOLID') {
     return {
@@ -61,7 +72,7 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[]): colo
     // transform style
     .map(node => ({
       name: node.name,
-      category: 'color',
+      category: paintCategory(node.paints[0]),
       exportKey: tokenTypes.color.key,
       description: node.description || null,
       values: node.paints.map(paint => extractFills(paint))

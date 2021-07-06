@@ -54,7 +54,8 @@ const defaultValueTransformer = propertyGroupValues => {
 
 const valueTransformer: {} | undefined = {
   size: sizeValueTransformer,
-  fill: defaultValueTransformer,
+  color: defaultValueTransformer,
+  gradient: defaultValueTransformer,
   font: defaultValueTransformer,
   effect: defaultValueTransformer,
   grid: defaultValueTransformer,

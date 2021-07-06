@@ -8,6 +8,7 @@ const getSolidStrokes = (paints: readonly Paint[]): ColorRgba[] => {
   // clone without reference
   return [...paints]
     .map(paint => convertPaintToRgba(paint))
+    .filter(paint => paint != null)
 }
 /**
  * extractTokenNodeValues

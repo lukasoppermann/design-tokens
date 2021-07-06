@@ -170,39 +170,6 @@ export default {
   },
   borders: {
     unsupported: {
-      'gradient borders': {
-        category: 'border',
-        exportKey: 'border',
-        strokeAlign: {
-          value: 'inside',
-          type: 'string'
-        },
-        dashPattern: {
-          value: '',
-          type: 'string'
-        },
-        strokeCap: {
-          value: 'none',
-          type: 'string'
-        },
-        strokeJoin: {
-          value: 'miter',
-          type: 'string'
-        },
-        strokeMiterLimit: {
-          value: 4,
-          type: 'number',
-          unit: 'degree'
-        },
-        strokeWeight: {
-          value: 1,
-          type: 'number',
-          unit: 'pixel'
-        },
-        stroke: {
-          type: 'color'
-        }
-      },
       'multiple borders': {
         category: 'border',
         exportKey: 'border',
@@ -234,39 +201,6 @@ export default {
         },
         stroke: {
           value: 'rgba(255, 230, 0, 1)',
-          type: 'color'
-        }
-      },
-      'image borders': {
-        category: 'border',
-        exportKey: 'border',
-        strokeAlign: {
-          value: 'inside',
-          type: 'string'
-        },
-        dashPattern: {
-          value: '',
-          type: 'string'
-        },
-        strokeCap: {
-          value: 'none',
-          type: 'string'
-        },
-        strokeJoin: {
-          value: 'miter',
-          type: 'string'
-        },
-        strokeMiterLimit: {
-          value: 4,
-          type: 'number',
-          unit: 'degree'
-        },
-        strokeWeight: {
-          value: 1,
-          type: 'number',
-          unit: 'pixel'
-        },
-        stroke: {
           type: 'color'
         }
       }
@@ -673,25 +607,25 @@ export default {
         value: 'rgba(0, 0, 0, 0.1)',
         type: 'color'
       },
-      category: 'fill',
+      category: 'color',
       exportKey: 'color'
     },
     'single blue': {
-      category: 'fill',
+      category: 'color',
       exportKey: 'color',
       value: 'rgba(4, 74, 255, 1)',
       type: 'color'
     },
     'special characters': {
       '😅': {
-        category: 'fill',
+        category: 'color',
         exportKey: 'color',
         comment: 'Emoji',
         value: 'rgba(64, 223, 80, 1)',
         type: 'color'
       },
       änderung: {
-        category: 'fill',
+        category: 'color',
         exportKey: 'color',
         value: 'rgba(52, 86, 175, 1)',
         type: 'color'
@@ -828,11 +762,11 @@ export default {
           type: 'number'
         }
       },
-      category: 'fill',
+      category: 'gradient',
       exportKey: 'color'
     },
     'single with multiple color stops': {
-      category: 'fill',
+      category: 'gradient',
       exportKey: 'color',
       comment: 'Four color stops from yellow to red',
       gradientType: {
