@@ -27,6 +27,18 @@ const baseSettings = {
   acceptHeader: 'baseHeader',
   authType: 'baseAuthType',
   keyInName: false,
+  prefix: {
+    color: 'color',
+    font: 'font',
+    effect: 'effect',
+    grid: 'grid',
+    border: 'border',
+    breakpoint: 'breakpoint',
+    radius: 'radius, radii',
+    size: 'size',
+    spacing: 'spacing',
+    motion: 'motion'
+  },
   exports: {
     color: true,
     font: true,
@@ -59,8 +71,6 @@ describe('Testing getSettings', () => {
         filename: 'myFile',
         nameConversion: 'default',
         compression: true,
-        excludePrefix: true,
-        prefix: '#',
         serverUrl: 'https://test.com',
         eventType: 'myEvent',
         acceptHeader: 'yo',
@@ -69,7 +79,6 @@ describe('Testing getSettings', () => {
     }
     // @ts-ignore
     figma.root.getPluginData.mockReturnValue(JSON.stringify(newSettings, null, 2))
-    console.log(getSettings())
     // assert
     expect(getSettings()).toStrictEqual(newSettings)
   })

@@ -3,8 +3,12 @@ import * as React from 'react'
 
 const style = css`
   display: flex;
+  justify-content: space-between;
   &.fill > * {
     flex-grow: 1;
+  }
+  &.fill > .flex-grow--none {
+    flex-grow: 0;
   }
 `
 

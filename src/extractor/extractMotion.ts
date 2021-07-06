@@ -3,6 +3,7 @@ import { motionPropertyInterface, easingFunctionPropertyInterface } from '@typin
 import { customTokenNode, nodeWithNodeTransition } from '@typings/tokenNodeTypes'
 import { UnitTypeSeconds, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
+import { filterByPrefix } from './extractUtilities'
 
 const direction = (transition: Transition): {} | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
@@ -90,8 +91,9 @@ const easing = (easing: Easing): {
   },
   easingFunction: easingFunctionPropertyInterface
 } => {
+  console.log(easing)
   // abort if invalif easing type
-  if (!Object.hasOwnProperty.call(easings, easing.type)) {
+  if (!('type' in easing) || easings[easing.type] === undefined) {
     return undefined
   }
   // return custom easing
@@ -134,15 +136,12 @@ const easing = (easing: Easing): {
   }
 }
 
-const extractMotion: extractorInterface = (tokenNodes: customTokenNode[]): motionPropertyInterface[] => {
-  const nodeName = 'motion'
+const extractMotion: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): motionPropertyInterface[] => {
   // return as object
-  return tokenNodes
-    // only get motion nodes
-    .filter(node => node.name.substr(0, nodeName.length) === nodeName)
+  return tokenNodes.filter(filterByPrefix(prefixArray))
     // filter to only include items which have a transition property
     .filter(node => {
-      if (node.reactions.length > 0 && node.reactions[0].action.type === 'NODE' && node.reactions[0].action.transition !== null) {
+      if (node.reactions.length > 0 && node.reactions[0].action?.type === 'NODE' && node.reactions[0].action.transition !== null) {
         return true
       }
       return false

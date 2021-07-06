@@ -1,5 +1,5 @@
 import { defaultSettings } from '@config/defaultSettings'
-import { Settings as UserSettings } from '@typings/settings'
+import { Settings } from '@typings/settings'
 import config from '@config/config'
 import { stringifyJson } from './stringifyJson'
 /**
@@ -7,13 +7,15 @@ import { stringifyJson } from './stringifyJson'
  * for settings that are not set, the defaults will be used
  * @return object
  */
-const getSettings = (): UserSettings => {
-  const userSettings = figma.root.getPluginData(config.key.settings)
+const getSettings = (): Settings => {
+  const settings = JSON.parse(figma.root.getPluginData(config.key.settings))
 
-  return <UserSettings>{
-    ...defaultSettings,
-    ...(userSettings.length > 0 ? JSON.parse(userSettings) : {})
-  }
+  return <Settings>Object.fromEntries(Object.entries(defaultSettings).map(([key, value]) => {
+    if (value !== undefined && typeof settings[key] !== typeof value) {
+      return [key, defaultSettings[key]]
+    }
+    return [key, settings[key]]
+  }))
 }
 
 /**
@@ -21,7 +23,7 @@ const getSettings = (): UserSettings => {
  * @description save the user settings to the "cache"
  * @param {UserSettings} settings
  */
-const setSettings = (settings: UserSettings) => {
+const setSettings = (settings: Settings) => {
   settings = {
     ...defaultSettings,
     ...settings

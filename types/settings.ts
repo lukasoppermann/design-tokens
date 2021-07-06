@@ -15,6 +15,18 @@ export type Settings = {
   acceptHeader?: string,
   authType: string,
   keyInName: boolean,
+  prefix: {
+    color: string,
+    font: string,
+    effect: string,
+    grid: string,
+    border: string,
+    breakpoint: string,
+    radius: string,
+    size: string,
+    spacing: string,
+    motion: string
+  }
   exports: {
     color: boolean,
     font: boolean,

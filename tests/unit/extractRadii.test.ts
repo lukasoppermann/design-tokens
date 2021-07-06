@@ -36,7 +36,7 @@ describe('extracting radii', () => {
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
-    expect(extractRadii(nodeArray)).toStrictEqual([{
+    expect(extractRadii(nodeArray, ['radii'])).toStrictEqual([{
       category: 'radius',
       exportKey: 'radius',
       description: 'a description text',

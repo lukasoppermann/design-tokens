@@ -375,36 +375,31 @@ export default {
     }
   },
   radii: {
-    5: {
+    mixed: {
       category: 'radius',
       exportKey: 'radius',
-      radius: {
-        value: 5,
-        type: 'number',
-        unit: 'pixel'
-      },
       radiusType: {
-        value: 'single',
+        value: 'mixed',
         type: 'string'
       },
       radii: {
         topLeft: {
-          value: 5,
+          value: 5.5,
           type: 'number',
           unit: 'pixel'
         },
         topRight: {
-          value: 5,
+          value: 10,
           type: 'number',
           unit: 'pixel'
         },
         bottomRight: {
-          value: 5,
+          value: 15,
           type: 'number',
           unit: 'pixel'
         },
         bottomLeft: {
-          value: 5,
+          value: 20,
           type: 'number',
           unit: 'pixel'
         }
@@ -452,45 +447,12 @@ export default {
         value: 0.75,
         type: 'number'
       }
-    },
-    mixed: {
+    }
+  },
+  radius: {
+    5: {
       category: 'radius',
       exportKey: 'radius',
-      radiusType: {
-        value: 'mixed',
-        type: 'string'
-      },
-      radii: {
-        topLeft: {
-          value: 1,
-          type: 'number',
-          unit: 'pixel'
-        },
-        topRight: {
-          value: 2,
-          type: 'number',
-          unit: 'pixel'
-        },
-        bottomRight: {
-          value: 3.5,
-          type: 'number',
-          unit: 'pixel'
-        },
-        bottomLeft: {
-          value: 0,
-          type: 'number',
-          unit: 'pixel'
-        }
-      },
-      smoothing: {
-        value: 0,
-        type: 'number'
-      }
-    },
-    'same with smoothing': {
-      category: 'radius',
-      exportKey: 'radius',
-      comment: 'Radius 5 with corner smoothing',
       radius: {
         value: 5,
         type: 'number',
@@ -523,7 +485,7 @@ export default {
         }
       },
       smoothing: {
-        value: 0.65,
+        value: 0,
         type: 'number'
       }
     }

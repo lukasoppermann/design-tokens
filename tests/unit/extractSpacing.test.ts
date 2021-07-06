@@ -34,7 +34,7 @@ describe('extracting spacing', () => {
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
-    expect(extractSpacing(nodeArray)).toStrictEqual([{
+    expect(extractSpacing(nodeArray, ['spacing'])).toStrictEqual([{
       category: 'spacing',
       exportKey: 'spacing',
       description: 'a description text',

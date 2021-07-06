@@ -13,6 +13,18 @@ export const defaultSettings: Settings = {
   acceptHeader: 'application/vnd.github.everest-preview+json',
   authType: 'token',
   keyInName: false,
+  prefix: {
+    color: 'color',
+    font: 'font',
+    effect: 'effect',
+    grid: 'grid',
+    border: 'border, borders',
+    breakpoint: 'breakpoint, breakpoints',
+    radius: 'radius, radii',
+    size: 'size, sizes',
+    spacing: 'spacing',
+    motion: 'motion'
+  },
   exports: {
     color: true,
     font: true,

@@ -10,17 +10,20 @@ import extractRadii from '../extractor/extractRadii'
 import extractBreakpoints from '../extractor/extractBreakpoints'
 import { figmaDataType } from '@typings/figmaDataType'
 import buildFigmaData from './buildFigmaData'
+import { Settings } from '@typings/settings'
 
-export const exportRawTokenArray = (figma: PluginAPI) => {
+const getPrefixArray = (prefixString: string) => prefixString.split(',').map(item => item.replace(/\s+/g, ''))
+
+export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
   const figmaData: figmaDataType = buildFigmaData(figma)
   // get tokens
   return [
-    ...extractSizes(figmaData.tokenFrames),
-    ...extractBreakpoints(figmaData.tokenFrames),
-    ...extractSpacing(figmaData.tokenFrames),
-    ...extractBorders(figmaData.tokenFrames),
-    ...extractRadii(figmaData.tokenFrames),
-    ...extractMotion(figmaData.tokenFrames),
+    ...extractSizes(figmaData.tokenFrames, getPrefixArray(settings.prefix.size)),
+    ...extractBreakpoints(figmaData.tokenFrames, getPrefixArray(settings.prefix.breakpoint)),
+    ...extractSpacing(figmaData.tokenFrames, getPrefixArray(settings.prefix.spacing)),
+    ...extractBorders(figmaData.tokenFrames, getPrefixArray(settings.prefix.border)),
+    ...extractRadii(figmaData.tokenFrames, getPrefixArray(settings.prefix.radius)),
+    ...extractMotion(figmaData.tokenFrames, getPrefixArray(settings.prefix.motion)),
     ...extractColors(figmaData.paintStyles),
     ...extractGrids(figmaData.gridStyles),
     ...extractFonts(figmaData.textStyles),

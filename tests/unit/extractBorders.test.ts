@@ -34,7 +34,7 @@ describe('extracting borders', () => {
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
-    expect(extractBorders(nodeArray)).toStrictEqual([{
+    expect(extractBorders(nodeArray, ['borders'])).toStrictEqual([{
       category: 'border',
       exportKey: 'border',
       description: 'a description text',
