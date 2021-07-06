@@ -61,7 +61,7 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[]): colo
     // transform style
     .map(node => ({
       name: node.name,
-      category: 'fill',
+      category: 'color',
       exportKey: tokenTypes.color.key,
       description: node.description || null,
       values: node.paints.map(paint => extractFills(paint))

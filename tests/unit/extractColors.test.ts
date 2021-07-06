@@ -4,7 +4,7 @@ import { paintStyleObjects } from './data/paintStyleObjects.data'
 describe('extracting color fills', () => {
   test('extract only valid colors', () => {
     expect(extractColors(paintStyleObjects)).toStrictEqual([{
-      category: 'fill',
+      category: 'color',
       exportKey: 'color',
       description: 'a description text',
       name: 'colors/red',
@@ -21,7 +21,7 @@ describe('extracting color fills', () => {
       }]
     },
     {
-      category: 'fill',
+      category: 'color',
       exportKey: 'color',
       description: null,
       name: 'colors/gradient and color',
