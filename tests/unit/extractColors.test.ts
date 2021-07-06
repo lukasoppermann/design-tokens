@@ -23,6 +23,64 @@ describe('extracting color fills', () => {
     {
       category: 'color',
       exportKey: 'color',
+      description: 'multiple fills',
+      name: 'colors/multi',
+      values: [{
+        fill: {
+          type: 'color',
+          value: {
+            a: 0.5,
+            b: 186,
+            g: 26,
+            r: 255
+          }
+        }
+      }, {
+        gradientType: {
+          type: 'string',
+          value: 'linear'
+        },
+        opacity: {
+          type: 'number',
+          value: 0.35
+        },
+        stops: [
+          {
+            color: {
+              type: 'color',
+              value: {
+                a: 1,
+                b: 0,
+                g: 184,
+                r: 255
+              }
+            },
+            position: {
+              type: 'number',
+              value: 0
+            }
+          },
+          {
+            color: {
+              type: 'color',
+              value: {
+                a: 1,
+                b: 77,
+                g: 51,
+                r: 255
+              }
+            },
+            position: {
+              type: 'number',
+              value: 1
+            }
+          }
+        ]
+      }]
+    },
+    {
+      category: 'gradient',
+      exportKey: 'color',
       description: null,
       name: 'colors/gradient and color',
       values: [

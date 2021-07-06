@@ -23,6 +23,10 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNode[], prefi
   return tokenNodes.filter(filterByPrefix(prefixArray))
     // remove nodes with no border property
     .filter(node => node.strokes.length > 0)
+    .map(node => {
+      console.log(node.name, node.strokes)
+      return node
+    })
     // convert borders
     .map(node => ({
       name: node.name,
