@@ -54,6 +54,15 @@ const PluginUi = () => {
         }
       }, '*')
     }
+    // open help page
+    // if (command === commands.demo) {
+    //   window.open('https://www.figma.com/file/2MQ759R5kJtzQn4qSHuqR7/Design-Tokens-for-Figma?node-id=231%3A2')
+    //   parent.postMessage({
+    //     pluginMessage: {
+    //       command: commands.closePlugin
+    //     }
+    //   }, '*')
+    // }
   }
 
   return (
