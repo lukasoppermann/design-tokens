@@ -56,10 +56,10 @@ const shadowValues = effect => ({
   }
 })
 
-const extractEffects: extractorInterface = (tokenNodes: EffectStyle[]): effectPropertyInterface[] => {
+const extractEffects: extractorInterface = (tokenNodes: EffectStyle[], prefixArray: string[]): effectPropertyInterface[] => {
   // get effect styles
   return tokenNodes.map(node => ({
-    name: node.name,
+    name: `${prefixArray[0]}/${node.name}`,
     category: 'effect',
     exportKey: tokenTypes.effect.key,
     description: node.description || null,

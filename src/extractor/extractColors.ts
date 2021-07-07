@@ -59,7 +59,7 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
   return null
 }
 
-const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[]): colorPropertyInterface[] => {
+const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: string[]): colorPropertyInterface[] => {
   // get all paint styles
   return tokenNodes
   // remove images fills from tokens
@@ -71,7 +71,7 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[]): colo
     .filter(node => node.paints.length > 0)
     // transform style
     .map(node => ({
-      name: node.name,
+      name: `${prefixArray[0]}/${node.name}`,
       category: paintCategory(node.paints[0]),
       exportKey: tokenTypes.color.key,
       description: node.description || null,
