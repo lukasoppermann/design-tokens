@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Checkbox, Input, Label, Select, Title } from 'react-figma-plugin-ds'
+import { Button, Checkbox, Input, Label, Select, Text, Title } from 'react-figma-plugin-ds'
 import { CancelButton } from '@components/CancelButton'
 import { useContext } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
@@ -9,15 +9,28 @@ import { Footer } from '@components/Footer'
 import { nameConversionType, Settings } from '@typings/settings'
 import { Row } from '@components/Row'
 import { Info } from '@components/Info'
+import { Separator } from './Separator'
 
 const style = css`
   display: flex;
   flex-direction: column;
+  .grid-3-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 const labelStyle = css`
   width: 85px;
 `
+
+const textStyle = css`
+  padding: 0 var(--size-xxxsmall) 0 var(--size-xxsmall);
+  color: var(--dark-grey);
+  margin-top: 0;
+`
+
+const isStyle = (key: string): boolean => ['color', 'grid', 'effect', 'font'].includes(key)
 
 export const GeneralSettings = () => {
   const { figmaUIApi } = useContext(FigmaContext)
@@ -52,26 +65,8 @@ export const GeneralSettings = () => {
           checked={settings.keyInName}
           onChange={value => updateSettings(draft => { draft.keyInName = value })}
         />
-        <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
+        <Info width={240} label='The token type (e.g. "color" or "font") will be added to the name e.g. "color/light/bg".' />
       </Row>
-      <h3>Token prefixes <Info width={240} label='Use commas to separate multiple prefixed' /></h3>
-      {Object.entries(settings.prefix).map(([key, currentValue]) =>
-        <Row fill key={key}>
-          <Label
-            className={`${labelStyle} flex-grow--none`}
-            size='small'
-            weight='medium'
-          >{key}
-          </Label>
-          <Input
-            type='text'
-            pattern='^[\w\-@,\s]+$'
-            placeholder='Color'
-            value={currentValue}
-            onChange={value => updateSettings((draft: Settings) => { draft.prefix[key] = value })}
-          />
-        </Row>
-      )}
       <Title size='small' weight='bold'>Name conversion</Title>
       <Row fill>
         <Select
@@ -94,9 +89,44 @@ export const GeneralSettings = () => {
           ]}
         />
       </Row>
+      <Title size='small' weight='bold'>Token prefixes <Info width={150} label='Use commas to separate multiple prefixed' /></Title>
+      <Text className={textStyle} size='small'>
+        Prefixes are the first part of a tokens name e.g. "radius" in "radius/small". They are used to identify the type of a custom token.
+      </Text>
+      <Row>
+        <Checkbox
+          label='Include token prefix in token names'
+          type='switch'
+          checked={settings.prefixInName}
+          onChange={(value) => updateSettings(draft => { draft.prefixInName = value })}
+        />
+        <Info width={240} label='When disabled the prefix is removed ("radius/small" → "small"), when enabled it is added ("radius/small" → "radius/small").' />
+      </Row>
+      <Separator />
+      <div className='grid-3-col'>
+        {Object.entries(settings.prefix).map(([key, currentValue]) =>
+          <Row fill key={key}>
+            <Label
+              className={`${labelStyle} flex-grow--none`}
+              size='small'
+            >{key}
+              {isStyle(key) ? <Info width={90} label='Prefix for style' /> : ''}
+            </Label>
+            <Input
+              type='text'
+            // eslint-disable-next-line
+            pattern={isStyle(key) ? '^[\\w\\-@]+$' : '^[\\w\\-@,\\s]+$'}
+              required
+              placeholder='Color'
+              value={currentValue}
+              onChange={value => updateSettings((draft: Settings) => { draft.prefix[key] = value })}
+            />
+          </Row>
+        )}
+      </div>
       <Footer>
         <CancelButton />
-        <Button>Save changes</Button>
+        <Button autofocus>Save changes</Button>
       </Footer>
     </form>
   )

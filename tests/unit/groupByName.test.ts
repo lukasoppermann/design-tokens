@@ -1,4 +1,5 @@
 import { groupByKeyAndName } from '../../src/utilities/groupByName'
+import { defaultSettings } from '../../src/config/defaultSettings'
 
 describe('groupByName', () => {
   test('group tokens with name', () => {
@@ -64,7 +65,7 @@ describe('groupByName', () => {
           }
         }
       }
-    ], false)).toStrictEqual({
+    ], defaultSettings)).toStrictEqual({
       token: {
         one: {
           first: {
@@ -104,24 +105,22 @@ describe('groupByName', () => {
           token: 'two first'
         }
       }
-    ])).toStrictEqual({
-      color: {
-        token: {
-          one: {
-            first: {
-              exportKey: 'color',
-              values: { token: 'one first' }
-            },
-            second: {
-              exportKey: 'color',
-              values: { token: 'one second' }
-            }
+    ], defaultSettings)).toStrictEqual({
+      token: {
+        one: {
+          first: {
+            exportKey: 'color',
+            values: { token: 'one first' }
           },
-          two: {
-            first: {
-              exportKey: 'color',
-              values: { token: 'two first' }
-            }
+          second: {
+            exportKey: 'color',
+            values: { token: 'one second' }
+          }
+        },
+        two: {
+          first: {
+            exportKey: 'color',
+            values: { token: 'two first' }
           }
         }
       }
@@ -129,6 +128,6 @@ describe('groupByName', () => {
   })
 
   test('no tokens', () => {
-    expect(groupByKeyAndName([])).toStrictEqual([])
+    expect(groupByKeyAndName([], defaultSettings)).toStrictEqual([])
   })
 })

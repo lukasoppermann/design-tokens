@@ -3,7 +3,7 @@ import { gridStyleObjects } from './data/gridStyleObjects.data'
 
 describe('extracting grids', () => {
   test('extracting only the token with correct name from customTokenNodesArray', () => {
-    expect(extractGrids(gridStyleObjects)).toStrictEqual([{
+    expect(extractGrids(gridStyleObjects, ['grid'])).toStrictEqual([{
       category: 'grid',
       exportKey: 'grid',
       description: 'a description grid',

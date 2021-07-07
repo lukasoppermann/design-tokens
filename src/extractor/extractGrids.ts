@@ -61,10 +61,10 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
   })
 })
 
-const extractGrids: extractorInterface = (tokenNodes: GridStyle[]): gridPropertyInterface[] => {
+const extractGrids: extractorInterface = (tokenNodes: GridStyle[], prefixArray: string[]): gridPropertyInterface[] => {
   // get grid styles
   return tokenNodes.map(node => ({
-    name: node.name,
+    name: `${prefixArray[0]}/${node.name}`,
     category: 'grid',
     exportKey: tokenTypes.grid.key,
     description: node.description || null,

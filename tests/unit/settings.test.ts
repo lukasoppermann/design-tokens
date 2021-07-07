@@ -27,6 +27,7 @@ const baseSettings = {
   acceptHeader: 'baseHeader',
   authType: 'baseAuthType',
   keyInName: false,
+  prefixInName: true,
   prefix: {
     color: 'color',
     font: 'font',

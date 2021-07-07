@@ -16,7 +16,7 @@ export const prepareExport = (tokens: string, settings: Settings) => {
   // converted values
   const tokensConverted = tokensFiltered.map(token => tokenTransformer[format](token))
   // group items by their names
-  const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings.keyInName, settings.nameConversion)
+  const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings)
   // return tokens
   return tokensGroupedByName
 }

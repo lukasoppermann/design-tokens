@@ -15,6 +15,7 @@ export type Settings = {
   acceptHeader?: string,
   authType: string,
   keyInName: boolean,
+  prefixInName: boolean,
   prefix: {
     color: string,
     font: string,

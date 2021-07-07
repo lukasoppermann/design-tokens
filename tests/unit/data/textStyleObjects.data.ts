@@ -1,6 +1,6 @@
 export const textStyles = [
   {
-    name: 'fonts/basic',
+    name: 'basic',
     description: 'a font style',
     type: 'TEXT',
     fontSize: 16,
@@ -22,7 +22,7 @@ export const textStyles = [
     textCase: 'UPPER'
   },
   {
-    name: 'fonts/no description',
+    name: 'no description',
     type: 'TEXT',
     fontSize: 12,
     textDecoration: 'UNDERLINE',
@@ -45,7 +45,7 @@ export const textStyles = [
 
 export const textStyleObjects = [
   {
-    name: 'fonts/basic',
+    name: 'basic',
     description: 'a font style',
     fontSize: 16,
     textDecoration: 'NONE',
@@ -66,7 +66,7 @@ export const textStyleObjects = [
     textCase: 'UPPER'
   },
   {
-    name: 'fonts/no description',
+    name: 'no description',
     description: undefined,
     fontSize: 12,
     textDecoration: 'UNDERLINE',
@@ -92,7 +92,7 @@ export const extractFontsOutput = [
     category: 'font',
     exportKey: 'font',
     description: 'a font style',
-    name: 'fonts/basic',
+    name: 'font/basic',
     values: {
       fontSize: {
         value: 16,
@@ -153,7 +153,7 @@ export const extractFontsOutput = [
     category: 'font',
     exportKey: 'font',
     description: undefined,
-    name: 'fonts/no description',
+    name: 'font/no description',
     values: {
       fontSize: {
         value: 12,

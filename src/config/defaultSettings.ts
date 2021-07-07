@@ -13,6 +13,7 @@ export const defaultSettings: Settings = {
   acceptHeader: 'application/vnd.github.everest-preview+json',
   authType: 'token',
   keyInName: false,
+  prefixInName: true,
   prefix: {
     color: 'color',
     font: 'font',
