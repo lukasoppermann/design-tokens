@@ -1,10 +1,10 @@
 export const effectStyles = [
   {
-    name: 'effect/shadow',
+    name: 'shadow',
     description: 'an effect style',
     effects: [
       {
-        color: { 
+        color: {
           r: 0.1,
           g: 0.2,
           b: 0.3,
@@ -14,38 +14,38 @@ export const effectStyles = [
           x: 5,
           y: 3
         },
-        blendMode: "NORMAL",
-        type: "DROP_SHADOW",
+        blendMode: 'NORMAL',
+        type: 'DROP_SHADOW',
         radius: 30,
         visible: true
       },
       {
-        type: "BACKGROUND_BLUR", //| "BACKGROUND_BLUR"
+        type: 'BACKGROUND_BLUR', // | "BACKGROUND_BLUR"
         radius: 2,
         visible: true
       }
     ],
     // @ts-ignore
-    type: "EFFECT",
+    type: 'EFFECT'
   },
   {
-    name: 'effect/blur no description',
+    name: 'blur no description',
     effects: [{
-      type: "LAYER_BLUR", //| "BACKGROUND_BLUR"
+      type: 'LAYER_BLUR', // | "BACKGROUND_BLUR"
       radius: 7,
       visible: true
     }],
     // @ts-ignore
-    type: "EFFECT",
+    type: 'EFFECT'
   }
 ]
 export const effectStyleObjects = [
   {
-    name: 'effect/shadow',
+    name: 'shadow',
     description: 'an effect style',
     effects: [{
-      type: "DROP_SHADOW", //| "INNER_SHADOW"
-      color: { 
+      type: 'DROP_SHADOW', // | "INNER_SHADOW"
+      color: {
         r: 0.1,
         g: 0.2,
         b: 0.3,
@@ -58,19 +58,19 @@ export const effectStyleObjects = [
       radius: 30,
       // readonly spread?: number
       visible: true,
-      blendMode: "NORMAL"
+      blendMode: 'NORMAL'
     },
     {
-      type: "BACKGROUND_BLUR", //| "BACKGROUND_BLUR"
+      type: 'BACKGROUND_BLUR', // | "BACKGROUND_BLUR"
       radius: 2,
       visible: true
     }]
   },
   {
-    name: 'effect/blur no description',
+    name: 'blur no description',
     description: undefined,
     effects: [{
-      type: "LAYER_BLUR", //| "BACKGROUND_BLUR"
+      type: 'LAYER_BLUR', // | "BACKGROUND_BLUR"
       radius: 7,
       visible: true
     }]

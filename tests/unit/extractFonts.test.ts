@@ -3,6 +3,6 @@ import { textStyleObjects, extractFontsOutput } from './data/textStyleObjects.da
 
 describe('extracting fonts', () => {
   test('extract only valid fonts', () => {
-    expect(extractFonts(textStyleObjects)).toStrictEqual(extractFontsOutput)
+    expect(extractFonts(textStyleObjects, ['font'])).toStrictEqual(extractFontsOutput)
   })
 })

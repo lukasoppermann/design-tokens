@@ -1,19 +1,19 @@
 export const gridStyles = [
   {
-    name: 'grid/rows & columns',
+    name: 'rows & columns',
     description: 'a description grid',
     layoutGrids: [
       {
         //   readonly pattern: "ROWS" | "COLUMNS"
-        pattern: "ROWS",
+        pattern: 'ROWS',
         //   readonly alignment: "MIN" | "MAX" | "STRETCH" | "CENTER"
-        alignment: "CENTER",
+        alignment: 'CENTER',
         gutterSize: 7,
-        count: 8,        // Infinity when "Auto" is set in the UI
+        count: 8, // Infinity when "Auto" is set in the UI
         sectionSize: 10, // Not set for alignment: "STRETCH"
         // offset?: number      // Not set for alignment: "CENTER"
         visible: true,
-        color: { 
+        color: {
           r: 0.1,
           g: 0.2,
           b: 0.3,
@@ -22,15 +22,15 @@ export const gridStyles = [
       },
       {
         //   readonly pattern: "ROWS" | "COLUMNS"
-        pattern: "COLUMNS",
+        pattern: 'COLUMNS',
         //   readonly alignment: "MIN" | "MAX" | "STRETCH" | "CENTER"
-        alignment: "MAX",
+        alignment: 'MAX',
         gutterSize: 7,
-        count: Infinity,        // Infinity when "Auto" is set in the UI
+        count: Infinity, // Infinity when "Auto" is set in the UI
         sectionSize: 10, // Not set for alignment: "STRETCH"
-        offset: 9,      // Not set for alignment: "CENTER"
+        offset: 9, // Not set for alignment: "CENTER"
         visible: true,
-        color: { 
+        color: {
           r: 0.1,
           g: 0.2,
           b: 0.3,
@@ -40,13 +40,13 @@ export const gridStyles = [
     ]
   },
   {
-    name: 'grid/grid no description',
+    name: 'grid no description',
     layoutGrids: [
       {
-        pattern: "GRID",
+        pattern: 'GRID',
         sectionSize: 5,
         visible: true,
-        color: { 
+        color: {
           r: 0.1,
           g: 0.2,
           b: 0.3,
@@ -58,20 +58,20 @@ export const gridStyles = [
 ]
 export const gridStyleObjects = [
   {
-    name: 'grid/rows & columns',
+    name: 'rows & columns',
     description: 'a description grid',
     layoutGrids: [
       {
         //   readonly pattern: "ROWS" | "COLUMNS"
-        pattern: "ROWS",
+        pattern: 'ROWS',
         //   readonly alignment: "MIN" | "MAX" | "STRETCH" | "CENTER"
-        alignment: "CENTER",
+        alignment: 'CENTER',
         gutterSize: 7,
-        count: 8,        // Infinity when "Auto" is set in the UI
+        count: 8, // Infinity when "Auto" is set in the UI
         sectionSize: 10, // Not set for alignment: "STRETCH"
         // offset?: number      // Not set for alignment: "CENTER"
         visible: true,
-        color: { 
+        color: {
           r: 0.1,
           g: 0.2,
           b: 0.3,
@@ -80,15 +80,15 @@ export const gridStyleObjects = [
       },
       {
         //   readonly pattern: "ROWS" | "COLUMNS"
-        pattern: "COLUMNS",
+        pattern: 'COLUMNS',
         //   readonly alignment: "MIN" | "MAX" | "STRETCH" | "CENTER"
-        alignment: "MAX",
+        alignment: 'MAX',
         gutterSize: 7,
-        count: Infinity,        // Infinity when "Auto" is set in the UI
+        count: Infinity, // Infinity when "Auto" is set in the UI
         sectionSize: 10, // Not set for alignment: "STRETCH"
-        offset: 9,      // Not set for alignment: "CENTER"
+        offset: 9, // Not set for alignment: "CENTER"
         visible: true,
-        color: { 
+        color: {
           r: 0.1,
           g: 0.2,
           b: 0.3,
@@ -98,14 +98,14 @@ export const gridStyleObjects = [
     ]
   },
   {
-    name: 'grid/grid no description',
+    name: 'grid no description',
     description: undefined,
     layoutGrids: [
       {
-        pattern: "GRID",
+        pattern: 'GRID',
         sectionSize: 5,
         visible: true,
-        color: { 
+        color: {
           r: 0.1,
           g: 0.2,
           b: 0.3,

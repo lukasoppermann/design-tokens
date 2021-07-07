@@ -3,7 +3,7 @@ import { effectStyleObjects } from './data/effectStyleObjects.data'
 
 describe('extracting effects', () => {
   test('extract only valid effects', () => {
-    expect(extractEffects(effectStyleObjects)).toStrictEqual([{
+    expect(extractEffects(effectStyleObjects, ['effect'])).toStrictEqual([{
       category: 'effect',
       exportKey: 'effect',
       description: 'an effect style',

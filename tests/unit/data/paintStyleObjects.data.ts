@@ -1,6 +1,6 @@
 export const paintStyles = [
   {
-    name: 'colors/red',
+    name: 'red',
     description: 'a description text',
     paints: [
       {
@@ -17,7 +17,7 @@ export const paintStyles = [
     ]
   },
   {
-    name: 'colors/multi',
+    name: 'multi',
     description: 'multiple fills',
     paints: [
       {
@@ -62,7 +62,7 @@ export const paintStyles = [
     ]
   },
   {
-    name: 'colors/gradient and color',
+    name: 'gradient and color',
     paints: [
       {
         blendMode: 'NORMAL',
@@ -133,7 +133,7 @@ export const paintStyles = [
     ]
   },
   {
-    name: 'colors/image',
+    name: 'image',
     description: 'an image fill',
     paints: [
       {
@@ -149,7 +149,7 @@ export const paintStyles = [
 
 export const paintStyleObjects = [
   {
-    name: 'colors/red',
+    name: 'red',
     description: 'a description text',
     paints: [
       {
@@ -166,7 +166,7 @@ export const paintStyleObjects = [
     ]
   },
   {
-    name: 'colors/multi',
+    name: 'multi',
     description: 'multiple fills',
     paints: [
       {
@@ -211,7 +211,7 @@ export const paintStyleObjects = [
     ]
   },
   {
-    name: 'colors/gradient and color',
+    name: 'gradient and color',
     description: undefined,
     paints: [
       {
@@ -283,7 +283,7 @@ export const paintStyleObjects = [
     ]
   },
   {
-    name: 'colors/image',
+    name: 'image',
     description: 'an image fill',
     paints: [
       {
