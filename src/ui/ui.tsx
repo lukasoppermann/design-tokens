@@ -10,7 +10,7 @@ import { useImmer } from 'use-immer'
 import { VersionNotice } from '@components/VersionNotice'
 import { css } from '@emotion/css'
 import { defaultSettings } from '@config/defaultSettings'
-import { closeOnEsc } from './modules/closeOnEsc'
+import { handleKeyboardInput } from './modules/handleKeyboardInput'
 import { commands, PluginCommands } from '@config/commands'
 import { PluginEvent } from '@typings/pluginEvent'
 import { FileExportSettings } from '@components/FileExportSettings'
@@ -69,7 +69,7 @@ const PluginUi = () => {
     <FigmaContext.Provider value={{ figmaUIApi, figmaMetaData }}>
       <SettingsContext.Provider value={{ settings, updateSettings }}>
         <TokenContext.Provider value={{ tokens, setTokens }}>
-          <main className={style} onKeyDown={e => closeOnEsc(e, figmaUIApi)}>
+          <main className={style} onKeyDown={e => handleKeyboardInput(e, figmaUIApi)}>
             <VersionNotice versionDifference={versionDifference} />
             {activePage === commands.generalSettings && <GeneralSettings />}
             {activePage === commands.export && <FileExportSettings />}

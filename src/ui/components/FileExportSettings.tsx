@@ -100,7 +100,7 @@ export const FileExportSettings = () => {
       </div>
       <Footer>
         <CancelButton />
-        <Button autofocus>Save & Export</Button>
+        <Button type='button' onClick={handleFormSubmit} autofocus>Save & Export</Button>
       </Footer>
       <a
         ref={downloadLinkRef}

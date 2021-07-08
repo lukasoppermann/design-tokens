@@ -36,7 +36,7 @@ export const GeneralSettings = () => {
   const { figmaUIApi } = useContext(FigmaContext)
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
 
-  const settingsFormSubmitHandler = (event) => {
+  const handleFormSubmit = (event) => {
     const settingsForm = event.target
     if (settingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
@@ -56,7 +56,7 @@ export const GeneralSettings = () => {
   }
 
   return (
-    <form className={style} onSubmit={settingsFormSubmitHandler}>
+    <form className={style} onSubmit={(event) => handleFormSubmit(event)}>
       <Title size='xlarge' weight='bold'>Design Token Settings</Title>
       <Row>
         <Checkbox
@@ -126,7 +126,7 @@ export const GeneralSettings = () => {
       </div>
       <Footer>
         <CancelButton />
-        <Button autofocus>Save changes</Button>
+        <Button type='button' onClick={handleFormSubmit} autofocus>Save changes</Button>
       </Footer>
     </form>
   )

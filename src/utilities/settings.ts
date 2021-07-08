@@ -8,10 +8,13 @@ import { stringifyJson } from './stringifyJson'
  * @return object
  */
 const getSettings = (): Settings => {
-  const storedSettings: string = figma.root.getPluginData(config.key.settings)
+  let storedSettings: string = figma.root.getPluginData(config.key.settings)
+  // return defaults if no settings are present
   if (storedSettings === '') {
     return defaultSettings
   }
+  // parse stored settings
+  storedSettings = JSON.parse(storedSettings)
 
   return <Settings>Object.fromEntries(Object.entries(defaultSettings).map(([key, value]) => {
     if (value !== undefined && typeof storedSettings[key] !== typeof value) {
