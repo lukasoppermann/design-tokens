@@ -114,8 +114,8 @@ export const GeneralSettings = () => {
             </Label>
             <Input
               type='text'
-            // eslint-disable-next-line
-            pattern={isStyle(key) ? '^[\\w\\-@]+$' : '^[\\w\\-@,\\s]+$'}
+              // eslint-disable-next-line
+              pattern={isStyle(key) ? '^[\\w\\-@]+$' : '^[\\w\\-@,\\s]+$'}
               required
               placeholder='Color'
               value={currentValue}

@@ -60,11 +60,11 @@ if (figma.command === commands.help) {
 /**
  * Open Demo File
  */
-// if (figma.command === commands.demo) {
-//   figma.ui.postMessage({
-//     command: commands.demo
-//   } as PluginMessage)
-// }
+if (figma.command === commands.demo) {
+  figma.ui.postMessage({
+    command: commands.demo
+  } as PluginMessage)
+}
 
 /**
  * React to messages
