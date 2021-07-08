@@ -57,6 +57,14 @@ if (figma.command === commands.help) {
     command: commands.help
   } as PluginMessage)
 }
+/**
+ * Open Demo File
+ */
+if (figma.command === commands.demo) {
+  figma.ui.postMessage({
+    command: commands.demo
+  } as PluginMessage)
+}
 
 /**
  * React to messages

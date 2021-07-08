@@ -18,7 +18,6 @@ export const groupByKeyAndName = (tokenArray: propertyObject[], userSettings: Se
   const groupedTokens = tokenArray.map(token => {
     // remove top level prefix to name if desired
     if (userSettings.prefixInName === false) {
-      console.log(token.name, ' // ', token.name.substr(token.name.indexOf('/') + 1).trim().trimLeft())
       token.name = token.name.substr(token.name.indexOf('/') + 1).trim().trimLeft()
     }
     // add key to name if desired
