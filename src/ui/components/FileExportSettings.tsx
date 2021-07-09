@@ -88,7 +88,7 @@ export const FileExportSettings = () => {
           ]}
         />
       </Row>
-      <Title size='large' weight='bold'>Include type in export</Title>
+      <Title size='large' weight='bold'>Include types in export</Title>
       <div className='grid-3-col'>
         {Object.entries(tokenTypes).map(([, { key, label }]) =>
           <Checkbox
