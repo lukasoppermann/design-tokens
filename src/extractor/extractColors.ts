@@ -13,15 +13,7 @@ const gradientType = {
   GRADIENT_DIAMOND: 'diamond'
 }
 
-const paintCategory = (paint): 'color' | 'gradient' | 'fill' => {
-  if (paint.type === 'SOLID') {
-    return 'color'
-  }
-  if (['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint.type)) {
-    return 'gradient'
-  }
-  return 'fill'
-}
+const isGradient = (paint): boolean => ['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint.type)
 
 const extractFills = (paint): fillValuesType | gradientValuesType => {
   if (paint.type === 'SOLID') {
@@ -59,7 +51,7 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
   return null
 }
 
-const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: string[]): colorPropertyInterface[] => {
+const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: {color: string[], gradient: string[]}): colorPropertyInterface[] => {
   // get all paint styles
   return tokenNodes
   // remove images fills from tokens
@@ -71,9 +63,9 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
     .filter(node => node.paints.length > 0)
     // transform style
     .map(node => ({
-      name: `${prefixArray[0]}/${node.name}`,
-      category: paintCategory(node.paints[0]),
-      exportKey: tokenTypes.color.key,
+      name: `${isGradient(node.paints[0]) ? prefixArray.gradient[0] : prefixArray.color[0]}/${node.name}`,
+      category: isGradient(node.paints[0]) ? 'gradient' : 'color',
+      exportKey: isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key,
       description: node.description || null,
       values: node.paints.map(paint => extractFills(paint))
     }))

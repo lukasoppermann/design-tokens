@@ -7,14 +7,15 @@ describe('Verify json output for style dictionary', () => {
 
   test('Top level names available', () => {
     expect('color' in json).toBeTruthy()
-    expect('size' in json).toBeTruthy()
-    expect('breakpoint' in json).toBeTruthy()
+    expect('gradient' in json).toBeTruthy()
+    expect('sizes' in json).toBeTruthy()
+    expect('breakpoints' in json).toBeTruthy()
     expect('spacing' in json).toBeTruthy()
     expect('motion' in json).toBeTruthy()
     expect('grid' in json).toBeTruthy()
     expect('font' in json).toBeTruthy()
     expect('effect' in json).toBeTruthy()
-    expect('border' in json).toBeTruthy()
+    expect('borders' in json).toBeTruthy()
     expect('radius' in json).toBeTruthy()
     expect('invalid' in json).toBeFalsy()
   })
@@ -23,12 +24,16 @@ describe('Verify json output for style dictionary', () => {
     expect(json.color).toStrictEqual(jsonExpectedOutput.color)
   })
 
-  test('Compare size', () => {
-    expect(json.size).toStrictEqual(jsonExpectedOutput.size)
+  test('Compare gradient', () => {
+    expect(json.gradient).toStrictEqual(jsonExpectedOutput.gradient)
   })
 
-  test('Compare breakpoint', () => {
-    expect(json.breakpoint).toStrictEqual(jsonExpectedOutput.breakpoint)
+  test('Compare sizes', () => {
+    expect(json.sizes).toStrictEqual(jsonExpectedOutput.sizes)
+  })
+
+  test('Compare breakpoints', () => {
+    expect(json.breakpoints).toStrictEqual(jsonExpectedOutput.breakpoints)
   })
 
   test('Compare spacing', () => {
@@ -48,7 +53,7 @@ describe('Verify json output for style dictionary', () => {
   })
 
   test('Compare borders', () => {
-    expect(json.border).toStrictEqual(jsonExpectedOutput.border)
+    expect(json.borders).toStrictEqual(jsonExpectedOutput.borders)
   })
 
   test('Compare fonts', () => {
@@ -56,6 +61,7 @@ describe('Verify json output for style dictionary', () => {
   })
 
   test('Compare radius', () => {
+    expect(json.radii).toStrictEqual(jsonExpectedOutput.radii)
     expect(json.radius).toStrictEqual(jsonExpectedOutput.radius)
   })
 })

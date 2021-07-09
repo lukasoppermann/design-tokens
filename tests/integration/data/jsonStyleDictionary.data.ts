@@ -1,5 +1,5 @@
 export default {
-  size: {
+  sizes: {
     32: {
       category: 'size',
       exportKey: 'size',
@@ -168,43 +168,7 @@ export default {
       }
     }
   },
-  border: {
-    unsupported: {
-      'multiple borders': {
-        category: 'border',
-        exportKey: 'border',
-        strokeAlign: {
-          value: 'inside',
-          type: 'string'
-        },
-        dashPattern: {
-          value: '5,10',
-          type: 'string'
-        },
-        strokeCap: {
-          value: 'none',
-          type: 'string'
-        },
-        strokeJoin: {
-          value: 'miter',
-          type: 'string'
-        },
-        strokeMiterLimit: {
-          value: 4,
-          type: 'number',
-          unit: 'degree'
-        },
-        strokeWeight: {
-          value: 1,
-          type: 'number',
-          unit: 'pixel'
-        },
-        stroke: {
-          value: 'rgba(255, 230, 0, 1)',
-          type: 'color'
-        }
-      }
-    },
+  borders: {
     single: {
       category: 'border',
       exportKey: 'border',
@@ -230,46 +194,12 @@ export default {
         unit: 'degree'
       },
       strokeWeight: {
-        value: 1,
+        value: 5,
         type: 'number',
         unit: 'pixel'
       },
       stroke: {
-        value: 'rgba(112, 141, 242, 1)',
-        type: 'color'
-      }
-    },
-    'single (style)': {
-      category: 'border',
-      exportKey: 'border',
-      strokeAlign: {
-        value: 'inside',
-        type: 'string'
-      },
-      dashPattern: {
-        value: '',
-        type: 'string'
-      },
-      strokeCap: {
-        value: 'none',
-        type: 'string'
-      },
-      strokeJoin: {
-        value: 'miter',
-        type: 'string'
-      },
-      strokeMiterLimit: {
-        value: 4,
-        type: 'number',
-        unit: 'degree'
-      },
-      strokeWeight: {
-        value: 1,
-        type: 'number',
-        unit: 'pixel'
-      },
-      stroke: {
-        value: 'rgba(4, 74, 255, 1)',
+        value: 'rgba(0, 0, 0, 1)',
         type: 'color'
       }
     },
@@ -298,13 +228,83 @@ export default {
         unit: 'degree'
       },
       strokeWeight: {
-        value: 1,
+        value: 5,
         type: 'number',
         unit: 'pixel'
       },
       stroke: {
-        value: 'rgba(64, 255, 186, 1)',
+        value: 'rgba(0, 0, 0, 1)',
         type: 'color'
+      }
+    },
+    'single (style)': {
+      category: 'border',
+      exportKey: 'border',
+      strokeAlign: {
+        value: 'inside',
+        type: 'string'
+      },
+      dashPattern: {
+        value: '',
+        type: 'string'
+      },
+      strokeCap: {
+        value: 'none',
+        type: 'string'
+      },
+      strokeJoin: {
+        value: 'miter',
+        type: 'string'
+      },
+      strokeMiterLimit: {
+        value: 4,
+        type: 'number',
+        unit: 'degree'
+      },
+      strokeWeight: {
+        value: 5,
+        type: 'number',
+        unit: 'pixel'
+      },
+      stroke: {
+        value: 'rgba(4, 74, 255, 1)',
+        type: 'color'
+      }
+    },
+    unsupported: {
+      'multiple borders': {
+        category: 'border',
+        exportKey: 'border',
+        strokeAlign: {
+          value: 'inside',
+          type: 'string'
+        },
+        dashPattern: {
+          value: '5,10',
+          type: 'string'
+        },
+        strokeCap: {
+          value: 'none',
+          type: 'string'
+        },
+        strokeJoin: {
+          value: 'miter',
+          type: 'string'
+        },
+        strokeMiterLimit: {
+          value: 4,
+          type: 'number',
+          unit: 'degree'
+        },
+        strokeWeight: {
+          value: 5,
+          type: 'number',
+          unit: 'pixel'
+        },
+        stroke: {
+          value: 'rgba(255, 230, 0, 1)',
+          type: 'color'
+        }
       }
     }
   },
@@ -347,7 +347,9 @@ export default {
         value: 0,
         type: 'number'
       }
-    },
+    }
+  },
+  radii: {
     mixed: {
       category: 'radius',
       exportKey: 'radius',
@@ -572,7 +574,7 @@ export default {
       }
     }
   },
-  breakpoint: {
+  breakpoints: {
     lg: {
       category: 'breakpoint',
       exportKey: 'breakpoint',
@@ -630,7 +632,9 @@ export default {
           type: 'color'
         }
       }
-    },
+    }
+  },
+  gradient: {
     gradient: {
       multiple: {
         0: {
@@ -762,11 +766,11 @@ export default {
           }
         },
         category: 'gradient',
-        exportKey: 'color'
+        exportKey: 'gradient'
       },
       'single with multiple color stops': {
         category: 'gradient',
-        exportKey: 'color',
+        exportKey: 'gradient',
         comment: 'Four color stops from yellow to red',
         gradientType: {
           value: 'radial',

@@ -38,31 +38,32 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNode[], prefixA
     }
   })
   // return as object
-  return tokenNodes.filter(filterByPrefix(prefixArray)).map(node => ({
-    name: node.name,
-    category: 'radius',
-    exportKey: tokenTypes.radius.key,
-    description: node.description || null,
-    values: {
-      ...(typeof node.cornerRadius === 'number' && {
-        radius: {
-          value: node.cornerRadius,
-          unit: 'pixel' as UnitTypePixel,
+  return tokenNodes.filter(filterByPrefix(prefixArray))
+    .map(node => ({
+      name: node.name,
+      category: 'radius',
+      exportKey: tokenTypes.radius.key,
+      description: node.description || null,
+      values: {
+        ...(typeof node.cornerRadius === 'number' && {
+          radius: {
+            value: node.cornerRadius,
+            unit: 'pixel' as UnitTypePixel,
+            type: 'number' as PropertyType
+          }
+        }),
+        radiusType: {
+          value: getRadiusType(node.cornerRadius),
+          type: 'string' as PropertyType
+        },
+        radii: getRadii(node),
+        smoothing: {
+          value: roundWithDecimals(node.cornerSmoothing, 2),
+          comment: 'Percent as decimal from 0.0 - 1.0',
           type: 'number' as PropertyType
         }
-      }),
-      radiusType: {
-        value: getRadiusType(node.cornerRadius),
-        type: 'string' as PropertyType
-      },
-      radii: getRadii(node),
-      smoothing: {
-        value: roundWithDecimals(node.cornerSmoothing, 2),
-        comment: 'Percent as decimal from 0.0 - 1.0',
-        type: 'number' as PropertyType
       }
-    }
-  }))
+    }))
 }
 
 export default extractRadii

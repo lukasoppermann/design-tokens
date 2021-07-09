@@ -11,6 +11,8 @@
     {"name": "Settings", "command": "generalSettings"},
     {"separator": true},
     {"name": "Help", "command": "help"},
-    {"name": "Demo file", "command": "demo"}
+    {"name": "Demo file", "command": "demo"},
+    {"separator": true},
+    {"name": "Reset Settings", "command": "reset"}
   ]
 }

@@ -3,11 +3,11 @@ export default {
   ui: {
     generalSettings: {
       width: 550,
-      height: 570
+      height: 595
     },
     export: {
       width: 550,
-      height: 430
+      height: 420
     },
     urlExport: {
       width: 550,
