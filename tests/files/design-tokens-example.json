@@ -1,5 +1,5 @@
 {
-  "sizes": {
+  "size": {
     "32": {
       "category": "size",
       "exportKey": "size",
@@ -94,7 +94,7 @@
       "unit": "pixel"
     }
   },
-  "breakpoints": {
+  "breakpoint": {
     "lg": {
       "category": "breakpoint",
       "exportKey": "breakpoint",
@@ -191,7 +191,7 @@
       }
     }
   },
-  "borders": {
+  "border": {
     "unsupported": {
       "multiple borders": {
         "category": "border",
@@ -370,9 +370,7 @@
         "type": "number",
         "unit": "pixel"
       }
-    }
-  },
-  "radii": {
+    },
     "smoothing": {
       "category": "radius",
       "exportKey": "radius",
@@ -597,76 +595,179 @@
       }
     }
   },
-  "colors": {
-    "multiple fills": {
-      "0": {
-        "value": "rgba(64, 255, 186, 1)",
-        "type": "color"
-      },
-      "1": {
-        "value": "rgba(0, 0, 0, 0.1)",
-        "type": "color"
-      },
-      "category": "color",
-      "exportKey": "color"
-    },
-    "single blue": {
-      "category": "color",
-      "exportKey": "color",
-      "value": "rgba(4, 74, 255, 1)",
-      "type": "color"
-    },
-    "special characters": {
-      "😅": {
-        "category": "color",
-        "exportKey": "color",
-        "comment": "Emoji",
-        "value": "rgba(64, 223, 80, 1)",
-        "type": "color"
-      },
-      "änderung": {
-        "category": "color",
-        "exportKey": "color",
-        "value": "rgba(52, 86, 175, 1)",
-        "type": "color"
-      }
-    }
-  },
-  "gradient": {
-    "multiple": {
-      "0": {
-        "gradientType": {
-          "value": "linear",
-          "type": "string"
+  "color": {
+    "colors": {
+      "multiple fills": {
+        "0": {
+          "value": "rgba(64, 255, 186, 1)",
+          "type": "color"
         },
-        "stops": {
-          "0": {
-            "position": {
-              "value": 0,
-              "type": "number"
+        "1": {
+          "value": "rgba(0, 0, 0, 0.1)",
+          "type": "color"
+        },
+        "category": "color",
+        "exportKey": "color"
+      },
+      "single blue": {
+        "category": "color",
+        "exportKey": "color",
+        "value": "rgba(4, 74, 255, 1)",
+        "type": "color"
+      },
+      "special characters": {
+        "😅": {
+          "category": "color",
+          "exportKey": "color",
+          "comment": "Emoji",
+          "value": "rgba(64, 223, 80, 1)",
+          "type": "color"
+        },
+        "änderung": {
+          "category": "color",
+          "exportKey": "color",
+          "value": "rgba(52, 86, 175, 1)",
+          "type": "color"
+        }
+      }
+    },
+    "gradient": {
+      "multiple": {
+        "0": {
+          "gradientType": {
+            "value": "linear",
+            "type": "string"
+          },
+          "stops": {
+            "0": {
+              "position": {
+                "value": 0,
+                "type": "number"
+              },
+              "color": {
+                "value": "rgba(255, 184, 0, 1)",
+                "type": "color"
+              }
             },
-            "color": {
-              "value": "rgba(255, 184, 0, 1)",
-              "type": "color"
+            "1": {
+              "position": {
+                "value": 1,
+                "type": "number"
+              },
+              "color": {
+                "value": "rgba(255, 184, 0, 1)",
+                "type": "color"
+              }
             }
           },
-          "1": {
-            "position": {
-              "value": 1,
-              "type": "number"
-            },
-            "color": {
-              "value": "rgba(255, 184, 0, 1)",
-              "type": "color"
-            }
+          "opacity": {
+            "value": 1,
+            "type": "number"
           }
         },
-        "opacity": {
-          "value": 1,
-          "type": "number"
-        }
+        "1": {
+          "gradientType": {
+            "value": "radial",
+            "type": "string"
+          },
+          "stops": {
+            "0": {
+              "position": {
+                "value": 0,
+                "type": "number"
+              },
+              "color": {
+                "value": "rgba(255, 255, 255, 1)",
+                "type": "color"
+              }
+            },
+            "1": {
+              "position": {
+                "value": 1,
+                "type": "number"
+              },
+              "color": {
+                "value": "rgba(255, 255, 255, 1)",
+                "type": "color"
+              }
+            }
+          },
+          "opacity": {
+            "value": 1,
+            "type": "number"
+          }
+        },
+        "2": {
+          "gradientType": {
+            "value": "angular",
+            "type": "string"
+          },
+          "stops": {
+            "0": {
+              "position": {
+                "value": 0,
+                "type": "number"
+              },
+              "color": {
+                "value": "rgba(207, 48, 48, 1)",
+                "type": "color"
+              }
+            },
+            "1": {
+              "position": {
+                "value": 1,
+                "type": "number"
+              },
+              "color": {
+                "value": "rgba(255, 255, 255, 1)",
+                "type": "color"
+              }
+            }
+          },
+          "opacity": {
+            "value": 1,
+            "type": "number"
+          }
+        },
+        "3": {
+          "gradientType": {
+            "value": "diamond",
+            "type": "string"
+          },
+          "stops": {
+            "0": {
+              "position": {
+                "value": 0,
+                "type": "number"
+              },
+              "color": {
+                "value": "rgba(74, 79, 204, 1)",
+                "type": "color"
+              }
+            },
+            "1": {
+              "position": {
+                "value": 1,
+                "type": "number"
+              },
+              "color": {
+                "value": "rgba(255, 255, 255, 1)",
+                "type": "color"
+              }
+            }
+          },
+          "opacity": {
+            "value": 1,
+            "type": "number"
+          }
+        },
+        "category": "gradient",
+        "exportKey": "color"
       },
-      "1": {
+      "single with multiple color stops": {
+        "category": "gradient",
+        "exportKey": "color",
+        "comment": "Four color stops from yellow to red",
         "gradientType": {
           "value": "radial",
           "type": "string"
@@ -678,17 +779,37 @@
               "type": "number"
             },
             "color": {
-              "value": "rgba(255, 255, 255, 1)",
+              "value": "rgba(255, 184, 0, 1)",
               "type": "color"
             }
           },
           "1": {
             "position": {
+              "value": 0.34,
+              "type": "number"
+            },
+            "color": {
+              "value": "rgba(255, 138, 0, 1)",
+              "type": "color"
+            }
+          },
+          "2": {
+            "position": {
+              "value": 0.65,
+              "type": "number"
+            },
+            "color": {
+              "value": "rgba(255, 46, 0, 1)",
+              "type": "color"
+            }
+          },
+          "3": {
+            "position": {
               "value": 1,
               "type": "number"
             },
             "color": {
-              "value": "rgba(255, 255, 255, 1)",
+              "value": "rgba(255, 0, 0, 1)",
               "type": "color"
             }
           }
@@ -697,127 +818,6 @@
           "value": 1,
           "type": "number"
         }
-      },
-      "2": {
-        "gradientType": {
-          "value": "angular",
-          "type": "string"
-        },
-        "stops": {
-          "0": {
-            "position": {
-              "value": 0,
-              "type": "number"
-            },
-            "color": {
-              "value": "rgba(207, 48, 48, 1)",
-              "type": "color"
-            }
-          },
-          "1": {
-            "position": {
-              "value": 1,
-              "type": "number"
-            },
-            "color": {
-              "value": "rgba(255, 255, 255, 1)",
-              "type": "color"
-            }
-          }
-        },
-        "opacity": {
-          "value": 1,
-          "type": "number"
-        }
-      },
-      "3": {
-        "gradientType": {
-          "value": "diamond",
-          "type": "string"
-        },
-        "stops": {
-          "0": {
-            "position": {
-              "value": 0,
-              "type": "number"
-            },
-            "color": {
-              "value": "rgba(74, 79, 204, 1)",
-              "type": "color"
-            }
-          },
-          "1": {
-            "position": {
-              "value": 1,
-              "type": "number"
-            },
-            "color": {
-              "value": "rgba(255, 255, 255, 1)",
-              "type": "color"
-            }
-          }
-        },
-        "opacity": {
-          "value": 1,
-          "type": "number"
-        }
-      },
-      "category": "gradient",
-      "exportKey": "color"
-    },
-    "single with multiple color stops": {
-      "category": "gradient",
-      "exportKey": "color",
-      "comment": "Four color stops from yellow to red",
-      "gradientType": {
-        "value": "radial",
-        "type": "string"
-      },
-      "stops": {
-        "0": {
-          "position": {
-            "value": 0,
-            "type": "number"
-          },
-          "color": {
-            "value": "rgba(255, 184, 0, 1)",
-            "type": "color"
-          }
-        },
-        "1": {
-          "position": {
-            "value": 0.34,
-            "type": "number"
-          },
-          "color": {
-            "value": "rgba(255, 138, 0, 1)",
-            "type": "color"
-          }
-        },
-        "2": {
-          "position": {
-            "value": 0.65,
-            "type": "number"
-          },
-          "color": {
-            "value": "rgba(255, 46, 0, 1)",
-            "type": "color"
-          }
-        },
-        "3": {
-          "position": {
-            "value": 1,
-            "type": "number"
-          },
-          "color": {
-            "value": "rgba(255, 0, 0, 1)",
-            "type": "color"
-          }
-        }
-      },
-      "opacity": {
-        "value": 1,
-        "type": "number"
       }
     }
   },
@@ -1053,360 +1053,351 @@
       }
     }
   },
-  "invalid": {
-    "no grid": {
-      "category": "grid",
-      "exportKey": "grid"
-    },
-    "none": {
-      "category": "effect",
-      "exportKey": "effect",
-      "comment": "Effect without effect"
-    }
-  },
-  "body": {
-    "h3": {
-      "category": "font",
-      "exportKey": "font",
-      "comment": "Comment for text style",
-      "fontSize": {
-        "value": 20,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textDecoration": {
-        "value": "none",
-        "type": "string"
-      },
-      "fontFamily": {
-        "value": "Akzidenz-Grotesk Pro",
-        "type": "string"
-      },
-      "fontWeight": {
-        "value": 700,
-        "type": "number"
-      },
-      "fontStyle": {
-        "value": "normal",
-        "type": "string"
-      },
-      "fontStretch": {
-        "value": "condensed",
-        "type": "string"
-      },
-      "_fontStyleOld": {
-        "value": "Bold Condensed",
-        "type": "string"
-      },
-      "letterSpacing": {
-        "value": 2,
-        "type": "number",
-        "unit": "percent"
-      },
-      "lineHeight": {
-        "value": 160,
-        "type": "number",
-        "unit": "percent"
-      },
-      "paragraphIndent": {
-        "value": 5,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "paragraphSpacing": {
-        "value": 8,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textCase": {
-        "value": "uppercase",
-        "type": "string"
-      }
-    },
-    "h4 strike through": {
-      "category": "font",
-      "exportKey": "font",
-      "comment": "With stylisitc options",
-      "fontSize": {
-        "value": 16,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textDecoration": {
-        "value": "line-through",
-        "type": "string"
-      },
-      "fontFamily": {
-        "value": "Roboto",
-        "type": "string"
-      },
-      "fontWeight": {
-        "value": 500,
-        "type": "number"
-      },
-      "fontStyle": {
-        "value": "italic",
-        "type": "string"
-      },
-      "fontStretch": {
-        "value": "normal",
-        "type": "string"
-      },
-      "_fontStyleOld": {
-        "value": "Medium Italic",
-        "type": "string"
-      },
-      "letterSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "percent"
-      },
-      "lineHeight": {
-        "value": "normal",
-        "type": "string",
-        "unit": "auto"
-      },
-      "paragraphIndent": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "paragraphSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textCase": {
-        "value": "none",
-        "type": "string"
-      }
-    },
-    "italic": {
-      "category": "font",
-      "exportKey": "font",
-      "fontSize": {
-        "value": 12,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textDecoration": {
-        "value": "none",
-        "type": "string"
-      },
-      "fontFamily": {
-        "value": "Roboto",
-        "type": "string"
-      },
-      "fontWeight": {
-        "value": 400,
-        "type": "number"
-      },
-      "fontStyle": {
-        "value": "italic",
-        "type": "string"
-      },
-      "fontStretch": {
-        "value": "normal",
-        "type": "string"
-      },
-      "_fontStyleOld": {
-        "value": "Italic",
-        "type": "string"
-      },
-      "letterSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "percent"
-      },
-      "lineHeight": {
-        "value": "normal",
-        "type": "string",
-        "unit": "auto"
-      },
-      "paragraphIndent": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "paragraphSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textCase": {
-        "value": "none",
-        "type": "string"
-      }
-    },
-    "extra bold condensed italic": {
-      "category": "font",
-      "exportKey": "font",
-      "fontSize": {
-        "value": 12,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textDecoration": {
-        "value": "none",
-        "type": "string"
-      },
-      "fontFamily": {
-        "value": "Akzidenz-Grotesk Pro",
-        "type": "string"
-      },
-      "fontWeight": {
-        "value": 800,
-        "type": "number"
-      },
-      "fontStyle": {
-        "value": "italic",
-        "type": "string"
-      },
-      "fontStretch": {
-        "value": "condensed",
-        "type": "string"
-      },
-      "_fontStyleOld": {
-        "value": "Extra Bold Condensed Italic",
-        "type": "string"
-      },
-      "letterSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "percent"
-      },
-      "lineHeight": {
-        "value": "normal",
-        "type": "string",
-        "unit": "auto"
-      },
-      "paragraphIndent": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "paragraphSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textCase": {
-        "value": "none",
-        "type": "string"
-      }
-    },
-    "medium extended italic": {
-      "category": "font",
-      "exportKey": "font",
-      "fontSize": {
-        "value": 20,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textDecoration": {
-        "value": "none",
-        "type": "string"
-      },
-      "fontFamily": {
-        "value": "Akzidenz-Grotesk Pro",
-        "type": "string"
-      },
-      "fontWeight": {
-        "value": 500,
-        "type": "number"
-      },
-      "fontStyle": {
-        "value": "italic",
-        "type": "string"
-      },
-      "fontStretch": {
-        "value": "expanded",
-        "type": "string"
-      },
-      "_fontStyleOld": {
-        "value": "Medium Extended Italic",
-        "type": "string"
-      },
-      "letterSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "percent"
-      },
-      "lineHeight": {
-        "value": "normal",
-        "type": "string",
-        "unit": "auto"
-      },
-      "paragraphIndent": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "paragraphSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textCase": {
-        "value": "none",
-        "type": "string"
-      }
-    },
-    "super": {
-      "category": "font",
-      "exportKey": "font",
-      "fontSize": {
-        "value": 22,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textDecoration": {
-        "value": "none",
-        "type": "string"
-      },
-      "fontFamily": {
-        "value": "Akzidenz-Grotesk Pro",
-        "type": "string"
-      },
-      "fontWeight": {
-        "value": 900,
-        "type": "number"
-      },
-      "fontStyle": {
-        "value": "normal",
-        "type": "string"
-      },
-      "fontStretch": {
-        "value": "normal",
-        "type": "string"
-      },
-      "_fontStyleOld": {
-        "value": "Super",
-        "type": "string"
-      },
-      "letterSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "percent"
-      },
-      "lineHeight": {
-        "value": "normal",
-        "type": "string",
-        "unit": "auto"
-      },
-      "paragraphIndent": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "paragraphSpacing": {
-        "value": 0,
-        "type": "number",
-        "unit": "pixel"
-      },
-      "textCase": {
-        "value": "none",
-        "type": "string"
+  "font": {
+    "body": {
+      "h3": {
+        "category": "font",
+        "exportKey": "font",
+        "comment": "Comment for text style",
+        "fontSize": {
+          "value": 20,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textDecoration": {
+          "value": "none",
+          "type": "string"
+        },
+        "fontFamily": {
+          "value": "Akzidenz-Grotesk Pro",
+          "type": "string"
+        },
+        "fontWeight": {
+          "value": 700,
+          "type": "number"
+        },
+        "fontStyle": {
+          "value": "normal",
+          "type": "string"
+        },
+        "fontStretch": {
+          "value": "condensed",
+          "type": "string"
+        },
+        "_fontStyleOld": {
+          "value": "Bold Condensed",
+          "type": "string"
+        },
+        "letterSpacing": {
+          "value": 2,
+          "type": "number",
+          "unit": "percent"
+        },
+        "lineHeight": {
+          "value": 160,
+          "type": "number",
+          "unit": "percent"
+        },
+        "paragraphIndent": {
+          "value": 5,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "paragraphSpacing": {
+          "value": 8,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textCase": {
+          "value": "uppercase",
+          "type": "string"
+        }
+      },
+      "h4 strike through": {
+        "category": "font",
+        "exportKey": "font",
+        "comment": "With stylisitc options",
+        "fontSize": {
+          "value": 16,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textDecoration": {
+          "value": "line-through",
+          "type": "string"
+        },
+        "fontFamily": {
+          "value": "Roboto",
+          "type": "string"
+        },
+        "fontWeight": {
+          "value": 500,
+          "type": "number"
+        },
+        "fontStyle": {
+          "value": "italic",
+          "type": "string"
+        },
+        "fontStretch": {
+          "value": "normal",
+          "type": "string"
+        },
+        "_fontStyleOld": {
+          "value": "Medium Italic",
+          "type": "string"
+        },
+        "letterSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "percent"
+        },
+        "lineHeight": {
+          "value": "normal",
+          "type": "string",
+          "unit": "auto"
+        },
+        "paragraphIndent": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "paragraphSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textCase": {
+          "value": "none",
+          "type": "string"
+        }
+      },
+      "italic": {
+        "category": "font",
+        "exportKey": "font",
+        "fontSize": {
+          "value": 12,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textDecoration": {
+          "value": "none",
+          "type": "string"
+        },
+        "fontFamily": {
+          "value": "Roboto",
+          "type": "string"
+        },
+        "fontWeight": {
+          "value": 400,
+          "type": "number"
+        },
+        "fontStyle": {
+          "value": "italic",
+          "type": "string"
+        },
+        "fontStretch": {
+          "value": "normal",
+          "type": "string"
+        },
+        "_fontStyleOld": {
+          "value": "Italic",
+          "type": "string"
+        },
+        "letterSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "percent"
+        },
+        "lineHeight": {
+          "value": "normal",
+          "type": "string",
+          "unit": "auto"
+        },
+        "paragraphIndent": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "paragraphSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textCase": {
+          "value": "none",
+          "type": "string"
+        }
+      },
+      "extra bold condensed italic": {
+        "category": "font",
+        "exportKey": "font",
+        "fontSize": {
+          "value": 12,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textDecoration": {
+          "value": "none",
+          "type": "string"
+        },
+        "fontFamily": {
+          "value": "Akzidenz-Grotesk Pro",
+          "type": "string"
+        },
+        "fontWeight": {
+          "value": 800,
+          "type": "number"
+        },
+        "fontStyle": {
+          "value": "italic",
+          "type": "string"
+        },
+        "fontStretch": {
+          "value": "condensed",
+          "type": "string"
+        },
+        "_fontStyleOld": {
+          "value": "Extra Bold Condensed Italic",
+          "type": "string"
+        },
+        "letterSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "percent"
+        },
+        "lineHeight": {
+          "value": "normal",
+          "type": "string",
+          "unit": "auto"
+        },
+        "paragraphIndent": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "paragraphSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textCase": {
+          "value": "none",
+          "type": "string"
+        }
+      },
+      "medium extended italic": {
+        "category": "font",
+        "exportKey": "font",
+        "fontSize": {
+          "value": 20,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textDecoration": {
+          "value": "none",
+          "type": "string"
+        },
+        "fontFamily": {
+          "value": "Akzidenz-Grotesk Pro",
+          "type": "string"
+        },
+        "fontWeight": {
+          "value": 500,
+          "type": "number"
+        },
+        "fontStyle": {
+          "value": "italic",
+          "type": "string"
+        },
+        "fontStretch": {
+          "value": "expanded",
+          "type": "string"
+        },
+        "_fontStyleOld": {
+          "value": "Medium Extended Italic",
+          "type": "string"
+        },
+        "letterSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "percent"
+        },
+        "lineHeight": {
+          "value": "normal",
+          "type": "string",
+          "unit": "auto"
+        },
+        "paragraphIndent": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "paragraphSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textCase": {
+          "value": "none",
+          "type": "string"
+        }
+      },
+      "super": {
+        "category": "font",
+        "exportKey": "font",
+        "fontSize": {
+          "value": 22,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textDecoration": {
+          "value": "none",
+          "type": "string"
+        },
+        "fontFamily": {
+          "value": "Akzidenz-Grotesk Pro",
+          "type": "string"
+        },
+        "fontWeight": {
+          "value": 900,
+          "type": "number"
+        },
+        "fontStyle": {
+          "value": "normal",
+          "type": "string"
+        },
+        "fontStretch": {
+          "value": "normal",
+          "type": "string"
+        },
+        "_fontStyleOld": {
+          "value": "Super",
+          "type": "string"
+        },
+        "letterSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "percent"
+        },
+        "lineHeight": {
+          "value": "normal",
+          "type": "string",
+          "unit": "auto"
+        },
+        "paragraphIndent": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "paragraphSpacing": {
+          "value": 0,
+          "type": "number",
+          "unit": "pixel"
+        },
+        "textCase": {
+          "value": "none",
+          "type": "string"
+        }
       }
     }
   },

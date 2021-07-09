@@ -63,13 +63,17 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
 
 const extractGrids: extractorInterface = (tokenNodes: GridStyle[], prefixArray: string[]): gridPropertyInterface[] => {
   // get grid styles
-  return tokenNodes.map(node => ({
-    name: `${prefixArray[0]}/${node.name}`,
-    category: 'grid',
-    exportKey: tokenTypes.grid.key,
-    description: node.description || null,
-    values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid))
-  }))
+  return tokenNodes
+  // remove tokens with no grid
+    .filter(node => node.layoutGrids.length > 0)
+  // build
+    .map(node => ({
+      name: `${prefixArray[0]}/${node.name}`,
+      category: 'grid',
+      exportKey: tokenTypes.grid.key,
+      description: node.description || null,
+      values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid))
+    }))
 }
 
 export default extractGrids

@@ -58,18 +58,22 @@ const shadowValues = effect => ({
 
 const extractEffects: extractorInterface = (tokenNodes: EffectStyle[], prefixArray: string[]): effectPropertyInterface[] => {
   // get effect styles
-  return tokenNodes.map(node => ({
-    name: `${prefixArray[0]}/${node.name}`,
-    category: 'effect',
-    exportKey: tokenTypes.effect.key,
-    description: node.description || null,
-    values: node.effects.map(
-      (effect: Effect) =>
-        effect.type === 'LAYER_BLUR' || effect.type === 'BACKGROUND_BLUR'
-          ? blurValues(effect)
-          : shadowValues(effect)
-    )
-  }))
+  return tokenNodes
+    // remove tokens with no grid
+    .filter(node => node.effects.length > 0)
+  // build
+    .map(node => ({
+      name: `${prefixArray[0]}/${node.name}`,
+      category: 'effect',
+      exportKey: tokenTypes.effect.key,
+      description: node.description || null,
+      values: node.effects.map(
+        (effect: Effect) =>
+          effect.type === 'LAYER_BLUR' || effect.type === 'BACKGROUND_BLUR'
+            ? blurValues(effect)
+            : shadowValues(effect)
+      )
+    }))
 }
 
 export default extractEffects
