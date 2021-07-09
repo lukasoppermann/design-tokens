@@ -22,6 +22,9 @@ const figmaUIApi: UIAPI = parent as UIAPI
 const style = css`
   padding: 8px var(--size-xxsmall) 0;
   margin-bottom: 0;
+  form {
+    margin-bottom: 0;
+  }
 `
 
 const PluginUi = () => {

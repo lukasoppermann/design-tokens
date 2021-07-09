@@ -5,6 +5,7 @@ export type PluginCommands = 'generalSettings' |
   'saveSettings' |
   'help' |
   'demo' |
+  'reset' |
   'urlExport' |
   'closePlugin'
 
@@ -15,6 +16,7 @@ export const commands = {
   urlExport: 'urlExport' as PluginCommands,
   help: 'help' as PluginCommands,
   demo: 'demo' as PluginCommands,
+  reset: 'reset' as PluginCommands,
   saveSettings: 'saveSettings' as PluginCommands,
   closePlugin: 'closePlugin' as PluginCommands
 }

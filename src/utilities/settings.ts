@@ -37,6 +37,11 @@ const setSettings = (settings: Settings) => {
   // store public settings that should be shared across org
   figma.root.setPluginData(config.key.settings, stringifyJson(settings))
 }
+/**
+ * @name resetSettings
+ * @description resetSettings the user settings to the "cache"
+ */
+const resetSettings = () => figma.root.setPluginData(config.key.settings, stringifyJson(defaultSettings))
 
 // exports
-export { getSettings, setSettings }
+export { getSettings, setSettings, resetSettings }

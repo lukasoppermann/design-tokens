@@ -18,6 +18,7 @@ export type Settings = {
   prefixInName: boolean,
   prefix: {
     color: string,
+    gradient: string,
     font: string,
     effect: string,
     grid: string,
@@ -30,6 +31,7 @@ export type Settings = {
   }
   exports: {
     color: boolean,
+    gradient: boolean,
     font: boolean,
     effect: boolean,
     grid: boolean,

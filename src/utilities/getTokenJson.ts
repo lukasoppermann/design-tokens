@@ -24,7 +24,7 @@ export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
     ...extractBorders(figmaData.tokenFrames, getPrefixArray(settings.prefix.border)),
     ...extractRadii(figmaData.tokenFrames, getPrefixArray(settings.prefix.radius)),
     ...extractMotion(figmaData.tokenFrames, getPrefixArray(settings.prefix.motion)),
-    ...extractColors(figmaData.paintStyles, getPrefixArray(settings.prefix.color)),
+    ...extractColors(figmaData.paintStyles, { color: getPrefixArray(settings.prefix.color), gradient: getPrefixArray(settings.prefix.gradient) }),
     ...extractGrids(figmaData.gridStyles, getPrefixArray(settings.prefix.grid)),
     ...extractFonts(figmaData.textStyles, getPrefixArray(settings.prefix.font)),
     ...extractEffects(figmaData.effectStyles, getPrefixArray(settings.prefix.effect))

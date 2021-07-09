@@ -1,4 +1,4 @@
-import { getSettings, setSettings } from './utilities/settings'
+import { getSettings, resetSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
@@ -64,6 +64,15 @@ if (figma.command === commands.demo) {
   figma.ui.postMessage({
     command: commands.demo
   } as PluginMessage)
+}
+/**
+ * Open Demo File
+ */
+if (figma.command === commands.reset) {
+  resetSettings()
+  // semd message
+  figma.notify('⚙️ Settings have been reset.')
+  figma.closePlugin()
 }
 
 /**

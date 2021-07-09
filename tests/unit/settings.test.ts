@@ -30,6 +30,7 @@ const baseSettings = {
   prefixInName: true,
   prefix: {
     color: 'color',
+    gradient: 'gradient',
     font: 'font',
     effect: 'effect',
     grid: 'grid',
@@ -42,6 +43,7 @@ const baseSettings = {
   },
   exports: {
     color: true,
+    gradient: true,
     font: true,
     effect: true,
     grid: true,

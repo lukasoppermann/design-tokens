@@ -30,7 +30,7 @@ const textStyle = css`
   margin-top: 0;
 `
 
-const isStyle = (key: string): boolean => ['color', 'grid', 'effect', 'font'].includes(key)
+const isStyle = (key: string): boolean => ['color', 'gradient', 'grid', 'effect', 'font'].includes(key)
 
 export const GeneralSettings = () => {
   const { figmaUIApi } = useContext(FigmaContext)
