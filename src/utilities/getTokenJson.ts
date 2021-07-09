@@ -8,40 +8,25 @@ import extractSpacing from '../extractor/extractSpacing'
 import extractBorders from '../extractor/extractBorders'
 import extractRadii from '../extractor/extractRadii'
 import extractBreakpoints from '../extractor/extractBreakpoints'
-import { groupByName } from './groupByName'
-import styleDictionaryTransformer from '../transformer/styleDictionaryTransformer'
-import { propertyObject } from '@typings/propertyObject'
 import { figmaDataType } from '@typings/figmaDataType'
+import buildFigmaData from './buildFigmaData'
+import { Settings } from '@typings/settings'
 
-const transformer = {
-  styleDictionary: styleDictionaryTransformer
-}
+const getPrefixArray = (prefixString: string) => prefixString.split(',').map(item => item.replace(/\s+/g, ''))
 
-export const exportRawTokenArray = (figmaData: figmaDataType) => {
+export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
+  const figmaData: figmaDataType = buildFigmaData(figma)
   // get tokens
   return [
-    ...extractSizes(figmaData.tokenFrames),
-    ...extractBreakpoints(figmaData.tokenFrames),
-    ...extractSpacing(figmaData.tokenFrames),
-    ...extractBorders(figmaData.tokenFrames),
-    ...extractRadii(figmaData.tokenFrames),
-    ...extractMotion(figmaData.tokenFrames),
-    ...extractColors(figmaData.paintStyles),
-    ...extractGrids(figmaData.gridStyles),
-    ...extractFonts(figmaData.textStyles),
-    ...extractEffects(figmaData.effectStyles)
+    ...extractSizes(figmaData.tokenFrames, getPrefixArray(settings.prefix.size)),
+    ...extractBreakpoints(figmaData.tokenFrames, getPrefixArray(settings.prefix.breakpoint)),
+    ...extractSpacing(figmaData.tokenFrames, getPrefixArray(settings.prefix.spacing)),
+    ...extractBorders(figmaData.tokenFrames, getPrefixArray(settings.prefix.border)),
+    ...extractRadii(figmaData.tokenFrames, getPrefixArray(settings.prefix.radius)),
+    ...extractMotion(figmaData.tokenFrames, getPrefixArray(settings.prefix.motion)),
+    ...extractColors(figmaData.paintStyles, { color: getPrefixArray(settings.prefix.color), gradient: getPrefixArray(settings.prefix.gradient) }),
+    ...extractGrids(figmaData.gridStyles, getPrefixArray(settings.prefix.grid)),
+    ...extractFonts(figmaData.textStyles, getPrefixArray(settings.prefix.font)),
+    ...extractEffects(figmaData.effectStyles, getPrefixArray(settings.prefix.effect))
   ]
 }
-
-const getTokenJson = (figmaData: figmaDataType, format: string = 'styleDictionary', nameConversion: string = 'default') => {
-  // get token array
-  const tokenArray = exportRawTokenArray(figmaData)
-  // format tokens
-  const formattedTokens = tokenArray.map((token: propertyObject) => transformer[format](token))
-  // group tokens
-  const groupedTokens = groupByName(formattedTokens, true, nameConversion)
-  // return group tokens
-  return groupedTokens
-}
-
-export default getTokenJson

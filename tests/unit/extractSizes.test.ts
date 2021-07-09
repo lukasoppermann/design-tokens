@@ -20,7 +20,7 @@ describe('extracting sizes', () => {
   ]
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
-    expect(extractSizes(nodeArray)).toStrictEqual([{
+    expect(extractSizes(nodeArray, ['sizes'])).toStrictEqual([{
       category: 'size',
       exportKey: 'size',
       description: 'a description text',

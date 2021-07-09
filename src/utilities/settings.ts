@@ -1,6 +1,5 @@
-// import settingsDefault from './settingsDefault'
 import { defaultSettings } from '@config/defaultSettings'
-import { Settings as UserSettings } from '@typings/settings'
+import { Settings } from '@typings/settings'
 import config from '@config/config'
 import { stringifyJson } from './stringifyJson'
 /**
@@ -8,13 +7,21 @@ import { stringifyJson } from './stringifyJson'
  * for settings that are not set, the defaults will be used
  * @return object
  */
-const getSettings = (): UserSettings => {
-  const userSettings = figma.root.getPluginData(config.key.settings)
-
-  return <UserSettings>{
-    ...defaultSettings,
-    ...(userSettings.length > 0 ? JSON.parse(userSettings) : {})
+const getSettings = (): Settings => {
+  let storedSettings: string = figma.root.getPluginData(config.key.settings)
+  // return defaults if no settings are present
+  if (storedSettings === '') {
+    return defaultSettings
   }
+  // parse stored settings
+  storedSettings = JSON.parse(storedSettings)
+
+  return <Settings>Object.fromEntries(Object.entries(defaultSettings).map(([key, value]) => {
+    if (value !== undefined && typeof storedSettings[key] !== typeof value) {
+      return [key, defaultSettings[key]]
+    }
+    return [key, storedSettings[key]]
+  }))
 }
 
 /**
@@ -22,7 +29,7 @@ const getSettings = (): UserSettings => {
  * @description save the user settings to the "cache"
  * @param {UserSettings} settings
  */
-const setSettings = (settings: UserSettings) => {
+const setSettings = (settings: Settings) => {
   settings = {
     ...defaultSettings,
     ...settings
@@ -30,6 +37,11 @@ const setSettings = (settings: UserSettings) => {
   // store public settings that should be shared across org
   figma.root.setPluginData(config.key.settings, stringifyJson(settings))
 }
+/**
+ * @name resetSettings
+ * @description resetSettings the user settings to the "cache"
+ */
+const resetSettings = () => figma.root.setPluginData(config.key.settings, stringifyJson(defaultSettings))
 
 // exports
-export { getSettings, setSettings }
+export { getSettings, setSettings, resetSettings }

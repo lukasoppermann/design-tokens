@@ -1,6 +1,6 @@
 import { propertyObject } from '@typings/propertyObject'
 import { Settings } from '../../types/settings'
-import { transformer as styleDictionaryTransformer } from '@src/transformer/styleDictionaryTransformerNEW'
+import { transformer as styleDictionaryTransformer } from '@src/transformer/styleDictionaryTransformer'
 import { groupByKeyAndName } from '@utils/groupByName'
 
 const tokenTransformer = {
@@ -16,7 +16,7 @@ export const prepareExport = (tokens: string, settings: Settings) => {
   // converted values
   const tokensConverted = tokensFiltered.map(token => tokenTransformer[format](token))
   // group items by their names
-  const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings.keyInName, settings.nameConversion)
+  const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings)
   // return tokens
   return tokensGroupedByName
 }

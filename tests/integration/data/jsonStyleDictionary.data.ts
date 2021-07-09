@@ -169,108 +169,6 @@ export default {
     }
   },
   borders: {
-    unsupported: {
-      'gradient borders': {
-        category: 'border',
-        exportKey: 'border',
-        strokeAlign: {
-          value: 'inside',
-          type: 'string'
-        },
-        dashPattern: {
-          value: '',
-          type: 'string'
-        },
-        strokeCap: {
-          value: 'none',
-          type: 'string'
-        },
-        strokeJoin: {
-          value: 'miter',
-          type: 'string'
-        },
-        strokeMiterLimit: {
-          value: 4,
-          type: 'number',
-          unit: 'degree'
-        },
-        strokeWeight: {
-          value: 1,
-          type: 'number',
-          unit: 'pixel'
-        },
-        stroke: {
-          type: 'color'
-        }
-      },
-      'multiple borders': {
-        category: 'border',
-        exportKey: 'border',
-        strokeAlign: {
-          value: 'inside',
-          type: 'string'
-        },
-        dashPattern: {
-          value: '5,10',
-          type: 'string'
-        },
-        strokeCap: {
-          value: 'none',
-          type: 'string'
-        },
-        strokeJoin: {
-          value: 'miter',
-          type: 'string'
-        },
-        strokeMiterLimit: {
-          value: 4,
-          type: 'number',
-          unit: 'degree'
-        },
-        strokeWeight: {
-          value: 1,
-          type: 'number',
-          unit: 'pixel'
-        },
-        stroke: {
-          value: 'rgba(255, 230, 0, 1)',
-          type: 'color'
-        }
-      },
-      'image borders': {
-        category: 'border',
-        exportKey: 'border',
-        strokeAlign: {
-          value: 'inside',
-          type: 'string'
-        },
-        dashPattern: {
-          value: '',
-          type: 'string'
-        },
-        strokeCap: {
-          value: 'none',
-          type: 'string'
-        },
-        strokeJoin: {
-          value: 'miter',
-          type: 'string'
-        },
-        strokeMiterLimit: {
-          value: 4,
-          type: 'number',
-          unit: 'degree'
-        },
-        strokeWeight: {
-          value: 1,
-          type: 'number',
-          unit: 'pixel'
-        },
-        stroke: {
-          type: 'color'
-        }
-      }
-    },
     single: {
       category: 'border',
       exportKey: 'border',
@@ -296,46 +194,12 @@ export default {
         unit: 'degree'
       },
       strokeWeight: {
-        value: 1,
+        value: 5,
         type: 'number',
         unit: 'pixel'
       },
       stroke: {
-        value: 'rgba(112, 141, 242, 1)',
-        type: 'color'
-      }
-    },
-    'single (style)': {
-      category: 'border',
-      exportKey: 'border',
-      strokeAlign: {
-        value: 'inside',
-        type: 'string'
-      },
-      dashPattern: {
-        value: '',
-        type: 'string'
-      },
-      strokeCap: {
-        value: 'none',
-        type: 'string'
-      },
-      strokeJoin: {
-        value: 'miter',
-        type: 'string'
-      },
-      strokeMiterLimit: {
-        value: 4,
-        type: 'number',
-        unit: 'degree'
-      },
-      strokeWeight: {
-        value: 1,
-        type: 'number',
-        unit: 'pixel'
-      },
-      stroke: {
-        value: 'rgba(4, 74, 255, 1)',
+        value: 'rgba(0, 0, 0, 1)',
         type: 'color'
       }
     },
@@ -364,17 +228,87 @@ export default {
         unit: 'degree'
       },
       strokeWeight: {
-        value: 1,
+        value: 5,
         type: 'number',
         unit: 'pixel'
       },
       stroke: {
-        value: 'rgba(64, 255, 186, 1)',
+        value: 'rgba(0, 0, 0, 1)',
         type: 'color'
+      }
+    },
+    'single (style)': {
+      category: 'border',
+      exportKey: 'border',
+      strokeAlign: {
+        value: 'inside',
+        type: 'string'
+      },
+      dashPattern: {
+        value: '',
+        type: 'string'
+      },
+      strokeCap: {
+        value: 'none',
+        type: 'string'
+      },
+      strokeJoin: {
+        value: 'miter',
+        type: 'string'
+      },
+      strokeMiterLimit: {
+        value: 4,
+        type: 'number',
+        unit: 'degree'
+      },
+      strokeWeight: {
+        value: 5,
+        type: 'number',
+        unit: 'pixel'
+      },
+      stroke: {
+        value: 'rgba(4, 74, 255, 1)',
+        type: 'color'
+      }
+    },
+    unsupported: {
+      'multiple borders': {
+        category: 'border',
+        exportKey: 'border',
+        strokeAlign: {
+          value: 'inside',
+          type: 'string'
+        },
+        dashPattern: {
+          value: '5,10',
+          type: 'string'
+        },
+        strokeCap: {
+          value: 'none',
+          type: 'string'
+        },
+        strokeJoin: {
+          value: 'miter',
+          type: 'string'
+        },
+        strokeMiterLimit: {
+          value: 4,
+          type: 'number',
+          unit: 'degree'
+        },
+        strokeWeight: {
+          value: 5,
+          type: 'number',
+          unit: 'pixel'
+        },
+        stroke: {
+          value: 'rgba(255, 230, 0, 1)',
+          type: 'color'
+        }
       }
     }
   },
-  radii: {
+  radius: {
     5: {
       category: 'radius',
       exportKey: 'radius',
@@ -405,6 +339,42 @@ export default {
         },
         bottomLeft: {
           value: 5,
+          type: 'number',
+          unit: 'pixel'
+        }
+      },
+      smoothing: {
+        value: 0,
+        type: 'number'
+      }
+    }
+  },
+  radii: {
+    mixed: {
+      category: 'radius',
+      exportKey: 'radius',
+      radiusType: {
+        value: 'mixed',
+        type: 'string'
+      },
+      radii: {
+        topLeft: {
+          value: 5.5,
+          type: 'number',
+          unit: 'pixel'
+        },
+        topRight: {
+          value: 10,
+          type: 'number',
+          unit: 'pixel'
+        },
+        bottomRight: {
+          value: 15,
+          type: 'number',
+          unit: 'pixel'
+        },
+        bottomLeft: {
+          value: 20,
           type: 'number',
           unit: 'pixel'
         }
@@ -450,80 +420,6 @@ export default {
       },
       smoothing: {
         value: 0.75,
-        type: 'number'
-      }
-    },
-    mixed: {
-      category: 'radius',
-      exportKey: 'radius',
-      radiusType: {
-        value: 'mixed',
-        type: 'string'
-      },
-      radii: {
-        topLeft: {
-          value: 1,
-          type: 'number',
-          unit: 'pixel'
-        },
-        topRight: {
-          value: 2,
-          type: 'number',
-          unit: 'pixel'
-        },
-        bottomRight: {
-          value: 3.5,
-          type: 'number',
-          unit: 'pixel'
-        },
-        bottomLeft: {
-          value: 0,
-          type: 'number',
-          unit: 'pixel'
-        }
-      },
-      smoothing: {
-        value: 0,
-        type: 'number'
-      }
-    },
-    'same with smoothing': {
-      category: 'radius',
-      exportKey: 'radius',
-      comment: 'Radius 5 with corner smoothing',
-      radius: {
-        value: 5,
-        type: 'number',
-        unit: 'pixel'
-      },
-      radiusType: {
-        value: 'single',
-        type: 'string'
-      },
-      radii: {
-        topLeft: {
-          value: 5,
-          type: 'number',
-          unit: 'pixel'
-        },
-        topRight: {
-          value: 5,
-          type: 'number',
-          unit: 'pixel'
-        },
-        bottomRight: {
-          value: 5,
-          type: 'number',
-          unit: 'pixel'
-        },
-        bottomLeft: {
-          value: 5,
-          type: 'number',
-          unit: 'pixel'
-        }
-      },
-      smoothing: {
-        value: 0.65,
         type: 'number'
       }
     }
@@ -701,76 +597,181 @@ export default {
       value: 768
     }
   },
-  colors: {
-    'multiple fills': {
-      0: {
-        value: 'rgba(64, 255, 186, 1)',
-        type: 'color'
+  color: {
+    colors: {
+      'multiple fills': {
+        0: {
+          value: 'rgba(64, 255, 186, 1)',
+          type: 'color'
+        },
+        1: {
+          value: 'rgba(0, 0, 0, 0.1)',
+          type: 'color'
+        },
+        category: 'color',
+        exportKey: 'color'
       },
-      1: {
-        value: 'rgba(0, 0, 0, 0.1)',
-        type: 'color'
-      },
-      category: 'fill',
-      exportKey: 'color'
-    },
-    'single blue': {
-      category: 'fill',
-      exportKey: 'color',
-      value: 'rgba(4, 74, 255, 1)',
-      type: 'color'
-    },
-    'special characters': {
-      '😅': {
-        category: 'fill',
+      'single blue': {
+        category: 'color',
         exportKey: 'color',
-        comment: 'Emoji',
-        value: 'rgba(64, 223, 80, 1)',
+        value: 'rgba(4, 74, 255, 1)',
         type: 'color'
       },
-      änderung: {
-        category: 'fill',
-        exportKey: 'color',
-        value: 'rgba(52, 86, 175, 1)',
-        type: 'color'
+      'special characters': {
+        '😅': {
+          category: 'color',
+          exportKey: 'color',
+          comment: 'Emoji',
+          value: 'rgba(64, 223, 80, 1)',
+          type: 'color'
+        },
+        änderung: {
+          category: 'color',
+          exportKey: 'color',
+          value: 'rgba(52, 86, 175, 1)',
+          type: 'color'
+        }
       }
     }
   },
   gradient: {
-    multiple: {
-      0: {
-        gradientType: {
-          value: 'linear',
-          type: 'string'
-        },
-        stops: {
-          0: {
-            position: {
-              value: 0,
-              type: 'number'
+    gradient: {
+      multiple: {
+        0: {
+          gradientType: {
+            value: 'linear',
+            type: 'string'
+          },
+          stops: {
+            0: {
+              position: {
+                value: 0,
+                type: 'number'
+              },
+              color: {
+                value: 'rgba(255, 184, 0, 1)',
+                type: 'color'
+              }
             },
-            color: {
-              value: 'rgba(255, 184, 0, 1)',
-              type: 'color'
+            1: {
+              position: {
+                value: 1,
+                type: 'number'
+              },
+              color: {
+                value: 'rgba(255, 184, 0, 1)',
+                type: 'color'
+              }
             }
           },
-          1: {
-            position: {
-              value: 1,
-              type: 'number'
-            },
-            color: {
-              value: 'rgba(255, 184, 0, 1)',
-              type: 'color'
-            }
+          opacity: {
+            value: 1,
+            type: 'number'
           }
         },
-        opacity: {
-          value: 1,
-          type: 'number'
-        }
+        1: {
+          gradientType: {
+            value: 'radial',
+            type: 'string'
+          },
+          stops: {
+            0: {
+              position: {
+                value: 0,
+                type: 'number'
+              },
+              color: {
+                value: 'rgba(255, 255, 255, 1)',
+                type: 'color'
+              }
+            },
+            1: {
+              position: {
+                value: 1,
+                type: 'number'
+              },
+              color: {
+                value: 'rgba(255, 255, 255, 1)',
+                type: 'color'
+              }
+            }
+          },
+          opacity: {
+            value: 1,
+            type: 'number'
+          }
+        },
+        2: {
+          gradientType: {
+            value: 'angular',
+            type: 'string'
+          },
+          stops: {
+            0: {
+              position: {
+                value: 0,
+                type: 'number'
+              },
+              color: {
+                value: 'rgba(207, 48, 48, 1)',
+                type: 'color'
+              }
+            },
+            1: {
+              position: {
+                value: 1,
+                type: 'number'
+              },
+              color: {
+                value: 'rgba(255, 255, 255, 1)',
+                type: 'color'
+              }
+            }
+          },
+          opacity: {
+            value: 1,
+            type: 'number'
+          }
+        },
+        3: {
+          gradientType: {
+            value: 'diamond',
+            type: 'string'
+          },
+          stops: {
+            0: {
+              position: {
+                value: 0,
+                type: 'number'
+              },
+              color: {
+                value: 'rgba(74, 79, 204, 1)',
+                type: 'color'
+              }
+            },
+            1: {
+              position: {
+                value: 1,
+                type: 'number'
+              },
+              color: {
+                value: 'rgba(255, 255, 255, 1)',
+                type: 'color'
+              }
+            }
+          },
+          opacity: {
+            value: 1,
+            type: 'number'
+          }
+        },
+        category: 'gradient',
+        exportKey: 'gradient'
       },
-      1: {
+      'single with multiple color stops': {
+        category: 'gradient',
+        exportKey: 'gradient',
+        comment: 'Four color stops from yellow to red',
         gradientType: {
           value: 'radial',
           type: 'string'
@@ -782,17 +783,37 @@ export default {
               type: 'number'
             },
             color: {
-              value: 'rgba(255, 255, 255, 1)',
+              value: 'rgba(255, 184, 0, 1)',
               type: 'color'
             }
           },
           1: {
             position: {
+              value: 0.34,
+              type: 'number'
+            },
+            color: {
+              value: 'rgba(255, 138, 0, 1)',
+              type: 'color'
+            }
+          },
+          2: {
+            position: {
+              value: 0.65,
+              type: 'number'
+            },
+            color: {
+              value: 'rgba(255, 46, 0, 1)',
+              type: 'color'
+            }
+          },
+          3: {
+            position: {
               value: 1,
               type: 'number'
             },
             color: {
-              value: 'rgba(255, 255, 255, 1)',
+              value: 'rgba(255, 0, 0, 1)',
               type: 'color'
             }
           }
@@ -801,127 +822,6 @@ export default {
           value: 1,
           type: 'number'
         }
-      },
-      2: {
-        gradientType: {
-          value: 'angular',
-          type: 'string'
-        },
-        stops: {
-          0: {
-            position: {
-              value: 0,
-              type: 'number'
-            },
-            color: {
-              value: 'rgba(207, 48, 48, 1)',
-              type: 'color'
-            }
-          },
-          1: {
-            position: {
-              value: 1,
-              type: 'number'
-            },
-            color: {
-              value: 'rgba(255, 255, 255, 1)',
-              type: 'color'
-            }
-          }
-        },
-        opacity: {
-          value: 1,
-          type: 'number'
-        }
-      },
-      3: {
-        gradientType: {
-          value: 'diamond',
-          type: 'string'
-        },
-        stops: {
-          0: {
-            position: {
-              value: 0,
-              type: 'number'
-            },
-            color: {
-              value: 'rgba(74, 79, 204, 1)',
-              type: 'color'
-            }
-          },
-          1: {
-            position: {
-              value: 1,
-              type: 'number'
-            },
-            color: {
-              value: 'rgba(255, 255, 255, 1)',
-              type: 'color'
-            }
-          }
-        },
-        opacity: {
-          value: 1,
-          type: 'number'
-        }
-      },
-      category: 'fill',
-      exportKey: 'color'
-    },
-    'single with multiple color stops': {
-      category: 'fill',
-      exportKey: 'color',
-      comment: 'Four color stops from yellow to red',
-      gradientType: {
-        value: 'radial',
-        type: 'string'
-      },
-      stops: {
-        0: {
-          position: {
-            value: 0,
-            type: 'number'
-          },
-          color: {
-            value: 'rgba(255, 184, 0, 1)',
-            type: 'color'
-          }
-        },
-        1: {
-          position: {
-            value: 0.34,
-            type: 'number'
-          },
-          color: {
-            value: 'rgba(255, 138, 0, 1)',
-            type: 'color'
-          }
-        },
-        2: {
-          position: {
-            value: 0.65,
-            type: 'number'
-          },
-          color: {
-            value: 'rgba(255, 46, 0, 1)',
-            type: 'color'
-          }
-        },
-        3: {
-          position: {
-            value: 1,
-            type: 'number'
-          },
-          color: {
-            value: 'rgba(255, 0, 0, 1)',
-            type: 'color'
-          }
-        }
-      },
-      opacity: {
-        value: 1,
-        type: 'number'
       }
     }
   },
@@ -1168,349 +1068,351 @@ export default {
       comment: 'Effect without effect'
     }
   },
-  body: {
-    h3: {
-      category: 'font',
-      exportKey: 'font',
-      comment: 'Comment for text style',
-      fontSize: {
-        value: 20,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textDecoration: {
-        value: 'none',
-        type: 'string'
-      },
-      fontFamily: {
-        value: 'Akzidenz-Grotesk Pro',
-        type: 'string'
-      },
-      fontWeight: {
-        value: 700,
-        type: 'number'
-      },
-      fontStyle: {
-        value: 'normal',
-        type: 'string'
-      },
-      fontStretch: {
-        value: 'condensed',
-        type: 'string'
-      },
-      _fontStyleOld: {
-        value: 'Bold Condensed',
-        type: 'string'
-      },
-      letterSpacing: {
-        value: 2,
-        type: 'number',
-        unit: 'percent'
-      },
-      lineHeight: {
-        value: 160,
-        type: 'number',
-        unit: 'percent'
-      },
-      paragraphIndent: {
-        value: 5,
-        type: 'number',
-        unit: 'pixel'
-      },
-      paragraphSpacing: {
-        value: 8,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textCase: {
-        value: 'uppercase',
-        type: 'string'
-      }
-    },
-    'h4 strike through': {
-      category: 'font',
-      exportKey: 'font',
-      comment: 'With stylisitc options',
-      fontSize: {
-        value: 16,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textDecoration: {
-        value: 'line-through',
-        type: 'string'
-      },
-      fontFamily: {
-        value: 'Roboto',
-        type: 'string'
-      },
-      fontWeight: {
-        value: 500,
-        type: 'number'
-      },
-      fontStyle: {
-        value: 'italic',
-        type: 'string'
-      },
-      fontStretch: {
-        value: 'normal',
-        type: 'string'
-      },
-      _fontStyleOld: {
-        value: 'Medium Italic',
-        type: 'string'
-      },
-      letterSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'percent'
-      },
-      lineHeight: {
-        value: 'normal',
-        type: 'string',
-        unit: 'auto'
-      },
-      paragraphIndent: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      paragraphSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textCase: {
-        value: 'none',
-        type: 'string'
-      }
-    },
-    italic: {
-      category: 'font',
-      exportKey: 'font',
-      fontSize: {
-        value: 12,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textDecoration: {
-        value: 'none',
-        type: 'string'
-      },
-      fontFamily: {
-        value: 'Roboto',
-        type: 'string'
-      },
-      fontWeight: {
-        value: 400,
-        type: 'number'
-      },
-      fontStyle: {
-        value: 'italic',
-        type: 'string'
-      },
-      fontStretch: {
-        value: 'normal',
-        type: 'string'
-      },
-      _fontStyleOld: {
-        value: 'Italic',
-        type: 'string'
-      },
-      letterSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'percent'
-      },
-      lineHeight: {
-        value: 'normal',
-        type: 'string',
-        unit: 'auto'
-      },
-      paragraphIndent: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      paragraphSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textCase: {
-        value: 'none',
-        type: 'string'
-      }
-    },
-    'extra bold condensed italic': {
-      category: 'font',
-      exportKey: 'font',
-      fontSize: {
-        value: 12,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textDecoration: {
-        value: 'none',
-        type: 'string'
-      },
-      fontFamily: {
-        value: 'Akzidenz-Grotesk Pro',
-        type: 'string'
-      },
-      fontWeight: {
-        value: 800,
-        type: 'number'
-      },
-      fontStyle: {
-        value: 'italic',
-        type: 'string'
-      },
-      fontStretch: {
-        value: 'condensed',
-        type: 'string'
-      },
-      _fontStyleOld: {
-        value: 'Extra Bold Condensed Italic',
-        type: 'string'
-      },
-      letterSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'percent'
-      },
-      lineHeight: {
-        value: 'normal',
-        type: 'string',
-        unit: 'auto'
-      },
-      paragraphIndent: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      paragraphSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textCase: {
-        value: 'none',
-        type: 'string'
-      }
-    },
-    'medium extended italic': {
-      category: 'font',
-      exportKey: 'font',
-      fontSize: {
-        value: 20,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textDecoration: {
-        value: 'none',
-        type: 'string'
-      },
-      fontFamily: {
-        value: 'Akzidenz-Grotesk Pro',
-        type: 'string'
-      },
-      fontWeight: {
-        value: 500,
-        type: 'number'
-      },
-      fontStyle: {
-        value: 'italic',
-        type: 'string'
-      },
-      fontStretch: {
-        value: 'expanded',
-        type: 'string'
-      },
-      _fontStyleOld: {
-        value: 'Medium Extended Italic',
-        type: 'string'
-      },
-      letterSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'percent'
-      },
-      lineHeight: {
-        value: 'normal',
-        type: 'string',
-        unit: 'auto'
-      },
-      paragraphIndent: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      paragraphSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textCase: {
-        value: 'none',
-        type: 'string'
-      }
-    },
-    super: {
-      category: 'font',
-      exportKey: 'font',
-      fontSize: {
-        value: 22,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textDecoration: {
-        value: 'none',
-        type: 'string'
-      },
-      fontFamily: {
-        value: 'Akzidenz-Grotesk Pro',
-        type: 'string'
-      },
-      fontWeight: {
-        value: 900,
-        type: 'number'
-      },
-      fontStyle: {
-        value: 'normal',
-        type: 'string'
-      },
-      fontStretch: {
-        value: 'normal',
-        type: 'string'
-      },
-      _fontStyleOld: {
-        value: 'Super',
-        type: 'string'
-      },
-      letterSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'percent'
-      },
-      lineHeight: {
-        value: 'normal',
-        type: 'string',
-        unit: 'auto'
-      },
-      paragraphIndent: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      paragraphSpacing: {
-        value: 0,
-        type: 'number',
-        unit: 'pixel'
-      },
-      textCase: {
-        value: 'none',
-        type: 'string'
+  font: {
+    body: {
+      h3: {
+        category: 'font',
+        exportKey: 'font',
+        comment: 'Comment for text style',
+        fontSize: {
+          value: 20,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textDecoration: {
+          value: 'none',
+          type: 'string'
+        },
+        fontFamily: {
+          value: 'Akzidenz-Grotesk Pro',
+          type: 'string'
+        },
+        fontWeight: {
+          value: 700,
+          type: 'number'
+        },
+        fontStyle: {
+          value: 'normal',
+          type: 'string'
+        },
+        fontStretch: {
+          value: 'condensed',
+          type: 'string'
+        },
+        _fontStyleOld: {
+          value: 'Bold Condensed',
+          type: 'string'
+        },
+        letterSpacing: {
+          value: 2,
+          type: 'number',
+          unit: 'percent'
+        },
+        lineHeight: {
+          value: 160,
+          type: 'number',
+          unit: 'percent'
+        },
+        paragraphIndent: {
+          value: 5,
+          type: 'number',
+          unit: 'pixel'
+        },
+        paragraphSpacing: {
+          value: 8,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textCase: {
+          value: 'uppercase',
+          type: 'string'
+        }
+      },
+      'h4 strike through': {
+        category: 'font',
+        exportKey: 'font',
+        comment: 'With stylisitc options',
+        fontSize: {
+          value: 16,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textDecoration: {
+          value: 'line-through',
+          type: 'string'
+        },
+        fontFamily: {
+          value: 'Roboto',
+          type: 'string'
+        },
+        fontWeight: {
+          value: 500,
+          type: 'number'
+        },
+        fontStyle: {
+          value: 'italic',
+          type: 'string'
+        },
+        fontStretch: {
+          value: 'normal',
+          type: 'string'
+        },
+        _fontStyleOld: {
+          value: 'Medium Italic',
+          type: 'string'
+        },
+        letterSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'percent'
+        },
+        lineHeight: {
+          value: 'normal',
+          type: 'string',
+          unit: 'auto'
+        },
+        paragraphIndent: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        paragraphSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textCase: {
+          value: 'none',
+          type: 'string'
+        }
+      },
+      italic: {
+        category: 'font',
+        exportKey: 'font',
+        fontSize: {
+          value: 12,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textDecoration: {
+          value: 'none',
+          type: 'string'
+        },
+        fontFamily: {
+          value: 'Roboto',
+          type: 'string'
+        },
+        fontWeight: {
+          value: 400,
+          type: 'number'
+        },
+        fontStyle: {
+          value: 'italic',
+          type: 'string'
+        },
+        fontStretch: {
+          value: 'normal',
+          type: 'string'
+        },
+        _fontStyleOld: {
+          value: 'Italic',
+          type: 'string'
+        },
+        letterSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'percent'
+        },
+        lineHeight: {
+          value: 'normal',
+          type: 'string',
+          unit: 'auto'
+        },
+        paragraphIndent: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        paragraphSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textCase: {
+          value: 'none',
+          type: 'string'
+        }
+      },
+      'extra bold condensed italic': {
+        category: 'font',
+        exportKey: 'font',
+        fontSize: {
+          value: 12,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textDecoration: {
+          value: 'none',
+          type: 'string'
+        },
+        fontFamily: {
+          value: 'Akzidenz-Grotesk Pro',
+          type: 'string'
+        },
+        fontWeight: {
+          value: 800,
+          type: 'number'
+        },
+        fontStyle: {
+          value: 'italic',
+          type: 'string'
+        },
+        fontStretch: {
+          value: 'condensed',
+          type: 'string'
+        },
+        _fontStyleOld: {
+          value: 'Extra Bold Condensed Italic',
+          type: 'string'
+        },
+        letterSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'percent'
+        },
+        lineHeight: {
+          value: 'normal',
+          type: 'string',
+          unit: 'auto'
+        },
+        paragraphIndent: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        paragraphSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textCase: {
+          value: 'none',
+          type: 'string'
+        }
+      },
+      'medium extended italic': {
+        category: 'font',
+        exportKey: 'font',
+        fontSize: {
+          value: 20,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textDecoration: {
+          value: 'none',
+          type: 'string'
+        },
+        fontFamily: {
+          value: 'Akzidenz-Grotesk Pro',
+          type: 'string'
+        },
+        fontWeight: {
+          value: 500,
+          type: 'number'
+        },
+        fontStyle: {
+          value: 'italic',
+          type: 'string'
+        },
+        fontStretch: {
+          value: 'expanded',
+          type: 'string'
+        },
+        _fontStyleOld: {
+          value: 'Medium Extended Italic',
+          type: 'string'
+        },
+        letterSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'percent'
+        },
+        lineHeight: {
+          value: 'normal',
+          type: 'string',
+          unit: 'auto'
+        },
+        paragraphIndent: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        paragraphSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textCase: {
+          value: 'none',
+          type: 'string'
+        }
+      },
+      super: {
+        category: 'font',
+        exportKey: 'font',
+        fontSize: {
+          value: 22,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textDecoration: {
+          value: 'none',
+          type: 'string'
+        },
+        fontFamily: {
+          value: 'Akzidenz-Grotesk Pro',
+          type: 'string'
+        },
+        fontWeight: {
+          value: 900,
+          type: 'number'
+        },
+        fontStyle: {
+          value: 'normal',
+          type: 'string'
+        },
+        fontStretch: {
+          value: 'normal',
+          type: 'string'
+        },
+        _fontStyleOld: {
+          value: 'Super',
+          type: 'string'
+        },
+        letterSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'percent'
+        },
+        lineHeight: {
+          value: 'normal',
+          type: 'string',
+          unit: 'auto'
+        },
+        paragraphIndent: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        paragraphSpacing: {
+          value: 0,
+          type: 'number',
+          unit: 'pixel'
+        },
+        textCase: {
+          value: 'none',
+          type: 'string'
+        }
       }
     }
   },

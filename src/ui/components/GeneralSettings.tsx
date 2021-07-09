@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Checkbox, Select } from 'react-figma-plugin-ds'
+import { Button, Checkbox, Input, Label, Select, Text, Title } from 'react-figma-plugin-ds'
 import { CancelButton } from '@components/CancelButton'
 import { useContext } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
@@ -9,17 +9,34 @@ import { Footer } from '@components/Footer'
 import { nameConversionType, Settings } from '@typings/settings'
 import { Row } from '@components/Row'
 import { Info } from '@components/Info'
+import { Separator } from './Separator'
 
 const style = css`
   display: flex;
   flex-direction: column;
+  .grid-3-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
+
+const labelStyle = css`
+  width: 85px;
+`
+
+const textStyle = css`
+  padding: 0 var(--size-xxxsmall) 0 var(--size-xxsmall);
+  color: var(--dark-grey);
+  margin-top: 0;
+`
+
+const isStyle = (key: string): boolean => ['color', 'gradient', 'grid', 'effect', 'font'].includes(key)
 
 export const GeneralSettings = () => {
   const { figmaUIApi } = useContext(FigmaContext)
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
 
-  const settingsFormSubmitHandler = (event) => {
+  const handleFormSubmit = (event) => {
     const settingsForm = event.target
     if (settingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
@@ -39,40 +56,8 @@ export const GeneralSettings = () => {
   }
 
   return (
-    <form className={style} onSubmit={settingsFormSubmitHandler}>
-      <h3>Design Token Settings</h3>
-      <div className='input flex-horizontal'>
-        <div className='label'>Filename:</div>
-        <input
-          autoFocus required pattern='^[\w\-\.\+@]+$' type='text' id='filename' className='input__field with-inside-label-behind-sm' placeholder='design-tokens' value={settings.filename}
-          onChange={e => updateSettings((draft: Settings) => { draft.filename = e.target.value })}
-        />
-        <div className='label inside-label-behind--sm'>.json</div>
-      </div>
-      <div className='flex-horizontal'>
-        <div className='flex-half'>
-          <div className='label' data-style='width: 130px !important'>Name conversion</div>
-          <Select
-            defaultValue={settings.nameConversion}
-            onChange={({ value }) => updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })}
-            placeholder='Name conversion'
-            options={[
-              {
-                label: 'Default',
-                value: 'default'
-              },
-              {
-                label: 'camelCase',
-                value: 'camelCase'
-              },
-              {
-                label: 'kebab-case',
-                value: 'kebabCase'
-              }
-            ]}
-          />
-        </div>
-      </div>
+    <form className={style} onSubmit={(event) => handleFormSubmit(event)}>
+      <Title size='xlarge' weight='bold'>Design Token Settings</Title>
       <Row>
         <Checkbox
           label='Add token type to name of the token'
@@ -80,30 +65,68 @@ export const GeneralSettings = () => {
           checked={settings.keyInName}
           onChange={value => updateSettings(draft => { draft.keyInName = value })}
         />
-        <Info width={240} label='The token type (e.g. "colors" or "fonts") will be prepended to the tokens name' />
+        <Info width={240} label='The token type (e.g. "color" or "font") will be added to the name e.g. "color/light/bg".' />
       </Row>
-      <div className='section-title'>Prefix</div>
-      <div className='message-box'>
-        <div className='message message--info'>Define a prefix for styles to be in-/excluded.</div>
-      </div>
-      <div className='flex-horizontal'>
-        <div className='input flex-horizontal'>
-          <div className='label'>Prefix:</div>
-          <input
-            required pattern='\S+' type='text' id='prefix' className='input__field' placeholder='_' value={settings.prefix}
-            onChange={(e) => updateSettings(draft => { draft.prefix = e.target.value })}
-          />
-        </div>
-        <Checkbox
-          label={settings.excludePrefix ? 'Exclude (prefixed styles are excluded)' : 'Exclude (ONLY prefixed styles are included)'}
-          type='switch'
-          checked={settings.excludePrefix}
-          onChange={value => updateSettings(draft => { draft.excludePrefix = value })}
+      <Title size='small' weight='bold'>Name conversion</Title>
+      <Row fill>
+        <Select
+          defaultValue={settings.nameConversion}
+          onChange={({ value }) => updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })}
+          placeholder='Name conversion'
+          options={[
+            {
+              label: 'Default',
+              value: 'default'
+            },
+            {
+              label: 'camelCase',
+              value: 'camelCase'
+            },
+            {
+              label: 'kebab-case',
+              value: 'kebabCase'
+            }
+          ]}
         />
+      </Row>
+      <Title size='small' weight='bold'>Token prefixes <Info width={150} label='Use commas to separate multiple prefixed' /></Title>
+      <Text className={textStyle} size='small'>
+        Prefixes are the first part of a tokens name e.g. "radius" in "radius/small". They are used to identify the type of a custom token.
+      </Text>
+      <Row>
+        <Checkbox
+          label='Include token prefix in token names'
+          type='switch'
+          checked={settings.prefixInName}
+          onChange={(value) => updateSettings(draft => { draft.prefixInName = value })}
+        />
+        <Info width={240} label='When disabled the prefix is removed ("radius/small" → "small"), when enabled it is added ("radius/small" → "radius/small").' />
+      </Row>
+      <Separator />
+      <div className='grid-3-col'>
+        {Object.entries(settings.prefix).map(([key, currentValue]) =>
+          <Row fill key={key}>
+            <Label
+              className={`${labelStyle} flex-grow--none`}
+              size='small'
+            >{key}
+              {isStyle(key) ? <Info width={90} label='Prefix for style' /> : ''}
+            </Label>
+            <Input
+              type='text'
+              // eslint-disable-next-line
+              pattern={isStyle(key) ? '^[\\w\\-@]+$' : '^[\\w\\-@,\\s]+$'}
+              required
+              placeholder='Color'
+              value={currentValue}
+              onChange={value => updateSettings((draft: Settings) => { draft.prefix[key] = value })}
+            />
+          </Row>
+        )}
       </div>
       <Footer>
         <CancelButton />
-        <Button>Save changes</Button>
+        <Button type='button' onClick={handleFormSubmit} autofocus>Save changes</Button>
       </Footer>
     </form>
   )

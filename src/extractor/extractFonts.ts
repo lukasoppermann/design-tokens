@@ -68,10 +68,10 @@ const parseFontStyle = (fontStyle: string): FontStyle => {
   return fontStyles[part] || 'normal' as FontStyle
 }
 
-const extractFonts: extractorInterface = (tokenNodes: TextStyle[]): fontPropertyInterface[] => {
+const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: string[]): fontPropertyInterface[] => {
   // get raw text styles
   return tokenNodes.map(node => ({
-    name: node.name,
+    name: `${prefixArray[0]}/${node.name}`,
     category: 'font',
     exportKey: tokenTypes.font.key,
     description: node.description || undefined,

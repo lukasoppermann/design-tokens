@@ -1,28 +1,31 @@
-import { propertyObject } from '@typings/propertyObject'
-import { propertyCategory } from '@typings/propertyCategory'
-import { StyleDictionaryPropertyGroup, StyleDictionaryPropertyObject } from '@typings/styleDictionaryProperties'
+import { internalTokenInterface, tokenCategoryTypes } from '@typings/propertyObject'
+import { StyleDictionaryTokenInterface } from '@typings/styleDictionaryProperties'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
-import getDescription from './utilities/getDescription'
 
-const styleDictionaryConvertValue = (value, type: string) => {
-  if (value === undefined || value === null) {
-    return
+const sizeValueTransformer = ({ width }) => ({
+  value: width.value,
+  type: width.type,
+  ...(width.unit !== undefined && { unit: width.unit })
+})
+
+const convertValue = (value, type) => {
+  if (value !== undefined && value !== null) {
+    if (type === 'color') {
+      return convertRgbaObjectToString(value)
+    }
+    return value
   }
-  if (type === 'color') {
-    return convertRgbaObjectToString(value)
-  }
-  return value
 }
 
-const styleDictionaryFormat = (property): StyleDictionaryPropertyObject => ({
-  value: styleDictionaryConvertValue(property.value, property.type),
+const styleDictionaryFormat = (property) => ({
+  value: convertValue(property.value, property.type),
   type: property.type,
   // optional properties
   ...(property.description !== undefined && { comment: property.description }),
   ...(property.unit !== undefined && { unit: property.unit })
 })
 
-const defaultTransformer = propertyGroupValues => {
+const defaultValueTransformer = propertyGroupValues => {
   // turn array with only one item into normal object
   if (Array.isArray(propertyGroupValues) && propertyGroupValues.length === 1) {
     propertyGroupValues = propertyGroupValues[0]
@@ -37,7 +40,7 @@ const defaultTransformer = propertyGroupValues => {
     }
     // if there is more nesting
     else {
-      transformedProperties[key] = defaultTransformer(propertyGroupValues[key])
+      transformedProperties[key] = defaultValueTransformer(propertyGroupValues[key])
     }
   })
   // if only one property is in object (e.g. only fill for color)
@@ -49,47 +52,28 @@ const defaultTransformer = propertyGroupValues => {
   return transformedProperties
 }
 
-const sizeTransformer = propertyGroupValues => {
-  return styleDictionaryFormat(propertyGroupValues.width)
+const valueTransformer: {} | undefined = {
+  size: sizeValueTransformer,
+  color: defaultValueTransformer,
+  gradient: defaultValueTransformer,
+  font: defaultValueTransformer,
+  effect: defaultValueTransformer,
+  grid: defaultValueTransformer,
+  border: defaultValueTransformer,
+  breakpoint: defaultValueTransformer,
+  radius: defaultValueTransformer,
+  spacing: defaultValueTransformer,
+  motion: defaultValueTransformer
 }
 
-const categoryTransformer = {
-  default: defaultTransformer,
-  font: defaultTransformer,
-  border: defaultTransformer,
-  size: sizeTransformer,
-  grid: defaultTransformer,
-  effect: defaultTransformer,
-  radius: defaultTransformer,
-  fill: defaultTransformer
-}
-
-const propertyTransformer = (propertyGroup: propertyObject, category: propertyCategory): {
-  [key: string]: any
-} => {
-  // if custom transformer is defined
-  if (Object.prototype.hasOwnProperty.call(categoryTransformer, propertyGroup.category)) {
-    return categoryTransformer[propertyGroup.category](propertyGroup.values)
-  }
-  // otherwise return with default transformer
-  return defaultTransformer(propertyGroup.values)
-}
-
-const styleDictionaryTransformer = (propertyGroup: propertyObject): StyleDictionaryPropertyGroup => {
-  // transform to amazon style Dictionary structure
-  const transformedProperties = propertyTransformer(propertyGroup, propertyGroup.category as propertyCategory)
-  // return values
+const transformer = (token: internalTokenInterface): StyleDictionaryTokenInterface => {
   return {
-    name: propertyGroup.name,
-    category: propertyGroup.category,
-    exportKey: propertyGroup.exportKey,
-    ...getDescription(propertyGroup.description),
-    ...transformedProperties
+    name: token.name,
+    category: token.category,
+    exportKey: token.exportKey,
+    ...(token.description && token.description.length > 0 && { comment: token.description }),
+    ...(valueTransformer[token.category as tokenCategoryTypes](token.values) || {})
   }
 }
 
-export default styleDictionaryTransformer
-export const __testing = {
-  styleDictionaryConvertValue: styleDictionaryConvertValue,
-  sizeTransformer: sizeTransformer
-}
+export { transformer }

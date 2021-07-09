@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useContext, useRef } from 'react'
-import { Button, Checkbox, Title } from 'react-figma-plugin-ds'
+import { Button, Checkbox, Input, Select, Title } from 'react-figma-plugin-ds'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 import { CancelButton } from './CancelButton'
 import { css } from '@emotion/css'
@@ -20,6 +20,9 @@ const style = css`
   .grid-3-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+  .no-flex-grow {
+    flex-grow: 0;
   }
 `
 
@@ -64,7 +67,28 @@ export const FileExportSettings = () => {
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
-      <Title size='large' weight='bold'>Include type in export</Title>
+      <h3>Filename</h3>
+      <Row fill>
+        <Input
+          type='text'
+          pattern='^[\w\-\.\+@]+$'
+          placeholder='design-tokens'
+          value={settings.filename}
+          onChange={value => updateSettings((draft: Settings) => { draft.filename = value })}
+        />
+        <Select
+          defaultValue={settings.extension}
+          onChange={({ value }) => updateSettings((draft: Settings) => { draft.extension = value as string })}
+          placeholder='file extension'
+          options={[
+            {
+              label: '.json',
+              value: '.json'
+            }
+          ]}
+        />
+      </Row>
+      <Title size='large' weight='bold'>Include types in export</Title>
       <div className='grid-3-col'>
         {Object.entries(tokenTypes).map(([, { key, label }]) =>
           <Checkbox
@@ -76,7 +100,7 @@ export const FileExportSettings = () => {
       </div>
       <Footer>
         <CancelButton />
-        <Button autofocus>Save & Export</Button>
+        <Button type='button' onClick={handleFormSubmit} autofocus>Save & Export</Button>
       </Footer>
       <a
         ref={downloadLinkRef}

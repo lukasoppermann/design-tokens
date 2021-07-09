@@ -1,8 +1,12 @@
 /* istanbul ignore file */
 export const tokenTypes = {
   color: {
-    label: 'Colors & Gradients',
+    label: 'Colors',
     key: 'color'
+  },
+  gradient: {
+    label: 'Gradients',
+    key: 'gradient'
   },
   font: {
     label: 'Fonts',

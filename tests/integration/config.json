@@ -2,7 +2,7 @@
   "source": ["./tests/files/*.json"],
   "platforms": {
     "css": {
-      "transformGroup": "css",
+      "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "content/icon", "size/px", "color/css"],
       "buildPath": "./tests/integration/data/",
       "files": [
         {

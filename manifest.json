@@ -10,6 +10,9 @@
     {"separator": true},
     {"name": "Settings", "command": "generalSettings"},
     {"separator": true},
-    {"name": "Help", "command": "help"}
+    {"name": "Help", "command": "help"},
+    {"name": "Demo file", "command": "demo"},
+    {"separator": true},
+    {"name": "Reset Settings", "command": "reset"}
   ]
 }

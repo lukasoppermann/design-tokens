@@ -12,6 +12,9 @@ const gradientType = {
   GRADIENT_ANGULAR: 'angular',
   GRADIENT_DIAMOND: 'diamond'
 }
+
+const isGradient = (paint): boolean => ['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint.type)
+
 const extractFills = (paint): fillValuesType | gradientValuesType => {
   if (paint.type === 'SOLID') {
     return {
@@ -48,7 +51,7 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
   return null
 }
 
-const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[]): colorPropertyInterface[] => {
+const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: {color: string[], gradient: string[]}): colorPropertyInterface[] => {
   // get all paint styles
   return tokenNodes
   // remove images fills from tokens
@@ -60,9 +63,9 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[]): colo
     .filter(node => node.paints.length > 0)
     // transform style
     .map(node => ({
-      name: node.name,
-      category: 'fill',
-      exportKey: tokenTypes.color.key,
+      name: `${isGradient(node.paints[0]) ? prefixArray.gradient[0] : prefixArray.color[0]}/${node.name}`,
+      category: isGradient(node.paints[0]) ? 'gradient' : 'color',
+      exportKey: isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key,
       description: node.description || null,
       values: node.paints.map(paint => extractFills(paint))
     }))

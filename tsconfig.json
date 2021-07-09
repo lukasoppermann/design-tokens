@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "lib": ["dom", "es2020"],
+    "lib": ["dom", "es2020", "dom.iterable"],
     "target": "es6",
     "moduleResolution": "node",
     "typeRoots": [

@@ -1,19 +1,17 @@
-import { getSettings, setSettings } from './utilities/settings'
+import { getSettings, resetSettings, setSettings } from './utilities/settings'
 import { getAccessToken, setAccessToken } from './utilities/accessToken'
-// import { urlExportData } from '@typings/urlExportData'
-import { getJsonString } from './utilities/getJson'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
 import { commands, PluginCommands } from '@config/commands'
 import getVersionDifference from './utilities/getVersionDifference'
 import getFileId from './utilities/getFileId'
 import { PluginMessage } from '../types/pluginEvent'
+import { exportRawTokenArray } from './utilities/getTokenJson'
+import { stringifyJson } from './utilities/stringifyJson'
 
 // initiate UI
 figma.showUI(__html__, {
-  visible: false,
-  width: config.settingsDialog.width,
-  height: config.settingsDialog.height
+  visible: false
 })
 // Get the user settings
 const userSettings: UserSettings = getSettings()
@@ -25,8 +23,9 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
     // get the current version differences to the last time the plugin was opened
     const versionDifference = await getVersionDifference(figma)
     // resize UI if needed
+    figma.ui.resize(config.ui[figma.command].width, config.ui[figma.command].height)
     if (versionDifference !== undefined && versionDifference !== 'patch') {
-      figma.ui.resize(config.settingsDialog.width, config.settingsDialog.height + 60)
+      figma.ui.resize(config.ui[figma.command].width, config.ui[figma.command].height + 60)
     }
     // write tokens to json file
     figma.ui.postMessage({
@@ -36,7 +35,7 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
           ...userSettings,
           ...{ accessToken: await getAccessToken(getFileId(figma)) }
         },
-        data: getJsonString(figma, userSettings),
+        data: stringifyJson(exportRawTokenArray(figma, userSettings)),
         versionDifference: versionDifference,
         metadata: {
           filename: figma.root.name
@@ -57,6 +56,23 @@ if (figma.command === commands.help) {
   figma.ui.postMessage({
     command: commands.help
   } as PluginMessage)
+}
+/**
+ * Open Demo File
+ */
+if (figma.command === commands.demo) {
+  figma.ui.postMessage({
+    command: commands.demo
+  } as PluginMessage)
+}
+/**
+ * Open Demo File
+ */
+if (figma.command === commands.reset) {
+  resetSettings()
+  // semd message
+  figma.notify('⚙️ Settings have been reset.')
+  figma.closePlugin()
 }
 
 /**

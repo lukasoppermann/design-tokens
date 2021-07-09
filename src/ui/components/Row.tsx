@@ -6,6 +6,9 @@ const style = css`
   &.fill > * {
     flex-grow: 1;
   }
+  &.fill > .flex-grow--none {
+    flex-grow: 0;
+  }
 `
 
 type RowProps = {

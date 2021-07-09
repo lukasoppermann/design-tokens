@@ -4,11 +4,11 @@ import { customTokenNode } from '@typings/tokenNodeTypes'
 import { UnitTypePixel, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
+import { filterByPrefix } from './extractUtilities'
 
-const extractSpacing: extractorInterface = (tokenNodes: customTokenNode[]): spacingPropertyInterface[] => {
-  const nodeName = 'spacing'
+const extractSpacing: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): spacingPropertyInterface[] => {
   // return as object
-  return tokenNodes.filter(node => node.name.substr(0, nodeName.length) === nodeName)
+  return tokenNodes.filter(filterByPrefix(prefixArray))
     .map(node => ({
       name: node.name,
       category: 'spacing',

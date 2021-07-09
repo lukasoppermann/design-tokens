@@ -1,8 +1,9 @@
-import { groupByName } from '../../src/utilities/groupByName'
+import { groupByKeyAndName } from '../../src/utilities/groupByName'
+import { defaultSettings } from '../../src/config/defaultSettings'
 
 describe('groupByName', () => {
   test('group tokens with name', () => {
-    expect(groupByName([
+    expect(groupByKeyAndName([
       // @ts-ignore
       {
         name: 'token/one/first',
@@ -28,17 +29,14 @@ describe('groupByName', () => {
       token: {
         one: {
           first: {
-            name: 'token/one/first',
             values: { token: 'one first' }
           },
           second: {
-            name: 'token/one / second',
             values: { token: 'one second' }
           }
         },
         two: {
           first: {
-            name: 'token/two /first',
             values: { token: 'two first' }
           }
         }
@@ -46,7 +44,7 @@ describe('groupByName', () => {
     })
   })
   test('group tokens deep', () => {
-    expect(groupByName([
+    expect(groupByKeyAndName([
       {
         name: 'token/one/first',
         exportKey: 'color',
@@ -67,11 +65,10 @@ describe('groupByName', () => {
           }
         }
       }
-    ], false)).toStrictEqual({
+    ], defaultSettings)).toStrictEqual({
       token: {
         one: {
           first: {
-            name: 'token/one/first',
             exportKey: 'color',
             values: {
               token: 'one second',
@@ -86,7 +83,7 @@ describe('groupByName', () => {
   })
 
   test('group tokens & remove name', () => {
-    expect(groupByName([
+    expect(groupByKeyAndName([
       {
         name: 'token/one/first',
         exportKey: 'color',
@@ -108,7 +105,7 @@ describe('groupByName', () => {
           token: 'two first'
         }
       }
-    ])).toStrictEqual({
+    ], defaultSettings)).toStrictEqual({
       token: {
         one: {
           first: {
@@ -131,6 +128,6 @@ describe('groupByName', () => {
   })
 
   test('no tokens', () => {
-    expect(groupByName([])).toStrictEqual([])
+    expect(groupByKeyAndName([], defaultSettings)).toStrictEqual([])
   })
 })

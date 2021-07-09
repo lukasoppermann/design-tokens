@@ -4,12 +4,12 @@ jest.mock('../../src/utilities/getTokenNodes', () => jest.fn())
 
 const defaultOutput = {
   effectStyles: [{
-    name: "EffectStyle",
+    name: 'EffectStyle',
     description: undefined,
     effects: undefined
   }],
   textStyles: [{
-    name: "TextStyle",
+    name: 'TextStyle',
     description: undefined,
     fontName: undefined,
     fontSize: undefined,
@@ -21,12 +21,12 @@ const defaultOutput = {
     textDecoration: undefined
   }],
   gridStyles: [{
-    name: "GridStyle",
+    name: 'GridStyle',
     description: undefined,
     layoutGrids: undefined
   }],
   paintStyles: [{
-    name: "PaintStyle",
+    name: 'PaintStyle',
     description: undefined,
     paints: undefined
   }],
@@ -81,18 +81,8 @@ beforeAll(() => {
   getTokenNodes.mockImplementation(() => ['token'])
 })
 
-describe("Testing buildFigmaData", () => {
-  test("with options", () => {
-    // options
-    const options = {
-      prefix: '_',
-      excludePrefix: true
-    }
-    // assert
-    // @ts-ignore
-    expect(buildFigmaData(global.figma, options)).toStrictEqual(defaultOutput)
-  })
-  test("without options", () => {
+describe('Testing buildFigmaData', () => {
+  test('without options', () => {
     // assert
     // @ts-ignore
     expect(buildFigmaData(global.figma)).toStrictEqual(defaultOutput)
