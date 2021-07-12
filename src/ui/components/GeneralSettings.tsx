@@ -89,6 +89,16 @@ export const GeneralSettings = () => {
           ]}
         />
       </Row>
+      <Title size='small' weight='bold'>Exclusion prefix <Info width={240} label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)' /></Title>
+      <Row fill>
+        <Input
+          type='text'
+          pattern='^[#\+*\\/&%$!?;:~,\s]+$'
+          placeholder='#, @'
+          value={settings.exclusionPrefix}
+          onChange={value => updateSettings((draft: Settings) => { draft.exclusionPrefix = value })}
+        />
+      </Row>
       <Title size='small' weight='bold'>Token prefixes <Info width={150} label='Use commas to separate multiple prefixed' /></Title>
       <Text className={textStyle} size='small'>
         Prefixes are the first part of a tokens name e.g. "radius" in "radius/small". They are used to identify the type of a custom token.

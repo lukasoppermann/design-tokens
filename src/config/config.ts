@@ -19,5 +19,5 @@ export default {
     fileId: 'fileId',
     settings: 'settings'
   },
-  excludePrefix: ['_', '.']
+  exclusionPrefixDefault: ['_', '.']
 }

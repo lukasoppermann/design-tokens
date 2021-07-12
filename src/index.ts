@@ -13,13 +13,13 @@ import { stringifyJson } from './utilities/stringifyJson'
 figma.showUI(__html__, {
   visible: false
 })
-// Get the user settings
-const userSettings: UserSettings = getSettings()
 // ---------------------------------
 // open UI
 if ([commands.export, commands.urlExport, commands.generalSettings].includes(figma.command as PluginCommands)) {
   // wrap in function because of async client Storage
   const openUi = async () => {
+    // Get the user settings
+    const userSettings: UserSettings = getSettings()
     // get the current version differences to the last time the plugin was opened
     const versionDifference = await getVersionDifference(figma)
     // resize UI if needed

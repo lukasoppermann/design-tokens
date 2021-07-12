@@ -5,6 +5,13 @@ type objectWithNameProperty = {
   [key: string]: any
 }
 
-const filterByPropertyName = (object: objectWithNameProperty) => !config.excludePrefix.includes(object.name.trim().substr(0, 1))
+const exclusionPrefix = (exclusionPrefixStrings: string[]): string[] => {
+  return [
+    ...config.exclusionPrefixDefault,
+    ...exclusionPrefixStrings
+  ]
+}
+
+const filterByPropertyName = (object: objectWithNameProperty, exclusionPrefixStrings: string[]) => !exclusionPrefix(exclusionPrefixStrings).includes(object.name.trim().substr(0, 1))
 
 export default filterByPropertyName

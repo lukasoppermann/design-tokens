@@ -1,3 +1,4 @@
+import { defaultSettings } from '../../src/config/defaultSettings'
 import buildFigmaData from '../../src/utilities/buildFigmaData'
 import getTokenNodes from '../../src/utilities/getTokenNodes'
 jest.mock('../../src/utilities/getTokenNodes', () => jest.fn())
@@ -85,6 +86,6 @@ describe('Testing buildFigmaData', () => {
   test('without options', () => {
     // assert
     // @ts-ignore
-    expect(buildFigmaData(global.figma)).toStrictEqual(defaultOutput)
+    expect(buildFigmaData(global.figma, defaultSettings)).toStrictEqual(defaultOutput)
   })
 })
