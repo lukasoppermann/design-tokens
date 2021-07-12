@@ -43,6 +43,13 @@ This triggers a request sending your tokens to a server. For this to work you mu
 ### `Design Tokens > Settings`
 Opens the settings view, which allows you to change all settings mentioned in the [settings](#settings) section below.
 
+### `Design Tokens > Reset Settings`
+Resets all your settings to the default. This is helpful when you run into problems with corrupted settings (Plugin does not work as expected).
+
+### `Design Tokens > Demo File`
+Opens the [demo figma file](https://www.figma.com/file/2MQ759R5kJtzQn4qSHuqR7/Design-Tokens-for-Figma?node-id=231%3A2).
+Note: You will not have permission to change or export tokens from this file but it will give you an idea of how to set up tokens.
+
 ### `Design Tokens > Help`
 Opens this documentation page.
 
