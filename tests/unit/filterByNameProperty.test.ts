@@ -21,7 +21,7 @@ describe('getTokenStyles', () => {
         name: '.invalid',
         description: ''
       }
-    ].filter(filterByNameProperty)).toStrictEqual([
+    ].filter(item => filterByNameProperty(item, ['*']))).toStrictEqual([
       {
         id: 'valid',
         type: 'PAINT',

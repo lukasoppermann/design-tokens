@@ -26,6 +26,7 @@ const baseSettings = {
   accessToken: 'test',
   acceptHeader: 'baseHeader',
   authType: 'baseAuthType',
+  exclusionPrefix: '',
   keyInName: false,
   prefixInName: true,
   prefix: {
