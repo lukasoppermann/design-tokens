@@ -13,6 +13,7 @@ export type Settings = {
   eventType: string,
   accessToken?: string,
   acceptHeader?: string,
+  exclusionPrefix: string,
   authType: string,
   keyInName: boolean,
   prefixInName: boolean,
