@@ -22,6 +22,7 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
     - [Motion token](#motion)
   - [Available properties](#available-properties)
 - [Settings](#settings)
+  - [File Export Settings](#file-export-settings)  
   - [Push tokens to Github / Server](#push-to-server)
 - [Roadmap & PRs](#roadmap--prs)
 
@@ -256,7 +257,14 @@ The toggle allows you to switch from `exclude` to `include` mode. This means tha
 
 **Note:** This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
 
-### Push to Server
+## File Export Settings
+
+![Design Tokens plugin file export settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/File-Export-Settings.png)
+
+## Push to Server
+
+![Design Tokens plugin url export settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Url-Export-Settings.png)
+
 When a `server url` is specified, the command `Send Design Tokens to Url` will send a `POST` request to the provided url.
 The body of the request will look like the following:
 ```ts
