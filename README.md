@@ -244,12 +244,7 @@ This option allows you to define how the token names will be converted when they
 - `camelCase` - spaces from the beginning and end are removed and the name is converted to [camelCase](https://en.wikipedia.org/wiki/Camel_case)
 - `kebab-case`  - spaces from the beginning and end are removed and the name is converted to kebab-case
 
-### Compression for json output file
-**Does not apply to the json send to the server (always compressed).**
-
-This option allows you to toggle the file compression. When enabled the json file will be minified meaning whitespace and linebreaks will be removed.
-
-### Prefix (used to in-/exclude styles)
+### Exclude Prefix
 #### **Prefix**
 You can change the prefix from `_` to anything, e.g. `_tokens`.   
 #### **Exclude**
@@ -261,9 +256,28 @@ The toggle allows you to switch from `exclude` to `include` mode. This means tha
 
 ![Design Tokens plugin file export settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/File-Export-Settings.png)
 
+### Compression for json output file
+This option allows you to toggle the json compression for file export.
+When enabled the json file will be minified meaning whitespace and linebreaks will be removed.
+
+### Filename
+You can define the default filename that will be used when exporting the tokens to a json file.
+
+### Selective export
+You can choose which types of tokens to export to a file. 
+This can be helpful when debugging your tokens.
+
+By default all types are selected and thus all tokens will be exported.
+
+If you which to ignore specific styles, use the [exclude prefix](https://github.com/lukasoppermann/design-tokens/blob/main/README.md#exclude-prefix).
+
 ## Push to Server
 
 ![Design Tokens plugin url export settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Url-Export-Settings.png)
+
+### Compression for json output to server
+This option allows you to toggle the json compression for the export to a server.
+When enabled the json that is end to the server will be minified meaning whitespace and linebreaks will be removed.
 
 When a `server url` is specified, the command `Send Design Tokens to Url` will send a `POST` request to the provided url.
 The body of the request will look like the following:
