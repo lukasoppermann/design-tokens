@@ -244,11 +244,10 @@ This option allows you to define how the token names will be converted when they
 - `camelCase` - spaces from the beginning and end are removed and the name is converted to [camelCase](https://en.wikipedia.org/wiki/Camel_case)
 - `kebab-case`  - spaces from the beginning and end are removed and the name is converted to kebab-case
 
-### Exclude Prefix
-#### **Prefix**
-You can change the prefix from `_` to anything, e.g. `_tokens`.   
-#### **Exclude**
-The toggle allows you to switch from `exclude` to `include` mode. This means that only prefixed styles will be exported. For example if you only wanted to export styles that are named `_tokens/...`.
+### Exclusion Prefix
+
+By default the plugin ignores any style that is prefixed with `_` or `.`. 
+You can define any additional prefix via this option, e.g `*`. This can be helpful when you want to have styles that are shared across files in figma, but that should not be exported to your design tokens.
 
 **Note:** This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
 
@@ -266,7 +265,6 @@ You can define the default filename that will be used when exporting the tokens 
 ### Selective export
 You can choose which types of tokens to export to a file. 
 This can be helpful when debugging your tokens.
-
 By default all types are selected and thus all tokens will be exported.
 
 If you which to ignore specific styles, use the [exclude prefix](https://github.com/lukasoppermann/design-tokens/blob/main/README.md#exclude-prefix).
