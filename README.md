@@ -233,9 +233,8 @@ To allow for maximum customizability I decided to provide all values that Figma 
 
 ![Design Tokens plugin settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/settings.png)
 
-### Filename
-This allows you to define the file name that is used when exporting tokens. The `.json` extension will be automatically appended to the name.
-The filename will also be send to the server when sending design tokens to the server.
+### Add token type to name
+When enabled, token names will be prefixed with the token type e.g. "color" or "font". This effectifly groups tokens by type. 
 
 ### Name Conversion
 This option allows you to define how the token names will be converted when they are store in the json file, the available options are:
