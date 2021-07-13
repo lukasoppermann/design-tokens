@@ -250,6 +250,34 @@ You can define any additional prefix via this option, e.g `*`. This can be helpf
 
 **Note:** This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
 
+### Token Prefixes
+
+#### Include token prefixes in token name
+When enabled this option keeps the token prefix in the name, e.g. for `color/red` the token prefix is `color` and the token name is `red`.
+
+**For styles:** Styles do not have a prefix so when enabled the plugin will add the prefix to the token name.
+
+- *Color style:* `red` -> `color/red`
+- *Gradient style:* `black to white` -> `gradient/black to white`
+- *Font style:* `h1` -> `font/h1`
+- *Grid style:* `mobile` -> `grid/mobile`
+- *Color style:* `shadow 4dp` -> `effect/shadow 4dp`
+
+**For custom tokens:** Custom tokens use the prefix to identify the token e.g. `radius/5px`, the prefix `radius` is used by the plugin to indetify the token type. This means the name already includes the prefix and nothing will be added. However it this option is disabled the prefix will be removed.
+
+layer name | option enabled | option disabled
+---|---|---
+`radius/5px` | `radius/5px` | `5px`
+`size/8px` | `size/8px` | `8px`
+`breakpoint/md` | `breakpoint/md` | `md`
+
+#### Token prefixes names
+This option allows you to define custom prefixes for the tokens.
+
+**For styles:** You can only define one prefix which will be added if the `Include token prefixes in token name` is enabled.
+
+**For custom tokens:** You can add multiple prefixes in a comma separated list e.g. `radii,radius`. If `Include token prefixes in token name` is enabled whichever prefix is used in the name of a token will be kept if you have `radius/5px` and `radii/sm` you will also get `radius/5px` and `radii/sm` in the json output.
+ 
 ## File Export Settings
 
 ![Design Tokens plugin file export settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/File-Export-Settings.png)
