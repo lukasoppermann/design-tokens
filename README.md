@@ -309,7 +309,6 @@ The body of the request will look like the following:
 ```ts
   "event_type": "update-tokens", // or any string you defined
   "client_payload": { 
-    "tokenFileName": "design-tokens.json", // this is the filename you define above
     "tokens": "{...}", // the stringified json object holding all your desing tokens
     "filename": "Design Tokens" // the Figma file name from which the tokens were exported
   }
