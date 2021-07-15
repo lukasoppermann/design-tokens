@@ -250,7 +250,7 @@ You can define any additional prefix via this option, e.g `*`. This can be helpf
 
 **Notes:** 
 1. This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
-2. The prefix has to be in the beginning of the token name, e.g. ".My Colors/Internal/Red" will be ignored, while "My Colors/.Internal/Red" will be exported.
+2. The prefix has to be in the beginning of the token name, e.g. `.My Colors/Internal/Red` will be ignored, while `My Colors/.Internal/Red` will be exported.
 
 ### Token Prefixes
 
