@@ -248,7 +248,9 @@ This option allows you to define how the token names will be converted when they
 By default the plugin ignores any style that is prefixed with `_` or `.`. 
 You can define any additional prefix via this option, e.g `*`. This can be helpful when you want to have styles that are shared across files in figma, but that should not be exported to your design tokens.
 
-**Note:** This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
+**Notes:** 
+1. This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
+2. The prefix has to be in the beginning of the token name, e.g. ".My Colors/Internal/Red" will be ignored, while "My Colors/.Internal/Red" will be exported.
 
 ### Token Prefixes
 
