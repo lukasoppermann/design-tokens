@@ -158,6 +158,6 @@ describe('exportRawTokenArray', () => {
       }
     ]
     // @ts-ignore
-    expect(exportRawTokenArray('', defaultSettings)).toStrictEqual(output)
+    expect(exportRawTokenArray('', { ...defaultSettings, ...{ exclusionPrefix: '*' } })).toStrictEqual(output)
   })
 })

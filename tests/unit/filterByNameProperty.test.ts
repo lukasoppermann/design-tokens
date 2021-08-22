@@ -1,7 +1,7 @@
 import filterByNameProperty from '../../src/utilities/filterByNameProperty'
 
 describe('getTokenStyles', () => {
-  test('exclude _ prefix', () => {
+  test('exclude _ . and * prefix', () => {
     expect([
       {
         id: 'valid',
@@ -19,6 +19,12 @@ describe('getTokenStyles', () => {
         id: 'invalid',
         type: 'PAINT',
         name: '.invalid',
+        description: ''
+      },
+      {
+        id: 'invalid',
+        type: 'PAINT',
+        name: '*invalid',
         description: ''
       }
     ].filter(item => filterByNameProperty(item, ['*']))).toStrictEqual([

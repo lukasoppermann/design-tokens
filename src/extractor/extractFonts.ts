@@ -113,7 +113,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: 
       lineHeight: {
         // @ts-ignore
         value: roundWithDecimals(node.lineHeight.value) || 'normal',
-        unit: node.lineHeight.unit.toLowerCase(),
+        unit: node.lineHeight.unit.toLowerCase() === 'pixels' ? 'pixel' : node.lineHeight.unit.toLowerCase(),
         type: (Object.prototype.hasOwnProperty.call(node.lineHeight, 'value') ? 'number' : 'string') as PropertyType
       },
       paragraphIndent: {
