@@ -19,5 +19,19 @@ export default {
     fileId: 'fileId',
     settings: 'settings'
   },
-  exclusionPrefixDefault: ['_', '.']
+  exclusionPrefixDefault: ['_', '.'],
+  fileExtensions: [
+    {
+      label: '.tokens.json',
+      value: '.tokens.json'
+    },
+    {
+      label: '.tokens',
+      value: '.tokens'
+    },
+    {
+      label: '.json',
+      value: '.json'
+    }
+  ]
 }

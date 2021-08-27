@@ -17,7 +17,7 @@ export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
   }
   // try to export tokens
   try {
-    link.href = `data:text/json;charset=utf-8,${encodeURIComponent(json)}`
+    link.href = `data:application/design-tokens+json;charset=utf-8,${encodeURIComponent(json)}`
     // Programmatically trigger a click on the anchor element
     link.click()
     // send success messgae

@@ -13,6 +13,7 @@ import { Info } from '@components/Info'
 import { Row } from '@components/Row'
 import { tokenTypes } from '@config/tokenTypes'
 import { commands } from '@config/commands'
+import config from '@config/config'
 
 const style = css`
   display: flex;
@@ -80,12 +81,7 @@ export const FileExportSettings = () => {
           defaultValue={settings.extension}
           onChange={({ value }) => updateSettings((draft: Settings) => { draft.extension = value as string })}
           placeholder='file extension'
-          options={[
-            {
-              label: '.json',
-              value: '.json'
-            }
-          ]}
+          options={config.fileExtensions}
         />
       </Row>
       <Title size='large' weight='bold'>Include types in export</Title>

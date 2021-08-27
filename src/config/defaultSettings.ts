@@ -3,7 +3,7 @@ import { Settings } from '@typings/settings'
 
 export const defaultSettings: Settings = {
   filename: 'design-tokens',
-  extension: '.json',
+  extension: '.tokens.json',
   nameConversion: 'default',
   compression: false,
   urlJsonCompression: true,
