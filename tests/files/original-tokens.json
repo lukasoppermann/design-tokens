@@ -234,7 +234,7 @@
         "type": "string"
       },
       "dashPattern": {
-        "value": "5,5,3,3",
+        "value": "5, 5, 3, 3",
         "type": "string"
       },
       "strokeCap": {
@@ -303,7 +303,7 @@
           "type": "string"
         },
         "dashPattern": {
-          "value": "5,10",
+          "value": "5, 10",
           "type": "string"
         },
         "strokeCap": {
@@ -460,6 +460,10 @@
         "type": "number",
         "unit": "s"
       },
+      "direction": {
+        "value": "left",
+        "type": "string"
+      },
       "easing": {
         "value": "ease-in",
         "type": "string"
@@ -481,10 +485,6 @@
           "value": 1,
           "type": "number"
         }
-      },
-      "direction": {
-        "value": "left",
-        "type": "string"
       }
     },
     "dissolve": {
@@ -569,6 +569,10 @@
         "type": "number",
         "unit": "s"
       },
+      "direction": {
+        "value": "left",
+        "type": "string"
+      },
       "easing": {
         "value": "ease-in-back",
         "type": "string"
@@ -590,10 +594,6 @@
           "value": -0.5,
           "type": "number"
         }
-      },
-      "direction": {
-        "value": "left",
-        "type": "string"
       }
     }
   },
@@ -606,6 +606,11 @@
         "gradientType": {
           "value": "radial",
           "type": "string"
+        },
+        "rotation": {
+          "value": 180,
+          "type": "number",
+          "unit": "degree"
         },
         "stops": {
           "0": {
@@ -660,6 +665,11 @@
             "value": "linear",
             "type": "string"
           },
+          "rotation": {
+            "value": 180,
+            "type": "number",
+            "unit": "degree"
+          },
           "stops": {
             "0": {
               "position": {
@@ -691,6 +701,11 @@
           "gradientType": {
             "value": "radial",
             "type": "string"
+          },
+          "rotation": {
+            "value": 180,
+            "type": "number",
+            "unit": "degree"
           },
           "stops": {
             "0": {
@@ -724,6 +739,11 @@
             "value": "angular",
             "type": "string"
           },
+          "rotation": {
+            "value": 180,
+            "type": "number",
+            "unit": "degree"
+          },
           "stops": {
             "0": {
               "position": {
@@ -755,6 +775,11 @@
           "gradientType": {
             "value": "diamond",
             "type": "string"
+          },
+          "rotation": {
+            "value": 180,
+            "type": "number",
+            "unit": "degree"
           },
           "stops": {
             "0": {

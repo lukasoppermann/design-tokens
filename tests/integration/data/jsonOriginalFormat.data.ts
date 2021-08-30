@@ -211,7 +211,7 @@ export default {
         type: 'string'
       },
       dashPattern: {
-        value: '5,5,3,3',
+        value: '5, 5, 3, 3',
         type: 'string'
       },
       strokeCap: {
@@ -280,7 +280,7 @@ export default {
           type: 'string'
         },
         dashPattern: {
-          value: '5,10',
+          value: '5, 10',
           type: 'string'
         },
         strokeCap: {
@@ -667,6 +667,11 @@ export default {
           opacity: {
             value: 1,
             type: 'number'
+          },
+          rotation: {
+            type: 'number',
+            unit: 'degree',
+            value: 180
           }
         },
         1: {
@@ -699,6 +704,11 @@ export default {
           opacity: {
             value: 1,
             type: 'number'
+          },
+          rotation: {
+            type: 'number',
+            unit: 'degree',
+            value: 180
           }
         },
         2: {
@@ -731,6 +741,11 @@ export default {
           opacity: {
             value: 1,
             type: 'number'
+          },
+          rotation: {
+            type: 'number',
+            unit: 'degree',
+            value: 180
           }
         },
         3: {
@@ -763,6 +778,11 @@ export default {
           opacity: {
             value: 1,
             type: 'number'
+          },
+          rotation: {
+            type: 'number',
+            unit: 'degree',
+            value: 180
           }
         },
         category: 'gradient',
@@ -821,6 +841,11 @@ export default {
         opacity: {
           value: 1,
           type: 'number'
+        },
+        rotation: {
+          type: 'number',
+          unit: 'degree',
+          value: 180
         }
       }
     }

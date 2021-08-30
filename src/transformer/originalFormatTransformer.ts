@@ -64,39 +64,52 @@ const borderValueTransformer = (extractedValues) => {
   }))
 }
 
-const effectValueTransformer = (extractedValues) => {
-  const values = extractedValues.map(effect => ({
-    type: {
-      value: effect.effectType.value,
-      type: 'string' as PropertyType
-    },
-    radius: {
-      value: effect.radius.value,
+const effectShadowValueTransformer = effect => ({
+  type: {
+    value: effect.effectType.value,
+    type: 'string' as PropertyType
+  },
+  radius: {
+    value: effect.radius.value,
+    type: 'number' as PropertyType,
+    unit: 'pixel' as UnitTypePixel
+  },
+  color: {
+    value: convertRgbaObjectToString(effect.color.value),
+    type: 'color' as PropertyType
+  },
+  offset: {
+    x: {
+      value: effect.offset.x.value,
       type: 'number' as PropertyType,
       unit: 'pixel' as UnitTypePixel
     },
-    color: {
-      value: convertRgbaObjectToString(effect.color.value),
-      type: 'color' as PropertyType
-    },
-    offset: {
-      x: {
-        value: effect.offset.x.value,
-        type: 'number' as PropertyType,
-        unit: 'pixel' as UnitTypePixel
-      },
-      y: {
-        value: effect.offset.y.value,
-        type: 'number' as PropertyType,
-        unit: 'pixel' as UnitTypePixel
-      }
-    },
-    spread: {
-      value: effect.spread.value,
+    y: {
+      value: effect.offset.y.value,
       type: 'number' as PropertyType,
       unit: 'pixel' as UnitTypePixel
     }
-  }))
+  },
+  spread: {
+    value: effect.spread.value,
+    type: 'number' as PropertyType,
+    unit: 'pixel' as UnitTypePixel
+  }
+})
+const effectBlurValueTransformer = effect => ({
+  type: {
+    value: effect.effectType.value,
+    type: 'string' as PropertyType
+  },
+  radius: {
+    value: effect.radius.value,
+    type: 'number' as PropertyType,
+    unit: 'pixel' as UnitTypePixel
+  }
+})
+
+const effectValueTransformer = (extractedValues) => {
+  const values = extractedValues.map(effect => ['dropShadow', 'innerShadow'].includes(effect.effectType.value) ? effectShadowValueTransformer(effect) : effectBlurValueTransformer(effect))
   // turn array with only one item into normal object
   if (Array.isArray(values) && values.length === 1) {
     return values[0]
@@ -116,10 +129,15 @@ const motionValueTransformer = (values) => {
       type: 'number' as PropertyType,
       unit: 's'
     },
-    direction: {
-      value: values.direction.value,
-      type: 'string' as PropertyType
-    },
+    ...(values.direction
+      ? {
+          direction: {
+            value: values.direction.value,
+            type: 'string' as PropertyType
+          }
+        }
+      : {}
+    ),
     easing: {
       value: values.easing.value,
       type: 'string' as PropertyType

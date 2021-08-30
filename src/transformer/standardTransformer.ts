@@ -167,7 +167,7 @@ const motionValueTransformer = ({ values }): StandardTokenDataInterface => ({
   value: {
     transitionType: values.transitionType.value,
     duration: values.duration.value,
-    direction: values.direction.value,
+    ...(values.direction ? { direction: values.direction.value } : {}),
     easingFunction: {
       x1: values.easingFunction.x1.value,
       x2: values.easingFunction.x2.value,
