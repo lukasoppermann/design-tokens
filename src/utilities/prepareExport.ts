@@ -1,14 +1,14 @@
 import { propertyObject } from '@typings/propertyObject'
 import { Settings } from '../../types/settings'
-import { transformer as styleDictionaryTransformer } from '@src/transformer/styleDictionaryTransformer'
+import { transformer as originalFormatTransformer } from '@src/transformer/originalFormatTransformer'
 import { groupByKeyAndName } from '@utils/groupByName'
 
 const tokenTransformer = {
-  styleDictionary: styleDictionaryTransformer
+  originalFormat: originalFormatTransformer
 }
 
 export const prepareExport = (tokens: string, settings: Settings) => {
-  const format = 'styleDictionary'
+  const format = 'originalFormat'
   // parse json string
   const tokenArray: propertyObject[] = JSON.parse(tokens)
   // filter by user setting for export keys

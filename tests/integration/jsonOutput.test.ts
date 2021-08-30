@@ -1,5 +1,5 @@
 import fs from 'fs'
-import jsonExpectedOutput from './data/jsonStyleDictionary.data'
+import jsonExpectedOutput from './data/jsonOriginalFormat.data'
 
 describe('Verify json output for style dictionary', () => {
   // read files

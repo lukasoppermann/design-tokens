@@ -1,24 +1,24 @@
 import { PropertyType } from './valueTypes'
 
-export type StyleDictionaryPropertyObject = {
+export type OriginalFormatPropertyObject = {
   value: string | number,
   type: PropertyType,
   unit?: string
   comment?: string,
 }
 
-export type StyleDictionaryPropertyGroup = {
+export type OriginalFormatPropertyGroup = {
   name: string,
   exportKey: string,
   comment?: string,
 } & {
-  [key: string]: StyleDictionaryPropertyObject | any
+  [key: string]: OriginalFormatPropertyObject | any
 }
 
-export type StyleDictionaryTokenInterface = {
+export type OriginalFormatTokenInterface = {
   name: string,
   exportKey: string,
   comment?: string,
 } & {
-  [key: string]: StyleDictionaryPropertyObject | any
+  [key: string]: OriginalFormatPropertyObject | any
 }
