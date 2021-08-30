@@ -1224,9 +1224,9 @@ export default {
           unit: 'percent'
         },
         lineHeight: {
-          value: 'normal',
-          type: 'string',
-          unit: 'auto'
+          value: 14,
+          type: 'number',
+          unit: 'pixel'
         },
         paragraphIndent: {
           value: 0,

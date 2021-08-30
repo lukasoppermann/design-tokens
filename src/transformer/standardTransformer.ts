@@ -60,7 +60,7 @@ const valueTransformer: {} | undefined = {
   effect: defaultValueTransformer,
   grid: defaultValueTransformer,
   border: defaultValueTransformer,
-  breakpoint: sizeValueTransformer,
+  breakpoint: defaultValueTransformer,
   radius: defaultValueTransformer,
   spacing: defaultValueTransformer,
   motion: defaultValueTransformer

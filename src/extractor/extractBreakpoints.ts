@@ -18,6 +18,11 @@ const extractBreakpoints: extractorInterface = (tokenNodes: customTokenNode[], p
         value: roundWithDecimals(node.width, 2),
         unit: 'pixel' as UnitTypePixel,
         type: 'number' as PropertyType
+      },
+      height: {
+        value: roundWithDecimals(node.height, 2),
+        unit: 'pixel' as UnitTypePixel,
+        type: 'number' as PropertyType
       }
     }
   }))
