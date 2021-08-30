@@ -1,5 +1,5 @@
 import { internalTokenInterface, tokenCategoryTypes } from '@typings/propertyObject'
-import { StyleDictionaryTokenInterface } from '@typings/styleDictionaryProperties'
+import { StandardTokenInterface } from '@typings/standardToken'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
 
 const sizeValueTransformer = ({ width }) => ({
@@ -66,13 +66,19 @@ const valueTransformer: {} | undefined = {
   motion: defaultValueTransformer
 }
 
-const transformer = (token: internalTokenInterface): StyleDictionaryTokenInterface => {
+const transformer = (token: internalTokenInterface): StandardTokenInterface => {
   return {
     name: token.name,
-    category: token.category,
-    exportKey: token.exportKey,
-    ...(token.description && token.description.length > 0 && { comment: token.description }),
-    ...(valueTransformer[token.category as tokenCategoryTypes](token.values) || {})
+    value: null,
+    type: 'null',
+    description: token.description,
+    data: {
+      category: token.category,
+      exportKey: token.exportKey,
+      unit: ''
+    }
+  //   ...(token.description && token.description.length > 0 && { comment: token.description }),
+  //   ...(valueTransformer[token.category as tokenCategoryTypes](token.values) || {})
   }
 }
 
