@@ -1,7 +1,7 @@
 import deepMerge from '../../src/utilities/deepMerge'
 
-describe("deepMerge", () => {
-  test("merge objects", () => {
+describe('deepMerge', () => {
+  test('merge objects', () => {
     expect(deepMerge(
       {
         id: 'not visible',
@@ -13,7 +13,7 @@ describe("deepMerge", () => {
         }
       },
       {
-        id: "visible",
+        id: 'visible',
         nested: {
           override: 'new value',
           merged: ['test']
@@ -22,7 +22,7 @@ describe("deepMerge", () => {
       }
     )).toStrictEqual(
       {
-        id: "visible",
+        id: 'visible',
         type: 'unique',
         nested: {
           stay: 'still here',
@@ -34,12 +34,11 @@ describe("deepMerge", () => {
     )
   })
 
-  test("argument 1 is string, return source", () => {
-    expect(deepMerge('test', { 'value': 1 })).toStrictEqual({ 'value': 1 })
+  test('argument 1 is string, return source', () => {
+    expect(deepMerge('test', { value: 1 })).toStrictEqual({ value: 1 })
   })
 
-  test("argument 2 is string, return source", () => {
-    expect(deepMerge({ 'value': 1 }, 'test')).toStrictEqual("test")
+  test('argument 2 is string, return source', () => {
+    expect(deepMerge({ value: 1 }, 'test')).toStrictEqual('test')
   })
-
 })

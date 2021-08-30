@@ -20,6 +20,11 @@ describe('extracting breakpoints', () => {
       exportKey: 'breakpoint',
       name: 'breakpoints/desktop',
       values: {
+        height: {
+          type: 'number',
+          unit: 'pixel',
+          value: 20
+        },
         width: {
           type: 'number',
           unit: 'pixel',

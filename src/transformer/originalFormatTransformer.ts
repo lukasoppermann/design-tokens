@@ -1,5 +1,5 @@
 import { internalTokenInterface, tokenCategoryTypes } from '@typings/propertyObject'
-import { StyleDictionaryTokenInterface } from '@typings/styleDictionaryProperties'
+import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
 
 const sizeValueTransformer = ({ width }) => ({
@@ -17,7 +17,7 @@ const convertValue = (value, type) => {
   }
 }
 
-const styleDictionaryFormat = (property) => ({
+const originalFormat = (property) => ({
   value: convertValue(property.value, property.type),
   type: property.type,
   // optional properties
@@ -36,7 +36,7 @@ const defaultValueTransformer = propertyGroupValues => {
   Object.keys(propertyGroupValues).forEach(function (key) {
     // if this is the final level
     if (Object.prototype.hasOwnProperty.call(propertyGroupValues[key], 'value')) {
-      transformedProperties[key] = styleDictionaryFormat(propertyGroupValues[key])
+      transformedProperties[key] = originalFormat(propertyGroupValues[key])
     }
     // if there is more nesting
     else {
@@ -60,13 +60,13 @@ const valueTransformer: {} | undefined = {
   effect: defaultValueTransformer,
   grid: defaultValueTransformer,
   border: defaultValueTransformer,
-  breakpoint: defaultValueTransformer,
+  breakpoint: sizeValueTransformer,
   radius: defaultValueTransformer,
   spacing: defaultValueTransformer,
   motion: defaultValueTransformer
 }
 
-const transformer = (token: internalTokenInterface): StyleDictionaryTokenInterface => {
+const transformer = (token: internalTokenInterface): OriginalFormatTokenInterface => {
   return {
     name: token.name,
     category: token.category,
