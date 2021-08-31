@@ -15,7 +15,7 @@
     "test:unit": "jest tests/unit",
     "test:integration": "style-dictionary clean --config ./tests/integration/config.json && style-dictionary build --config ./tests/integration/config.json && jest tests/integration --coverage=false",
     "lint": "standardx src/**/*.ts src/*.ts | snazzy",
-    "sd": "rm -rf tests/amazon-style-dictionary/build && style-dictionary build --config ./tests/amazon-style-dictionary/config.json",
+    "sd": "rm -rf tests/amazon-style-dictionary/build && node ./tests/amazon-style-dictionary/build.js",
     "set-version": "replace-in-files --regex='\\d+\\.\\d+\\.\\d+' --replacement=$npm_package_version src/utilities/version.ts",
     "version": "npm run set-version && npm run build && git add --all"
   },
@@ -28,6 +28,7 @@
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
+    "change-case": "^4.1.2",
     "css-loader": "^5.2.6",
     "eslint-plugin-typescript": "^0.14.0",
     "figma-plugin-ds": "^1.0.1",
