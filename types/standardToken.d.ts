@@ -13,7 +13,7 @@ export type StandardTokenInterface = {
   value: string | number | Array<any> | Object | Boolean | null,
   type: StandardTokenTypes,
   description?: string,
-  vendor?: {
+  extensions?: {
     [key: string]: any
   },
   data: {
