@@ -344,6 +344,9 @@
         "category": "font",
         "exportKey": "font",
         "unit": "pixel"
+      },
+      "extensions": {
+        "type" : "fontSize"
       }
     },
     "textDecoration": {
@@ -364,7 +367,7 @@
     },
     "fontWeight": {
       "value": 700,
-      "type": "number",
+      "type": "fontWeight",
       "data": {
         "category": "font",
         "exportKey": "font"
@@ -372,7 +375,7 @@
     },
     "fontStyle": {
       "value": "italic",
-      "type": "string",
+      "type": "fontStyle",
       "data": {
         "category": "font",
         "exportKey": "font"
