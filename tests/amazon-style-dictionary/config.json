@@ -1,5 +1,5 @@
 {
-  "source": ["./tests/files/design-token-example.json"],
+  "source": ["./tests/files/*.json"],
   "platforms": {
     "css": {
       "transformGroup": "css",
