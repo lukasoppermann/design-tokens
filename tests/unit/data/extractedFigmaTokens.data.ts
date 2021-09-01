@@ -383,6 +383,10 @@ export const extractedFigmaTokens = {
         value: 'slide_in',
         type: 'string'
       },
+      transitionType: {
+        value: 'slide_in',
+        type: 'string'
+      },
       duration: {
         value: 0.2,
         unit: 's',

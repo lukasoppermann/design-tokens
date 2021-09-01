@@ -4,6 +4,8 @@ import { customTokenNode, nodeWithNodeTransition } from '@typings/tokenNodeTypes
 import { UnitTypeSeconds, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
 import { filterByPrefix } from './extractUtilities'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 
 const direction = (transition: Transition): {} | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
@@ -148,11 +150,11 @@ const extractMotion: extractorInterface = (tokenNodes: customTokenNode[], prefix
     // retrieve values
     .map((node: nodeWithNodeTransition) => ({
       name: node.name,
-      category: 'motion',
-      exportKey: tokenTypes.motion.key,
+      category: 'motion' as tokenCategoryType,
+      exportKey: tokenTypes.motion.key as tokenExportKeyType,
       description: node.description || null,
       values: {
-        type: {
+        transitionType: {
           value: node.reactions[0].action.transition.type.toLocaleLowerCase(),
           type: 'string' as PropertyType
         },
