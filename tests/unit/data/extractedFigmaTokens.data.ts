@@ -1,11 +1,14 @@
+import { tokenCategoryType } from '../../../types/tokenCategory'
+import { tokenExportKeyType } from '../../../types/tokenExportKey'
+
 export const extractedFigmaTokens = {
   /**
    * Size
    */
   size: {
     name: 'size token 16px (height: 24px)',
-    category: 'size',
-    exportKey: 'size',
+    category: 'size' as tokenCategoryType,
+    exportKey: 'size' as tokenExportKeyType,
     description: 'a size description',
     values: {
       width: {
@@ -25,8 +28,8 @@ export const extractedFigmaTokens = {
    */
   breakpoint: {
     name: 'breakpoint token 1024px (height: 20px)',
-    category: 'breakpoint',
-    exportKey: 'breakpoint',
+    category: 'breakpoint' as tokenCategoryType,
+    exportKey: 'breakpoint' as tokenExportKeyType,
     description: 'a breakpoint description',
     values: {
       width: {
@@ -46,8 +49,8 @@ export const extractedFigmaTokens = {
    */
   spacing: {
     name: 'spacing 24, 20,16, 8',
-    category: 'spacing',
-    exportKey: 'spacing',
+    category: 'spacing' as tokenCategoryType,
+    exportKey: 'spacing' as tokenExportKeyType,
     description: 'a spacing token',
     values: {
       top: {
@@ -77,8 +80,8 @@ export const extractedFigmaTokens = {
    */
   radiusMixed: {
     name: 'radius 1,2,3,4',
-    category: 'radius',
-    exportKey: 'radius',
+    category: 'radius' as tokenCategoryType,
+    exportKey: 'radius' as tokenExportKeyType,
     description: 'a mixed radius token',
     values: {
       radiusType: {
@@ -119,8 +122,8 @@ export const extractedFigmaTokens = {
    */
   radiusSingle: {
     name: 'radius 5',
-    category: 'radius',
-    exportKey: 'radius',
+    category: 'radius' as tokenCategoryType,
+    exportKey: 'radius' as tokenExportKeyType,
     description: 'a single radius token',
     values: {
       radius: {
@@ -166,8 +169,8 @@ export const extractedFigmaTokens = {
    */
   grid: {
     name: 'grid',
-    category: 'grid',
-    exportKey: 'grid',
+    category: 'grid' as tokenCategoryType,
+    exportKey: 'grid' as tokenExportKeyType,
     description: 'a grid token',
     values: [{
       pattern: {
@@ -204,8 +207,8 @@ export const extractedFigmaTokens = {
    */
   font: {
     name: 'font 16',
-    category: 'font',
-    exportKey: 'font',
+    category: 'font' as tokenCategoryType,
+    exportKey: 'font' as tokenExportKeyType,
     description: 'a font token',
     values: {
       fontSize: {
@@ -269,8 +272,8 @@ export const extractedFigmaTokens = {
    */
   border: {
     name: 'border',
-    category: 'border',
-    exportKey: 'border',
+    category: 'border' as tokenCategoryType,
+    exportKey: 'border' as tokenExportKeyType,
     description: 'a border token',
     values: {
       strokeAlign: {
@@ -310,8 +313,8 @@ export const extractedFigmaTokens = {
    */
   color: {
     name: 'background',
-    category: 'color',
-    exportKey: 'color',
+    category: 'color' as tokenCategoryType,
+    exportKey: 'color' as tokenExportKeyType,
     description: 'a color token',
     values: [
       {
@@ -328,8 +331,8 @@ export const extractedFigmaTokens = {
   effect: {
     name: 'effect',
     description: 'an effect token',
-    category: 'effect',
-    exportKey: 'effect',
+    category: 'effect' as tokenCategoryType,
+    exportKey: 'effect' as tokenExportKeyType,
     values: [{
       type: {
         value: 'dropShadow',
@@ -368,8 +371,8 @@ export const extractedFigmaTokens = {
    */
   motion: {
     name: 'motion',
-    category: 'motion',
-    exportKey: 'motion',
+    category: 'motion' as tokenCategoryType,
+    exportKey: 'motion' as tokenExportKeyType,
     description: 'a motion token',
     values: {
       type: {

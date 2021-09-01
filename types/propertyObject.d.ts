@@ -1,10 +1,12 @@
+import { tokenCategoryType } from './tokenCategory'
+import { tokenExportKeyType } from './tokenExportKey'
 import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType, UnitTypeSeconds } from './valueTypes'
 
 export type propertyObject = {
   name: string,
   description?: string,
-  category?: string,
-  exportKey: string,
+  category: tokenCategoryType,
+  exportKey: tokenExportKeyType,
   values?: {
     [key: string]: any
   }

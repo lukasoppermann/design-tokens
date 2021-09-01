@@ -8,11 +8,9 @@ export type StandardTokenTypes = 'string' |
 'dimension' |
 'font'
 
-export type StandardTokenInterface = {
-  name: string,
+export type StandardTokenValuesInterface = {
   value: string | number | Array<any> | Object | Boolean | null,
   type: StandardTokenTypes,
-  description?: string,
   extensions?: {
     [key: string]: any
   },
@@ -22,4 +20,10 @@ export type StandardTokenInterface = {
     group?: string,
     unit?: string,
   }
+}
+
+export type StandardTokenInterface = {
+  [name: string]: {
+    description?: string,
+  } & (StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface})
 }

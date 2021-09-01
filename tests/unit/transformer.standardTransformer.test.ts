@@ -1,4 +1,4 @@
-import { transformer } from '../../src/transformer/originalFormatTransformer'
+import { transformer } from '../../src/transformer/standardTransformer'
 import { extractedFigmaTokens } from './data/extractedFigmaTokens.data'
 import { transformedStandardTokens } from './data/transformedStandardTokens.data'
 

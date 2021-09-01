@@ -80,50 +80,40 @@ export const transformedStandardTokens = {
   radiusMixed: {
     'radius 1,2,3,4': {
       description: 'a mixed radius token',
-      radiusType: {
-        value: 'mixed',
-        type: 'string',
+      radiusTopLeft: {
+        value: 1,
+        type: 'dimension',
         data: {
+          unit: 'pixel',
           category: 'radius',
           exportKey: 'radius'
         }
       },
-      radii: {
-        topLeft: {
-          value: 1,
-          type: 'dimension',
-          data: {
-            unit: 'pixel',
-            category: 'radius',
-            exportKey: 'radius'
-          }
-        },
-        topRight: {
-          value: 2,
-          type: 'dimension',
-          data: {
-            unit: 'pixel',
-            category: 'radius',
-            exportKey: 'radius'
-          }
-        },
-        bottomRight: {
-          value: 3,
-          type: 'dimension',
-          data: {
-            unit: 'pixel',
-            category: 'radius',
-            exportKey: 'radius'
-          }
-        },
-        bottomLeft: {
-          value: 4,
-          type: 'dimension',
-          data: {
-            unit: 'pixel',
-            category: 'radius',
-            exportKey: 'radius'
-          }
+      radiusTopRight: {
+        value: 2,
+        type: 'dimension',
+        data: {
+          unit: 'pixel',
+          category: 'radius',
+          exportKey: 'radius'
+        }
+      },
+      radiusBottomRight: {
+        value: 3,
+        type: 'dimension',
+        data: {
+          unit: 'pixel',
+          category: 'radius',
+          exportKey: 'radius'
+        }
+      },
+      radiusBottomLeft: {
+        value: 4,
+        type: 'dimension',
+        data: {
+          unit: 'pixel',
+          category: 'radius',
+          exportKey: 'radius'
         }
       },
       smoothing: {
@@ -142,21 +132,11 @@ export const transformedStandardTokens = {
   radiusSingle: {
     'radius 5': {
       description: 'a single radius token',
-      category: 'radius',
-      exportKey: 'radius',
       radius: {
         value: 5,
         type: 'dimension',
         data: {
           unit: 'pixel',
-          category: 'radius',
-          exportKey: 'radius'
-        }
-      },
-      radiusType: {
-        value: 'single',
-        type: 'string',
-        data: {
           category: 'radius',
           exportKey: 'radius'
         }
@@ -233,98 +213,100 @@ export const transformedStandardTokens = {
   /**
    * font
    */
-  'font 16': {
-    description: 'a font token',
-    fontSize: {
-      value: 16,
-      type: 'dimension',
-      data: {
-        category: 'font',
-        exportKey: 'font',
-        unit: 'pixel'
-      }
-    },
-    textDecoration: {
-      value: 'underline',
-      type: 'string',
-      data: {
-        category: 'font',
-        exportKey: 'font'
-      }
-    },
-    fontFamily: {
-      value: 'Helvetica',
-      type: 'font',
-      data: {
-        category: 'font',
-        exportKey: 'font'
-      }
-    },
-    fontWeight: {
-      value: 700,
-      type: 'number',
-      data: {
-        category: 'font',
-        exportKey: 'font'
-      }
-    },
-    fontStyle: {
-      value: 'italic',
-      type: 'string',
-      data: {
-        category: 'font',
-        exportKey: 'font'
-      }
-    },
-    fontStretch: {
-      value: 'normal',
-      type: 'string',
-      data: {
-        category: 'font',
-        exportKey: 'font'
-      }
-    },
-    letterSpacing: {
-      value: 120,
-      type: 'number',
-      data: {
-        unit: 'percent',
-        category: 'font',
-        exportKey: 'font'
-      }
-    },
-    lineHeight: {
-      value: 'normal',
-      type: 'string',
-      data: {
-        category: 'font',
-        exportKey: 'font'
-      }
-    },
-    paragraphIndent: {
-      value: 0,
-      type: 'number',
-      data: {
-        unit: 'pixel',
-        category: 'font',
-        exportKey: 'font'
-      }
-    },
-    paragraphSpacing: {
-      value: 12,
-      type: 'number',
-      data: {
-        category: 'font',
-        exportKey: 'font',
-        unit: 'pixel'
-      }
-    },
-    textCase: {
-      value: 'none',
-      type: 'string',
-      data: {
-        category: 'font',
-        exportKey: 'font'
+  font: {
+    'font 16': {
+      description: 'a font token',
+      fontSize: {
+        value: 16,
+        type: 'dimension',
+        data: {
+          category: 'font',
+          exportKey: 'font',
+          unit: 'pixel'
+        }
+      },
+      textDecoration: {
+        value: 'underline',
+        type: 'string',
+        data: {
+          category: 'font',
+          exportKey: 'font'
+        }
+      },
+      fontFamily: {
+        value: 'Helvetica',
+        type: 'font',
+        data: {
+          category: 'font',
+          exportKey: 'font'
+        }
+      },
+      fontWeight: {
+        value: 700,
+        type: 'number',
+        data: {
+          category: 'font',
+          exportKey: 'font'
+        }
+      },
+      fontStyle: {
+        value: 'italic',
+        type: 'string',
+        data: {
+          category: 'font',
+          exportKey: 'font'
+        }
+      },
+      fontStretch: {
+        value: 'normal',
+        type: 'string',
+        data: {
+          category: 'font',
+          exportKey: 'font'
+        }
+      },
+      letterSpacing: {
+        value: 120,
+        type: 'number',
+        data: {
+          unit: 'percent',
+          category: 'font',
+          exportKey: 'font'
+        }
+      },
+      lineHeight: {
+        value: 'normal',
+        type: 'string',
+        data: {
+          category: 'font',
+          exportKey: 'font'
+        }
+      },
+      paragraphIndent: {
+        value: 0,
+        type: 'number',
+        data: {
+          unit: 'pixel',
+          category: 'font',
+          exportKey: 'font'
+        }
+      },
+      paragraphSpacing: {
+        value: 12,
+        type: 'number',
+        data: {
+          category: 'font',
+          exportKey: 'font',
+          unit: 'pixel'
+        }
+      },
+      textCase: {
+        value: 'none',
+        type: 'string',
+        data: {
+          category: 'font',
+          exportKey: 'font'
+        }
       }
     }
   },
