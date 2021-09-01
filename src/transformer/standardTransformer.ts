@@ -274,16 +274,16 @@ const effectValueTransformer = ({ category, exportKey, values }): {[key: string]
       value: effect.effectType.value,
       type: 'string' as StandardTokenTypes,
       data: {
-        category: 'effect',
-        exportKey: 'effect'
+        exportKey: exportKey,
+        category: category
       }
     },
     radius: {
       value: effect.radius.value,
       type: 'dimension' as StandardTokenTypes,
       data: {
-        category: 'effect',
-        exportKey: 'effect',
+        exportKey: exportKey,
+        category: category,
         unit: 'pixel' as UnitTypePixel
       }
     },
@@ -291,16 +291,16 @@ const effectValueTransformer = ({ category, exportKey, values }): {[key: string]
       value: rgbaObjectToHex8(effect.color.value),
       type: 'color' as StandardTokenTypes,
       data: {
-        category: 'effect',
-        exportKey: 'effect'
+        exportKey: exportKey,
+        category: category
       }
     },
     offsetX: {
       value: effect.offset.x.value,
       type: 'dimension' as StandardTokenTypes,
       data: {
-        category: 'effect',
-        exportKey: 'effect',
+        exportKey: exportKey,
+        category: category,
         unit: 'pixel' as UnitTypePixel
       }
     },
@@ -308,8 +308,8 @@ const effectValueTransformer = ({ category, exportKey, values }): {[key: string]
       value: effect.offset.y.value,
       type: 'dimension' as StandardTokenTypes,
       data: {
-        category: 'effect',
-        exportKey: 'effect',
+        exportKey: exportKey,
+        category: category,
         unit: 'pixel' as UnitTypePixel
       }
     },
@@ -317,13 +317,84 @@ const effectValueTransformer = ({ category, exportKey, values }): {[key: string]
       value: effect.spread.value,
       type: 'dimension' as StandardTokenTypes,
       data: {
-        category: 'effect',
-        exportKey: 'effect',
+        exportKey: exportKey,
+        category: category,
         unit: 'pixel' as UnitTypePixel
       }
     }
   }))
 })
+
+const motionValueTransformer = ({ category, exportKey, values }): {[key: string]: (StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface}) } => ({
+  transitionType: {
+    value: values.transitionType.value,
+    type: 'string' as StandardTokenTypes,
+    data: {
+      exportKey: exportKey,
+      category: category
+    }
+  },
+  duration: {
+    value: values.duration.value,
+    type: 'number' as StandardTokenTypes,
+    data: {
+      exportKey: exportKey,
+      category: category,
+      unit: 's'
+    }
+  },
+  direction: {
+    value: values.direction.value,
+    type: 'string' as StandardTokenTypes,
+    data: {
+      exportKey: exportKey,
+      category: category
+    }
+  },
+  easing: {
+    value: values.easing.value,
+    type: 'string' as StandardTokenTypes,
+    data: {
+      exportKey: exportKey,
+      category: category
+    }
+  },
+  easingFunction: {
+    x1: {
+      value: values.easingFunction.x1.value,
+      type: 'number' as StandardTokenTypes,
+      data: {
+        exportKey: exportKey,
+        category: category
+      }
+    },
+    x2: {
+      value: values.easingFunction.x2.value,
+      type: 'number' as StandardTokenTypes,
+      data: {
+        exportKey: exportKey,
+        category: category
+      }
+    },
+    y1: {
+      value: values.easingFunction.y1.value,
+      type: 'number' as StandardTokenTypes,
+      data: {
+        exportKey: exportKey,
+        category: category
+      }
+    },
+    y2: {
+      value: values.easingFunction.y2.value,
+      type: 'number' as StandardTokenTypes,
+      data: {
+        exportKey: exportKey,
+        category: category
+      }
+    }
+  }
+})
+
 const valueTransformer = {
   size: widthToDimensionTransformer,
   color: colorValueTransformer,
@@ -334,8 +405,8 @@ const valueTransformer = {
   border: borderValueTransformer,
   breakpoint: widthToDimensionTransformer,
   radius: radiusValueTransformer,
-  spacing: defaultValueTransformer
-  // motion: defaultValueTransformer
+  spacing: defaultValueTransformer,
+  motion: motionValueTransformer
 }
 
 const transformTokens = (token: internalTokenInterface): StandardTokenValuesInterface => valueTransformer[token.category](token)

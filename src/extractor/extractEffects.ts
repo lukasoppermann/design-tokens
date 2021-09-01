@@ -14,10 +14,6 @@ const effectType = {
 }
 
 const blurValues = (effect) => ({
-  type: {
-    value: effectType[effect.type] as EffectType,
-    type: 'string' as PropertyType
-  },
   effectType: {
     value: effectType[effect.type] as EffectType,
     type: 'string' as PropertyType
@@ -30,10 +26,6 @@ const blurValues = (effect) => ({
 })
 
 const shadowValues = effect => ({
-  type: {
-    value: effectType[effect.type] as EffectType,
-    type: 'string' as PropertyType
-  },
   effectType: {
     value: effectType[effect.type] as EffectType,
     type: 'string' as PropertyType

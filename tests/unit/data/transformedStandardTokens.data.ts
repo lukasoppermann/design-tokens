@@ -459,7 +459,7 @@ export const transformedStandardTokens = {
   motion: {
     motion: {
       description: 'a motion token',
-      type: {
+      transitionType: {
         value: 'slide_in',
         type: 'string',
         data: {

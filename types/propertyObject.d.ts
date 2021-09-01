@@ -165,7 +165,7 @@ export type easingFunctionPropertyInterface = {
 
 export type motionPropertyInterface = propertyObject & {
   values: {
-    type: {
+    transitionType: {
       value: string,
       type: PropertyType
     },
@@ -281,9 +281,6 @@ export type gridPropertyInterface = propertyObject & {
 
 export type effectPropertyInterface = propertyObject & {
   values: {
-    type: {
-      value: EffectType
-    },
     effectType: {
       value: EffectType
     },
