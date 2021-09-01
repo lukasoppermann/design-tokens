@@ -284,6 +284,9 @@ export type effectPropertyInterface = propertyObject & {
     type: {
       value: EffectType
     },
+    effectType: {
+      value: EffectType
+    },
     radius: {
       value: number,
       unit: string

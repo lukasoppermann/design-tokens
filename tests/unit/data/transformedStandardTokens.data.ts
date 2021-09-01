@@ -314,63 +314,65 @@ export const transformedStandardTokens = {
    * border
    */
   border: {
-    description: 'a border token',
-    stroke: {
-      value: '#FAE600',
-      type: 'color',
-      data: {
-        category: 'border',
-        exportKey: 'border'
-      }
-    },
-    strokeWeight: {
-      value: 4,
-      type: 'number',
-      data: {
-        unit: 'pixel',
-        category: 'border',
-        exportKey: 'border'
-      }
-    },
-    strokeMiterLimit: {
-      value: 0,
-      type: 'number',
-      data: {
-        unit: 'degree',
-        category: 'border',
-        exportKey: 'border'
-      }
-    },
-    strokeJoin: {
-      value: 'round',
-      type: 'string',
-      data: {
-        category: 'border',
-        exportKey: 'border'
-      }
-    },
-    strokeCap: {
-      value: 'none',
-      type: 'string',
-      data: {
-        category: 'border',
-        exportKey: 'border'
-      }
-    },
-    dashPattern: {
-      value: '5, 5',
-      type: 'string',
-      data: {
-        category: 'border',
-        exportKey: 'border'
-      }
-    },
-    strokeAlign: {
-      value: 'center',
-      type: 'string',
-      data: {
-        category: 'border',
-        exportKey: 'border'
+    border: {
+      description: 'a border token',
+      stroke: {
+        value: '#ffe600ff',
+        type: 'color',
+        data: {
+          category: 'border',
+          exportKey: 'border'
+        }
+      },
+      strokeWeight: {
+        value: 4,
+        type: 'number',
+        data: {
+          unit: 'pixel',
+          category: 'border',
+          exportKey: 'border'
+        }
+      },
+      strokeMiterLimit: {
+        value: 0,
+        type: 'number',
+        data: {
+          unit: 'degree',
+          category: 'border',
+          exportKey: 'border'
+        }
+      },
+      strokeJoin: {
+        value: 'round',
+        type: 'string',
+        data: {
+          category: 'border',
+          exportKey: 'border'
+        }
+      },
+      strokeCap: {
+        value: 'none',
+        type: 'string',
+        data: {
+          category: 'border',
+          exportKey: 'border'
+        }
+      },
+      dashPattern: {
+        value: '5, 5',
+        type: 'string',
+        data: {
+          category: 'border',
+          exportKey: 'border'
+        }
+      },
+      strokeAlign: {
+        value: 'center',
+        type: 'string',
+        data: {
+          category: 'border',
+          exportKey: 'border'
+        }
       }
     }
   },
@@ -381,7 +383,7 @@ export const transformedStandardTokens = {
     background: {
       description: 'a color token',
       type: 'color',
-      value: '#FAE600',
+      value: '#ffe600ff',
       data: {
         category: 'color',
         exportKey: 'color'
@@ -394,33 +396,33 @@ export const transformedStandardTokens = {
   effect: {
     effect: {
       description: 'an effect token',
-      type: {
-        value: 'dropShadow',
-        type: 'string',
-        data: {
-          category: 'effect',
-          exportKey: 'effect'
-        }
-      },
-      radius: {
-        value: 0,
-        type: 'dimension',
-        data: {
-          category: 'effect',
-          exportKey: 'effect',
-          unit: 'pixel'
-        }
-      },
-      color: {
-        value: '#0a0c0e1a',
-        type: 'color',
-        data: {
-          category: 'effect',
-          exportKey: 'effect'
-        }
-      },
-      offset: {
-        x: {
+      effects: [{
+        effectType: {
+          value: 'dropShadow',
+          type: 'string',
+          data: {
+            category: 'effect',
+            exportKey: 'effect'
+          }
+        },
+        radius: {
+          value: 0,
+          type: 'dimension',
+          data: {
+            category: 'effect',
+            exportKey: 'effect',
+            unit: 'pixel'
+          }
+        },
+        color: {
+          value: '#0a0c0e1a',
+          type: 'color',
+          data: {
+            category: 'effect',
+            exportKey: 'effect'
+          }
+        },
+        offsetX: {
           value: 2,
           type: 'dimension',
           data: {
@@ -429,7 +431,7 @@ export const transformedStandardTokens = {
             unit: 'pixel'
           }
         },
-        y: {
+        offsetY: {
           value: 4,
           type: 'dimension',
           data: {
@@ -437,17 +439,18 @@ export const transformedStandardTokens = {
             exportKey: 'effect',
             unit: 'pixel'
           }
-        }
-      },
-      spread: {
-        value: 0,
-        type: 'dimension',
-        data: {
-          category: 'effect',
-          exportKey: 'effect',
-          unit: 'pixel'
+        },
+        spread: {
+          value: 0,
+          type: 'dimension',
+          data: {
+            category: 'effect',
+            exportKey: 'effect',
+            unit: 'pixel'
+          }
         }
       }
+      ]
     }
   },
   /**

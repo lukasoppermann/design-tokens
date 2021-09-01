@@ -338,6 +338,10 @@ export const extractedFigmaTokens = {
         value: 'dropShadow',
         type: 'string'
       },
+      effectType: {
+        value: 'dropShadow',
+        type: 'string'
+      },
       radius: {
         value: 0,
         unit: 'pixel',

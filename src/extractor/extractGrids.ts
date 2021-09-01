@@ -1,7 +1,9 @@
 import extractorInterface from '@typings/extractorInterface'
 import { gridPropertyInterface } from '@typings/propertyObject'
-import { GridAlignment, GridPattern, PropertyType } from '@typings/valueTypes'
+import { GridAlignment, GridPattern, PropertyType, UnitTypePixel } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {
@@ -10,7 +12,7 @@ const gridValues = (grid: GridLayoutGrid) => ({
   },
   sectionSize: {
     value: grid.sectionSize,
-    unit: 'pixel',
+    unit: 'pixel' as UnitTypePixel,
     type: 'number' as PropertyType
   }
 })
@@ -37,13 +39,13 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
   ...(grid.sectionSize !== undefined && {
     sectionSize: {
       value: grid.sectionSize,
-      unit: 'pixel',
+      unit: 'pixel' as UnitTypePixel,
       type: 'number' as PropertyType
     }
   }),
   gutterSize: {
     value: grid.gutterSize,
-    unit: 'pixel',
+    unit: 'pixel' as UnitTypePixel,
     type: 'number' as PropertyType
   },
   alignment: {
@@ -55,7 +57,7 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
   ...(grid.offset !== undefined && {
     offset: {
       value: grid.offset,
-      unit: 'pixel',
+      unit: 'pixel' as UnitTypePixel,
       type: 'number' as PropertyType
     }
   })
@@ -69,8 +71,8 @@ const extractGrids: extractorInterface = (tokenNodes: GridStyle[], prefixArray: 
   // build
     .map(node => ({
       name: `${prefixArray[0]}/${node.name}`,
-      category: 'grid',
-      exportKey: tokenTypes.grid.key,
+      category: 'grid' as tokenCategoryType,
+      exportKey: tokenTypes.grid.key as tokenExportKeyType,
       description: node.description || null,
       values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid))
     }))
