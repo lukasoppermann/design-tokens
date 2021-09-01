@@ -44,6 +44,7 @@
     "tsconfig-paths-webpack-plugin": "^3.5.1"
   },
   "dependencies": {
+    "@ctrl/tinycolor": "^3.4.0",
     "@emotion/css": "^11.1.3",
     "html-webpack-inline-source-plugin": "0.0.10",
     "html-webpack-plugin": "3.2.0",

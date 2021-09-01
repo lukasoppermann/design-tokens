@@ -3,6 +3,8 @@ import { fontPropertyInterface } from '@typings/propertyObject'
 import { UnitTypePixel, FontStyle, TextCase, TextDecoration, NumericUnitTypes, PropertyType, FontStretch } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 
 const textDecorations = {
   NONE: 'none',
@@ -72,8 +74,8 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: 
   // get raw text styles
   return tokenNodes.map(node => ({
     name: `${prefixArray[0]}/${node.name}`,
-    category: 'font',
-    exportKey: tokenTypes.font.key,
+    category: 'font' as tokenCategoryType,
+    exportKey: tokenTypes.font.key as tokenExportKeyType,
     description: node.description || undefined,
     values: {
       fontSize: {
