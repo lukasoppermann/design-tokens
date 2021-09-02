@@ -86,7 +86,7 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerFormat({
   name: 'android/fontStyle',
   formatter: function ({ dictionary, platform, options = {}, file }) {
-    console.dir(Object.entries(dictionary.properties), { depth: null })
+    // console.dir(Object.entries(dictionary.properties), { depth: null })
     const fontStyles = Object.entries(dictionary.properties).map(([key, group]) => {
       return `  <style name="${changeCase.camelCase(key, { transform: changeCase.camelCaseTransformMerge })}">\n` +
     `    <item name="android:fontFamily">${options.fontFamilies[group.fontFamily.value]}</item>\n` +

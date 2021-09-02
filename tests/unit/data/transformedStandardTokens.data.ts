@@ -210,6 +210,11 @@ export const transformedStandardTokens = {
       }
     }
   },
+  multiGrid: {
+    multiGrid: {
+
+    }
+  },
   /**
    * font
    */
@@ -379,6 +384,14 @@ export const transformedStandardTokens = {
   /**
    * color
    */
+  gradient: {
+    gradient: {
+
+    }
+  },
+  /**
+   * color
+   */
   color: {
     background: {
       description: 'a color token',
@@ -387,6 +400,27 @@ export const transformedStandardTokens = {
       data: {
         category: 'color',
         exportKey: 'color'
+      }
+    }
+  },
+  multiColor: {
+    description: 'a multiColor token',
+    fills: {
+      0: {
+        type: 'color',
+        value: '#ffe600ff',
+        data: {
+          category: 'color',
+          exportKey: 'color'
+        }
+      },
+      1: {
+        type: 'color',
+        value: '#ffe600ff',
+        data: {
+          category: 'color',
+          exportKey: 'color'
+        }
       }
     }
   },
@@ -451,6 +485,11 @@ export const transformedStandardTokens = {
         }
       }
       ]
+    }
+  },
+  multiEffect: {
+    multiEffect: {
+
     }
   },
   /**

@@ -363,6 +363,45 @@ export const transformedOriginalTokens = {
     }
   },
   /**
+   * color
+   */
+  gradient: {
+    name: 'gradient',
+    category: 'gradient',
+    exportKey: 'gradient',
+    comment: 'a gradient token',
+    gradientType: {
+      value: 'linear',
+      type: 'string'
+    },
+    stops: {
+      0: {
+        position: {
+          value: 0,
+          type: 'number'
+        },
+        color: {
+          value: 'rgba(255, 230, 0, 1)',
+          type: 'color'
+        }
+      },
+      1: {
+        position: {
+          value: 1,
+          type: 'number'
+        },
+        color: {
+          value: 'rgba(0, 100, 250, 1)',
+          type: 'color'
+        }
+      }
+    },
+    opacity: {
+      value: 1,
+      type: 'number'
+    }
+  },
+  /**
    * effect
    */
   effect: {

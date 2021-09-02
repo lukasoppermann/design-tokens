@@ -208,6 +208,27 @@
       "exportKey": "color"
     }
   },
+  "multiColor": {
+    "description": "a multiColor token",
+    "fill": {
+      "0": {
+        "type": "color",
+        "value": "#FAE600",
+        "data": {
+          "category": "color",
+          "exportKey": "color"
+        }
+      },
+      "1": {
+        "type": "color",
+        "value": "#FAE600",
+        "data": {
+          "category": "color",
+          "exportKey": "color"
+        }
+      }
+    }
+  },
   "effect": {
     "description": "an effect token",
     "type": {

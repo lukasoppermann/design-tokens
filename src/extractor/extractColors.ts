@@ -5,6 +5,8 @@ import { GradientType, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import roundWithDecimals from '../utilities/roundWithDecimals'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 
 const gradientType = {
   GRADIENT_LINEAR: 'linear',
@@ -64,8 +66,8 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
     // transform style
     .map(node => ({
       name: `${isGradient(node.paints[0]) ? prefixArray.gradient[0] : prefixArray.color[0]}/${node.name}`,
-      category: isGradient(node.paints[0]) ? 'gradient' : 'color',
-      exportKey: isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key,
+      category: isGradient(node.paints[0]) ? 'gradient' : 'color' as tokenCategoryType,
+      exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
       description: node.description || null,
       values: node.paints.map(paint => extractFills(paint))
     }))
