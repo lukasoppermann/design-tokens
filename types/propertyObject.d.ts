@@ -7,7 +7,7 @@ export type propertyObject = {
   description?: string,
   category: tokenCategoryType,
   exportKey: tokenExportKeyType,
-  values?: {
+  values: {
     [key: string]: any
   }
 }

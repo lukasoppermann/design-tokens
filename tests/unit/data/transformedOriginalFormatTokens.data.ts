@@ -173,7 +173,7 @@ export const transformedOriginalTokens = {
     }
   },
   multiGrid: {
-    name: 'grid',
+    name: 'multiGrid',
     comment: 'a multiGrid token',
     category: 'grid',
     exportKey: 'grid',
@@ -442,7 +442,7 @@ export const transformedOriginalTokens = {
   },
   multiEffect: {
     name: 'multiEffect',
-    comment: 'an multi effect token',
+    comment: 'a multi effect token',
     category: 'effect',
     exportKey: 'effect',
     0: {
@@ -488,7 +488,7 @@ export const transformedOriginalTokens = {
         unit: 'pixel'
       },
       color: {
-        value: 'rgba(10, 12, 14, 0.1)',
+        value: 'rgba(10, 12, 14, 0.2)',
         type: 'color'
       },
       offset: {

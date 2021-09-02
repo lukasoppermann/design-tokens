@@ -212,7 +212,113 @@ export const transformedStandardTokens = {
   },
   multiGrid: {
     multiGrid: {
-
+      description: 'a multiGrid token',
+      0: {
+        pattern: {
+          value: 'columns',
+          type: 'string',
+          data: {
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        sectionSize: {
+          value: 8,
+          type: 'dimension',
+          data: {
+            unit: 'pixel',
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        gutterSize: {
+          value: 8,
+          type: 'dimension',
+          data: {
+            unit: 'pixel',
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        alignment: {
+          value: 'center',
+          type: 'string',
+          data: {
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        count: {
+          value: 6,
+          type: 'number',
+          data: {
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        offset: {
+          value: 16,
+          type: 'dimension',
+          data: {
+            unit: 'pixel',
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        }
+      },
+      1: {
+        pattern: {
+          value: 'columns',
+          type: 'string',
+          data: {
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        sectionSize: {
+          value: 8,
+          type: 'dimension',
+          data: {
+            unit: 'pixel',
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        gutterSize: {
+          value: 8,
+          type: 'dimension',
+          data: {
+            unit: 'pixel',
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        alignment: {
+          value: 'center',
+          type: 'string',
+          data: {
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        count: {
+          value: 6,
+          type: 'number',
+          data: {
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        },
+        offset: {
+          value: 16,
+          type: 'dimension',
+          data: {
+            unit: 'pixel',
+            category: 'grid',
+            exportKey: 'grid'
+          }
+        }
+      }
     }
   },
   /**
@@ -382,11 +488,41 @@ export const transformedStandardTokens = {
     }
   },
   /**
-   * color
+   * gradient
    */
   gradient: {
     gradient: {
-
+      description: 'a gradient token',
+      gradientType: {
+        value: 'linear',
+        type: 'string'
+      },
+      stops: {
+        0: {
+          position: {
+            value: 0,
+            type: 'number'
+          },
+          color: {
+            value: '#ffe600ff',
+            type: 'color'
+          }
+        },
+        1: {
+          position: {
+            value: 1,
+            type: 'number'
+          },
+          color: {
+            value: '#0064faff',
+            type: 'color'
+          }
+        }
+      },
+      opacity: {
+        value: 1,
+        type: 'number'
+      }
     }
   },
   /**
@@ -404,8 +540,8 @@ export const transformedStandardTokens = {
     }
   },
   multiColor: {
-    description: 'a multiColor token',
-    fills: {
+    multiColor: {
+      description: 'a multi color token',
       0: {
         type: 'color',
         value: '#ffe600ff',
@@ -416,7 +552,55 @@ export const transformedStandardTokens = {
       },
       1: {
         type: 'color',
-        value: '#ffe600ff',
+        value: '#0064ff80',
+        data: {
+          category: 'color',
+          exportKey: 'color'
+        }
+      }
+    }
+  },
+  /**
+   * gradientAndColor
+   */
+  gradientAndColor: {
+    gradientAndColor: {
+      description: 'a gradient and color token',
+      0: {
+        gradientType: {
+          value: 'linear',
+          type: 'string'
+        },
+        stops: {
+          0: {
+            position: {
+              value: 0,
+              type: 'number'
+            },
+            color: {
+              value: '#ffe600ff',
+              type: 'color'
+            }
+          },
+          1: {
+            position: {
+              value: 1,
+              type: 'number'
+            },
+            color: {
+              value: '#0064faff',
+              type: 'color'
+            }
+          }
+        },
+        opacity: {
+          value: 1,
+          type: 'number'
+        }
+      },
+      1: {
+        value: '#0064ff80',
+        type: 'color',
         data: {
           category: 'color',
           exportKey: 'color'
@@ -430,7 +614,64 @@ export const transformedStandardTokens = {
   effect: {
     effect: {
       description: 'an effect token',
-      effects: [{
+      effectType: {
+        value: 'dropShadow',
+        type: 'string',
+        data: {
+          category: 'effect',
+          exportKey: 'effect'
+        }
+      },
+      radius: {
+        value: 0,
+        type: 'dimension',
+        data: {
+          category: 'effect',
+          exportKey: 'effect',
+          unit: 'pixel'
+        }
+      },
+      color: {
+        value: '#0a0c0e1a',
+        type: 'color',
+        data: {
+          category: 'effect',
+          exportKey: 'effect'
+        }
+      },
+      offsetX: {
+        value: 2,
+        type: 'dimension',
+        data: {
+          category: 'effect',
+          exportKey: 'effect',
+          unit: 'pixel'
+        }
+      },
+      offsetY: {
+        value: 4,
+        type: 'dimension',
+        data: {
+          category: 'effect',
+          exportKey: 'effect',
+          unit: 'pixel'
+        }
+      },
+      spread: {
+        value: 0,
+        type: 'dimension',
+        data: {
+          category: 'effect',
+          exportKey: 'effect',
+          unit: 'pixel'
+        }
+      }
+    }
+  },
+  multiEffect: {
+    multiEffect: {
+      description: 'a multi effect token',
+      0: {
         effectType: {
           value: 'dropShadow',
           type: 'string',
@@ -483,13 +724,61 @@ export const transformedStandardTokens = {
             unit: 'pixel'
           }
         }
+      },
+      1: {
+        effectType: {
+          value: 'dropShadow',
+          type: 'string',
+          data: {
+            category: 'effect',
+            exportKey: 'effect'
+          }
+        },
+        radius: {
+          value: 0,
+          type: 'dimension',
+          data: {
+            category: 'effect',
+            exportKey: 'effect',
+            unit: 'pixel'
+          }
+        },
+        color: {
+          value: '#0a0c0e33',
+          type: 'color',
+          data: {
+            category: 'effect',
+            exportKey: 'effect'
+          }
+        },
+        offsetX: {
+          value: 2,
+          type: 'dimension',
+          data: {
+            category: 'effect',
+            exportKey: 'effect',
+            unit: 'pixel'
+          }
+        },
+        offsetY: {
+          value: 4,
+          type: 'dimension',
+          data: {
+            category: 'effect',
+            exportKey: 'effect',
+            unit: 'pixel'
+          }
+        },
+        spread: {
+          value: 0,
+          type: 'dimension',
+          data: {
+            category: 'effect',
+            exportKey: 'effect',
+            unit: 'pixel'
+          }
+        }
       }
-      ]
-    }
-  },
-  multiEffect: {
-    multiEffect: {
-
     }
   },
   /**
