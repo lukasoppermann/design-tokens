@@ -202,6 +202,69 @@ export const extractedFigmaTokens = {
       }
     }]
   },
+  multiGrid: {
+    name: 'grid',
+    category: 'grid' as tokenCategoryType,
+    exportKey: 'grid' as tokenExportKeyType,
+    description: 'a multiGrid token',
+    values: [{
+      pattern: {
+        value: 'columns',
+        type: 'string'
+      },
+      sectionSize: {
+        value: 8,
+        unit: 'pixel',
+        type: 'number'
+      },
+      gutterSize: {
+        value: 8,
+        type: 'number',
+        unit: 'pixel'
+      },
+      alignment: {
+        value: 'center',
+        type: 'string'
+      },
+      count: {
+        value: 6,
+        type: 'number'
+      },
+      offset: {
+        value: 16,
+        type: 'number',
+        unit: 'pixel'
+      }
+    }, {
+      pattern: {
+        value: 'columns',
+        type: 'string'
+      },
+      sectionSize: {
+        value: 8,
+        unit: 'pixel',
+        type: 'number'
+      },
+      gutterSize: {
+        value: 8,
+        type: 'number',
+        unit: 'pixel'
+      },
+      alignment: {
+        value: 'center',
+        type: 'string'
+      },
+      count: {
+        value: 6,
+        type: 'number'
+      },
+      offset: {
+        value: 16,
+        type: 'number',
+        unit: 'pixel'
+      }
+    }]
+  },
   /**
    * font
    */
@@ -325,6 +388,26 @@ export const extractedFigmaTokens = {
       }
     ]
   },
+  multiColor: {
+    name: 'multiColor',
+    category: 'color' as tokenCategoryType,
+    exportKey: 'color' as tokenExportKeyType,
+    description: 'a multi color token',
+    values: [
+      {
+        fill: {
+          value: { r: 255, g: 230, b: 0, a: 1 },
+          type: 'color'
+        }
+      },
+      {
+        fill: {
+          value: { r: 0, g: 100, b: 255, a: 0.5 },
+          type: 'color'
+        }
+      }
+    ]
+  },
   /**
    * effect
    */
@@ -334,10 +417,75 @@ export const extractedFigmaTokens = {
     category: 'effect' as tokenCategoryType,
     exportKey: 'effect' as tokenExportKeyType,
     values: [{
-      type: {
+      effectType: {
         value: 'dropShadow',
         type: 'string'
       },
+      radius: {
+        value: 0,
+        unit: 'pixel',
+        type: 'number'
+      },
+      color: {
+        value: { r: 10, g: 12, b: 14, a: 0.1 },
+        type: 'color'
+      },
+      offset: {
+        x: {
+          value: 2,
+          unit: 'pixel',
+          type: 'number'
+        },
+        y: {
+          value: 4,
+          unit: 'pixel',
+          type: 'number'
+        }
+      },
+      spread: {
+        value: 0,
+        unit: 'pixel',
+        type: 'number'
+      }
+    }]
+  },
+  multiEffect: {
+    name: 'multiEffect',
+    description: 'an multi effect token',
+    category: 'effect' as tokenCategoryType,
+    exportKey: 'effect' as tokenExportKeyType,
+    values: [{
+      effectType: {
+        value: 'dropShadow',
+        type: 'string'
+      },
+      radius: {
+        value: 0,
+        unit: 'pixel',
+        type: 'number'
+      },
+      color: {
+        value: { r: 10, g: 12, b: 14, a: 0.1 },
+        type: 'color'
+      },
+      offset: {
+        x: {
+          value: 2,
+          unit: 'pixel',
+          type: 'number'
+        },
+        y: {
+          value: 4,
+          unit: 'pixel',
+          type: 'number'
+        }
+      },
+      spread: {
+        value: 0,
+        unit: 'pixel',
+        type: 'number'
+      }
+    }, {
       effectType: {
         value: 'dropShadow',
         type: 'string'
@@ -379,10 +527,6 @@ export const extractedFigmaTokens = {
     exportKey: 'motion' as tokenExportKeyType,
     description: 'a motion token',
     values: {
-      type: {
-        value: 'slide_in',
-        type: 'string'
-      },
       transitionType: {
         value: 'slide_in',
         type: 'string'

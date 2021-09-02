@@ -172,6 +172,70 @@ export const transformedOriginalTokens = {
       unit: 'pixel'
     }
   },
+  multiGrid: {
+    name: 'grid',
+    comment: 'a multiGrid token',
+    category: 'grid',
+    exportKey: 'grid',
+    0: {
+      pattern: {
+        value: 'columns',
+        type: 'string'
+      },
+      sectionSize: {
+        value: 8,
+        unit: 'pixel',
+        type: 'number'
+      },
+      gutterSize: {
+        value: 8,
+        type: 'number',
+        unit: 'pixel'
+      },
+      alignment: {
+        value: 'center',
+        type: 'string'
+      },
+      count: {
+        value: 6,
+        type: 'number'
+      },
+      offset: {
+        value: 16,
+        type: 'number',
+        unit: 'pixel'
+      }
+    },
+    1: {
+      pattern: {
+        value: 'columns',
+        type: 'string'
+      },
+      sectionSize: {
+        value: 8,
+        unit: 'pixel',
+        type: 'number'
+      },
+      gutterSize: {
+        value: 8,
+        type: 'number',
+        unit: 'pixel'
+      },
+      alignment: {
+        value: 'center',
+        type: 'string'
+      },
+      count: {
+        value: 6,
+        type: 'number'
+      },
+      offset: {
+        value: 16,
+        type: 'number',
+        unit: 'pixel'
+      }
+    }
+  },
   /**
    * font
    */
@@ -284,6 +348,20 @@ export const transformedOriginalTokens = {
     type: 'color',
     value: 'rgba(255, 230, 0, 1)'
   },
+  multiColor: {
+    name: 'multiColor',
+    comment: 'a multi color token',
+    category: 'color',
+    exportKey: 'color',
+    0: {
+      type: 'color',
+      value: 'rgba(255, 230, 0, 1)'
+    },
+    1: {
+      type: 'color',
+      value: 'rgba(0, 100, 255, 0.5)'
+    }
+  },
   /**
    * effect
    */
@@ -321,6 +399,76 @@ export const transformedOriginalTokens = {
       value: 0,
       type: 'number',
       unit: 'pixel'
+    }
+  },
+  multiEffect: {
+    name: 'multiEffect',
+    comment: 'an multi effect token',
+    category: 'effect',
+    exportKey: 'effect',
+    0: {
+      type: {
+        value: 'dropShadow',
+        type: 'string'
+      },
+      radius: {
+        value: 0,
+        type: 'number',
+        unit: 'pixel'
+      },
+      color: {
+        value: 'rgba(10, 12, 14, 0.1)',
+        type: 'color'
+      },
+      offset: {
+        x: {
+          value: 2,
+          type: 'number',
+          unit: 'pixel'
+        },
+        y: {
+          value: 4,
+          type: 'number',
+          unit: 'pixel'
+        }
+      },
+      spread: {
+        value: 0,
+        type: 'number',
+        unit: 'pixel'
+      }
+    },
+    1: {
+      type: {
+        value: 'dropShadow',
+        type: 'string'
+      },
+      radius: {
+        value: 0,
+        type: 'number',
+        unit: 'pixel'
+      },
+      color: {
+        value: 'rgba(10, 12, 14, 0.1)',
+        type: 'color'
+      },
+      offset: {
+        x: {
+          value: 2,
+          type: 'number',
+          unit: 'pixel'
+        },
+        y: {
+          value: 4,
+          type: 'number',
+          unit: 'pixel'
+        }
+      },
+      spread: {
+        value: 0,
+        type: 'number',
+        unit: 'pixel'
+      }
     }
   },
   /**
