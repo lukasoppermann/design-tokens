@@ -5,13 +5,15 @@ import { UnitTypePixel, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { filterByPrefix } from './extractUtilities'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
+import { tokenCategoryType } from '@typings/tokenCategory'
 
 const extractSizes: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): sizePropertyInterface[] => {
   // return as object
   return tokenNodes.filter(filterByPrefix(prefixArray)).map(node => ({
     name: node.name,
-    category: 'size',
-    exportKey: tokenTypes.size.key,
+    category: 'size' as tokenCategoryType,
+    exportKey: tokenTypes.size.key as tokenExportKeyType,
     description: node.description || null,
     values: {
       width: {

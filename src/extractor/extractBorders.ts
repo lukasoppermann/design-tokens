@@ -5,6 +5,8 @@ import { customTokenNode } from '@typings/tokenNodeTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { tokenTypes } from '@config/tokenTypes'
 import { filterByPrefix } from './extractUtilities'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 
 const strokeJoins = {
   MITER: 'miter',
@@ -26,8 +28,8 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNode[], prefi
     // convert borders
     .map(node => ({
       name: node.name,
-      category: 'border',
-      exportKey: tokenTypes.border.key,
+      category: 'border' as tokenCategoryType,
+      exportKey: tokenTypes.border.key as tokenExportKeyType,
       description: node.description || null,
       values: {
         strokeAlign: {
