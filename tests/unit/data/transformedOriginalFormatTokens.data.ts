@@ -363,7 +363,7 @@ export const transformedOriginalTokens = {
     }
   },
   /**
-   * color
+   * gradient
    */
   gradient: {
     name: 'gradient',
@@ -399,6 +399,93 @@ export const transformedOriginalTokens = {
     opacity: {
       value: 1,
       type: 'number'
+    }
+  },
+  /**
+   * gradient and colors
+   */
+  gradientAndColor: {
+    name: 'gradientAndColor',
+    category: 'gradient',
+    exportKey: 'gradient',
+    comment: 'a gradient and color token',
+    0: {
+      gradientType: {
+        value: 'linear',
+        type: 'string'
+      },
+      stops: {
+        0: {
+          position: {
+            value: 0,
+            type: 'number'
+          },
+          color: {
+            value: 'rgba(255, 230, 0, 1)',
+            type: 'color'
+          }
+        },
+        1: {
+          position: {
+            value: 1,
+            type: 'number'
+          },
+          color: {
+            value: 'rgba(0, 100, 250, 1)',
+            type: 'color'
+          }
+        }
+      },
+      opacity: {
+        value: 1,
+        type: 'number'
+      }
+    },
+    1: {
+      type: 'color',
+      value: 'rgba(0, 100, 255, 0.5)'
+    }
+  },
+  colorAndGradient: {
+    name: 'colorAndGradient',
+    category: 'color',
+    exportKey: 'color',
+    comment: 'a color and gradient token',
+    0: {
+      type: 'color',
+      value: 'rgba(255, 230, 0, 1)'
+    },
+    1: {
+      gradientType: {
+        value: 'linear',
+        type: 'string'
+      },
+      stops: {
+        0: {
+          position: {
+            value: 0,
+            type: 'number'
+          },
+          color: {
+            value: 'rgba(255, 230, 0, 1)',
+            type: 'color'
+          }
+        },
+        1: {
+          position: {
+            value: 1,
+            type: 'number'
+          },
+          color: {
+            value: 'rgba(0, 100, 250, 1)',
+            type: 'color'
+          }
+        }
+      },
+      opacity: {
+        value: 1,
+        type: 'number'
+      }
     }
   },
   /**
