@@ -7,6 +7,7 @@ describe('groupByName', () => {
       // @ts-ignore
       {
         name: 'token/one/first',
+        category: 'color',
         values: {
           token: 'one first'
         }
@@ -29,6 +30,7 @@ describe('groupByName', () => {
       token: {
         one: {
           first: {
+            category: 'color',
             values: { token: 'one first' }
           },
           second: {
@@ -48,6 +50,7 @@ describe('groupByName', () => {
       {
         name: 'token/one/first',
         exportKey: 'color',
+        category: 'color',
         values: {
           token: 'one first',
           deep: {
@@ -58,6 +61,7 @@ describe('groupByName', () => {
       {
         name: 'token/one/first',
         exportKey: 'color',
+        category: 'color',
         values: {
           token: 'one second',
           deep: {
@@ -69,6 +73,7 @@ describe('groupByName', () => {
       token: {
         one: {
           first: {
+            category: 'color',
             exportKey: 'color',
             values: {
               token: 'one second',
@@ -87,6 +92,7 @@ describe('groupByName', () => {
       {
         name: 'token/one/first',
         exportKey: 'color',
+        category: 'color',
         values: {
           token: 'one first'
         }
@@ -94,6 +100,7 @@ describe('groupByName', () => {
       {
         name: 'token/one / second',
         exportKey: 'color',
+        category: 'color',
         values: {
           token: 'one second'
         }
@@ -101,6 +108,7 @@ describe('groupByName', () => {
       {
         name: 'token/two /first',
         exportKey: 'color',
+        category: 'color',
         values: {
           token: 'two first'
         }
@@ -110,16 +118,19 @@ describe('groupByName', () => {
         one: {
           first: {
             exportKey: 'color',
+            category: 'color',
             values: { token: 'one first' }
           },
           second: {
             exportKey: 'color',
+            category: 'color',
             values: { token: 'one second' }
           }
         },
         two: {
           first: {
             exportKey: 'color',
+            category: 'color',
             values: { token: 'two first' }
           }
         }

@@ -1,5 +1,5 @@
 {
-  "source": ["./tests/files/*.json"],
+  "source": ["./tests/files/design-tokens-example.json"],
   "platforms": {
     "css": {
       "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "content/icon", "size/px", "color/css"],
