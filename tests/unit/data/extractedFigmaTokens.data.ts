@@ -203,7 +203,7 @@ export const extractedFigmaTokens = {
     }]
   },
   multiGrid: {
-    name: 'grid',
+    name: 'multiGrid',
     category: 'grid' as tokenCategoryType,
     exportKey: 'grid' as tokenExportKeyType,
     description: 'a multiGrid token',
@@ -449,6 +449,95 @@ export const extractedFigmaTokens = {
     ]
   },
   /**
+   * gradient and color mixed
+   */
+  gradientAndColor: {
+    name: 'gradientAndColor',
+    category: 'color' as tokenCategoryType,
+    exportKey: 'color' as tokenExportKeyType,
+    description: 'a gradient and color token',
+    values: [
+      {
+        gradientType: {
+          value: 'linear',
+          type: 'string'
+        },
+        stops: [{
+          position: {
+            value: 0,
+            type: 'number'
+          },
+          color: {
+            value: { r: 255, g: 230, b: 0, a: 1 },
+            type: 'color'
+          }
+        }, {
+          position: {
+            value: 1,
+            type: 'number'
+          },
+          color: {
+            value: { r: 0, g: 100, b: 250, a: 1 },
+            type: 'color'
+          }
+        }],
+        opacity: {
+          value: 1.0,
+          type: 'number'
+        }
+      },
+      {
+        fill: {
+          value: { r: 0, g: 100, b: 255, a: 0.5 },
+          type: 'color'
+        }
+      }
+    ]
+  },
+  colorAndGradient: {
+    name: 'colorAndGradient',
+    category: 'color' as tokenCategoryType,
+    exportKey: 'color' as tokenExportKeyType,
+    description: 'a color and gradient token',
+    values: [
+      {
+        fill: {
+          value: { r: 255, g: 230, b: 0, a: 1 },
+          type: 'color'
+        }
+      },
+      {
+        gradientType: {
+          value: 'linear',
+          type: 'string'
+        },
+        stops: [{
+          position: {
+            value: 0,
+            type: 'number'
+          },
+          color: {
+            value: { r: 255, g: 230, b: 0, a: 1 },
+            type: 'color'
+          }
+        }, {
+          position: {
+            value: 1,
+            type: 'number'
+          },
+          color: {
+            value: { r: 0, g: 100, b: 250, a: 1 },
+            type: 'color'
+          }
+        }],
+        opacity: {
+          value: 1.0,
+          type: 'number'
+        }
+      }
+    ]
+  },
+  /**
    * effect
    */
   effect: {
@@ -491,7 +580,7 @@ export const extractedFigmaTokens = {
   },
   multiEffect: {
     name: 'multiEffect',
-    description: 'an multi effect token',
+    description: 'a multi effect token',
     category: 'effect' as tokenCategoryType,
     exportKey: 'effect' as tokenExportKeyType,
     values: [{
@@ -536,7 +625,7 @@ export const extractedFigmaTokens = {
         type: 'number'
       },
       color: {
-        value: { r: 10, g: 12, b: 14, a: 0.1 },
+        value: { r: 10, g: 12, b: 14, a: 0.2 },
         type: 'color'
       },
       offset: {

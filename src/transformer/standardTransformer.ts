@@ -64,10 +64,10 @@ const radiusValueTransformer = ({ category, exportKey, values }): {[key: string]
 }
 
 const gridValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => {
-  return Object.fromEntries(
-    Object.entries(values[0]).map(([name, item]) => {
+  const grids = values.map(item =>
+    Object.entries(item).map(([name, item]) => {
       return [name, {
-        // @ts-ignore
+      // @ts-ignore
         value: item.value,
         // @ts-ignore
         type: getType(item.type, item?.unit),
@@ -78,9 +78,14 @@ const gridValueTransformer = ({ category, exportKey, values }): {[key: string]: 
           ...(item.unit === 'pixel' ? { unit: 'pixel' as UnitTypePixel } : {})
         }
       }]
-    }
-    )
+    })
   )
+  // only one grid
+  if (grids.length === 1) {
+    return Object.fromEntries(grids[0])
+  }
+  // return multiple grids
+  return { ...grids.map(entries => Object.fromEntries(entries)) }
 }
 
 const defaultValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => ({
@@ -198,14 +203,35 @@ const fontValueTransformer = ({ category, exportKey, values }): {[key: string]: 
   }
 })
 
-const colorValueTransformer = ({ category, exportKey, values }): StandardTokenValuesInterface => ({
-  value: rgbaObjectToHex8(values[0].fill.value),
-  type: 'color' as StandardTokenTypes,
-  data: {
-    exportKey: exportKey,
-    category: category
+const colorValueTransformer = ({ category, exportKey, values }): StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface} => {
+  const fills = values.map(fill => {
+    // is a color
+    if (Object.hasOwnProperty.call(fill, 'fill')) {
+      return {
+        value: rgbaObjectToHex8(fill.fill.value),
+        type: 'color' as StandardTokenTypes,
+        data: {
+          exportKey: exportKey,
+          category: category
+        }
+      }
+    }
+    // is gradient
+    fill.stops = {
+      ...fill.stops.map(stop => {
+        stop.color.value = rgbaObjectToHex8(stop.color.value)
+        return stop
+      })
+    }
+    return { ...fill }
+  })
+  // only one fill
+  if (fills.length === 1) {
+    return fills[0]
   }
-})
+  // multiple fills
+  return { ...fills }
+}
 
 const borderValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => ({
   strokeAlign: {
@@ -268,8 +294,8 @@ const borderValueTransformer = ({ category, exportKey, values }): {[key: string]
   }
 })
 
-const effectValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => ({
-  effects: values.map(effect => ({
+const effectValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => {
+  const effects = values.map(effect => ({
     effectType: {
       value: effect.effectType.value,
       type: 'string' as StandardTokenTypes,
@@ -323,7 +349,13 @@ const effectValueTransformer = ({ category, exportKey, values }): {[key: string]
       }
     }
   }))
-})
+  // single effect
+  if (effects.length === 1) {
+    return effects[0]
+  }
+  // multiple effects
+  return { ...effects }
+}
 
 const motionValueTransformer = ({ category, exportKey, values }): {[key: string]: (StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface}) } => ({
   transitionType: {
@@ -398,7 +430,7 @@ const motionValueTransformer = ({ category, exportKey, values }): {[key: string]
 const valueTransformer = {
   size: widthToDimensionTransformer,
   color: colorValueTransformer,
-  // gradient: defaultValueTransformer,
+  gradient: colorValueTransformer,
   font: fontValueTransformer,
   effect: effectValueTransformer,
   grid: gridValueTransformer,
@@ -409,9 +441,10 @@ const valueTransformer = {
   motion: motionValueTransformer
 }
 
-const transformTokens = (token: internalTokenInterface): StandardTokenValuesInterface => valueTransformer[token.category](token)
+const transformTokens = (token: internalTokenInterface): StandardTokenValuesInterface | {[key: string]: (StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface})} => valueTransformer[token.category](token)
 
 const transformer = (token: internalTokenInterface): StandardTokenInterface => {
+  // @ts-ignore
   return {
     [token.name]: {
       description: token.description,
