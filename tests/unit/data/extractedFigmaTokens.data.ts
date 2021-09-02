@@ -409,6 +409,46 @@ export const extractedFigmaTokens = {
     ]
   },
   /**
+   * gradient
+   */
+  gradient: {
+    name: 'gradient',
+    category: 'gradient' as tokenCategoryType,
+    exportKey: 'gradient' as tokenExportKeyType,
+    description: 'a gradient token',
+    values: [
+      {
+        gradientType: {
+          value: 'linear',
+          type: 'string'
+        },
+        stops: [{
+          position: {
+            value: 0,
+            type: 'number'
+          },
+          color: {
+            value: { r: 255, g: 230, b: 0, a: 1 },
+            type: 'color'
+          }
+        }, {
+          position: {
+            value: 1,
+            type: 'number'
+          },
+          color: {
+            value: { r: 0, g: 100, b: 250, a: 1 },
+            type: 'color'
+          }
+        }],
+        opacity: {
+          value: 1.0,
+          type: 'number'
+        }
+      }
+    ]
+  },
+  /**
    * effect
    */
   effect: {
