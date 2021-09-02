@@ -495,33 +495,57 @@ export const transformedStandardTokens = {
       description: 'a gradient token',
       gradientType: {
         value: 'linear',
-        type: 'string'
+        type: 'string',
+        data: {
+          category: 'gradient',
+          exportKey: 'gradient'
+        }
       },
       stops: {
         0: {
           position: {
             value: 0,
-            type: 'number'
+            type: 'number',
+            data: {
+              category: 'gradient',
+              exportKey: 'gradient'
+            }
           },
           color: {
             value: '#ffe600ff',
-            type: 'color'
+            type: 'color',
+            data: {
+              category: 'gradient',
+              exportKey: 'gradient'
+            }
           }
         },
         1: {
           position: {
             value: 1,
-            type: 'number'
+            type: 'number',
+            data: {
+              category: 'gradient',
+              exportKey: 'gradient'
+            }
           },
           color: {
             value: '#0064faff',
-            type: 'color'
+            type: 'color',
+            data: {
+              category: 'gradient',
+              exportKey: 'gradient'
+            }
           }
         }
       },
       opacity: {
         value: 1,
-        type: 'number'
+        type: 'number',
+        data: {
+          category: 'gradient',
+          exportKey: 'gradient'
+        }
       }
     }
   },
@@ -561,7 +585,7 @@ export const transformedStandardTokens = {
     }
   },
   /**
-   * gradientAndColor
+   * gradient and color
    */
   gradientAndColor: {
     gradientAndColor: {
@@ -569,33 +593,57 @@ export const transformedStandardTokens = {
       0: {
         gradientType: {
           value: 'linear',
-          type: 'string'
+          type: 'string',
+          data: {
+            category: 'gradient',
+            exportKey: 'gradient'
+          }
         },
         stops: {
           0: {
             position: {
               value: 0,
-              type: 'number'
+              type: 'number',
+              data: {
+                category: 'gradient',
+                exportKey: 'gradient'
+              }
             },
             color: {
               value: '#ffe600ff',
-              type: 'color'
+              type: 'color',
+              data: {
+                category: 'gradient',
+                exportKey: 'gradient'
+              }
             }
           },
           1: {
             position: {
               value: 1,
-              type: 'number'
+              type: 'number',
+              data: {
+                category: 'gradient',
+                exportKey: 'gradient'
+              }
             },
             color: {
               value: '#0064faff',
-              type: 'color'
+              type: 'color',
+              data: {
+                category: 'gradient',
+                exportKey: 'gradient'
+              }
             }
           }
         },
         opacity: {
           value: 1,
-          type: 'number'
+          type: 'number',
+          data: {
+            category: 'gradient',
+            exportKey: 'gradient'
+          }
         }
       },
       1: {
@@ -604,6 +652,75 @@ export const transformedStandardTokens = {
         data: {
           category: 'color',
           exportKey: 'color'
+        }
+      }
+    }
+  },
+  colorAndGradient: {
+    colorAndGradient: {
+      description: 'a color and gradient token',
+      0: {
+        value: '#ffe600ff',
+        type: 'color',
+        data: {
+          category: 'color',
+          exportKey: 'color'
+        }
+      },
+      1: {
+        gradientType: {
+          value: 'linear',
+          type: 'string',
+          data: {
+            category: 'gradient',
+            exportKey: 'gradient'
+          }
+        },
+        stops: {
+          0: {
+            position: {
+              value: 0,
+              type: 'number',
+              data: {
+                category: 'gradient',
+                exportKey: 'gradient'
+              }
+            },
+            color: {
+              value: '#ffe600ff',
+              type: 'color',
+              data: {
+                category: 'gradient',
+                exportKey: 'gradient'
+              }
+            }
+          },
+          1: {
+            position: {
+              value: 1,
+              type: 'number',
+              data: {
+                category: 'gradient',
+                exportKey: 'gradient'
+              }
+            },
+            color: {
+              value: '#0064faff',
+              type: 'color',
+              data: {
+                category: 'gradient',
+                exportKey: 'gradient'
+              }
+            }
+          }
+        },
+        opacity: {
+          value: 1,
+          type: 'number',
+          data: {
+            category: 'gradient',
+            exportKey: 'gradient'
+          }
         }
       }
     }

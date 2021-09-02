@@ -2,6 +2,7 @@ import { rgbaObjectToHex8 } from '../utilities/convertColor'
 import { internalTokenInterface } from '@typings/propertyObject'
 import { StandardTokenInterface, StandardTokenTypes, StandardTokenValuesInterface } from '@typings/standardToken'
 import { UnitTypeDegree, UnitTypePercent, UnitTypePixel } from '@typings/valueTypes'
+import { tokenTypes } from '@config/tokenTypes'
 
 const getType = (type: string, unit?: string): StandardTokenTypes => {
   if (type === 'number' && unit && unit === 'pixel') {
@@ -211,17 +212,44 @@ const colorValueTransformer = ({ category, exportKey, values }): StandardTokenVa
         value: rgbaObjectToHex8(fill.fill.value),
         type: 'color' as StandardTokenTypes,
         data: {
-          exportKey: exportKey,
-          category: category
+          exportKey: tokenTypes.color.key,
+          category: 'color'
         }
       }
     }
     // is gradient
+    fill.gradientType = {
+      ...fill.gradientType,
+      data: {
+        exportKey: tokenTypes.gradient.key,
+        category: 'gradient'
+      }
+    }
+    fill.opacity = {
+      ...fill.opacity,
+      data: {
+        exportKey: tokenTypes.gradient.key,
+        category: 'gradient'
+      }
+    }
     fill.stops = {
-      ...fill.stops.map(stop => {
-        stop.color.value = rgbaObjectToHex8(stop.color.value)
-        return stop
-      })
+      ...fill.stops.map(stop => ({
+        position: {
+          ...stop.position,
+          data: {
+            exportKey: tokenTypes.gradient.key,
+            category: 'gradient'
+          }
+        },
+        color: {
+          ...stop.color,
+          ...{ value: rgbaObjectToHex8(stop.color.value) },
+          data: {
+            exportKey: tokenTypes.gradient.key,
+            category: 'gradient'
+          }
+        }
+      }))
     }
     return { ...fill }
   })

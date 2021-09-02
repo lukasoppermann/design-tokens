@@ -453,8 +453,8 @@ export const extractedFigmaTokens = {
    */
   gradientAndColor: {
     name: 'gradientAndColor',
-    category: 'color' as tokenCategoryType,
-    exportKey: 'color' as tokenExportKeyType,
+    category: 'gradient' as tokenCategoryType,
+    exportKey: 'gradient' as tokenExportKeyType,
     description: 'a gradient and color token',
     values: [
       {
