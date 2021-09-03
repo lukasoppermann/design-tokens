@@ -46,7 +46,7 @@
     "@emotion/css": "^11.1.3",
     "html-webpack-inline-source-plugin": "0.0.10",
     "html-webpack-plugin": "3.2.0",
-    "immer": "^9.0.5",
+    "immer": "^9.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-figma-plugin-ds": "git+https://github.com/lukasoppermann/react-figma-plugin-ds.git",
