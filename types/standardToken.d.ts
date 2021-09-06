@@ -8,13 +8,15 @@ export type StandardTokenTypes = 'string' |
 'dimension' |
 'font'
 
-export type StandardTokenValuesInterface = {
-  value: string | number | Array<any> | Object | Boolean | null,
-  type: StandardTokenTypes,
-  extensions?: {
-    [key: string]: any
-  },
-  data: {
+export type StandardTokenValueType = string | number | Array<any> | Object | Boolean | null
+
+export type StandardCompositeTokenValueType = {
+  [key: string]: string | number | Array<any> | Object | Boolean | null,
+}
+
+export type StandardTokenExtensionsInterface = {
+  [key: string]: any
+  'org.veare.figmaData': {
     exportKey: string,
     category: string,
     group?: string,
@@ -22,8 +24,13 @@ export type StandardTokenValuesInterface = {
   }
 }
 
+export type StandardTokenDataInterface = {
+  description?: string,
+  value: StandardTokenValueType | StandardCompositeTokenValueType,
+  type: StandardTokenTypes,
+  extensions?: StandardTokenExtensionsInterface
+}
+
 export type StandardTokenInterface = {
-  [name: string]: {
-    description?: string,
-  } & (StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface})
+  [name: string]: StandardTokenDataInterface
 }
