@@ -49,5 +49,5 @@ export type StandardTokenDataInterface = {
 }
 
 export type StandardTokenInterface = {
-  [name: string]: StandardTokenDataInterface
-}
+  name: string
+} & StandardTokenDataInterface

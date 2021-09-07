@@ -3,10 +3,15 @@ export type nameConversionType =
   'camelCase' |
   'kebabCase'
 
+export type tokenFormatType =
+  'standard' |
+  'original'
+
 export type Settings = {
   filename: string,
   extension: string,
   nameConversion: nameConversionType,
+  tokenFormat: tokenFormatType,
   compression: boolean,
   urlJsonCompression: boolean,
   serverUrl?: string,

@@ -6,7 +6,7 @@ import { FigmaContext, SettingsContext } from '@ui/context'
 import { css } from '@emotion/css'
 import { commands } from '@config/commands'
 import { Footer } from '@components/Footer'
-import { nameConversionType, Settings } from '@typings/settings'
+import { nameConversionType, Settings, tokenFormatType } from '@typings/settings'
 import { Row } from '@components/Row'
 import { Info } from '@components/Info'
 import { Separator } from './Separator'
@@ -85,6 +85,24 @@ export const GeneralSettings = () => {
             {
               label: 'kebab-case',
               value: 'kebabCase'
+            }
+          ]}
+        />
+      </Row>
+      <Title size='small' weight='bold'>Token format !!!<Info width={240} label='MISSING ' /></Title>
+      <Row fill>
+        <Select
+          defaultValue={settings.tokenFormat}
+          onChange={({ value }) => updateSettings((draft: Settings) => { draft.tokenFormat = value as tokenFormatType })}
+          placeholder='Token format'
+          options={[
+            {
+              label: 'Standard (W3C draft)',
+              value: 'standard'
+            },
+            {
+              label: 'Original',
+              value: 'original'
             }
           ]}
         />

@@ -1,12 +1,12 @@
 {
-  "source": ["./tests/files/design-tokens-example.json"],
+  "source": ["./tests/files/standard-tokens.json"],
   "platforms": {
     "css": {
       "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "content/icon", "size/px", "color/css"],
       "buildPath": "./tests/integration/data/",
       "files": [
         {
-          "destination": "variables.css",
+          "destination": "standard.variables.css",
           "format": "css/variables",
           "options" : {
             "showFileHeader": false

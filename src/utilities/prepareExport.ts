@@ -1,21 +1,23 @@
 import { propertyObject } from '@typings/propertyObject'
 import { Settings } from '../../types/settings'
 import { transformer as originalFormatTransformer } from '@src/transformer/originalFormatTransformer'
+import { transformer as standardTransformer } from '@src/transformer/standardTransformer'
 import { groupByKeyAndName } from '@utils/groupByName'
 
 const tokenTransformer = {
-  originalFormat: originalFormatTransformer
+  original: originalFormatTransformer,
+  standard: standardTransformer
 }
 
 export const prepareExport = (tokens: string, settings: Settings) => {
-  const format = 'originalFormat'
   // parse json string
   const tokenArray: propertyObject[] = JSON.parse(tokens)
   // filter by user setting for export keys
   const tokensFiltered: propertyObject[] = tokenArray.filter(({ exportKey }) => settings.exports[exportKey])
   // converted values
-  const tokensConverted = tokensFiltered.map(token => tokenTransformer[format](token))
+  const tokensConverted = tokensFiltered.map(token => tokenTransformer[settings.tokenFormat](token))
   // group items by their names
+  // @ts-ignore
   const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings)
   // return tokens
   return tokensGroupedByName
