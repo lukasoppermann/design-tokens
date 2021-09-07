@@ -381,7 +381,7 @@ export const transformedOriginalTokens = {
           type: 'number'
         },
         color: {
-          value: 'rgba(255, 230, 0, 1)',
+          value: 'rgba(255, 230, 0, 0.5)',
           type: 'color'
         }
       },
@@ -397,7 +397,7 @@ export const transformedOriginalTokens = {
       }
     },
     opacity: {
-      value: 1,
+      value: 0.5,
       type: 'number'
     }
   },
