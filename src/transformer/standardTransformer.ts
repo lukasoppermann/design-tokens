@@ -23,11 +23,11 @@ const gridValueTransformer = ({ values } /*: {values: extractedGridValues[]} */)
     type: 'custom-grid' as StandardTokenTypes,
     value: {
       pattern: grid.pattern.value,
-      sectionSize: grid.sectionSize.value,
-      gutterSize: grid.gutterSize.value,
-      alignment: grid.alignment.value,
-      count: grid.count.value,
-      offset: grid.offset.value
+      ...(grid.sectionSize ? { sectionSize: grid.sectionSize.value } : {}),
+      ...(grid.gutterSize ? { gutterSize: grid.gutterSize.value } : {}),
+      ...(grid.alignment ? { alignment: grid.alignment.value } : {}),
+      ...(grid.count ? { count: grid.count.value } : {}),
+      ...(grid.offset ? { offset: grid.offset.value } : {})
     }
   }))
   // only one grid
@@ -172,11 +172,11 @@ const valueTransformer = {
 const transformTokens = (token: internalTokenInterface): StandardTokenDataInterface | StandardTokenGroup => valueTransformer[token.category](token)
 
 const transformer = (token: internalTokenInterface): StandardTokenInterface | StandardTokenGroup => {
+  // @ts-ignore
   return {
-    [token.name]: {
-      description: token.description,
-      ...transformTokens(token)
-    }
+    name: token.name,
+    description: token.description,
+    ...transformTokens(token)
   }
 }
 

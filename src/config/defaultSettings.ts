@@ -5,6 +5,7 @@ export const defaultSettings: Settings = {
   filename: 'design-tokens',
   extension: '.tokens.json',
   nameConversion: 'default',
+  tokenFormat: 'standard',
   compression: false,
   urlJsonCompression: true,
   serverUrl: undefined,
