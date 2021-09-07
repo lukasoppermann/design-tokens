@@ -1,257 +1,95 @@
 import { rgbaObjectToHex8 } from '../utilities/convertColor'
 import { internalTokenInterface } from '@typings/propertyObject'
-import { StandardTokenInterface, StandardTokenTypes, StandardTokenValuesInterface } from '@typings/standardToken'
-import { UnitTypeDegree, UnitTypePercent, UnitTypePixel } from '@typings/valueTypes'
-import { tokenTypes } from '@config/tokenTypes'
+import { StandardTokenInterface, StandardTokenTypes, StandardTokenDataInterface, StandardTokenGroup } from '@typings/standardToken'
 
-const getType = (type: string, unit?: string): StandardTokenTypes => {
-  if (type === 'number' && unit && unit === 'pixel') {
-    return 'dimension'
-  }
-  if (type === 'number') {
-    return 'number'
-  }
-  return 'string'
-}
-
-const widthToDimensionTransformer = ({ category, exportKey, values }): StandardTokenValuesInterface => ({
+const widthToDimensionTransformer = ({ values }): StandardTokenDataInterface => ({
   value: values.width.value,
-  type: 'dimension' as StandardTokenTypes,
-  data: {
-    exportKey: exportKey,
-    category: category,
-    unit: 'pixel' as UnitTypePixel
+  type: 'dimension' as StandardTokenTypes
+})
+
+const radiusValueTransformer = ({ values }): StandardTokenDataInterface => ({
+  type: 'custom-radius' as StandardTokenTypes,
+  value: {
+    smoothing: values.smoothing.value,
+    topLeft: values.radii.topLeft.value,
+    topRight: values.radii.topRight.value,
+    bottomLeft: values.radii.bottomLeft.value,
+    bottomRight: values.radii.bottomRight.value
   }
 })
 
-const radiusValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => {
-  const radiusValues = {}
-  if (values.radiusType.value === 'mixed') {
-    ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].forEach(corner => {
-      radiusValues[`radius${corner[0].toUpperCase() + corner.substring(1)}`] = {
-        value: values.radii[corner].value,
-        type: 'dimension' as StandardTokenTypes,
-        data: {
-          exportKey: exportKey,
-          category: category,
-          unit: 'pixel' as UnitTypePixel
-        }
-      }
-    })
-  }
-  else {
-    // @ts-ignore
-    radiusValues.radius = {
-      value: values.radius.value,
-      type: 'dimension' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category,
-        unit: 'pixel' as UnitTypePixel
-      }
+const gridValueTransformer = ({ values } /*: {values: extractedGridValues[]} */): StandardTokenDataInterface | StandardTokenGroup => {
+  const grids = values.map(grid => ({
+    type: 'custom-grid' as StandardTokenTypes,
+    value: {
+      pattern: grid.pattern.value,
+      sectionSize: grid.sectionSize.value,
+      gutterSize: grid.gutterSize.value,
+      alignment: grid.alignment.value,
+      count: grid.count.value,
+      offset: grid.offset.value
     }
-  }
-  // @ts-ignore
-  radiusValues.smoothing = {
-    value: values.smoothing.value,
-    type: 'number' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  }
-  // return values
-  return radiusValues
-}
-
-const gridValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => {
-  const grids = values.map(item =>
-    Object.entries(item).map(([name, item]) => {
-      return [name, {
-      // @ts-ignore
-        value: item.value,
-        // @ts-ignore
-        type: getType(item.type, item?.unit),
-        data: {
-          exportKey: exportKey,
-          category: category,
-          // @ts-ignore
-          ...(item.unit === 'pixel' ? { unit: 'pixel' as UnitTypePixel } : {})
-        }
-      }]
-    })
-  )
+  }))
   // only one grid
   if (grids.length === 1) {
-    return Object.fromEntries(grids[0])
+    return grids[0]
   }
   // return multiple grids
-  return { ...grids.map(entries => Object.fromEntries(entries)) }
+  return { ...grids }
 }
-
-const defaultValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => ({
-  ...Object.fromEntries(
-    Object.entries(values).map(
-      ([name, item]: [name: string, item: any]) => {
-        return [[name], {
-          value: item.value,
-          type: getType(item.type, item?.unit),
-          data: {
-            exportKey: exportKey,
-            category: category,
-            // @ts-ignore
-            ...(item.unit === 'pixel' ? { unit: 'pixel' as UnitTypePixel } : {})
-          }
-        }]
-      }
-    )
-  )
-})
-
-const fontValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => ({
-  fontSize: {
-    value: values.fontSize.value,
-    type: 'dimension' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category,
-      unit: 'pixel' as UnitTypePixel
-    }
-  },
-  textDecoration: {
-    value: values.textDecoration.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  fontFamily: {
-    value: values.fontFamily.value,
-    type: 'font' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  fontWeight: {
-    value: values.fontWeight.value,
-    type: 'number' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  fontStyle: {
-    value: values.fontStyle.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  fontStretch: {
-    value: values.fontStretch.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  letterSpacing: {
-    value: values.letterSpacing.value,
-    type: 'number' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category,
-      unit: 'percent' as UnitTypePercent
-    }
-  },
-  lineHeight: {
-    value: values.lineHeight.value,
-    type: values.lineHeight.type as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category,
-      ...(values.lineHeight.unit !== 'auto' ? { unit: values.lineHeight.unit } : {})
-    }
-  },
-  paragraphIndent: {
-    value: values.paragraphIndent.value,
-    type: 'number' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category,
-      unit: 'pixel' as UnitTypePixel
-    }
-  },
-  paragraphSpacing: {
-    value: values.paragraphSpacing.value,
-    type: 'number' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category,
-      unit: 'pixel' as UnitTypePixel
-    }
-  },
-  textCase: {
-    value: values.textCase.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
+const spacingValueTransformer = ({ values }): StandardTokenDataInterface => ({
+  type: 'custom-spacing' as StandardTokenTypes,
+  value: {
+    top: values.top.value,
+    bottom: values.bottom.value,
+    left: values.left.value,
+    right: values.right.value
   }
 })
 
-const colorValueTransformer = ({ category, exportKey, values }): StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface} => {
+const fontValueTransformer = ({ values }): StandardTokenDataInterface => ({
+  type: 'custom-fontStyle' as StandardTokenTypes,
+  value: {
+    fontSize: values.fontSize.value,
+    textDecoration: values.textDecoration.value,
+    fontFamily: values.fontFamily.value,
+    fontWeight: values.fontWeight.value,
+    fontStyle: values.fontStyle.value,
+    fontStretch: values.fontStretch.value,
+    letterSpacing: values.letterSpacing.value,
+    lineHeight: values.lineHeight.value,
+    paragraphIndent: values.paragraphIndent.value,
+    paragraphSpacing: values.paragraphSpacing.value,
+    textCase: values.textCase.value
+  }
+})
+
+const colorValueTransformer = ({ fill }): StandardTokenDataInterface => ({
+  type: 'color' as StandardTokenTypes,
+  value: rgbaObjectToHex8(fill.value)
+})
+
+const gradientValueTransformer = ({ gradientType, stops, opacity }): StandardTokenDataInterface => ({
+  type: 'custom-gradient' as StandardTokenTypes,
+  value: {
+    gradientType: gradientType.value,
+    stops: stops.map(stop => ({
+      position: stop.position.value,
+      color: rgbaObjectToHex8({
+        ...stop.color.value,
+        // calculate actual alpha
+        ...{ a: stop.color.value.a * opacity.value }
+      })
+    }))
+  }
+})
+
+const fillValueTransformer = ({ values }): StandardTokenDataInterface | StandardTokenGroup => {
   const fills = values.map(fill => {
-    // is a color
     if (Object.hasOwnProperty.call(fill, 'fill')) {
-      return {
-        value: rgbaObjectToHex8(fill.fill.value),
-        type: 'color' as StandardTokenTypes,
-        data: {
-          exportKey: tokenTypes.color.key,
-          category: 'color'
-        }
-      }
+      return colorValueTransformer(fill)
     }
-    // is gradient
-    fill.gradientType = {
-      ...fill.gradientType,
-      data: {
-        exportKey: tokenTypes.gradient.key,
-        category: 'gradient'
-      }
-    }
-    fill.opacity = {
-      ...fill.opacity,
-      data: {
-        exportKey: tokenTypes.gradient.key,
-        category: 'gradient'
-      }
-    }
-    fill.stops = {
-      ...fill.stops.map(stop => ({
-        position: {
-          ...stop.position,
-          data: {
-            exportKey: tokenTypes.gradient.key,
-            category: 'gradient'
-          }
-        },
-        color: {
-          ...stop.color,
-          ...{ value: rgbaObjectToHex8(stop.color.value) },
-          data: {
-            exportKey: tokenTypes.gradient.key,
-            category: 'gradient'
-          }
-        }
-      }))
-    }
-    return { ...fill }
+    return gradientValueTransformer(fill)
   })
   // only one fill
   if (fills.length === 1) {
@@ -261,122 +99,39 @@ const colorValueTransformer = ({ category, exportKey, values }): StandardTokenVa
   return { ...fills }
 }
 
-const borderValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => ({
-  strokeAlign: {
-    value: values.strokeAlign.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  dashPattern: {
-    value: values.dashPattern.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  strokeCap: {
-    value: values.strokeCap.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  strokeJoin: {
-    value: values.strokeJoin.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  strokeMiterLimit: {
-    value: values.strokeMiterLimit.value,
-    type: 'number' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category,
-      unit: 'degree' as UnitTypeDegree
-    }
-  },
-  strokeWeight: {
-    value: values.strokeWeight.value,
-    type: 'number' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category,
-      unit: 'pixel' as UnitTypePixel
-    }
-  },
-  stroke: {
-    value: rgbaObjectToHex8(values.stroke.value),
-    type: 'color' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
+const borderValueTransformer = ({ values }): StandardTokenDataInterface => ({
+  type: 'custom-stroke' as StandardTokenTypes,
+  value: {
+    align: values.strokeAlign.value,
+    dashPattern: values.dashPattern.value,
+    lineCap: values.strokeCap.value,
+    lineJoin: values.strokeJoin.value,
+    miterLimit: values.strokeMiterLimit.value,
+    weight: values.strokeWeight.value,
+    color: rgbaObjectToHex8(values.stroke.value)
   }
 })
 
-const effectValueTransformer = ({ category, exportKey, values }): {[key: string]: StandardTokenValuesInterface} => {
-  const effects = values.map(effect => ({
-    effectType: {
-      value: effect.effectType.value,
-      type: 'string' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category
-      }
-    },
-    radius: {
-      value: effect.radius.value,
-      type: 'dimension' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category,
-        unit: 'pixel' as UnitTypePixel
-      }
-    },
-    color: {
-      value: rgbaObjectToHex8(effect.color.value),
-      type: 'color' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category
-      }
-    },
-    offsetX: {
-      value: effect.offset.x.value,
-      type: 'dimension' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category,
-        unit: 'pixel' as UnitTypePixel
-      }
-    },
-    offsetY: {
-      value: effect.offset.y.value,
-      type: 'dimension' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category,
-        unit: 'pixel' as UnitTypePixel
-      }
-    },
-    spread: {
-      value: effect.spread.value,
-      type: 'dimension' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category,
-        unit: 'pixel' as UnitTypePixel
-      }
+const shadowValueTransformer = (value): StandardTokenDataInterface => ({
+  type: 'custom-shadow' as StandardTokenTypes,
+  value: {
+    shadowType: value.effectType.value,
+    radius: value.radius.value,
+    color: rgbaObjectToHex8(value.color.value),
+    offsetX: value.offset.x.value,
+    offsetY: value.offset.y.value,
+    spread: value.spread.value
+  }
+})
+
+const effectValueTransformer = ({ values }): StandardTokenDataInterface | StandardTokenGroup => {
+  const effects = values.map(effect => {
+    if (['dropShadow', 'innerShadow'].includes(effect.effectType.value)) {
+      return shadowValueTransformer(effect)
     }
-  }))
+    // blur not implemented
+    return null
+  })
   // single effect
   if (effects.length === 1) {
     return effects[0]
@@ -385,94 +140,38 @@ const effectValueTransformer = ({ category, exportKey, values }): {[key: string]
   return { ...effects }
 }
 
-const motionValueTransformer = ({ category, exportKey, values }): {[key: string]: (StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface}) } => ({
-  transitionType: {
-    value: values.transitionType.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  duration: {
-    value: values.duration.value,
-    type: 'number' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category,
-      unit: 's'
-    }
-  },
-  direction: {
-    value: values.direction.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  easing: {
-    value: values.easing.value,
-    type: 'string' as StandardTokenTypes,
-    data: {
-      exportKey: exportKey,
-      category: category
-    }
-  },
-  easingFunction: {
-    x1: {
-      value: values.easingFunction.x1.value,
-      type: 'number' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category
-      }
-    },
-    x2: {
-      value: values.easingFunction.x2.value,
-      type: 'number' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category
-      }
-    },
-    y1: {
-      value: values.easingFunction.y1.value,
-      type: 'number' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category
-      }
-    },
-    y2: {
-      value: values.easingFunction.y2.value,
-      type: 'number' as StandardTokenTypes,
-      data: {
-        exportKey: exportKey,
-        category: category
-      }
+const motionValueTransformer = ({ values }): StandardTokenDataInterface => ({
+  type: 'custom-transition' as StandardTokenTypes,
+  value: {
+    transitionType: values.transitionType.value,
+    duration: values.duration.value,
+    direction: values.direction.value,
+    easingFunction: {
+      x1: values.easingFunction.x1.value,
+      x2: values.easingFunction.x2.value,
+      y1: values.easingFunction.y1.value,
+      y2: values.easingFunction.y2.value
     }
   }
 })
 
 const valueTransformer = {
   size: widthToDimensionTransformer,
-  color: colorValueTransformer,
-  gradient: colorValueTransformer,
+  color: fillValueTransformer,
+  gradient: fillValueTransformer,
   font: fontValueTransformer,
   effect: effectValueTransformer,
   grid: gridValueTransformer,
   border: borderValueTransformer,
   breakpoint: widthToDimensionTransformer,
   radius: radiusValueTransformer,
-  spacing: defaultValueTransformer,
+  spacing: spacingValueTransformer,
   motion: motionValueTransformer
 }
 
-const transformTokens = (token: internalTokenInterface): StandardTokenValuesInterface | {[key: string]: (StandardTokenValuesInterface | {[key: string]: StandardTokenValuesInterface})} => valueTransformer[token.category](token)
+const transformTokens = (token: internalTokenInterface): StandardTokenDataInterface | StandardTokenGroup => valueTransformer[token.category](token)
 
-const transformer = (token: internalTokenInterface): StandardTokenInterface => {
-  // @ts-ignore
+const transformer = (token: internalTokenInterface): StandardTokenInterface | StandardTokenGroup => {
   return {
     [token.name]: {
       description: token.description,

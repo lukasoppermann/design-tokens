@@ -344,7 +344,7 @@ export const extractedFigmaTokens = {
         type: 'string'
       },
       dashPattern: {
-        value: '5, 5',
+        value: [5, 5],
         type: 'string'
       },
       strokeCap: {
@@ -428,7 +428,7 @@ export const extractedFigmaTokens = {
             type: 'number'
           },
           color: {
-            value: { r: 255, g: 230, b: 0, a: 1 },
+            value: { r: 255, g: 230, b: 0, a: 0.5 },
             type: 'color'
           }
         }, {
@@ -442,7 +442,7 @@ export const extractedFigmaTokens = {
           }
         }],
         opacity: {
-          value: 1.0,
+          value: 0.5,
           type: 'number'
         }
       }

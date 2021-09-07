@@ -53,6 +53,17 @@ const defaultValueTransformer = propertyGroupValues => {
   return transformedProperties
 }
 
+const borderValueTransformer = (extractedValues) => {
+  return Object.fromEntries(Object.entries(extractedValues).map(([key, value]) => {
+    if (key === 'dashPattern') {
+      const val = originalFormat(value)
+      val.value = val.value.join(', ')
+      return [key, val]
+    }
+    return [key, originalFormat(value)]
+  }))
+}
+
 const effectValueTransformer = (extractedValues) => {
   const values = extractedValues.map(effect => ({
     type: {
@@ -141,7 +152,7 @@ const valueTransformer: {} | undefined = {
   font: defaultValueTransformer,
   effect: effectValueTransformer,
   grid: defaultValueTransformer,
-  border: defaultValueTransformer,
+  border: borderValueTransformer,
   breakpoint: sizeValueTransformer,
   radius: defaultValueTransformer,
   spacing: defaultValueTransformer,

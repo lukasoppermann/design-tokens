@@ -1,3 +1,12 @@
+export type customTokenTypes = 'custom-spacing' |
+'custom-radius' |
+'custom-fontStyle' |
+'custom-shadow' |
+'custom-transition' |
+'custom-stroke' |
+'custom-grid' |
+'custom-gradient'
+
 export type StandardTokenTypes = 'string' |
 'number' |
 'object' |
@@ -6,16 +15,24 @@ export type StandardTokenTypes = 'string' |
 'null' |
 'color' |
 'dimension' |
-'font'
+'font' |
+customTokenTypes
 
 export type StandardTokenValueType = string | number | Array<any> | Object | Boolean | null
 
 export type StandardCompositeTokenValueType = {
-  [key: string]: string | number | Array<any> | Object | Boolean | null,
+  [key: string]: StandardTokenValueType,
+}
+
+export type StandardTokenGroup = {
+  [name: string]: {
+    description?: string
+    [name: string | number]: StandardTokenDataInterface | string
+  }
 }
 
 export type StandardTokenExtensionsInterface = {
-  [key: string]: any
+  [key: string]: any,
   'org.veare.figmaData': {
     exportKey: string,
     category: string,

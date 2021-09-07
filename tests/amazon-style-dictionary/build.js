@@ -91,6 +91,8 @@ StyleDictionary.registerFormat({
       return `  <style name="${changeCase.camelCase(key, { transform: changeCase.camelCaseTransformMerge })}">\n` +
     `    <item name="android:fontFamily">${options.fontFamilies[group.fontFamily.value]}</item>\n` +
     `    <item name="android:textSize">@dimen/${group.fontSize.name}</item>\n` +
+    `    <item name="android:lineHeight">@dimen/${group.lineHeight.name}</item>\n` +
+    `    <item name="android:letterSpacing">@dimen/${group.letterSpacing.name}</item>\n` +
     `    <item name="fontStyle">${group.fontStyle.value}</item>\n` +
     `    <item name="fontWeight">${group.fontWeight.value}</item>\n` +
     '  </style>\n'
