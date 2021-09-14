@@ -84,6 +84,11 @@ export type gradientValuesType = {
     value: GradientType,
     type: PropertyType
   },
+  rotation: {
+    value: number,
+    type: PropertyType
+    unit: 'degree'
+  },
   stops: gradientStopType[],
   opacity: {
     value: number,

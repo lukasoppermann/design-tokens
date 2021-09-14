@@ -1,6 +1,27 @@
 import { rgbaObjectToHex8 } from '../utilities/convertColor'
 import { internalTokenInterface } from '@typings/propertyObject'
 import { StandardTokenInterface, StandardTokenTypes, StandardTokenDataInterface, StandardTokenGroup } from '@typings/standardToken'
+import roundWithDecimals from '@src/utilities/roundWithDecimals'
+
+const lineHeightToDimension = (values): number => {
+  if (values.lineHeight.unit === 'pixel') {
+    return roundWithDecimals(values.lineHeight.value, 3)
+  }
+  if (values.lineHeight.unit === 'percent') {
+    return roundWithDecimals(values.fontSize.value * (values.lineHeight.value / 100), 3)
+  }
+  return roundWithDecimals(values.fontSize.value * 1.2, 3)
+}
+
+const letterSpacingToDimensions = (values): number => {
+  if (values.letterSpacing.unit === 'pixel') {
+    return roundWithDecimals(values.letterSpacing.value, 3)
+  }
+  if (values.letterSpacing.unit === 'percent') {
+    return roundWithDecimals(values.fontSize.value * (values.letterSpacing.value / 100), 3)
+  }
+  return 0
+}
 
 const widthToDimensionTransformer = ({ values }): StandardTokenDataInterface => ({
   value: values.width.value,
@@ -56,8 +77,8 @@ const fontValueTransformer = ({ values }): StandardTokenDataInterface => ({
     fontWeight: values.fontWeight.value,
     fontStyle: values.fontStyle.value,
     fontStretch: values.fontStretch.value,
-    letterSpacing: values.letterSpacing.value,
-    lineHeight: values.lineHeight.value,
+    letterSpacing: letterSpacingToDimensions(values),
+    lineHeight: lineHeightToDimension(values),
     paragraphIndent: values.paragraphIndent.value,
     paragraphSpacing: values.paragraphSpacing.value,
     textCase: values.textCase.value
@@ -69,10 +90,11 @@ const colorValueTransformer = ({ fill }): StandardTokenDataInterface => ({
   value: rgbaObjectToHex8(fill.value)
 })
 
-const gradientValueTransformer = ({ gradientType, stops, opacity }): StandardTokenDataInterface => ({
+const gradientValueTransformer = ({ gradientType, rotation, stops, opacity }): StandardTokenDataInterface => ({
   type: 'custom-gradient' as StandardTokenTypes,
   value: {
     gradientType: gradientType.value,
+    rotation: rotation.value,
     stops: stops.map(stop => ({
       position: stop.position.value,
       color: rgbaObjectToHex8({
