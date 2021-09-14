@@ -172,6 +172,70 @@ export const transformedOriginalTokens = {
       unit: 'pixel'
     }
   },
+  multiGrid: {
+    name: 'multiGrid',
+    comment: 'a multiGrid token',
+    category: 'grid',
+    exportKey: 'grid',
+    0: {
+      pattern: {
+        value: 'columns',
+        type: 'string'
+      },
+      sectionSize: {
+        value: 8,
+        unit: 'pixel',
+        type: 'number'
+      },
+      gutterSize: {
+        value: 8,
+        type: 'number',
+        unit: 'pixel'
+      },
+      alignment: {
+        value: 'center',
+        type: 'string'
+      },
+      count: {
+        value: 6,
+        type: 'number'
+      },
+      offset: {
+        value: 16,
+        type: 'number',
+        unit: 'pixel'
+      }
+    },
+    1: {
+      pattern: {
+        value: 'columns',
+        type: 'string'
+      },
+      sectionSize: {
+        value: 8,
+        unit: 'pixel',
+        type: 'number'
+      },
+      gutterSize: {
+        value: 8,
+        type: 'number',
+        unit: 'pixel'
+      },
+      alignment: {
+        value: 'center',
+        type: 'string'
+      },
+      count: {
+        value: 6,
+        type: 'number'
+      },
+      offset: {
+        value: 16,
+        type: 'number',
+        unit: 'pixel'
+      }
+    }
+  },
   /**
    * font
    */
@@ -284,6 +348,161 @@ export const transformedOriginalTokens = {
     type: 'color',
     value: 'rgba(255, 230, 0, 1)'
   },
+  multiColor: {
+    name: 'multiColor',
+    comment: 'a multi color token',
+    category: 'color',
+    exportKey: 'color',
+    0: {
+      type: 'color',
+      value: 'rgba(255, 230, 0, 1)'
+    },
+    1: {
+      type: 'color',
+      value: 'rgba(0, 100, 255, 0.5)'
+    }
+  },
+  /**
+   * gradient
+   */
+  gradient: {
+    name: 'gradient',
+    category: 'gradient',
+    exportKey: 'gradient',
+    comment: 'a gradient token',
+    gradientType: {
+      value: 'linear',
+      type: 'string'
+    },
+    rotation: {
+      type: 'number',
+      unit: 'degree',
+      value: 45
+    },
+    stops: {
+      0: {
+        position: {
+          value: 0,
+          type: 'number'
+        },
+        color: {
+          value: 'rgba(255, 230, 0, 0.5)',
+          type: 'color'
+        }
+      },
+      1: {
+        position: {
+          value: 1,
+          type: 'number'
+        },
+        color: {
+          value: 'rgba(0, 100, 250, 1)',
+          type: 'color'
+        }
+      }
+    },
+    opacity: {
+      value: 0.5,
+      type: 'number'
+    }
+  },
+  /**
+   * gradient and colors
+   */
+  gradientAndColor: {
+    name: 'gradientAndColor',
+    category: 'gradient',
+    exportKey: 'gradient',
+    comment: 'a gradient and color token',
+    0: {
+      gradientType: {
+        value: 'linear',
+        type: 'string'
+      },
+      rotation: {
+        type: 'number',
+        unit: 'degree',
+        value: 45
+      },
+      stops: {
+        0: {
+          position: {
+            value: 0,
+            type: 'number'
+          },
+          color: {
+            value: 'rgba(255, 230, 0, 1)',
+            type: 'color'
+          }
+        },
+        1: {
+          position: {
+            value: 1,
+            type: 'number'
+          },
+          color: {
+            value: 'rgba(0, 100, 250, 1)',
+            type: 'color'
+          }
+        }
+      },
+      opacity: {
+        value: 1,
+        type: 'number'
+      }
+    },
+    1: {
+      type: 'color',
+      value: 'rgba(0, 100, 255, 0.5)'
+    }
+  },
+  colorAndGradient: {
+    name: 'colorAndGradient',
+    category: 'color',
+    exportKey: 'color',
+    comment: 'a color and gradient token',
+    0: {
+      type: 'color',
+      value: 'rgba(255, 230, 0, 1)'
+    },
+    1: {
+      gradientType: {
+        value: 'linear',
+        type: 'string'
+      },
+      rotation: {
+        type: 'number',
+        unit: 'degree',
+        value: 45
+      },
+      stops: {
+        0: {
+          position: {
+            value: 0,
+            type: 'number'
+          },
+          color: {
+            value: 'rgba(255, 230, 0, 1)',
+            type: 'color'
+          }
+        },
+        1: {
+          position: {
+            value: 1,
+            type: 'number'
+          },
+          color: {
+            value: 'rgba(0, 100, 250, 1)',
+            type: 'color'
+          }
+        }
+      },
+      opacity: {
+        value: 1,
+        type: 'number'
+      }
+    }
+  },
   /**
    * effect
    */
@@ -321,6 +540,76 @@ export const transformedOriginalTokens = {
       value: 0,
       type: 'number',
       unit: 'pixel'
+    }
+  },
+  multiEffect: {
+    name: 'multiEffect',
+    comment: 'a multi effect token',
+    category: 'effect',
+    exportKey: 'effect',
+    0: {
+      type: {
+        value: 'dropShadow',
+        type: 'string'
+      },
+      radius: {
+        value: 0,
+        type: 'number',
+        unit: 'pixel'
+      },
+      color: {
+        value: 'rgba(10, 12, 14, 0.1)',
+        type: 'color'
+      },
+      offset: {
+        x: {
+          value: 2,
+          type: 'number',
+          unit: 'pixel'
+        },
+        y: {
+          value: 4,
+          type: 'number',
+          unit: 'pixel'
+        }
+      },
+      spread: {
+        value: 0,
+        type: 'number',
+        unit: 'pixel'
+      }
+    },
+    1: {
+      type: {
+        value: 'dropShadow',
+        type: 'string'
+      },
+      radius: {
+        value: 0,
+        type: 'number',
+        unit: 'pixel'
+      },
+      color: {
+        value: 'rgba(10, 12, 14, 0.2)',
+        type: 'color'
+      },
+      offset: {
+        x: {
+          value: 2,
+          type: 'number',
+          unit: 'pixel'
+        },
+        y: {
+          value: 4,
+          type: 'number',
+          unit: 'pixel'
+        }
+      },
+      spread: {
+        value: 0,
+        type: 'number',
+        unit: 'pixel'
+      }
     }
   },
   /**

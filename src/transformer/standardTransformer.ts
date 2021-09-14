@@ -1,7 +1,7 @@
 import { rgbaObjectToHex8 } from '../utilities/convertColor'
 import { internalTokenInterface } from '@typings/propertyObject'
 import { StandardTokenInterface, StandardTokenTypes, StandardTokenDataInterface, StandardTokenGroup } from '@typings/standardToken'
-import roundWithDecimals from '@src/utilities/roundWithDecimals'
+import roundWithDecimals from '../utilities/roundWithDecimals'
 
 const lineHeightToDimension = (values): number => {
   if (values.lineHeight.unit === 'pixel') {

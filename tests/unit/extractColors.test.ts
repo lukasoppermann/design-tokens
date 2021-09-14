@@ -44,6 +44,11 @@ describe('extracting color fills', () => {
           type: 'number',
           value: 0.35
         },
+        rotation: {
+          type: 'number',
+          unit: 'degree',
+          value: 135
+        },
         stops: [
           {
             color: {
@@ -88,6 +93,11 @@ describe('extracting color fills', () => {
           gradientType: {
             type: 'string',
             value: 'linear'
+          },
+          rotation: {
+            type: 'number',
+            unit: 'degree',
+            value: 135
           },
           opacity: {
             type: 'number',
