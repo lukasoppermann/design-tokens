@@ -40,7 +40,7 @@ describe('extracting effects', () => {
           type: 'number',
           unit: 'pixel'
         },
-        effectType: {
+        type: {
           value: 'dropShadow',
           type: 'string'
         }
@@ -51,7 +51,7 @@ describe('extracting effects', () => {
           type: 'number',
           unit: 'pixel'
         },
-        effectType: {
+        type: {
           value: 'backgroundBlur',
           type: 'string'
         }
@@ -68,7 +68,7 @@ describe('extracting effects', () => {
           type: 'number',
           unit: 'pixel'
         },
-        effectType: {
+        type: {
           value: 'layerBlur',
           type: 'string'
         }

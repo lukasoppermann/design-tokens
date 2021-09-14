@@ -1,0 +1,18 @@
+{
+  "source": ["./tests/files/*.json"],
+  "platforms": {
+    "css": {
+      "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "content/icon", "size/px", "color/css"],
+      "buildPath": "./tests/integration/data/",
+      "files": [
+        {
+          "destination": "variables.css",
+          "format": "css/variables",
+          "options" : {
+            "showFileHeader": false
+          }
+        }
+      ]
+    }
+  }
+}

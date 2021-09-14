@@ -42,7 +42,7 @@ describe('extracting borders', () => {
       values: {
         dashPattern: {
           type: 'string',
-          value: [2, 5]
+          value: '2, 5'
         },
         stroke: {
           type: 'color',
@@ -85,7 +85,7 @@ describe('extracting borders', () => {
       values: {
         dashPattern: {
           type: 'string',
-          value: [2, 5]
+          value: '2, 5'
         },
         stroke: {
           type: 'color',
@@ -128,7 +128,7 @@ describe('extracting borders', () => {
       values: {
         dashPattern: {
           type: 'string',
-          value: [2, 5]
+          value: '2, 5'
         },
         stroke: {
           type: 'color',

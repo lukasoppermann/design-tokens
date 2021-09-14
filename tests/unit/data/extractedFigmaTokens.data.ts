@@ -1,14 +1,11 @@
-import { tokenCategoryType } from '../../../types/tokenCategory'
-import { tokenExportKeyType } from '../../../types/tokenExportKey'
-
 export const extractedFigmaTokens = {
   /**
    * Size
    */
   size: {
     name: 'size token 16px (height: 24px)',
-    category: 'size' as tokenCategoryType,
-    exportKey: 'size' as tokenExportKeyType,
+    category: 'size',
+    exportKey: 'size',
     description: 'a size description',
     values: {
       width: {
@@ -28,8 +25,8 @@ export const extractedFigmaTokens = {
    */
   breakpoint: {
     name: 'breakpoint token 1024px (height: 20px)',
-    category: 'breakpoint' as tokenCategoryType,
-    exportKey: 'breakpoint' as tokenExportKeyType,
+    category: 'breakpoint',
+    exportKey: 'breakpoint',
     description: 'a breakpoint description',
     values: {
       width: {
@@ -49,8 +46,8 @@ export const extractedFigmaTokens = {
    */
   spacing: {
     name: 'spacing 24, 20,16, 8',
-    category: 'spacing' as tokenCategoryType,
-    exportKey: 'spacing' as tokenExportKeyType,
+    category: 'spacing',
+    exportKey: 'spacing',
     description: 'a spacing token',
     values: {
       top: {
@@ -80,8 +77,8 @@ export const extractedFigmaTokens = {
    */
   radiusMixed: {
     name: 'radius 1,2,3,4',
-    category: 'radius' as tokenCategoryType,
-    exportKey: 'radius' as tokenExportKeyType,
+    category: 'radius',
+    exportKey: 'radius',
     description: 'a mixed radius token',
     values: {
       radiusType: {
@@ -122,8 +119,8 @@ export const extractedFigmaTokens = {
    */
   radiusSingle: {
     name: 'radius 5',
-    category: 'radius' as tokenCategoryType,
-    exportKey: 'radius' as tokenExportKeyType,
+    category: 'radius',
+    exportKey: 'radius',
     description: 'a single radius token',
     values: {
       radius: {
@@ -169,73 +166,10 @@ export const extractedFigmaTokens = {
    */
   grid: {
     name: 'grid',
-    category: 'grid' as tokenCategoryType,
-    exportKey: 'grid' as tokenExportKeyType,
+    category: 'grid',
+    exportKey: 'grid',
     description: 'a grid token',
     values: [{
-      pattern: {
-        value: 'columns',
-        type: 'string'
-      },
-      sectionSize: {
-        value: 8,
-        unit: 'pixel',
-        type: 'number'
-      },
-      gutterSize: {
-        value: 8,
-        type: 'number',
-        unit: 'pixel'
-      },
-      alignment: {
-        value: 'center',
-        type: 'string'
-      },
-      count: {
-        value: 6,
-        type: 'number'
-      },
-      offset: {
-        value: 16,
-        type: 'number',
-        unit: 'pixel'
-      }
-    }]
-  },
-  multiGrid: {
-    name: 'multiGrid',
-    category: 'grid' as tokenCategoryType,
-    exportKey: 'grid' as tokenExportKeyType,
-    description: 'a multiGrid token',
-    values: [{
-      pattern: {
-        value: 'columns',
-        type: 'string'
-      },
-      sectionSize: {
-        value: 8,
-        unit: 'pixel',
-        type: 'number'
-      },
-      gutterSize: {
-        value: 8,
-        type: 'number',
-        unit: 'pixel'
-      },
-      alignment: {
-        value: 'center',
-        type: 'string'
-      },
-      count: {
-        value: 6,
-        type: 'number'
-      },
-      offset: {
-        value: 16,
-        type: 'number',
-        unit: 'pixel'
-      }
-    }, {
       pattern: {
         value: 'columns',
         type: 'string'
@@ -270,8 +204,8 @@ export const extractedFigmaTokens = {
    */
   font: {
     name: 'font 16',
-    category: 'font' as tokenCategoryType,
-    exportKey: 'font' as tokenExportKeyType,
+    category: 'font',
+    exportKey: 'font',
     description: 'a font token',
     values: {
       fontSize: {
@@ -335,8 +269,8 @@ export const extractedFigmaTokens = {
    */
   border: {
     name: 'border',
-    category: 'border' as tokenCategoryType,
-    exportKey: 'border' as tokenExportKeyType,
+    category: 'border',
+    exportKey: 'border',
     description: 'a border token',
     values: {
       strokeAlign: {
@@ -344,7 +278,7 @@ export const extractedFigmaTokens = {
         type: 'string'
       },
       dashPattern: {
-        value: [5, 5],
+        value: '5, 5',
         type: 'string'
       },
       strokeCap: {
@@ -376,8 +310,8 @@ export const extractedFigmaTokens = {
    */
   color: {
     name: 'background',
-    category: 'color' as tokenCategoryType,
-    exportKey: 'color' as tokenExportKeyType,
+    category: 'color',
+    exportKey: 'color',
     description: 'a color token',
     values: [
       {
@@ -388,165 +322,16 @@ export const extractedFigmaTokens = {
       }
     ]
   },
-  multiColor: {
-    name: 'multiColor',
-    category: 'color' as tokenCategoryType,
-    exportKey: 'color' as tokenExportKeyType,
-    description: 'a multi color token',
-    values: [
-      {
-        fill: {
-          value: { r: 255, g: 230, b: 0, a: 1 },
-          type: 'color'
-        }
-      },
-      {
-        fill: {
-          value: { r: 0, g: 100, b: 255, a: 0.5 },
-          type: 'color'
-        }
-      }
-    ]
-  },
-  /**
-   * gradient
-   */
-  gradient: {
-    name: 'gradient',
-    category: 'gradient' as tokenCategoryType,
-    exportKey: 'gradient' as tokenExportKeyType,
-    description: 'a gradient token',
-    values: [
-      {
-        gradientType: {
-          value: 'linear',
-          type: 'string'
-        },
-        stops: [{
-          position: {
-            value: 0,
-            type: 'number'
-          },
-          color: {
-            value: { r: 255, g: 230, b: 0, a: 0.5 },
-            type: 'color'
-          }
-        }, {
-          position: {
-            value: 1,
-            type: 'number'
-          },
-          color: {
-            value: { r: 0, g: 100, b: 250, a: 1 },
-            type: 'color'
-          }
-        }],
-        opacity: {
-          value: 0.5,
-          type: 'number'
-        }
-      }
-    ]
-  },
-  /**
-   * gradient and color mixed
-   */
-  gradientAndColor: {
-    name: 'gradientAndColor',
-    category: 'gradient' as tokenCategoryType,
-    exportKey: 'gradient' as tokenExportKeyType,
-    description: 'a gradient and color token',
-    values: [
-      {
-        gradientType: {
-          value: 'linear',
-          type: 'string'
-        },
-        stops: [{
-          position: {
-            value: 0,
-            type: 'number'
-          },
-          color: {
-            value: { r: 255, g: 230, b: 0, a: 1 },
-            type: 'color'
-          }
-        }, {
-          position: {
-            value: 1,
-            type: 'number'
-          },
-          color: {
-            value: { r: 0, g: 100, b: 250, a: 1 },
-            type: 'color'
-          }
-        }],
-        opacity: {
-          value: 1.0,
-          type: 'number'
-        }
-      },
-      {
-        fill: {
-          value: { r: 0, g: 100, b: 255, a: 0.5 },
-          type: 'color'
-        }
-      }
-    ]
-  },
-  colorAndGradient: {
-    name: 'colorAndGradient',
-    category: 'color' as tokenCategoryType,
-    exportKey: 'color' as tokenExportKeyType,
-    description: 'a color and gradient token',
-    values: [
-      {
-        fill: {
-          value: { r: 255, g: 230, b: 0, a: 1 },
-          type: 'color'
-        }
-      },
-      {
-        gradientType: {
-          value: 'linear',
-          type: 'string'
-        },
-        stops: [{
-          position: {
-            value: 0,
-            type: 'number'
-          },
-          color: {
-            value: { r: 255, g: 230, b: 0, a: 1 },
-            type: 'color'
-          }
-        }, {
-          position: {
-            value: 1,
-            type: 'number'
-          },
-          color: {
-            value: { r: 0, g: 100, b: 250, a: 1 },
-            type: 'color'
-          }
-        }],
-        opacity: {
-          value: 1.0,
-          type: 'number'
-        }
-      }
-    ]
-  },
   /**
    * effect
    */
   effect: {
     name: 'effect',
     description: 'an effect token',
-    category: 'effect' as tokenCategoryType,
-    exportKey: 'effect' as tokenExportKeyType,
+    category: 'effect',
+    exportKey: 'effect',
     values: [{
-      effectType: {
+      type: {
         value: 'dropShadow',
         type: 'string'
       },
@@ -557,75 +342,6 @@ export const extractedFigmaTokens = {
       },
       color: {
         value: { r: 10, g: 12, b: 14, a: 0.1 },
-        type: 'color'
-      },
-      offset: {
-        x: {
-          value: 2,
-          unit: 'pixel',
-          type: 'number'
-        },
-        y: {
-          value: 4,
-          unit: 'pixel',
-          type: 'number'
-        }
-      },
-      spread: {
-        value: 0,
-        unit: 'pixel',
-        type: 'number'
-      }
-    }]
-  },
-  multiEffect: {
-    name: 'multiEffect',
-    description: 'a multi effect token',
-    category: 'effect' as tokenCategoryType,
-    exportKey: 'effect' as tokenExportKeyType,
-    values: [{
-      effectType: {
-        value: 'dropShadow',
-        type: 'string'
-      },
-      radius: {
-        value: 0,
-        unit: 'pixel',
-        type: 'number'
-      },
-      color: {
-        value: { r: 10, g: 12, b: 14, a: 0.1 },
-        type: 'color'
-      },
-      offset: {
-        x: {
-          value: 2,
-          unit: 'pixel',
-          type: 'number'
-        },
-        y: {
-          value: 4,
-          unit: 'pixel',
-          type: 'number'
-        }
-      },
-      spread: {
-        value: 0,
-        unit: 'pixel',
-        type: 'number'
-      }
-    }, {
-      effectType: {
-        value: 'dropShadow',
-        type: 'string'
-      },
-      radius: {
-        value: 0,
-        unit: 'pixel',
-        type: 'number'
-      },
-      color: {
-        value: { r: 10, g: 12, b: 14, a: 0.2 },
         type: 'color'
       },
       offset: {
@@ -652,11 +368,11 @@ export const extractedFigmaTokens = {
    */
   motion: {
     name: 'motion',
-    category: 'motion' as tokenCategoryType,
-    exportKey: 'motion' as tokenExportKeyType,
+    category: 'motion',
+    exportKey: 'motion',
     description: 'a motion token',
     values: {
-      transitionType: {
+      type: {
         value: 'slide_in',
         type: 'string'
       },

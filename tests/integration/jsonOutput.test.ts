@@ -3,7 +3,7 @@ import jsonExpectedOutput from './data/jsonOriginalFormat.data'
 
 describe('Verify json output for style dictionary', () => {
   // read files
-  const json = JSON.parse(fs.readFileSync('./tests/files/original-tokens.json', 'utf8'))
+  const json = JSON.parse(fs.readFileSync('./tests/files/design-tokens-example.json', 'utf8'))
 
   test('Top level names available', () => {
     expect('color' in json).toBeTruthy()

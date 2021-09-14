@@ -73,7 +73,7 @@ describe('extracting motion tokens', () => {
         description: 'a description text',
         name: 'motion/linear',
         values: {
-          transitionType: {
+          type: {
             value: 'move_in',
             type: 'string'
           },
@@ -116,7 +116,7 @@ describe('extracting motion tokens', () => {
         description: null,
         name: 'motion/ease_in',
         values: {
-          transitionType: {
+          type: {
             value: 'dissolve',
             type: 'string'
           },
@@ -155,7 +155,7 @@ describe('extracting motion tokens', () => {
         description: 'a description text',
         name: 'motion/smart',
         values: {
-          transitionType: {
+          type: {
             value: 'smart_animate',
             type: 'string'
           },

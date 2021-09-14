@@ -1,0 +1,113 @@
+{
+  "source": ["./tests/files/design-token-example.json"],
+  "platforms": {
+    "css": {
+      "transformGroup": "css",
+      "buildPath": "./tests/amazon-style-dictionary/build/css/",
+      "files": [
+        {
+          "destination": "_variables.css",
+          "format": "css/variables"
+        }
+      ]
+    },
+    "scss": {
+      "transformGroup": "scss",
+      "buildPath": "./tests/amazon-style-dictionary/build/scss/",
+      "files": [{
+        "destination": "_variables.scss",
+        "format": "scss/variables"
+      }]
+    },
+    "reactNative": {
+      "transformGroup": "js",
+      "buildPath": "./tests/amazon-style-dictionary/build/reactNative/",
+      "files": [{
+        "destination": "styles.json",
+        "format": "json"
+      }]
+    },
+    "android": {
+      "transformGroup": "android",
+      "buildPath": "./tests/amazon-style-dictionary/build/android/",
+      "files": [{
+        "destination": "font_dimens.xml",
+        "format": "android/fontDimens"
+      },{
+        "destination": "colors.xml",
+        "format": "android/colors"
+      }]
+    },
+    "ios": {
+      "transformGroup": "ios",
+      "buildPath": "./tests/amazon-style-dictionary/build/ios/",
+      "files": [{
+        "destination": "StyleDictionaryColor.h",
+        "format": "ios/colors.h",
+        "className": "StyleDictionaryColor",
+        "type": "StyleDictionaryColorName",
+        "filter": {
+          "type": "color"
+        }
+      },{
+        "destination": "StyleDictionaryColor.m",
+        "format": "ios/colors.m",
+        "className": "StyleDictionaryColor",
+        "type": "StyleDictionaryColorName",
+        "filter": {
+          "type": "color"
+        }
+      },{
+        "destination": "StyleDictionarySize.h",
+        "format": "ios/static.h",
+        "className": "StyleDictionarySize",
+        "type": "float",
+        "filter": {
+          "type": "number"
+        }
+      },{
+        "destination": "StyleDictionarySize.m",
+        "format": "ios/static.m",
+        "className": "StyleDictionarySize",
+        "type": "float",
+        "filter": {
+          "type": "number"
+        }
+      }]
+    },
+    "ios-swift": {
+      "transformGroup": "ios-swift",
+      "buildPath": "./tests/amazon-style-dictionary/build/ios-swift/",
+      "files": [{
+        "destination": "StyleDictionary.swift",
+        "format": "ios-swift/class.swift",
+        "className": "StyleDictionary",
+        "filter": {}
+      }]
+    },
+    "ios-swift-separate-enums": {
+      "transformGroup": "ios-swift-separate",
+      "buildPath": "./tests/amazon-style-dictionary/build/ios-swift/",
+      "files": [{
+        "destination": "StyleDictionaryColor.swift",
+        "format": "ios-swift/enum.swift",
+        "className": "StyleDictionaryColor",
+        "filter": {
+          "attributes": {
+            "category": "color"
+          }
+        }
+      },{
+        "destination": "StyleDictionarySize.swift",
+        "format": "ios-swift/enum.swift",
+        "className": "StyleDictionarySize",
+        "type": "float",
+        "filter": {
+          "attributes": {
+            "category": "size"
+          }
+        }
+      }]
+    }
+  }
+}
