@@ -17,6 +17,11 @@ const gradientType = {
 
 const isGradient = (paint): boolean => ['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint.type)
 
+const rotationFromMatrix = ([[x1, y1], [x2, y2]]) => {
+  // https://stackoverflow.com/questions/24909586/find-rotation-angle-for-affine-transform
+  return Math.atan2(y2 - y1, x2 - x1) * (180.0 / Math.PI) + 315
+}
+
 const extractFills = (paint): fillValuesType | gradientValuesType => {
   if (paint.type === 'SOLID') {
     return {
@@ -31,6 +36,12 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
       gradientType: {
         value: gradientType[paint.type] as GradientType,
         type: 'string' as PropertyType
+      },
+      rotation: {
+        // https://stackoverflow.com/questions/24909586/find-rotation-angle-for-affine-transform
+        value: rotationFromMatrix(paint.gradientTransform),
+        type: 'number' as PropertyType,
+        unit: 'degree'
       },
       stops: paint.gradientStops.map(stop => ({
         position: {
