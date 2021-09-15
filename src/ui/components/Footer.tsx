@@ -4,14 +4,20 @@ import * as React from 'react'
 const style = css`
   padding: 8px 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-top: 16px;
   border-top: 1px solid var(--silver);
+  & > * {
+  align-self: center;
+  }
   button {
     margin-right: 4px;
   }
   :last-child{
     margin-right: 0;
+  }
+  & [data-align="start"] {
+    margin-right: auto;
   }
 `
 

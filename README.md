@@ -243,6 +243,14 @@ This option allows you to define how the token names will be converted when they
 - `camelCase` - spaces from the beginning and end are removed and the name is converted to [camelCase](https://en.wikipedia.org/wiki/Camel_case)
 - `kebab-case`  - spaces from the beginning and end are removed and the name is converted to kebab-case
 
+### Token format
+This option defines the structure for the json output.
+
+#### Standard (W3C draft)
+This format is based on the current spec draft of the [Design Tokens W3C Community Group](https://github.com/design-tokens/community-group).
+It is much simpler and makes it easier to define custom transformers for amazon style dictionary.
+#### Original (deprecated)
+This is the original format of the plugin. It is mainly in here to allow teams to slowly migrate to the standard format.
 ### Exclusion Prefix
 
 By default the plugin ignores any style that is prefixed with `_` or `.`. 

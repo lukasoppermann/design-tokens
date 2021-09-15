@@ -54,19 +54,25 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
  */
 if (figma.command === commands.help) {
   figma.ui.postMessage({
-    command: commands.help
+    command: commands.help,
+    payload: {
+      url: 'https://github.com/lukasoppermann/design-tokens'
+    }
   } as PluginMessage)
 }
 /**
- * Open Demo File
+ * Open demo
  */
 if (figma.command === commands.demo) {
   figma.ui.postMessage({
-    command: commands.demo
+    command: commands.demo,
+    payload: {
+      url: 'https://www.figma.com/file/2MQ759R5kJtzQn4qSHuqR7/Design-Tokens-for-Figma?node-id=231%3A2'
+    }
   } as PluginMessage)
 }
 /**
- * Open Demo File
+ * Reset settings
  */
 if (figma.command === commands.reset) {
   resetSettings()
