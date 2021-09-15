@@ -14,6 +14,7 @@ import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
 import { PluginMessage } from '@typings/pluginEvent'
 import { commands } from '@config/commands'
 import { stringifyJson } from '@src/utilities/stringifyJson'
+import { WebLink } from './WebLink'
 
 const style = css`
   display: flex;
@@ -147,6 +148,7 @@ export const UrlExportSettings = () => {
         />
       </Row>
       <Footer>
+        <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
         <Button type='button' onClick={handleFormSubmit} autofocus>Save & Export</Button>
       </Footer>

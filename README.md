@@ -249,6 +249,17 @@ This option defines the structure for the json output.
 #### Standard (W3C draft)
 This format is based on the current spec draft of the [Design Tokens W3C Community Group](https://github.com/design-tokens/community-group).
 It is much simpler and makes it easier to define custom transformers for amazon style dictionary.
+
+Every token follows this structure ([learn more](https://github.com/lukasoppermann/design-tokens/blob/main/types/standardToken.d.ts)):
+```js
+type StandardTokenInterface = {
+  name: string,
+  description?: string,
+  value: StandardTokenValueType | StandardCompositeTokenValueType,
+  type: StandardTokenTypes,
+  extensions?: StandardTokenExtensionsInterface
+}
+```
 #### Original (deprecated)
 This is the original format of the plugin. It is mainly in here to allow teams to slowly migrate to the standard format.
 ### Exclusion Prefix
