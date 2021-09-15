@@ -1,6 +1,6 @@
 import { getSettings, setSettings } from '../../src/utilities/settings'
 import { stringifyJson } from '../../src/utilities/stringifyJson'
-import { nameConversionType } from '../../types/settings'
+import { nameConversionType, tokenFormatType } from '../../types/settings'
 
 beforeAll(() => {
   // @ts-ignore
@@ -19,6 +19,7 @@ const baseSettings = {
   filename: 'myBaseFile',
   extension: '.json',
   nameConversion: 'default' as nameConversionType,
+  tokenFormat: 'standard' as tokenFormatType,
   compression: false,
   urlJsonCompression: true,
   serverUrl: 'https://test.com',

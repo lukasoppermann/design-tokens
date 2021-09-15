@@ -3,7 +3,7 @@ export default {
   ui: {
     generalSettings: {
       width: 550,
-      height: 675
+      height: 685
     },
     export: {
       width: 550,
@@ -11,7 +11,7 @@ export default {
     },
     urlExport: {
       width: 550,
-      height: 595
+      height: 575
     }
   },
   key: {

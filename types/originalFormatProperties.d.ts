@@ -18,6 +18,7 @@ export type OriginalFormatPropertyGroup = {
 export type OriginalFormatTokenInterface = {
   name: string,
   exportKey: string,
+  category: string,
   comment?: string,
 } & {
   [key: string]: OriginalFormatPropertyObject | any

@@ -1,13 +1,16 @@
+import { extractedGridValues } from './extractedData'
+import { tokenCategoryType } from './tokenCategory'
+import { tokenExportKeyType } from './tokenExportKey'
 import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType, UnitTypeSeconds } from './valueTypes'
 
 export type propertyObject = {
   name: string,
   description?: string,
-  category?: string,
-  exportKey: string,
-  values?: {
+  category: tokenCategoryType,
+  exportKey: tokenExportKeyType,
+  values: {
     [key: string]: any
-  }
+  } | extractedGridValues
 }
 
 export type internalTokenInterface = propertyObject
@@ -80,6 +83,11 @@ export type gradientValuesType = {
   gradientType: {
     value: GradientType,
     type: PropertyType
+  },
+  rotation: {
+    value: number,
+    type: PropertyType
+    unit: 'degree'
   },
   stops: gradientStopType[],
   opacity: {
@@ -163,7 +171,7 @@ export type easingFunctionPropertyInterface = {
 
 export type motionPropertyInterface = propertyObject & {
   values: {
-    type: {
+    transitionType: {
       value: string,
       type: PropertyType
     },
@@ -199,7 +207,7 @@ export type borderPropertyInterface = propertyObject & {
       value: number
     },
     dashPattern: {
-      value: string
+      value: number[]
     }
     // strokeStyleId: {
     //   value: string
@@ -279,7 +287,7 @@ export type gridPropertyInterface = propertyObject & {
 
 export type effectPropertyInterface = propertyObject & {
   values: {
-    type: {
+    effectType: {
       value: EffectType
     },
     radius: {

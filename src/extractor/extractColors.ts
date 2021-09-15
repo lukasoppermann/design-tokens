@@ -5,6 +5,8 @@ import { GradientType, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
 import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import roundWithDecimals from '../utilities/roundWithDecimals'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 
 const gradientType = {
   GRADIENT_LINEAR: 'linear',
@@ -14,6 +16,12 @@ const gradientType = {
 }
 
 const isGradient = (paint): boolean => ['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint.type)
+
+const rotationFromMatrix = ([[x1, y1], [x2, y2]]) => {
+  // https://stackoverflow.com/questions/24909586/find-rotation-angle-for-affine-transform
+  const angle = Math.atan2(y2 - y1, x2 - x1) * (180.0 / Math.PI) + 315
+  return angle > 360 ? angle - 360 : angle
+}
 
 const extractFills = (paint): fillValuesType | gradientValuesType => {
   if (paint.type === 'SOLID') {
@@ -29,6 +37,12 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
       gradientType: {
         value: gradientType[paint.type] as GradientType,
         type: 'string' as PropertyType
+      },
+      rotation: {
+        // https://stackoverflow.com/questions/24909586/find-rotation-angle-for-affine-transform
+        value: rotationFromMatrix(paint.gradientTransform),
+        type: 'number' as PropertyType,
+        unit: 'degree'
       },
       stops: paint.gradientStops.map(stop => ({
         position: {
@@ -64,8 +78,8 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
     // transform style
     .map(node => ({
       name: `${isGradient(node.paints[0]) ? prefixArray.gradient[0] : prefixArray.color[0]}/${node.name}`,
-      category: isGradient(node.paints[0]) ? 'gradient' : 'color',
-      exportKey: isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key,
+      category: isGradient(node.paints[0]) ? 'gradient' : 'color' as tokenCategoryType,
+      exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
       description: node.description || null,
       values: node.paints.map(paint => extractFills(paint))
     }))

@@ -14,6 +14,7 @@ import { Row } from '@components/Row'
 import { tokenTypes } from '@config/tokenTypes'
 import { commands } from '@config/commands'
 import config from '@config/config'
+import { WebLink } from './WebLink'
 
 const style = css`
   display: flex;
@@ -95,6 +96,7 @@ export const FileExportSettings = () => {
           />)}
       </div>
       <Footer>
+        <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
         <Button type='button' onClick={handleFormSubmit} autofocus>Save & Export</Button>
       </Footer>

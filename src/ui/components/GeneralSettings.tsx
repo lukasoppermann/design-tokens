@@ -6,10 +6,11 @@ import { FigmaContext, SettingsContext } from '@ui/context'
 import { css } from '@emotion/css'
 import { commands } from '@config/commands'
 import { Footer } from '@components/Footer'
-import { nameConversionType, Settings } from '@typings/settings'
+import { nameConversionType, Settings, tokenFormatType } from '@typings/settings'
 import { Row } from '@components/Row'
 import { Info } from '@components/Info'
 import { Separator } from './Separator'
+import { WebLink } from './WebLink'
 
 const style = css`
   display: flex;
@@ -67,28 +68,49 @@ export const GeneralSettings = () => {
         />
         <Info width={240} label='The token type (e.g. "color" or "font") will be added to the name e.g. "color/light/bg".' />
       </Row>
-      <Title size='small' weight='bold'>Name conversion</Title>
-      <Row fill>
-        <Select
-          defaultValue={settings.nameConversion}
-          onChange={({ value }) => updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })}
-          placeholder='Name conversion'
-          options={[
-            {
-              label: 'Default',
-              value: 'default'
-            },
-            {
-              label: 'camelCase',
-              value: 'camelCase'
-            },
-            {
-              label: 'kebab-case',
-              value: 'kebabCase'
-            }
-          ]}
-        />
-      </Row>
+      <Separator />
+      <div className='grid-3-col'>
+        <div>
+          <Title size='small' weight='bold'>Name conversion</Title>
+          <Select
+            defaultValue={settings.nameConversion}
+            onChange={({ value }) => updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })}
+            placeholder='Name conversion'
+            options={[
+              {
+                label: 'Default',
+                value: 'default'
+              },
+              {
+                label: 'camelCase',
+                value: 'camelCase'
+              },
+              {
+                label: 'kebab-case',
+                value: 'kebabCase'
+              }
+            ]}
+          />
+        </div>
+        <div>
+          <Title size='small' weight='bold'>Token format<Info width={240} label='The structure of the output json file. Learn more in the docs.' /></Title>
+          <Select
+            defaultValue={settings.tokenFormat}
+            onChange={({ value }) => updateSettings((draft: Settings) => { draft.tokenFormat = value as tokenFormatType })}
+            placeholder='Token format'
+            options={[
+              {
+                label: 'Standard (W3C draft)',
+                value: 'standard'
+              },
+              {
+                label: 'Original (deprecated)',
+                value: 'original'
+              }
+            ]}
+          />
+        </div>
+      </div>
       <Title size='small' weight='bold'>Exclusion prefix <Info width={240} label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)' /></Title>
       <Row fill>
         <Input
@@ -135,6 +157,7 @@ export const GeneralSettings = () => {
         )}
       </div>
       <Footer>
+        <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
         <Button type='button' onClick={handleFormSubmit} autofocus>Save changes</Button>
       </Footer>

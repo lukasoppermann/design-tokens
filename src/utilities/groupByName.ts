@@ -1,7 +1,8 @@
-import { propertyObject } from '@typings/propertyObject'
 import deepMerge from './deepMerge'
 import transformName from '../utilities/transformName'
 import { Settings } from '@typings/settings'
+import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
+import { StandardTokenInterface } from '@typings/standardToken'
 // create a nested object structure from the array (['style','colors','main','red'])
 const nestedObjectFromArray = (array: string[], value: any) => {
   // reducer
@@ -10,7 +11,7 @@ const nestedObjectFromArray = (array: string[], value: any) => {
   return array.reduceRight(reducer, value)
 }
 
-export const groupByKeyAndName = (tokenArray: propertyObject[], userSettings: Settings) => {
+export const groupByKeyAndName = (tokenArray: OriginalFormatTokenInterface[] | StandardTokenInterface[], userSettings: Settings) => {
   const removeName: boolean = true
   // guard
   if (tokenArray.length <= 0) return []

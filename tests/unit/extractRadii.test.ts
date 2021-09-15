@@ -1,4 +1,6 @@
 import extractRadii from '../../src/extractor/extractRadii'
+import { tokenCategoryType } from '../../types/tokenCategory'
+import { tokenExportKeyType } from '../../types/tokenExportKey'
 import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting radii', () => {
@@ -37,8 +39,8 @@ describe('extracting radii', () => {
 
   test('extracting only the token with correct name from customTokenNodesArray', () => {
     expect(extractRadii(nodeArray, ['radii'])).toStrictEqual([{
-      category: 'radius',
-      exportKey: 'radius',
+      category: 'radius' as tokenCategoryType,
+      exportKey: 'radius' as tokenExportKeyType,
       description: 'a description text',
       name: 'radii/mixed',
       values: {

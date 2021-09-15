@@ -48,18 +48,9 @@ const PluginUi = () => {
       // activate page
       setActivePage(command)
     }
-    // open help page
-    if (command === commands.help) {
-      window.open('https://github.com/lukasoppermann/design-tokens')
-      parent.postMessage({
-        pluginMessage: {
-          command: commands.closePlugin
-        }
-      }, '*')
-    }
-    // open help page
-    if (command === commands.demo) {
-      window.open('https://www.figma.com/file/2MQ759R5kJtzQn4qSHuqR7/Design-Tokens-for-Figma?node-id=231%3A2')
+    // open url
+    if ([commands.help, commands.demo, commands.openUrl].includes(command)) {
+      window.open(payload.url)
       parent.postMessage({
         pluginMessage: {
           command: commands.closePlugin

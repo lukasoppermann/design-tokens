@@ -1,6 +1,7 @@
 import { internalTokenInterface, tokenCategoryTypes } from '@typings/propertyObject'
 import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
+import { PropertyType, UnitTypePixel } from '@typings/valueTypes'
 
 const sizeValueTransformer = ({ width }) => ({
   value: width.value,
@@ -52,18 +53,110 @@ const defaultValueTransformer = propertyGroupValues => {
   return transformedProperties
 }
 
+const borderValueTransformer = (extractedValues) => {
+  return Object.fromEntries(Object.entries(extractedValues).map(([key, value]) => {
+    if (key === 'dashPattern') {
+      const val = originalFormat(value)
+      val.value = val.value.join(', ')
+      return [key, val]
+    }
+    return [key, originalFormat(value)]
+  }))
+}
+
+const effectValueTransformer = (extractedValues) => {
+  const values = extractedValues.map(effect => ({
+    type: {
+      value: effect.effectType.value,
+      type: 'string' as PropertyType
+    },
+    radius: {
+      value: effect.radius.value,
+      type: 'number' as PropertyType,
+      unit: 'pixel' as UnitTypePixel
+    },
+    color: {
+      value: convertRgbaObjectToString(effect.color.value),
+      type: 'color' as PropertyType
+    },
+    offset: {
+      x: {
+        value: effect.offset.x.value,
+        type: 'number' as PropertyType,
+        unit: 'pixel' as UnitTypePixel
+      },
+      y: {
+        value: effect.offset.y.value,
+        type: 'number' as PropertyType,
+        unit: 'pixel' as UnitTypePixel
+      }
+    },
+    spread: {
+      value: effect.spread.value,
+      type: 'number' as PropertyType,
+      unit: 'pixel' as UnitTypePixel
+    }
+  }))
+  // turn array with only one item into normal object
+  if (Array.isArray(values) && values.length === 1) {
+    return values[0]
+  }
+
+  return values
+}
+
+const motionValueTransformer = (values) => {
+  return {
+    type: {
+      value: values.transitionType.value,
+      type: 'string' as PropertyType
+    },
+    duration: {
+      value: values.duration.value,
+      type: 'number' as PropertyType,
+      unit: 's'
+    },
+    direction: {
+      value: values.direction.value,
+      type: 'string' as PropertyType
+    },
+    easing: {
+      value: values.easing.value,
+      type: 'string' as PropertyType
+    },
+    easingFunction: {
+      x1: {
+        value: values.easingFunction.x1.value,
+        type: 'number' as PropertyType
+      },
+      x2: {
+        value: values.easingFunction.x2.value,
+        type: 'number' as PropertyType
+      },
+      y1: {
+        value: values.easingFunction.y1.value,
+        type: 'number' as PropertyType
+      },
+      y2: {
+        value: values.easingFunction.y2.value,
+        type: 'number' as PropertyType
+      }
+    }
+  }
+}
+
 const valueTransformer: {} | undefined = {
   size: sizeValueTransformer,
   color: defaultValueTransformer,
   gradient: defaultValueTransformer,
   font: defaultValueTransformer,
-  effect: defaultValueTransformer,
+  effect: effectValueTransformer,
   grid: defaultValueTransformer,
-  border: defaultValueTransformer,
+  border: borderValueTransformer,
   breakpoint: sizeValueTransformer,
   radius: defaultValueTransformer,
   spacing: defaultValueTransformer,
-  motion: defaultValueTransformer
+  motion: motionValueTransformer
 }
 
 const transformer = (token: internalTokenInterface): OriginalFormatTokenInterface => {

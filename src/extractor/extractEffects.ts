@@ -3,6 +3,8 @@ import { effectPropertyInterface } from '@typings/propertyObject'
 import { EffectType, UnitTypePixel, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
 import { roundRgba } from '../utilities/convertColor'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 
 const effectType = {
   LAYER_BLUR: 'layerBlur',
@@ -12,7 +14,7 @@ const effectType = {
 }
 
 const blurValues = (effect) => ({
-  type: {
+  effectType: {
     value: effectType[effect.type] as EffectType,
     type: 'string' as PropertyType
   },
@@ -24,7 +26,7 @@ const blurValues = (effect) => ({
 })
 
 const shadowValues = effect => ({
-  type: {
+  effectType: {
     value: effectType[effect.type] as EffectType,
     type: 'string' as PropertyType
   },
@@ -64,8 +66,8 @@ const extractEffects: extractorInterface = (tokenNodes: EffectStyle[], prefixArr
   // build
     .map(node => ({
       name: `${prefixArray[0]}/${node.name}`,
-      category: 'effect',
-      exportKey: tokenTypes.effect.key,
+      category: 'effect' as tokenCategoryType,
+      exportKey: tokenTypes.effect.key as tokenExportKeyType,
       description: node.description || null,
       values: node.effects.map(
         (effect: Effect) =>

@@ -13,9 +13,11 @@
     "build-watch": "npm run build -- --watch",
     "test": "npm run lint ; npm run test:unit ; npm run test:integration",
     "test:unit": "jest tests/unit",
-    "test:integration": "style-dictionary clean --config ./tests/integration/config.json && style-dictionary build --config ./tests/integration/config.json && jest tests/integration --coverage=false",
+    "test:originalTokens": "style-dictionary build --config ./tests/integration/original.config.json",
+    "test:standardTokens": "style-dictionary build --config ./tests/integration/standard.config.json",
+    "test:integration": "rm ./tests/integration/data/original.variables.css & rm ./tests/integration/data/standard.variables.css && npm run test:originalTokens & npm run test:standardTokens && jest tests/integration --coverage=false",
     "lint": "standardx src/**/*.ts src/*.ts | snazzy",
-    "sd": "rm -rf tests/amazon-style-dictionary/build && style-dictionary build --config ./tests/amazon-style-dictionary/config.json",
+    "sd": "rm -rf tests/amazon-style-dictionary/build && node ./tests/amazon-style-dictionary/build.js",
     "set-version": "replace-in-files --regex='\\d+\\.\\d+\\.\\d+' --replacement=$npm_package_version src/utilities/version.ts",
     "version": "npm run set-version && npm run build && git add --all"
   },
@@ -28,7 +30,9 @@
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
+    "change-case": "^4.1.2",
     "css-loader": "^5.2.7",
+    "deepmerge": "^4.2.2",
     "eslint-plugin-typescript": "^0.14.0",
     "figma-plugin-ds": "^1.0.1",
     "html-webpack-inline-source-plugin": "0.0.10",
@@ -43,7 +47,9 @@
     "tsconfig-paths-webpack-plugin": "^3.5.1"
   },
   "dependencies": {
+    "@ctrl/tinycolor": "^3.4.0",
     "@emotion/css": "^11.1.3",
+    "fs-extra": "^10.0.0",
     "html-webpack-inline-source-plugin": "0.0.10",
     "html-webpack-plugin": "3.2.0",
     "immer": "^9.0.6",
