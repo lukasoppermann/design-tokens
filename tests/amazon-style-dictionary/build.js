@@ -46,6 +46,12 @@ const StyleDictionaryExtended = StyleDictionary.extend({
         'name/cti/camel'
       ],
       buildPath: buildPath + 'ios/',
+      options: {
+        fontFamilies: {
+          'Akzidenz-Grotesk Pro.700': 'AkzidenzGroteskPro_Bold',
+          'Akzidenz-Grotesk Pro.900': 'AkzidenzGroteskPro_Black'
+        }
+      },
       files: [
         {
           destination: 'Size.swift',
@@ -54,7 +60,10 @@ const StyleDictionaryExtended = StyleDictionary.extend({
           format: 'ios-swift/class.swift'
         }
       ],
-      actions: ['ios/colorSets']
+      actions: [
+        'ios/colorSets',
+        'ios/fontStyles'
+      ]
     },
     android: {
       transforms: [
