@@ -1,29 +1,10 @@
 const fs = require('fs-extra')
-
-const filename = 'StyleDictionary+Generated.swift'
-const dateNow = () => {
-  return new Date().toLocaleDateString('de-DE', { year: 'numeric', month: '2-digit', day: '2-digit' })
-}
+const changeCase = require('change-case')
+const fontStyleTemplate = require('./fontStyleTemplate')
 
 const fontFile = ({ fontFamily, fontWeight }, fontOpts) => {
   return fontOpts && fontOpts[`${fontFamily}.${fontWeight}`] ? fontOpts[`${fontFamily}.${fontWeight}`] : fontFamily
 }
-
-const buildFile = content => `
-//
-//  ${filename}
-//
-//  Created by Design Token Generator on ${dateNow()}.
-//
-
-import UIKit
-
-public class StyleDictionaryFont {
-
-${content}
-
-}
-`
 
 /**
  * This action will iterate over all the colors in the Style Dictionary
@@ -36,35 +17,42 @@ module.exports = {
     const assetPath = `${platform.buildPath}`
     fs.ensureDirSync(assetPath)
 
-    const font = []
-    const lineheight = []
-    const leading = []
-
+    const fontStyles = {
+      tv: {
+        filename: 'StyleDictionaryTv+Generated.swift',
+        class: 'StyleDictionaryTv',
+        font: [],
+        lineheight: [],
+        leading: []
+      },
+      interface: {
+        filename: 'StyleDictionary+Generated.swift',
+        class: 'StyleDictionary',
+        font: [],
+        lineheight: [],
+        leading: []
+      }
+    }
+    // cycle through all tokens
     dictionary.allTokens
+      // filter out custom styles
       .filter(token => token.type === 'custom-fontStyle')
-      .forEach(({ name, original: { value } }) => {
+      // remove all underline styles (they can not be used like this in iOS)
+      .filter(token => token.original.value.textDecoration !== 'underline')
+      // split int 2 parts: font & fontSize, lineheight, leading
+      .forEach(({ original: { value }, path }) => {
+        const name = changeCase.pascalCase(path.slice(2).join(' '))
         // lineheight
-        lineheight.push(`public static let ${name} = ${value.lineHeight / value.fontSize}`)
+        fontStyles[path[1]].lineheight.push(`public static let ${name} = ${(value.lineHeight / value.fontSize).toFixed(2)}`)
         // leading
-        leading.push(`public static let ${name} = ${1 + value.letterSpacing / value.fontSize}`)
+        fontStyles[path[1]].leading.push(`public static let ${name} = ${(1 + value.letterSpacing / value.fontSize).toFixed(2)}`)
         // font style
-        font.push(`public static let ${name} = UIFontMetrics.default.scaledFont(for: UIFont(name: "${fontFile(value, platform.options.fontFamilies)}", size: ${value.fontSize})!)`)
+        fontStyles[path[1]].font.push(`public static let ${name} = UIFontMetrics.default.scaledFont(for: UIFont(name: "${fontFile(value, platform.options.fontFamilies)}", size: ${value.fontSize})!)`)
       })
-
-    const content =
-`  enum Fonts {
-    ${font.join('\n    ')}
-  }
-
-  enum LineHeight {
-    ${lineheight.join('\n    ')}
-  }
-
-  enum LineHeight {
-    ${leading.join('\n    ')}
-  }`
-
-    fs.writeFileSync(`${assetPath}/${filename}`, buildFile(content))
+    // write .swift file with definitions for defaults
+    fs.writeFileSync(`${assetPath}/${fontStyles.interface.filename}`, fontStyleTemplate(fontStyles.interface))
+    // write .swift file with definitions for tv
+    fs.writeFileSync(`${assetPath}/${fontStyles.tv.filename}`, fontStyleTemplate(fontStyles.tv))
   },
   undo: function (dictionary, platform) {
     // no undo
