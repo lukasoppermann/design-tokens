@@ -397,6 +397,7 @@ I will get back to you asap to discuss the details of how to implement it.
 If you are interested in helping please comment on any issue you would like to take on. I will get back to you to discuss how to implement it.
 
 ## FAQ
-> I am getting `[object Object];` as a variable value after updating to the latest version
+> I am getting `[object Object];` as a variable value after updating to the latest version.   
+
 This happend because of the introduction of [Token format](#Token format). The quick solution is to change the format to `Original (deprecated)`.
 However I do recommend to invest in using some custom transformers together with the `Standard` format. You can find some examples in this repo soon...
