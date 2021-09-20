@@ -25,7 +25,7 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
   - [File Export Settings](#file-export-settings)  
   - [Push tokens to Github / Server](#push-to-server)
 - [Roadmap & PRs](#roadmap--prs)
-- [FAQ](#faq)
+- [FAQ and Help](#faq)
 
 ## Installation
 
