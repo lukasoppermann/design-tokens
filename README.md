@@ -400,4 +400,4 @@ If you are interested in helping please comment on any issue you would like to t
 > I am getting `[object Object];` as a variable value after updating to the latest version.   
 
 This happend because of the introduction of [Token format](#token-format). The quick solution is to change the format to `Original (deprecated)`.
-However I do recommend to invest in using some custom transformers together with the `Standard` format. You can find some examples in this repo soon...
+However I do recommend to invest in using some custom transformers together with the [`Standard`](standard-w3c-draft) format. You can find [examples](https://github.com/lukasoppermann/design-tokens/tree/main/examples) in this repo soon.

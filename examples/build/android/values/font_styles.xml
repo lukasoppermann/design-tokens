@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Do not edit directly
+  Generated on Mon, 20 Sep 2021 14:07:33 GMT
+-->
+<resources>
+  <style name="fontBodyH3">
+    <!-- Comment for text style -->
+    <item name="android:fontFamily">@font/AkzidenzGroteskPro</item>
+    <item name="android:textSize">@dimen/fontBodyH3</item>
+    <item name="android:lineHeight">32sp</item>
+    <item name="android:letterSpacing">1.02</item>
+    <item name="fontStyle">normal</item>
+    <item name="fontWeight">700</item>
+  </style>
+
+  <style name="fontBodyH4StrikeThrough">
+    <!-- With stylisitc options -->
+    <item name="android:fontFamily">undefined</item>
+    <item name="android:textSize">@dimen/fontBodyH4StrikeThrough</item>
+    <item name="android:lineHeight">19.2sp</item>
+    <item name="android:letterSpacing">1</item>
+    <item name="fontStyle">italic</item>
+    <item name="fontWeight">500</item>
+  </style>
+
+  <style name="fontBodyItalic">
+    <item name="android:fontFamily">undefined</item>
+    <item name="android:textSize">@dimen/fontBodyItalic</item>
+    <item name="android:lineHeight">14sp</item>
+    <item name="android:letterSpacing">1</item>
+    <item name="fontStyle">italic</item>
+    <item name="fontWeight">400</item>
+  </style>
+
+  <style name="fontBodyExtraBoldCondensedItalic">
+    <item name="android:fontFamily">@font/AkzidenzGroteskPro</item>
+    <item name="android:textSize">@dimen/fontBodyExtraBoldCondensedItalic</item>
+    <item name="android:lineHeight">14.4sp</item>
+    <item name="android:letterSpacing">1</item>
+    <item name="fontStyle">italic</item>
+    <item name="fontWeight">800</item>
+  </style>
+
+  <style name="fontBodyMediumExtendedItalic">
+    <item name="android:fontFamily">@font/AkzidenzGroteskPro</item>
+    <item name="android:textSize">@dimen/fontBodyMediumExtendedItalic</item>
+    <item name="android:lineHeight">24sp</item>
+    <item name="android:letterSpacing">1</item>
+    <item name="fontStyle">italic</item>
+    <item name="fontWeight">500</item>
+  </style>
+
+  <style name="fontBodySuper">
+    <item name="android:fontFamily">@font/AkzidenzGroteskPro</item>
+    <item name="android:textSize">@dimen/fontBodySuper</item>
+    <item name="android:lineHeight">26.4sp</item>
+    <item name="android:letterSpacing">1</item>
+    <item name="fontStyle">normal</item>
+    <item name="fontWeight">900</item>
+  </style>
+
+</resources>

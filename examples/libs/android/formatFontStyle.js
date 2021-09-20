@@ -1,5 +1,5 @@
 const { fileHeader } = require('style-dictionary').formatHelpers
-const androidCamelCase = require('./helperAndroidCamelCase')
+const camelCase = require('../common/camelCaseHelper')
 
 const letterSpacingToFloat = (letterSpacing, fontSize) => 1 + (letterSpacing / fontSize)
 
@@ -11,7 +11,7 @@ module.exports = ({ dictionary, platform, options = {}, file }) => {
     .filter(compositeToken => compositeToken.original.value.textDecoration !== 'underline')
     // create style
     .map(compositeToken => {
-      return `  <style name="${androidCamelCase(compositeToken.name)}">\n` +
+      return `  <style name="${camelCase(compositeToken.name)}">\n` +
       printDescription(compositeToken.description) +
     `    <item name="android:fontFamily">${options.fontFamilies[compositeToken.original.value.fontFamily]}</item>\n` +
     `    <item name="android:textSize">@dimen/${compositeToken.name}</item>\n` +

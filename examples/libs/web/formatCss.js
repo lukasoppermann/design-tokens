@@ -16,9 +16,10 @@ module.exports = ({ dictionary, options, file }) => {
   const opts = options ?? {}
   const { outputReferences } = opts
   const groupedTokens = {
-    light: filteredTokens(dictionary, (token) => token.path[0] === 'light'),
-    dark: filteredTokens(dictionary, (token) => token.path[0] === 'dark'),
-    rest: filteredTokens(dictionary, (token) => !['light', 'dark'].includes(token.path[0]))
+    // if you export the prefixes use token.path[0] instead of [1]
+    light: filteredTokens(dictionary, (token) => token.path[1].toLowerCase() === 'light'),
+    dark: filteredTokens(dictionary, (token) => token.path[1].toLowerCase() === 'dark'),
+    rest: filteredTokens(dictionary, (token) => !['light', 'dark'].includes(token.path[1].toLowerCase()))
   }
 
   return (

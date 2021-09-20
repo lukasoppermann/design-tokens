@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Do not edit directly
+  Generated on Mon, 20 Sep 2021 14:07:33 GMT
+-->
+<resources>
+  <dimen name="sizes32">32.72dp</dimen>
+  <dimen name="sizes40">40dp</dimen>
+  <dimen name="sizes60">60dp</dimen>
+  <dimen name="sizes80">80dp</dimen>
+  <dimen name="sizesPlainToken">200dp</dimen>
+  <dimen name="sizesTokenInFrame">200dp</dimen>
+  <dimen name="sizesTokenInGroup">200dp</dimen>
+  <dimen name="sizesInVariant60">60dp</dimen>
+  <dimen name="sizesInVariant90">90dp</dimen>
+  <dimen name="sizesInVariant120">120dp</dimen>
+  <dimen name="sizesFrame">32dp</dimen>
+  <dimen name="sizesRect">32dp</dimen>
+  <dimen name="sizesShapeInComponent">32dp</dimen>
+  <dimen name="breakpointsLg">1280dp</dimen>
+  <dimen name="breakpointsSm">768dp</dimen>
+  <dimen name="breakpointsMd">1024dp</dimen>
+  <dimen name="fontBodyH3">20sp</dimen>
+  <dimen name="fontBodyH4StrikeThrough">16sp</dimen>
+  <dimen name="fontBodyItalic">12sp</dimen>
+  <dimen name="fontBodyExtraBoldCondensedItalic">12sp</dimen>
+  <dimen name="fontBodyMediumExtendedItalic">20sp</dimen>
+  <dimen name="fontBodySuper">22sp</dimen>
+  
+</resources>

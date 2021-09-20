@@ -1,4 +1,4 @@
-const androidCamelCase = require('./helperAndroidCamelCase')
+const camelCase = require('../common/camelCaseHelper')
 
 module.exports = {
   type: 'name',
@@ -6,6 +6,6 @@ module.exports = {
     return token.type === 'color'
   },
   transformer: function (token) {
-    return androidCamelCase(token.path.slice(2).join(' '))
+    return camelCase(token.path.slice(2).join(' '))
   }
 }

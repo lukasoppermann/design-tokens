@@ -1,0 +1,66 @@
+/**
+ * Do not edit directly
+ * Generated on Mon Sep 20 2021 16:07:33 GMT+0200 (Central European Summer Time)
+ */
+
+:root {
+  --sizes-32: 32.72px;
+  --sizes-40: 40px;
+  --sizes-60: 60px;
+  --sizes-80: 80px;
+  --sizes-plain-token: 200px;
+  --sizes-token-in-frame: 200px;
+  --sizes-token-in-group: 200px;
+  --sizes-in-variant-60: 60px;
+  --sizes-in-variant-90: 90px;
+  --sizes-in-variant-120: 120px;
+  --sizes-frame: 32px;
+  --sizes-rect: 32px;
+  --sizes-shape-in-component: 32px;
+  --breakpoints-lg: 1280px;
+  --breakpoints-sm: 768px;
+  --breakpoints-md: 1024px;
+  --radius-5: 5px;
+  --radii-smoothing: 10px;
+  --radii-mixed: 5.5px 10px 20px 15px;
+  --gradient-gradient-single-with-multiple-color-stops: radial-gradient(rgb(255, 184, 0) 0%, rgb(255, 138, 0) 34%, rgb(255, 46, 0) 65%, rgb(255, 0, 0) 100%);
+  --gradient-gradient-multiple-0: linear-gradient(180deg, rgb(255, 184, 0) 0%, rgb(255, 184, 0) 100%);
+  --gradient-gradient-multiple-1: radial-gradient(rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+  --gradient-gradient-multiple-2: undefined;
+  --gradient-gradient-multiple-3: undefined;
+  --color-colors-multiple-fills-0: rgb(64, 255, 186);
+  --color-colors-multiple-fills-1: rgba(0, 0, 0, 0.1);
+  --color-colors-single-blue: rgb(4, 74, 255);
+  --color-colors-special-characters: rgb(64, 223, 80);
+  --color-colors-special-characters-nderung: rgb(52, 86, 175);
+  --font-body-h3: condensed  700 20/32 "Akzidenz-Grotesk Pro", sans-serif;
+  --font-body-h4-strike-through: italic 500 16/19.2 Roboto;
+  --font-body-italic: italic 400 12/14 Roboto;
+  --font-body-extra-bold-condensed-italic: condensed italic 800 12/14.4 "Akzidenz-Grotesk Pro", sans-serif;
+  --font-body-medium-extended-italic: expanded italic 500 20/24 "Akzidenz-Grotesk Pro", sans-serif;
+  --font-body-super: 900 22/26.4 "Akzidenz-Grotesk Pro", sans-serif;
+  --effect-drop-shadow-single: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  --effect-inner-shadow-multiple-0: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  --effect-inner-shadow-multiple-1: inset 10px 100px 1px 0.5px rgb(0, 0, 0);
+  --effect-inner-shadow-multiple-2: inset -4px 2px 3px 11px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: light) {
+ :root {
+  --color-light-background: rgb(255, 255, 255);
+ }
+}
+
+@media (prefers-color-scheme: dark) {
+ :root {
+  --color-dark-background: rgb(0, 0, 0);
+ }
+}
+
+html[data-theme="light"] {
+  --color-light-background: rgb(255, 255, 255);
+}
+
+html[data-theme="dark"] {
+  --color-dark-background: rgb(0, 0, 0);
+}

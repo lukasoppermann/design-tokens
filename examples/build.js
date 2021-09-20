@@ -6,20 +6,20 @@ const webConfig = require('./libs/web')
 const StyleDictionary = require('style-dictionary')
 
 // PATHS
-const basePath = './tests/amazon-style-dictionary/'
+const basePath = './examples/'
 const buildPath = basePath + 'build/'
 
 const StyleDictionaryExtended = StyleDictionary.extend({
   // adding imported configs
   ...deepMerge.all([androidConfig, iosConfig, webConfig]),
-  source: ['./tests/files/standard-tokens.json'],
+  source: [basePath + 'input/*.json'],
   platforms: {
     css: {
       transformGroup: 'custom/css',
       buildPath: buildPath + '/css/',
       options: {
         fontFamilies: {
-          'RTL United Text': '"RTL United Text", sans-serif'
+          'Akzidenz-Grotesk Pro': '"Akzidenz-Grotesk Pro", sans-serif'
         }
       },
       files: [
@@ -78,7 +78,7 @@ const StyleDictionaryExtended = StyleDictionary.extend({
         copyFilesAction: [
           {
             destination: buildPath + 'android/font/font_family.xml',
-            origin: './tests/amazon-style-dictionary/filesToCopy/font_family.xml'
+            origin: basePath + 'filesToCopy/font_family.xml'
           }
         ]
       },
@@ -89,7 +89,7 @@ const StyleDictionaryExtended = StyleDictionary.extend({
           filter: (token) => token.type === 'custom-fontStyle',
           options: {
             fontFamilies: {
-              'RTL United Text': '@font/rtl_united_text'
+              'Akzidenz-Grotesk Pro': '@font/AkzidenzGroteskPro'
             }
           }
         },
@@ -104,7 +104,7 @@ const StyleDictionaryExtended = StyleDictionary.extend({
           format: 'android/resourcesSorted',
           resourceType: 'color',
           filter: (token) => {
-            return token.type === 'color' && token.path[0] === 'light'
+            return token.type === 'color' && token.path[0].toLowerCase() === 'light'
           }
         },
         {
@@ -112,7 +112,7 @@ const StyleDictionaryExtended = StyleDictionary.extend({
           format: 'android/resourcesSorted',
           resourceType: 'color',
           filter: (token) => {
-            return token.type === 'color' && token.path[0] === 'dark'
+            return token.type === 'color' && token.path[0].toLowerCase() === 'dark'
           }
         }
       ],

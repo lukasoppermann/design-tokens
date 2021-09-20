@@ -1,5 +1,5 @@
 const fs = require('fs-extra')
-const changeCase = require('change-case')
+const camelCase = require('../common/camelCaseHelper')
 const fontStyleTemplate = require('./fontStyleTemplate')
 
 const fontFile = ({ fontFamily, fontWeight }, fontOpts) => {
@@ -18,20 +18,11 @@ module.exports = {
     fs.ensureDirSync(assetPath)
 
     const fontStyles = {
-      tv: {
-        filename: 'StyleDictionaryTv+Generated.swift',
-        class: 'StyleDictionaryTv',
-        font: [],
-        lineheight: [],
-        leading: []
-      },
-      interface: {
-        filename: 'StyleDictionary+Generated.swift',
-        class: 'StyleDictionary',
-        font: [],
-        lineheight: [],
-        leading: []
-      }
+      filename: 'StyleDictionary+Generated.swift',
+      class: 'StyleDictionary',
+      font: [],
+      lineheight: [],
+      leading: []
     }
     // cycle through all tokens
     dictionary.allTokens
@@ -41,18 +32,17 @@ module.exports = {
       .filter(token => token.original.value.textDecoration !== 'underline')
       // split int 2 parts: font & fontSize, lineheight, leading
       .forEach(({ original: { value }, path }) => {
-        const name = changeCase.pascalCase(path.slice(2).join(' '))
+        // chaning name & removeing "font" from name for better DX
+        const name = camelCase(path.slice(1).join(' '))
         // lineheight
-        fontStyles[path[1]].lineheight.push(`public static let ${name} = ${(value.lineHeight / value.fontSize).toFixed(2)}`)
+        fontStyles.lineheight.push(`public static let ${name} = ${(value.lineHeight / value.fontSize).toFixed(2)}`)
         // leading
-        fontStyles[path[1]].leading.push(`public static let ${name} = ${(1 + value.letterSpacing / value.fontSize).toFixed(2)}`)
+        fontStyles.leading.push(`public static let ${name} = ${(1 + value.letterSpacing / value.fontSize).toFixed(2)}`)
         // font style
-        fontStyles[path[1]].font.push(`public static let ${name} = UIFontMetrics.default.scaledFont(for: UIFont(name: "${fontFile(value, platform.options.fontFamilies)}", size: ${value.fontSize})!)`)
+        fontStyles.font.push(`public static let ${name} = UIFontMetrics.default.scaledFont(for: UIFont(name: "${fontFile(value, platform.options.fontFamilies)}", size: ${value.fontSize})!)`)
       })
     // write .swift file with definitions for defaults
-    fs.writeFileSync(`${assetPath}/${fontStyles.interface.filename}`, fontStyleTemplate(fontStyles.interface))
-    // write .swift file with definitions for tv
-    fs.writeFileSync(`${assetPath}/${fontStyles.tv.filename}`, fontStyleTemplate(fontStyles.tv))
+    fs.writeFileSync(`${assetPath}/${fontStyles.filename}`, fontStyleTemplate(fontStyles))
   },
   undo: function (dictionary, platform) {
     // no undo
