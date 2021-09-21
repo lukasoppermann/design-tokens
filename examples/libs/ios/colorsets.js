@@ -34,7 +34,7 @@ module.exports = {
   // This is going to run once per theme.
   do: (dictionary, platform) => {
     const assetPath = `${platform.buildPath}/DesignToken.xcassets`
-    fs.ensureDirSync(assetPath)
+    fs.emptyDirSync(assetPath)
     fs.writeFileSync(`${assetPath}/Contents.json`, JSON.stringify(contents, null, 2))
 
     dictionary.allTokens
