@@ -261,8 +261,11 @@ type StandardTokenInterface = {
   extensions?: StandardTokenExtensionsInterface
 }
 ```
+
 #### Original (deprecated)
 This is the original format of the plugin. It is mainly in here to allow teams to slowly migrate to the standard format.
+This works better with amazon style dictionary for basics. However if you want to create custom transformers the **Standard** format is better.
+
 ### Exclusion Prefix
 
 By default the plugin ignores any style that is prefixed with `_` or `.`. 
