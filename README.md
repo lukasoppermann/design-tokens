@@ -10,6 +10,7 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
 ## Table of content
 - [Installation](#installation)
 - [Plugin usage](#plugin-usage)
+- [FAQ](#faq)
 - [Transforming tokens using Amazon style dictionary](#transforming-tokens-using-amazon-style-dictionary)
 - [Creating design tokens](#creating-design-tokens)
   - [Figma style design tokens](#creating-design-tokens)
@@ -24,8 +25,7 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
 - [Settings](#settings)
   - [File Export Settings](#file-export-settings)  
   - [Push tokens to Github / Server](#push-to-server)
-- [Roadmap & PRs](#roadmap--prs)
-- [FAQ and Help](#faq)
+- [Contribution](#contribution)
 
 ## Installation
 
@@ -54,6 +54,9 @@ Note: You will not have permission to change or export tokens from this file but
 
 ### `Design Tokens > Help`
 Opens this documentation page.
+
+## FAQ
+You can find frequent questions and issues in the [faq](https://github.com/lukasoppermann/design-tokens/raw/main/faq.md).
 
 ## Transforming tokens using Amazon style dictionary
 1. Clone the [design token transformer](https://github.com/lukasoppermann/design-token-transformer) repositiory.
@@ -387,9 +390,7 @@ Also assure your access token is valid.
 The server may not have correct cors settings. If you send your tokens to github this probably means that you have a spelling mistake in the URL.
 
 
-## Roadmap & PRs
-### Roadmap
-This plugin is under active development. You can find all planned features in the [roadmap](https://github.com/lukasoppermann/design-tokens/issues/2).
+## Contribution
 ### Feature requests & help
 If you would like to see a specific feature implemented, please [create an issue](https://github.com/lukasoppermann/design-tokens/issues/new) including a description of the feature and a use case.
 
@@ -398,9 +399,3 @@ I will get back to you asap to discuss the details of how to implement it.
 
 #### Help develop this plugin
 If you are interested in helping please comment on any issue you would like to take on. I will get back to you to discuss how to implement it.
-
-## FAQ
-> I am getting `[object Object];` as a variable value after updating to the latest version.   
-
-This happend because of the introduction of [Token format](#token-format). The quick solution is to change the format to `Original (deprecated)`.
-However I do recommend to invest in using some custom transformers together with the [`Standard`](standard-w3c-draft) format. You can find [examples](https://github.com/lukasoppermann/design-tokens/tree/main/examples) in this repo soon.
