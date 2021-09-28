@@ -56,7 +56,7 @@ Note: You will not have permission to change or export tokens from this file but
 Opens this documentation page.
 
 ## FAQ
-You can find frequent questions and issues in the [faq](https://github.com/lukasoppermann/design-tokens/raw/main/faq.md).
+You can find frequent questions and issues in the [faq](https://github.com/lukasoppermann/design-tokens/blob/main/faq.md).
 
 ## Transforming tokens using Amazon style dictionary
 1. Clone the [design token transformer](https://github.com/lukasoppermann/design-token-transformer) repositiory.
