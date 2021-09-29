@@ -848,6 +848,22 @@
           "type": "color"
         }
       }
+    },
+    "light": {
+      "background": {
+        "category": "color",
+        "exportKey": "color",
+        "value": "rgba(255, 255, 255, 1)",
+        "type": "color"
+      }
+    },
+    "dark": {
+      "background": {
+        "category": "color",
+        "exportKey": "color",
+        "value": "rgba(0, 0, 0, 1)",
+        "type": "color"
+      }
     }
   },
   "grid": {

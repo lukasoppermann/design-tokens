@@ -4,6 +4,7 @@ import { GridAlignment, GridPattern, PropertyType, UnitTypePixel } from '@typing
 import { tokenTypes } from '@config/tokenTypes'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const gridValues = (grid: GridLayoutGrid) => ({
   pattern: {
@@ -74,7 +75,12 @@ const extractGrids: extractorInterface = (tokenNodes: GridStyle[], prefixArray: 
       category: 'grid' as tokenCategoryType,
       exportKey: tokenTypes.grid.key as tokenExportKeyType,
       description: node.description || null,
-      values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid))
+      values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid)),
+      extensions: {
+        [config.key.extensionPluginData]: {
+          [config.key.extensionFigmaStyleId]: node.id
+        }
+      }
     }))
 }
 

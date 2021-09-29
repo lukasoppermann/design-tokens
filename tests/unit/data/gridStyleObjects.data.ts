@@ -1,6 +1,7 @@
 export const gridStyles = [
   {
     name: 'rows & columns',
+    id: 20,
     description: 'a description grid',
     layoutGrids: [
       {
@@ -41,6 +42,7 @@ export const gridStyles = [
   },
   {
     name: 'grid no description',
+    id: 21,
     layoutGrids: [
       {
         pattern: 'GRID',
@@ -59,6 +61,7 @@ export const gridStyles = [
 export const gridStyleObjects = [
   {
     name: 'rows & columns',
+    id: 20,
     description: 'a description grid',
     layoutGrids: [
       {
@@ -99,6 +102,7 @@ export const gridStyleObjects = [
   },
   {
     name: 'grid no description',
+    id: 21,
     description: undefined,
     layoutGrids: [
       {

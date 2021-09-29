@@ -17,7 +17,9 @@ export default {
   key: {
     lastVersionSettingsOpened: 'lastVersionSettingsOpened',
     fileId: 'fileId',
-    settings: 'settings'
+    settings: 'settings',
+    extensionPluginData: 'org.lukasoppermann.figmaDesignTokens',
+    extensionFigmaStyleId: 'styleId'
   },
   exclusionPrefixDefault: ['_', '.'],
   fileExtensions: [

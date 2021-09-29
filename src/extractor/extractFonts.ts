@@ -5,6 +5,7 @@ import { tokenTypes } from '@config/tokenTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const textDecorations = {
   NONE: 'none',
@@ -131,6 +132,11 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: 
       textCase: {
         value: textCases[node.textCase] as TextCase,
         type: 'string' as PropertyType
+      }
+    },
+    extensions: {
+      [config.key.extensionPluginData]: {
+        [config.key.extensionFigmaStyleId]: node.id
       }
     }
   }))

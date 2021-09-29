@@ -6,11 +6,13 @@ jest.mock('../../src/utilities/getTokenNodes', () => jest.fn())
 const defaultOutput = {
   effectStyles: [{
     name: 'EffectStyle',
+    id: undefined,
     description: undefined,
     effects: undefined
   }],
   textStyles: [{
     name: 'TextStyle',
+    id: undefined,
     description: undefined,
     fontName: undefined,
     fontSize: undefined,
@@ -23,11 +25,13 @@ const defaultOutput = {
   }],
   gridStyles: [{
     name: 'GridStyle',
+    id: undefined,
     description: undefined,
     layoutGrids: undefined
   }],
   paintStyles: [{
     name: 'PaintStyle',
+    id: undefined,
     description: undefined,
     paints: undefined
   }],

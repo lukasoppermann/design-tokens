@@ -5,12 +5,14 @@ import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, 
 
 export type propertyObject = {
   name: string,
+  id?: string,
   description?: string,
   category: tokenCategoryType,
   exportKey: tokenExportKeyType,
   values: {
     [key: string]: any
-  } | extractedGridValues
+  } | extractedGridValues,
+  extensions?: any
 }
 
 export type internalTokenInterface = propertyObject

@@ -149,6 +149,8 @@
   --color-colors-single-blue: #044aff;
   --color-colors-special-characters: #40df50; /* Emoji */
   --color-colors-special-characters-nderung: #3456af;
+  --color-light-background: #ffffff;
+  --color-dark-background: #000000;
   --grid-multiple-0-pattern: columns;
   --grid-multiple-0-section-size: 1;
   --grid-multiple-0-gutter-size: 20;

@@ -632,6 +632,22 @@ export default {
           type: 'color'
         }
       }
+    },
+    dark: {
+      background: {
+        category: 'color',
+        exportKey: 'color',
+        type: 'color',
+        value: 'rgba(0, 0, 0, 1)'
+      }
+    },
+    light: {
+      background: {
+        category: 'color',
+        exportKey: 'color',
+        type: 'color',
+        value: 'rgba(255, 255, 255, 1)'
+      }
     }
   },
   gradient: {

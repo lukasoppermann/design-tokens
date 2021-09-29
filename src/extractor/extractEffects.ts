@@ -5,6 +5,7 @@ import { tokenTypes } from '@config/tokenTypes'
 import { roundRgba } from '../utilities/convertColor'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const effectType = {
   LAYER_BLUR: 'layerBlur',
@@ -74,7 +75,12 @@ const extractEffects: extractorInterface = (tokenNodes: EffectStyle[], prefixArr
           effect.type === 'LAYER_BLUR' || effect.type === 'BACKGROUND_BLUR'
             ? blurValues(effect)
             : shadowValues(effect)
-      )
+      ),
+      extensions: {
+        [config.key.extensionPluginData]: {
+          [config.key.extensionFigmaStyleId]: node.id
+        }
+      }
     }))
 }
 
