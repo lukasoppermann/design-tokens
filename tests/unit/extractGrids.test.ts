@@ -8,6 +8,11 @@ describe('extracting grids', () => {
       exportKey: 'grid',
       description: 'a description grid',
       name: 'grid/rows & columns',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          styleId: 20
+        }
+      },
       values: [{
         pattern: {
           type: 'string',
@@ -67,6 +72,11 @@ describe('extracting grids', () => {
       exportKey: 'grid',
       description: null,
       name: 'grid/grid no description',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          styleId: 21
+        }
+      },
       values: [{
         pattern: {
           type: 'string',

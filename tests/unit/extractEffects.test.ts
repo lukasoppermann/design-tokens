@@ -7,6 +7,11 @@ describe('extracting effects', () => {
       category: 'effect',
       exportKey: 'effect',
       description: 'an effect style',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          styleId: 30
+        }
+      },
       name: 'effect/shadow',
       values: [{
         color: {
@@ -61,6 +66,11 @@ describe('extracting effects', () => {
       category: 'effect',
       exportKey: 'effect',
       description: null,
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          styleId: 31
+        }
+      },
       name: 'effect/blur no description',
       values: [{
         radius: {

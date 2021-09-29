@@ -1,6 +1,7 @@
 export const textStyles = [
   {
     name: 'basic',
+    id: 10,
     description: 'a font style',
     type: 'TEXT',
     fontSize: 16,
@@ -23,6 +24,7 @@ export const textStyles = [
   },
   {
     name: 'no description',
+    id: 11,
     type: 'TEXT',
     fontSize: 12,
     textDecoration: 'UNDERLINE',
@@ -63,7 +65,8 @@ export const textStyleObjects = [
     },
     paragraphIndent: 3,
     paragraphSpacing: 2,
-    textCase: 'UPPER'
+    textCase: 'UPPER',
+    id: 10
   },
   {
     name: 'no description',
@@ -83,7 +86,8 @@ export const textStyleObjects = [
     },
     paragraphIndent: 3,
     paragraphSpacing: 2,
-    textCase: 'ORIGINAL'
+    textCase: 'ORIGINAL',
+    id: 11
   }
 ]
 
@@ -147,6 +151,11 @@ export const extractFontsOutput = [
         value: 'uppercase',
         type: 'string'
       }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        styleId: 10
+      }
     }
   },
   {
@@ -207,6 +216,11 @@ export const extractFontsOutput = [
       textCase: {
         value: 'none',
         type: 'string'
+      }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        styleId: 11
       }
     }
   }

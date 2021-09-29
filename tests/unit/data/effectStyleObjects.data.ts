@@ -1,6 +1,7 @@
 export const effectStyles = [
   {
     name: 'shadow',
+    id: 30,
     description: 'an effect style',
     effects: [
       {
@@ -30,6 +31,7 @@ export const effectStyles = [
   },
   {
     name: 'blur no description',
+    id: 31,
     effects: [{
       type: 'LAYER_BLUR', // | "BACKGROUND_BLUR"
       radius: 7,
@@ -42,6 +44,7 @@ export const effectStyles = [
 export const effectStyleObjects = [
   {
     name: 'shadow',
+    id: 30,
     description: 'an effect style',
     effects: [{
       type: 'DROP_SHADOW', // | "INNER_SHADOW"
@@ -68,6 +71,7 @@ export const effectStyleObjects = [
   },
   {
     name: 'blur no description',
+    id: 31,
     description: undefined,
     effects: [{
       type: 'LAYER_BLUR', // | "BACKGROUND_BLUR"
