@@ -11,10 +11,11 @@ type GenericStyleObject = {
 }
 
 export type PaintStyleObject = GenericStyleObject & {
+  id: string,
   paints: any[]
 }
 
-type GridType = "GRID" | "ROWS" | "COLUMNS"
+type GridType = 'GRID' | 'ROWS' | 'COLUMNS'
 type layoutGrid = {
   pattern: GridType,
   sectionSize?: number,

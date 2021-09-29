@@ -11,6 +11,7 @@ const getTextStyles = (styles: TextStyle[]): TextStyleObject[] => {
   styles.forEach(style => {
     styleArray.push({
       name: style.name,
+      id: style.id,
       description: style.description,
       fontSize: style.fontSize,
       textDecoration: style.textDecoration,

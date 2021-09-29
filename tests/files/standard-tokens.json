@@ -238,7 +238,6 @@
       "value": {
         "transitionType": "dissolve",
         "duration": 0.45,
-        "direction": null,
         "easingFunction": {
           "x1": 0.6968395709991455,
           "x2": 0.06683959811925888,
@@ -253,7 +252,6 @@
       "value": {
         "transitionType": "smart_animate",
         "duration": 0.5,
-        "direction": null,
         "easingFunction": {
           "x1": 0,
           "x2": 1,
@@ -304,6 +302,11 @@
               "color": "#ff0000ff"
             }
           ]
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:86b7ea8e4f88825c7ab660ae5f7cbbadfe6eb72f,"
+          }
         }
       },
       "multiple": {
@@ -375,7 +378,12 @@
             ]
           }
         },
-        "description": null
+        "description": null,
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:8ecc948b0d4487a6c702db3a947317e19be8fe7c,"
+          }
+        }
       }
     }
   },
@@ -390,23 +398,67 @@
           "type": "color",
           "value": "#0000001a"
         },
-        "description": null
+        "description": null,
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:4a3029d323d8fb0c05dee39a983dafea20d7221e,"
+          }
+        }
       },
       "single blue": {
         "description": null,
         "type": "color",
-        "value": "#044affff"
+        "value": "#044affff",
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:41c3b1bbb20c349db5198426c9f21eee91270703,"
+          }
+        }
       },
       "special characters": {
         "😅": {
           "description": "Emoji",
           "type": "color",
-          "value": "#40df50ff"
+          "value": "#40df50ff",
+          "extensions": {
+            "org.lukasoppermann.figmaDesignTokens": {
+              "styleId": "S:0eca3633c52956ddb97940c7445007a90b937be1,"
+            }
+          }
         },
         "änderung": {
           "description": null,
           "type": "color",
-          "value": "#3456afff"
+          "value": "#3456afff",
+          "extensions": {
+            "org.lukasoppermann.figmaDesignTokens": {
+              "styleId": "S:79e9a7afce7078dc29994d2791959ebf9f45efa5,"
+            }
+          }
+        }
+      }
+    },
+    "light": {
+      "background": {
+        "description": null,
+        "type": "color",
+        "value": "#ffffffff",
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:75849ed2c7e89480495d954b1e060c72c4d7d25f,"
+          }
+        }
+      }
+    },
+    "dark": {
+      "background": {
+        "description": null,
+        "type": "color",
+        "value": "#000000ff",
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:c064a8971ca99f48f554bfc70a58deb50094f797,"
+          }
         }
       }
     }
@@ -494,7 +546,12 @@
           "sectionSize": 8
         }
       },
-      "description": "Grid / multiple description text"
+      "description": "Grid / multiple description text",
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:9431d2997261a6e36216749d0d5927407d95c07f,"
+        }
+      }
     },
     "single": {
       "description": null,
@@ -505,6 +562,11 @@
         "gutterSize": 20,
         "alignment": "center",
         "count": 5
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:8892f13476c0db3092e552a57f31a286640fc9d5,"
+        }
       }
     }
   },
@@ -525,6 +587,11 @@
           "paragraphIndent": 5,
           "paragraphSpacing": 8,
           "textCase": "uppercase"
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:a63c53704c21e63e557974232108ecd0ef16f3e2,"
+          }
         }
       },
       "h4 strike through": {
@@ -542,6 +609,11 @@
           "paragraphIndent": 0,
           "paragraphSpacing": 0,
           "textCase": "none"
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:c9389cf45c1db49fd46f961809ca352488397f7d,"
+          }
         }
       },
       "italic": {
@@ -558,6 +630,11 @@
           "paragraphIndent": 0,
           "paragraphSpacing": 0,
           "textCase": "none"
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:9928779749ba4b821d81880d1e41ccefd2b76951,"
+          }
         }
       },
       "extra bold condensed italic": {
@@ -574,6 +651,11 @@
           "paragraphIndent": 0,
           "paragraphSpacing": 0,
           "textCase": "none"
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:2eab5c798e7b6de010927c757b69f3d605097439,"
+          }
         }
       },
       "medium extended italic": {
@@ -590,6 +672,11 @@
           "paragraphIndent": 0,
           "paragraphSpacing": 0,
           "textCase": "none"
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:65286eb024a509b4cfaef329affbae773fb73a5e,"
+          }
         }
       },
       "super": {
@@ -606,6 +693,11 @@
           "paragraphIndent": 0,
           "paragraphSpacing": 0,
           "textCase": "none"
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:32eb85f3238ccaa59c15d6de911c57afa96ba58a,"
+          }
         }
       }
     }
@@ -621,6 +713,11 @@
         "offsetX": 0,
         "offsetY": 4,
         "spread": 0
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:cef90a92a0f669207251e8e2da214b6393abc44c,"
+        }
       }
     },
     "inner shadow (multiple)": {
@@ -657,13 +754,28 @@
           "spread": 11
         }
       },
-      "description": null
+      "description": null,
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:23c7adc38dc6cf8e157c05f8885409d3e1cf4de2,"
+        }
+      }
     },
     "layer blur": {
-      "description": null
+      "description": null,
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:8a600422767982ef9e712451bb9f60a9d2c0e04f,"
+        }
+      }
     },
     "background blur": {
-      "description": null
+      "description": null,
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:d9246d6c5234e471b17585324379ec19abcf03f4,"
+        }
+      }
     }
   }
 }

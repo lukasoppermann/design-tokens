@@ -198,7 +198,8 @@ const transformer = (token: internalTokenInterface): StandardTokenInterface | St
   return {
     name: token.name,
     description: token.description,
-    ...transformTokens(token)
+    ...transformTokens(token),
+    ...(token.extensions ? { extensions: token.extensions } : {})
   }
 }
 

@@ -11,6 +11,7 @@ const getEffectStyles = (styles: EffectStyle[]): EffectStyleObject[] => {
   styles.forEach(style => {
     styleArray.push({
       name: style.name,
+      id: style.id,
       description: style.description,
       effects: style.effects
     })

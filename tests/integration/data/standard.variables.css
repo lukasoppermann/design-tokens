@@ -39,6 +39,8 @@
   --color-colors-single-blue: rgb(4, 74, 255);
   --color-colors-special-characters: rgb(64, 223, 80); /* Emoji */
   --color-colors-special-characters-nderung: rgb(52, 86, 175);
+  --color-light-background: rgb(255, 255, 255);
+  --color-dark-background: rgb(0, 0, 0);
   --grid-multiple-0: [object Object];
   --grid-multiple-1: [object Object];
   --grid-multiple-2: [object Object];

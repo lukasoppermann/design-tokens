@@ -33,9 +33,10 @@ export type StandardTokenGroup = {
 
 export type StandardTokenExtensionsInterface = {
   [key: string]: any,
-  'org.veare.figmaData': {
-    exportKey: string,
-    category: string,
+  'org.lukasoppermann.figmaDesignTokens': {
+    styleId?: string,
+    exportKey?: string,
+    category?: string,
     group?: string,
     unit?: string,
   }

@@ -7,6 +7,7 @@ import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const gradientType = {
   GRADIENT_LINEAR: 'linear',
@@ -81,7 +82,12 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
       category: isGradient(node.paints[0]) ? 'gradient' : 'color' as tokenCategoryType,
       exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
       description: node.description || null,
-      values: node.paints.map(paint => extractFills(paint))
+      values: node.paints.map(paint => extractFills(paint)),
+      extensions: {
+        [config.key.extensionPluginData]: {
+          [config.key.extensionFigmaStyleId]: node.id
+        }
+      }
     }))
 }
 
