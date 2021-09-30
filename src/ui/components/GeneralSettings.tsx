@@ -117,16 +117,33 @@ export const GeneralSettings = () => {
           />
         </div>
       </div>
-      <Title size='small' weight='bold'>Exclusion prefix <Info width={240} label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)' /></Title>
-      <Row fill>
-        <Input
-          type='text'
-          pattern='^[#\+*\\/&%$!?;:~,\s]+$'
-          placeholder='#, @'
-          value={settings.exclusionPrefix}
-          onChange={value => updateSettings((draft: Settings) => { draft.exclusionPrefix = value })}
-        />
-      </Row>
+      <Separator />
+      <div className='grid-3-col'>
+        <div>
+          <Title size='small' weight='bold'>Exclusion prefix <Info width={240} label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)' /></Title>
+          <Row fill>
+            <Input
+              type='text'
+              pattern='^[#\+*\\/&%$!?;:~,\s]+$'
+              placeholder='#, @'
+              value={settings.exclusionPrefix}
+              onChange={value => updateSettings((draft: Settings) => { draft.exclusionPrefix = value })}
+            />
+          </Row>
+        </div>
+        <div>
+          <Title size='small' weight='bold'>Alias identifier <Info width={240} label='Use to define an alias for a token; case insensitive' /></Title>
+          <Row fill>
+            <Input
+              type='text'
+              pattern='^[A-Za-z,\s]+$'
+              placeholder='alias, ref, reference'
+              value={settings.alias}
+              onChange={value => updateSettings((draft: Settings) => { draft.alias = value })}
+            />
+          </Row>
+        </div>
+      </div>
       <Title size='small' weight='bold'>Token prefixes <Info width={150} label='Use commas to separate multiple prefixed' /></Title>
       <Text className={textStyle} size='small'>
         Prefixes are the first part of a tokens name e.g. "radius" in "radius/small". They are used to identify the type of a custom token.

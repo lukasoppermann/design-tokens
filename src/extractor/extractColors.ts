@@ -9,6 +9,20 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 
+const getAlias = (description: string, aliasArray: string[]) => {
+  const regex = new RegExp('(' + aliasArray.join('|').toLowerCase() + ')' + ':?\\s')
+  // split description into lines
+  const alias = description.split(/\r?\n/)
+    .map(line => line.toLowerCase())
+    // find match
+    .filter(line => line.match(regex))[0]
+  // return if alias
+  if (alias && alias.length > 0) {
+    return { [config.key.extensionAlias]: alias.replace(regex, '') }
+  }
+  return {}
+}
+
 const gradientType = {
   GRADIENT_LINEAR: 'linear',
   GRADIENT_RADIAL: 'radial',
@@ -66,7 +80,7 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
   return null
 }
 
-const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: {color: string[], gradient: string[]}): colorPropertyInterface[] => {
+const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: {color: string[], gradient: string[], alias: string[]}): colorPropertyInterface[] => {
   // get all paint styles
   return tokenNodes
   // remove images fills from tokens
@@ -86,7 +100,8 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
       extensions: {
         [config.key.extensionPluginData]: {
           [config.key.extensionFigmaStyleId]: node.id,
-          exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType
+          exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
+          ...(getAlias(node.description, prefixArray.alias))
         }
       }
     }))

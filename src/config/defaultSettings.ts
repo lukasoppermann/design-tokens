@@ -14,6 +14,7 @@ export const defaultSettings: Settings = {
   acceptHeader: 'application/vnd.github.everest-preview+json',
   authType: 'token',
   exclusionPrefix: '',
+  alias: 'alias, ref, reference',
   keyInName: false,
   prefixInName: true,
   prefix: {
