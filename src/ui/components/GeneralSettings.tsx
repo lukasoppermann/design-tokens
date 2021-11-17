@@ -11,6 +11,7 @@ import { useContext, useState } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
 import { css } from '@emotion/css'
 import { commands } from '@config/commands'
+import config from '@config/config'
 import { Footer } from '@components/Footer'
 import { nameConversionType, Settings, tokenFormatType } from '@typings/settings'
 import { Row } from '@components/Row'
@@ -41,10 +42,11 @@ const isStyle = (key: string): boolean => ['color', 'gradient', 'grid', 'effect'
 
 export const GeneralSettings = () => {
   const [isStandard, setStandard] = useState(false)
-  const { figmaUIApi } = useContext(FigmaContext)
+  const { figmaUIApi, figmaMetaData } = useContext(FigmaContext)
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
 
   const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent form submit triggering navigation
     const settingsForm = event.target
     if (settingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
@@ -75,6 +77,26 @@ export const GeneralSettings = () => {
         />
         <Info width={240} label='The token type (e.g. "color" or "font") will be added to the name e.g. "color/light/bg".' />
       </Row>
+      <Title size='small' weight='bold' level="h3">
+        Filename
+        <Info width={160} label='The file name used when exporting the tokens' />
+      </Title>
+      <div className='grid-2-col'>
+        <Input
+          type='text'
+          required
+          pattern='^[\w\d\s\[\]._-]+$'
+          placeholder={figmaMetaData.filename}
+          value={settings.filename}
+          onChange={value => updateSettings((draft: Settings) => { draft.filename = value })}
+        />
+        <Select
+          defaultValue={settings.extension}
+          onChange={({ value }) => updateSettings((draft: Settings) => { draft.extension = value as string })}
+          placeholder='file extension'
+          options={config.fileExtensions}
+        />
+      </div>
       <Separator />
       <div className='grid-2-col'>
         <div>

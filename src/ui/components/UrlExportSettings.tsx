@@ -17,12 +17,17 @@ import { urlExport } from '../modules/urlExport'
 import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
 import { PluginMessage } from '@typings/pluginEvent'
 import { commands } from '@config/commands'
+import config from '@config/config'
 import { stringifyJson } from '@src/utilities/stringifyJson'
 import { WebLink } from './WebLink'
 
 const style = css`
   display: flex;
   flex-direction: column;
+  .grid-2-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
   .grid-3-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -35,6 +40,7 @@ export const UrlExportSettings = () => {
   const { figmaUIApi, figmaMetaData } = useContext(FigmaContext)
 
   const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent form submit triggering navigation
     const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
@@ -63,7 +69,7 @@ export const UrlExportSettings = () => {
         event_type: settings.eventType,
         client_payload: {
           tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
-          filename: figmaMetaData.filename
+          filename: `${settings.filename}${settings.extension}`
         }
       } as urlExportRequestBody)
     }
@@ -81,6 +87,22 @@ export const UrlExportSettings = () => {
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
+      <h3>Filename alias<Info width={150} label='Filename used for the tokens in the POST request' /></h3>
+      <div className='grid-2-col'>
+        <Input
+          type='text'
+          pattern='^[\w\d\s\[\]._-]+$'
+          placeholder={figmaMetaData.filename}
+          value={settings.filename}
+          onChange={value => updateSettings((draft: Settings) => { draft.filename = value })}
+        />
+        <Select
+          defaultValue={settings.extension}
+          onChange={({ value }) => updateSettings((draft: Settings) => { draft.extension = value as string })}
+          placeholder='file extension'
+          options={config.fileExtensions}
+        />
+      </div>
       <Title size='xlarge' weight='bold'>Server settings</Title>
       <h3>Event type<Info width={150} label='"event_type" property in post request' /></h3>
       <Row fill>
@@ -145,6 +167,7 @@ export const UrlExportSettings = () => {
       <Row fill>
         <Input
           type='text'
+          required
           pattern='\S+'
           placeholder='Your access token'
           value={settings.accessToken}
@@ -154,7 +177,7 @@ export const UrlExportSettings = () => {
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
-        <Button type='button' onClick={handleFormSubmit} autofocus>Save & Export</Button>
+        <Button type='submit' autofocus>Save & Export</Button>
       </Footer>
     </form>
   )

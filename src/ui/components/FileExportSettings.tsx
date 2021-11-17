@@ -23,6 +23,10 @@ import { WebLink } from './WebLink'
 const style = css`
   display: flex;
   flex-direction: column;
+  .grid-2-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
   .grid-3-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -32,10 +36,11 @@ const style = css`
 export const FileExportSettings = () => {
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
-  const { figmaUIApi } = useContext(FigmaContext)
+  const { figmaUIApi, figmaMetaData } = useContext(FigmaContext)
   const downloadLinkRef = useRef()
 
   const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent form submit triggering navigation
     const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
@@ -70,12 +75,13 @@ export const FileExportSettings = () => {
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
-      <h3>Filename</h3>
-      <Row fill>
+      <h3>Filename<Info width={150} label='Alias used for the JSON file name' /></h3>
+      <div className='grid-2-col'>
         <Input
           type='text'
-          pattern='^[\w\-\.\+@]+$'
-          placeholder='design-tokens'
+          required
+          pattern='^[\w\d\s\[\]._-]+$'
+          placeholder={figmaMetaData.filename}
           value={settings.filename}
           onChange={value => updateSettings((draft: Settings) => { draft.filename = value })}
         />
@@ -85,7 +91,7 @@ export const FileExportSettings = () => {
           placeholder='file extension'
           options={config.fileExtensions}
         />
-      </Row>
+      </div>
       <Title size='large' weight='bold'>Include types in export</Title>
       <div className='grid-3-col'>
         {Object.entries(tokenTypes)
