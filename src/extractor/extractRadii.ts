@@ -7,6 +7,7 @@ import roundWithDecimals from '../utilities/roundWithDecimals'
 import { filterByPrefix } from './extractUtilities'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const extractRadii: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): radiusPropertyInterface[] => {
   // get the type of the corner radius
@@ -63,6 +64,11 @@ const extractRadii: extractorInterface = (tokenNodes: customTokenNode[], prefixA
           value: roundWithDecimals(node.cornerSmoothing, 2),
           comment: 'Percent as decimal from 0.0 - 1.0',
           type: 'number' as PropertyType
+        }
+      },
+      extensions: {
+        [config.key.extensionPluginData]: {
+          exportKey: tokenTypes.radius.key as tokenExportKeyType
         }
       }
     }))

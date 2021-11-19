@@ -43,6 +43,11 @@ describe('extracting radii', () => {
       exportKey: 'radius' as tokenExportKeyType,
       description: 'a description text',
       name: 'radii/mixed',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'radius'
+        }
+      },
       values: {
         radii: {
           bottomLeft: {
@@ -82,6 +87,11 @@ describe('extracting radii', () => {
       exportKey: 'radius',
       description: null,
       name: 'radii/5 no desc',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'radius'
+        }
+      },
       values: {
         radii: {
           bottomLeft: {
@@ -126,6 +136,11 @@ describe('extracting radii', () => {
       exportKey: 'radius',
       description: 'a description text',
       name: 'radii/0',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'radius'
+        }
+      },
       values: {
         radii: {
           bottomLeft: {

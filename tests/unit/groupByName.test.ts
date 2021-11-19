@@ -10,6 +10,12 @@ describe('groupByName', () => {
         category: 'color',
         values: {
           token: 'one first'
+        },
+        extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            exportKey: 'color',
+            styleId: 31
+          }
         }
       },
       // @ts-ignore
@@ -31,7 +37,13 @@ describe('groupByName', () => {
         one: {
           first: {
             category: 'color',
-            values: { token: 'one first' }
+            values: { token: 'one first' },
+            extensions: {
+              'org.lukasoppermann.figmaDesignTokens': {
+                exportKey: 'color',
+                styleId: 31
+              }
+            }
           },
           second: {
             values: { token: 'one second' }

@@ -1,4 +1,5 @@
 import { extractedGridValues } from './extractedData'
+import { StandardTokenExtensionsInterface } from './standardToken'
 import { tokenCategoryType } from './tokenCategory'
 import { tokenExportKeyType } from './tokenExportKey'
 import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType, UnitTypeSeconds } from './valueTypes'
@@ -11,11 +12,12 @@ export type propertyObject = {
   exportKey: tokenExportKeyType,
   values: {
     [key: string]: any
-  } | extractedGridValues,
-  extensions?: any
+  } | extractedGridValues
 }
 
-export type internalTokenInterface = propertyObject
+export type internalTokenInterface = propertyObject & {
+  extensions: StandardTokenExtensionsInterface
+}
 export type tokenCategoryTypes = 'font' | 'border' | 'size' | 'grid' | 'effect' | 'radius' | 'radius'| 'breakpoint'
 
 export type numericPropertyType = {

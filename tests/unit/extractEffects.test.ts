@@ -9,6 +9,7 @@ describe('extracting effects', () => {
       description: 'an effect style',
       extensions: {
         'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'effect',
           styleId: 30
         }
       },
@@ -68,6 +69,7 @@ describe('extracting effects', () => {
       description: null,
       extensions: {
         'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'effect',
           styleId: 31
         }
       },

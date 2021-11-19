@@ -78,7 +78,8 @@ const extractGrids: extractorInterface = (tokenNodes: GridStyle[], prefixArray: 
       values: node.layoutGrids.map((grid: LayoutGrid) => grid.pattern === 'GRID' ? gridValues(grid) : rowColumnValues(grid)),
       extensions: {
         [config.key.extensionPluginData]: {
-          [config.key.extensionFigmaStyleId]: node.id
+          [config.key.extensionFigmaStyleId]: node.id,
+          exportKey: tokenTypes.grid.key as tokenExportKeyType
         }
       }
     }))

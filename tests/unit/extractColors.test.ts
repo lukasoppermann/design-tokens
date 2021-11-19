@@ -10,6 +10,7 @@ describe('extracting color fills', () => {
       name: 'colors/red',
       extensions: {
         'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'color',
           styleId: 1
         }
       },
@@ -32,6 +33,7 @@ describe('extracting color fills', () => {
       name: 'colors/multi',
       extensions: {
         'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'color',
           styleId: 2
         }
       },
@@ -100,6 +102,7 @@ describe('extracting color fills', () => {
       name: 'gradient/gradient and color',
       extensions: {
         'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'gradient',
           styleId: 3
         }
       },

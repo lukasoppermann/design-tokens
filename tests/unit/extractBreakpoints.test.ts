@@ -30,6 +30,11 @@ describe('extracting breakpoints', () => {
           unit: 'pixel',
           value: 1440
         }
+      },
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'breakpoint'
+        }
       }
     }
     ])

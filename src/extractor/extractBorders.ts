@@ -7,6 +7,7 @@ import { tokenTypes } from '@config/tokenTypes'
 import { filterByPrefix } from './extractUtilities'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const strokeJoins = {
   MITER: 'miter',
@@ -64,6 +65,11 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNode[], prefi
         stroke: {
           value: node.strokes[0],
           type: 'color' as PropertyType
+        }
+      },
+      extensions: {
+        [config.key.extensionPluginData]: {
+          exportKey: tokenTypes.border.key as tokenExportKeyType
         }
       }
     }))

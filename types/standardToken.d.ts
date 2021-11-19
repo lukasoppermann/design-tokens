@@ -31,9 +31,10 @@ export type StandardTokenGroup = {
   }
 }
 
+export type pluginExtensionKey = 'org.lukasoppermann.figmaDesignTokens'
+
 export type StandardTokenExtensionsInterface = {
-  [key: string]: any,
-  'org.lukasoppermann.figmaDesignTokens': {
+  [key: string | pluginExtensionKey]: any | {
     styleId?: string,
     exportKey?: string,
     category?: string,

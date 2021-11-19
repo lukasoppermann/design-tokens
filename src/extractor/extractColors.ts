@@ -85,7 +85,8 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
       values: node.paints.map(paint => extractFills(paint)),
       extensions: {
         [config.key.extensionPluginData]: {
-          [config.key.extensionFigmaStyleId]: node.id
+          [config.key.extensionFigmaStyleId]: node.id,
+          exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType
         }
       }
     }))

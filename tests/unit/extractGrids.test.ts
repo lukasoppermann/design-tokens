@@ -10,7 +10,8 @@ describe('extracting grids', () => {
       name: 'grid/rows & columns',
       extensions: {
         'org.lukasoppermann.figmaDesignTokens': {
-          styleId: 20
+          styleId: 20,
+          exportKey: 'grid'
         }
       },
       values: [{
@@ -74,7 +75,8 @@ describe('extracting grids', () => {
       name: 'grid/grid no description',
       extensions: {
         'org.lukasoppermann.figmaDesignTokens': {
-          styleId: 21
+          styleId: 21,
+          exportKey: 'grid'
         }
       },
       values: [{

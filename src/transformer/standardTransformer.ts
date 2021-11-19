@@ -2,6 +2,7 @@ import { rgbaObjectToHex8 } from '../utilities/convertColor'
 import { internalTokenInterface } from '@typings/propertyObject'
 import { StandardTokenInterface, StandardTokenTypes, StandardTokenDataInterface, StandardTokenGroup } from '@typings/standardToken'
 import roundWithDecimals from '../utilities/roundWithDecimals'
+import { tokenExtensions } from './tokenExtensions'
 
 const lineHeightToDimension = (values): number => {
   if (values.lineHeight.unit === 'pixel') {
@@ -199,7 +200,7 @@ const transformer = (token: internalTokenInterface): StandardTokenInterface | St
     name: token.name,
     description: token.description,
     ...transformTokens(token),
-    ...(token.extensions ? { extensions: token.extensions } : {})
+    ...tokenExtensions(token)
   }
 }
 

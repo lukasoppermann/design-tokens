@@ -146,7 +146,8 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: 
     },
     extensions: {
       [config.key.extensionPluginData]: {
-        [config.key.extensionFigmaStyleId]: node.id
+        [config.key.extensionFigmaStyleId]: node.id,
+        exportKey: tokenTypes.font.key as tokenExportKeyType
       }
     }
   }))

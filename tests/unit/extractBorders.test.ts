@@ -75,6 +75,11 @@ describe('extracting borders', () => {
           unit: 'pixel',
           value: 2
         }
+      },
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'border'
+        }
       }
     },
     {
@@ -118,6 +123,11 @@ describe('extracting borders', () => {
           unit: 'pixel',
           value: 2
         }
+      },
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'border'
+        }
       }
     },
     {
@@ -160,6 +170,11 @@ describe('extracting borders', () => {
           type: 'number',
           unit: 'pixel',
           value: 2
+        }
+      },
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'border'
         }
       }
     }

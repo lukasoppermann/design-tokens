@@ -7,6 +7,7 @@ import roundWithDecimals from '../utilities/roundWithDecimals'
 import { filterByPrefix } from './extractUtilities'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const extractSpacing: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): spacingPropertyInterface[] => {
   // return as object
@@ -36,6 +37,11 @@ const extractSpacing: extractorInterface = (tokenNodes: customTokenNode[], prefi
           value: roundWithDecimals(node.paddingLeft, 2),
           unit: 'pixel' as UnitTypePixel,
           type: 'number' as PropertyType
+        }
+      },
+      extensions: {
+        [config.key.extensionPluginData]: {
+          exportKey: tokenTypes.spacing.key as tokenExportKeyType
         }
       }
     })

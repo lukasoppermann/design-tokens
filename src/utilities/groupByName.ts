@@ -3,12 +3,20 @@ import transformName from '../utilities/transformName'
 import { Settings } from '@typings/settings'
 import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
 import { StandardTokenInterface } from '@typings/standardToken'
+import config from '@config/config'
 // create a nested object structure from the array (['style','colors','main','red'])
 const nestedObjectFromArray = (array: string[], value: any) => {
   // reducer
   const reducer = (val, key) => ({ [key]: val })
   // return reduced array
   return array.reduceRight(reducer, value)
+}
+
+const getExportKey = (token: OriginalFormatTokenInterface | StandardTokenInterface) => {
+  // standard token
+  if (token?.extensions?.[config.key.extensionPluginData]?.exportKey) {
+    return token.extensions[config.key.extensionPluginData].exportKey
+  }
 }
 
 export const groupByKeyAndName = (tokenArray: OriginalFormatTokenInterface[] | StandardTokenInterface[], userSettings: Settings) => {
@@ -23,7 +31,7 @@ export const groupByKeyAndName = (tokenArray: OriginalFormatTokenInterface[] | S
     }
     // add key to name if desired
     if (userSettings.keyInName) {
-      token.name = `${token.exportKey}/${token.name}`
+      token.name = `${getExportKey(token)}/${token.name}`
     }
     // split token name into array
     // remove leading and following whitespace for every item
