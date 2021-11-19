@@ -2,7 +2,7 @@
   "name": "design-tokens",
   "version": "6.0.0",
   "description": "Export design tokens from Figma",
-  "main": "code.js",
+  "main": "plugin.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/lukasoppermann/design-tokens.git"
