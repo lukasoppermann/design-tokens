@@ -17,17 +17,12 @@ import { urlExport } from '../modules/urlExport'
 import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
 import { PluginMessage } from '@typings/pluginEvent'
 import { commands } from '@config/commands'
-import config from '@config/config'
 import { stringifyJson } from '@src/utilities/stringifyJson'
 import { WebLink } from './WebLink'
 
 const style = css`
   display: flex;
   flex-direction: column;
-  .grid-2-col {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
   .grid-3-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -37,7 +32,7 @@ const style = css`
 export const UrlExportSettings = () => {
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
-  const { figmaUIApi, figmaMetaData } = useContext(FigmaContext)
+  const { figmaUIApi } = useContext(FigmaContext)
 
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Prevent form submit triggering navigation
@@ -87,22 +82,6 @@ export const UrlExportSettings = () => {
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
-      <h3>Filename alias<Info width={150} label='Filename used for the tokens in the POST request' /></h3>
-      <div className='grid-2-col'>
-        <Input
-          type='text'
-          pattern='^[\w\d\s\[\]._-]+$'
-          placeholder={figmaMetaData.filename}
-          value={settings.filename}
-          onChange={value => updateSettings((draft: Settings) => { draft.filename = value })}
-        />
-        <Select
-          defaultValue={settings.extension}
-          onChange={({ value }) => updateSettings((draft: Settings) => { draft.extension = value as string })}
-          placeholder='file extension'
-          options={config.fileExtensions}
-        />
-      </div>
       <Title size='xlarge' weight='bold'>Server settings</Title>
       <h3>Event type<Info width={150} label='"event_type" property in post request' /></h3>
       <Row fill>

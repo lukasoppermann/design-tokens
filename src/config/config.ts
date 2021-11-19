@@ -7,7 +7,7 @@ export default {
     },
     export: {
       width: 550,
-      height: 420
+      height: 340
     },
     urlExport: {
       width: 550,
