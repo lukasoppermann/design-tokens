@@ -21,9 +21,6 @@ h3 {
 h3:first-child {
   margin-top: 8px;
 }
-.label {
-  color: var(--dark-grey);
-}
 .message-box {
   padding: 0 var(--size-xxxsmall) var(--size-xxsmall) var(--size-xxsmall);
 }
@@ -51,7 +48,7 @@ h3:first-child {
   padding-top: var(--size-xxsmall);
 }
 .label.label--info {
-  color: var(--black4);
+  color: var(--black6);
   flex-shrink: 1;
   height: auto;
 }
@@ -65,41 +62,8 @@ h3:first-child {
 .with-inside-label-behind-sm {
   padding-right: 50px;
 }
-input:invalid {
-  border: 1px solid var(--red);
-  outline: 1px solid var(--red);
-  outline-offset: -2px;
-}
 :not(h3) + .section-title {
   padding-top: var(--size-xxsmall);
   margin-top: var(--size-xsmall);
-  border-top: 1px solid var(--silver);
-}
-#eventtype {
-  width: 130px;
-  flex-shrink: 0;
-}
-.select-css {
-  display: flex;
-  align-items: center;
-  border: 1px solid transparent;
-  height: 30px;
-  width: 100%;
-  margin: 1px 0 1px 0;
-  padding: 0px var(--size-xxsmall) 0px var(--size-xxsmall);
-  overflow-y: hidden;
-  background-color: var(--white);
-  margin: 1px 0 1px 0;
-  color: var(--black8);
-  border: 1px solid var(--black1);
-  border-radius: 1px;
-  font-size: var(--font-size-xsmall);
-}
-.select-css:hover {
-  border-color: var(--black1);
-}
-.select-css:focus {
-  border: 1px solid var(--blue);
-  outline: 1px solid var(--blue);
-  outline-offset: -2px;
+  border-top: 1px solid var(--black1);
 }

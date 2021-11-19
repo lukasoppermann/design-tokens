@@ -113,23 +113,28 @@ const easing = (easing: Easing): {
 
   return {
     easing: {
+      // @ts-ignore
       value: easings[easing.type].type,
       type: 'string' as PropertyType
     },
     easingFunction: {
       x1: {
+        // @ts-ignore
         value: easings[easing.type].easingFunctionCubicBezier.x1,
         type: 'number' as PropertyType
       },
       x2: {
+        // @ts-ignore
         value: easings[easing.type].easingFunctionCubicBezier.x2,
         type: 'number' as PropertyType
       },
       y1: {
+        // @ts-ignore
         value: easings[easing.type].easingFunctionCubicBezier.y1,
         type: 'number' as PropertyType
       },
       y2: {
+        // @ts-ignore
         value: easings[easing.type].easingFunctionCubicBezier.y2,
         type: 'number' as PropertyType
       }

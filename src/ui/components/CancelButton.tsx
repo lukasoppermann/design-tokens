@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useContext } from 'react'
-import { Button } from 'react-figma-plugin-ds'
+import { Button } from '@components/Button'
 import { commands } from '@config/commands'
 import { FigmaContext } from '@ui/context'
 
