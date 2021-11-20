@@ -1,5 +1,11 @@
 import * as React from 'react'
-import { Button, Checkbox, Input, Label, Select, Text, Title } from 'react-figma-plugin-ds'
+import { Button } from '@components/Button'
+import { Checkbox } from '@components/Checkbox'
+import { Input } from '@components/Input'
+import { Select } from '@components/Select'
+import { Label } from '@components/Label'
+import { Title } from '@components/Title'
+import { Text } from '@components/Text'
 import { CancelButton } from '@components/CancelButton'
 import { useContext } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
@@ -27,7 +33,7 @@ const labelStyle = css`
 
 const textStyle = css`
   padding: 0 var(--size-xxxsmall) 0 var(--size-xxsmall);
-  color: var(--dark-grey);
+  color: var(--black6);
   margin-top: 0;
 `
 
@@ -57,7 +63,7 @@ export const GeneralSettings = () => {
   }
 
   return (
-    <form className={style} onSubmit={(event) => handleFormSubmit(event)}>
+    <form className={style} onSubmit={handleFormSubmit}>
       <Title size='xlarge' weight='bold'>Design Token Settings</Title>
       <Row>
         <Checkbox
@@ -140,7 +146,6 @@ export const GeneralSettings = () => {
           <Row fill key={key}>
             <Label
               className={`${labelStyle} flex-grow--none`}
-              size='small'
             >{key}
               {isStyle(key) ? <Info width={90} label='Prefix for style' /> : ''}
             </Label>
@@ -159,7 +164,7 @@ export const GeneralSettings = () => {
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
-        <Button type='button' onClick={handleFormSubmit} autofocus>Save changes</Button>
+        <Button type='submit' autofocus>Save changes</Button>
       </Footer>
     </form>
   )

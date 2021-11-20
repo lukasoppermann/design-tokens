@@ -6,7 +6,7 @@ const style = css`
   height: 1px;
   border: 0px;
   width: 100%;
-  background: var(--light-grey);
+  background: var(--black1);
 `
 
 export const Separator = () => {

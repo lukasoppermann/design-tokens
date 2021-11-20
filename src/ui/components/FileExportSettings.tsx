@@ -1,6 +1,10 @@
 import * as React from 'react'
 import { useContext, useRef } from 'react'
-import { Button, Checkbox, Input, Select, Title } from 'react-figma-plugin-ds'
+import { Button } from '@components/Button'
+import { Checkbox } from '@components/Checkbox'
+import { Input } from '@components/Input'
+import { Select } from '@components/Select'
+import { Title } from '@components/Title'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 import { CancelButton } from './CancelButton'
 import { css } from '@emotion/css'
@@ -58,7 +62,7 @@ export const FileExportSettings = () => {
   }
 
   return (
-    <form onSubmit={(event) => handleFormSubmit(event)} className={style}>
+    <form onSubmit={handleFormSubmit} className={style}>
       <Title size='xlarge' weight='bold'>File Export settings</Title>
       <Row>
         <Checkbox
@@ -98,7 +102,7 @@ export const FileExportSettings = () => {
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
-        <Button type='button' onClick={handleFormSubmit} autofocus>Save & Export</Button>
+        <Button type='submit' autofocus>Save & Export</Button>
       </Footer>
       <a
         ref={downloadLinkRef}

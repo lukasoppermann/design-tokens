@@ -1,10 +1,96 @@
 :root {
-  --black4: rgba(0, 0, 0, .4);
+  --white: #ffffff;
+  --black: #000000;
+  --black8: rgba(0, 0, 0, 0.8);
+  --black6: rgba(0, 0, 0, 0.6);
+  --black3: rgba(0, 0, 0, 0.3);
+  --black1: rgba(0, 0, 0, 0.1);
   --blue: rgb(24, 160, 351);
   --blue-10: rgba(24, 160, 351, 0.1);
-  --blue-black: rgb(20, 45, 60);
-  --dark-grey: rgb(100, 100, 100);
-  --light-grey: #e5e5e5;
-  --ui-contrast: #000000;
+  --red: #f24822;
+  --ui-contrast: #222222;
   --on--ui-contrast: #ffffff;
+  --on--ui-contrast--subtle: rgba(255, 255, 255, 0.4);
+  /* Font stack */
+  --font-stack: 'Inter', sans-serif;
+
+  /* Font sizes */
+  --font-size-xsmall: 11px;
+  --font-size-small: 12px;
+  --font-size-large: 13px;
+  --font-size-xlarge: 14px;
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  /* Lineheight */
+  --font-line-height: 16px; /* Use For xsmall, small font sizes */
+  --font-line-height-large: 24px; /* Use For large, xlarge font sizes */
+  /* Letterspacing */
+  --font-letter-spacing-pos-xsmall: 0.005em;
+  --font-letter-spacing-neg-xsmall: 0.01em;
+  --font-letter-spacing-pos-small: 0;
+  --font-letter-spacing-neg-small: 0.005em;
+  --font-letter-spacing-pos-large: -0.0025em;
+  --font-letter-spacing-pos-xlarge: -0.001em;
+
+  /* BORDER RADIUS */
+  --border-radius-small: 2px;
+  --border-radius-large: 6px;
+  /* SHADOWS */
+  --shadow-hud: 0 5px 17px rgba(0, 0, 0, 0.2), 0 2px 7px rgba(0, 0, 0, 0.15);
+  /* SPACING + SIZING */
+  --size-xxxsmall: 4px;
+  --size-xxsmall: 8px;
+  --size-xsmall: 16px;
+  --size-small: 24px;
+  --size-medium: 32px;
+  --size-large: 40px;
+  --size-xlarge: 48px;
+  --size-xxlarge: 64px;
+  --size-xxxlarge: 80px;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/*  FONTS */
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-style: normal;
+  src: url('https://rsms.me/inter/font-files/Inter-Regular.woff2?v=3.7')
+      format('woff2'),
+    url('https://rsms.me/inter/font-files/Inter-Regular.woff?v=3.7')
+      format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-style: normal;
+  src: url('https://rsms.me/inter/font-files/Inter-Medium.woff2?v=3.7')
+      format('woff2'),
+    url('https://rsms.me/inter/font-files/Inter-Medium.woff2?v=3.7')
+      format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-style: normal;
+  src: url('https://rsms.me/inter/font-files/Inter-SemiBold.woff2?v=3.7')
+      format('woff2'),
+    url('https://rsms.me/inter/font-files/Inter-SemiBold.woff2?v=3.7')
+      format('woff');
 }

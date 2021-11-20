@@ -14,7 +14,7 @@ const style = css`
   align-items: center;
   position: relative;
   background: var(--blue-10);
-  color: var(--blue-black);
+  color: var(--black6);
   &.is-hidden {
     display: none;
   }
