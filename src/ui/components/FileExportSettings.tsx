@@ -91,13 +91,16 @@ export const FileExportSettings = () => {
       </Row>
       <Title size='large' weight='bold'>Include types in export</Title>
       <div className='grid-3-col'>
-        {Object.entries(tokenTypes).map(([, { key, label }]) =>
-          <Checkbox
-            key={key}
-            label={label}
-            checked={settings.exports[key]}
-            onChange={value => updateSettings((draft: Settings) => { draft.exports[key] = value })}
-          />)}
+        {Object.entries(tokenTypes)
+          // @ts-ignore
+          .map(([, { key, label, exclude = undefined }]) =>
+            (exclude === undefined || !exclude.includes(settings.tokenFormat)) &&
+              <Checkbox
+                key={key}
+                label={label}
+                checked={settings.exports[key]}
+                onChange={value => updateSettings((draft: Settings) => { draft.exports[key] = value })}
+              />)}
       </div>
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
