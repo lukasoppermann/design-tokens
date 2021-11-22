@@ -77,7 +77,7 @@ export const GeneralSettings = () => {
         />
         <Info width={240} label='The token type (e.g. "color" or "font") will be added to the name e.g. "color/light/bg".' />
       </Row>
-      <Title size='small' weight='bold' level="h3">
+      <Title size='small' weight='bold'>
         Filename
         <Info width={160} label='The file name used when exporting the tokens' />
       </Title>
