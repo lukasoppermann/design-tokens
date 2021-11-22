@@ -14,9 +14,10 @@ const nestedObjectFromArray = (array: string[], value: any) => {
 
 const getExportKey = (token: OriginalFormatTokenInterface | StandardTokenInterface) => {
   // standard token
-  if (token?.extensions?.[config.key.extensionPluginData]?.exportKey) {
+  if (token.extensions?.[config.key.extensionPluginData]?.exportKey !== undefined) {
     return token.extensions[config.key.extensionPluginData].exportKey
   }
+  return 'missingExportKey'
 }
 
 export const groupByKeyAndName = (tokenArray: OriginalFormatTokenInterface[] | StandardTokenInterface[], userSettings: Settings) => {
