@@ -10,6 +10,12 @@ describe('groupByName', () => {
         category: 'color',
         values: {
           token: 'one first'
+        },
+        extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            exportKey: 'color',
+            styleId: 31
+          }
         }
       },
       // @ts-ignore
@@ -31,7 +37,13 @@ describe('groupByName', () => {
         one: {
           first: {
             category: 'color',
-            values: { token: 'one first' }
+            values: { token: 'one first' },
+            extensions: {
+              'org.lukasoppermann.figmaDesignTokens': {
+                exportKey: 'color',
+                styleId: 31
+              }
+            }
           },
           second: {
             values: { token: 'one second' }
@@ -87,6 +99,107 @@ describe('groupByName', () => {
     })
   })
 
+  test('token extensions', () => {
+    expect(groupByKeyAndName([
+      // @ts-ignore
+      {
+        name: 'token/none',
+        category: 'color',
+        exportKey: 'color',
+        values: '#000000'
+      },
+      // @ts-ignore
+      {
+        name: 'token/noOrg',
+        category: 'color',
+        values: '#000000',
+        extensions: {}
+      },
+      // @ts-ignore
+      {
+        name: 'token/other',
+        category: 'color',
+        values: '#000000',
+        extensions: {
+          otherExitension: {
+            value: 1
+          }
+        }
+      },
+      // @ts-ignore
+      {
+        name: 'token/noExport',
+        category: 'color',
+        values: '#000000',
+        extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {}
+        }
+      },
+      // @ts-ignore
+      {
+        name: 'token/full',
+        category: 'color',
+        values: '#000000',
+        extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            exportKey: 'color',
+            styleId: 31
+          }
+        }
+      }
+    ], {
+      ...defaultSettings,
+      ...{ keyInName: true }
+    })).toStrictEqual({
+      color: {
+        token: {
+          full: {
+            category: 'color',
+            values: '#000000',
+            extensions: {
+              'org.lukasoppermann.figmaDesignTokens': {
+                exportKey: 'color',
+                styleId: 31
+              }
+            }
+          }
+        }
+      },
+      missingexportkey: {
+        token: {
+          none: {
+            category: 'color',
+            values: '#000000',
+            exportKey: 'color'
+          },
+          noorg: {
+            category: 'color',
+            values: '#000000',
+            extensions: {
+            }
+          },
+          other: {
+            category: 'color',
+            values: '#000000',
+            extensions: {
+              otherExitension: {
+                value: 1
+              }
+            }
+          },
+          noexport: {
+            category: 'color',
+            values: '#000000',
+            extensions: {
+              'org.lukasoppermann.figmaDesignTokens': {
+              }
+            }
+          }
+        }
+      }
+    })
+  })
+
   test('group tokens & remove name', () => {
     expect(groupByKeyAndName([
       {
@@ -134,6 +247,25 @@ describe('groupByName', () => {
             values: { token: 'two first' }
           }
         }
+      }
+    })
+  })
+
+  test('token no prefix', () => {
+    expect(groupByKeyAndName([
+      // @ts-ignore
+      {
+        name: 'token/full',
+        category: 'color',
+        values: '#000000'
+      }
+    ], {
+      ...defaultSettings,
+      ...{ prefixInName: false }
+    })).toStrictEqual({
+      full: {
+        category: 'color',
+        values: '#000000'
       }
     })
   })

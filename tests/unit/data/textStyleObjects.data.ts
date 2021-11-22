@@ -154,7 +154,8 @@ export const extractFontsOutput = [
     },
     extensions: {
       'org.lukasoppermann.figmaDesignTokens': {
-        styleId: 10
+        styleId: 10,
+        exportKey: 'font'
       }
     }
   },
@@ -220,7 +221,8 @@ export const extractFontsOutput = [
     },
     extensions: {
       'org.lukasoppermann.figmaDesignTokens': {
-        styleId: 11
+        styleId: 11,
+        exportKey: 'font'
       }
     }
   }

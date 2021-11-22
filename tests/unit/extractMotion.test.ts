@@ -72,6 +72,11 @@ describe('extracting motion tokens', () => {
         exportKey: 'motion',
         description: 'a description text',
         name: 'motion/linear',
+        extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            exportKey: 'motion'
+          }
+        },
         values: {
           transitionType: {
             value: 'move_in',
@@ -115,6 +120,11 @@ describe('extracting motion tokens', () => {
         exportKey: 'motion',
         description: null,
         name: 'motion/ease_in',
+        extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            exportKey: 'motion'
+          }
+        },
         values: {
           transitionType: {
             value: 'dissolve',
@@ -154,6 +164,11 @@ describe('extracting motion tokens', () => {
         exportKey: 'motion',
         description: 'a description text',
         name: 'motion/smart',
+        extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            exportKey: 'motion'
+          }
+        },
         values: {
           transitionType: {
             value: 'smart_animate',

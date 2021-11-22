@@ -1,4 +1,4 @@
-import { propertyObject } from '@typings/propertyObject'
+import { internalTokenInterface } from '@typings/propertyObject'
 import { Settings } from '../../types/settings'
 import { transformer as originalFormatTransformer } from '@src/transformer/originalFormatTransformer'
 import { transformer as standardTransformer } from '@src/transformer/standardTransformer'
@@ -11,9 +11,9 @@ const tokenTransformer = {
 
 export const prepareExport = (tokens: string, settings: Settings) => {
   // parse json string
-  const tokenArray: propertyObject[] = JSON.parse(tokens)
+  const tokenArray: internalTokenInterface[] = JSON.parse(tokens)
   // filter by user setting for export keys
-  const tokensFiltered: propertyObject[] = tokenArray.filter(({ exportKey }) => settings.exports[exportKey])
+  const tokensFiltered: internalTokenInterface[] = tokenArray.filter(({ exportKey }) => settings.exports[exportKey])
   // converted values
   const tokensConverted = tokensFiltered.map(token => tokenTransformer[settings.tokenFormat](token))
   // group items by their names

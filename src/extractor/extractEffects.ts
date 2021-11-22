@@ -78,7 +78,8 @@ const extractEffects: extractorInterface = (tokenNodes: EffectStyle[], prefixArr
       ),
       extensions: {
         [config.key.extensionPluginData]: {
-          [config.key.extensionFigmaStyleId]: node.id
+          [config.key.extensionFigmaStyleId]: node.id,
+          exportKey: tokenTypes.effect.key as tokenExportKeyType
         }
       }
     }))

@@ -39,6 +39,11 @@ describe('extracting spacing', () => {
       exportKey: 'spacing',
       description: 'a description text',
       name: 'spacing/padding/0',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'spacing'
+        }
+      },
       values: {
         top: {
           value: 0,
@@ -67,6 +72,11 @@ describe('extracting spacing', () => {
       exportKey: 'spacing',
       description: 'a description text',
       name: 'spacing/padding/10',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'spacing'
+        }
+      },
       values: {
         top: {
           value: 10,
@@ -95,6 +105,11 @@ describe('extracting spacing', () => {
       exportKey: 'spacing',
       description: null,
       name: 'spacing/margin/mixed',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'spacing'
+        }
+      },
       values: {
         top: {
           value: 10,

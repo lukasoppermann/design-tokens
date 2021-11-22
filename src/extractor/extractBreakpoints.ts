@@ -7,6 +7,7 @@ import roundWithDecimals from '../utilities/roundWithDecimals'
 import { filterByPrefix } from './extractUtilities'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const extractBreakpoints: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): breakpointPropertyInterface[] => {
   // return as object
@@ -25,6 +26,11 @@ const extractBreakpoints: extractorInterface = (tokenNodes: customTokenNode[], p
         value: roundWithDecimals(node.height, 2),
         unit: 'pixel' as UnitTypePixel,
         type: 'number' as PropertyType
+      }
+    },
+    extensions: {
+      [config.key.extensionPluginData]: {
+        exportKey: tokenTypes.breakpoint.key as tokenExportKeyType
       }
     }
   }))

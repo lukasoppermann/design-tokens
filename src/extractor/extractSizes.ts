@@ -7,6 +7,7 @@ import roundWithDecimals from '../utilities/roundWithDecimals'
 import { filterByPrefix } from './extractUtilities'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { tokenCategoryType } from '@typings/tokenCategory'
+import config from '@config/config'
 
 const extractSizes: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): sizePropertyInterface[] => {
   // return as object
@@ -25,6 +26,11 @@ const extractSizes: extractorInterface = (tokenNodes: customTokenNode[], prefixA
         value: roundWithDecimals(node.height, 2),
         unit: 'pixel' as UnitTypePixel,
         type: 'number' as PropertyType
+      }
+    },
+    extensions: {
+      [config.key.extensionPluginData]: {
+        exportKey: tokenTypes.size.key as tokenExportKeyType
       }
     }
   }))

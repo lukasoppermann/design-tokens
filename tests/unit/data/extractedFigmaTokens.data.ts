@@ -21,6 +21,11 @@ export const extractedFigmaTokens = {
         unit: 'pixel',
         type: 'number'
       }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'size'
+      }
     }
   },
   /**
@@ -41,6 +46,11 @@ export const extractedFigmaTokens = {
         value: 20,
         unit: 'pixel',
         type: 'number'
+      }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'breakpoint'
       }
     }
   },
@@ -72,6 +82,11 @@ export const extractedFigmaTokens = {
         value: 8,
         unit: 'pixel',
         type: 'number'
+      }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'spacing'
       }
     }
   },
@@ -114,6 +129,11 @@ export const extractedFigmaTokens = {
         value: 0.5,
         comment: 'Percent as decimal from 0.0 - 1.0',
         type: 'number'
+      }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'radius'
       }
     }
   },
@@ -162,6 +182,11 @@ export const extractedFigmaTokens = {
         comment: 'Percent as decimal from 0.0 - 1.0',
         type: 'number'
       }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'radius'
+      }
     }
   },
   /**
@@ -200,7 +225,12 @@ export const extractedFigmaTokens = {
         type: 'number',
         unit: 'pixel'
       }
-    }]
+    }],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'grid'
+      }
+    }
   },
   multiGrid: {
     name: 'multiGrid',
@@ -263,7 +293,12 @@ export const extractedFigmaTokens = {
         type: 'number',
         unit: 'pixel'
       }
-    }]
+    }],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'grid'
+      }
+    }
   },
   /**
    * font
@@ -328,6 +363,11 @@ export const extractedFigmaTokens = {
         value: 'none',
         type: 'string'
       }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'font'
+      }
     }
   },
   /**
@@ -369,6 +409,11 @@ export const extractedFigmaTokens = {
         value: { r: 255, g: 230, b: 0, a: 1 },
         type: 'color'
       }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'border'
+      }
     }
   },
   /**
@@ -386,7 +431,12 @@ export const extractedFigmaTokens = {
           type: 'color'
         }
       }
-    ]
+    ],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'color'
+      }
+    }
   },
   multiColor: {
     name: 'multiColor',
@@ -406,7 +456,12 @@ export const extractedFigmaTokens = {
           type: 'color'
         }
       }
-    ]
+    ],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'color'
+      }
+    }
   },
   /**
    * gradient
@@ -451,7 +506,12 @@ export const extractedFigmaTokens = {
           type: 'number'
         }
       }
-    ]
+    ],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'gradient'
+      }
+    }
   },
   /**
    * gradient and color mixed
@@ -502,7 +562,12 @@ export const extractedFigmaTokens = {
           type: 'color'
         }
       }
-    ]
+    ],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'gradient'
+      }
+    }
   },
   colorAndGradient: {
     name: 'colorAndGradient',
@@ -550,7 +615,12 @@ export const extractedFigmaTokens = {
           type: 'number'
         }
       }
-    ]
+    ],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'color'
+      }
+    }
   },
   /**
    * effect
@@ -591,7 +661,12 @@ export const extractedFigmaTokens = {
         unit: 'pixel',
         type: 'number'
       }
-    }]
+    }],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'effect'
+      }
+    }
   },
   multiEffect: {
     name: 'multiEffect',
@@ -660,7 +735,12 @@ export const extractedFigmaTokens = {
         unit: 'pixel',
         type: 'number'
       }
-    }]
+    }],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'effect'
+      }
+    }
   },
   /**
    * motion
@@ -705,6 +785,11 @@ export const extractedFigmaTokens = {
       direction: {
         value: 'top',
         type: 'string'
+      }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'motion'
       }
     }
   }

@@ -25,6 +25,11 @@ describe('extracting sizes', () => {
       exportKey: 'size',
       description: 'a description text',
       name: 'sizes/10',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'size'
+        }
+      },
       values: {
         height: {
           type: 'number',
@@ -43,6 +48,11 @@ describe('extracting sizes', () => {
       exportKey: 'size',
       description: null,
       name: 'sizes/10 no desc',
+      extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'size'
+        }
+      },
       values: {
         height: {
           type: 'number',

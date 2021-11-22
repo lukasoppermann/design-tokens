@@ -6,6 +6,7 @@ import { tokenTypes } from '@config/tokenTypes'
 import { filterByPrefix } from './extractUtilities'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
+import config from '@config/config'
 
 const direction = (transition: Transition): {} | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
@@ -171,6 +172,11 @@ const extractMotion: extractorInterface = (tokenNodes: customTokenNode[], prefix
         ...easing(node.reactions[0].action.transition.easing),
         // add direction if applicable
         ...direction(node.reactions[0].action.transition)
+      },
+      extensions: {
+        [config.key.extensionPluginData]: {
+          exportKey: tokenTypes.motion.key as tokenExportKeyType
+        }
       }
     }))
 }
