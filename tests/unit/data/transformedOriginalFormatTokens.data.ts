@@ -625,7 +625,7 @@ export const transformedOriginalTokens = {
       value: 2,
       type: 'number',
       unit: 'pixel'
-    },
+    }
   },
   /**
    * motion

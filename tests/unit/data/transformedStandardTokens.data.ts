@@ -166,6 +166,54 @@ export const transformedStandardTokens = {
       textCase: 'none'
     }
   },
+  typography: {
+    name: 'typography 16',
+    description: 'a typography token',
+    fontFamily: {
+      type: 'string',
+      value: 'Helvetica'
+    },
+    fontSize: {
+      type: 'dimension',
+      value: 16
+    },
+    fontStretch: {
+      type: 'string',
+      value: 'normal'
+    },
+    fontStyle: {
+      type: 'string',
+      value: 'italic'
+    },
+    fontWeight: {
+      type: 'number',
+      value: 700
+    },
+    letterSpacing: {
+      type: 'dimension',
+      value: 0.3
+    },
+    lineHeight: {
+      type: 'dimension',
+      value: 18
+    },
+    paragraphIndent: {
+      type: 'dimension',
+      value: 0
+    },
+    paragraphSpacing: {
+      type: 'dimension',
+      value: 12
+    },
+    textCase: {
+      type: 'string',
+      value: 'none'
+    },
+    textDecoration: {
+      type: 'string',
+      value: 'underline'
+    }
+  },
   /**
    * border
    */
