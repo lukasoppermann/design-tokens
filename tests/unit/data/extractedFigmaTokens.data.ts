@@ -742,6 +742,28 @@ export const extractedFigmaTokens = {
       }
     }
   },
+  blur: {
+    name: 'blur',
+    description: 'an blur effect token',
+    category: 'effect' as tokenCategoryType,
+    exportKey: 'effect' as tokenExportKeyType,
+    values: [{
+      effectType: {
+        value: 'backgroundBlur',
+        type: 'string'
+      },
+      radius: {
+        value: '2',
+        unit: 'pixel',
+        type: 'number'
+      }
+    }],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'effect'
+      }
+    }
+  },
   /**
    * motion
    */

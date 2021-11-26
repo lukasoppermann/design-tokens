@@ -612,6 +612,21 @@ export const transformedOriginalTokens = {
       }
     }
   },
+  blur: {
+    name: 'blur',
+    comment: 'an blur token',
+    category: 'effect',
+    exportKey: 'effect',
+    type: {
+      value: 'backgroundBlur',
+      type: 'string'
+    },
+    radius: {
+      value: 2,
+      type: 'number',
+      unit: 'pixel'
+    },
+  },
   /**
    * motion
    */
