@@ -2,7 +2,6 @@ import { internalTokenInterface, tokenCategoryTypes } from '@typings/propertyObj
 import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
 import { convertRgbaObjectToString } from '../utilities/convertColor'
 import { PropertyType, UnitTypePixel } from '@typings/valueTypes'
-import { tokenExtensions } from './tokenExtensions'
 import config from '@config/config'
 
 const sizeValueTransformer = ({ width }) => ({
@@ -185,8 +184,7 @@ const transformer = (token: internalTokenInterface): OriginalFormatTokenInterfac
     category: token.category,
     exportKey: token.extensions[config.key.extensionPluginData].exportKey,
     ...(token.description && token.description.length > 0 && { comment: token.description }),
-    ...(valueTransformer[token.category as tokenCategoryTypes](token.values) || {}),
-    ...tokenExtensions(token)
+    ...(valueTransformer[token.category as tokenCategoryTypes](token.values) || {})
   }
 }
 

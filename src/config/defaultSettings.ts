@@ -19,6 +19,7 @@ export const defaultSettings: Settings = {
   prefix: {
     color: 'color',
     gradient: 'gradient',
+    typography: 'typography',
     font: 'font',
     effect: 'effect',
     grid: 'grid',
@@ -33,6 +34,7 @@ export const defaultSettings: Settings = {
     color: true,
     gradient: true,
     font: true,
+    typography: true,
     effect: true,
     grid: true,
     border: true,

@@ -9,8 +9,13 @@ export const tokenTypes = {
     key: 'gradient'
   },
   font: {
-    label: 'Fonts',
+    label: 'Font Styles',
     key: 'font'
+  },
+  typography: {
+    label: 'Typography',
+    key: 'typography',
+    exclude: ['original']
   },
   effect: {
     label: 'Effects',

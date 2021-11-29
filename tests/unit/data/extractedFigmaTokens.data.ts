@@ -370,6 +370,73 @@ export const extractedFigmaTokens = {
       }
     }
   },
+  typography: {
+    name: 'typography 16',
+    category: 'typography' as tokenCategoryType,
+    exportKey: 'typography' as tokenExportKeyType,
+    description: 'a typography token',
+    values: {
+      fontSize: {
+        value: 16,
+        unit: 'pixel',
+        type: 'number'
+      },
+      textDecoration: {
+        value: 'underline',
+        type: 'string'
+      },
+      fontFamily: {
+        value: 'Helvetica',
+        type: 'string'
+      },
+      fontWeight: {
+        value: 700,
+        type: 'number'
+      },
+      fontStyle: {
+        value: 'italic',
+        type: 'string'
+      },
+      fontStretch: {
+        value: 'normal',
+        type: 'string'
+      },
+      _fontStyleOld: {
+        value: 'bold italic',
+        type: 'string'
+      },
+      letterSpacing: {
+        value: 0.3,
+        unit: 'pixel',
+        type: 'number'
+      },
+      lineHeight: {
+        // @ts-ignore
+        value: 18,
+        unit: 'pixel',
+        type: 'string'
+      },
+      paragraphIndent: {
+        value: 0,
+        unit: 'pixel',
+        type: 'number'
+      },
+      paragraphSpacing: {
+        value: 12,
+        unit: 'pixel',
+        type: 'number'
+      },
+      textCase: {
+        value: 'none',
+        type: 'string'
+      }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'typography'
+      }
+    }
+  },
   /**
    * border
    */
@@ -732,6 +799,28 @@ export const extractedFigmaTokens = {
       },
       spread: {
         value: 0,
+        unit: 'pixel',
+        type: 'number'
+      }
+    }],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'effect'
+      }
+    }
+  },
+  blur: {
+    name: 'blur',
+    description: 'an blur effect token',
+    category: 'effect' as tokenCategoryType,
+    exportKey: 'effect' as tokenExportKeyType,
+    values: [{
+      effectType: {
+        value: 'backgroundBlur',
+        type: 'string'
+      },
+      radius: {
+        value: '2',
         unit: 'pixel',
         type: 'number'
       }

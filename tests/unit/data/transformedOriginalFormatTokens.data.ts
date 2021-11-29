@@ -10,12 +10,7 @@ export const transformedOriginalTokens = {
     exportKey: 'size',
     type: 'number',
     unit: 'pixel',
-    value: 16,
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'size'
-      }
-    }
+    value: 16
   },
   /**
    * breakpoint
@@ -27,12 +22,7 @@ export const transformedOriginalTokens = {
     exportKey: 'breakpoint',
     type: 'number',
     unit: 'pixel',
-    value: 1024,
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'breakpoint'
-      }
-    }
+    value: 1024
   },
   /**
    * spacing
@@ -42,11 +32,6 @@ export const transformedOriginalTokens = {
     comment: 'a spacing token',
     category: 'spacing',
     exportKey: 'spacing',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'spacing'
-      }
-    },
     top: {
       value: 24,
       unit: 'pixel',
@@ -76,11 +61,6 @@ export const transformedOriginalTokens = {
     comment: 'a mixed radius token',
     category: 'radius',
     exportKey: 'radius',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'radius'
-      }
-    },
     radiusType: {
       value: 'mixed',
       type: 'string'
@@ -120,11 +100,6 @@ export const transformedOriginalTokens = {
     comment: 'a single radius token',
     category: 'radius',
     exportKey: 'radius',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'radius'
-      }
-    },
     radius: {
       value: 5,
       unit: 'pixel',
@@ -169,11 +144,6 @@ export const transformedOriginalTokens = {
     comment: 'a grid token',
     category: 'grid',
     exportKey: 'grid',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'grid'
-      }
-    },
     pattern: {
       value: 'columns',
       type: 'string'
@@ -207,11 +177,6 @@ export const transformedOriginalTokens = {
     comment: 'a multiGrid token',
     category: 'grid',
     exportKey: 'grid',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'grid'
-      }
-    },
     0: {
       pattern: {
         value: 'columns',
@@ -279,11 +244,6 @@ export const transformedOriginalTokens = {
     category: 'font',
     exportKey: 'font',
     comment: 'a font token',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'font'
-      }
-    },
     fontSize: {
       value: 16,
       type: 'number',
@@ -346,11 +306,6 @@ export const transformedOriginalTokens = {
     category: 'border',
     exportKey: 'border',
     comment: 'a border token',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'border'
-      }
-    },
     stroke: {
       value: 'rgba(255, 230, 0, 1)',
       type: 'color'
@@ -391,11 +346,6 @@ export const transformedOriginalTokens = {
     category: 'color',
     exportKey: 'color',
     type: 'color',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'color'
-      }
-    },
     value: 'rgba(255, 230, 0, 1)'
   },
   multiColor: {
@@ -403,11 +353,6 @@ export const transformedOriginalTokens = {
     comment: 'a multi color token',
     category: 'color',
     exportKey: 'color',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'color'
-      }
-    },
     0: {
       type: 'color',
       value: 'rgba(255, 230, 0, 1)'
@@ -425,11 +370,6 @@ export const transformedOriginalTokens = {
     category: 'gradient',
     exportKey: 'gradient',
     comment: 'a gradient token',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'gradient'
-      }
-    },
     gradientType: {
       value: 'linear',
       type: 'string'
@@ -473,11 +413,6 @@ export const transformedOriginalTokens = {
     name: 'gradientAndColor',
     category: 'gradient',
     exportKey: 'gradient',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'gradient'
-      }
-    },
     comment: 'a gradient and color token',
     0: {
       gradientType: {
@@ -525,11 +460,6 @@ export const transformedOriginalTokens = {
     name: 'colorAndGradient',
     category: 'color',
     exportKey: 'color',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'color'
-      }
-    },
     comment: 'a color and gradient token',
     0: {
       type: 'color',
@@ -581,11 +511,6 @@ export const transformedOriginalTokens = {
     comment: 'an effect token',
     category: 'effect',
     exportKey: 'effect',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'effect'
-      }
-    },
     type: {
       value: 'dropShadow',
       type: 'string'
@@ -622,11 +547,6 @@ export const transformedOriginalTokens = {
     comment: 'a multi effect token',
     category: 'effect',
     exportKey: 'effect',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'effect'
-      }
-    },
     0: {
       type: {
         value: 'dropShadow',
@@ -692,6 +612,21 @@ export const transformedOriginalTokens = {
       }
     }
   },
+  blur: {
+    name: 'blur',
+    comment: 'an blur token',
+    category: 'effect',
+    exportKey: 'effect',
+    type: {
+      value: 'backgroundBlur',
+      type: 'string'
+    },
+    radius: {
+      value: 2,
+      type: 'number',
+      unit: 'pixel'
+    }
+  },
   /**
    * motion
    */
@@ -700,11 +635,6 @@ export const transformedOriginalTokens = {
     category: 'motion',
     exportKey: 'motion',
     comment: 'a motion token',
-    extensions: {
-      'org.lukasoppermann.figmaDesignTokens': {
-        exportKey: 'motion'
-      }
-    },
     type: {
       value: 'slide_in',
       type: 'string'

@@ -2,6 +2,7 @@ export type tokenCategoryType =
   'color' |
   'gradient' |
   'font' |
+  'typography' |
   'effect' |
   'grid' |
   'border' |

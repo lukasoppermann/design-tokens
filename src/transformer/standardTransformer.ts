@@ -69,7 +69,7 @@ const spacingValueTransformer = ({ values }): StandardTokenDataInterface => ({
   }
 })
 
-const fontValueTransformer = ({ values }): StandardTokenDataInterface => ({
+const fontStyleValueTransformer = ({ values }): StandardTokenDataInterface => ({
   type: 'custom-fontStyle' as StandardTokenTypes,
   value: {
     fontSize: values.fontSize.value,
@@ -83,6 +83,53 @@ const fontValueTransformer = ({ values }): StandardTokenDataInterface => ({
     paragraphIndent: values.paragraphIndent.value,
     paragraphSpacing: values.paragraphSpacing.value,
     textCase: values.textCase.value
+  }
+})
+
+const typographyValueTransformer = ({ name, values }) => ({
+  fontSize: {
+    type: 'dimension' as StandardTokenTypes,
+    value: values.fontSize.value
+  },
+  textDecoration: {
+    type: 'string' as StandardTokenTypes,
+    value: values.textDecoration.value
+  },
+  fontFamily: {
+    type: 'string' as StandardTokenTypes,
+    value: values.fontFamily.value
+  },
+  fontWeight: {
+    type: 'number' as StandardTokenTypes,
+    value: values.fontWeight.value
+  },
+  fontStyle: {
+    type: 'string' as StandardTokenTypes,
+    value: values.fontStyle.value
+  },
+  fontStretch: {
+    type: 'string' as StandardTokenTypes,
+    value: values.fontStretch.value
+  },
+  letterSpacing: {
+    type: 'dimension' as StandardTokenTypes,
+    value: letterSpacingToDimensions(values)
+  },
+  lineHeight: {
+    type: 'dimension' as StandardTokenTypes,
+    value: lineHeightToDimension(values)
+  },
+  paragraphIndent: {
+    type: 'dimension' as StandardTokenTypes,
+    value: values.paragraphIndent.value
+  },
+  paragraphSpacing: {
+    type: 'dimension' as StandardTokenTypes,
+    value: values.paragraphSpacing.value
+  },
+  textCase: {
+    type: 'string' as StandardTokenTypes,
+    value: values.textCase.value
   }
 })
 
@@ -182,7 +229,7 @@ const valueTransformer = {
   size: widthToDimensionTransformer,
   color: fillValueTransformer,
   gradient: fillValueTransformer,
-  font: fontValueTransformer,
+  font: fontStyleValueTransformer,
   effect: effectValueTransformer,
   grid: gridValueTransformer,
   border: borderValueTransformer,
@@ -195,6 +242,14 @@ const valueTransformer = {
 const transformTokens = (token: internalTokenInterface): StandardTokenDataInterface | StandardTokenGroup => valueTransformer[token.category](token)
 
 const transformer = (token: internalTokenInterface): StandardTokenInterface | StandardTokenGroup => {
+  if (token.category === 'typography') {
+    // @ts-ignore
+    return {
+      name: token.name,
+      description: token.description,
+      ...typographyValueTransformer(token)
+    }
+  }
   // @ts-ignore
   return {
     name: token.name,
