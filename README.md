@@ -71,7 +71,10 @@ git clone https://github.com/lukasoppermann/design-token-transformer.git
 ### Figma style design tokens
 The plugin converts the styles you define in Figma into design tokens, this includes `Text Styles`, `Color Styles`, `Grid Styles` and `Effect Styles`.
 
-Every property of a style will be converted to an individual token. For a `Text Styles` this may result in the following tokens (show as transformed css custom properties for readability).
+Depending on the export format you get a different result. In the `Original` format every property of a style will be converted to an individual token.
+When using the `Standard` format composite tokens are created, for example the properties of a text style are all exported as one composite token.
+
+However for `Text Styles` the `Standard` format has a special `typography` type that if enabled exports the individual tokens as well. This may result in the following tokens (show as transformed css custom properties for readability).
 
 ```css
   --font-headline-3-font-size: 20;
