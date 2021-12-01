@@ -70,8 +70,8 @@ export const UrlExportSettings = () => {
   }
 
   return (
-    <form onSubmit={(event) => handleFormSubmit(event)} className={style}>
-      <Title size='xlarge' weight='bold'>Url Export settings</Title>
+    <form onSubmit={handleFormSubmit} className={style}>
+      <Title size='xlarge' weight='bold'>URL Export settings</Title>
       <Row>
         <Checkbox
           label='Compress JSON output'
@@ -146,7 +146,7 @@ export const UrlExportSettings = () => {
         <Input
           type='text'
           pattern='\S+'
-          placeholder='your access token'
+          placeholder='Your access token'
           value={settings.accessToken}
           onChange={value => updateSettings(draft => { draft.accessToken = value })}
         />

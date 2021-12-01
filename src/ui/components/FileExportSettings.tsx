@@ -27,9 +27,6 @@ const style = css`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-  .no-flex-grow {
-    flex-grow: 0;
-  }
 `
 
 export const FileExportSettings = () => {

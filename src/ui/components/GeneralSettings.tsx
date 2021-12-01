@@ -21,7 +21,7 @@ import { WebLink } from './WebLink'
 const style = css`
   display: flex;
   flex-direction: column;
-  .grid-3-col {
+  .grid-2-col {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -75,7 +75,7 @@ export const GeneralSettings = () => {
         <Info width={240} label='The token type (e.g. "color" or "font") will be added to the name e.g. "color/light/bg".' />
       </Row>
       <Separator />
-      <div className='grid-3-col'>
+      <div className='grid-2-col'>
         <div>
           <Title size='small' weight='bold'>Name conversion</Title>
           <Select
@@ -141,7 +141,7 @@ export const GeneralSettings = () => {
         <Info width={240} label='When disabled the prefix is removed ("radius/small" → "small"), when enabled it is added ("radius/small" → "radius/small").' />
       </Row>
       <Separator />
-      <div className='grid-3-col'>
+      <div className='grid-2-col'>
         {Object.entries(settings.prefix).map(([key, currentValue]) =>
           <Row fill key={key}>
             <Label
