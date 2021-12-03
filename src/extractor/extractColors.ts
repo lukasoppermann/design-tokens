@@ -9,19 +9,27 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 
-const getAlias = (description: string, aliasArray: string[]) => {
+const parseDescription = (description: string = '', aliasArray: string[]) => {
   const regex = new RegExp('(' + aliasArray.join('|').toLowerCase() + ')' + ':?\\s')
-  // split description into lines
-  const alias = description.split(/\r?\n/)
-    .map(line => line.toLowerCase())
+  // split description in lines
+  let alias: string
+  const descriptionLines = description.split(/\r?\n/)
     // find match
-    .filter(line => line.match(regex))[0]
-  // return if alias
-  if (alias && alias.length > 0) {
-    return { [config.key.extensionAlias]: alias.replace(regex, '') }
+    .filter(line => {
+      if (line.toLowerCase().match(regex)) {
+        alias = line.toLowerCase().replace(regex, '')
+        return false
+      }
+      return true
+    })
+  // return object
+  return {
+    alias: alias,
+    description: descriptionLines.join('\n')
   }
-  return {}
 }
+
+const addAlias = (alias: string) => alias ? ({ [config.key.extensionAlias]: alias }) : ({})
 
 const gradientType = {
   GRADIENT_LINEAR: 'linear',
@@ -91,20 +99,23 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
     // remove tokens with no fill
     .filter(node => node.paints.length > 0)
     // transform style
-    .map(node => ({
-      name: `${isGradient(node.paints[0]) ? prefixArray.gradient[0] : prefixArray.color[0]}/${node.name}`,
-      category: isGradient(node.paints[0]) ? 'gradient' : 'color' as tokenCategoryType,
-      exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
-      description: node.description || null,
-      values: node.paints.map(paint => extractFills(paint)),
-      extensions: {
-        [config.key.extensionPluginData]: {
-          [config.key.extensionFigmaStyleId]: node.id,
-          exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
-          ...(getAlias(node.description, prefixArray.alias))
+    .map(node => {
+      const { alias, description } = parseDescription(node.description, prefixArray.alias)
+      return {
+        name: `${isGradient(node.paints[0]) ? prefixArray.gradient[0] : prefixArray.color[0]}/${node.name}`,
+        category: isGradient(node.paints[0]) ? 'gradient' : 'color' as tokenCategoryType,
+        exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
+        description: description,
+        values: node.paints.map(paint => extractFills(paint)),
+        extensions: {
+          [config.key.extensionPluginData]: {
+            [config.key.extensionFigmaStyleId]: node.id,
+            exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
+            ...(addAlias(alias))
+          }
         }
       }
-    }))
+    })
 }
 
 export default extractColors

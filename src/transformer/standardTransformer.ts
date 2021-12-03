@@ -156,12 +156,11 @@ const gradientValueTransformer = ({ gradientType, rotation, stops, opacity }): S
 })
 
 const fillValueTransformer = (token): StandardTokenDataInterface | StandardTokenGroup => {
-  console.log('extension', token.name, token.extensions[config.key.extensionPluginData].alias)
   // check for alias
   if (token.extensions && token.extensions[config.key.extensionPluginData] && token.extensions[config.key.extensionPluginData].alias) {
     return {
       type: Object.hasOwnProperty.call(token.values[0], 'fill') ? 'color' : 'custom-gradient',
-      value: `${token.extensions[config.key.extensionPluginData].alias}`
+      value: `{${token.extensions[config.key.extensionPluginData].alias}.value}`
     }
   }
   // no alias, use value
