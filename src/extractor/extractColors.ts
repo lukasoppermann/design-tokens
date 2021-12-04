@@ -10,6 +10,7 @@ import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 
 const parseDescription = (description: string = '', aliasArray: string[]) => {
+  aliasArray = !aliasArray || aliasArray.filter(i => i).length === 0 ? ['Ref:'] : aliasArray
   const regex = new RegExp('(' + aliasArray.join('|').toLowerCase() + ')' + ':?\\s')
   // split description in lines
   let alias: string
@@ -17,7 +18,7 @@ const parseDescription = (description: string = '', aliasArray: string[]) => {
     // find match
     .filter(line => {
       if (line.toLowerCase().match(regex)) {
-        alias = line.toLowerCase().replace(regex, '')
+        alias = line.toLowerCase().replace(regex, '').trim()
         return false
       }
       return true
