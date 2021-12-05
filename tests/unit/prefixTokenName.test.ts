@@ -34,6 +34,24 @@ describe('prefixTokenName', () => {
     }])
   })
 
+  test('token no prefix', () => {
+    expect(prefixTokenName([
+      // @ts-ignore
+      {
+        name: 'token/full',
+        category: 'color',
+        values: '#000000'
+      }
+    ], {
+      ...defaultSettings,
+      ...{ prefixInName: false }
+    })).toStrictEqual([{
+      name: 'full',
+      category: 'color',
+      values: '#000000'
+    }])
+  })
+
   test('no tokens', () => {
     expect(prefixTokenName([], defaultSettings)).toStrictEqual([])
   })
