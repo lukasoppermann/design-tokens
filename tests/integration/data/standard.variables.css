@@ -1,5 +1,4 @@
-export default
-`:root {
+:root {
   --sizes-32: 32.72px; /* 32.72px spacer component */
   --sizes-40: 40px;
   --sizes-60: 60px;
@@ -128,4 +127,4 @@ export default
   --typography-body-super-paragraph-indent: 0;
   --typography-body-super-paragraph-spacing: 0;
   --typography-body-super-text-case: none;
-}`
+}

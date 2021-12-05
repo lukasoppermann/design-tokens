@@ -572,12 +572,12 @@
       "ref blue": {
         "description": "Some other description",
         "type": "color",
-        "value": "{colors.single blue.value}",
+        "value": "{color.colors.single blue.value}",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
             "styleId": "S:a466a5c4f753617558885425bf0c42b7a53fcda4,",
             "exportKey": "color",
-            "alias": "colors.single blue"
+            "alias": "color.colors.single blue"
           }
         }
       },
