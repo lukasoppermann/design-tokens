@@ -7,7 +7,7 @@ import { Label } from '@components/Label'
 import { Title } from '@components/Title'
 import { Text } from '@components/Text'
 import { CancelButton } from '@components/CancelButton'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { FigmaContext, SettingsContext } from '@ui/context'
 import { css } from '@emotion/css'
 import { commands } from '@config/commands'
@@ -40,6 +40,7 @@ const textStyle = css`
 const isStyle = (key: string): boolean => ['color', 'gradient', 'grid', 'effect', 'font'].includes(key)
 
 export const GeneralSettings = () => {
+  const [isStandard, setStandard] = useState(false)
   const { figmaUIApi } = useContext(FigmaContext)
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
 
@@ -102,7 +103,10 @@ export const GeneralSettings = () => {
           <Title size='small' weight='bold'>Token format<Info width={240} label='The structure of the output json file. Learn more in the docs.' /></Title>
           <Select
             defaultValue={settings.tokenFormat}
-            onChange={({ value }) => updateSettings((draft: Settings) => { draft.tokenFormat = value as tokenFormatType })}
+            onChange={({ value }) => {
+              updateSettings((draft: Settings) => { draft.tokenFormat = value as tokenFormatType })
+              setStandard(value === 'standard')
+            }}
             placeholder='Token format'
             options={[
               {
@@ -130,32 +134,36 @@ export const GeneralSettings = () => {
           />
         </Row>
       </div>
-      <Separator />
-      <div>
-        <Title size='small' weight='bold'>Alias identifier <Info width={180} label='Use to define an alias for a token; case insensitive' /></Title>
-        <Row fill>
+      {isStandard && (
+        <>
+          <Separator />
           <div>
-            <Input
-              type='text'
-              pattern='^[A-Za-z,\s]+$'
-              placeholder='alias, ref, reference'
-              value={settings.alias}
-              onChange={value => updateSettings((draft: Settings) => { draft.alias = value })}
-            />
-          </div>
-          <div>
-            <Row>
-              <Checkbox
-                label='Append ".value" to token alias'
-                type='switch'
-                checked={settings.aliasAddValue}
-                onChange={(value) => updateSettings(draft => { draft.aliasAddValue = value })}
-              />
-              <Info width={155} label='Needed for style dictionary' />
+            <Title size='small' weight='bold'>Alias identifier <Info width={180} label='Use to define an alias for a token; case insensitive' /></Title>
+            <Row fill>
+              <div>
+                <Input
+                  type='text'
+                  pattern='^[A-Za-z,\s]+$'
+                  placeholder='alias, ref, reference'
+                  value={settings.alias}
+                  onChange={value => updateSettings((draft: Settings) => { draft.alias = value })}
+                />
+              </div>
+              <div>
+                <Row>
+                  <Checkbox
+                    label='Append ".value" to token alias'
+                    type='switch'
+                    checked={settings.aliasAddValue}
+                    onChange={(value) => updateSettings(draft => { draft.aliasAddValue = value })}
+                  />
+                  <Info width={155} label='Needed for style dictionary' />
+                </Row>
+              </div>
             </Row>
           </div>
-        </Row>
-      </div>
+        </>
+      )}
       <Separator />
       <Title size='small' weight='bold'>Token prefixes <Info width={150} label='Use commas to separate multiple prefixed' /></Title>
       <Text className={textStyle} size='small'>
