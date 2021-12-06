@@ -617,6 +617,13 @@ export default {
         value: 'rgba(4, 74, 255, 1)',
         type: 'color'
       },
+      'ref blue': {
+        category: 'color',
+        comment: 'Some other description',
+        exportKey: 'color',
+        type: 'color',
+        value: 'rgba(4, 74, 255, 1)'
+      },
       'special characters': {
         '😅': {
           category: 'color',

@@ -18,6 +18,25 @@ export const paintStyles = [
     ]
   },
   {
+    name: 'red ref',
+    description: `a description text
+    Ref: colors.red`,
+    id: 1,
+    paints: [
+      {
+        blendMode: 'NORMAL',
+        type: 'SOLID',
+        color: {
+          r: 1,
+          g: 0.1,
+          b: 0.7299998998641968
+        },
+        opacity: 0.5,
+        visible: true
+      }
+    ]
+  },
+  {
     name: 'multi',
     description: 'multiple fills',
     id: 2,
@@ -156,6 +175,25 @@ export const paintStyleObjects = [
     name: 'red',
     id: 1,
     description: 'a description text',
+    paints: [
+      {
+        blendMode: 'NORMAL',
+        type: 'SOLID',
+        color: {
+          r: 1,
+          g: 0.1,
+          b: 0.7299998998641968
+        },
+        opacity: 0.5,
+        visible: true
+      }
+    ]
+  },
+  {
+    name: 'red ref',
+    id: 1,
+    description: `a description text
+    Ref: colors.red`,
     paints: [
       {
         blendMode: 'NORMAL',

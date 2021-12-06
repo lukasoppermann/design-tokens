@@ -3,6 +3,7 @@ import { internalTokenInterface } from '@typings/propertyObject'
 import { StandardTokenInterface, StandardTokenTypes, StandardTokenDataInterface, StandardTokenGroup } from '@typings/standardToken'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { tokenExtensions } from './tokenExtensions'
+import config from '@config/config'
 
 const lineHeightToDimension = (values): number => {
   if (values.lineHeight.unit === 'pixel') {
@@ -154,8 +155,16 @@ const gradientValueTransformer = ({ gradientType, rotation, stops, opacity }): S
   }
 })
 
-const fillValueTransformer = ({ values }): StandardTokenDataInterface | StandardTokenGroup => {
-  const fills = values.map(fill => {
+const fillValueTransformer = (token): StandardTokenDataInterface | StandardTokenGroup => {
+  // check for alias
+  if (token.extensions && token.extensions[config.key.extensionPluginData] && token.extensions[config.key.extensionPluginData].alias) {
+    return {
+      type: Object.hasOwnProperty.call(token.values[0], 'fill') ? 'color' : 'custom-gradient',
+      value: `{${token.extensions[config.key.extensionPluginData].alias}}`
+    }
+  }
+  // no alias, use value
+  const fills = token.values.map(fill => {
     if (Object.hasOwnProperty.call(fill, 'fill')) {
       return colorValueTransformer(fill)
     }

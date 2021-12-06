@@ -19,7 +19,8 @@ export default {
     fileId: 'fileId',
     settings: 'settings',
     extensionPluginData: 'org.lukasoppermann.figmaDesignTokens',
-    extensionFigmaStyleId: 'styleId'
+    extensionFigmaStyleId: 'styleId',
+    extensionAlias: 'alias'
   },
   exclusionPrefixDefault: ['_', '.'],
   fileExtensions: [

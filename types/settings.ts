@@ -19,6 +19,8 @@ export type Settings = {
   accessToken?: string,
   acceptHeader?: string,
   exclusionPrefix: string,
+  alias: string,
+  aliasAddValue: boolean,
   authType: string,
   keyInName: boolean,
   prefixInName: boolean,

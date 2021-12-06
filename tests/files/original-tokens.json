@@ -833,6 +833,13 @@
         "value": "rgba(4, 74, 255, 1)",
         "type": "color"
       },
+      "ref blue": {
+        "category": "color",
+        "exportKey": "color",
+        "comment": "Some other description",
+        "value": "rgba(4, 74, 255, 1)",
+        "type": "color"
+      },
       "special characters": {
         "😅": {
           "category": "color",

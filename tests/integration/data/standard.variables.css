@@ -37,6 +37,7 @@
   --color-colors-multiple-fills-0: rgb(64, 255, 186);
   --color-colors-multiple-fills-1: rgba(0, 0, 0, 0.1);
   --color-colors-single-blue: rgb(4, 74, 255);
+  --color-colors-ref-blue: rgb(4, 74, 255); /* Some other description */
   --color-colors-special-characters: rgb(64, 223, 80); /* Emoji */
   --color-colors-special-characters-nderung: rgb(52, 86, 175);
   --color-light-background: rgb(255, 255, 255);

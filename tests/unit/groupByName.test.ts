@@ -151,48 +151,42 @@ describe('groupByName', () => {
       ...defaultSettings,
       ...{ keyInName: true }
     })).toStrictEqual({
-      color: {
-        token: {
-          full: {
-            category: 'color',
-            values: '#000000',
-            extensions: {
-              'org.lukasoppermann.figmaDesignTokens': {
-                exportKey: 'color',
-                styleId: 31
-              }
+      token: {
+        full: {
+          category: 'color',
+          values: '#000000',
+          extensions: {
+            'org.lukasoppermann.figmaDesignTokens': {
+              exportKey: 'color',
+              styleId: 31
             }
           }
-        }
-      },
-      missingexportkey: {
-        token: {
-          none: {
-            category: 'color',
-            values: '#000000',
-            exportKey: 'color'
-          },
-          noorg: {
-            category: 'color',
-            values: '#000000',
-            extensions: {
+        },
+        none: {
+          category: 'color',
+          values: '#000000',
+          exportKey: 'color'
+        },
+        noorg: {
+          category: 'color',
+          values: '#000000',
+          extensions: {
+          }
+        },
+        other: {
+          category: 'color',
+          values: '#000000',
+          extensions: {
+            otherExitension: {
+              value: 1
             }
-          },
-          other: {
-            category: 'color',
-            values: '#000000',
-            extensions: {
-              otherExitension: {
-                value: 1
-              }
-            }
-          },
-          noexport: {
-            category: 'color',
-            values: '#000000',
-            extensions: {
-              'org.lukasoppermann.figmaDesignTokens': {
-              }
+          }
+        },
+        noexport: {
+          category: 'color',
+          values: '#000000',
+          extensions: {
+            'org.lukasoppermann.figmaDesignTokens': {
             }
           }
         }
@@ -247,25 +241,6 @@ describe('groupByName', () => {
             values: { token: 'two first' }
           }
         }
-      }
-    })
-  })
-
-  test('token no prefix', () => {
-    expect(groupByKeyAndName([
-      // @ts-ignore
-      {
-        name: 'token/full',
-        category: 'color',
-        values: '#000000'
-      }
-    ], {
-      ...defaultSettings,
-      ...{ prefixInName: false }
-    })).toStrictEqual({
-      full: {
-        category: 'color',
-        values: '#000000'
       }
     })
   })

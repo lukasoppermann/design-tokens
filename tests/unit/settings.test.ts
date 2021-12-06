@@ -28,6 +28,8 @@ const baseSettings = {
   acceptHeader: 'baseHeader',
   authType: 'baseAuthType',
   exclusionPrefix: '',
+  alias: 'alias, ref, reference',
+  aliasAddValue: true,
   keyInName: false,
   prefixInName: true,
   prefix: {
