@@ -8,6 +8,7 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 import { prefixTokenName } from './prefixTokenName'
+import { prepareTokenAlias } from './prepareTokenAlias'
 
 const tokenTransformer = {
   original: originalFormatTransformer,
@@ -36,7 +37,7 @@ export const prepareExport = (tokens: string, settings: Settings) => {
   // filter by user setting for export keys
   const tokensFiltered: internalTokenInterface[] = tokenArray.filter(({ exportKey }) => settings.exports[exportKey])
   // add to name
-  const prefixedTokens = prefixTokenName(tokensFiltered, settings)
+  const prefixedTokens = prepareTokenAlias(prefixTokenName(tokensFiltered, settings), settings)
   // converted values
   const tokensConverted = prefixedTokens.map(token => tokenTransformer[settings.tokenFormat](token))
   // group items by their names

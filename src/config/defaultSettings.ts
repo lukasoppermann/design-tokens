@@ -15,6 +15,7 @@ export const defaultSettings: Settings = {
   authType: 'token',
   exclusionPrefix: '',
   alias: 'alias, ref, reference',
+  aliasAddValue: true,
   keyInName: false,
   prefixInName: true,
   prefix: {

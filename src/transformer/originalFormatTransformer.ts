@@ -19,13 +19,15 @@ const convertValue = (value, type) => {
   }
 }
 
-const originalFormat = (property) => ({
-  value: convertValue(property.value, property.type),
-  type: property.type,
-  // optional properties
-  ...(property.description !== undefined && { comment: property.description }),
-  ...(property.unit !== undefined && { unit: property.unit })
-})
+const originalFormat = (property) => {
+  return {
+    value: convertValue(property.value, property.type),
+    type: property.type,
+    // optional properties
+    ...(property.description !== undefined && { comment: property.description }),
+    ...(property.unit !== undefined && { unit: property.unit })
+  }
+}
 
 const defaultValueTransformer = propertyGroupValues => {
   // turn array with only one item into normal object
