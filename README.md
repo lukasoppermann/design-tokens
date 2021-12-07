@@ -273,7 +273,6 @@ This is the original format of the plugin. It is mainly in here to allow teams t
 This works better with amazon style dictionary for basics. However if you want to create custom transformers the **Standard** format is better.
 
 ### Exclusion Prefix
-
 By default the plugin ignores any style that is prefixed with `_` or `.`. 
 You can define any additional prefix via this option, e.g `*`. This can be helpful when you want to have styles that are shared across files in figma, but that should not be exported to your design tokens.
 
@@ -281,6 +280,27 @@ You can define any additional prefix via this option, e.g `*`. This can be helpf
 1. This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
 2. The prefix has to be in the beginning of the token name, e.g. `.My Colors/Internal/Red` will be ignored, while `My Colors/.Internal/Red` will be exported.
 
+### Aliases (Standard format only)
+The standard token format allows you to define an alias/reference for a color token via the description field.
+For example if you want the color style `danger-color` to reference the color style `core-colors/red` you can add the following line to the description field of the `danger-color`: 
+```
+ref: core-colors.red
+```
+
+This will create an output in your json like this:
+```json
+"danger-color": {
+  "description": "Some other description",
+  "type": "color",
+  "value": "{single blue.value}"
+}
+```
+The alias line will be automatically removed from the description field. If you active prefixing token types or token prefixes they will automatically be added.
+
+
+In the settings you can defined the valid alias indentifiers like `ref`. By default it is set to `alias, ref, reference`.
+
+When exporte as json tokens are wrapped with curly braces and `.value` is added to the name. This makes it compatible with style dictionary. If you want the w3c recommended spec you can disable the suffixing of `.value` with the toggle in settings.
 ### Token Prefixes
 
 #### Include token prefixes in token name
