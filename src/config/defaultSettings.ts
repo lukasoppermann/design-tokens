@@ -2,7 +2,7 @@
 import { Settings } from '@typings/settings'
 
 export const defaultSettings: Settings = {
-  filename: '',
+  filename: 'design-tokens',
   extension: '.tokens.json',
   nameConversion: 'default',
   tokenFormat: 'standard',
