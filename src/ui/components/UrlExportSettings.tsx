@@ -32,9 +32,10 @@ const style = css`
 export const UrlExportSettings = () => {
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
-  const { figmaUIApi, figmaMetaData } = useContext(FigmaContext)
+  const { figmaUIApi } = useContext(FigmaContext)
 
   const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent form submit triggering navigation
     const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
@@ -63,7 +64,7 @@ export const UrlExportSettings = () => {
         event_type: settings.eventType,
         client_payload: {
           tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
-          filename: figmaMetaData.filename
+          filename: `${settings.filename}${settings.extension}`
         }
       } as urlExportRequestBody)
     }
@@ -145,6 +146,7 @@ export const UrlExportSettings = () => {
       <Row fill>
         <Input
           type='text'
+          required
           pattern='\S+'
           placeholder='Your access token'
           value={settings.accessToken}
@@ -154,7 +156,7 @@ export const UrlExportSettings = () => {
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
-        <Button type='button' onClick={handleFormSubmit} autofocus>Save & Export</Button>
+        <Button type='submit' autofocus>Save & Export</Button>
       </Footer>
     </form>
   )

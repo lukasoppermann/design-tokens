@@ -2,8 +2,6 @@ import * as React from 'react'
 import { useContext, useRef } from 'react'
 import { Button } from '@components/Button'
 import { Checkbox } from '@components/Checkbox'
-import { Input } from '@components/Input'
-import { Select } from '@components/Select'
 import { Title } from '@components/Title'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 import { CancelButton } from './CancelButton'
@@ -17,7 +15,6 @@ import { Info } from '@components/Info'
 import { Row } from '@components/Row'
 import { tokenTypes } from '@config/tokenTypes'
 import { commands } from '@config/commands'
-import config from '@config/config'
 import { WebLink } from './WebLink'
 
 const style = css`
@@ -36,6 +33,7 @@ export const FileExportSettings = () => {
   const downloadLinkRef = useRef()
 
   const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent form submit triggering navigation
     const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
@@ -69,22 +67,6 @@ export const FileExportSettings = () => {
           onChange={(value) => updateSettings(draft => { draft.compression = value })}
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
-      </Row>
-      <h3>Filename</h3>
-      <Row fill>
-        <Input
-          type='text'
-          pattern='^[\w\-\.\+@]+$'
-          placeholder='design-tokens'
-          value={settings.filename}
-          onChange={value => updateSettings((draft: Settings) => { draft.filename = value })}
-        />
-        <Select
-          defaultValue={settings.extension}
-          onChange={({ value }) => updateSettings((draft: Settings) => { draft.extension = value as string })}
-          placeholder='file extension'
-          options={config.fileExtensions}
-        />
       </Row>
       <Title size='large' weight='bold'>Include types in export</Title>
       <div className='grid-3-col'>
