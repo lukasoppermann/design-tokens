@@ -22,6 +22,9 @@ import { WebLink } from './WebLink'
 const style = css`
   display: flex;
   flex-direction: column;
+  h1:first-child {
+    margin-top: 0 !important;
+  }
   .grid-2-col {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -46,7 +49,7 @@ export const GeneralSettings = () => {
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
 
   const handleFormSubmit = (event) => {
-    event.preventDefault(); // Prevent form submit triggering navigation
+    event.preventDefault() // Prevent form submit triggering navigation
     const settingsForm = event.target
     if (settingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
@@ -144,9 +147,9 @@ export const GeneralSettings = () => {
         </div>
       </div>
       <Separator />
-      <div>
-        <Title size='small' weight='bold'>Exclusion prefix <Info width={240} label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)' /></Title>
-        <Row fill>
+      <div className='grid-2-col'>
+        <div>
+          <Title size='small' weight='bold'>Exclusion prefix <Info width={240} label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)' /></Title>
           <Input
             type='text'
             pattern='^[#\+*\\/&%$!?;:~,\s]+$'
@@ -154,38 +157,20 @@ export const GeneralSettings = () => {
             value={settings.exclusionPrefix}
             onChange={value => updateSettings((draft: Settings) => { draft.exclusionPrefix = value })}
           />
-        </Row>
-      </div>
-      {isStandard && (
-        <>
-          <Separator />
+        </div>
+        {isStandard && (
           <div>
             <Title size='small' weight='bold'>Alias identifier <Info width={180} label='Use to define an alias for a token; case insensitive' /></Title>
-            <Row fill>
-              <div>
-                <Input
-                  type='text'
-                  pattern='^[A-Za-z,\s]+$'
-                  placeholder='alias, ref, reference'
-                  value={settings.alias}
-                  onChange={value => updateSettings((draft: Settings) => { draft.alias = value })}
-                />
-              </div>
-              <div>
-                <Row>
-                  <Checkbox
-                    label='Append ".value" to token alias'
-                    type='switch'
-                    checked={settings.aliasAddValue}
-                    onChange={(value) => updateSettings(draft => { draft.aliasAddValue = value })}
-                  />
-                  <Info width={155} label='Needed for style dictionary' />
-                </Row>
-              </div>
-            </Row>
+            <Input
+              type='text'
+              pattern='^[A-Za-z,\s]+$'
+              placeholder='alias, ref, reference'
+              value={settings.alias}
+              onChange={value => updateSettings((draft: Settings) => { draft.alias = value })}
+            />
           </div>
-        </>
-      )}
+        )}
+      </div>
       <Separator />
       <Title size='small' weight='bold'>Token prefixes <Info width={150} label='Use commas to separate multiple prefixed' /></Title>
       <Text className={textStyle} size='small'>
