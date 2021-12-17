@@ -23,11 +23,7 @@
   },
   "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
   "license": "MIT",
-  "@comment dependencies": [
-    "jsonc-parser: once style-dictionary fixies it, this can be removes"
-  ],
   "devDependencies": {
-    "jsonc-parser": "^3.0.0",
     "@ctrl/tinycolor": "^3.4.0",
     "@emotion/css": "^11.1.3",
     "@figma/plugin-typings": "^1.33.0",
