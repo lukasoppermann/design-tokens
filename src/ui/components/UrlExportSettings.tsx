@@ -19,6 +19,7 @@ import { PluginMessage } from '@typings/pluginEvent'
 import { commands } from '@config/commands'
 import { stringifyJson } from '@src/utilities/stringifyJson'
 import { WebLink } from './WebLink'
+import { Separator } from './Separator'
 
 const style = css`
   display: flex;
@@ -85,6 +86,7 @@ export const UrlExportSettings = () => {
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
+      <Separator />
       <Title size='xlarge' weight='bold'>Server settings</Title>
       <h3>Event type<Info width={150} label='"event_type" property in post request' /></h3>
       <Row fill>

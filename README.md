@@ -281,6 +281,30 @@ You can define any additional prefix via this option, e.g `*`. This can be helpf
 1. This setting only applies to Figma styles (colors, typography, grids & effects). It does not apply to custom tokens.
 2. The prefix has to be in the beginning of the token name, e.g. `.My Colors/Internal/Red` will be ignored, while `My Colors/.Internal/Red` will be exported.
 
+### Aliases (Standard format only)
+
+The standard token format allows you to define an alias/reference for a color tokens via the description field.
+For example if you want the color style `danger-color` to reference the color style `core-colors/red` you can add a `ref:` line to the description field of the `danger-color`:
+
+```
+Use this color for destructive actions only.
+ref: core-colors.red
+```
+
+This will create an output in your json like this:
+
+```json
+"danger-color": {
+  "description": "Use this color for destructive actions only.",
+  "type": "color",
+  "value": "{core-colors.red}"
+}
+```
+
+The alias line is removed from the description field during export. If you active prefixing token types or token prefixes they will automatically be added.
+
+In the settings you can defined the valid alias indentifiers like `ref`. By default it is set to `alias, ref, reference`.
+
 ### Token Prefixes
 
 #### Include token prefixes in token name
