@@ -20,6 +20,9 @@ import { WebLink } from './WebLink'
 const style = css`
   display: flex;
   flex-direction: column;
+  h1:first-child {
+    margin-top: 0 !important;
+  }
   .grid-3-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -33,7 +36,7 @@ export const FileExportSettings = () => {
   const downloadLinkRef = useRef()
 
   const handleFormSubmit = (event) => {
-    event.preventDefault(); // Prevent form submit triggering navigation
+    event.preventDefault() // Prevent form submit triggering navigation
     const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings

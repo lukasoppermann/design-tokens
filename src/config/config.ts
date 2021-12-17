@@ -3,7 +3,7 @@ export default {
   ui: {
     generalSettings: {
       width: 550,
-      height: 745
+      height: 755
     },
     export: {
       width: 550,
