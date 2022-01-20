@@ -1,6 +1,6 @@
 import { ColorRgba } from '@typings/valueTypes'
 import roundWithDecimals from './roundWithDecimals'
-import { fromRatio } from '@ctrl/tinycolor'
+import { tinycolor } from '@ctrl/tinycolor'
 
 export const roundRgba = (rgba: {
     r: number,
@@ -23,4 +23,7 @@ export const convertPaintToRgba = (paint): ColorRgba => {
 
 export const convertRgbaObjectToString = (rgbaObject: ColorRgba): string => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
 
-export const rgbaObjectToHex8 = (rgbaObject: ColorRgba): string => fromRatio(rgbaObject).toHex8String()
+export const rgbaObjectToHex8 = (rgbaObject: ColorRgba): string => {
+  // return value
+  return tinycolor(convertRgbaObjectToString(rgbaObject)).toHex8String()
+}
