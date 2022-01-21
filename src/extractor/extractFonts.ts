@@ -120,7 +120,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: 
       },
       letterSpacing: {
         value: roundWithDecimals(node.letterSpacing.value),
-        unit: <NumericUnitTypes>node.letterSpacing.unit.toLowerCase(),
+        unit: <NumericUnitTypes>(node.letterSpacing.unit.toLowerCase() === 'pixels' ? 'pixel' : node.letterSpacing.unit.toLowerCase()),
         type: 'number' as PropertyType
       },
       lineHeight: {
