@@ -4,6 +4,7 @@ module.exports = {
   transform: {
     'size/px': require('./sizePx'),
     'web/shadow': require('./webShadows'),
+    'web/border': require('./webBorder'),
     'web/radius': require('./webRadius'),
     'web/padding': require('./webPadding'),
     'web/font': require('./webFont'),
