@@ -37,6 +37,32 @@ export const paintStyles = [
     ]
   },
   {
+    name: 'transparent1',
+    description: 'i have no paints',
+    id: 1,
+    paints: [
+
+    ]
+  },
+  {
+    name: 'transparent2',
+    description: 'i have opacity 0',
+    id: 1,
+    paints: [
+      {
+        blendMode: 'NORMAL',
+        type: 'SOLID',
+        color: {
+          r: 1,
+          g: 1,
+          b: 1
+        },
+        opacity: 0,
+        visible: true
+      }
+    ]
+  },
+  {
     name: 'multi',
     description: 'multiple fills',
     id: 2,
@@ -204,6 +230,32 @@ export const paintStyleObjects = [
           b: 0.7299998998641968
         },
         opacity: 0.5,
+        visible: true
+      }
+    ]
+  },
+  {
+    name: 'transparent1',
+    description: 'i have no paints',
+    id: 1,
+    paints: [
+
+    ]
+  },
+  {
+    name: 'transparent2',
+    description: 'i have opacity 0',
+    id: 1,
+    paints: [
+      {
+        blendMode: 'NORMAL',
+        type: 'SOLID',
+        color: {
+          r: 1,
+          g: 1,
+          b: 1
+        },
+        opacity: 0,
         visible: true
       }
     ]
