@@ -12,6 +12,7 @@ export const defaultSettings: Settings = {
   eventType: 'update-tokens',
   accessToken: undefined,
   acceptHeader: 'application/vnd.github.everest-preview+json',
+  contentType: 'text/plain;charset=UTF-8',
   authType: 'token',
   exclusionPrefix: '',
   alias: 'alias, ref, reference',
