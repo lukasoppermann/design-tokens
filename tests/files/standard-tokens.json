@@ -216,7 +216,10 @@
       "type": "custom-stroke",
       "value": {
         "align": "inside",
-        "dashPattern": [],
+        "dashPattern": [
+          0,
+          0
+        ],
         "lineCap": "none",
         "lineJoin": "miter",
         "miterLimit": 4,
@@ -257,7 +260,10 @@
       "type": "custom-stroke",
       "value": {
         "align": "inside",
-        "dashPattern": [],
+        "dashPattern": [
+          0,
+          0
+        ],
         "lineCap": "none",
         "lineJoin": "miter",
         "miterLimit": 4,
@@ -473,7 +479,7 @@
               },
               {
                 "position": 1,
-                "color": "#ffb800ff"
+                "color": "#ffb80000"
               }
             ]
           }
@@ -490,7 +496,7 @@
               },
               {
                 "position": 1,
-                "color": "#ffffffff"
+                "color": "#ffffff00"
               }
             ]
           }
@@ -507,7 +513,7 @@
               },
               {
                 "position": 1,
-                "color": "#ffffffff"
+                "color": "#ffffff00"
               }
             ]
           }
@@ -524,7 +530,7 @@
               },
               {
                 "position": 1,
-                "color": "#ffffffff"
+                "color": "#ffffff00"
               }
             ]
           }
@@ -602,6 +608,19 @@
               "styleId": "S:79e9a7afce7078dc29994d2791959ebf9f45efa5,",
               "exportKey": "color"
             }
+          }
+        }
+      }
+    },
+    "invalid": {
+      "empty": {
+        "description": "",
+        "type": "color",
+        "value": "#00000000",
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:5e1d174ea8c7f59af7d8eeb52856a48cfe285856,",
+            "exportKey": "color"
           }
         }
       }

@@ -28,7 +28,8 @@ describe('extracting borders', () => {
       ...{
         name: 'borders/red',
         exportKey: 'border',
-        strokeCap: Symbol('mixed')
+        strokeCap: Symbol('mixed'),
+        dashPattern: [] // issue 188
       }
     }
   ]
@@ -138,7 +139,7 @@ describe('extracting borders', () => {
       values: {
         dashPattern: {
           type: 'string',
-          value: [2, 5]
+          value: [0, 0]
         },
         stroke: {
           type: 'color',

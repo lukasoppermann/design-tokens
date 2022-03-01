@@ -31,8 +31,8 @@ export default
   --motion-smart: [object Object];
   --motion-push: [object Object];
   --gradient-gradient-single-with-multiple-color-stops: radial-gradient(rgb(255, 184, 0) 0%, rgb(255, 138, 0) 34%, rgb(255, 46, 0) 65%, rgb(255, 0, 0) 100%); /* Four color stops from yellow to red */
-  --gradient-gradient-multiple-0: linear-gradient(180deg, rgb(255, 184, 0) 0%, rgb(255, 184, 0) 100%);
-  --gradient-gradient-multiple-1: radial-gradient(rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+  --gradient-gradient-multiple-0: linear-gradient(180deg, rgb(255, 184, 0) 0%, rgba(255, 184, 0, 0) 100%);
+  --gradient-gradient-multiple-1: radial-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
   --gradient-gradient-multiple-2: undefined;
   --gradient-gradient-multiple-3: undefined;
   --color-colors-multiple-fills-0: rgb(64, 255, 186);
@@ -41,6 +41,7 @@ export default
   --color-colors-ref-blue: rgb(4, 74, 255); /* Some other description */
   --color-colors-special-characters: rgb(64, 223, 80); /* Emoji */
   --color-colors-special-characters-nderung: rgb(52, 86, 175);
+  --color-invalid-empty: rgba(0, 0, 0, 0);
   --color-light-background: rgb(255, 255, 255);
   --color-dark-background: rgb(0, 0, 0);
   --grid-multiple-0: [object Object];

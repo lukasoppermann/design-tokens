@@ -11,7 +11,7 @@ import config from '@config/config'
 
 const transparentFill: fillValuesType = {
   fill: {
-    value: {r: 0, g: 0, b: 0, a: 0},
+    value: { r: 0, g: 0, b: 0, a: 0 },
     type: 'color'
   }
 }
@@ -101,16 +101,16 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
   return tokenNodes
     .reduce((previousValue, node) => {
       // ignore image-only fills
-      const paintsAfterImageFilter = node.paints.filter(paint => paint.type !== 'IMAGE');
-      if(node.paints.length && paintsAfterImageFilter.length === 0) {
-        return previousValue;
+      const paintsAfterImageFilter = node.paints.filter(paint => paint.type !== 'IMAGE')
+      if (node.paints.length && paintsAfterImageFilter.length === 0) {
+        return previousValue
       }
       // remove images fills from tokens
-      node.paints = paintsAfterImageFilter;
+      node.paints = paintsAfterImageFilter
 
       const { alias, description } = parseDescription(node.description, prefixArray.alias)
-      const nodeIsGradient = isGradient(node.paints[0]);
-      const values = node.paints.length ? node.paints.map(paint => extractFills(paint)) : [transparentFill];
+      const nodeIsGradient = isGradient(node.paints[0])
+      const values = node.paints.length ? node.paints.map(paint => extractFills(paint)) : [transparentFill]
 
       return [
         ...previousValue,
@@ -128,8 +128,8 @@ const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefi
             }
           }
         }
-      ];
-    }, []);
+      ]
+    }, [])
 }
 
 export default extractColors
