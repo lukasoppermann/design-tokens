@@ -392,6 +392,7 @@ https://api.github.com/repos/lukasoppermann/design-token-transformer/dispatches
 #### **Auth header**
 This defines the authentication method used with the access token. The current choices are:
 - `token` (used for github)
+- `Gitlab_token` (used for Gitlab requests)
 - `bearer` token
 - `basic` auth
 #### **Access token**
@@ -401,6 +402,14 @@ The token send using the authentication method defined above. Learn more about c
 You can use this feature to integrate tokens into your build pipeline. The ideal is to send tokens from Figma to a repository and automatically transform them. Depending on your setup you could either trigger a webhook on your product repos, create a new semversion on the tokens repo or notify the dev teams in another way.
 
 To learn how to set this up using `github` and `actions` check out the documentation and code examples in the [design token transformer repositry](https://github.com/lukasoppermann/design-token-transformer).
+
+#### Gitlab repo
+This will set up the plugin to trigger a Gitlab pipeline passing in the variables directly as environment variables. This data flow is documented in the section [Pass CI/CD variables in the API call](https://docs.gitlab.com/ee/ci/triggers/#pass-cicd-variables-in-the-api-call) in the Gitlab "Triggers" documentation.
+
+Once the pipeline is triggered the following values will be available as environment variables:
+ - `FIGMA_EVENT_TYPE`: The provided event type string.
+ - `FIGMA_CLIENT_PAYLOAD_TOKENS`: The generated tokens JSON string.
+ - `FIGMA_CLIENT_PAYLOAD_FILENAME`: The filename for the original Figma file.
 
 ## Errors
 

@@ -63,7 +63,8 @@ export const UrlExportSettings = () => {
         accessToken: settings.accessToken,
         acceptHeader: settings.acceptHeader,
         contentType: settings.contentType,
-        authType: settings.authType
+        authType: settings.authType,
+        ref: settings.ref
       } as urlExportSettings,
       {
         event_type: settings.eventType,
@@ -149,6 +150,10 @@ export const UrlExportSettings = () => {
               value: 'token'
             },
             {
+                label: '(Gitlab) token',
+                value: 'Gitlab_Token'
+            },
+            {
               label: 'Basic authentication',
               value: 'Basic'
             },
@@ -171,6 +176,19 @@ export const UrlExportSettings = () => {
           onChange={value => updateSettings(draft => { draft.accessToken = value })}
         />
       </Row>
+
+      <h3>Ref<Info width={150} label='The branch or commit to associate with a Gitlab trigger. Only used when Gitlab is selected for "Auth type"' /></h3>
+        <Row fill>
+          <Input
+            type='text'
+            required
+            pattern='\S+'
+            placeholder='main'
+            value={settings.ref}
+            onChange={value => updateSettings(draft => { draft.ref = value })}
+          />
+      </Row>
+
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />

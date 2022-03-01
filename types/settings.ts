@@ -22,6 +22,7 @@ export type Settings = {
   exclusionPrefix: string,
   alias: string,
   authType: string,
+  ref: string,
   keyInName: boolean,
   prefixInName: boolean,
   prefix: {

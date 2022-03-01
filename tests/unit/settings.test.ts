@@ -28,6 +28,7 @@ const baseSettings = {
   acceptHeader: 'baseHeader',
   contentType: 'text',
   authType: 'baseAuthType',
+  ref: 'main',
   exclusionPrefix: '',
   alias: 'alias, ref, reference',
   keyInName: false,
@@ -84,7 +85,8 @@ describe('Testing getSettings', () => {
         eventType: 'myEvent',
         acceptHeader: 'yo',
         contentType: 'text',
-        authType: 'aType'
+        authType: 'aType',
+        ref: 'review'
       }
     }
     // @ts-ignore
