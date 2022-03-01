@@ -9,13 +9,6 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 
-const transparentFill: fillValuesType = {
-  fill: {
-    value: {r: 0, g: 0, b: 0, a: 0},
-    type: 'color'
-  }
-}
-
 const parseDescription = (description: string = '', aliasArray: string[]) => {
   aliasArray = !aliasArray || aliasArray.filter(i => i).length === 0 ? ['Ref:'] : aliasArray
   const regex = new RegExp('(' + aliasArray.join('|').toLowerCase() + ')' + ':?\\s')
@@ -46,7 +39,7 @@ const gradientType = {
   GRADIENT_DIAMOND: 'diamond'
 }
 
-const isGradient = (paint): boolean => ['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint?.type)
+const isGradient = (paint): boolean => ['GRADIENT_LINEAR', 'GRADIENT_RADIAL', 'GRADIENT_ANGULAR', 'GRADIENT_DIAMOND'].includes(paint.type)
 
 const rotationFromMatrix = ([[x1, y1], [x2, y2]]) => {
   // https://stackoverflow.com/questions/24909586/find-rotation-angle-for-affine-transform
@@ -99,37 +92,31 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
 const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: {color: string[], gradient: string[], alias: string[]}): colorPropertyInterface[] => {
   // get all paint styles
   return tokenNodes
-    .reduce((previousValue, node) => {
-      // ignore image-only fills
-      const paintsAfterImageFilter = node.paints.filter(paint => paint.type !== 'IMAGE');
-      if(node.paints.length && paintsAfterImageFilter.length === 0) {
-        return previousValue;
-      }
-      // remove images fills from tokens
-      node.paints = paintsAfterImageFilter;
-
+  // remove images fills from tokens
+    .map(node => {
+      node.paints = node.paints.filter(paint => paint.type !== 'IMAGE')
+      return node
+    })
+    // remove tokens with no fill
+    .filter(node => node.paints.length > 0)
+    // transform style
+    .map(node => {
       const { alias, description } = parseDescription(node.description, prefixArray.alias)
-      const nodeIsGradient = isGradient(node.paints[0]);
-      const values = node.paints.length ? node.paints.map(paint => extractFills(paint)) : [transparentFill];
-
-      return [
-        ...previousValue,
-        {
-          name: `${nodeIsGradient ? prefixArray.gradient[0] : prefixArray.color[0]}/${node.name}`,
-          category: nodeIsGradient ? 'gradient' : 'color' as tokenCategoryType,
-          exportKey: (nodeIsGradient ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
-          description: description,
-          values,
-          extensions: {
-            [config.key.extensionPluginData]: {
-              [config.key.extensionFigmaStyleId]: node.id,
-              exportKey: (nodeIsGradient ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
-              ...(addAlias(alias))
-            }
+      return {
+        name: `${isGradient(node.paints[0]) ? prefixArray.gradient[0] : prefixArray.color[0]}/${node.name}`,
+        category: isGradient(node.paints[0]) ? 'gradient' : 'color' as tokenCategoryType,
+        exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
+        description: description,
+        values: node.paints.map(paint => extractFills(paint)),
+        extensions: {
+          [config.key.extensionPluginData]: {
+            [config.key.extensionFigmaStyleId]: node.id,
+            exportKey: (isGradient(node.paints[0]) ? tokenTypes.gradient.key : tokenTypes.color.key) as tokenExportKeyType,
+            ...(addAlias(alias))
           }
         }
-      ];
-    }, []);
+      }
+    })
 }
 
 export default extractColors

@@ -11,12 +11,12 @@ export const roundRgba = (rgba: {
   r: roundWithDecimals(rgba.r * 255, 0),
   g: roundWithDecimals(rgba.g * 255, 0),
   b: roundWithDecimals(rgba.b * 255, 0),
-  a: roundWithDecimals(opacity ?? rgba.a ?? 1)
+  a: roundWithDecimals(opacity || rgba.a || 1)
 })
 
 export const convertPaintToRgba = (paint): ColorRgba => {
   if (paint.type === 'SOLID' && paint.visible === true) {
-    return roundRgba(paint.color, paint.opacity)
+    return roundRgba(paint.color, (paint.opacity || null))
   }
   return null
 }

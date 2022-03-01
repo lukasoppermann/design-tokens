@@ -54,52 +54,6 @@ describe('extracting color fills', () => {
       {
         category: 'color',
         exportKey: 'color',
-        description: 'i have no paints',
-        name: 'colors/transparent1',
-        extensions: {
-          'org.lukasoppermann.figmaDesignTokens': {
-            exportKey: 'color',
-            styleId: 1
-          }
-        },
-        values: [{
-          fill: {
-            type: 'color',
-            value: {
-              a: 0,
-              b: 0,
-              g: 0,
-              r: 0
-            }
-          }
-        }]
-      },
-      {
-        category: 'color',
-        exportKey: 'color',
-        description: 'i have opacity 0',
-        name: 'colors/transparent2',
-        extensions: {
-          'org.lukasoppermann.figmaDesignTokens': {
-            exportKey: 'color',
-            styleId: 1
-          }
-        },
-        values: [{
-          fill: {
-            type: 'color',
-            value: {
-              a: 0,
-              b: 255,
-              g: 255,
-              r: 255
-            }
-          }
-        }]
-      },
-      {
-        category: 'color',
-        exportKey: 'color',
         description: 'multiple fills',
         name: 'colors/multi',
         extensions: {
