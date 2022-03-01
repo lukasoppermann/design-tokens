@@ -38,7 +38,7 @@ const extractBorders: extractorInterface = (tokenNodes: customTokenNode[], prefi
           type: 'string' as PropertyType
         },
         dashPattern: {
-          value: [...node.dashPattern],
+          value: [...(node.dashPattern !== undefined && node.dashPattern.length > 0 ? node.dashPattern : [0, 0])],
           type: 'string' as PropertyType
         },
         strokeCap: {
