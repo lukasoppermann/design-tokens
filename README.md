@@ -392,7 +392,7 @@ https://api.github.com/repos/lukasoppermann/design-token-transformer/dispatches
 #### **Auth header**
 This defines the authentication method used with the access token. The current choices are:
 - `token` (used for github)
-- `Gitlab_token` (used for Gitlab requests)
+- `gitlab_token` (used for Gitlab requests)
 - `bearer` token
 - `basic` auth
 #### **Access token**

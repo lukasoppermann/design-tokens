@@ -151,7 +151,7 @@ export const UrlExportSettings = () => {
             },
             {
                 label: '(Gitlab) token',
-                value: 'Gitlab_Token'
+                value: 'gitlab_token'
             },
             {
               label: 'Basic authentication',
