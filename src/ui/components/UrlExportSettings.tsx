@@ -185,7 +185,7 @@ export const UrlExportSettings = () => {
           onChange={value => updateSettings(draft => { draft.accessToken = value })}
         />
       </Row>
-        {this.settings.authType === 'gitlab_token' &&
+        {settings.authType === 'gitlab_token' &&
         <>
         <h3>Ref<Info width={150}
                      label='The branch or commit to associate with a Gitlab trigger. Only used when Gitlab is selected for "Auth type"'/>
@@ -193,7 +193,6 @@ export const UrlExportSettings = () => {
         <Row fill>
         <Input
         type='text'
-        name = 'Ref'
         required
         pattern='\S+'
         placeholder='main'
