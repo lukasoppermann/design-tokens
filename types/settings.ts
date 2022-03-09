@@ -18,6 +18,7 @@ export type Settings = {
   eventType: string,
   accessToken?: string,
   acceptHeader?: string,
+  contentType?: string,
   exclusionPrefix: string,
   alias: string,
   authType: string,

@@ -3,3 +3,4 @@ node_modules/
 tests/amazon-style-dictionary/build
 tests/unit/coverage
 _resources/_notSynced.md
+.idea

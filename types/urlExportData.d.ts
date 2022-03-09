@@ -2,7 +2,8 @@ export type urlExportSettings = {
   url: string,
   accessToken: string,
   acceptHeader: string,
-  authType: string
+  authType: string,
+  contentType: string
 }
 
 export type urlExportRequestBody = {

@@ -26,6 +26,7 @@ const baseSettings = {
   eventType: 'baseEvent',
   accessToken: 'test',
   acceptHeader: 'baseHeader',
+  contentType: 'text',
   authType: 'baseAuthType',
   exclusionPrefix: '',
   alias: 'alias, ref, reference',
@@ -82,6 +83,7 @@ describe('Testing getSettings', () => {
         serverUrl: 'https://test.com',
         eventType: 'myEvent',
         acceptHeader: 'yo',
+        contentType: 'text',
         authType: 'aType'
       }
     }

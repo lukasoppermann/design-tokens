@@ -62,6 +62,7 @@ export const UrlExportSettings = () => {
         url: settings.serverUrl,
         accessToken: settings.accessToken,
         acceptHeader: settings.acceptHeader,
+        contentType: settings.contentType,
         authType: settings.authType
       } as urlExportSettings,
       {
@@ -123,6 +124,18 @@ export const UrlExportSettings = () => {
           onChange={value => updateSettings(draft => { draft.acceptHeader = value })}
         />
       </Row>
+
+       <h3>Content-Type header</h3>
+       <Row fill>
+           <Input
+               type='text'
+               required
+               pattern='\S+'
+               placeholder='text/plain;charset=UTF-8'
+               value={settings.contentType}
+               onChange={value => updateSettings(draft => { draft.contentType = value })}
+           />
+       </Row>
 
       <h3>Auth type</h3>
       <Row fill>

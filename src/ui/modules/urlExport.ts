@@ -39,6 +39,8 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   request.open('POST', exportSettings.url)
   // set request header if provided
   request.setRequestHeader('Accept', exportSettings.acceptHeader || 'application/vnd.github.everest-preview+json')
+  // set Content-Type header if provided
+  request.setRequestHeader('Content-Type', exportSettings.contentType || 'text/plain;charset=UTF-8')
   // add access token of provided
   if (exportSettings.accessToken !== '' && exportSettings.authType !== '') {
     request.setRequestHeader('Authorization', `${exportSettings.authType} ${exportSettings.accessToken}`)

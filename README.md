@@ -375,6 +375,9 @@ This is the `event_type` property that is send in the body of the request with t
 The url the post request is send to. This must be SSL secured (using `https`) as Figma is a secure environment and thus does not allow non-secure requests.
 A limitation that comes with Figma is that the server must allow access from any origin and send the following header: `Access-Control-Allow-Origin: *`
 
+#### **Content Type**
+Overrides the content type header for the final HTTP request. Defaults to "plain/text"
+
 ##### Pushing to Github
 If you push to github the server url must be in the format 
 ```
