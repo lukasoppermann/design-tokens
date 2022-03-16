@@ -12,7 +12,8 @@ import config from '@config/config'
 const transparentFill: fillValuesType = {
   fill: {
     value: { r: 0, g: 0, b: 0, a: 0 },
-    type: 'color'
+    type: 'color',
+    blendMode: 'NORMAL'
   }
 }
 
@@ -59,7 +60,8 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
     return {
       fill: {
         value: convertPaintToRgba(paint),
-        type: 'color' as PropertyType
+        type: 'color' as PropertyType,
+        blendMode: paint.blendMode.toLowerCase()
       }
     }
   }

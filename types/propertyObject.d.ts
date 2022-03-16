@@ -2,7 +2,7 @@ import { extractedGridValues } from './extractedData'
 import { StandardTokenExtensionsInterface } from './standardToken'
 import { tokenCategoryType } from './tokenCategory'
 import { tokenExportKeyType } from './tokenExportKey'
-import { ColorRgba, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType, UnitTypeSeconds } from './valueTypes'
+import { ColorRgba, BlendType, GradientType, GridAlignment, GridPattern, NumericUnitTypes, StrokeAlign, StrokeJoin, StrokeCap, TextCase, TextDecoration, UnitTypePixel, EffectType, PropertyType, UnitTypeSeconds } from './valueTypes'
 
 export type propertyObject = {
   name: string,
@@ -68,7 +68,8 @@ export type fontPropertyInterface = propertyObject & {
 export type fillValuesType = {
   fill: {
     value: ColorRgba,
-    type: PropertyType
+    type: PropertyType,
+    blendMode: BlendType
   }
 }
 

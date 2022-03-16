@@ -140,7 +140,8 @@ const typographyValueTransformer = ({ name, values }) => ({
 
 const colorValueTransformer = ({ fill }): StandardTokenDataInterface => ({
   type: 'color' as StandardTokenTypes,
-  value: rgbaObjectToHex8(fill.value)
+  value: rgbaObjectToHex8(fill.value),
+  blendMode: fill.blendMode?.toLowerCase() || 'normal'
 })
 
 const gradientValueTransformer = ({ gradientType, rotation, stops, opacity }): StandardTokenDataInterface => ({
