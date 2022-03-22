@@ -411,6 +411,9 @@ Once the pipeline is triggered the following values will be available as environ
  - `FIGMA_CLIENT_PAYLOAD_TOKENS`: The generated tokens JSON string.
  - `FIGMA_CLIENT_PAYLOAD_FILENAME`: The filename for the original Figma file.
 
+#### **Reference**
+This field is only used when the "gitlab_token" auth header has been selected. This field sets the reference for the Gitlab trigger. This can be a branch, or tag name.
+
 ## Errors
 
 ### No tokens get exported

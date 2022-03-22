@@ -64,7 +64,7 @@ export const UrlExportSettings = () => {
         acceptHeader: settings.acceptHeader,
         contentType: settings.contentType,
         authType: settings.authType,
-        ref: settings.ref
+        reference: settings.reference
       } as urlExportSettings,
       {
         event_type: settings.eventType,
@@ -187,7 +187,7 @@ export const UrlExportSettings = () => {
       </Row>
         {settings.authType === 'gitlab_token' &&
         <>
-        <h3>Ref<Info width={150}
+        <h3>Reference<Info width={150}
                      label='The branch or commit to associate with a Gitlab trigger. Only used when Gitlab is selected for "Auth type"'/>
         </h3>
         <Row fill>
@@ -196,8 +196,8 @@ export const UrlExportSettings = () => {
         required
         pattern='\S+'
         placeholder='main'
-        value={settings.ref}
-        onChange={value => updateSettings(draft => {draft.ref = value})}
+        value={settings.reference}
+        onChange={value => updateSettings(draft => {draft.reference = value})}
         />
         </Row>
         </>

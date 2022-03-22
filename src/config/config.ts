@@ -11,7 +11,7 @@ export default {
     },
     urlExport: {
       width: 550,
-      height: 575
+      height: 650
     }
   },
   key: {

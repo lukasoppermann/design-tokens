@@ -74,7 +74,7 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   if(exportSettings.authType === "Gitlab_Token") {
     body = new FormData();
     body.append("token", exportSettings.accessToken);
-    body.append("ref", exportSettings.ref);
+    body.append("ref", exportSettings.reference);
     body.append("variables[FIGMA_EVENT_TYPE]", requestBody.event_type);
     body.append("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]", requestBody.client_payload.tokens);
     body.append("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]", requestBody.client_payload.filename);

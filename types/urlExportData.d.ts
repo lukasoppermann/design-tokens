@@ -4,7 +4,7 @@ export type urlExportSettings = {
   acceptHeader: string,
   authType: string,
   contentType: string,
-  ref: string
+  reference: string
 }
 
 export type urlExportRequestBody = {
