@@ -3,7 +3,8 @@ export type urlExportSettings = {
   accessToken: string,
   acceptHeader: string,
   authType: string,
-  contentType: string
+  contentType: string,
+  reference: string
 }
 
 export type urlExportRequestBody = {

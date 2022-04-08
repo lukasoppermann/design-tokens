@@ -42,7 +42,7 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   // set Content-Type header if provided
   request.setRequestHeader('Content-Type', exportSettings.contentType || 'text/plain;charset=UTF-8')
   // add access token of provided
-  if (exportSettings.accessToken !== '' && exportSettings.authType !== '') {
+  if (exportSettings.accessToken !== '' && exportSettings.authType !== '' && exportSettings.authType !== 'Gitlab_Token') {
     request.setRequestHeader('Authorization', `${exportSettings.authType} ${exportSettings.accessToken}`)
   }
   // on error
@@ -52,7 +52,7 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
       pluginMessage: {
         command: commands.closePlugin,
         payload: {
-          notification: '🚨 An error occured while sending the tokens: check your settings & your server.'
+          notification: '🚨 An error occurred while sending the tokens: check your settings & your server.'
         }
       } as PluginMessage
     }, '*')
@@ -69,8 +69,21 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
       } as PluginMessage
     }, '*')
   }
+
+  let body;
+  if(exportSettings.authType === "Gitlab_Token") {
+    body = new FormData();
+    body.append("token", exportSettings.accessToken);
+    body.append("ref", exportSettings.reference);
+    body.append("variables[FIGMA_EVENT_TYPE]", requestBody.event_type);
+    body.append("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]", requestBody.client_payload.tokens);
+    body.append("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]", requestBody.client_payload.filename);
+  }else{
+    body = JSON.stringify(requestBody, null, 2)
+  }
+
   // send request
-  request.send(JSON.stringify(requestBody, null, 2))
+  request.send(body)
 }
 
 export { urlExport }

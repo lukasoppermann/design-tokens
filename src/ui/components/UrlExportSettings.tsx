@@ -63,7 +63,8 @@ export const UrlExportSettings = () => {
         accessToken: settings.accessToken,
         acceptHeader: settings.acceptHeader,
         contentType: settings.contentType,
-        authType: settings.authType
+        authType: settings.authType,
+        reference: settings.reference
       } as urlExportSettings,
       {
         event_type: settings.eventType,
@@ -75,6 +76,15 @@ export const UrlExportSettings = () => {
     }
   }
 
+  function onAuthUpdate (value) {
+       updateSettings(draft => { draft.authType = value })
+      if (this.value == 'gitlab_token'){
+          this.form['Ref'].style.visibility = 'visible'
+      }else {
+          this.form['other'].style.visibility = 'hidden'
+      }
+  }
+
   return (
     <form onSubmit={handleFormSubmit} className={style}>
       <Title size='xlarge' weight='bold'>URL Export settings</Title>
@@ -83,7 +93,7 @@ export const UrlExportSettings = () => {
           label='Compress JSON output'
           type='switch'
           checked={settings.urlJsonCompression}
-          onChange={(value) => updateSettings(draft => { draft.urlJsonCompression = value })}
+          onChange={(value) => onAuthUpdate(value)}
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
@@ -149,6 +159,10 @@ export const UrlExportSettings = () => {
               value: 'token'
             },
             {
+                label: '(Gitlab) token',
+                value: 'gitlab_token'
+            },
+            {
               label: 'Basic authentication',
               value: 'Basic'
             },
@@ -171,6 +185,23 @@ export const UrlExportSettings = () => {
           onChange={value => updateSettings(draft => { draft.accessToken = value })}
         />
       </Row>
+        {settings.authType === 'gitlab_token' &&
+        <>
+        <h3>Reference<Info width={150}
+                     label='The branch or commit to associate with a Gitlab trigger. Only used when Gitlab is selected for "Auth type"'/>
+        </h3>
+        <Row fill>
+        <Input
+        type='text'
+        required
+        pattern='\S+'
+        placeholder='main'
+        value={settings.reference}
+        onChange={value => updateSettings(draft => {draft.reference = value})}
+        />
+        </Row>
+        </>
+    }
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
