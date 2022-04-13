@@ -20,7 +20,13 @@ export default {
     settings: 'settings',
     extensionPluginData: 'org.lukasoppermann.figmaDesignTokens',
     extensionFigmaStyleId: 'styleId',
-    extensionAlias: 'alias'
+    extensionAlias: 'alias',
+    authType: {
+      token: 'token',
+      gitlabToken: 'gitlab_token',
+      basic: 'Basic',
+      bearer: 'Bearer'
+    }
   },
   exclusionPrefixDefault: ['_', '.'],
   fileExtensions: [

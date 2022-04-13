@@ -1,5 +1,6 @@
 /* eslint-env browser */
 import { commands } from '@config/commands'
+import config from '@config/config'
 import { PluginMessage } from '@typings/pluginEvent'
 import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
 
@@ -42,7 +43,7 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   // set Content-Type header if provided
   request.setRequestHeader('Content-Type', exportSettings.contentType || 'text/plain;charset=UTF-8')
   // add access token of provided
-  if (exportSettings.accessToken !== '' && exportSettings.authType !== '' && exportSettings.authType !== 'Gitlab_Token') {
+  if (exportSettings.accessToken !== '' && exportSettings.authType !== '' && exportSettings.authType !== config.key.authType.gitlabToken) {
     request.setRequestHeader('Authorization', `${exportSettings.authType} ${exportSettings.accessToken}`)
   }
   // on error
@@ -70,15 +71,15 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
     }, '*')
   }
 
-  let body;
-  if(exportSettings.authType === "Gitlab_Token") {
-    body = new FormData();
-    body.append("token", exportSettings.accessToken);
-    body.append("ref", exportSettings.reference);
-    body.append("variables[FIGMA_EVENT_TYPE]", requestBody.event_type);
-    body.append("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]", requestBody.client_payload.tokens);
-    body.append("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]", requestBody.client_payload.filename);
-  }else{
+  let body
+  if (exportSettings.authType === config.key.authType.gitlabToken) {
+    body = new FormData()
+    body.append('token', exportSettings.accessToken)
+    body.append('ref', exportSettings.reference)
+    body.append('variables[FIGMA_EVENT_TYPE]', requestBody.event_type)
+    body.append('variables[FIGMA_CLIENT_PAYLOAD_TOKENS]', requestBody.client_payload.tokens)
+    body.append('variables[FIGMA_CLIENT_PAYLOAD_FILENAME]', requestBody.client_payload.filename)
+  } else {
     body = JSON.stringify(requestBody, null, 2)
   }
 

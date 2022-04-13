@@ -20,6 +20,7 @@ import { commands } from '@config/commands'
 import { stringifyJson } from '@src/utilities/stringifyJson'
 import { WebLink } from './WebLink'
 import { Separator } from './Separator'
+import config from '@config/config'
 
 const style = css`
   display: flex;
@@ -77,12 +78,12 @@ export const UrlExportSettings = () => {
   }
 
   function onAuthUpdate (value) {
-       updateSettings(draft => { draft.authType = value })
-      if (this.value == 'gitlab_token'){
-          this.form['Ref'].style.visibility = 'visible'
-      }else {
-          this.form['other'].style.visibility = 'hidden'
-      }
+    updateSettings(draft => { draft.authType = value })
+    if (this.value === config.key.authType.gitlabToken) {
+      this.form.Ref.style.visibility = 'visible'
+    } else {
+      this.form.other.style.visibility = 'hidden'
+    }
   }
 
   return (
@@ -135,17 +136,17 @@ export const UrlExportSettings = () => {
         />
       </Row>
 
-       <h3>Content-Type header</h3>
-       <Row fill>
-           <Input
-               type='text'
-               required
-               pattern='\S+'
-               placeholder='text/plain;charset=UTF-8'
-               value={settings.contentType}
-               onChange={value => updateSettings(draft => { draft.contentType = value })}
-           />
-       </Row>
+      <h3>Content-Type header</h3>
+      <Row fill>
+        <Input
+          type='text'
+          required
+          pattern='\S+'
+          placeholder='text/plain;charset=UTF-8'
+          value={settings.contentType}
+          onChange={value => updateSettings(draft => { draft.contentType = value })}
+        />
+      </Row>
 
       <h3>Auth type</h3>
       <Row fill>
@@ -156,19 +157,19 @@ export const UrlExportSettings = () => {
           options={[
             {
               label: '(Github) token',
-              value: 'token'
+              value: config.key.authType.token
             },
             {
-                label: '(Gitlab) token',
-                value: 'gitlab_token'
+              label: '(Gitlab) token',
+              value: config.key.authType.gitlabToken
             },
             {
               label: 'Basic authentication',
-              value: 'Basic'
+              value: config.key.authType.basic
             },
             {
               label: 'Bearer token authentication',
-              value: 'Bearer'
+              value: config.key.authType.bearer
             }
           ]}
         />
@@ -185,23 +186,24 @@ export const UrlExportSettings = () => {
           onChange={value => updateSettings(draft => { draft.accessToken = value })}
         />
       </Row>
-        {settings.authType === 'gitlab_token' &&
+      {settings.authType === config.key.authType.gitlabToken &&
         <>
-        <h3>Reference<Info width={150}
-                     label='The branch or commit to associate with a Gitlab trigger. Only used when Gitlab is selected for "Auth type"'/>
-        </h3>
-        <Row fill>
-        <Input
-        type='text'
-        required
-        pattern='\S+'
-        placeholder='main'
-        value={settings.reference}
-        onChange={value => updateSettings(draft => {draft.reference = value})}
-        />
-        </Row>
-        </>
-    }
+          <h3>Reference<Info
+            width={150}
+            label='The branch or commit to associate with a Gitlab trigger. Only used when Gitlab is selected for "Auth type"'
+                       />
+          </h3>
+          <Row fill>
+            <Input
+              type='text'
+              required
+              pattern='\S+'
+              placeholder='main'
+              value={settings.reference}
+              onChange={value => updateSettings(draft => { draft.reference = value })}
+            />
+          </Row>
+        </>}
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
