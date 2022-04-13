@@ -38,13 +38,17 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   const request = new XMLHttpRequest()
   // send to user defined url
   request.open('POST', exportSettings.url)
-  // set request header if provided
-  request.setRequestHeader('Accept', exportSettings.acceptHeader || 'application/vnd.github.everest-preview+json')
-  // set Content-Type header if provided
-  request.setRequestHeader('Content-Type', exportSettings.contentType || 'text/plain;charset=UTF-8')
-  // add access token of provided
-  if (exportSettings.accessToken !== '' && exportSettings.authType !== '' && exportSettings.authType !== config.key.authType.gitlabToken) {
-    request.setRequestHeader('Authorization', `${exportSettings.authType} ${exportSettings.accessToken}`)
+  
+  // Only apply the following if not using gitlab token
+  if(exportSettings.authType !== config.key.authType.gitlabToken){
+    // set request header if provided
+    request.setRequestHeader('Accept', exportSettings.acceptHeader || 'application/vnd.github.everest-preview+json')
+    // set Content-Type header if provided
+    request.setRequestHeader('Content-Type', exportSettings.contentType || 'text/plain;charset=UTF-8')
+    // add access token of provided
+    if (exportSettings.accessToken !== '' && exportSettings.authType !== '') {
+      request.setRequestHeader('Authorization', `${exportSettings.authType} ${exportSettings.accessToken}`)
+    }
   }
   // on error
   request.onerror = (event) => {
