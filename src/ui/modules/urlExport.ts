@@ -21,39 +21,28 @@ const responeHandler = (request: XMLHttpRequest): string => {
   return '🎉 Design tokens pushed to server!'
 }
 
-const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlExportRequestBody) => {
-  // abort on missing url
-  if (exportSettings.url === '') {
-    // @ts-ignore
-    parent.postMessage({
-      pluginMessage: {
-        command: commands.closePlugin,
-        payload: {
-          notification: '🚨 No server url was provided, push aborted!'
-        }
-      } as PluginMessage
-    }, '*')
-  }
-  // init request
-  const request = new XMLHttpRequest()
-  // send to user defined url
-  request.open('POST', exportSettings.url)
-  
+const ACCEPT_HEADER_KEY = 'Accept'
+const CONTENT_TYPE_HEADER_KEY = 'Content-Type'
+const AUTHORIZATION_HEADER_KEY = 'Authorization'
+
+const addUrlExportRequestHeaders = (request: XMLHttpRequest, exportSettings: urlExportSettings) => {
   // set request header if provided
-  if(exportSettings.authType !== config.key.authType.gitlabToken){
+  if (exportSettings.authType !== config.key.authType.gitlabToken) {
     request.setRequestHeader('Accept', exportSettings.acceptHeader || 'application/vnd.github.everest-preview+json')
   }
-  
+
   // set Content-Type header if provided
-  if(exportSettings.authType !== config.key.authType.gitlabToken){
+  if (exportSettings.authType !== config.key.authType.gitlabToken) {
     request.setRequestHeader('Content-Type', exportSettings.contentType || 'text/plain;charset=UTF-8')
   }
-  
+
   // add access token if provided
   if (exportSettings.accessToken !== '' && exportSettings.authType !== '' && exportSettings.authType !== config.key.authType.gitlabToken) {
-      request.setRequestHeader('Authorization', `${exportSettings.authType} ${exportSettings.accessToken}`)
+    request.setRequestHeader('Authorization', `${exportSettings.authType} ${exportSettings.accessToken}`)
   }
-  
+}
+
+const addUrlExportRequestEvents = (request: XMLHttpRequest) => {
   // on error
   request.onerror = (event) => {
     // @ts-ignore
@@ -78,7 +67,9 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
       } as PluginMessage
     }, '*')
   }
+}
 
+const generateUrlExportRequestBody = (exportSettings: urlExportSettings, requestBody: urlExportRequestBody) => {
   let body
   if (exportSettings.authType === config.key.authType.gitlabToken) {
     body = new FormData()
@@ -90,9 +81,42 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   } else {
     body = JSON.stringify(requestBody, null, 2)
   }
+  return body
+}
+
+const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlExportRequestBody) => {
+  // abort on missing url
+  if (exportSettings.url === '') {
+    // @ts-ignore
+    parent.postMessage({
+      pluginMessage: {
+        command: commands.closePlugin,
+        payload: {
+          notification: '🚨 No server url was provided, push aborted!'
+        }
+      } as PluginMessage
+    }, '*')
+  }
+  // init request
+  const request = new XMLHttpRequest()
+  // send to user defined url
+  request.open('POST', exportSettings.url)
+
+  addUrlExportRequestHeaders(request, exportSettings)
+
+  addUrlExportRequestEvents(request)
+
+  const body = generateUrlExportRequestBody(exportSettings, requestBody)
 
   // send request
   request.send(body)
 }
 
-export { urlExport }
+export {
+  urlExport,
+  addUrlExportRequestHeaders,
+  generateUrlExportRequestBody,
+  ACCEPT_HEADER_KEY,
+  CONTENT_TYPE_HEADER_KEY,
+  AUTHORIZATION_HEADER_KEY
+}

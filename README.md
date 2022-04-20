@@ -411,6 +411,17 @@ Once the pipeline is triggered the following values will be available as environ
  - `FIGMA_CLIENT_PAYLOAD_TOKENS`: The generated tokens JSON string.
  - `FIGMA_CLIENT_PAYLOAD_FILENAME`: The filename for the original Figma file.
 
+> :warning: **NOTE**: It has been found that Gitlab has limitations on how much data can be passed via the environmental 
+> variables due to the limit on the size of the ConfigMap at 1048576 bytes. Depending on the system you are running on
+> and any configurations already in place you may find you are able to pass more or less data than others. Developers 
+> and Designers should be aware of this limitation and plan accordingly. The below warning is an indication you have 
+> exceeded the data limit:
+> 
+>```
+> ERROR: Error cleaning up configmap: resource name may not be empty
+> ERROR: Job failed (system failure): prepare environment: setting up scripts configMap: generating scripts config map: ConfigMap "[[redacted image name]]" is invalid: []: Too long: must have at most 1048576 bytes. Check https://docs.gitlab.com/runner/shells/index.html#shell-profile-loading for more information
+> ```
+
 #### **Reference**
 This field is only used when the "gitlab_token" auth header has been selected. This field sets the reference for the Gitlab trigger. This can be a branch, or tag name.
 
