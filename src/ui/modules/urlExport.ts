@@ -26,13 +26,11 @@ const CONTENT_TYPE_HEADER_KEY = 'Content-Type'
 const AUTHORIZATION_HEADER_KEY = 'Authorization'
 
 const addUrlExportRequestHeaders = (request: XMLHttpRequest, exportSettings: urlExportSettings) => {
-  // set request header if provided
   if (exportSettings.authType !== config.key.authType.gitlabToken) {
+    // set request header if provided
     request.setRequestHeader('Accept', exportSettings.acceptHeader || 'application/vnd.github.everest-preview+json')
-  }
 
-  // set Content-Type header if provided
-  if (exportSettings.authType !== config.key.authType.gitlabToken) {
+    // set Content-Type header if provided
     request.setRequestHeader('Content-Type', exportSettings.contentType || 'text/plain;charset=UTF-8')
   }
 
@@ -112,11 +110,15 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   request.send(body)
 }
 
+const _testing = {
+  ACCEPT_HEADER_KEY: ACCEPT_HEADER_KEY,
+  CONTENT_TYPE_HEADER_KEY: CONTENT_TYPE_HEADER_KEY,
+  AUTHORIZATION_HEADER_KEY: AUTHORIZATION_HEADER_KEY,
+  addUrlExportRequestHeaders: addUrlExportRequestHeaders,
+  generateUrlExportRequestBody: generateUrlExportRequestBody
+}
+
 export {
   urlExport,
-  addUrlExportRequestHeaders,
-  generateUrlExportRequestBody,
-  ACCEPT_HEADER_KEY,
-  CONTENT_TYPE_HEADER_KEY,
-  AUTHORIZATION_HEADER_KEY
+  _testing
 }

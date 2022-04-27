@@ -1,10 +1,4 @@
-import {
-    addUrlExportRequestHeaders,
-    generateUrlExportRequestBody,
-    ACCEPT_HEADER_KEY,
-    CONTENT_TYPE_HEADER_KEY,
-    AUTHORIZATION_HEADER_KEY
-} from '../../src/ui/modules/urlExport'
+import {_testing} from '../../src/ui/modules/urlExport'
 import {urlExportRequestBody, urlExportSettings} from "../../types/urlExportData";
 import config from "../../src/config/config";
 
@@ -39,14 +33,14 @@ describe('Testing urlExport', () => {
     describe("generateRequestBody testing", () => {
         test('If token is set to anything but gitlab_token body is of type string',
             () => {
-                const body = generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody)
+                const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody)
                 expect(typeof body).toBe("string")
             })
 
         test('If token is set to gitlab_token body is of type form data',
             () => {
                 mockUrlExportSettings.authType = config.key.authType.gitlabToken
-                const body = generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody)
+                const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody)
                 expect(body).toBeInstanceOf(FormData)
             })
 
@@ -70,7 +64,7 @@ describe('Testing urlExport', () => {
                 mockUrlExportRequestBody.client_payload.filename=payloadFilename
 
 
-                const body = generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
+                const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
                 expect(body.append).toHaveBeenCalledWith("token", accessToken)
                 expect(body.append).toHaveBeenCalledWith("token",accessToken)
                 expect(body.append).toHaveBeenCalledWith("ref",reference)
@@ -90,7 +84,7 @@ describe('Testing urlExport', () => {
 
                 mockUrlExportSettings.authType = config.key.authType.gitlabToken
 
-                addUrlExportRequestHeaders(request, mockUrlExportSettings)
+                _testing.addUrlExportRequestHeaders(request, mockUrlExportSettings)
                 expect(request.setRequestHeader).not.toHaveBeenCalledWith()
             })
 
@@ -104,8 +98,8 @@ describe('Testing urlExport', () => {
                 const acceptHeader = 'application/JSON'
                 mockUrlExportSettings.acceptHeader = acceptHeader
 
-                addUrlExportRequestHeaders(request, mockUrlExportSettings)
-                expect(request.setRequestHeader).toHaveBeenCalledWith(ACCEPT_HEADER_KEY, acceptHeader)
+                _testing.addUrlExportRequestHeaders(request, mockUrlExportSettings)
+                expect(request.setRequestHeader).toHaveBeenCalledWith(_testing.ACCEPT_HEADER_KEY, acceptHeader)
             })
 
         test('Not adding an Accept value sets default value for Accept header',
@@ -116,8 +110,8 @@ describe('Testing urlExport', () => {
 
                 mockUrlExportSettings.acceptHeader = null
 
-                addUrlExportRequestHeaders(request, mockUrlExportSettings)
-                expect(request.setRequestHeader).toHaveBeenCalledWith(ACCEPT_HEADER_KEY, 'application/vnd.github.everest-preview+json')
+                _testing.addUrlExportRequestHeaders(request, mockUrlExportSettings)
+                expect(request.setRequestHeader).toHaveBeenCalledWith(_testing.ACCEPT_HEADER_KEY, 'application/vnd.github.everest-preview+json')
             })
 
 
@@ -131,8 +125,8 @@ describe('Testing urlExport', () => {
                 const contentType = 'application/JSON'
                 mockUrlExportSettings.contentType = contentType
 
-                addUrlExportRequestHeaders(request, mockUrlExportSettings)
-                expect(request.setRequestHeader).toHaveBeenCalledWith(CONTENT_TYPE_HEADER_KEY, contentType)
+                _testing.addUrlExportRequestHeaders(request, mockUrlExportSettings)
+                expect(request.setRequestHeader).toHaveBeenCalledWith(_testing.CONTENT_TYPE_HEADER_KEY, contentType)
             })
 
         test('Not adding a content type sets default value for Content Type header',
@@ -143,8 +137,8 @@ describe('Testing urlExport', () => {
 
                 mockUrlExportSettings.contentType = null
 
-                addUrlExportRequestHeaders(request, mockUrlExportSettings)
-                expect(request.setRequestHeader).toHaveBeenCalledWith(CONTENT_TYPE_HEADER_KEY, 'text/plain;charset=UTF-8')
+                _testing.addUrlExportRequestHeaders(request, mockUrlExportSettings)
+                expect(request.setRequestHeader).toHaveBeenCalledWith(_testing.CONTENT_TYPE_HEADER_KEY, 'text/plain;charset=UTF-8')
             })
 
         test('Adding an accessToken and authType adds the Authorization header',
@@ -158,8 +152,8 @@ describe('Testing urlExport', () => {
                 mockUrlExportSettings.accessToken = accessToken
                 mockUrlExportSettings.authType = authType
 
-                addUrlExportRequestHeaders(request, mockUrlExportSettings)
-                expect(request.setRequestHeader).toHaveBeenCalledWith(AUTHORIZATION_HEADER_KEY, `${authType} ${accessToken}`)
+                _testing.addUrlExportRequestHeaders(request, mockUrlExportSettings)
+                expect(request.setRequestHeader).toHaveBeenCalledWith(_testing.AUTHORIZATION_HEADER_KEY, `${authType} ${accessToken}`)
             })
 
         test('Not adding an accessToken results in no change to the headers',
@@ -173,8 +167,8 @@ describe('Testing urlExport', () => {
                 mockUrlExportSettings.accessToken = accessToken
                 mockUrlExportSettings.authType = authType
 
-                addUrlExportRequestHeaders(request, mockUrlExportSettings)
-                expect(request.setRequestHeader).not.toHaveBeenCalledWith(AUTHORIZATION_HEADER_KEY)
+                _testing.addUrlExportRequestHeaders(request, mockUrlExportSettings)
+                expect(request.setRequestHeader).not.toHaveBeenCalledWith(_testing.AUTHORIZATION_HEADER_KEY)
             })
 
         test('Not adding an authType results in no change to the headers',
@@ -188,8 +182,8 @@ describe('Testing urlExport', () => {
                 mockUrlExportSettings.accessToken = accessToken
                 mockUrlExportSettings.authType = authType
 
-                addUrlExportRequestHeaders(request, mockUrlExportSettings)
-                expect(request.setRequestHeader).not.toHaveBeenCalledWith(AUTHORIZATION_HEADER_KEY)
+                _testing.addUrlExportRequestHeaders(request, mockUrlExportSettings)
+                expect(request.setRequestHeader).not.toHaveBeenCalledWith(_testing.AUTHORIZATION_HEADER_KEY)
             })
 
     })
