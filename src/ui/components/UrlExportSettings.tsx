@@ -77,15 +77,6 @@ export const UrlExportSettings = () => {
     }
   }
 
-  function onAuthUpdate (value) {
-    updateSettings(draft => { draft.authType = value })
-    if (this.value === config.key.authType.gitlabToken) {
-      this.form.Ref.style.visibility = 'visible'
-    } else {
-      this.form.other.style.visibility = 'hidden'
-    }
-  }
-
   return (
     <form onSubmit={handleFormSubmit} className={style}>
       <Title size='xlarge' weight='bold'>URL Export settings</Title>
@@ -94,7 +85,7 @@ export const UrlExportSettings = () => {
           label='Compress JSON output'
           type='switch'
           checked={settings.urlJsonCompression}
-          onChange={(value) => onAuthUpdate(value)}
+          onChange={(value) => updateSettings(draft => { draft.urlJsonCompression = value })}
         />
         <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
       </Row>
