@@ -16,55 +16,55 @@ const style = css`
       height: 30px;
       margin: 1px 0 1px 0;
       padding: var(--size-xxsmall) var(--size-xxxsmall) var(--size-xxsmall) var(--size-xxsmall);
-      color: var(--black8);
       border: 1px solid transparent;
       border-radius: var(--border-radius-small);
       outline: none;
-      background-color: var(--white);
+      background-color: transparent;
+      color: var(--figma-color-text);
 
       &:hover, &:placeholder-shown:hover {
-          color: var(--black8);
-          border: 1px solid var(--black1);
+          color: var(--figma-color-text);
+          border: 1px solid var(--figma-color-border);
           background-image: none;
       }
       &::placeholder {
-          color: var(--black6);
+          color: var(--figma-color-text-secondary);
           border: 1px solid transparent;
       }
       &:placeholder-shown {
-          border: 1px solid var(--black1);
+          border: 1px solid var(--figma-color-border);
       }
       &:focus:placeholder-shown {
-          border: 1px solid var(--blue);
-          outline: 1px solid var(--blue);
+          border: 1px solid var(--figma-color-border-brand);
+          outline: 1px solid var(--figma-color-border-brand);
           outline-offset: -2px;
       }
       &:disabled:hover {
           border: 1px solid transparent;
       }
       &:active, &:focus {
-          color: var(--black);
-          border: 1px solid var(--blue);
-          outline: 1px solid var(--blue);
+          color: var(--figma-color-text);
+          border: 1px solid var(--figma-color-border-brand);
+          outline: 1px solid var(--figma-color-border-brand);
           outline-offset: -2px;
       }
       &:disabled {
           position: relative;
-          color: var(--black6);
+          color: var(--figma-color-border-danger);
           user-select: none;
       }
       &:disabled:active {
           outline: none;
       }
       &:invalid {
-        border: 1px solid var(--red);
-        outline: 1px solid var(--red);
+        border: 1px solid var(--figma-color-border-danger);
+        outline: 1px solid var(--figma-color-border-danger);
         outline-offset: -2px;
       }
   }
 
   .input--borders {
-    border: 1px solid var(--black1);
+    border: 1px solid var(--figma-color-border-secondary);
   }
 `
 

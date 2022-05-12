@@ -11,6 +11,7 @@ import { stringifyJson } from './utilities/stringifyJson'
 
 // initiate UI
 figma.showUI(__html__, {
+  themeColors: true,
   visible: false
 })
 // ---------------------------------

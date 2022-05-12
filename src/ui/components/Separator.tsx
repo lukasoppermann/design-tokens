@@ -6,7 +6,7 @@ const style = css`
   height: 1px;
   border: 0px;
   width: 100%;
-  background: var(--black1);
+  background: var(--figma-color-border);
 `
 
 export const Separator = () => {

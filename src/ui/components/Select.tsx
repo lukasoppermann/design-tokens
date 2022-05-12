@@ -20,14 +20,14 @@ select.select-menu {
       padding: 0px var(--size-xxsmall) 0px var(--size-xxsmall);   
       overflow-y: hidden;
       border-radius: var(--border-radius-small);
-      background-color: var(--white);
+      background-color: var(--figma-color-bg) !important;
 
       &:hover {
-          border-color: var(--black1);
+          border-color: var(--figma-color-border);
       }
       &:focus {
-          border: 1px solid var(--blue);
-          outline: 1px solid var(--blue);
+          border: 1px solid var(--figma-color-border-brand);
+          outline: 1px solid var(--figma-color-border-brand);
           outline-offset: -2px;
       }
       &:disabled:hover {
@@ -39,13 +39,13 @@ select.select-menu {
       }
   }
   .select-menu__button:hover .select-menu__label--placeholder {
-      color: var(--black8);
+      color: var(--figma-color-text);
   }
   .select-menu__button:focus .select-menu__label--placeholder {
-      color: var(--black8);
+      color: var(--figma-color-text);
   }
   .select-menu__button:disabled:hover .select-menu__label--placeholder {
-      color: var(--black6);
+      color: var(--figma-color-text-secondary);
   }
   .select-menu__button:hover .select-menu__caret, .select-menu__button:focus .select-menu__caret {
       opacity: 1.0;
@@ -56,7 +56,7 @@ select.select-menu {
       margin-left: -12px;
   }
   .select-menu__button:disabled .select-menu__label {
-      color: var(--black6);
+      color: var(--figma-color-text-secondary);
   }
 
   //label w/ placeholder modifier
@@ -65,7 +65,7 @@ select.select-menu {
       font-weight: var(--font-weight-normal);
       letter-spacing: var( --font-letter-spacing-neg-xsmall);
       line-height: var(--line-height);
-      color: var(--black8);
+      color: var(--figma-color-text);
       margin-right: 6px;
       margin-top: -2px;
       white-space: nowrap;
@@ -73,7 +73,7 @@ select.select-menu {
       text-overflow: ellipsis;
 
       &--placeholder {
-          color: var(--black6);
+          color: var(--figma-color-text-secondary);
       }
   }
 
@@ -177,7 +177,7 @@ select.select-menu {
       background-position: center center;
   }
   .select-menu--highlight, .select-menu__item:hover, .select-menu__item:focus {
-      background-color: var(--blue);
+      background-color: var(--figma-color-bg-brand);
   }
 
   //divider

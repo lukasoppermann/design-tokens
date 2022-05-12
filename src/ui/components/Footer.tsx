@@ -6,7 +6,7 @@ const style = css`
   display: flex;
   justify-content: flex-start;
   margin-top: 16px;
-  border-top: 1px solid var(--black1);
+  border-top: 1px solid var(--figma-color-border);
   & > * {
   align-self: center;
   }

@@ -5,7 +5,6 @@ const style = css`
  display: flex;
     align-items: center;
     border-radius: var(--border-radius-large);
-    color: var(--white);
     flex-shrink: 0;
     font-family: var(--font-stack);
     font-size: var(--font-size-xsmall);
@@ -21,31 +20,32 @@ const style = css`
 
     // primary 
     &.button--primary {
-      background-color: var(--blue);
+      color: var(--figma-color-text-onbrand);
+      background-color: var(--figma-color-bg-brand);
 
       &:enabled:active, &:enabled:focus {
-          border: 2px solid var(--black3);
+          border: 2px solid var(--figma-color-border-brand);
       }
       &:disabled {
-          background-color: var(--black3);
+          border: 1px solid var(--figma-color-border);
       }
     }
 
     // secondary 
     &.button--secondary {
-      background-color: var(--white);
-      border: 1px solid var(--black8);
-      color: var(--black8);
+      background-color: var(--figma-color-bg);
+      border: 1px solid var(--figma-color-border-strong);
+      color: var(--figma-color-text);
       padding: 0 calc(var(--size-xsmall) + 1px) 0 calc(var(--size-xsmall) + 1px);
       letter-spacing: var(--font-letter-spacing-pos-small);
 
       &:enabled:active, &:enabled:focus {
-          border: 2px solid var(--blue);
+          border: 2px solid var(--figma-color-border-brand);
           padding: 0 var(--size-xsmall) 0 var(--size-xsmall);
       }
       &:disabled {
-          border: 1px solid var(--black3);
-          color: var(--black6);
+          border: 1px solid var(--figma-color-border);
+          color: var(--figma-color-text-secondary);
       }
     }
 `

@@ -1,18 +1,51 @@
+/*  FONTS */
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-style: normal;
+  src: url('https://rsms.me/inter/font-files/Inter-Regular.woff2?v=3.7')
+      format('woff2'),
+    url('https://rsms.me/inter/font-files/Inter-Regular.woff?v=3.7')
+      format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-style: normal;
+  src: url('https://rsms.me/inter/font-files/Inter-Medium.woff2?v=3.7')
+      format('woff2'),
+    url('https://rsms.me/inter/font-files/Inter-Medium.woff2?v=3.7')
+      format('woff');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-style: normal;
+  src: url('https://rsms.me/inter/font-files/Inter-SemiBold.woff2?v=3.7')
+      format('woff2'),
+    url('https://rsms.me/inter/font-files/Inter-SemiBold.woff2?v=3.7')
+      format('woff');
+}
+
 /* figma plugin ds overwrite */
 .switch__label {
   padding-right: 0 !important;
 }
 .switch__toggle:focus-visible + .switch__label:before {
-  box-shadow: 0 0 0 2px var(--blue);
+  box-shadow: 0 0 0 2px var(--figma-color-border-brand);
 }
+
 /* Normal css */
+* {
+  box-sizing: border-box;
+}
 h3 {
   padding: 0 var(--size-xxsmall);
   margin: var(--size-xxsmall) 0 0;
   font-size: var(--font-size-small);
   letter-spacing: var(--font-letter-spacing-pos-small);
   line-height: var(--line-height);
-  color: var(--black8);
   height: var(--size-medium);
   width: 100%;
   display: flex;
@@ -48,7 +81,7 @@ h3:first-child {
   padding-top: var(--size-xxsmall);
 }
 .label.label--info {
-  color: var(--black6);
+  color: var(--figma-color-text-secondary);
   flex-shrink: 1;
   height: auto;
 }
@@ -65,5 +98,15 @@ h3:first-child {
 :not(h3) + .section-title {
   padding-top: var(--size-xxsmall);
   margin-top: var(--size-xsmall);
-  border-top: 1px solid var(--black1);
+  border-top: 1px solid var(--figma-color-border);
+}
+/* CSS */
+body {
+  position: relative;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--figma-color-bg);
+  color: var(--figma-color-text);
 }
