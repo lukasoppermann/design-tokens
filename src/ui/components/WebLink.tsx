@@ -17,7 +17,7 @@ const style = css`
   &:hover {
     cursor: pointer;
     text-decoration: none;
-    color: var(--blue);
+    color: var(--figma-color-text-brand);
   }
 `
 const clickWebLink = (href) => {

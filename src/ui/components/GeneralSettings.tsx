@@ -37,7 +37,7 @@ const labelStyle = css`
 
 const textStyle = css`
   padding: 0 var(--size-xxxsmall) 0 var(--size-xxsmall);
-  color: var(--black6);
+  color: var(--figma-color-text-secondary);
   margin-top: 0;
 `
 

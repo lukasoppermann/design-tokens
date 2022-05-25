@@ -6,7 +6,7 @@ const style = css`
   font-size: var(--font-size-small);
   letter-spacing: var(--font-letter-spacing-pos-small);
   line-height: var(--line-height);
-  color: var(--black6);
+  color: var(--figma-color-text-secondary);
   height: var(--size-medium);
   width: 100%;
   display: flex;

@@ -6,7 +6,7 @@ const style = css`
 select.select-menu {
   display: none;
 }
-.select-menu {
+&.select-menu {
   position: relative;
 
   // button
@@ -20,14 +20,14 @@ select.select-menu {
       padding: 0px var(--size-xxsmall) 0px var(--size-xxsmall);   
       overflow-y: hidden;
       border-radius: var(--border-radius-small);
-      background-color: var(--white);
+      background-color: var(--figma-color-bg) !important;
 
       &:hover {
-          border-color: var(--black1);
+          border-color: var(--figma-color-border);
       }
       &:focus {
-          border: 1px solid var(--blue);
-          outline: 1px solid var(--blue);
+          border: 1px solid var(--figma-color-border-brand);
+          outline: 1px solid var(--figma-color-border-brand);
           outline-offset: -2px;
       }
       &:disabled:hover {
@@ -39,24 +39,25 @@ select.select-menu {
       }
   }
   .select-menu__button:hover .select-menu__label--placeholder {
-      color: var(--black8);
+      color: var(--figma-color-text);
   }
   .select-menu__button:focus .select-menu__label--placeholder {
-      color: var(--black8);
+      color: var(--figma-color-text);
   }
   .select-menu__button:disabled:hover .select-menu__label--placeholder {
-      color: var(--black6);
+      color: var(--figma-color-text-secondary);
   }
   .select-menu__button:hover .select-menu__caret, .select-menu__button:focus .select-menu__caret {
       opacity: 1.0;
       margin-left: auto;
+      margin-right: -6px;
   }
   .select-menu__button:disabled:hover .select-menu__caret {
       opacity: 0.3;
       margin-left: -12px;
   }
   .select-menu__button:disabled .select-menu__label {
-      color: var(--black6);
+      color: var(--figma-color-text-secondary);
   }
 
   //label w/ placeholder modifier
@@ -65,7 +66,7 @@ select.select-menu {
       font-weight: var(--font-weight-normal);
       letter-spacing: var( --font-letter-spacing-neg-xsmall);
       line-height: var(--line-height);
-      color: var(--black8);
+      color: var(--figma-color-text);
       margin-right: 6px;
       margin-top: -2px;
       white-space: nowrap;
@@ -73,7 +74,7 @@ select.select-menu {
       text-overflow: ellipsis;
 
       &--placeholder {
-          color: var(--black6);
+          color: var(--figma-color-text-secondary);
       }
   }
 
@@ -82,12 +83,15 @@ select.select-menu {
     width: 30px;
     height: 30px;
     display: block;
-    margin-top: -1px;
+    margin-top: -2px;
     margin-left: -12px;
-    background-image: url('data:image/svg+xml;utf8,%3Csvg%20fill%3D%22none%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%20width%3D%2230%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20clip-rule%3D%22evenodd%22%20d%3D%22m15%2016.7071-3-3%20.7071-.7071%202.6465%202.6464%202.6464-2.6464.7071.7071-3%203-.3535.3536z%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: center center;
-    opacity: 0.3;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      fill: var(--figma-color-icon-oncomponent-secondary);
+    }
   }
 
   //icon - we will render the icon component but we override some additional styles
@@ -116,14 +120,14 @@ select.select-menu {
       overflow-x: overlay;
       overflow-y: auto;
 
-      .select-menu__menu--active {
+      &.select-menu__menu--active {
         display: block;
       }
   }
   .select-menu__menu::-webkit-scrollbar{
-      width:12px;
+      width: 12px;
       background-color:transparent;
-      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=);
+      /* background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=); */
       background-repeat:repeat;
       background-size:100% auto
   }
@@ -172,12 +176,12 @@ select.select-menu {
       margin-right: var(--size-xxsmall);
       opacity: 0;
       pointer-events: none;
-      background-image: url('data:image/svg+xml;utf8,%3Csvg%20fill%3D%22none%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20clip-rule%3D%22evenodd%22%20d%3D%22m13.2069%205.20724-5.50002%205.49996-.70711.7072-.70711-.7072-3-2.99996%201.41422-1.41421%202.29289%202.29289%204.79293-4.79289z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
-      background-repeat: no-repeat;
-      background-position: center center;
+      /* background-image: url('data:image/svg+xml;utf8,%3Csvg%20fill%3D%22none%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20clip-rule%3D%22evenodd%22%20d%3D%22m13.2069%205.20724-5.50002%205.49996-.70711.7072-.70711-.7072-3-2.99996%201.41422-1.41421%202.29289%202.29289%204.79293-4.79289z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E'); */
+      /* background-repeat: no-repeat;
+      background-position: center center; */
   }
   .select-menu--highlight, .select-menu__item:hover, .select-menu__item:focus {
-      background-color: var(--blue);
+      background-color: var(--figma-color-bg-brand);
   }
 
   //divider
@@ -276,7 +280,9 @@ export const Select = ({
           <span className='select-menu__label'>
             {(selectedOption && selectedOption.label) || placeholder}
           </span>
-          <span className='select-menu__caret' />
+          <span className='select-menu__caret'>
+            <svg className='svg' width='8' height='7' viewBox='0 0 8 7' xmlns='http://www.w3.org/2000/svg'><path d='M3.646 5.354l-3-3 .708-.708L4 4.293l2.646-2.647.708.708-3 3L4 5.707l-.354-.353z' fill-rule='evenodd' fill-opacity='1' stroke='none' /></svg>
+          </span>
         </button>
         <ul
           className={`select-menu__menu ${expanListClass} ${disabledColorClass}`}

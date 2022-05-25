@@ -13,13 +13,13 @@ const style = css`
   display: flex;
   align-items: center;
   position: relative;
-  background: var(--blue-10);
-  color: var(--black6);
+  background: var(--figma-color-bg-brand-tertiary);
+  color: var(--figma-color-text);
   &.is-hidden {
     display: none;
   }
   a {
-    color: var(--blue);
+    color: var(--figma-color-text-brand);
     &:hover {
       text-decoration: none;
     }
