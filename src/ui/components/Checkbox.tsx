@@ -61,70 +61,67 @@ const style = css`
     background-color: var(--figma-color-bg-brand-tertiary);
   }
 }
-&.switch {
+&.toggle {
   align-items: center;
   cursor: default;
   display: flex;
   height: var(--size-medium);
   position: relative;
 
-  &.switch__toggle {
+  .switch__toggle {
       opacity: 0;
   }
-  &.switch__toggle:checked + &.switch__label:before {
+  .switch__toggle:checked + .toggle__label:before {
       color: var(--figma-color-text);
       background-color: var(--figma-color-bg-brand);
   }
-  &.switch__toggle:checked + &.switch__label:after {
+  .switch__toggle:checked + .toggle__label:after {
       transform: translateX(12px);
   }
-  &.switch__toggle:checked:disabled + &.switch__label:before {
-      border: 1px solid var(--figma-color-border-strong);
+  .switch__toggle:checked:disabled + .toggle__label:before {
       background-color: var(--figma-color-bg-brand);
   }
-  &.switch__toggle:disabled + &.switch__label {
+  .switch__toggle:disabled + .toggle__label {
       opacity: 0.3;
   }
 
-  &.switch__label {
-      align-items: center;
-      display: flex;
-      font-family: var(--font-stack);
-      font-size: var(--font-size-xsmall);
-      font-weight: var(--font-weight-normal);
-      height: 100%;
-      letter-spacing: var(--font-letter-spacing-pos-xsmall);
-      line-height: var(--font-line-height);
-      margin-left: -16px;
-      padding: 0 var(--size-xsmall) 0 calc(var(--size-xlarge) - 2px);
-      user-select: none;
-      color: var(--figma-color-text);
+  .toggle__label {
+    align-items: center;
+    display: flex;
+    font-family: var(--font-stack);
+    font-size: var(--font-size-xsmall);
+    font-weight: var(--font-weight-normal);
+    height: 100%;
+    letter-spacing: var(--font-letter-spacing-pos-xsmall);
+    line-height: var(--font-line-height);
+    margin-left: -16px;
+    padding: 0 var(--size-xsmall) 0 calc(var(--size-xlarge) - 2px);
+    user-select: none;
+    color: var(--figma-color-text);
 
       &:before {
-          background-color: var(--figma-color-icon-onbrand);
-          border: 1px solid var(--figma-color-border);
-          border-radius: 6px;
-          content: '';
-          display: block;
-          height: 10px;
-          left: 8px;
-          position: absolute;
-          top: 10px;
-          transition: background-color 0 0.2s;
-          width: 22px;
+        background-color: var(--figma-color-icon-tertiary);
+        border-radius: 6px;
+        content: '';
+        display: block;
+        height: 12px;
+        left: 8px;
+        position: absolute;
+        top: 10px;
+        transition: background-color 0 0.2s;
+        width: 24px;
       }
       &:after {
-          background-color: var(--figma-color-icon-onbrand);
-          border: 1px solid var(--figma-color-border);
-          border-radius: 50%;
-          content: '';
-          display: block;
-          height: 10px;
-          left: 8px;
-          position: absolute;
-          top: 10px;
-          transition: transform 0.2s;
-          width: 10px;
+        background-color: var(--figma-color-icon-onbrand);
+        border-radius: 50%;
+        content: '';
+        display: block;
+        height: 10px;
+        left: 9px;
+        position: absolute;
+        top: 11px;
+        transition: transform 0.2s;
+        width: 10px;
       }
   }
 }
@@ -177,6 +174,11 @@ export const Checkbox = ({
         type: 'checkbox'
       }
       break
+  }
+
+  if (type === 'switch') {
+    // @ts-ignore
+    type = 'toggle'
   }
 
   return (

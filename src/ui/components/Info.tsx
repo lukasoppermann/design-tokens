@@ -11,7 +11,7 @@ const style = css`
   cursor: help;
   display: inline-block;
   svg path {
-    fill: var(--ui-contrast);
+    fill: var(--figma-color-icon-secondary);
   }
   .tooltip {
     pointer-events: none;
@@ -41,9 +41,14 @@ const style = css`
       transform: translateX(-50%);
     }
   }
-  &:hover .tooltip {
-    transform: translate(-50%, -96%);
-    opacity: .85;
+  &:hover {
+    svg path {
+      fill: var(--figma-color-icon-hover);
+    }
+    .tooltip {
+      transform: translate(-50%, -96%);
+      opacity: .85;
+    }
   }
 `
 
