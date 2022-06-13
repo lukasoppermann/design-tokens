@@ -177,7 +177,8 @@ const valueTransformer: {} | undefined = {
   breakpoint: sizeValueTransformer,
   radius: defaultValueTransformer,
   spacing: defaultValueTransformer,
-  motion: motionValueTransformer
+  motion: motionValueTransformer,
+  opacity: defaultValueTransformer // TOOD
 }
 
 const transformer = (token: internalTokenInterface): OriginalFormatTokenInterface => {

@@ -37,7 +37,8 @@ export type Settings = {
     radius: string,
     size: string,
     spacing: string,
-    motion: string
+    motion: string,
+    opacity: string
   }
   exports: {
     color: boolean,
@@ -51,6 +52,7 @@ export type Settings = {
     radius: boolean,
     size: boolean,
     spacing: boolean,
-    motion: boolean
+    motion: boolean,
+    opacity: boolean
   }
 }

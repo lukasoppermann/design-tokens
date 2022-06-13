@@ -5,7 +5,8 @@ export type customTokenTypes = 'custom-spacing' |
 'custom-transition' |
 'custom-stroke' |
 'custom-grid' |
-'custom-gradient'
+'custom-gradient' |
+'custom-opacity'
 
 export type StandardTokenTypes = 'string' |
 'number' |

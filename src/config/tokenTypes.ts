@@ -48,5 +48,9 @@ export const tokenTypes = {
   motion: {
     label: 'Motion',
     key: 'motion'
+  },
+  opacity: {
+    label: 'Opacity',
+    key: 'opacity'
   }
 }

@@ -43,7 +43,8 @@ const extractTokenNodeValues = (node: ComponentNode | RectangleNode | FrameNode)
   // @ts-ignore
   paddingBottom: node.paddingBottom || 0,
   // @ts-ignore
-  paddingLeft: node.paddingLeft || 0
+  paddingLeft: node.paddingLeft || 0,
+  opacity: node.opacity
 })
 
 export default extractTokenNodeValues

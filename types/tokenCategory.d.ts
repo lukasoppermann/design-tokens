@@ -10,4 +10,5 @@ export type tokenCategoryType =
   'radius' |
   'size' |
   'spacing' |
-  'motion'
+  'motion' |
+  'opacity'

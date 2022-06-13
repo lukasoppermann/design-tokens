@@ -24,6 +24,7 @@ export type customTokenNode = {
   paddingRight?: number,
   paddingBottom?: number,
   paddingLeft?: number,
+  opacity?: number
 }
 
 export type nodeWithNodeTransition = customTokenNode & {
