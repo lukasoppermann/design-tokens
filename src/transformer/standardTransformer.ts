@@ -204,7 +204,7 @@ const shadowValueTransformer = (value): StandardTokenDataInterface => ({
     color: rgbaObjectToHex8(value.color.value),
     offsetX: value.offset.x.value,
     offsetY: value.offset.y.value,
-    spread: value.spread.value,
+    spread: value.spread.value
   }
 })
 

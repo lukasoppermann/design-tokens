@@ -1,7 +1,7 @@
 import extractorInterface from '@typings/extractorInterface'
 import { opacityPropertyInterface } from '@typings/propertyObject'
 import { customTokenNode } from '@typings/tokenNodeTypes'
-import { UnitTypePixel, PropertyType } from '@typings/valueTypes'
+import { PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { filterByPrefix } from './extractUtilities'
