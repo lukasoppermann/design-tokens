@@ -180,7 +180,8 @@ describe("getTokenNodes", () => {
         paddingTop: 0,
         paddingRight: 0,
         paddingBottom: 0,
-        paddingLeft: 0
+        paddingLeft: 0,
+        opacity: undefined
       },
       {
         name: '10',
@@ -221,7 +222,8 @@ describe("getTokenNodes", () => {
         paddingTop: 0,
         paddingRight: 0,
         paddingBottom: 0,
-        paddingLeft: 0
+        paddingLeft: 0,
+        opacity: undefined
       },
       {
         name: '20',
@@ -246,7 +248,8 @@ describe("getTokenNodes", () => {
         paddingTop: 20,
         paddingRight: 20,
         paddingBottom: 20,
-        paddingLeft: 20
+        paddingLeft: 20,
+        opacity: undefined
       }
     ])
   })

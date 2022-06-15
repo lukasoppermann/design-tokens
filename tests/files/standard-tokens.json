@@ -163,6 +163,18 @@
       }
     }
   },
+  "opacities": {
+    "button-disabled": {
+      "description": null,
+      "value": 0.3,
+      "type": "custom-opacity",
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "opacity"
+        }
+      }
+    }
+  },
   "spacing": {
     "10": {
       "description": null,

@@ -15,6 +15,7 @@
   --breakpoints-lg: 1280;
   --breakpoints-sm: 768;
   --breakpoints-md: 1024;
+  --opacities-button-disabled: 0.3; /* an opacity description */
   --spacing-10-top: 10;
   --spacing-10-right: 10;
   --spacing-10-bottom: 10;

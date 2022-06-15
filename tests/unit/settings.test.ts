@@ -46,7 +46,8 @@ const baseSettings = {
     radius: 'radius, radii',
     size: 'size',
     spacing: 'spacing',
-    motion: 'motion'
+    motion: 'motion',
+    opacity: 'opacity'
   },
   exports: {
     color: true,
@@ -60,7 +61,8 @@ const baseSettings = {
     radius: true,
     size: true,
     spacing: true,
-    motion: true
+    motion: true,
+    opacity: true
   }
 }
 describe('Testing setSettings', () => {

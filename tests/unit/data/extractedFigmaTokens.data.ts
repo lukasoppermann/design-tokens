@@ -54,6 +54,24 @@ export const extractedFigmaTokens = {
       }
     }
   },
+  opacity: {
+    name: 'disabled button opacity',
+    category: 'opacity' as tokenCategoryType,
+    exportKey: 'opacity' as tokenExportKeyType,
+    description: 'an opacity description',
+    values: {
+      opacity: {
+        type: 'number',
+        value: 0.3
+      }
+    },
+    type: 'custom-opacity',
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'opacity'
+      }
+    }
+  },
   /**
    * spacing
    */
