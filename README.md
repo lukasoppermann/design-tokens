@@ -231,6 +231,20 @@ When exporting your tokens you will now get a set of properties for this motion 
   --motion-move-in-direction: left;
 ```
 
+#### Opacity
+To create opacity tokens, do the following:
+
+1. Create a new `Frame` called `_tokens/opacities`
+2. Create a new `Main Component`
+3. Set the desired `Pass through` value (ie. 30%)
+4. Name it `opacity/input-disabled` for example
+
+After exporting it, if you convert it to CSS, the resulting token will look like this:
+
+```css
+--opacity-input-disabled: 0.3;
+```
+
 ### Available properties
 To allow for maximum customizability I decided to provide all values that Figma provides. Many are not applicable to for example `css` but may be usable in other languages.
 
