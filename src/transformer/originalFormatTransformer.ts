@@ -166,6 +166,11 @@ const motionValueTransformer = (values) => {
   }
 }
 
+const opacityValuesTransformer = ({ opacity }) => ({
+  value: opacity.value,
+  type: opacity.type
+})
+
 const valueTransformer: {} | undefined = {
   size: sizeValueTransformer,
   color: defaultValueTransformer,
@@ -178,7 +183,7 @@ const valueTransformer: {} | undefined = {
   radius: defaultValueTransformer,
   spacing: defaultValueTransformer,
   motion: motionValueTransformer,
-  opacity: defaultValueTransformer // TOOD
+  opacity: opacityValuesTransformer // TOOD
 }
 
 const transformer = (token: internalTokenInterface): OriginalFormatTokenInterface => {
