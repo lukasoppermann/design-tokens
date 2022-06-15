@@ -38,7 +38,7 @@ const PluginUi = () => {
   // eslint-disable-next-line
   onmessage = (event: PluginEvent) => {
     // capture message
-    const { command, payload } = event.data.pluginMessage as {command: PluginCommands, payload: any}
+    const { command, payload } = event.data.pluginMessage || {} as {command: PluginCommands, payload: any}
     // set settings
     if ([commands.urlExport, commands.export, commands.generalSettings].includes(command)) {
       updateSettings({
