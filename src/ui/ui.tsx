@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import './css/variables.css'
 import './css/ui.css'
@@ -78,4 +78,5 @@ const PluginUi = () => {
   )
 }
 
-ReactDOM.render(<PluginUi />, document.getElementById('pluginUI'))
+const root = createRoot(document.getElementById('pluginUI')) // createRoot(container!) if you use TypeScript
+root.render(<PluginUi />)
