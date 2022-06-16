@@ -21,6 +21,7 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
     - [Spacing token](#spacing)
     - [Breakpoints token](#breakpoints)
     - [Motion token](#motion)
+    - [Opacity token](#opacity)
   - [Available properties](#available-properties)
 - [Settings](#settings)
   - [File Export Settings](#file-export-settings)  
