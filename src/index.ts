@@ -42,7 +42,7 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
           filename: figma.root.name
         }
       }
-    } as PluginMessage)
+    } || {} as PluginMessage)
     // register the settings UI
     figma.ui.show()
   }

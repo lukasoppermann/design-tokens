@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import './css/variables.css'
 import './css/ui.css'
@@ -38,7 +38,7 @@ const PluginUi = () => {
   // eslint-disable-next-line
   onmessage = (event: PluginEvent) => {
     // capture message
-    const { command, payload } = event.data.pluginMessage as {command: PluginCommands, payload: any}
+    const { command, payload } = event.data.pluginMessage || {} as {command: PluginCommands, payload: any}
     // set settings
     if ([commands.urlExport, commands.export, commands.generalSettings].includes(command)) {
       updateSettings({
@@ -78,4 +78,5 @@ const PluginUi = () => {
   )
 }
 
-ReactDOM.render(<PluginUi />, document.getElementById('pluginUI'))
+const root = createRoot(document.getElementById('pluginUI')) // createRoot(container!) if you use TypeScript
+root.render(<PluginUi />)
