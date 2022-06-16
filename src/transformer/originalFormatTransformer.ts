@@ -183,7 +183,7 @@ const valueTransformer: {} | undefined = {
   radius: defaultValueTransformer,
   spacing: defaultValueTransformer,
   motion: motionValueTransformer,
-  opacity: opacityValuesTransformer // TOOD
+  opacity: opacityValuesTransformer
 }
 
 const transformer = (token: internalTokenInterface): OriginalFormatTokenInterface => {

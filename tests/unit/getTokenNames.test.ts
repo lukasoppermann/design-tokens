@@ -107,7 +107,8 @@ describe("getTokenNodes", () => {
                   }
                 }
               }
-            }]
+            }],
+            opacity: 0
           }
         ])
       },
@@ -142,7 +143,8 @@ describe("getTokenNodes", () => {
             paddingTop: 20,
             paddingRight: 20,
             paddingBottom: 20,
-            paddingLeft: 20
+            paddingLeft: 20,
+            opacity: 0.3
           }
         ])
       },
@@ -181,7 +183,7 @@ describe("getTokenNodes", () => {
         paddingRight: 0,
         paddingBottom: 0,
         paddingLeft: 0,
-        opacity: undefined
+        opacity: 1
       },
       {
         name: '10',
@@ -223,7 +225,7 @@ describe("getTokenNodes", () => {
         paddingRight: 0,
         paddingBottom: 0,
         paddingLeft: 0,
-        opacity: undefined
+        opacity: 0
       },
       {
         name: '20',
@@ -249,7 +251,7 @@ describe("getTokenNodes", () => {
         paddingRight: 20,
         paddingBottom: 20,
         paddingLeft: 20,
-        opacity: undefined
+        opacity: 0.3
       }
     ])
   })

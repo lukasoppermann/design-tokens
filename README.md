@@ -238,7 +238,7 @@ To create opacity tokens, do the following:
 1. Create a new `Frame` called `_tokens/opacities`
 2. Create a new `Main Component`
 3. Set the desired `Pass through` value (ie. 30%)
-4. Name it `opacity/input-disabled` for example
+4. Give it a fitting name, e.g. `opacity/input-disabled`
 
 After exporting it, if you convert it to CSS, the resulting token will look like this:
 

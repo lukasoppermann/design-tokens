@@ -65,7 +65,6 @@ export const extractedFigmaTokens = {
         value: 0.3
       }
     },
-    type: 'custom-opacity',
     extensions: {
       'org.lukasoppermann.figmaDesignTokens': {
         exportKey: 'opacity'
