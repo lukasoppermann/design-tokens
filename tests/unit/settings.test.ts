@@ -1,6 +1,7 @@
 import { getSettings, setSettings } from '../../src/utilities/settings'
 import { stringifyJson } from '../../src/utilities/stringifyJson'
 import { nameConversionType, tokenFormatType } from '../../types/settings'
+import { defaultSettings } from '../../src/config/defaultSettings'
 
 beforeAll(() => {
   // @ts-ignore
@@ -74,7 +75,7 @@ describe('Testing setSettings', () => {
 })
 
 describe('Testing getSettings', () => {
-  test('get settings when valid settings are present', () => {
+  test('valid settings are present', () => {
     const newSettings = {
       ...baseSettings,
       ...{
@@ -93,5 +94,22 @@ describe('Testing getSettings', () => {
     figma.root.getPluginData.mockReturnValue(JSON.stringify(newSettings, null, 2))
     // assert
     expect(getSettings()).toStrictEqual(newSettings)
+  })
+
+  test('no settings are present', () => {
+    // @ts-ignore
+    figma.root.getPluginData.mockReturnValue('')
+    // assert
+    expect(getSettings()).toStrictEqual(defaultSettings)
+  })
+
+  test('one setting property is missing', () => {
+    const userSettings = JSON.parse(JSON.stringify(defaultSettings))
+    // remove property
+    delete userSettings.prefix.color
+    // @ts-ignore
+    figma.root.getPluginData.mockReturnValue(JSON.stringify(userSettings, null, 2))
+    // assert
+    expect(getSettings()).toStrictEqual(defaultSettings)
   })
 })
