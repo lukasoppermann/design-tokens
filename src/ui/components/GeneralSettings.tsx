@@ -199,7 +199,7 @@ export const GeneralSettings = () => {
               // eslint-disable-next-line
               pattern={isStyle(key) ? '^[\\w\\-@]+$' : '^[\\w\\-@,\\s]+$'}
               required
-              placeholder='Color'
+              placeholder={key}
               value={currentValue}
               onChange={value => updateSettings((draft: Settings) => { draft.prefix[key] = value })}
             />
