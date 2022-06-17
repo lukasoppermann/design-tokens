@@ -12,7 +12,7 @@ import { figmaDataType } from '@typings/figmaDataType'
 import buildFigmaData from './buildFigmaData'
 import { Settings } from '@typings/settings'
 
-const getPrefixArray = (prefixString: string) => prefixString.split(',').map(item => item.replace(/\s+/g, ''))
+const getPrefixArray = (prefixString: string = '') => prefixString.split(',').map(item => item.replace(/\s+/g, ''))
 
 export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
   const figmaData: figmaDataType = buildFigmaData(figma, settings)

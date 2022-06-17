@@ -160,4 +160,31 @@ describe('exportRawTokenArray', () => {
     // @ts-ignore
     expect(exportRawTokenArray('', { ...defaultSettings, ...{ exclusionPrefix: '*' } })).toStrictEqual(output)
   })
+
+  test('undefined prefix value', () => {
+    // @ts-ignore
+    buildFigmaData.mockImplementation(() => [])
+    // @ts-ignore
+    extractFonts.mockImplementation(() => [])
+    // @ts-ignore
+    extractEffects.mockImplementation(() => [])
+    // @ts-ignore
+    extractGrids.mockImplementation(() => [])
+    // @ts-ignore
+    extractColors.mockImplementation(() => [])
+    // @ts-ignore
+    extractSizes.mockImplementation(() => [])
+    // @ts-ignore
+    extractSpacing.mockImplementation(() => [])
+    // @ts-ignore
+    extractBorders.mockImplementation(() => [])
+    // @ts-ignore
+    extractRadii.mockImplementation(() => [])
+    // @ts-ignore
+    extractMotion.mockImplementation(() => [])
+    // @ts-ignore
+    extractBreakpoints.mockImplementation(() => [])
+    // @ts-ignore
+    expect(exportRawTokenArray('', { ...defaultSettings, ...{ prefix: { color: undefined } } })).toStrictEqual([])
+  })
 })
