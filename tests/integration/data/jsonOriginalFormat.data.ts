@@ -597,6 +597,12 @@ export default {
       value: 768
     }
   },
+  opacities: {
+    'button-disabled': {
+      value: 0.3,
+      type: 'number'
+    }
+  },
   color: {
     colors: {
       'multiple fills': {

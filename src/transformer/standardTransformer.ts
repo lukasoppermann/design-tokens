@@ -30,6 +30,11 @@ const widthToDimensionTransformer = ({ values }): StandardTokenDataInterface => 
   type: 'dimension' as StandardTokenTypes
 })
 
+const opacityValueTransformer = ({ values }): StandardTokenDataInterface => ({
+  value: values.opacity.value,
+  type: 'custom-opacity' as StandardTokenTypes
+})
+
 const radiusValueTransformer = ({ values }): StandardTokenDataInterface => ({
   type: 'custom-radius' as StandardTokenTypes,
   value: {
@@ -245,7 +250,8 @@ const valueTransformer = {
   breakpoint: widthToDimensionTransformer,
   radius: radiusValueTransformer,
   spacing: spacingValueTransformer,
-  motion: motionValueTransformer
+  motion: motionValueTransformer,
+  opacity: opacityValueTransformer
 }
 
 const transformTokens = (token: internalTokenInterface): StandardTokenDataInterface | StandardTokenGroup => valueTransformer[token.category](token)

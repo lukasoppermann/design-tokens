@@ -117,6 +117,16 @@
       "unit": "pixel"
     }
   },
+  "opacities": {
+    "button-disabled": {
+      "category": "opacity",
+      "comment": "an opacity description",
+      "exportKey": "opacity",
+      "name": "disabled button opacity",
+      "type": "number",
+      "value": 0.3
+    }
+  },
   "spacing": {
     "10": {
       "category": "spacing",

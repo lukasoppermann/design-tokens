@@ -31,7 +31,8 @@ export const defaultSettings: Settings = {
     radius: 'radius, radii',
     size: 'size, sizes',
     spacing: 'spacing',
-    motion: 'motion'
+    motion: 'motion',
+    opacity: 'opacity, opacities'
   },
   exports: {
     color: true,
@@ -45,6 +46,7 @@ export const defaultSettings: Settings = {
     radius: true,
     size: true,
     spacing: true,
-    motion: true
+    motion: true,
+    opacity: true
   }
 }

@@ -20,4 +20,5 @@ describe('originalFormatTransfomer', () => {
   test('effect token', () => expect(transformer(extractedFigmaTokens.effect)).toStrictEqual(transformedOriginalTokens.effect))
   test('multi effect token', () => expect(transformer(extractedFigmaTokens.multiEffect)).toStrictEqual(transformedOriginalTokens.multiEffect))
   test('motion token', () => expect(transformer(extractedFigmaTokens.motion)).toStrictEqual(transformedOriginalTokens.motion))
+  test('opacity token', () => expect(transformer(extractedFigmaTokens.opacity)).toStrictEqual(transformedOriginalTokens.opacity))
 })

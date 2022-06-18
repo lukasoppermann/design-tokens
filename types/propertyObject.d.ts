@@ -318,3 +318,12 @@ export type effectPropertyInterface = propertyObject & {
     }
   }[]
 }
+
+export type opacityPropertyInterface = propertyObject & {
+  values: {
+    opacity: {
+      value: number,
+      type: PropertyType
+    }
+  }
+}

@@ -1,4 +1,4 @@
-// Tokens transformed to the "originalFormat"
+// Tokens transformed to the 'originalFormat'
 export const transformedOriginalTokens = {
   /**
    * size
@@ -23,6 +23,14 @@ export const transformedOriginalTokens = {
     type: 'number',
     unit: 'pixel',
     value: 1024
+  },
+  opacity: {
+    category: 'opacity',
+    comment: 'an opacity description',
+    exportKey: 'opacity',
+    name: 'disabled button opacity',
+    type: 'number',
+    value: 0.3,
   },
   /**
    * spacing

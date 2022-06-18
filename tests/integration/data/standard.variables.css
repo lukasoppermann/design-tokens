@@ -15,6 +15,7 @@
   --breakpoints-lg: 1280px;
   --breakpoints-sm: 768px;
   --breakpoints-md: 1024px;
+  --opacities-button-disabled: 0.3;
   --spacing-10: 10px;
   --spacing-mixed: 10px 20px 30px 20px;
   --spacing-top: 10px 0px 0px 0px;

@@ -30,6 +30,20 @@ export const transformedStandardTokens = {
     }
   },
   /**
+   * opacity
+   */
+  opacity: {
+    name: 'disabled button opacity',
+    value: 0.3,
+    description: 'an opacity description',
+    type: 'custom-opacity',
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'opacity'
+      }
+    }
+  },
+  /**
    * spacing
    */
   spacing: {

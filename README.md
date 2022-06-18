@@ -21,6 +21,7 @@ The **Design Tokens** plugin for figma allows you to export design tokens into a
     - [Spacing token](#spacing)
     - [Breakpoints token](#breakpoints)
     - [Motion token](#motion)
+    - [Opacity token](#opacity)
   - [Available properties](#available-properties)
 - [Settings](#settings)
   - [File Export Settings](#file-export-settings)  
@@ -229,6 +230,20 @@ When exporting your tokens you will now get a set of properties for this motion 
   --motion-move-in-easing-function-y-1: 0;
   --motion-move-in-easing-function-y-2: 1;
   --motion-move-in-direction: left;
+```
+
+#### Opacity
+To create opacity tokens, do the following:
+
+1. Create a new `Frame` called `_tokens/opacities`
+2. Create a new `Main Component`
+3. Set the desired `Pass through` value (ie. 30%)
+4. Give it a fitting name, e.g. `opacity/input-disabled`
+
+After exporting it, if you convert it to CSS, the resulting token will look like this:
+
+```css
+--opacity-input-disabled: 0.3;
 ```
 
 ### Available properties

@@ -10,4 +10,5 @@ export type tokenExportKeyType =
   'radius' |
   'size' |
   'spacing' |
-  'motion'
+  'motion' |
+  'opacity'

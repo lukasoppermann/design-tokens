@@ -10,6 +10,7 @@ import extractBorders from '../../src/extractor/extractBorders'
 import extractRadii from '../../src/extractor/extractRadii'
 import extractMotion from '../../src/extractor/extractMotion'
 import extractBreakpoints from '../../src/extractor/extractBreakpoints'
+import extractOpacities from '../../src/extractor/extractOpacities'
 import buildFigmaData from '../../src/utilities/buildFigmaData'
 import { defaultSettings } from '../../src/config/defaultSettings'
 jest.mock('../../src/extractor/extractFonts', () => jest.fn())
@@ -22,6 +23,7 @@ jest.mock('../../src/extractor/extractBorders', () => jest.fn())
 jest.mock('../../src/extractor/extractRadii', () => jest.fn())
 jest.mock('../../src/extractor/extractMotion', () => jest.fn())
 jest.mock('../../src/extractor/extractBreakpoints', () => jest.fn())
+jest.mock('../../src/extractor/extractOpacities', () => jest.fn())
 jest.mock('../../src/utilities/buildFigmaData', () => jest.fn())
 
 describe('exportRawTokenArray', () => {
@@ -48,6 +50,8 @@ describe('exportRawTokenArray', () => {
     extractMotion.mockImplementation(() => [])
     // @ts-ignore
     extractBreakpoints.mockImplementation(() => [])
+    // @ts-ignore
+    extractOpacities.mockImplementation(() => [])
     // @ts-ignore
     expect(exportRawTokenArray('', defaultSettings)).toStrictEqual([])
   })
@@ -118,10 +122,28 @@ describe('exportRawTokenArray', () => {
         values: 'this would be values'
       }
     ])
+    // @ts-ignore
+    extractBreakpoints.mockImplementation(() => [
+      {
+        name: 'breakpoints/basic',
+        values: 'this would be values'
+      }
+    ])
+    // @ts-ignore
+    extractOpacities.mockImplementation(() => [
+      {
+        name: 'opacities/basic',
+        values: 'this would be values'
+      }
+    ])
 
     const output = [
       {
         name: 'sizes/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'breakpoints/basic',
         values: 'this would be values'
       },
       {
@@ -138,6 +160,10 @@ describe('exportRawTokenArray', () => {
       },
       {
         name: 'motion/basic',
+        values: 'this would be values'
+      },
+      {
+        name: 'opacities/basic',
         values: 'this would be values'
       },
       {

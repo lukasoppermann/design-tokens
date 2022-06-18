@@ -8,6 +8,7 @@ import extractSpacing from '../extractor/extractSpacing'
 import extractBorders from '../extractor/extractBorders'
 import extractRadii from '../extractor/extractRadii'
 import extractBreakpoints from '../extractor/extractBreakpoints'
+import extractOpacities from '../extractor/extractOpacities'
 import { figmaDataType } from '@typings/figmaDataType'
 import buildFigmaData from './buildFigmaData'
 import { Settings } from '@typings/settings'
@@ -24,6 +25,7 @@ export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
     ...extractBorders(figmaData.tokenFrames, getPrefixArray(settings.prefix.border)),
     ...extractRadii(figmaData.tokenFrames, getPrefixArray(settings.prefix.radius)),
     ...extractMotion(figmaData.tokenFrames, getPrefixArray(settings.prefix.motion)),
+    ...extractOpacities(figmaData.tokenFrames, getPrefixArray(settings.prefix.opacity)),
     ...extractColors(figmaData.paintStyles, { color: getPrefixArray(settings.prefix.color), gradient: getPrefixArray(settings.prefix.gradient), alias: getPrefixArray(settings.alias) }),
     ...extractGrids(figmaData.gridStyles, getPrefixArray(settings.prefix.grid)),
     ...extractFonts(figmaData.textStyles, getPrefixArray(settings.prefix.font)),
