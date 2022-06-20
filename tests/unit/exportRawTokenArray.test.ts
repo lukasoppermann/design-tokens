@@ -211,6 +211,8 @@ describe('exportRawTokenArray', () => {
     // @ts-ignore
     extractBreakpoints.mockImplementation(() => [])
     // @ts-ignore
+    extractOpacities.mockImplementation(() => [])
+    // @ts-ignore
     expect(exportRawTokenArray('', { ...defaultSettings, ...{ prefix: { color: undefined } } })).toStrictEqual([])
   })
 })
