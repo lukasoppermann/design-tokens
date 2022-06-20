@@ -1,5 +1,5 @@
 import extractorInterface from '@typings/extractorInterface'
-import { motionPropertyInterface, easingFunctionPropertyInterface } from '@typings/propertyObject'
+import { motionPropertyInterface, easingPropertyInterface } from '@typings/propertyObject'
 import { customTokenNode, nodeWithNodeTransition } from '@typings/tokenNodeTypes'
 import { UnitTypeSeconds, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
@@ -87,19 +87,14 @@ const easings = {
   }
 }
 
-const easing = (easing: Easing): {
-  easing: {
-    value: string,
-    type: PropertyType
-  },
-  easingFunction: easingFunctionPropertyInterface
-} => {
+const validEasingTypes = Object.keys(easings)
+
+const easing = (easing: Easing): easingPropertyInterface => {
   // abort if invalif easing type
   if (!('type' in easing) || easings[easing.type] === undefined) {
     return undefined
   }
   // return custom easing
-  // @ts-ignore
   if (easing.type === 'CUSTOM_CUBIC_BEZIER') {
     easings.CUSTOM_CUBIC_BEZIER = {
       type: 'cubic-bezier',
@@ -143,16 +138,18 @@ const easing = (easing: Easing): {
   }
 }
 
+const filterValidMotionTokens = (node: customTokenNode) => {
+  if (node.reactions.length > 0 && node.reactions[0].action?.type === 'NODE' && node.reactions[0].action.transition !== null && validEasingTypes.includes(node.reactions[0].action.transition.easing.type)) {
+    return true
+  }
+  return false
+}
+
 const extractMotion: extractorInterface = (tokenNodes: customTokenNode[], prefixArray: string[]): motionPropertyInterface[] => {
   // return as object
   return tokenNodes.filter(filterByPrefix(prefixArray))
     // filter to only include items which have a transition property
-    .filter(node => {
-      if (node.reactions.length > 0 && node.reactions[0].action?.type === 'NODE' && node.reactions[0].action.transition !== null) {
-        return true
-      }
-      return false
-    })
+    .filter(filterValidMotionTokens)
     // retrieve values
     .map((node: nodeWithNodeTransition) => ({
       name: node.name,
