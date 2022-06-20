@@ -87,9 +87,13 @@ describe('extracting motion tokens', () => {
             unit: 's',
             type: 'number'
           },
-          easing: {
-            value: 'linear',
+          easingCurveType: {
+            value: 'cubicBezier',
             type: 'string'
+          },
+          easingType: {
+            type: 'string',
+            value: 'linear'
           },
           easingFunction: {
             x1: {
@@ -135,7 +139,11 @@ describe('extracting motion tokens', () => {
             unit: 's',
             type: 'number'
           },
-          easing: {
+          easingCurveType: {
+            value: 'cubicBezier',
+            type: 'string'
+          },
+          easingType: {
             value: 'ease-in',
             type: 'string'
           },
@@ -179,8 +187,12 @@ describe('extracting motion tokens', () => {
             unit: 's',
             type: 'number'
           },
-          easing: {
-            value: 'cubic-bezier',
+          easingCurveType: {
+            value: 'cubicBezier',
+            type: 'string'
+          },
+          easingType: {
+            value: 'custom-cubicBezier',
             type: 'string'
           },
           easingFunction: {
@@ -215,7 +227,11 @@ describe('testing easing curves', () => {
 
   test('linear', () => {
     expect(__testing.easing({ type: 'LINEAR' })).toStrictEqual({
-      easing: {
+      easingCurveType: {
+        value: 'cubicBezier',
+        type: 'string'
+      },
+      easingType: {
         value: 'linear',
         type: 'string'
       },
@@ -242,8 +258,12 @@ describe('testing easing curves', () => {
 
   test('ease-in', () => {
     expect(__testing.easing({ type: 'EASE_IN' })).toStrictEqual({
-      easing: {
+      easingType: {
         value: 'ease-in',
+        type: 'string'
+      },
+      easingCurveType: {
+        value: 'cubicBezier',
         type: 'string'
       },
       easingFunction: {
@@ -269,7 +289,11 @@ describe('testing easing curves', () => {
 
   test('ease-out', () => {
     expect(__testing.easing({ type: 'EASE_OUT' })).toStrictEqual({
-      easing: {
+      easingCurveType: {
+        value: 'cubicBezier',
+        type: 'string'
+      },
+      easingType: {
         value: 'ease-out',
         type: 'string'
       },
@@ -296,7 +320,11 @@ describe('testing easing curves', () => {
 
   test('ease-in-and-out', () => {
     expect(__testing.easing({ type: 'EASE_IN_AND_OUT' })).toStrictEqual({
-      easing: {
+      easingCurveType: {
+        value: 'cubicBezier',
+        type: 'string'
+      },
+      easingType: {
         value: 'ease-in-out',
         type: 'string'
       },
@@ -324,7 +352,11 @@ describe('testing easing curves', () => {
   test('ease-in-back', () => {
     // @ts-ignore
     expect(__testing.easing({ type: 'EASE_IN_BACK' })).toStrictEqual({
-      easing: {
+      easingCurveType: {
+        value: 'cubicBezier',
+        type: 'string'
+      },
+      easingType: {
         value: 'ease-in-back',
         type: 'string'
       },
@@ -352,7 +384,11 @@ describe('testing easing curves', () => {
   test('ease-out-back', () => {
     // @ts-ignore
     expect(__testing.easing({ type: 'EASE_OUT_BACK' })).toStrictEqual({
-      easing: {
+      easingCurveType: {
+        value: 'cubicBezier',
+        type: 'string'
+      },
+      easingType: {
         value: 'ease-out-back',
         type: 'string'
       },
@@ -380,7 +416,11 @@ describe('testing easing curves', () => {
   test('ease-in-and-out-back', () => {
     // @ts-ignore
     expect(__testing.easing({ type: 'EASE_IN_AND_OUT_BACK' })).toStrictEqual({
-      easing: {
+      easingCurveType: {
+        value: 'cubicBezier',
+        type: 'string'
+      },
+      easingType: {
         value: 'ease-in-out-back',
         type: 'string'
       },
@@ -399,6 +439,70 @@ describe('testing easing curves', () => {
         },
         y2: {
           value: 1.399999976158142,
+          type: 'number'
+        }
+      }
+    })
+  })
+
+  test('bouncy', () => {
+    // @ts-ignore
+    expect(__testing.easing({ type: 'BOUNCY' })).toStrictEqual({
+      easingCurveType: {
+        value: 'spring',
+        type: 'string'
+      },
+      easingType: {
+        value: 'bouncy',
+        type: 'string'
+      },
+      easingFunction: {
+        damping: {
+          value: 15,
+          type: 'number'
+        },
+        mass: {
+          value: 1,
+          type: 'number'
+        },
+        stiffness: {
+          value: 600,
+          type: 'number'
+        }
+      }
+    })
+  })
+
+  test('custom spring', () => {
+    // @ts-ignore
+    expect(__testing.easing({
+      // @ts-ignore
+      type: 'CUSTOM_SPRING',
+      easingFunctionSpring: {
+        mass: 2,
+        stiffness: 300,
+        damping: 20
+      }
+    })).toStrictEqual({
+      easingCurveType: {
+        value: 'spring',
+        type: 'string'
+      },
+      easingType: {
+        value: 'custom-spring',
+        type: 'string'
+      },
+      easingFunction: {
+        damping: {
+          value: 20,
+          type: 'number'
+        },
+        mass: {
+          value: 2,
+          type: 'number'
+        },
+        stiffness: {
+          value: 300,
           type: 'number'
         }
       }

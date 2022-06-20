@@ -153,8 +153,7 @@ export type spacingPropertyInterface = propertyObject & {
     }
   }
 }
-
-export type easingFunctionPropertyInterface = {
+export type easingFunctionCubicBezierPropertyInterface = {
   x1: {
     value: number,
     type: PropertyType
@@ -173,12 +172,39 @@ export type easingFunctionPropertyInterface = {
   }
 }
 
+export type easingFunctionSpringPropertyInterface = {
+  mass: {
+    value: number,
+    type: PropertyType
+  },
+  stiffness: {
+    value: number,
+    type: PropertyType
+  },
+  damping: {
+    value: number,
+    type: PropertyType
+  }
+  // somehow does not get exported from figma
+  //,
+  // initialVelocity: {
+  //   value: number,
+  //   type: PropertyType
+  // }
+}
+
+export type easingCurveType = 'cubicBezier' | 'spring'
+
 export type easingPropertyInterface = {
-  easing: {
+  easingType: {
     value: string,
     type: PropertyType
   },
-  easingFunction: easingFunctionPropertyInterface
+  easingCurveType: {
+    value: easingCurveType,
+    type: PropertyType
+  },
+  easingFunction: easingFunctionCubicBezierPropertyInterface | easingFunctionSpringPropertyInterface
 }
 
 export type motionPropertyInterface = propertyObject & {
@@ -192,11 +218,15 @@ export type motionPropertyInterface = propertyObject & {
       unit: UnitTypeSeconds,
       type: PropertyType
     },
-    easing: {
+    easingType: {
       value: string,
       type: PropertyType
     },
-    easingFunction: easingFunctionPropertyInterface,
+    easingCurveType: {
+      value: string,
+      type: PropertyType
+    },
+    easingFunction: easingFunctionCubicBezierPropertyInterface | easingFunctionSpringPropertyInterface,
     direction?: {
       value: string,
       type: PropertyType

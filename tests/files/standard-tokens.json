@@ -163,18 +163,6 @@
       }
     }
   },
-  "opacities": {
-    "button-disabled": {
-      "description": null,
-      "value": 0.3,
-      "type": "custom-opacity",
-      "extensions": {
-        "org.lukasoppermann.figmaDesignTokens": {
-          "exportKey": "opacity"
-        }
-      }
-    }
-  },
   "spacing": {
     "10": {
       "description": null,
@@ -372,6 +360,7 @@
         "transitionType": "move_in",
         "duration": 0.5,
         "direction": "left",
+        "easingType": "cubicBezier",
         "easingFunction": {
           "x1": 0.41999998688697815,
           "x2": 1,
@@ -391,6 +380,7 @@
       "value": {
         "transitionType": "dissolve",
         "duration": 0.45,
+        "easingType": "cubicBezier",
         "easingFunction": {
           "x1": 0.6968395709991455,
           "x2": 0.06683959811925888,
@@ -410,6 +400,7 @@
       "value": {
         "transitionType": "smart_animate",
         "duration": 0.5,
+        "easingType": "cubicBezier",
         "easingFunction": {
           "x1": 0,
           "x2": 1,
@@ -430,6 +421,7 @@
         "transitionType": "push",
         "duration": 0.5,
         "direction": "left",
+        "easingType": "cubicBezier",
         "easingFunction": {
           "x1": 0.30000001192092896,
           "x2": 0.699999988079071,
@@ -440,6 +432,80 @@
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
           "exportKey": "motion"
+        }
+      }
+    },
+    "bouncy": {
+      "description": null,
+      "type": "custom-transition",
+      "value": {
+        "transitionType": "push",
+        "duration": 0.958,
+        "direction": "left",
+        "easingType": "spring",
+        "easingFunction": {
+          "mass": 1,
+          "stiffness": 600,
+          "damping": 15
+        }
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "motion"
+        }
+      }
+    },
+    "custom spring": {
+      "description": null,
+      "type": "custom-transition",
+      "value": {
+        "transitionType": "push",
+        "duration": 0.744,
+        "direction": "left",
+        "easingType": "spring",
+        "easingFunction": {
+          "mass": 1,
+          "stiffness": 300,
+          "damping": 20
+        }
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "motion"
+        }
+      }
+    }
+  },
+  "opacities": {
+    "0.25": {
+      "description": null,
+      "value": 0.25,
+      "type": "custom-opacity",
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "opacity"
+        }
+      }
+    }
+  },
+  "opacity": {
+    "full": {
+      "description": null,
+      "value": 1,
+      "type": "custom-opacity",
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "opacity"
+        }
+      }
+    },
+    "half": {
+      "description": null,
+      "value": 0.5,
+      "type": "custom-opacity",
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "opacity"
         }
       }
     }
@@ -478,7 +544,7 @@
           }
         }
       },
-      "multiple": {
+      "multiplegrad": {
         "0": {
           "type": "custom-gradient",
           "value": {
@@ -541,7 +607,7 @@
                 "color": "#4a4fccff"
               },
               {
-                "position": 1,
+                "position": 0.23,
                 "color": "#ffffff00"
               }
             ]
@@ -559,6 +625,17 @@
   },
   "color": {
     "colors": {
+      "semi red": {
+        "description": "A red with a 50% opacity",
+        "type": "color",
+        "value": "#ff5f0480",
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:73ee61b85a05b803a735041e06d604cf5b5e396c,",
+            "exportKey": "color"
+          }
+        }
+      },
       "multiple fills": {
         "0": {
           "type": "color",
@@ -620,45 +697,6 @@
               "styleId": "S:79e9a7afce7078dc29994d2791959ebf9f45efa5,",
               "exportKey": "color"
             }
-          }
-        }
-      }
-    },
-    "invalid": {
-      "empty": {
-        "description": "",
-        "type": "color",
-        "value": "#00000000",
-        "extensions": {
-          "org.lukasoppermann.figmaDesignTokens": {
-            "styleId": "S:5e1d174ea8c7f59af7d8eeb52856a48cfe285856,",
-            "exportKey": "color"
-          }
-        }
-      }
-    },
-    "light": {
-      "background": {
-        "description": "",
-        "type": "color",
-        "value": "#ffffffff",
-        "extensions": {
-          "org.lukasoppermann.figmaDesignTokens": {
-            "styleId": "S:75849ed2c7e89480495d954b1e060c72c4d7d25f,",
-            "exportKey": "color"
-          }
-        }
-      }
-    },
-    "dark": {
-      "background": {
-        "description": "",
-        "type": "color",
-        "value": "#000000ff",
-        "extensions": {
-          "org.lukasoppermann.figmaDesignTokens": {
-            "styleId": "S:c064a8971ca99f48f554bfc70a58deb50094f797,",
-            "exportKey": "color"
           }
         }
       }

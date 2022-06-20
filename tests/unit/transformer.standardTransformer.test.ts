@@ -24,5 +24,6 @@ describe('standard Transfomer', () => {
   test('blur effect token', () => expect(transformer(extractedFigmaTokens.blurEffect)).toStrictEqual(transformedStandardTokens.blurEffect))
   test('multi effect token', () => expect(transformer(extractedFigmaTokens.multiEffect)).toStrictEqual(transformedStandardTokens.multiEffect))
   test('motion token', () => expect(transformer(extractedFigmaTokens.motion)).toStrictEqual(transformedStandardTokens.motion))
+  test('motion token', () => expect(transformer(extractedFigmaTokens.springMotion)).toStrictEqual(transformedStandardTokens.springMotion))
   test('opacity token', () => expect(transformer(extractedFigmaTokens.opacity)).toStrictEqual(transformedStandardTokens.opacity))
 })

@@ -229,12 +229,13 @@ const motionValueTransformer = ({ values }): StandardTokenDataInterface => ({
     transitionType: values.transitionType.value,
     duration: values.duration.value,
     ...(values.direction ? { direction: values.direction.value } : {}),
-    easingFunction: {
-      x1: values.easingFunction.x1.value,
-      x2: values.easingFunction.x2.value,
-      y1: values.easingFunction.y1.value,
-      y2: values.easingFunction.y2.value
-    }
+    easingType: values.easingCurveType.value,
+    easingFunction: Object.fromEntries(
+      Object.entries(values.easingFunction).map(prop => {
+        // @ts-ignore
+        return [prop[0], prop[1].value]
+      }
+      ))
   }
 })
 
