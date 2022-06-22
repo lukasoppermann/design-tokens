@@ -22,7 +22,6 @@ const letterSpacingToDimensions = (values): number => {
   if (values.letterSpacing.unit === 'percent') {
     return roundWithDecimals(values.fontSize.value * (values.letterSpacing.value / 100), 3)
   }
-  return 0
 }
 
 const widthToDimensionTransformer = ({ values }): StandardTokenDataInterface => ({
