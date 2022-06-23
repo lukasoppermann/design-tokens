@@ -454,6 +454,73 @@ export const extractedFigmaTokens = {
       }
     }
   },
+  fontLhPercent: {
+    name: 'font-lh-percent',
+    category: 'typography' as tokenCategoryType,
+    exportKey: 'typography' as tokenExportKeyType,
+    description: 'Font with lineheight in percent',
+    values: {
+      fontSize: {
+        value: 16,
+        unit: 'pixel',
+        type: 'number'
+      },
+      textDecoration: {
+        value: 'underline',
+        type: 'string'
+      },
+      fontFamily: {
+        value: 'Helvetica',
+        type: 'string'
+      },
+      fontWeight: {
+        value: 700,
+        type: 'number'
+      },
+      fontStyle: {
+        value: 'italic',
+        type: 'string'
+      },
+      fontStretch: {
+        value: 'normal',
+        type: 'string'
+      },
+      _fontStyleOld: {
+        value: 'bold italic',
+        type: 'string'
+      },
+      letterSpacing: {
+        value: 0.3,
+        unit: 'pixel',
+        type: 'number'
+      },
+      lineHeight: {
+        // @ts-ignore
+        value: 150,
+        unit: 'percent',
+        type: 'string'
+      },
+      paragraphIndent: {
+        value: 0,
+        unit: 'pixel',
+        type: 'number'
+      },
+      paragraphSpacing: {
+        value: 12,
+        unit: 'pixel',
+        type: 'number'
+      },
+      textCase: {
+        value: 'none',
+        type: 'string'
+      }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'typography'
+      }
+    }
+  },
   /**
    * border
    */
@@ -519,6 +586,26 @@ export const extractedFigmaTokens = {
     extensions: {
       'org.lukasoppermann.figmaDesignTokens': {
         exportKey: 'color'
+      }
+    }
+  },
+  aliasColor: {
+    name: 'aliasColor',
+    category: 'color' as tokenCategoryType,
+    exportKey: 'color' as tokenExportKeyType,
+    description: 'a color token',
+    values: [
+      {
+        fill: {
+          value: { r: 255, g: 230, b: 0, a: 1 },
+          type: 'color'
+        }
+      }
+    ],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'color',
+        alias: '{color}'
       }
     }
   },
@@ -744,6 +831,23 @@ export const extractedFigmaTokens = {
         value: 0,
         unit: 'pixel',
         type: 'number'
+      }
+    }],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'effect'
+      }
+    }
+  },
+  blurEffect: {
+    name: 'blur effect',
+    description: 'an effect token',
+    category: 'effect' as tokenCategoryType,
+    exportKey: 'effect' as tokenExportKeyType,
+    values: [{
+      effectType: {
+        value: 'blur',
+        type: 'string'
       }
     }],
     extensions: {
