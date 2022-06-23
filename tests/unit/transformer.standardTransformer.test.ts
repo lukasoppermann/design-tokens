@@ -14,6 +14,7 @@ describe('standard Transfomer', () => {
   test('typography token', () => expect(transformer(extractedFigmaTokens.typography)).toStrictEqual(transformedStandardTokens.typography))
   test('font with lineheight percent', () => expect(transformer(extractedFigmaTokens.fontLhPercent)).toStrictEqual(transformedStandardTokens.fontLhPercent))
   test('color token', () => expect(transformer(extractedFigmaTokens.color)).toStrictEqual(transformedStandardTokens.color))
+  test('alias color token', () => expect(transformer(extractedFigmaTokens.aliasColor)).toStrictEqual(transformedStandardTokens.aliasColor))
   test('multi color token', () => expect(transformer(extractedFigmaTokens.multiColor)).toStrictEqual(transformedStandardTokens.multiColor))
   test('gradient token', () => expect(transformer(extractedFigmaTokens.gradient)).toStrictEqual(transformedStandardTokens.gradient))
   test('color and gradient token', () => expect(transformer(extractedFigmaTokens.colorAndGradient)).toStrictEqual(transformedStandardTokens.colorAndGradient))

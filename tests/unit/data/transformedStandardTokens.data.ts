@@ -338,6 +338,18 @@ export const transformedStandardTokens = {
       }
     }
   },
+  aliasColor: {
+    name: 'aliasColor',
+    description: 'a color token',
+    type: 'color',
+    value: '{{color}}',
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'color',
+        alias: '{color}'
+      }
+    }
+  },
   multiColor: {
     name: 'multiColor',
     extensions: {
