@@ -839,6 +839,23 @@ export const extractedFigmaTokens = {
       }
     }
   },
+  blurEffect: {
+    name: 'blur effect',
+    description: 'an effect token',
+    category: 'effect' as tokenCategoryType,
+    exportKey: 'effect' as tokenExportKeyType,
+    values: [{
+      effectType: {
+        value: 'blur',
+        type: 'string'
+      }
+    }],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'effect'
+      }
+    }
+  },
   multiEffect: {
     name: 'multiEffect',
     description: 'a multi effect token',

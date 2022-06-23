@@ -445,6 +445,15 @@ export const transformedStandardTokens = {
       spread: 0
     }
   },
+  blurEffect: {
+    name: 'blur effect',
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'effect'
+      }
+    },
+    description: 'an effect token'
+  },
   multiEffect: {
     name: 'multiEffect',
     extensions: {
