@@ -228,6 +228,56 @@ export const transformedStandardTokens = {
       value: 'underline'
     }
   },
+
+  fontLhPercent: {
+    name: 'font-lh-percent',
+    description: 'Font with lineheight in percent',
+    fontSize: {
+      value: 16,
+      type: 'dimension'
+    },
+    textDecoration: {
+      value: 'underline',
+      type: 'string'
+    },
+    fontFamily: {
+      value: 'Helvetica',
+      type: 'string'
+    },
+    fontWeight: {
+      value: 700,
+      type: 'number'
+    },
+    fontStyle: {
+      value: 'italic',
+      type: 'string'
+    },
+    fontStretch: {
+      value: 'normal',
+      type: 'string'
+    },
+    letterSpacing: {
+      value: 0.3,
+      type: 'dimension'
+    },
+    lineHeight: {
+      // @ts-ignore
+      value: 24,
+      type: 'dimension'
+    },
+    paragraphIndent: {
+      value: 0,
+      type: 'dimension'
+    },
+    paragraphSpacing: {
+      value: 12,
+      type: 'dimension'
+    },
+    textCase: {
+      value: 'none',
+      type: 'string'
+    }
+  },
   /**
    * border
    */

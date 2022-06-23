@@ -454,7 +454,7 @@ export const extractedFigmaTokens = {
       }
     }
   },
-  'font-lh-percent': {
+  fontLhPercent: {
     name: 'font-lh-percent',
     category: 'typography' as tokenCategoryType,
     exportKey: 'typography' as tokenExportKeyType,
@@ -586,6 +586,26 @@ export const extractedFigmaTokens = {
     extensions: {
       'org.lukasoppermann.figmaDesignTokens': {
         exportKey: 'color'
+      }
+    }
+  },
+  aliasColor: {
+    name: 'aliasColor',
+    category: 'color' as tokenCategoryType,
+    exportKey: 'color' as tokenExportKeyType,
+    description: 'a color token',
+    values: [
+      {
+        fill: {
+          value: { r: 255, g: 230, b: 0, a: 1 },
+          type: 'color'
+        }
+      }
+    ],
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'color',
+        alias: '{color}'
       }
     }
   },
