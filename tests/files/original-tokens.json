@@ -939,6 +939,12 @@
         "value": "rgba(4, 74, 255, 1)",
         "type": "color"
       },
+      "empty": {
+        "category": "color",
+        "exportKey": "color",
+        "value": "rgba(0, 0, 0, 0)",
+        "type": "color"
+      },
       "special characters": {
         "😅": {
           "category": "color",

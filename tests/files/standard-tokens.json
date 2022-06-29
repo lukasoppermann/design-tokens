@@ -629,6 +629,7 @@
         "description": "A red with a 50% opacity",
         "type": "color",
         "value": "#ff5f0480",
+        "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
             "styleId": "S:73ee61b85a05b803a735041e06d604cf5b5e396c,",
@@ -639,11 +640,13 @@
       "multiple fills": {
         "0": {
           "type": "color",
-          "value": "#40ffbaff"
+          "value": "#40ffbaff",
+          "blendMode": "normal"
         },
         "1": {
           "type": "color",
-          "value": "#0000001a"
+          "value": "#0000001a",
+          "blendMode": "normal"
         },
         "description": "",
         "extensions": {
@@ -657,6 +660,7 @@
         "description": "",
         "type": "color",
         "value": "#044affff",
+        "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
             "styleId": "S:41c3b1bbb20c349db5198426c9f21eee91270703,",
@@ -668,6 +672,7 @@
         "description": "Some other description",
         "type": "color",
         "value": "{color.colors.single blue}",
+        "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
             "styleId": "S:a466a5c4f753617558885425bf0c42b7a53fcda4,",
@@ -676,11 +681,24 @@
           }
         }
       },
+      "empty": {
+        "description": "",
+        "type": "color",
+        "value": "#00000000",
+        "blendMode": "normal",
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "styleId": "S:5e1d174ea8c7f59af7d8eeb52856a48cfe285856,",
+            "exportKey": "color"
+          }
+        }
+      },
       "special characters": {
         "😅": {
           "description": "Emoji",
           "type": "color",
           "value": "#40df50ff",
+          "blendMode": "normal",
           "extensions": {
             "org.lukasoppermann.figmaDesignTokens": {
               "styleId": "S:0eca3633c52956ddb97940c7445007a90b937be1,",
@@ -692,6 +710,7 @@
           "description": "",
           "type": "color",
           "value": "#3456afff",
+          "blendMode": "normal",
           "extensions": {
             "org.lukasoppermann.figmaDesignTokens": {
               "styleId": "S:79e9a7afce7078dc29994d2791959ebf9f45efa5,",

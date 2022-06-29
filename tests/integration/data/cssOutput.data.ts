@@ -167,6 +167,7 @@ export default
   --color-colors-multiple-fills-1: rgba(0, 0, 0, 0.1);
   --color-colors-single-blue: #044aff;
   --color-colors-ref-blue: #044aff; /* Some other description */
+  --color-colors-empty: rgba(0, 0, 0, 0);
   --color-colors-special-characters: #40df50; /* Emoji */
   --color-colors-special-characters-nderung: #3456af;
   --grid-multiple-0-pattern: columns;

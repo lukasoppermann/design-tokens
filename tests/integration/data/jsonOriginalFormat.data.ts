@@ -675,6 +675,12 @@ export default {
   },
   color: {
     colors: {
+      empty: {
+        category: 'color',
+        exportKey: 'color',
+        type: 'color',
+        value: 'rgba(0, 0, 0, 0)'
+      },
       'multiple fills': {
         0: {
           value: 'rgba(64, 255, 186, 1)',
