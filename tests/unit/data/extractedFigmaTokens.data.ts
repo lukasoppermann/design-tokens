@@ -970,8 +970,12 @@ export const extractedFigmaTokens = {
         unit: 's',
         type: 'number'
       },
-      easing: {
+      easingType: {
         value: 'ease-in',
+        type: 'string'
+      },
+      easingCurveType: {
+        value: 'cubicBezier',
         type: 'string'
       },
       easingFunction: {
@@ -989,6 +993,54 @@ export const extractedFigmaTokens = {
         },
         y2: {
           value: 1,
+          type: 'number'
+        }
+      },
+      direction: {
+        value: 'top',
+        type: 'string'
+      }
+    },
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'motion'
+      }
+    }
+  },
+  springMotion: {
+    name: 'springMotion',
+    category: 'motion' as tokenCategoryType,
+    exportKey: 'motion' as tokenExportKeyType,
+    description: 'a springMotion token',
+    values: {
+      transitionType: {
+        value: 'slide_out',
+        type: 'string'
+      },
+      duration: {
+        value: 0.3,
+        unit: 's',
+        type: 'number'
+      },
+      easingType: {
+        value: 'bouncy',
+        type: 'string'
+      },
+      easingCurveType: {
+        value: 'spring',
+        type: 'string'
+      },
+      easingFunction: {
+        mass: {
+          value: 1,
+          type: 'number'
+        },
+        damping: {
+          value: 300,
+          type: 'number'
+        },
+        stiffness: {
+          value: 15,
           type: 'number'
         }
       },

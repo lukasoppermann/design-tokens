@@ -501,11 +501,33 @@ export const transformedStandardTokens = {
       transitionType: 'slide_in',
       duration: 0.2,
       direction: 'top',
+      easingType: 'cubicBezier',
       easingFunction: {
         x1: 0.41999998688697815,
         x2: 0,
         y1: 1,
         y2: 1
+      }
+    }
+  },
+  springMotion: {
+    name: 'springMotion',
+    description: 'a springMotion token',
+    type: 'custom-transition',
+    extensions: {
+      'org.lukasoppermann.figmaDesignTokens': {
+        exportKey: 'motion'
+      }
+    },
+    value: {
+      transitionType: 'slide_out',
+      duration: 0.3,
+      direction: 'top',
+      easingType: 'spring',
+      easingFunction: {
+        mass: 1,
+        damping: 300,
+        stiffness: 15
       }
     }
   }

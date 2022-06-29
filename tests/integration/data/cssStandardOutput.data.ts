@@ -16,7 +16,6 @@ export default
   --breakpoints-lg: 1280px;
   --breakpoints-sm: 768px;
   --breakpoints-md: 1024px;
-  --opacities-button-disabled: 0.3;
   --spacing-10: 10px;
   --spacing-mixed: 10px 20px 30px 20px;
   --spacing-top: 10px 0px 0px 0px;
@@ -31,20 +30,23 @@ export default
   --motion-dissolve: [object Object];
   --motion-smart: [object Object];
   --motion-push: [object Object];
+  --motion-bouncy: [object Object];
+  --motion-custom-spring: [object Object];
+  --opacities-0-25: 0.25;
+  --opacity-full: 1;
+  --opacity-half: 0.5;
   --gradient-gradient-single-with-multiple-color-stops: radial-gradient(rgb(255, 184, 0) 0%, rgb(255, 138, 0) 34%, rgb(255, 46, 0) 65%, rgb(255, 0, 0) 100%); /* Four color stops from yellow to red */
-  --gradient-gradient-multiple-0: linear-gradient(180deg, rgb(255, 184, 0) 0%, rgba(255, 184, 0, 0) 100%);
-  --gradient-gradient-multiple-1: radial-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
-  --gradient-gradient-multiple-2: undefined;
-  --gradient-gradient-multiple-3: undefined;
+  --gradient-gradient-multiplegrad-0: linear-gradient(180deg, rgb(255, 184, 0) 0%, rgba(255, 184, 0, 0) 100%);
+  --gradient-gradient-multiplegrad-1: radial-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
+  --gradient-gradient-multiplegrad-2: undefined;
+  --gradient-gradient-multiplegrad-3: undefined;
+  --color-colors-semi-red: rgba(255, 95, 4, 0.5); /* A red with a 50% opacity */
   --color-colors-multiple-fills-0: rgb(64, 255, 186);
   --color-colors-multiple-fills-1: rgba(0, 0, 0, 0.1);
   --color-colors-single-blue: rgb(4, 74, 255);
   --color-colors-ref-blue: rgb(4, 74, 255); /* Some other description */
   --color-colors-special-characters: rgb(64, 223, 80); /* Emoji */
   --color-colors-special-characters-nderung: rgb(52, 86, 175);
-  --color-invalid-empty: rgba(0, 0, 0, 0);
-  --color-light-background: rgb(255, 255, 255);
-  --color-dark-background: rgb(0, 0, 0);
   --grid-multiple-0: [object Object];
   --grid-multiple-1: [object Object];
   --grid-multiple-2: [object Object];

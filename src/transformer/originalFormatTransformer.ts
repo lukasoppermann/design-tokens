@@ -142,27 +142,10 @@ const motionValueTransformer = (values) => {
       : {}
     ),
     easing: {
-      value: values.easing.value,
+      value: values.easingType.value.replace('cubicBezier', 'cubic-bezier'),
       type: 'string' as PropertyType
     },
-    easingFunction: {
-      x1: {
-        value: values.easingFunction.x1.value,
-        type: 'number' as PropertyType
-      },
-      x2: {
-        value: values.easingFunction.x2.value,
-        type: 'number' as PropertyType
-      },
-      y1: {
-        value: values.easingFunction.y1.value,
-        type: 'number' as PropertyType
-      },
-      y2: {
-        value: values.easingFunction.y2.value,
-        type: 'number' as PropertyType
-      }
-    }
+    easingFunction: values.easingFunction
   }
 }
 

@@ -117,16 +117,6 @@
       "unit": "pixel"
     }
   },
-  "opacities": {
-    "button-disabled": {
-      "category": "opacity",
-      "comment": "an opacity description",
-      "exportKey": "opacity",
-      "name": "disabled button opacity",
-      "type": "number",
-      "value": 0.3
-    }
-  },
   "spacing": {
     "10": {
       "category": "spacing",
@@ -210,7 +200,7 @@
         "type": "string"
       },
       "dashPattern": {
-        "value": "",
+        "value": "0, 0",
         "type": "string"
       },
       "strokeCap": {
@@ -278,7 +268,7 @@
         "type": "string"
       },
       "dashPattern": {
-        "value": "",
+        "value": "0, 0",
         "type": "string"
       },
       "strokeCap": {
@@ -510,7 +500,7 @@
         "unit": "s"
       },
       "easing": {
-        "value": "cubic-bezier",
+        "value": "custom-cubic-bezier",
         "type": "string"
       },
       "easingFunction": {
@@ -605,6 +595,98 @@
           "type": "number"
         }
       }
+    },
+    "bouncy": {
+      "category": "motion",
+      "exportKey": "motion",
+      "type": {
+        "value": "push",
+        "type": "string"
+      },
+      "duration": {
+        "value": 0.958,
+        "type": "number",
+        "unit": "s"
+      },
+      "direction": {
+        "value": "left",
+        "type": "string"
+      },
+      "easing": {
+        "value": "bouncy",
+        "type": "string"
+      },
+      "easingFunction": {
+        "mass": {
+          "value": 1,
+          "type": "number"
+        },
+        "stiffness": {
+          "value": 600,
+          "type": "number"
+        },
+        "damping": {
+          "value": 15,
+          "type": "number"
+        }
+      }
+    },
+    "custom spring": {
+      "category": "motion",
+      "exportKey": "motion",
+      "type": {
+        "value": "push",
+        "type": "string"
+      },
+      "duration": {
+        "value": 0.744,
+        "type": "number",
+        "unit": "s"
+      },
+      "direction": {
+        "value": "left",
+        "type": "string"
+      },
+      "easing": {
+        "value": "custom-spring",
+        "type": "string"
+      },
+      "easingFunction": {
+        "mass": {
+          "value": 1,
+          "type": "number"
+        },
+        "stiffness": {
+          "value": 300,
+          "type": "number"
+        },
+        "damping": {
+          "value": 20,
+          "type": "number"
+        }
+      }
+    }
+  },
+  "opacities": {
+    "0.25": {
+      "category": "opacity",
+      "exportKey": "opacity",
+      "value": 0.25,
+      "type": "number"
+    }
+  },
+  "opacity": {
+    "full": {
+      "category": "opacity",
+      "exportKey": "opacity",
+      "value": 1,
+      "type": "number"
+    },
+    "half": {
+      "category": "opacity",
+      "exportKey": "opacity",
+      "value": 0.5,
+      "type": "number"
     }
   },
   "gradient": {
@@ -669,7 +751,7 @@
           "type": "number"
         }
       },
-      "multiple": {
+      "multiplegrad": {
         "0": {
           "gradientType": {
             "value": "linear",
@@ -697,7 +779,7 @@
                 "type": "number"
               },
               "color": {
-                "value": "rgba(255, 184, 0, 1)",
+                "value": "rgba(255, 184, 0, 0)",
                 "type": "color"
               }
             }
@@ -734,7 +816,7 @@
                 "type": "number"
               },
               "color": {
-                "value": "rgba(255, 255, 255, 1)",
+                "value": "rgba(255, 255, 255, 0)",
                 "type": "color"
               }
             }
@@ -771,7 +853,7 @@
                 "type": "number"
               },
               "color": {
-                "value": "rgba(255, 255, 255, 1)",
+                "value": "rgba(255, 255, 255, 0)",
                 "type": "color"
               }
             }
@@ -804,11 +886,11 @@
             },
             "1": {
               "position": {
-                "value": 1,
+                "value": 0.23,
                 "type": "number"
               },
               "color": {
-                "value": "rgba(255, 255, 255, 1)",
+                "value": "rgba(255, 255, 255, 0)",
                 "type": "color"
               }
             }
@@ -825,6 +907,13 @@
   },
   "color": {
     "colors": {
+      "semi red": {
+        "category": "color",
+        "exportKey": "color",
+        "comment": "A red with a 50% opacity",
+        "value": "rgba(255, 95, 4, 0.5)",
+        "type": "color"
+      },
       "multiple fills": {
         "0": {
           "value": "rgba(64, 255, 186, 1)",
@@ -864,22 +953,6 @@
           "value": "rgba(52, 86, 175, 1)",
           "type": "color"
         }
-      }
-    },
-    "light": {
-      "background": {
-        "category": "color",
-        "exportKey": "color",
-        "value": "rgba(255, 255, 255, 1)",
-        "type": "color"
-      }
-    },
-    "dark": {
-      "background": {
-        "category": "color",
-        "exportKey": "color",
-        "value": "rgba(0, 0, 0, 1)",
-        "type": "color"
       }
     }
   },

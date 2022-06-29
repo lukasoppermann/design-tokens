@@ -177,7 +177,7 @@ export default {
         type: 'string'
       },
       dashPattern: {
-        value: '',
+        value: '0, 0',
         type: 'string'
       },
       strokeCap: {
@@ -245,7 +245,7 @@ export default {
         type: 'string'
       },
       dashPattern: {
-        value: '',
+        value: '0, 0',
         type: 'string'
       },
       strokeCap: {
@@ -464,6 +464,76 @@ export default {
         type: 'string'
       }
     },
+    bouncy: {
+      category: 'motion',
+      direction: {
+        type: 'string',
+        value: 'left'
+      },
+      duration: {
+        type: 'number',
+        unit: 's',
+        value: 0.958
+      },
+      easing: {
+        type: 'string',
+        value: 'bouncy'
+      },
+      easingFunction: {
+        damping: {
+          type: 'number',
+          value: 15
+        },
+        mass: {
+          type: 'number',
+          value: 1
+        },
+        stiffness: {
+          type: 'number',
+          value: 600
+        }
+      },
+      exportKey: 'motion',
+      type: {
+        type: 'string',
+        value: 'push'
+      }
+    },
+    'custom spring': {
+      category: 'motion',
+      direction: {
+        type: 'string',
+        value: 'left'
+      },
+      duration: {
+        type: 'number',
+        unit: 's',
+        value: 0.744
+      },
+      easing: {
+        type: 'string',
+        value: 'custom-spring'
+      },
+      easingFunction: {
+        damping: {
+          type: 'number',
+          value: 20
+        },
+        mass: {
+          type: 'number',
+          value: 1
+        },
+        stiffness: {
+          type: 'number',
+          value: 300
+        }
+      },
+      exportKey: 'motion',
+      type: {
+        type: 'string',
+        value: 'push'
+      }
+    },
     dissolve: {
       category: 'motion',
       exportKey: 'motion',
@@ -477,7 +547,7 @@ export default {
         unit: 's'
       },
       easing: {
-        value: 'cubic-bezier',
+        value: 'custom-cubic-bezier',
         type: 'string'
       },
       easingFunction: {
@@ -617,6 +687,13 @@ export default {
         category: 'color',
         exportKey: 'color'
       },
+      'semi red': {
+        category: 'color',
+        comment: 'A red with a 50% opacity',
+        exportKey: 'color',
+        type: 'color',
+        value: 'rgba(255, 95, 4, 0.5)'
+      },
       'single blue': {
         category: 'color',
         exportKey: 'color',
@@ -645,27 +722,11 @@ export default {
           type: 'color'
         }
       }
-    },
-    dark: {
-      background: {
-        category: 'color',
-        exportKey: 'color',
-        type: 'color',
-        value: 'rgba(0, 0, 0, 1)'
-      }
-    },
-    light: {
-      background: {
-        category: 'color',
-        exportKey: 'color',
-        type: 'color',
-        value: 'rgba(255, 255, 255, 1)'
-      }
     }
   },
   gradient: {
     gradient: {
-      multiple: {
+      multiplegrad: {
         0: {
           gradientType: {
             value: 'linear',
@@ -688,7 +749,7 @@ export default {
                 type: 'number'
               },
               color: {
-                value: 'rgba(255, 184, 0, 1)',
+                value: 'rgba(255, 184, 0, 0)',
                 type: 'color'
               }
             }
@@ -725,7 +786,7 @@ export default {
                 type: 'number'
               },
               color: {
-                value: 'rgba(255, 255, 255, 1)',
+                value: 'rgba(255, 255, 255, 0)',
                 type: 'color'
               }
             }
@@ -762,7 +823,7 @@ export default {
                 type: 'number'
               },
               color: {
-                value: 'rgba(255, 255, 255, 1)',
+                value: 'rgba(255, 255, 255, 0)',
                 type: 'color'
               }
             }
@@ -795,11 +856,11 @@ export default {
             },
             1: {
               position: {
-                value: 1,
+                value: 0.23,
                 type: 'number'
               },
               color: {
-                value: 'rgba(255, 255, 255, 1)',
+                value: 'rgba(255, 255, 255, 0)',
                 type: 'color'
               }
             }
