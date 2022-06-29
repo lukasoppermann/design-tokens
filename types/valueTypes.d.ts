@@ -5,6 +5,8 @@ export type ColorRgba = {
   a: number
 }
 
+export type BlendType = 'normal' | 'darken' | 'multiply' | 'color_burn' | 'lighten' | 'screen' | 'color_dodge' | 'overlay' | 'soft_light' | 'hard_light' | 'difference' | 'exclusion' | 'hue' | 'saturation' | 'color' | 'luminosity'
+
 export type GradientType = 'linear' | 'radial' | 'angular' | 'diamond'
 
 export type UnitTypeDegree = 'degree'

@@ -1,3 +1,5 @@
+import type { BlendType } from './valueTypes'
+
 export type customTokenTypes = 'custom-spacing' |
 'custom-radius' |
 'custom-fontStyle' |
@@ -48,6 +50,7 @@ export type StandardTokenDataInterface = {
   description?: string,
   value: StandardTokenValueType | StandardCompositeTokenValueType,
   type: StandardTokenTypes,
+  blendMode?: BlendType,
   extensions?: StandardTokenExtensionsInterface
 }
 

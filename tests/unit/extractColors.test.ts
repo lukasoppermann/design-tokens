@@ -23,7 +23,8 @@ describe('extracting color fills', () => {
               b: 186,
               g: 26,
               r: 255
-            }
+            },
+            blendMode: 'normal'
           }
         }]
       },
@@ -47,7 +48,8 @@ describe('extracting color fills', () => {
               b: 186,
               g: 26,
               r: 255
-            }
+            },
+            blendMode: 'normal'
           }
         }]
       },
@@ -70,7 +72,8 @@ describe('extracting color fills', () => {
               b: 0,
               g: 0,
               r: 0
-            }
+            },
+            blendMode: 'normal'
           }
         }]
       },
@@ -93,7 +96,8 @@ describe('extracting color fills', () => {
               b: 255,
               g: 255,
               r: 255
-            }
+            },
+            blendMode: 'normal'
           }
         }]
       },
@@ -116,7 +120,8 @@ describe('extracting color fills', () => {
               b: 186,
               g: 26,
               r: 255
-            }
+            },
+            blendMode: 'normal'
           }
         }, {
           gradientType: {
@@ -234,7 +239,8 @@ describe('extracting color fills', () => {
                 b: 230,
                 g: 128,
                 r: 51
-              }
+              },
+              blendMode: 'normal'
             }
           }
         ]
@@ -262,7 +268,8 @@ describe('extracting color fills', () => {
               b: 186,
               g: 26,
               r: 255
-            }
+            },
+            blendMode: 'normal'
           }
         }]
       },
@@ -286,7 +293,8 @@ describe('extracting color fills', () => {
               b: 186,
               g: 26,
               r: 255
-            }
+            },
+            blendMode: 'normal'
           }
         }]
       }

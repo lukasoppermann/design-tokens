@@ -140,7 +140,8 @@ const typographyValueTransformer = ({ name, values }) => ({
 
 const colorValueTransformer = ({ fill }): StandardTokenDataInterface => ({
   type: 'color' as StandardTokenTypes,
-  value: rgbaObjectToHex8(fill.value)
+  value: rgbaObjectToHex8(fill.value),
+  blendMode: fill.blendMode?.toLowerCase() || 'normal'
 })
 
 const gradientValueTransformer = ({ gradientType, rotation, stops, opacity }): StandardTokenDataInterface => ({
@@ -164,7 +165,8 @@ const fillValueTransformer = (token): StandardTokenDataInterface | StandardToken
   if (token.extensions && token.extensions[config.key.extensionPluginData] && token.extensions[config.key.extensionPluginData].alias) {
     return {
       type: Object.hasOwnProperty.call(token.values[0], 'fill') ? 'color' : 'custom-gradient',
-      value: `{${token.extensions[config.key.extensionPluginData].alias}}`
+      value: `{${token.extensions[config.key.extensionPluginData].alias}}`,
+      blendMode: token.values[0]?.fill?.blendMode?.toLowerCase() || 'normal'
     }
   }
   // no alias, use value
