@@ -165,7 +165,8 @@ const fillValueTransformer = (token): StandardTokenDataInterface | StandardToken
   if (token.extensions && token.extensions[config.key.extensionPluginData] && token.extensions[config.key.extensionPluginData].alias) {
     return {
       type: Object.hasOwnProperty.call(token.values[0], 'fill') ? 'color' : 'custom-gradient',
-      value: `{${token.extensions[config.key.extensionPluginData].alias}}`
+      value: `{${token.extensions[config.key.extensionPluginData].alias}}`,
+      blendMode: token.values[0]?.fill?.blendMode?.toLowerCase() || 'normal'
     }
   }
   // no alias, use value

@@ -332,6 +332,7 @@ export const transformedStandardTokens = {
     description: 'a color token',
     type: 'color',
     value: '#ffe600ff',
+    blendMode: 'normal',
     extensions: {
       'org.lukasoppermann.figmaDesignTokens': {
         exportKey: 'color'
@@ -343,6 +344,7 @@ export const transformedStandardTokens = {
     description: 'a color token',
     type: 'color',
     value: '{{color}}',
+    blendMode: 'normal',
     extensions: {
       'org.lukasoppermann.figmaDesignTokens': {
         exportKey: 'color',
@@ -360,11 +362,13 @@ export const transformedStandardTokens = {
     description: 'a multi color token',
     0: {
       type: 'color',
-      value: '#ffe600ff'
+      value: '#ffe600ff',
+      blendMode: 'normal'
     },
     1: {
       type: 'color',
-      value: '#0064ff80'
+      value: '#0064ff80',
+      blendMode: 'normal'
     }
   },
   /**
@@ -394,7 +398,8 @@ export const transformedStandardTokens = {
     },
     1: {
       value: '#0064ff80',
-      type: 'color'
+      type: 'color',
+      blendMode: 'normal'
     }
   },
   colorAndGradient: {
@@ -407,7 +412,8 @@ export const transformedStandardTokens = {
     description: 'a color and gradient token',
     0: {
       value: '#ffe600ff',
-      type: 'color'
+      type: 'color',
+      blendMode: 'normal'
     },
     1: {
       type: 'custom-gradient',

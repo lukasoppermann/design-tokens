@@ -13,7 +13,7 @@ const transparentFill: fillValuesType = {
   fill: {
     value: { r: 0, g: 0, b: 0, a: 0 },
     type: 'color',
-    blendMode: 'NORMAL'
+    blendMode: 'normal'
   }
 }
 
@@ -61,7 +61,7 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
       fill: {
         value: convertPaintToRgba(paint),
         type: 'color' as PropertyType,
-        blendMode: paint.blendMode.toLowerCase()
+        blendMode: paint.blendMode?.toLowerCase() || 'normal'
       }
     }
   }

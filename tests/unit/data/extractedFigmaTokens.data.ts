@@ -579,7 +579,8 @@ export const extractedFigmaTokens = {
       {
         fill: {
           value: { r: 255, g: 230, b: 0, a: 1 },
-          type: 'color'
+          type: 'color',
+          blendMode: 'NORMAL'
         }
       }
     ],
@@ -594,6 +595,7 @@ export const extractedFigmaTokens = {
     category: 'color' as tokenCategoryType,
     exportKey: 'color' as tokenExportKeyType,
     description: 'a color token',
+    blendMode: 'NORMAL',
     values: [
       {
         fill: {
@@ -618,13 +620,15 @@ export const extractedFigmaTokens = {
       {
         fill: {
           value: { r: 255, g: 230, b: 0, a: 1 },
-          type: 'color'
+          type: 'color',
+          blendMode: 'NORMAL'
         }
       },
       {
         fill: {
           value: { r: 0, g: 100, b: 255, a: 0.5 },
-          type: 'color'
+          type: 'color',
+          blendMode: 'NORMAL'
         }
       }
     ],
@@ -730,7 +734,8 @@ export const extractedFigmaTokens = {
       {
         fill: {
           value: { r: 0, g: 100, b: 255, a: 0.5 },
-          type: 'color'
+          type: 'color',
+          blendMode: 'normal'
         }
       }
     ],
@@ -749,7 +754,8 @@ export const extractedFigmaTokens = {
       {
         fill: {
           value: { r: 255, g: 230, b: 0, a: 1 },
-          type: 'color'
+          type: 'color',
+          blendMode: 'normal'
         }
       },
       {

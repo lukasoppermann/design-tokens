@@ -5,7 +5,7 @@ export type ColorRgba = {
   a: number
 }
 
-export type BlendType = 'NORMAL' | 'DARKEN' | 'MULTIPLY' | 'COLOR_BURN' | 'LIGHTEN' | 'SCREEN' | 'COLOR_DODGE' | 'OVERLAY' | 'SOFT_LIGHT' | 'HARD_LIGHT' |  'DIFFERENCE' | 'EXCLUSION' | 'HUE' | 'SATURATION' | 'COLOR' | 'LUMINOSITY'
+export type BlendType = 'normal' | 'darken' | 'multiply' | 'color_burn' | 'lighten' | 'screen' | 'color_dodge' | 'overlay' | 'soft_light' | 'hard_light' | 'difference' | 'exclusion' | 'hue' | 'saturation' | 'color' | 'luminosity'
 
 export type GradientType = 'linear' | 'radial' | 'angular' | 'diamond'
 
