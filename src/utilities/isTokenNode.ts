@@ -11,7 +11,7 @@ const tokenNodeTypes = [
  * @param SceneNode node
  */
 const isTokenNode = (node: SceneNode): boolean => {
-  return node.parent.type !== 'COMPONENT_SET' && tokenNodeTypes.includes(node.type)
+  return node.parent.type !== 'COMPONENT_SET' && tokenNodeTypes.includes(node.type) && node.name.length > 0
 }
 
 export default isTokenNode

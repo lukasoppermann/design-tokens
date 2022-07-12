@@ -4,7 +4,6 @@ const pages = [{
   findChildren: jest.fn().mockReturnValue([])
 }]
 
-
 beforeAll(() => {
   // @ts-ignore
   global.figma = {
@@ -16,13 +15,13 @@ beforeAll(() => {
   }
 })
 
-describe("getTokenNodes", () => {
-  test("empty input", () => {
+describe('getTokenNodes', () => {
+  test('empty input', () => {
     // @ts-ignore
     expect(getTokenNodes(pages)).toStrictEqual([])
   })
 
-  test("page with input", () => {
+  test('page with input', () => {
     pages[0].findChildren.mockReturnValue([
       {
         parent: {
@@ -56,10 +55,10 @@ describe("getTokenNodes", () => {
                 strokes: [],
                 strokeWeight: 0,
                 strokeMiterLimit: 0,
-                strokeJoin: "MITER",
-                strokeCap: "NONE",
+                strokeJoin: 'MITER',
+                strokeCap: 'NONE',
                 dashPattern: 0,
-                strokeAlign: "CENTER",
+                strokeAlign: 'CENTER',
                 paddingTop: 0,
                 paddingRight: 0,
                 paddingBottom: 0,
@@ -80,22 +79,22 @@ describe("getTokenNodes", () => {
             bottomRightRadius: 5,
             topLeftRadius: 5,
             topRightRadius: 5,
-            cornerSmoothing: .2,
+            cornerSmoothing: 0.2,
             strokes: [{
-              type: "SOLID",
+              type: 'SOLID',
               color: {
-                r: .2,
-                g: .3,
-                b: .4,
+                r: 0.2,
+                g: 0.3,
+                b: 0.4
               },
               visible: true
             }],
             strokeWeight: 0,
             strokeMiterLimit: 0,
-            strokeJoin: "MITER",
-            strokeCap: "NONE",
+            strokeJoin: 'MITER',
+            strokeCap: 'NONE',
             dashPattern: 0,
-            strokeAlign: "CENTER",
+            strokeAlign: 'CENTER',
             reactions: [{
               action: {
                 transition: {
@@ -136,10 +135,10 @@ describe("getTokenNodes", () => {
             strokes: [],
             strokeWeight: 0,
             strokeMiterLimit: 0,
-            strokeJoin: "MITER",
-            strokeCap: "NONE",
+            strokeJoin: 'MITER',
+            strokeCap: 'NONE',
             dashPattern: 0,
-            strokeAlign: "CENTER",
+            strokeAlign: 'CENTER',
             paddingTop: 20,
             paddingRight: 20,
             paddingBottom: 20,
@@ -169,15 +168,15 @@ describe("getTokenNodes", () => {
         bottomRightRadius: 5,
         topLeftRadius: 5,
         topRightRadius: 5,
-        cornerSmoothing: .2,
+        cornerSmoothing: 0.2,
         strokes: [],
         strokeStyleId: undefined,
         strokeWeight: 0,
         strokeMiterLimit: 0,
-        strokeJoin: "MITER",
-        strokeCap: "NONE",
+        strokeJoin: 'MITER',
+        strokeCap: 'NONE',
         dashPattern: 0,
-        strokeAlign: "CENTER",
+        strokeAlign: 'CENTER',
         reactions: undefined,
         paddingTop: 0,
         paddingRight: 0,
@@ -195,7 +194,7 @@ describe("getTokenNodes", () => {
         bottomRightRadius: 5,
         topLeftRadius: 5,
         topRightRadius: 5,
-        cornerSmoothing: .2,
+        cornerSmoothing: 0.2,
         strokes: [{
           a: 1,
           b: 102,
@@ -205,10 +204,10 @@ describe("getTokenNodes", () => {
         strokeStyleId: undefined,
         strokeWeight: 0,
         strokeMiterLimit: 0,
-        strokeJoin: "MITER",
-        strokeCap: "NONE",
+        strokeJoin: 'MITER',
+        strokeCap: 'NONE',
         dashPattern: 0,
-        strokeAlign: "CENTER",
+        strokeAlign: 'CENTER',
         reactions: [{
           action: {
             transition: {
@@ -242,10 +241,10 @@ describe("getTokenNodes", () => {
         strokeStyleId: undefined,
         strokeWeight: 0,
         strokeMiterLimit: 0,
-        strokeJoin: "MITER",
-        strokeCap: "NONE",
+        strokeJoin: 'MITER',
+        strokeCap: 'NONE',
         dashPattern: 0,
-        strokeAlign: "CENTER",
+        strokeAlign: 'CENTER',
         reactions: undefined,
         paddingTop: 20,
         paddingRight: 20,
@@ -263,21 +262,24 @@ describe("getTokenNodes", () => {
         type: 'FRAME'
       },
       // @ts-ignore
-      type: 'FRAME'
+      type: 'FRAME',
+      name: 'test'
     })).toStrictEqual(true)
     expect(__testing.isTokenNode({
       // @ts-ignore
       parent: {
         type: 'FRAME'
       },
-      type: 'RECTANGLE'
+      type: 'RECTANGLE',
+      name: 'test'
     })).toStrictEqual(true)
     expect(__testing.isTokenNode({
       // @ts-ignore
       parent: {
         type: 'FRAME'
       },
-      type: 'COMPONENT'
+      type: 'COMPONENT',
+      name: 'test'
     })).toStrictEqual(true)
   })
 
@@ -298,20 +300,28 @@ describe("getTokenNodes", () => {
       },
       type: 'LINE'
     })).toStrictEqual(false)
+    // @ts-ignore
+    expect(__testing.isTokenNode({
+      // @ts-ignore
+      parent: {
+        type: 'FRAME'
+      },
+      type: 'FRAME',
+      name: ''
+    })).toStrictEqual(false)
   })
 
-
-  test("isTokenFrame valid tokenFrame", () => {
+  test('isTokenFrame valid tokenFrame', () => {
     // @ts-ignore
-    expect(__testing.isTokenFrame({ name: '_tokens', type: "FRAME" })).toStrictEqual(true)
+    expect(__testing.isTokenFrame({ name: '_tokens', type: 'FRAME' })).toStrictEqual(true)
   })
 
-  test("isTokenNode invalid tokenFrame", () => {
+  test('isTokenNode invalid tokenFrame', () => {
     // @ts-ignore
-    expect(__testing.isTokenFrame({ name: '_tokens', type: "frame" })).toStrictEqual(false)
+    expect(__testing.isTokenFrame({ name: '_tokens', type: 'frame' })).toStrictEqual(false)
     // @ts-ignore
-    expect(__testing.isTokenFrame({ name: '_tokens', type: "LINE" })).toStrictEqual(false)
+    expect(__testing.isTokenFrame({ name: '_tokens', type: 'LINE' })).toStrictEqual(false)
     // @ts-ignore
-    expect(__testing.isTokenFrame({ name: 'invalidTokens', type: "LINE" })).toStrictEqual(false)
+    expect(__testing.isTokenFrame({ name: 'invalidTokens', type: 'LINE' })).toStrictEqual(false)
   })
 })
