@@ -15,7 +15,7 @@ const responeHandler = (request: XMLHttpRequest): string => {
   }
   // if other error
   if (request.status > 399) {
-    return `🚨 ${request.status}: An error occured, please check the console for details.`
+    return `🚨 ${request.status}: An error occurred, please check the console for details.`
   }
   // if no error
   return '🎉 Design tokens pushed to server!'

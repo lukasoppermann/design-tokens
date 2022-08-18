@@ -14,7 +14,7 @@ const getExportKey = (token: OriginalFormatTokenInterface | StandardTokenInterfa
 export const prefixTokenName = (tokenArray: OriginalFormatTokenInterface[] | StandardTokenInterface[], userSettings: Settings) => {
   // guard
   if (tokenArray.length <= 0) return []
-  // nest tokens into object with hierachy defined by name using /
+  // nest tokens into object with hierarchy defined by name using /
   return tokenArray.map(token => {
     // remove top level prefix from name if desired
     if (userSettings.prefixInName === false) {

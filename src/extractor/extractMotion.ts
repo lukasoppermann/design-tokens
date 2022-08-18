@@ -184,7 +184,7 @@ const formatEasingFunction = easingObject => {
 }
 
 const easing = (easing: Easing): easingPropertyInterface => {
-  // abort if invalif easing type
+  // abort if invalid easing type
   if (!('type' in easing) || easings[easing.type] === undefined) {
     return undefined
   }
