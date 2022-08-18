@@ -258,7 +258,7 @@ export const Select = ({
   }
 
   const expandButtonClass = isExpanded ? 'select-menu__button--active' : ''
-  const expandListClass = isExpanded ? 'select-menu__menu--active' : ''
+  const expanListClass = isExpanded ? 'select-menu__menu--active' : ''
   const disabledColorClass = isDisabled ? 'icon--black-3' : ''
 
   return (
@@ -282,7 +282,7 @@ export const Select = ({
           </span>
         </button>
         <ul
-          className={`select-menu__menu ${expandListClass} ${disabledColorClass}`}
+          className={`select-menu__menu ${expanListClass} ${disabledColorClass}`}
           style={{ top: '-24px' }}
         >
           {options &&

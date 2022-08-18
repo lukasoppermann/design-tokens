@@ -18,7 +18,7 @@ const getAccessToken = async (fileId: string): Promise<string> => {
 }
 /**
  * @name setAccessToken
- * @description store the access token for the current given file in the user clientStorage
+ * @description store the access token for the current fiven file in the user clientStorage
  * @param fileId {string} — ID of the current file
  * @param fileId {string} — access token
  */

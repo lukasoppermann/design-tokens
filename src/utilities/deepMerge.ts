@@ -12,7 +12,7 @@ const deepMerge = (target, source) => {
   if (!isObject(target) || !isObject(source)) {
     return source
   }
-  // iterate over source
+  // iteratre over source
   Object.keys(source).forEach(key => {
     // get values from both target and source for the given key
     const targetValue = target[key]
