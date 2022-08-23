@@ -77,7 +77,7 @@ if (figma.command === commands.demo) {
  */
 if (figma.command === commands.reset) {
   resetSettings()
-  // semd message
+  // send message
   figma.notify('⚙️ Settings have been reset.')
   figma.closePlugin()
 }

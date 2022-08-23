@@ -36,7 +36,7 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
     value: grid.pattern.toLowerCase() as GridPattern,
     type: 'string' as PropertyType
   },
-  // undefined when aligment stretch
+  // undefined when alignment stretch
   ...(grid.sectionSize !== undefined && {
     sectionSize: {
       value: grid.sectionSize,
@@ -54,7 +54,7 @@ const rowColumnValues = (grid: RowsColsLayoutGrid) => ({
     type: 'string' as PropertyType
   },
   count: getCount(grid.count),
-  // undefined when aligment centred
+  // undefined when alignment centred
   ...(grid.offset !== undefined && {
     offset: {
       value: grid.offset,

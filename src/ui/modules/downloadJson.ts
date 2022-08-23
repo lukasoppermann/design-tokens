@@ -20,17 +20,17 @@ export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
     link.href = `data:application/design-tokens+json;charset=utf-8,${encodeURIComponent(json)}`
     // Programmatically trigger a click on the anchor element
     link.click()
-    // send success messgae
+    // send success message
     parent.postMessage({
       pluginMessage: {
         command: commands.closePlugin,
         payload: {
-          notification: '🎉 Design token export succesfull!'
+          notification: '🎉 Design token export successful!'
         }
       } as PluginMessage
     }, '*')
   } catch (error) {
-    // send success messgae
+    // send success message
     parent.postMessage({
       pluginMessage: {
         command: commands.closePlugin,

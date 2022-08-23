@@ -15,7 +15,7 @@ export const groupByKeyAndName = (tokenArray: OriginalFormatTokenInterface[] | S
   const removeName: boolean = true
   // guard
   if (tokenArray.length <= 0) return []
-  // nest tokens into object with hierachy defined by name using /
+  // nest tokens into object with hierarchy defined by name using /
   const groupedTokens = tokenArray.map(token => {
     // split token name into array
     // remove leading and following whitespace for every item
@@ -28,6 +28,6 @@ export const groupByKeyAndName = (tokenArray: OriginalFormatTokenInterface[] | S
     // return
     return nestedObjectFromArray(groupsFromName, token)
   })
-  // return merged object of tokens grouped by name hierachy
+  // return merged object of tokens grouped by name hierarchy
   return groupedTokens.reduce((accumulator = {}, currentValue) => deepMerge(accumulator, currentValue))
 }
