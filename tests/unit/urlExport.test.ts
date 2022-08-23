@@ -77,6 +77,18 @@ describe('Testing urlExport', () => {
                 expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]", payloadFilename)
                 expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_MESSAGE]", payloadMessage)
             })
+
+        test('If a message is included, it is in the client_payload',
+            () => {
+                const payloadMessage = "feat(tokens): Some tokens were added."
+                mockUrlExportRequestBody.client_payload.message = payloadMessage
+
+                const bodyString = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
+                const body = JSON.parse(bodyString);
+                expect(body.client_payload).toHaveProperty('message')
+                expect(body.client_payload.message).toStrictEqual(payloadMessage);
+            })
+
     })
 
     describe("addUrlExportRequestHeaders testing", () => {
