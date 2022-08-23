@@ -25,7 +25,8 @@ describe('Testing urlExport', () => {
             "event_type": 'baseEvent',
             "client_payload": {
                 "tokens": '',
-                "filename": 'myBaseFile.json'
+                "filename": 'myBaseFile.json',
+                "message": ''
             }
         } as urlExportRequestBody
     })
@@ -63,14 +64,18 @@ describe('Testing urlExport', () => {
                 const payloadFilename = "file.new"
                 mockUrlExportRequestBody.client_payload.filename=payloadFilename
 
+                const payloadMessage = "feat(tokens): Some tokens were added."
+                mockUrlExportRequestBody.client_payload.message=payloadMessage
+
 
                 const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
                 expect(body.append).toHaveBeenCalledWith("token", accessToken)
-                expect(body.append).toHaveBeenCalledWith("token",accessToken)
-                expect(body.append).toHaveBeenCalledWith("ref",reference)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_EVENT_TYPE]",event_type)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]",payloadTokens)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]",payloadFilename)
+                expect(body.append).toHaveBeenCalledWith("token", accessToken)
+                expect(body.append).toHaveBeenCalledWith("ref", reference)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_EVENT_TYPE]", event_type)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]", payloadTokens)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]", payloadFilename)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_MESSAGE]", payloadMessage)
             })
     })
 

@@ -38,6 +38,7 @@ export const UrlExportSettings = () => {
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
   const { figmaUIApi } = useContext(FigmaContext)
+  let message = '';
 
   const handleFormSubmit = (event) => {
     event.preventDefault() // Prevent form submit triggering navigation
@@ -58,7 +59,7 @@ export const UrlExportSettings = () => {
       // prepare token json
       const tokensToExport = prepareExport(tokens, pluginSettings)
       setTokens(tokensToExport)
-      // download tokes
+      // download tokens
       urlExport(parent, {
         url: settings.serverUrl,
         accessToken: settings.accessToken,
@@ -71,9 +72,13 @@ export const UrlExportSettings = () => {
         event_type: settings.eventType,
         client_payload: {
           tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
-          filename: `${settings.filename}${settings.extension}`
+          filename: `${settings.filename}${settings.extension}`,
+          message: `${message}`
         }
       } as urlExportRequestBody)
+
+      // Reset commit message for next time.
+
     }
   }
 
@@ -195,6 +200,20 @@ export const UrlExportSettings = () => {
             />
           </Row>
         </>}
+
+      <Separator />
+      <Title size='xlarge' weight='bold'>About This Export</Title>
+      <h3>Message<Info width={200} label='Typically this will be a "commit message" for Git. Your organization may require a specific convention for these messages.' /></h3>
+      <Row fill>
+        <Input
+          type='text'
+          required
+          pattern='.*'
+          placeholder='Describe what has changed since the last export'
+          value={message}
+          onChange={value => { message = value }}
+        />
+      </Row>
       <Footer>
         <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
         <CancelButton />
