@@ -37,7 +37,7 @@ const getTokenNodes = (pages: PageNode[]): customTokenNode[] => {
   const tokenFrames = getFrameNodes(pages)
   // get all children of token frames
   return tokenFrames.map(frame => <ComponentSetNode[] | ComponentNode[] | RectangleNode[] | FrameNode[]>frame
-    // check if children are of valide types
+    // check if children are of valid types
     .findAll(
       /* istanbul ignore next */
       node => isTokenNode(node)
