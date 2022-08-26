@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Button } from '@components/Button'
 import { Checkbox } from '@components/Checkbox'
 import { Input } from '@components/Input'
@@ -38,7 +38,7 @@ export const UrlExportSettings = () => {
   const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
   const { figmaUIApi } = useContext(FigmaContext)
-  let message = '';
+  const [commitMessage, setCommitMessage] = useState("")
 
   const handleFormSubmit = (event) => {
     event.preventDefault() // Prevent form submit triggering navigation
@@ -73,11 +73,9 @@ export const UrlExportSettings = () => {
         client_payload: {
           tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
           filename: `${settings.filename}${settings.extension}`,
-          message: `${message}`
+          commitMessage: `${commitMessage}`
         }
       } as urlExportRequestBody)
-
-      // Reset commit message for next time.
 
     }
   }
@@ -203,15 +201,13 @@ export const UrlExportSettings = () => {
 
       <Separator />
       <Title size='xlarge' weight='bold'>About This Export</Title>
-      <h3>Message<Info width={200} label='Typically this will be a "commit message" for Git. Your organization may require a specific convention for these messages.' /></h3>
+      <h3>Commit Message<Info width={200} label='Typically this will be a "commit message" for Git. Your organization may require a specific convention for these messages.' /></h3>
       <Row fill>
         <Input
           type='text'
-          required
-          pattern='.*'
           placeholder='Describe what has changed since the last export'
-          value={message}
-          onChange={value => { message = value }}
+          value={commitMessage}
+          onChange={value => setCommitMessage(value)}
         />
       </Row>
       <Footer>

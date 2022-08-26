@@ -12,6 +12,6 @@ export type urlExportRequestBody = {
   'client_payload': {
     tokens: string,
     filename: string,
-    message: string
+    commitMessage: string
   }
 }

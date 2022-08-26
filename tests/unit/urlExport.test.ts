@@ -26,7 +26,7 @@ describe('Testing urlExport', () => {
             "client_payload": {
                 "tokens": '',
                 "filename": 'myBaseFile.json',
-                "message": ''
+                "commitMessage": ''
             }
         } as urlExportRequestBody
     })
@@ -64,8 +64,8 @@ describe('Testing urlExport', () => {
                 const payloadFilename = "file.new"
                 mockUrlExportRequestBody.client_payload.filename=payloadFilename
 
-                const payloadMessage = "feat(tokens): Some tokens were added."
-                mockUrlExportRequestBody.client_payload.message=payloadMessage
+                const payloadCommitMessage = "feat(tokens): Some tokens were added."
+                mockUrlExportRequestBody.client_payload.commitMessage=payloadCommitMessage
 
 
                 const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
@@ -75,18 +75,18 @@ describe('Testing urlExport', () => {
                 expect(body.append).toHaveBeenCalledWith("variables[FIGMA_EVENT_TYPE]", event_type)
                 expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]", payloadTokens)
                 expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]", payloadFilename)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_MESSAGE]", payloadMessage)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_COMMIT_MESSAGE]", payloadCommitMessage)
             })
 
-        test('If a message is included, it is in the client_payload',
+        test('If a commit message is included, it is in the client_payload',
             () => {
-                const payloadMessage = "feat(tokens): Some tokens were added."
-                mockUrlExportRequestBody.client_payload.message = payloadMessage
+                const payloadCommitMessage = "feat(tokens): Some tokens were added."
+                mockUrlExportRequestBody.client_payload.commitMessage = payloadCommitMessage
 
                 const bodyString = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
                 const body = JSON.parse(bodyString);
-                expect(body.client_payload).toHaveProperty('message')
-                expect(body.client_payload.message).toStrictEqual(payloadMessage);
+                expect(body.client_payload).toHaveProperty('commitMessage')
+                expect(body.client_payload.commitMessage).toStrictEqual(payloadCommitMessage);
             })
 
     })
