@@ -25,7 +25,8 @@ describe('Testing urlExport', () => {
             "event_type": 'baseEvent',
             "client_payload": {
                 "tokens": '',
-                "filename": 'myBaseFile.json'
+                "filename": 'myBaseFile.json',
+                "commitMessage": ''
             }
         } as urlExportRequestBody
     })
@@ -63,15 +64,31 @@ describe('Testing urlExport', () => {
                 const payloadFilename = "file.new"
                 mockUrlExportRequestBody.client_payload.filename=payloadFilename
 
+                const payloadCommitMessage = "feat(tokens): Some tokens were added."
+                mockUrlExportRequestBody.client_payload.commitMessage=payloadCommitMessage
+
 
                 const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
                 expect(body.append).toHaveBeenCalledWith("token", accessToken)
-                expect(body.append).toHaveBeenCalledWith("token",accessToken)
-                expect(body.append).toHaveBeenCalledWith("ref",reference)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_EVENT_TYPE]",event_type)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]",payloadTokens)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]",payloadFilename)
+                expect(body.append).toHaveBeenCalledWith("token", accessToken)
+                expect(body.append).toHaveBeenCalledWith("ref", reference)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_EVENT_TYPE]", event_type)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]", payloadTokens)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]", payloadFilename)
+                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_COMMIT_MESSAGE]", payloadCommitMessage)
             })
+
+        test('If a commit message is included, it is in the client_payload',
+            () => {
+                const payloadCommitMessage = "feat(tokens): Some tokens were added."
+                mockUrlExportRequestBody.client_payload.commitMessage = payloadCommitMessage
+
+                const bodyString = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
+                const body = JSON.parse(bodyString);
+                expect(body.client_payload).toHaveProperty('commitMessage')
+                expect(body.client_payload.commitMessage).toStrictEqual(payloadCommitMessage);
+            })
+
     })
 
     describe("addUrlExportRequestHeaders testing", () => {

@@ -76,6 +76,7 @@ const generateUrlExportRequestBody = (exportSettings: urlExportSettings, request
     body.append('variables[FIGMA_EVENT_TYPE]', requestBody.event_type)
     body.append('variables[FIGMA_CLIENT_PAYLOAD_TOKENS]', requestBody.client_payload.tokens)
     body.append('variables[FIGMA_CLIENT_PAYLOAD_FILENAME]', requestBody.client_payload.filename)
+    body.append('variables[FIGMA_CLIENT_PAYLOAD_COMMIT_MESSAGE]', requestBody.client_payload.commitMessage)
   } else {
     body = JSON.stringify(requestBody, null, 2)
   }
