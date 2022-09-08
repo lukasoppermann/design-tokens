@@ -1,17 +1,19 @@
 import { internalTokenInterface } from '@typings/propertyObject'
 import { Settings } from '../../types/settings'
 import { transformer as originalFormatTransformer } from '@src/transformer/originalFormatTransformer'
-import { transformer as standardTransformer } from '@src/transformer/standardTransformer'
+import { getStandardTransformer } from '@src/transformer/standardTransformer'
 import { groupByKeyAndName } from '@utils/groupByName'
 import { tokenTypes } from '@config/tokenTypes'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 import { prefixTokenName } from './prefixTokenName'
+import { formatKeys } from '@config/format'
 
 const tokenTransformer = {
   original: originalFormatTransformer,
-  standard: standardTransformer
+  standardDeprecated: getStandardTransformer(formatKeys.standardDeprecated),
+  standard: getStandardTransformer(formatKeys.standard)
 }
 
 const createTypographyTokens = (tokens: internalTokenInterface[], format) => {

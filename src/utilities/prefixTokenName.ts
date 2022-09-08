@@ -5,8 +5,15 @@ import { StandardTokenInterface } from '@typings/standardToken'
 
 const getExportKey = (token: OriginalFormatTokenInterface | StandardTokenInterface) => {
   // standard token
+  // @ts-ignore
   if (token.extensions?.[config.key.extensionPluginData]?.exportKey !== undefined) {
+    // @ts-ignore
     return token.extensions[config.key.extensionPluginData].exportKey
+  }
+  // @ts-ignore
+  if (token.$extensions?.[config.key.extensionPluginData]?.exportKey !== undefined) {
+    // @ts-ignore
+    return token.$extensions[config.key.extensionPluginData].exportKey
   }
   return 'missingExportKey'
 }
@@ -31,7 +38,7 @@ export const prefixTokenName = (tokenArray: OriginalFormatTokenInterface[] | Sta
       // add exportKey to token
       if (token.extensions?.[config.key.extensionPluginData]?.alias !== undefined) {
         token.extensions[config.key.extensionPluginData].alias = `${getExportKey(token)}.${token.extensions[config.key.extensionPluginData].alias
-}`
+          }`
       }
     }
 
