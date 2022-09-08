@@ -35,10 +35,10 @@ const style = css`
 `
 
 export const UrlExportSettings = () => {
-  const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
+  const { settings, updateSettings } = useContext<{ settings: Settings, updateSettings: any }>(SettingsContext)
   const { tokens, setTokens } = useContext(TokenContext)
   const { figmaUIApi } = useContext(FigmaContext)
-  const [commitMessage, setCommitMessage] = useState("")
+  const [commitMessage, setCommitMessage] = useState('')
 
   const handleFormSubmit = (event) => {
     event.preventDefault() // Prevent form submit triggering navigation
@@ -54,7 +54,7 @@ export const UrlExportSettings = () => {
             accessToken: accessToken
           }
         } as PluginMessage
-      // @ts-ignore
+        // @ts-ignore
       }, '*')
       // prepare token json
       const tokensToExport = prepareExport(tokens, pluginSettings)
@@ -68,15 +68,14 @@ export const UrlExportSettings = () => {
         authType: settings.authType,
         reference: settings.reference
       } as urlExportSettings,
-      {
-        event_type: settings.eventType,
-        client_payload: {
-          tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
-          filename: `${settings.filename}${settings.extension}`,
-          commitMessage: `${commitMessage}`
-        }
-      } as urlExportRequestBody)
-
+        {
+          event_type: settings.eventType,
+          client_payload: {
+            tokens: `${stringifyJson(tokensToExport, settings.urlJsonCompression)}`,
+            filename: `${settings.filename}${settings.extension}`,
+            commitMessage: `${commitMessage}`
+          }
+        } as urlExportRequestBody)
     }
   }
 
