@@ -46,7 +46,7 @@ const isStyle = (key: string): boolean => ['color', 'gradient', 'grid', 'effect'
 export const GeneralSettings = () => {
   const [isStandard, setStandard] = useState(false)
   const { figmaUIApi, figmaMetaData } = useContext(FigmaContext)
-  const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
+  const { settings, updateSettings } = useContext<{ settings: Settings, updateSettings: any }>(SettingsContext)
 
   const handleFormSubmit = (event) => {
     event.preventDefault() // Prevent form submit triggering navigation
@@ -63,7 +63,7 @@ export const GeneralSettings = () => {
             accessToken: accessToken
           }
         }
-      // @ts-ignore
+        // @ts-ignore
       }, '*')
     }
   }
@@ -137,6 +137,10 @@ export const GeneralSettings = () => {
               {
                 label: 'Standard (W3C draft)',
                 value: 'standard'
+              },
+              {
+                label: 'Standard deprecated (previous W3C draft)',
+                value: 'standardDeprecated'
               },
               {
                 label: 'Original (deprecated)',
