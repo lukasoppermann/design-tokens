@@ -135,7 +135,7 @@ export const GeneralSettings = () => {
             placeholder='Token format'
             options={[
               {
-                label: 'Standard (W3C draft)',
+                label: 'Standard (W3C draft — 31.08.22)',
                 value: 'standard'
               },
               {
