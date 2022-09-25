@@ -12,6 +12,18 @@ const buildPath = basePath + 'build/'
 const StyleDictionaryExtended = StyleDictionary.extend({
   // adding imported configs
   ...deepMerge.all([androidConfig, iosConfig, webConfig]),
+  // custom parser for new standard token josn
+  parsers: [{
+    pattern: /\.json$/,
+    parse: ({ filePath, contents }) => {
+      contents = contents
+        .replace(/"\$value":/g, '"value":')
+        .replace(/"\$type":/g, '"type":')
+        .replace(/"\$description":/g, '"description":')
+        .replace(/"\$extension":/g, '"extension":')
+      return JSON.parse(contents)
+    }
+  }],
   source: [basePath + 'input/*.json'],
   platforms: {
     css: {

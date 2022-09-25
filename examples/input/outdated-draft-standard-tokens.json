@@ -1,93 +1,93 @@
 {
   "sizes": {
     "32": {
-      "$description": "32.72px spacer component",
-      "$value": 32.72,
-      "$type": "dimension"
+      "description": "32.72px spacer component",
+      "value": 32.72,
+      "type": "dimension"
     },
     "40": {
-      "$description": null,
-      "$value": 40,
-      "$type": "dimension"
+      "description": null,
+      "value": 40,
+      "type": "dimension"
     },
     "60": {
-      "$description": null,
-      "$value": 60,
-      "$type": "dimension"
+      "description": null,
+      "value": 60,
+      "type": "dimension"
     },
     "80": {
-      "$description": null,
-      "$value": 80,
-      "$type": "dimension"
+      "description": null,
+      "value": 80,
+      "type": "dimension"
     },
     "plain token": {
-      "$description": null,
-      "$value": 200,
-      "$type": "dimension"
+      "description": null,
+      "value": 200,
+      "type": "dimension"
     },
     "token in frame": {
-      "$description": null,
-      "$value": 200,
-      "$type": "dimension"
+      "description": null,
+      "value": 200,
+      "type": "dimension"
     },
     "token in group": {
-      "$description": null,
-      "$value": 200,
-      "$type": "dimension"
+      "description": null,
+      "value": 200,
+      "type": "dimension"
     },
     "in variant 60": {
-      "$description": null,
-      "$value": 60,
-      "$type": "dimension"
+      "description": null,
+      "value": 60,
+      "type": "dimension"
     },
     "in variant 90": {
-      "$description": null,
-      "$value": 90,
-      "$type": "dimension"
+      "description": null,
+      "value": 90,
+      "type": "dimension"
     },
     "in variant 120": {
-      "$description": null,
-      "$value": 120,
-      "$type": "dimension"
+      "description": null,
+      "value": 120,
+      "type": "dimension"
     },
     "frame": {
-      "$description": null,
-      "$value": 32,
-      "$type": "dimension"
+      "description": null,
+      "value": 32,
+      "type": "dimension"
     },
     "rect": {
-      "$description": null,
-      "$value": 32,
-      "$type": "dimension"
+      "description": null,
+      "value": 32,
+      "type": "dimension"
     },
     "shape in component": {
-      "$description": "Should use 32px not 20 from inside shape",
-      "$value": 32,
-      "$type": "dimension"
+      "description": "Should use 32px not 20 from inside shape",
+      "value": 32,
+      "type": "dimension"
     }
   },
   "breakpoints": {
     "lg": {
-      "$description": null,
-      "$value": 1280,
-      "$type": "dimension"
+      "description": null,
+      "value": 1280,
+      "type": "dimension"
     },
     "sm": {
-      "$description": null,
-      "$value": 768,
-      "$type": "dimension"
+      "description": null,
+      "value": 768,
+      "type": "dimension"
     },
     "md": {
-      "$description": null,
-      "$value": 1024,
-      "$type": "dimension"
+      "description": null,
+      "value": 1024,
+      "type": "dimension"
     }
   },
   "spacing": {
     "10": {
-      "$description": null,
-      "$type": "custom-spacing",
-      "$value": {
+      "description": null,
+      "type": "custom-spacing",
+      "value": {
         "top": 10,
         "bottom": 10,
         "left": 10,
@@ -95,9 +95,9 @@
       }
     },
     "mixed": {
-      "$description": null,
-      "$type": "custom-spacing",
-      "$value": {
+      "description": null,
+      "type": "custom-spacing",
+      "value": {
         "top": 10,
         "bottom": 30,
         "left": 20,
@@ -105,9 +105,9 @@
       }
     },
     "top": {
-      "$description": null,
-      "$type": "custom-spacing",
-      "$value": {
+      "description": null,
+      "type": "custom-spacing",
+      "value": {
         "top": 10,
         "bottom": 0,
         "left": 0,
@@ -117,9 +117,9 @@
   },
   "borders": {
     "single": {
-      "$description": null,
-      "$type": "custom-stroke",
-      "$value": {
+      "description": null,
+      "type": "custom-stroke",
+      "value": {
         "align": "inside",
         "dashPattern": [],
         "lineCap": "none",
@@ -130,9 +130,9 @@
       }
     },
     "dashed outside": {
-      "$description": null,
-      "$type": "custom-stroke",
-      "$value": {
+      "description": null,
+      "type": "custom-stroke",
+      "value": {
         "align": "outside",
         "dashPattern": [
           5,
@@ -148,9 +148,9 @@
       }
     },
     "single (style)": {
-      "$description": null,
-      "$type": "custom-stroke",
-      "$value": {
+      "description": null,
+      "type": "custom-stroke",
+      "value": {
         "align": "inside",
         "dashPattern": [],
         "lineCap": "none",
@@ -162,9 +162,9 @@
     },
     "unsupported": {
       "multiple borders": {
-        "$description": null,
-        "$type": "custom-stroke",
-        "$value": {
+        "description": null,
+        "type": "custom-stroke",
+        "value": {
           "align": "inside",
           "dashPattern": [
             5,
@@ -181,9 +181,9 @@
   },
   "radius": {
     "5": {
-      "$description": null,
-      "$type": "custom-radius",
-      "$value": {
+      "description": null,
+      "type": "custom-radius",
+      "value": {
         "smoothing": 0,
         "topLeft": 5,
         "topRight": 5,
@@ -194,9 +194,9 @@
   },
   "radii": {
     "smoothing": {
-      "$description": null,
-      "$type": "custom-radius",
-      "$value": {
+      "description": null,
+      "type": "custom-radius",
+      "value": {
         "smoothing": 0.75,
         "topLeft": 10,
         "topRight": 10,
@@ -205,9 +205,9 @@
       }
     },
     "mixed": {
-      "$description": null,
-      "$type": "custom-radius",
-      "$value": {
+      "description": null,
+      "type": "custom-radius",
+      "value": {
         "smoothing": 0,
         "topLeft": 5.5,
         "topRight": 10,
@@ -218,9 +218,9 @@
   },
   "motion": {
     "move in": {
-      "$description": null,
-      "$type": "custom-transition",
-      "$value": {
+      "description": null,
+      "type": "custom-transition",
+      "value": {
         "transitionType": "move_in",
         "duration": 0.5,
         "direction": "left",
@@ -233,9 +233,9 @@
       }
     },
     "dissolve": {
-      "$description": null,
-      "$type": "custom-transition",
-      "$value": {
+      "description": null,
+      "type": "custom-transition",
+      "value": {
         "transitionType": "dissolve",
         "duration": 0.45,
         "easingFunction": {
@@ -247,9 +247,9 @@
       }
     },
     "smart": {
-      "$description": null,
-      "$type": "custom-transition",
-      "$value": {
+      "description": null,
+      "type": "custom-transition",
+      "value": {
         "transitionType": "smart_animate",
         "duration": 0.5,
         "easingFunction": {
@@ -261,9 +261,9 @@
       }
     },
     "push": {
-      "$description": null,
-      "$type": "custom-transition",
-      "$value": {
+      "description": null,
+      "type": "custom-transition",
+      "value": {
         "transitionType": "push",
         "duration": 0.5,
         "direction": "left",
@@ -279,9 +279,9 @@
   "gradient": {
     "gradient": {
       "single with multiple color stops": {
-        "$description": "Four color stops from yellow to red",
-        "$type": "custom-gradient",
-        "$value": {
+        "description": "Four color stops from yellow to red",
+        "type": "custom-gradient",
+        "value": {
           "gradientType": "radial",
           "rotation": 180,
           "stops": [
@@ -306,8 +306,8 @@
       },
       "multiple": {
         "0": {
-          "$type": "custom-gradient",
-          "$value": {
+          "type": "custom-gradient",
+          "value": {
             "gradientType": "linear",
             "rotation": 180,
             "stops": [
@@ -323,8 +323,8 @@
           }
         },
         "1": {
-          "$type": "custom-gradient",
-          "$value": {
+          "type": "custom-gradient",
+          "value": {
             "gradientType": "radial",
             "rotation": 180,
             "stops": [
@@ -340,8 +340,8 @@
           }
         },
         "2": {
-          "$type": "custom-gradient",
-          "$value": {
+          "type": "custom-gradient",
+          "value": {
             "gradientType": "angular",
             "rotation": 180,
             "stops": [
@@ -357,8 +357,8 @@
           }
         },
         "3": {
-          "$type": "custom-gradient",
-          "$value": {
+          "type": "custom-gradient",
+          "value": {
             "gradientType": "diamond",
             "rotation": 180,
             "stops": [
@@ -373,7 +373,7 @@
             ]
           }
         },
-        "$description": null
+        "description": null
       }
     }
   },
@@ -381,53 +381,53 @@
     "colors": {
       "multiple fills": {
         "0": {
-          "$type": "color",
-          "$value": "#40ffbaff"
+          "type": "color",
+          "value": "#40ffbaff"
         },
         "1": {
-          "$type": "color",
-          "$value": "#0000001a"
+          "type": "color",
+          "value": "#0000001a"
         },
-        "$description": null
+        "description": null
       },
       "single blue": {
-        "$description": null,
-        "$type": "color",
-        "$value": "#044affff"
+        "description": null,
+        "type": "color",
+        "value": "#044affff"
       },
       "special characters": {
         "😅": {
-          "$description": "Emoji",
-          "$type": "color",
-          "$value": "#40df50ff"
+          "description": "Emoji",
+          "type": "color",
+          "value": "#40df50ff"
         },
         "änderung": {
-          "$description": null,
-          "$type": "color",
-          "$value": "#3456afff"
+          "description": null,
+          "type": "color",
+          "value": "#3456afff"
         }
       }
     },
     "light": {
       "background": {
-        "$description": null,
-        "$type": "color",
-        "$value": "#ffffffff"
+        "description": null,
+        "type": "color",
+        "value": "#ffffffff"
       }
     },
     "dark": {
       "background": {
-        "$description": null,
-        "$type": "color",
-        "$value": "#000000ff"
+        "description": null,
+        "type": "color",
+        "value": "#000000ff"
       }
     }
   },
   "grid": {
     "multiple": {
       "0": {
-        "$type": "custom-grid",
-        "$value": {
+        "type": "custom-grid",
+        "value": {
           "pattern": "columns",
           "sectionSize": 1,
           "gutterSize": 20,
@@ -437,8 +437,8 @@
         }
       },
       "1": {
-        "$type": "custom-grid",
-        "$value": {
+        "type": "custom-grid",
+        "value": {
           "pattern": "columns",
           "sectionSize": 12,
           "gutterSize": 20,
@@ -447,8 +447,8 @@
         }
       },
       "2": {
-        "$type": "custom-grid",
-        "$value": {
+        "type": "custom-grid",
+        "value": {
           "pattern": "columns",
           "gutterSize": 20,
           "alignment": "stretch",
@@ -457,8 +457,8 @@
         }
       },
       "3": {
-        "$type": "custom-grid",
-        "$value": {
+        "type": "custom-grid",
+        "value": {
           "pattern": "columns",
           "sectionSize": 34,
           "gutterSize": 20,
@@ -468,8 +468,8 @@
         }
       },
       "4": {
-        "$type": "custom-grid",
-        "$value": {
+        "type": "custom-grid",
+        "value": {
           "pattern": "rows",
           "sectionSize": 8,
           "gutterSize": 20,
@@ -479,8 +479,8 @@
         }
       },
       "5": {
-        "$type": "custom-grid",
-        "$value": {
+        "type": "custom-grid",
+        "value": {
           "pattern": "rows",
           "sectionSize": 8,
           "gutterSize": 10,
@@ -489,8 +489,8 @@
         }
       },
       "6": {
-        "$type": "custom-grid",
-        "$value": {
+        "type": "custom-grid",
+        "value": {
           "pattern": "rows",
           "sectionSize": 8,
           "gutterSize": 20,
@@ -500,18 +500,18 @@
         }
       },
       "7": {
-        "$type": "custom-grid",
-        "$value": {
+        "type": "custom-grid",
+        "value": {
           "pattern": "grid",
           "sectionSize": 8
         }
       },
-      "$description": "Grid / multiple description text"
+      "description": "Grid / multiple description text"
     },
     "single": {
-      "$description": null,
-      "$type": "custom-grid",
-      "$value": {
+      "description": null,
+      "type": "custom-grid",
+      "value": {
         "pattern": "columns",
         "sectionSize": 11,
         "gutterSize": 20,
@@ -523,9 +523,9 @@
   "font": {
     "body": {
       "h3": {
-        "$description": "Comment for text style",
-        "$type": "custom-fontStyle",
-        "$value": {
+        "description": "Comment for text style",
+        "type": "custom-fontStyle",
+        "value": {
           "fontSize": 20,
           "textDecoration": "none",
           "fontFamily": "Akzidenz-Grotesk Pro",
@@ -540,9 +540,9 @@
         }
       },
       "h4 strike through": {
-        "$description": "With stylisitc options",
-        "$type": "custom-fontStyle",
-        "$value": {
+        "description": "With stylisitc options",
+        "type": "custom-fontStyle",
+        "value": {
           "fontSize": 16,
           "textDecoration": "line-through",
           "fontFamily": "Roboto",
@@ -557,8 +557,8 @@
         }
       },
       "italic": {
-        "$type": "custom-fontStyle",
-        "$value": {
+        "type": "custom-fontStyle",
+        "value": {
           "fontSize": 12,
           "textDecoration": "none",
           "fontFamily": "Roboto",
@@ -573,8 +573,8 @@
         }
       },
       "extra bold condensed italic": {
-        "$type": "custom-fontStyle",
-        "$value": {
+        "type": "custom-fontStyle",
+        "value": {
           "fontSize": 12,
           "textDecoration": "none",
           "fontFamily": "Akzidenz-Grotesk Pro",
@@ -589,8 +589,8 @@
         }
       },
       "medium extended italic": {
-        "$type": "custom-fontStyle",
-        "$value": {
+        "type": "custom-fontStyle",
+        "value": {
           "fontSize": 20,
           "textDecoration": "none",
           "fontFamily": "Akzidenz-Grotesk Pro",
@@ -605,8 +605,8 @@
         }
       },
       "super": {
-        "$type": "custom-fontStyle",
-        "$value": {
+        "type": "custom-fontStyle",
+        "value": {
           "fontSize": 22,
           "textDecoration": "none",
           "fontFamily": "Akzidenz-Grotesk Pro",
@@ -624,9 +624,9 @@
   },
   "effect": {
     "drop shadow (single)": {
-      "$description": "Drop shadow single description",
-      "$type": "custom-shadow",
-      "$value": {
+      "description": "Drop shadow single description",
+      "type": "custom-shadow",
+      "value": {
         "shadowType": "dropShadow",
         "radius": 4,
         "color": "#00000040",
@@ -637,8 +637,8 @@
     },
     "inner shadow (multiple)": {
       "0": {
-        "$type": "custom-shadow",
-        "$value": {
+        "type": "custom-shadow",
+        "value": {
           "shadowType": "innerShadow",
           "radius": 4,
           "color": "#00000040",
@@ -648,8 +648,8 @@
         }
       },
       "1": {
-        "$type": "custom-shadow",
-        "$value": {
+        "type": "custom-shadow",
+        "value": {
           "shadowType": "innerShadow",
           "radius": 1,
           "color": "#000000ff",
@@ -659,8 +659,8 @@
         }
       },
       "2": {
-        "$type": "custom-shadow",
-        "$value": {
+        "type": "custom-shadow",
+        "value": {
           "shadowType": "innerShadow",
           "radius": 3,
           "color": "#00000040",
@@ -669,13 +669,13 @@
           "spread": 11
         }
       },
-      "$description": null
+      "description": null
     },
     "layer blur": {
-      "$description": null
+      "description": null
     },
     "background blur": {
-      "$description": null
+      "description": null
     }
   }
 }
