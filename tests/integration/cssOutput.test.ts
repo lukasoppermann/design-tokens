@@ -1,6 +1,6 @@
 import fs from 'fs'
-import cssOutputData from './data/cssOutput.data'
-import cssStandardOutputData from './data/cssStandardOutput.data'
+import cssOutputData from './spec_data/cssOutput.data'
+import cssStandardOutputData from './spec_data/cssStandardOutput.data'
 
 describe('Compare css converterd file to data set', () => {
   test('original css data', () => {
@@ -19,6 +19,19 @@ describe('Compare css converterd file to data set', () => {
   test('standard css data', () => {
     // read files
     const css = fs.readFileSync('./tests/integration/data/standard.variables.css', 'utf8').replace(/^\s+|\s+$/g, '')
+    // remove starting comment
+    const lines = css.split('\n')
+    // remove comment from start
+    lines.splice(0, lines.findIndex(line => line === ':root {'))
+    // join the array back into a single string
+    const convertedCss = lines.join('\n')
+    // compare to data
+    expect(convertedCss).toStrictEqual(cssStandardOutputData)
+  })
+
+  test('previous standard css data', () => {
+    // read files
+    const css = fs.readFileSync('./tests/integration/data/previous-standard.variables.css', 'utf8').replace(/^\s+|\s+$/g, '')
     // remove starting comment
     const lines = css.split('\n')
     // remove comment from start

@@ -1,18 +1,7 @@
 const StyleDictionary = require('style-dictionary')
 
 const StyleDictionaryExtended = StyleDictionary.extend({
-  parsers: [{
-    pattern: /\.json$/,
-    parse: ({ filePath, contents }) => {
-      contents = contents
-        .replace(/"\$value":/g, '"value":')
-        .replace(/"\$type":/g, '"type":')
-        .replace(/"\$description":/g, '"description":')
-        .replace(/"\$extension":/g, '"extension":')
-      return JSON.parse(contents)
-    }
-  }],
-  source: ['./tests/files/standard-tokens.json'],
+  source: ['./tests/files/previous-standard-tokens.json'],
   transform: {
     'size/px': require('./libs/standard/web/sizePx'),
     'web/shadow': require('./libs/standard/web/webShadows'),
@@ -39,7 +28,7 @@ const StyleDictionaryExtended = StyleDictionary.extend({
       buildPath: './tests/integration/data/',
       files: [
         {
-          destination: 'standard.variables.css',
+          destination: 'previous-standard.variables.css',
           format: 'css',
           options: {
             showFileHeader: false
