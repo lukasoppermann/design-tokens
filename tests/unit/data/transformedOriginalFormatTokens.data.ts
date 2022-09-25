@@ -30,7 +30,7 @@ export const transformedOriginalTokens = {
     exportKey: 'opacity',
     name: 'disabled button opacity',
     type: 'number',
-    value: 0.3,
+    value: 0.3
   },
   /**
    * spacing

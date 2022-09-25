@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export type formatKeysType = {
   VALUE: '$value' | 'value',
   DESCRIPTION: '$description' | 'description',

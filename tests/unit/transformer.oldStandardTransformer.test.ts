@@ -1,17 +1,17 @@
 import { getStandardTransformer } from '../../src/transformer/standardTransformer'
 import { extractedFigmaTokens } from './data/extractedFigmaTokens.data'
-import { transformedStandardTokens } from './data/transformedStandardTokens.data'
+import { transformedStandardTokens } from './data/transformedOldStandardTokens.data'
 import { formatKeysType } from '../../src/config/format'
 
 const w3cFormatKeys: formatKeysType = {
-  VALUE: '$value',
-  DESCRIPTION: '$description',
-  TYPE: '$type',
-  EXTENSIONS: '$extensions',
+  VALUE: 'value',
+  DESCRIPTION: 'description',
+  TYPE: 'type',
+  EXTENSIONS: 'extensions',
   NAME: 'name'
 }
 
-describe('w3c draft standard Transfomer', () => {
+describe('old w3c draft standard Transfomer', () => {
   const transformer = getStandardTransformer(w3cFormatKeys)
   //
   test('size token', () => expect(transformer(extractedFigmaTokens.size)).toStrictEqual(transformedStandardTokens.size))
