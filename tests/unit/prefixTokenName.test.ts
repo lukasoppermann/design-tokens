@@ -34,13 +34,94 @@ describe('prefixTokenName', () => {
     }])
   })
 
+  test('token prefix', () => {
+    expect(prefixTokenName([
+      // @ts-ignore
+      {
+        name: 'token/full',
+        category: 'color',
+        values: '#000000',
+        $extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            exportKey: 'color',
+            styleId: 31
+          }
+        }
+      }
+    ], {
+      ...defaultSettings,
+      ...{ prefixInName: true, keyInName: true }
+    })).toStrictEqual([{
+      name: 'color/token/full',
+      category: 'color',
+      values: '#000000',
+      $extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          exportKey: 'color',
+          styleId: 31
+        }
+      }
+    }])
+  })
+
+  test('token no prefix', () => {
+    expect(prefixTokenName([
+      // @ts-ignore
+      {
+        name: 'token/noAlias/red',
+        category: 'color',
+        values: '#000000'
+      }
+    ], {
+      ...defaultSettings,
+      ...{ keyInName: true }
+    })).toStrictEqual([{
+      name: 'missingExportKey/token/noAlias/red',
+      category: 'color',
+      values: '#000000'
+    }])
+  })
+
   test('token no prefix', () => {
     expect(prefixTokenName([
       // @ts-ignore
       {
         name: 'token/full',
         category: 'color',
-        values: '#000000'
+        values: '#000000',
+        $extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            styleId: 31
+          }
+        }
+      }
+    ], {
+      ...defaultSettings,
+      ...{ keyInName: false }
+    })).toStrictEqual([{
+      name: 'token/full',
+      category: 'color',
+      values: '#000000',
+      $extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          styleId: 31
+        }
+      }
+    }])
+  })
+
+  test('token no prefix in name', () => {
+    expect(prefixTokenName([
+      // @ts-ignore
+      {
+        name: 'token/full',
+        category: 'color',
+        values: '#000000',
+        $extensions: {
+          'org.lukasoppermann.figmaDesignTokens': {
+            styleId: 31
+          }
+        }
       }
     ], {
       ...defaultSettings,
@@ -48,7 +129,12 @@ describe('prefixTokenName', () => {
     })).toStrictEqual([{
       name: 'full',
       category: 'color',
-      values: '#000000'
+      values: '#000000',
+      $extensions: {
+        'org.lukasoppermann.figmaDesignTokens': {
+          styleId: 31
+        }
+      }
     }])
   })
 
