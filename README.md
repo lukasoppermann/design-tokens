@@ -68,6 +68,11 @@ git clone https://github.com/lukasoppermann/design-token-transformer.git
 3. Run `npm run transform-tokens` from the commandline
 4. 🎉 Your converted tokens should be in the `build` folder. For more customization options check out the [design token transformer documentation](https://github.com/lukasoppermann/design-token-transformer)
 
+## Transforming tokens using Amazon style dictionary and style dictionary utils
+The package [style-dictionary-utils](https://github.com/lukasoppermann/style-dictionary-utils) provides a parsers and many filters and transformers that can be used with `w3c design tokens`.
+
+It is meant to help you set up a build process with the tokens exported from figma design tokens.
+
 ## Creating Design Tokens
 ### Figma style design tokens
 The plugin converts the styles you define in Figma into design tokens, this includes `Text Styles`, `Color Styles`, `Grid Styles` and `Effect Styles`.
