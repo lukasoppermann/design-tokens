@@ -17,8 +17,14 @@ export type StandardTokenTypes = 'string' |
   'boolean' |
   'null' |
   'color' |
+  'gradient' |
   'dimension' |
   'font' |
+  'fontFamily' |
+  'fontWeight' |
+  'shadow' |
+  'typography' |
+  'border' |
   customTokenTypes
 
 export type StandardTokenValueType = string | number | Array<any> | Object | Boolean | null
@@ -60,8 +66,12 @@ export type StandardTokenDataInterface = {
   $type: StandardTokenTypes,
   $extensions?: StandardTokenExtensionsInterface
   blendMode?: BlendType,
-} | StandardDeprecatedTokenDataInterface
+}
 
-export type StandardTokenInterface = {
+export type StandardTokenInterfaceV2 = {
   name: string
 } & StandardTokenDataInterface
+
+export type StandardTokenInterfaceV1 = {
+  name: string
+} & StandardDeprecatedTokenDataInterface
