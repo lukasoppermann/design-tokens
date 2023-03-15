@@ -25,6 +25,7 @@ export type StandardTokenTypes = 'string' |
   'shadow' |
   'typography' |
   'border' |
+  'transition' |
   customTokenTypes
 
 export type StandardTokenValueType = string | number | Array<any> | Object | Boolean | null

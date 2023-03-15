@@ -123,8 +123,26 @@ class StandardTransformerV2 extends TokenTransformer {
     return { ...effects }
   }
 
-  transformGrid (token: internalTokenInterface): StandardTokenDataInterface {
-    throw new Error('Method not implemented.')
+  transformGrid(token: internalTokenInterface): StandardTokenDataInterface {
+    // @ts-ignore
+    const grids = token.values.map(grid => ({
+      [this._formatKeys.TYPE]: 'custom-grid' as StandardTokenTypes,
+      // @ts-ignore
+      [this._formatKeys.VALUE]: {
+        pattern: grid.pattern.value,
+        ...(grid.sectionSize ? { sectionSize: grid.sectionSize.value } : {}),
+        ...(grid.gutterSize ? { gutterSize: grid.gutterSize.value } : {}),
+        ...(grid.alignment ? { alignment: grid.alignment.value } : {}),
+        ...(grid.count ? { count: grid.count.value } : {}),
+        ...(grid.offset ? { offset: grid.offset.value } : {})
+      }
+    }))
+    // single grid
+    if (grids.length === 1) {
+      return grids[0]
+    }
+    // multiple grids
+    return { ...grids }
   }
 
   transformBorder (token: internalTokenInterface): StandardTokenDataInterface {
@@ -156,7 +174,12 @@ class StandardTransformerV2 extends TokenTransformer {
   }
 
   transformBreakpoint (token: internalTokenInterface): StandardTokenDataInterface {
-    throw new Error('Method not implemented.')
+    // @ts-ignore
+    return {
+      // @ts-ignore
+      [this._formatKeys.VALUE]: `${token.values.width.value}px`,
+      [this._formatKeys.TYPE]: 'dimension' as StandardTokenTypes
+    }
   }
 
   transformRadius (token: internalTokenInterface): StandardTokenDataInterface {
@@ -193,8 +216,36 @@ class StandardTransformerV2 extends TokenTransformer {
     }
   }
 
-  transformMotion (token: internalTokenInterface): StandardTokenDataInterface {
-    throw new Error('Method not implemented.')
+  transformMotion(token: internalTokenInterface): StandardTokenDataInterface {
+    const formatDuration = (durationObject: { value: number, unit: string }) => {
+      if (durationObject.unit === 'ms') return `${durationObject.value}ms`
+      if (durationObject.unit === 's') return `${durationObject.value * 1000}ms`
+      throw new Error("Invalid duration unit");
+    }
+
+    const formatTimingFunction = (timingFunction: { x1: { value: number }, x2: { value: number }, y1: { value: number }, y2: { value: number } }): [number, number, number, number] => {
+      // spring animation is not supported in w3c tokens
+      if (Object.hasOwnProperty.call(timingFunction, 'mass')) return null
+      return [
+        timingFunction.x1.value,
+        timingFunction.y1.value,
+        timingFunction.x2.value,
+        timingFunction.y2.value,
+      ]
+    }
+    // @ts-ignore
+    return {
+      // @ts-ignore
+      [this._formatKeys.TYPE]: 'transition' as StandardTokenTypes,
+      [this._formatKeys.VALUE]: {
+        // @ts-ignore
+        duration: formatDuration(token.values.duration),
+        // @ts-ignore
+        delay: "0ms",
+        // @ts-ignore
+        timingFunction: formatTimingFunction(token.values.easingFunction)
+      }
+    }
   }
 
   transformOpacity (token: internalTokenInterface): StandardTokenDataInterface {
