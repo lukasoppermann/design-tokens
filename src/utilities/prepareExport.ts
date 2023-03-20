@@ -11,7 +11,8 @@ import { prefixTokenName } from './prefixTokenName'
 
 const tokenTransformer = {
   original: originalFormatTransformer,
-  standard: standardTransformer
+  standard: standardTransformer,
+  standardDeprecated: standardTransformer
 }
 
 const createTypographyTokens = (tokens: internalTokenInterface[], format) => {
