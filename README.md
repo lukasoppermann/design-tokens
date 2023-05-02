@@ -387,7 +387,7 @@ The body of the request will look like the following:
 ```
 
 ### URL Export Settings
-## Compression for json output to server
+#### Compression for json output to server
 This option allows you to toggle the json compression for the export to a server.
 When enabled the json that is end to the server will be minified meaning whitespace and linebreaks will be removed.
 
