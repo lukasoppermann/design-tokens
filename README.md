@@ -375,10 +375,6 @@ If you which to ignore specific styles, use the [exclude prefix](https://github.
 
 ![Design Tokens plugin url export settings](https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Url-Export-Settings.png)
 
-### Compression for json output to server
-This option allows you to toggle the json compression for the export to a server.
-When enabled the json that is end to the server will be minified meaning whitespace and linebreaks will be removed.
-
 When a `server url` is specified, the command `Send Design Tokens to Url` will send a `POST` request to the provided url.
 The body of the request will look like the following:
 ```ts
@@ -390,6 +386,12 @@ The body of the request will look like the following:
   }
 ```
 
+### URL Export Settings
+## Compression for json output to server
+This option allows you to toggle the json compression for the export to a server.
+When enabled the json that is end to the server will be minified meaning whitespace and linebreaks will be removed.
+
+### Server Settings
 #### **Event type**
 This is the `event_type` property that is send in the body of the request with the `client_payload`.
 #### **Server url**
