@@ -385,7 +385,8 @@ The body of the request will look like the following:
   "event_type": "update-tokens", // or any string you defined
   "client_payload": { 
     "tokens": "{...}", // the stringified json object holding all your desing tokens
-    "filename": "Design Tokens" // the Figma file name from which the tokens were exported
+    "filename": "Design Tokens", // the Figma file name from which the tokens were exported
+    "commitMessage": "Your commit message"
   }
 ```
 
