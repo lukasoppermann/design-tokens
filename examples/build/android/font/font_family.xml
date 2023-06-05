@@ -3,25 +3,9 @@
   <font
     android:fontStyle="normal"
     android:fontWeight="300"
-    android:font="@font/RTLUnitedText-Light" />
-  <font
-    android:fontStyle="italic"
-    android:fontWeight="300"
-    android:font="@font/RTLUnitedText-LightItalic" />
+    android:font="@font/AkzidenzGroteskPro-Regular" />
   <font
     android:fontStyle="normal"
-    android:fontWeight="400"
-    android:font="@font/RTLUnitedText-Regular" />
-  <font
-    android:fontStyle="italic"
-    android:fontWeight="400"
-    android:font="@font/RTLUnitedText-RegularItalic" />
-  <font
-    android:fontStyle="normal"
-    android:fontWeight="700"
-    android:font="@font/RTLUnitedText-Bold" />
-  <font
-    android:fontStyle="italic"
-    android:fontWeight="700"
-    android:font="@font/RTLUnitedText-BoldItalic" />
+    android:fontWeight="600"
+    android:font="@font/AkzidenzGroteskPro-Bold" />
 </font-family>

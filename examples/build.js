@@ -12,6 +12,8 @@ const buildPath = basePath + 'build/'
 const StyleDictionaryExtended = StyleDictionary.extend({
   // adding imported configs
   ...deepMerge.all([androidConfig, iosConfig, webConfig]),
+  // custom parser for new standard token josn
+  parsers: [require('./libs/w3cParser.js')],
   source: [basePath + 'input/*.json'],
   platforms: {
     css: {

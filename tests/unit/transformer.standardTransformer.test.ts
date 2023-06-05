@@ -1,8 +1,19 @@
-import { transformer } from '../../src/transformer/standardTransformer'
+import { getStandardTransformer } from '../../src/transformer/standardTransformer'
 import { extractedFigmaTokens } from './data/extractedFigmaTokens.data'
 import { transformedStandardTokens } from './data/transformedStandardTokens.data'
+import { formatKeysType } from '../../src/config/format'
 
-describe('standard Transfomer', () => {
+const w3cFormatKeys: formatKeysType = {
+  VALUE: '$value',
+  DESCRIPTION: '$description',
+  TYPE: '$type',
+  EXTENSIONS: '$extensions',
+  NAME: 'name'
+}
+
+describe('w3c draft standard Transfomer', () => {
+  const transformer = getStandardTransformer(w3cFormatKeys)
+  //
   test('size token', () => expect(transformer(extractedFigmaTokens.size)).toStrictEqual(transformedStandardTokens.size))
   test('breakpoint token', () => expect(transformer(extractedFigmaTokens.breakpoint)).toStrictEqual(transformedStandardTokens.breakpoint))
   test('spacing token', () => expect(transformer(extractedFigmaTokens.spacing)).toStrictEqual(transformedStandardTokens.spacing))

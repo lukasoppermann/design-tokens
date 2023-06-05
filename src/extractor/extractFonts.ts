@@ -90,6 +90,24 @@ const parseFontStyle = (fontStyle: string): FontStyle => {
   return fontStyles[part] || 'normal' as FontStyle
 }
 
+const lineHeightToRatio = (node): number => {
+  if (node.lineHeight.unit === 'pixel') {
+    return roundWithDecimals(node.fontSize.value / node.lineHeight.value, 3)
+  }
+  if (node.lineHeight.unit === 'percent') {
+    return roundWithDecimals(node.lineHeight.value / 100, 3)
+  }
+  return 1.2
+}
+
+const parseLetterSpacingToPixel = (node): number => {
+  if (node.letterSpacing.unit === 'PIXELS') {
+    return roundWithDecimals(node.letterSpacing.value)
+  }
+  //
+  return roundWithDecimals(node.fontSize * (node.letterSpacing.value / 100), 3)
+}
+
 const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: string[]): fontPropertyInterface[] => {
   // get raw text styles
   return tokenNodes.map(node => ({
@@ -128,8 +146,13 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: 
         type: 'string' as PropertyType
       },
       letterSpacing: {
-        value: roundWithDecimals(node.letterSpacing.value),
-        unit: <NumericUnitTypes>(node.letterSpacing.unit.toLowerCase() === 'pixels' ? 'pixel' : node.letterSpacing.unit.toLowerCase()),
+        value: parseLetterSpacingToPixel(node),
+        unit: 'pixels' as UnitTypePixel,
+        type: 'number' as PropertyType
+      },
+      lineHeightRatio: {
+        // @ts-ignore
+        value: lineHeightToRatio(node),
         type: 'number' as PropertyType
       },
       lineHeight: {

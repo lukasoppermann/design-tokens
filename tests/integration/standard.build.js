@@ -1,6 +1,17 @@
 const StyleDictionary = require('style-dictionary')
 
 const StyleDictionaryExtended = StyleDictionary.extend({
+  parsers: [{
+    pattern: /\.json$/,
+    parse: ({ filePath, contents }) => {
+      contents = contents
+        .replace(/"\$value":/g, '"value":')
+        .replace(/"\$type":/g, '"type":')
+        .replace(/"\$description":/g, '"description":')
+        .replace(/"\$extension":/g, '"extension":')
+      return JSON.parse(contents)
+    }
+  }],
   source: ['./tests/files/standard-tokens.json'],
   transform: {
     'size/px': require('./libs/standard/web/sizePx'),

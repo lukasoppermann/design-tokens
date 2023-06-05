@@ -281,6 +281,22 @@ Every token follows this structure ([learn more](https://github.com/lukasopperma
 ```js
 type StandardTokenInterface = {
   name: string,
+  $description?: string,
+  $value: StandardTokenValueType | StandardCompositeTokenValueType,
+  $type: StandardTokenTypes,
+  $extensions?: StandardTokenExtensionsInterface
+}
+```
+
+#### Standard deprecated (previous W3C draft)
+The standard format has been updated. To make migration easier, the old version was moved into standard deprecated.
+This version will be removed in the future, we highly encourage to update to the `standard` version.
+
+The only difference between this and the updated standard version is that the property keys of `value`, `type`,`description` and `extension` haven beend prefixed with a `$` in the new version.
+
+```js
+type StandardTokenInterface = {
+  name: string,
   description?: string,
   value: StandardTokenValueType | StandardCompositeTokenValueType,
   type: StandardTokenTypes,

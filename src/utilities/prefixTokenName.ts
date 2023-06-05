@@ -1,17 +1,24 @@
 import config from '@config/config'
 import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
 import { Settings } from '@typings/settings'
-import { StandardTokenInterface } from '@typings/standardToken'
+import { StandardTokenInterfaceV1, StandardTokenInterfaceV2 } from '@typings/standardToken'
 
-const getExportKey = (token: OriginalFormatTokenInterface | StandardTokenInterface) => {
+const getExportKey = (token: OriginalFormatTokenInterface | StandardTokenInterfaceV1 | StandardTokenInterfaceV2) => {
   // standard token
+  // @ts-ignore
   if (token.extensions?.[config.key.extensionPluginData]?.exportKey !== undefined) {
+    // @ts-ignore
     return token.extensions[config.key.extensionPluginData].exportKey
+  }
+  // @ts-ignore
+  if (token.$extensions?.[config.key.extensionPluginData]?.exportKey !== undefined) {
+    // @ts-ignore
+    return token.$extensions[config.key.extensionPluginData].exportKey
   }
   return 'missingExportKey'
 }
 
-export const prefixTokenName = (tokenArray: OriginalFormatTokenInterface[] | StandardTokenInterface[], userSettings: Settings) => {
+export const prefixTokenName = (tokenArray: OriginalFormatTokenInterface[] | StandardTokenInterfaceV1[] | StandardTokenInterfaceV2[], userSettings: Settings) => {
   // guard
   if (tokenArray.length <= 0) return []
   // nest tokens into object with hierarchy defined by name using /
@@ -31,7 +38,7 @@ export const prefixTokenName = (tokenArray: OriginalFormatTokenInterface[] | Sta
       // add exportKey to token
       if (token.extensions?.[config.key.extensionPluginData]?.alias !== undefined) {
         token.extensions[config.key.extensionPluginData].alias = `${getExportKey(token)}.${token.extensions[config.key.extensionPluginData].alias
-}`
+          }`
       }
     }
 
