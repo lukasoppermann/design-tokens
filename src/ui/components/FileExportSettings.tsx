@@ -39,23 +39,31 @@ export const FileExportSettings = () => {
     event.preventDefault() // Prevent form submit triggering navigation
     const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
-      const { accessToken, ...pluginSettings } = settings
+      const { accessToken, ...pluginSettings } = settings;
       // save settings to local storage
-      figmaUIApi.postMessage({
-        pluginMessage: {
-          command: commands.saveSettings,
-          payload: {
-            settings: pluginSettings,
-            accessToken: accessToken
-          }
-        }
-      // @ts-ignore
-      }, '*')
+      figmaUIApi.postMessage(
+        {
+          pluginMessage: {
+            command: commands.saveSettings,
+            payload: {
+              settings: pluginSettings,
+              accessToken: accessToken,
+            },
+          },
+          // @ts-ignore
+        },
+        "*"
+      );
       // prepare token json
-      const tokensToExport = prepareExport(tokens, pluginSettings)
-      setTokens(tokensToExport)
+      const tokensToExport = prepareExport(tokens, pluginSettings);
+
+      setTokens(tokensToExport);
       // download tokes
-      downloadJson(parent, downloadLinkRef.current, stringifyJson(tokensToExport, pluginSettings.compression))
+      downloadJson(
+        parent,
+        downloadLinkRef.current,
+        stringifyJson(tokensToExport, pluginSettings.compression)
+      );
     }
   }
 

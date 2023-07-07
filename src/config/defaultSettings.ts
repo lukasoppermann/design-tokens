@@ -47,6 +47,7 @@ export const defaultSettings: Settings = {
     size: true,
     spacing: true,
     motion: true,
-    opacity: true
+    opacity: true,
+    variables: true
   }
 }

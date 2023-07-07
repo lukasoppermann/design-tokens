@@ -53,6 +53,7 @@ export type Settings = {
     size: boolean,
     spacing: boolean,
     motion: boolean,
-    opacity: boolean
+    opacity: boolean,
+    variables: boolean
   }
 }

@@ -52,5 +52,10 @@ export const tokenTypes = {
   opacity: {
     label: 'Opacity',
     key: 'opacity'
+  },
+  variables: {
+    label: 'Figma Variables',
+    key: 'variables',
+    exclude: ['original']
   }
 }

@@ -259,6 +259,7 @@ const valueTransformer = {
 const transformTokens = (token: internalTokenInterface): StandardTokenDataInterface | StandardTokenGroup => valueTransformer[token.category](token)
 
 const transformer = (token: internalTokenInterface): StandardTokenInterface | StandardTokenGroup => {
+  console.log("token", token)
   if (token.category === 'typography') {
     // @ts-ignore
     return {
