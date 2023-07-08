@@ -20,6 +20,7 @@ export default {
     settings: 'settings',
     extensionPluginData: 'org.lukasoppermann.figmaDesignTokens',
     extensionFigmaStyleId: 'styleId',
+    extensionVariableStyleId: 'variableId',
     extensionAlias: 'alias',
     authType: {
       token: 'token',

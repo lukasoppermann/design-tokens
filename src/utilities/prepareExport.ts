@@ -8,7 +8,6 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 import { prefixTokenName } from './prefixTokenName'
-import { getVariables } from './getVariables'
 
 const tokenTransformer = {
   original: originalFormatTransformer,
@@ -34,17 +33,13 @@ export const prepareExport = (tokens: string, settings: Settings) => {
   // parse json string
   let tokenArray: internalTokenInterface[] = JSON.parse(tokens)
   // duplicate font if typography is true && format = standard
-  tokenArray = [...tokenArray, ...createTypographyTokens(tokenArray, settings.tokenFormat), ...getVariables()]
-  console.log("tokenArray", tokenArray)
+  tokenArray = [...tokenArray, ...createTypographyTokens(tokenArray, settings.tokenFormat)]
   // filter by user setting for export keys
   const tokensFiltered: internalTokenInterface[] = tokenArray.filter(({ exportKey }) => settings.exports[exportKey])
-  console.log("tokensFiltered", tokensFiltered, settings.exports)
   // add to name
   const prefixedTokens = prefixTokenName(tokensFiltered, settings)
-  console.log("prefixedTokens", prefixedTokens, settings.tokenFormat)
   // converted values
   const tokensConverted = prefixedTokens.map(token => tokenTransformer[settings.tokenFormat](token))
-  console.log("tokensConverted", tokensConverted)
   // group items by their names
   // @ts-ignore
   const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings)

@@ -55,6 +55,7 @@ export const FileExportSettings = () => {
         "*"
       );
       // prepare token json
+
       const tokensToExport = prepareExport(tokens, pluginSettings);
 
       setTokens(tokensToExport);

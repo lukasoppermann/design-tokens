@@ -256,16 +256,58 @@ const valueTransformer = {
   opacity: opacityValueTransformer
 }
 
+const transformVariable = ({ values, category }): StandardTokenDataInterface => {
+  if (category === 'color') {
+    return {
+      type: 'color' as StandardTokenTypes,
+      value: rgbaObjectToHex8(values.fill.value),
+      blendMode: values.fill.blendMode?.toLowerCase() || 'normal'
+    }
+  }
+  if (category === 'size') {
+    return {
+      type: 'dimension' as StandardTokenTypes,
+      value: values.size
+    }
+  }
+  if (category === 'boolean') {
+    return {
+      type: 'boolean' as StandardTokenTypes,
+      value: values.boolean
+    }
+  }
+  if (category === 'string') {
+    return {
+      type: 'string' as StandardTokenTypes,
+      value: values.string
+    }
+  }
+}
+
 const transformTokens = (token: internalTokenInterface): StandardTokenDataInterface | StandardTokenGroup => valueTransformer[token.category](token)
 
 const transformer = (token: internalTokenInterface): StandardTokenInterface | StandardTokenGroup => {
-  console.log("token", token)
   if (token.category === 'typography') {
     // @ts-ignore
     return {
       name: token.name,
       description: token.description,
       ...typographyValueTransformer(token)
+    }
+  }
+  // variable
+  if (token.extensions[config.key.extensionPluginData].exportKey === 'variables') {
+    console.log("transformVariable", {
+      name: token.name,
+      description: token.description,
+      ...transformVariable(token),
+      ...tokenExtensions(token)
+    })
+    return {
+      name: token.name,
+      description: token.description,
+      ...transformVariable(token),
+      ...tokenExtensions(token)
     }
   }
   // @ts-ignore

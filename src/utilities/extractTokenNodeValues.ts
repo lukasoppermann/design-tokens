@@ -26,7 +26,7 @@ const extractTokenNodeValues = (node: ComponentNode | RectangleNode | FrameNode)
   cornerRadius: node.cornerRadius || undefined,
   cornerSmoothing: node.cornerSmoothing,
   strokes: getSolidStrokes(node.strokes),
-  strokeWeight: node.strokeWeight,
+  strokeWeight: node.strokeWeight as number,
   strokeStyleId: node.strokeStyleId,
   strokeMiterLimit: node.strokeMiterLimit,
   strokeJoin: node.strokeJoin,
