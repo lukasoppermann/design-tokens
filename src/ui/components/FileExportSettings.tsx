@@ -70,33 +70,77 @@ export const FileExportSettings = () => {
 
   return (
     <form onSubmit={handleFormSubmit} className={style}>
-      <Title size='xlarge' weight='bold'>File Export settings</Title>
+      <Title size="xlarge" weight="bold">
+        File Export settings
+      </Title>
       <Row>
         <Checkbox
-          label='Compress JSON output file'
-          type='switch'
+          label="Compress JSON output file"
+          type="switch"
           checked={settings.compression}
-          onChange={(value) => updateSettings(draft => { draft.compression = value })}
+          onChange={(value) =>
+            updateSettings((draft) => {
+              draft.compression = value;
+            })
+          }
         />
-        <Info width={240} label='Compression removes line breaks and whitespace from the json string' />
+        <Info
+          width={240}
+          label="Compression removes line breaks and whitespace from the json string"
+        />
+        {settings.tokenFormat === "standard" && (
+          <>
+            <Checkbox
+              label="Exclude extension property"
+              type="switch"
+              checked={settings.excludeExtensionProp}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.excludeExtensionProp = value;
+                })
+              }
+            />
+            <Info
+              width={240}
+              label="The extension property holds additional information about the token"
+            />
+          </>
+        )}
       </Row>
-      <Title size='large' weight='bold'>Include types in export</Title>
-      <div className='grid-3-col'>
+      <Title size="large" weight="bold">
+        Include types in export
+      </Title>
+      <div className="grid-3-col">
         {Object.entries(tokenTypes)
           // @ts-ignore
-          .map(([, { key, label, exclude = undefined }]) =>
-            (exclude === undefined || !exclude.includes(settings.tokenFormat)) &&
-              <Checkbox
-                key={key}
-                label={label}
-                checked={settings.exports[key]}
-                onChange={value => updateSettings((draft: Settings) => { draft.exports[key] = value })}
-              />)}
+          .map(
+            ([, { key, label, exclude = undefined }]) =>
+              (exclude === undefined ||
+                !exclude.includes(settings.tokenFormat)) && (
+                <Checkbox
+                  key={key}
+                  label={label}
+                  checked={settings.exports[key]}
+                  onChange={(value) =>
+                    updateSettings((draft: Settings) => {
+                      draft.exports[key] = value;
+                    })
+                  }
+                />
+              )
+          )}
       </div>
       <Footer>
-        <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
+        <WebLink
+          align="start"
+          href="https://github.com/lukasoppermann/design-tokens#design-tokens"
+        >
+          Documentation
+        </WebLink>
         <CancelButton />
-        <Button type='submit' autofocus>Save & Export</Button>
+        <Button type="submit" autofocus>
+          Save & Export
+        </Button>
       </Footer>
       <a
         ref={downloadLinkRef}
@@ -104,5 +148,5 @@ export const FileExportSettings = () => {
         title={`${settings.filename}${settings.extension}`}
       />
     </form>
-  )
+  );
 }

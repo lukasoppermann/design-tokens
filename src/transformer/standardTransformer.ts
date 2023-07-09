@@ -286,7 +286,7 @@ const transformVariable = ({ values, category }): StandardTokenDataInterface => 
 
 const transformTokens = (token: internalTokenInterface): StandardTokenDataInterface | StandardTokenGroup => valueTransformer[token.category](token)
 
-const transformer = (token: internalTokenInterface): StandardTokenInterface | StandardTokenGroup => {
+const transformer = (token: internalTokenInterface, settings): StandardTokenInterface | StandardTokenGroup => {
   if (token.category === 'typography') {
     // @ts-ignore
     return {
@@ -297,17 +297,11 @@ const transformer = (token: internalTokenInterface): StandardTokenInterface | St
   }
   // variable
   if (token.extensions[config.key.extensionPluginData].exportKey === 'variables') {
-    console.log("transformVariable", {
-      name: token.name,
-      description: token.description,
-      ...transformVariable(token),
-      ...tokenExtensions(token)
-    })
     return {
       name: token.name,
       description: token.description,
       ...transformVariable(token),
-      ...tokenExtensions(token)
+      ...tokenExtensions(token, settings)
     }
   }
   // @ts-ignore
@@ -315,7 +309,7 @@ const transformer = (token: internalTokenInterface): StandardTokenInterface | St
     name: token.name,
     description: token.description,
     ...transformTokens(token),
-    ...tokenExtensions(token)
+    ...tokenExtensions(token, settings)
   }
 }
 

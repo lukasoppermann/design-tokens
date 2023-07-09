@@ -20,6 +20,7 @@ export type Settings = {
   acceptHeader?: string,
   contentType?: string,
   exclusionPrefix: string,
+  excludeExtensionProp: boolean,
   alias: string,
   authType: string,
   reference: string,

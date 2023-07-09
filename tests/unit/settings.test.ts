@@ -31,6 +31,7 @@ const baseSettings = {
   authType: 'baseAuthType',
   reference: 'main',
   exclusionPrefix: '',
+  excludeExtensionProp: false,
   alias: 'alias, ref, reference',
   keyInName: false,
   prefixInName: true,
@@ -62,7 +63,8 @@ const baseSettings = {
     size: true,
     spacing: true,
     motion: true,
-    opacity: true
+    opacity: true,
+    variables: true
   }
 }
 describe('Testing setSettings', () => {
