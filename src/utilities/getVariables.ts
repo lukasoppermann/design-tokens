@@ -8,6 +8,17 @@ import { roundRgba } from './convertColor'
 const extractVariable = (variable, value) => {
   let category: tokenCategoryType = 'color'
   let values = {}
+  if (value.type === 'VARIABLE_ALIAS') {
+    const resolvedAlias = figma.variables.getVariableById(value.id)
+    const collection = figma.variables.getVariableCollectionById(resolvedAlias.variableCollectionId)
+    return {
+      name: variable.name,
+      description: variable.description || undefined,
+      exportKey: tokenTypes.variables.key as tokenExportKeyType,
+      category: 'alias',
+      values: `{${collection.name}.${resolvedAlias.name}}`
+    }
+  }
   switch (variable.resolvedType) {
     case 'COLOR':
       category = 'color'
@@ -21,21 +32,15 @@ const extractVariable = (variable, value) => {
       break
     case 'FLOAT':
       category = 'size'
-      values = {
-        size: value
-      }
+      values = value
       break
     case 'STRING':
       category = 'string'
-      values = {
-        string: value
-      }
+      values = value
       break
     case 'BOOLEAN':
       category = 'boolean'
-      values = {
-        boolean: value
-      }
+      values = value
       break
   }
   return {
@@ -54,7 +59,6 @@ export const getVariables = (figma: PluginAPI) => {
   const variables = figma.variables.getLocalVariables().map((variable) => {
     const { variableCollectionId } = variable
     const { name: collection, modes } = collections[variableCollectionId]
-
     return Object.entries(variable.valuesByMode).map(([id, value]) => {
       return {
         ...extractVariable(variable, value),

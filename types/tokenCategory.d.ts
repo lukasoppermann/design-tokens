@@ -13,4 +13,5 @@ export type tokenCategoryType =
   'motion' |
   'opacity' |
   'string' |
-  'boolean'
+  'boolean' |
+  'alias'
