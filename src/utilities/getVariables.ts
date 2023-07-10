@@ -5,7 +5,7 @@ import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { PropertyType } from '@typings/valueTypes'
 import { roundRgba } from './convertColor'
 
-const extractVariable = (variable: Variable, value) => {
+const extractVariable = (variable, value) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   switch (variable.resolvedType) {
@@ -47,11 +47,11 @@ const extractVariable = (variable: Variable, value) => {
   }
 }
 
-export const getVariables = () => {
+export const getVariables = (figma: PluginAPI) => {
   // get collections
   const collections = Object.fromEntries(figma.variables.getLocalVariableCollections().map((collection) => [collection.id, collection]))
   // get variables
-  const variables = figma.variables.getLocalVariables().map((variable: Variable) => {
+  const variables = figma.variables.getLocalVariables().map((variable) => {
     const { variableCollectionId } = variable
     const { name: collection, modes } = collections[variableCollectionId]
 
