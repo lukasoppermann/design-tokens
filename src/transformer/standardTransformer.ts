@@ -264,8 +264,7 @@ const transformVariable = ({ values, category }): StandardTokenDataInterface => 
       blendMode: values.fill.blendMode?.toLowerCase() || 'normal'
     }
   }
-  if (category === 'size' || category === 'boolean' || category === 'string' || category === 'alias') {
-    console.log('transformVariable', category, values)
+  if (['size', 'boolean', 'string', 'alias'].includes(category)) {
     return {
       type: category as StandardTokenTypes,
       value: values

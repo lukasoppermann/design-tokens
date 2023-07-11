@@ -58,7 +58,7 @@ export const tokenTypes: Record<string, {
     key: 'opacity'
   },
   variables: {
-    label: 'Figma Variables',
+    label: 'Figma Variables (BETA)',
     key: 'variables',
     exclude: ['original']
   }

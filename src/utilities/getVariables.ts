@@ -57,12 +57,16 @@ export const getVariables = (figma: PluginAPI) => {
   const collections = Object.fromEntries(figma.variables.getLocalVariableCollections().map((collection) => [collection.id, collection]))
   // get variables
   const variables = figma.variables.getLocalVariables().map((variable) => {
+    // get collection name and modes
     const { variableCollectionId } = variable
     const { name: collection, modes } = collections[variableCollectionId]
+    // return each mode value as a separate variable
     return Object.entries(variable.valuesByMode).map(([id, value]) => {
       return {
         ...extractVariable(variable, value),
+        // name is contstructed from collection, mode and variable name
         name: `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}`,
+        // add mnetadata to extensions
         extensions: {
           [config.key.extensionPluginData]: {
             mode: modes.find(({ modeId }) => modeId === id).name,
@@ -76,31 +80,4 @@ export const getVariables = (figma: PluginAPI) => {
     })
   })
   return variables.flat()
-
-  // return [{
-  //   "name": 'variable',
-  //   "values": [{
-  //     fill: {
-  //       value: {
-  //         r: 0.5,
-  //         g: 0.5,
-  //         b: 0.2,
-  //         a: 1
-  //       },
-  //       type: 'color',
-  //       blendMode: 'normal'
-  //     }
-  //   }],
-  //   category: 'color' as tokenCategoryType,
-  //   type: 'color' as StandardTokenTypes,
-  //   exportKey: 'variables',
-  //   extensions: {
-  //     [config.key.extensionPluginData]: {
-  //       "mode": 'mode',
-  //       "collection": 'collection',
-  //       // [config.key.extensionFigmaStyleId]: node.id,
-  //       exportKey: tokenTypes.variables.key as tokenExportKeyType
-  //     }
-  //   }
-  // }]
 }
