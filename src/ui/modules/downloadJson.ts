@@ -2,7 +2,6 @@ import { commands } from '@config/commands'
 import { PluginMessage } from '@typings/pluginEvent'
 
 export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
-  console.log("json", json)
   // if no tokens are present
   if (json === '[]') {
     parent.postMessage({
