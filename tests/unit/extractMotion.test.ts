@@ -481,7 +481,8 @@ describe('testing easing curves', () => {
       easingFunctionSpring: {
         mass: 2,
         stiffness: 300,
-        damping: 20
+        damping: 20,
+        initialVelocity: 0
       }
     })).toStrictEqual({
       easingCurveType: {

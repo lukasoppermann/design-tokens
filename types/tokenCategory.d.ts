@@ -11,4 +11,7 @@ export type tokenCategoryType =
   'size' |
   'spacing' |
   'motion' |
-  'opacity'
+  'opacity' |
+  'string' |
+  'boolean' |
+  'alias'

@@ -1,5 +1,9 @@
 /* istanbul ignore file */
-export const tokenTypes = {
+export const tokenTypes: Record<string, {
+  label: string;
+  key: string;
+  exclude?: string[];
+}> = {
   color: {
     label: 'Colors',
     key: 'color'
@@ -52,5 +56,10 @@ export const tokenTypes = {
   opacity: {
     label: 'Opacity',
     key: 'opacity'
+  },
+  variables: {
+    label: 'Figma Variables (BETA)',
+    key: 'variables',
+    exclude: ['original']
   }
 }

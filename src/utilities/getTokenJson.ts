@@ -12,6 +12,7 @@ import extractOpacities from '../extractor/extractOpacities'
 import { figmaDataType } from '@typings/figmaDataType'
 import buildFigmaData from './buildFigmaData'
 import { Settings } from '@typings/settings'
+import { getVariables } from './getVariables'
 
 const getPrefixArray = (prefixString: string = '') => prefixString.split(',').map(item => item.replace(/\s+/g, ''))
 
@@ -29,6 +30,7 @@ export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
     ...extractColors(figmaData.paintStyles, { color: getPrefixArray(settings.prefix.color), gradient: getPrefixArray(settings.prefix.gradient), alias: getPrefixArray(settings.alias) }),
     ...extractGrids(figmaData.gridStyles, getPrefixArray(settings.prefix.grid)),
     ...extractFonts(figmaData.textStyles, getPrefixArray(settings.prefix.font)),
-    ...extractEffects(figmaData.effectStyles, getPrefixArray(settings.prefix.effect))
+    ...extractEffects(figmaData.effectStyles, getPrefixArray(settings.prefix.effect)),
+    ...getVariables(figma)
   ]
 }

@@ -16,6 +16,7 @@ export const defaultSettings: Settings = {
   authType: 'token',
   reference: 'main',
   exclusionPrefix: '',
+  excludeExtensionProp: false,
   alias: 'alias, ref, reference',
   keyInName: false,
   prefixInName: true,
@@ -47,6 +48,7 @@ export const defaultSettings: Settings = {
     size: true,
     spacing: true,
     motion: true,
-    opacity: true
+    opacity: true,
+    variables: true
   }
 }

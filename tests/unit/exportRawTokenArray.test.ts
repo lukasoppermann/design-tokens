@@ -27,6 +27,13 @@ jest.mock('../../src/extractor/extractOpacities', () => jest.fn())
 jest.mock('../../src/utilities/buildFigmaData', () => jest.fn())
 
 describe('exportRawTokenArray', () => {
+  const figma = {
+    variables: {
+      getLocalVariables: () => [],
+      getLocalVariableCollections: () => []
+    }
+  }
+
   test('empty input', () => {
     // @ts-ignore
     buildFigmaData.mockImplementation(() => [])
@@ -53,7 +60,7 @@ describe('exportRawTokenArray', () => {
     // @ts-ignore
     extractOpacities.mockImplementation(() => [])
     // @ts-ignore
-    expect(exportRawTokenArray('', defaultSettings)).toStrictEqual([])
+    expect(exportRawTokenArray(figma, defaultSettings)).toStrictEqual([])
   })
 
   test('with input', () => {
@@ -184,7 +191,7 @@ describe('exportRawTokenArray', () => {
       }
     ]
     // @ts-ignore
-    expect(exportRawTokenArray('', { ...defaultSettings, ...{ exclusionPrefix: '*' } })).toStrictEqual(output)
+    expect(exportRawTokenArray(figma, { ...defaultSettings, ...{ exclusionPrefix: '*' } })).toStrictEqual(output)
   })
 
   test('undefined prefix value', () => {
@@ -213,6 +220,6 @@ describe('exportRawTokenArray', () => {
     // @ts-ignore
     extractOpacities.mockImplementation(() => [])
     // @ts-ignore
-    expect(exportRawTokenArray('', { ...defaultSettings, ...{ prefix: { color: undefined } } })).toStrictEqual([])
+    expect(exportRawTokenArray(figma, { ...defaultSettings, ...{ prefix: { color: undefined } } })).toStrictEqual([])
   })
 })

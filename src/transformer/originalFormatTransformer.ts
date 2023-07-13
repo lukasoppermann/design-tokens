@@ -169,7 +169,7 @@ const valueTransformer: {} | undefined = {
   opacity: opacityValueTransformer
 }
 
-const transformer = (token: internalTokenInterface): OriginalFormatTokenInterface => {
+const transformer = (token: internalTokenInterface, _settings): OriginalFormatTokenInterface => {
   return {
     name: token.name,
     category: token.category,

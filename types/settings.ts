@@ -20,6 +20,7 @@ export type Settings = {
   acceptHeader?: string,
   contentType?: string,
   exclusionPrefix: string,
+  excludeExtensionProp: boolean,
   alias: string,
   authType: string,
   reference: string,
@@ -53,6 +54,7 @@ export type Settings = {
     size: boolean,
     spacing: boolean,
     motion: boolean,
-    opacity: boolean
+    opacity: boolean,
+    variables: boolean
   }
 }

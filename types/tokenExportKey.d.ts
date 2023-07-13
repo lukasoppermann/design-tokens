@@ -11,4 +11,5 @@ export type tokenExportKeyType =
   'size' |
   'spacing' |
   'motion' |
-  'opacity'
+  'opacity' |
+  'variables'

@@ -256,9 +256,25 @@ const valueTransformer = {
   opacity: opacityValueTransformer
 }
 
+const transformVariable = ({ values, category }): StandardTokenDataInterface => {
+  if (category === 'color') {
+    return {
+      type: 'color' as StandardTokenTypes,
+      value: rgbaObjectToHex8(values.fill.value),
+      blendMode: values.fill.blendMode?.toLowerCase() || 'normal'
+    }
+  }
+  if (['size', 'boolean', 'string', 'alias'].includes(category)) {
+    return {
+      type: category as StandardTokenTypes,
+      value: values
+    }
+  }
+}
+
 const transformTokens = (token: internalTokenInterface): StandardTokenDataInterface | StandardTokenGroup => valueTransformer[token.category](token)
 
-const transformer = (token: internalTokenInterface): StandardTokenInterface | StandardTokenGroup => {
+const transformer = (token: internalTokenInterface, settings): StandardTokenInterface | StandardTokenGroup => {
   if (token.category === 'typography') {
     // @ts-ignore
     return {
@@ -267,12 +283,21 @@ const transformer = (token: internalTokenInterface): StandardTokenInterface | St
       ...typographyValueTransformer(token)
     }
   }
+  // variable
+  if (token.extensions[config.key.extensionPluginData].exportKey === 'variables') {
+    return {
+      name: token.name,
+      description: token.description,
+      ...transformVariable(token),
+      ...tokenExtensions(token, settings)
+    }
+  }
   // @ts-ignore
   return {
     name: token.name,
     description: token.description,
     ...transformTokens(token),
-    ...tokenExtensions(token)
+    ...tokenExtensions(token, settings)
   }
 }
 
