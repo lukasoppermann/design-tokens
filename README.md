@@ -14,6 +14,7 @@ The **Design Tokens** plugin for Figma allows you to export design tokens into a
 - [Transforming tokens using Amazon style dictionary](#transforming-tokens-using-amazon-style-dictionary)
 - [Creating design tokens](#creating-design-tokens)
   - [Figma style design tokens](#creating-design-tokens)
+  - [Figma variables](#variables)
   - [Custom design tokens](#custom-design-tokens)
     - [Border tokens](#borders)
     - [Radii token](#radii)
@@ -107,6 +108,10 @@ Styles you don't want to be exported as design tokens can be prefixed with an `_
 
 In the settings you can change the [prefix](#prefix-used-to-in-exclude-styles) for ignoring/including styles.
 
+### Variables (BETA)
+The plugin exports variables to generic design tokens. This only works when the `Standard` export format is selected.
+#### Naming
+Variables don't have to follow a specific naming convention. When exported the `collection` name and the `mode` name is prefixed to the variable name to avoid naming collisions.
 
 ### Custom design tokens
 The plugin also supports custom tokens for `borders`, `radii`, `sizes`, `spacing` & `motion`.
