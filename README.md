@@ -14,7 +14,7 @@ The **Design Tokens** plugin for Figma allows you to export design tokens into a
 - [Transforming tokens using Amazon style dictionary](#transforming-tokens-using-amazon-style-dictionary)
 - [Creating design tokens](#creating-design-tokens)
   - [Figma style design tokens](#creating-design-tokens)
-  - [Figma variables](#variables)
+  - [Figma variables](#variables-beta)
   - [Custom design tokens](#custom-design-tokens)
     - [Border tokens](#borders)
     - [Radii token](#radii)
