@@ -170,6 +170,7 @@ const valueTransformer: {} | undefined = {
 }
 
 const transformer = (token: internalTokenInterface, _settings): OriginalFormatTokenInterface => {
+  if (token.extensions[config.key.extensionPluginData].exportKey === 'variables') return null
   return {
     name: token.name,
     category: token.category,

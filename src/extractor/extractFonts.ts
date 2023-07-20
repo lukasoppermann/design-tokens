@@ -17,7 +17,8 @@ const textCases = {
   ORIGINAL: 'none',
   UPPER: 'uppercase',
   LOWER: 'lowercase',
-  TITLE: 'capitalize'
+  TITLE: 'capitalize',
+  SMALL_CAPS: 'small-caps'
 }
 
 const fontWeights = {
@@ -149,7 +150,7 @@ const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: 
         type: 'number' as PropertyType
       },
       textCase: {
-        value: textCases[node.textCase] as TextCase,
+        value: textCases[node.textCase] as TextCase || 'none' as TextCase,
         type: 'string' as PropertyType
       }
     },

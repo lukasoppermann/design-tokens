@@ -70,147 +70,222 @@ export const GeneralSettings = () => {
 
   return (
     <form className={style} onSubmit={handleFormSubmit}>
-      <Title size='xlarge' weight='bold'>Design Token Settings</Title>
+      <Title size="xlarge" weight="bold">
+        Design Token Settings
+      </Title>
       <Row>
         <Checkbox
-          label='Add token type to name of the token'
-          type='switch'
+          label="Add token type to name of the token"
+          type="switch"
           checked={settings.keyInName}
-          onChange={value => updateSettings(draft => { draft.keyInName = value })}
+          onChange={(value) =>
+            updateSettings((draft) => {
+              draft.keyInName = value;
+            })
+          }
         />
-        <Info width={240} label='The token type (e.g. "color" or "font") will be added to the name e.g. "color/light/bg".' />
+        <Info
+          width={240}
+          label='The token type (e.g. "color" or "font") will be added to the name e.g. "color/light/bg".'
+        />
       </Row>
-      <Title size='small' weight='bold'>
+      <Title size="small" weight="bold">
         Filename
-        <Info width={160} label='The file name used when exporting the tokens' />
+        <Info
+          width={160}
+          label="The file name used when exporting the tokens"
+        />
       </Title>
-      <div className='grid-2-col'>
+      <div className="grid-2-col">
         <Input
-          type='text'
+          type="text"
           required
-          pattern='^[\w\d\s\[\]._-]+$'
+          pattern="^[\w\d\s\[\]._\-]+$"
           placeholder={figmaMetaData.filename}
           value={settings.filename}
-          onChange={value => updateSettings((draft: Settings) => { draft.filename = value })}
+          onChange={(value) =>
+            updateSettings((draft: Settings) => {
+              draft.filename = value;
+            })
+          }
         />
         <Select
           defaultValue={settings.extension}
-          onChange={({ value }) => updateSettings((draft: Settings) => { draft.extension = value as string })}
-          placeholder='file extension'
+          onChange={({ value }) =>
+            updateSettings((draft: Settings) => {
+              draft.extension = value as string;
+            })
+          }
+          placeholder="file extension"
           options={config.fileExtensions}
         />
       </div>
       <Separator />
-      <div className='grid-2-col'>
+      <div className="grid-2-col">
         <div>
-          <Title size='small' weight='bold'>Name conversion</Title>
+          <Title size="small" weight="bold">
+            Name conversion
+          </Title>
           <Select
             defaultValue={settings.nameConversion}
-            onChange={({ value }) => updateSettings((draft: Settings) => { draft.nameConversion = value as nameConversionType })}
-            placeholder='Name conversion'
+            onChange={({ value }) =>
+              updateSettings((draft: Settings) => {
+                draft.nameConversion = value as nameConversionType;
+              })
+            }
+            placeholder="Name conversion"
             options={[
               {
-                label: 'Default',
-                value: 'default'
+                label: "Default",
+                value: "default",
               },
               {
-                label: 'camelCase',
-                value: 'camelCase'
+                label: "camelCase",
+                value: "camelCase",
               },
               {
-                label: 'kebab-case',
-                value: 'kebabCase'
-              }
+                label: "kebab-case",
+                value: "kebabCase",
+              },
             ]}
           />
         </div>
         <div>
-          <Title size='small' weight='bold'>Token format<Info width={240} label='The structure of the output json file. Learn more in the docs.' /></Title>
+          <Title size="small" weight="bold">
+            Token format
+            <Info
+              width={240}
+              label="The structure of the output json file. Learn more in the docs."
+            />
+          </Title>
           <Select
             defaultValue={settings.tokenFormat}
             onChange={({ value }) => {
-              updateSettings((draft: Settings) => { draft.tokenFormat = value as tokenFormatType })
-              setStandard(value === 'standard')
+              updateSettings((draft: Settings) => {
+                draft.tokenFormat = value as tokenFormatType;
+              });
+              setStandard(value === "standard");
             }}
-            placeholder='Token format'
+            placeholder="Token format"
             options={[
               {
-                label: 'Standard (W3C draft)',
-                value: 'standard'
+                label: "Standard (W3C draft)",
+                value: "standard",
               },
               {
-                label: 'Original (deprecated)',
-                value: 'original'
-              }
+                label: "Original (deprecated)",
+                value: "original",
+              },
             ]}
           />
         </div>
       </div>
       <Separator />
-      <div className='grid-2-col'>
+      <div className="grid-2-col">
         <div>
-          <Title size='small' weight='bold'>Exclusion prefix <Info width={240} label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)' /></Title>
+          <Title size="small" weight="bold">
+            Exclusion prefix{" "}
+            <Info
+              width={240}
+              label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)'
+            />
+          </Title>
           <Input
-            type='text'
-            pattern='^[#\+*\\/&%$!?;:~,\s]+$'
-            placeholder='#, @'
+            type="text"
+            pattern="^[#\+*\\/&%$!?;:~,\s]+$"
+            placeholder="#, @"
             value={settings.exclusionPrefix}
-            onChange={value => updateSettings((draft: Settings) => { draft.exclusionPrefix = value })}
+            onChange={(value) =>
+              updateSettings((draft: Settings) => {
+                draft.exclusionPrefix = value;
+              })
+            }
           />
         </div>
         {isStandard && (
           <div>
-            <Title size='small' weight='bold'>Alias identifier <Info width={180} label='Use to define an alias for a token; case insensitive' /></Title>
+            <Title size="small" weight="bold">
+              Alias identifier{" "}
+              <Info
+                width={180}
+                label="Use to define an alias for a token; case insensitive"
+              />
+            </Title>
             <Input
-              type='text'
-              pattern='^[A-Za-z,\s]+$'
-              placeholder='alias, ref, reference'
+              type="text"
+              pattern="^[A-Za-z,\s]+$"
+              placeholder="alias, ref, reference"
               value={settings.alias}
-              onChange={value => updateSettings((draft: Settings) => { draft.alias = value })}
+              onChange={(value) =>
+                updateSettings((draft: Settings) => {
+                  draft.alias = value;
+                })
+              }
             />
           </div>
         )}
       </div>
       <Separator />
-      <Title size='small' weight='bold'>Token prefixes <Info width={150} label='Use commas to separate multiple prefixed' /></Title>
-      <Text className={textStyle} size='small'>
-        Prefixes are the first part of a tokens name e.g. "radius" in "radius/small". They are used to identify the type of a custom token.
+      <Title size="small" weight="bold">
+        Token prefixes{" "}
+        <Info width={150} label="Use commas to separate multiple prefixed" />
+      </Title>
+      <Text className={textStyle} size="small">
+        Prefixes are the first part of a tokens name e.g. "radius" in
+        "radius/small". They are used to identify the type of a custom token.
       </Text>
       <Row>
         <Checkbox
-          label='Include token prefix in token names'
-          type='switch'
+          label="Include token prefix in token names"
+          type="switch"
           checked={settings.prefixInName}
-          onChange={(value) => updateSettings(draft => { draft.prefixInName = value })}
+          onChange={(value) =>
+            updateSettings((draft) => {
+              draft.prefixInName = value;
+            })
+          }
         />
-        <Info width={240} label='When disabled the prefix is removed ("radius/small" → "small"), when enabled it is added ("radius/small" → "radius/small").' />
+        <Info
+          width={240}
+          label='When disabled the prefix is removed ("radius/small" → "small"), when enabled it is added ("radius/small" → "radius/small").'
+        />
       </Row>
       <Separator />
-      <div className='grid-2-col'>
-        {Object.entries(settings.prefix).map(([key, currentValue]) =>
+      <div className="grid-2-col">
+        {Object.entries(settings.prefix).map(([key, currentValue]) => (
           <Row fill key={key}>
-            <Label
-              className={`${labelStyle} flex-grow--none`}
-            >{key}
-              {isStyle(key) ? <Info width={90} label='Prefix for style' /> : ''}
+            <Label className={`${labelStyle} flex-grow--none`}>
+              {key}
+              {isStyle(key) ? <Info width={90} label="Prefix for style" /> : ""}
             </Label>
             <Input
-              type='text'
+              type="text"
               // eslint-disable-next-line
-              pattern={isStyle(key) ? '^[\\w\\-@]+$' : '^[\\w\\-@,\\s]+$'}
+              pattern={isStyle(key) ? "^[\\w\\-@]+$" : "^[\\w\\-@,\\s]+$"}
               required
               placeholder={key}
               value={currentValue}
-              onChange={value => updateSettings((draft: Settings) => { draft.prefix[key] = value })}
+              onChange={(value) =>
+                updateSettings((draft: Settings) => {
+                  draft.prefix[key] = value;
+                })
+              }
             />
           </Row>
-        )}
+        ))}
       </div>
       <Footer>
-        <WebLink align='start' href='https://github.com/lukasoppermann/design-tokens#design-tokens'>Documentation</WebLink>
+        <WebLink
+          align="start"
+          href="https://github.com/lukasoppermann/design-tokens#design-tokens"
+        >
+          Documentation
+        </WebLink>
         <CancelButton />
-        <Button type='submit' autofocus>Save changes</Button>
+        <Button type="submit" autofocus>
+          Save changes
+        </Button>
       </Footer>
     </form>
-  )
+  );
 }

@@ -41,7 +41,7 @@ export const prepareExport = (tokens: string, settings: Settings) => {
   // add to name
   const prefixedTokens = prefixTokenName(tokensFiltered, settings)
   // converted values
-  const tokensConverted = prefixedTokens.map(token => tokenTransformer[settings.tokenFormat](token, settings))
+  const tokensConverted = prefixedTokens.map(token => tokenTransformer[settings.tokenFormat](token, settings)).filter(Boolean)
   // group items by their names
   // @ts-ignore
   const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings)
