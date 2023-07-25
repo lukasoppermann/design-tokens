@@ -55,6 +55,21 @@ export const FileExportSettings = () => {
         "*"
       );
       // prepare token json
+      if (!tokens || !tokens.length) {
+        figmaUIApi.postMessage(
+          {
+            pluginMessage: {
+              command: commands.closePlugin,
+              payload: {
+                notification: "❌ No tokens to export!",
+              },
+            },
+            // @ts-ignore
+          },
+          "*"
+        );
+        return;
+      }
 
       const tokensToExport = prepareExport(tokens, pluginSettings);
 
