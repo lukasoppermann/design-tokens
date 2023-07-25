@@ -61,7 +61,7 @@ export const FileExportSettings = () => {
             pluginMessage: {
               command: commands.closePlugin,
               payload: {
-                notification: "❌ No tokens to export!",
+                notification: "No tokens to export!",
               },
             },
             // @ts-ignore
