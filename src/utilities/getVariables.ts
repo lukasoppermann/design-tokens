@@ -4,6 +4,7 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { PropertyType } from '@typings/valueTypes'
 import { roundRgba } from './convertColor'
+import { changeNotation } from './changeNotation'
 
 const extractVariable = (variable, value) => {
   let category: tokenCategoryType = 'color'
@@ -16,7 +17,7 @@ const extractVariable = (variable, value) => {
       description: variable.description || undefined,
       exportKey: tokenTypes.variables.key as tokenExportKeyType,
       category: 'alias',
-      values: `{${collection.name}.${resolvedAlias.name}}`
+      values: `{${collection.name.toLowerCase()}.${changeNotation(resolvedAlias.name, '/', '.')}}`
     }
   }
   switch (variable.resolvedType) {
