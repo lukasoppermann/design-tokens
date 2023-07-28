@@ -14,4 +14,5 @@ export type tokenCategoryType =
   'opacity' |
   'string' |
   'boolean' |
-  'alias'
+  'alias' |
+  'dimension'

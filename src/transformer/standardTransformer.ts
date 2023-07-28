@@ -257,6 +257,13 @@ const valueTransformer = {
 }
 
 const transformVariable = ({ values, category }): StandardTokenDataInterface => {
+  // is alias
+  if (/^{[\w|.]+}/.test(values)) {
+    return {
+      type: category as StandardTokenTypes,
+      value: values
+    }
+  }
   if (category === 'color') {
     return {
       type: 'color' as StandardTokenTypes,
@@ -264,7 +271,7 @@ const transformVariable = ({ values, category }): StandardTokenDataInterface => 
       blendMode: values.fill.blendMode?.toLowerCase() || 'normal'
     }
   }
-  if (['size', 'boolean', 'string', 'alias'].includes(category)) {
+  if (['dimension', 'boolean', 'string'].includes(category)) {
     return {
       type: category as StandardTokenTypes,
       value: values
