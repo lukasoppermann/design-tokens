@@ -55,7 +55,7 @@ export const FileExportSettings = () => {
         "*"
       );
       // prepare token json
-      if (!tokens || !tokens.length) {
+      if (!tokens || !tokens.length || typeof tokens === "string") {
         figmaUIApi.postMessage(
           {
             pluginMessage: {
