@@ -258,7 +258,7 @@ const valueTransformer = {
 
 const transformVariable = ({ values, category }): StandardTokenDataInterface => {
   // is alias
-  if (/^{[\w|.]+}/.test(values)) {
+  if (/^{[\w\s\.]*}$/.test(values)) {
     return {
       type: category as StandardTokenTypes,
       value: values

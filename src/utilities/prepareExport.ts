@@ -34,6 +34,7 @@ const createTypographyTokens = (tokens: internalTokenInterface[], settings) => {
 export const prepareExport = (tokens: string, settings: Settings) => {
   if (tokens.length === 0) tokens = '[{}]'
   // parse json string
+  console.log(tokens)
   let tokenArray: internalTokenInterface[] = JSON.parse(tokens)
   // duplicate font if typography is true && format = standard
   tokenArray = [...tokenArray, ...createTypographyTokens(tokenArray, settings)]
