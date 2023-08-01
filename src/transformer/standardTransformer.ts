@@ -4,6 +4,7 @@ import { StandardTokenInterface, StandardTokenTypes, StandardTokenDataInterface,
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { tokenExtensions } from './tokenExtensions'
 import config from '@config/config'
+import { changeNotation } from '@src/utilities/changeNotation'
 
 const lineHeightToDimension = (values): number => {
   if (values.lineHeight.unit === 'pixel') {
@@ -257,11 +258,13 @@ const valueTransformer = {
 }
 
 const transformVariable = ({ values, category }): StandardTokenDataInterface => {
+  const refRegEx = /^{[\w\s\.\-\_\/\@\+\&\:]*}$/
+  console.log(values, refRegEx.test(values))
   // is alias
-  if (/^{[\w\s\.]*}$/.test(values)) {
+  if (refRegEx.test(values)) {
     return {
       type: category as StandardTokenTypes,
-      value: values
+      value: changeNotation(values, "/", ".")
     }
   }
   if (category === 'color') {
