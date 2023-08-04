@@ -35,6 +35,7 @@ const baseSettings = {
   alias: 'alias, ref, reference',
   keyInName: false,
   prefixInName: true,
+  modeReference: true,
   prefix: {
     color: 'color',
     gradient: 'gradient',

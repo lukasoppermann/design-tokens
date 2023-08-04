@@ -226,6 +226,28 @@ export const GeneralSettings = () => {
         )}
       </div>
       <Separator />
+      <div className="grid-2-col">
+        <div>
+          <Title size="small" weight="bold">
+            Reference mode in variables
+            <Info
+              width={240}
+              label='If disabled, the exported json will not include the mode of variables.'
+            />
+          </Title>
+          <Checkbox
+            label="Enable/disable mode referencing"
+            type="switch"
+            checked={settings.modeReference}
+            onChange={(value) =>
+              updateSettings((draft) => {
+                draft.modeReference = value;
+              })
+            }
+          />
+        </div>
+      </div>
+      <Separator />
       <Title size="small" weight="bold">
         Token prefixes{" "}
         <Info width={150} label="Use commas to separate multiple prefixed" />
