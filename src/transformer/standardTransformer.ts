@@ -264,7 +264,7 @@ const transformVariable = ({ values, category }): StandardTokenDataInterface => 
   if (refRegEx.test(values)) {
     return {
       type: category as StandardTokenTypes,
-      value: changeNotation(values, "/", ".")
+      value: changeNotation(values, '/', '.')
     }
   }
   if (category === 'color') {
