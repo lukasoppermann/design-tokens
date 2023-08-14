@@ -1,6 +1,6 @@
 {
   "name": "design-tokens",
-  "version": "6.8.6",
+  "version": "6.8.7",
   "description": "Export design tokens from Figma",
   "main": "plugin.js",
   "repository": {
@@ -17,6 +17,7 @@
     "test:standardTokens": "node ./tests/integration/standard.build.js",
     "test:integration": "rm ./tests/integration/data/original.variables.css & rm ./tests/integration/data/standard.variables.css && npm run test:originalTokens & npm run test:standardTokens && jest tests/integration --coverage=false",
     "lint": "standardx src/**/*.ts src/*.ts | snazzy",
+    "lint:fix": "standardx --fix src/**/*.ts src/*.ts | snazzy",
     "examples": "rm -rf ./examples/build && node ./examples/build.js",
     "set-version": "replace-in-files --regex='\\d+\\.\\d+\\.\\d+' --replacement=$npm_package_version src/utilities/version.ts",
     "version": "npm run set-version && npm run build && git add --all"
