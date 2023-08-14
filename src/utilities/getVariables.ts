@@ -54,7 +54,7 @@ const extractVariable = (variable, value) => {
   }
 }
 
-export const getVariables = (figma: PluginAPI) => {
+export const getVariables = (figma: PluginAPI, modeReference: boolean) => {
   // get collections
   const collections = Object.fromEntries(figma.variables.getLocalVariableCollections().map((collection) => [collection.id, collection]))
   // get variables
@@ -67,11 +67,11 @@ export const getVariables = (figma: PluginAPI) => {
       return {
         ...extractVariable(variable, value),
         // name is contstructed from collection, mode and variable name
-        name: `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}`,
+        name: modeReference ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}`: `${collection}/${variable.name}`,
         // add mnetadata to extensions
         extensions: {
           [config.key.extensionPluginData]: {
-            mode: modes.find(({ modeId }) => modeId === id).name,
+            mode: modeReference ? modes.find(({ modeId }) => modeId === id).name : undefined,
             collection: collection,
             scopes: variable.scopes,
             [config.key.extensionVariableStyleId]: variable.id,
