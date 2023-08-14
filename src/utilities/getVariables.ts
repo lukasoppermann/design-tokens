@@ -6,6 +6,7 @@ import { PropertyType } from '@typings/valueTypes'
 import { roundRgba } from './convertColor'
 import { changeNotation } from './changeNotation'
 import { getVariableTypeByValue } from './getVariableTypeByValue'
+import roundWithDecimals from './roundWithDecimals'
 
 const extractVariable = (variable, value) => {
   let category: tokenCategoryType = 'color'
@@ -34,7 +35,7 @@ const extractVariable = (variable, value) => {
       break
     case 'FLOAT':
       category = 'dimension'
-      values = value
+      values = roundWithDecimals(value, 2)
       break
     case 'STRING':
       category = 'string'
