@@ -259,7 +259,6 @@ const valueTransformer = {
 
 const transformVariable = ({ values, category }): StandardTokenDataInterface => {
   const refRegEx = /^{[\w\s\.\-\_\/\@\+\&\:]*}$/
-  console.log(values, refRegEx.test(values))
   // is alias
   if (refRegEx.test(values)) {
     return {
