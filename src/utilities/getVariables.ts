@@ -67,7 +67,7 @@ export const getVariables = (figma: PluginAPI, modeReference: boolean) => {
       return {
         ...extractVariable(variable, value),
         // name is contstructed from collection, mode and variable name
-        name: modeReference ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}`: `${collection}/${variable.name}`,
+        name: modeReference ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
         // add mnetadata to extensions
         extensions: {
           [config.key.extensionPluginData]: {
