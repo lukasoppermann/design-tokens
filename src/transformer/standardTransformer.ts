@@ -258,12 +258,12 @@ const valueTransformer = {
 }
 
 const transformVariable = ({ values, category }): StandardTokenDataInterface => {
-  const refRegEx = /^{[\w\s\.\-\_\/\@\+\&\:]*}$/
+  const refRegEx = /^{[\w\s.-_/@+&:]*}$/
   // is alias
   if (refRegEx.test(values)) {
     return {
       type: category as StandardTokenTypes,
-      value: changeNotation(values, "/", ".")
+      value: changeNotation(values, '/', '.')
     }
   }
   if (category === 'color') {
