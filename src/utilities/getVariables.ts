@@ -121,5 +121,8 @@ export const getVariables = (figma: PluginAPI, modeReference: boolean) => {
     })
   })
 
-  return processAliasModes(variables.flat())
+  return modeReference ? processAliasModes(variables.flat()) : variables.flat();
 }
+
+
+
