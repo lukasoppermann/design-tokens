@@ -63,7 +63,7 @@ const extractVariable = (variable, value) => {
 
 const processAliasModes = (variables) => {
   return variables.reduce((collector, variable) => {
-    // nothing needs to be done to variables that has no alias modes
+    // nothing needs to be done to variables that have no alias modes
     if (!variable.aliasModes) {
       collector.push(variable)
 
