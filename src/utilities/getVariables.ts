@@ -70,8 +70,7 @@ const processAliasModes = (variables) => {
       return collector
     }
 
-    const aliasModes = variable.aliasModes
-    const aliasName = variable.aliasName
+    const { aliasModes, aliasName } = variable
 
     // this was only added for this function to process that data so before we return the variables, we can remove it
     delete variable.aliasModes
