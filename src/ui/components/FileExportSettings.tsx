@@ -71,6 +71,23 @@ export const FileExportSettings = () => {
         return;
       }
 
+      // only save settings
+      if (event.target.name === "onlySave") {
+        figmaUIApi.postMessage(
+          {
+            pluginMessage: {
+              command: commands.closePlugin,
+              payload: {
+                notification: "Settings saved!!",
+              },
+            },
+          },
+          "*"
+        );
+        return;
+      }
+
+      
       const tokensToExport = prepareExport(tokens, pluginSettings);
 
       setTokens(tokensToExport);
@@ -153,6 +170,9 @@ export const FileExportSettings = () => {
           Documentation
         </WebLink>
         <CancelButton />
+        <Button type="submit" name="onlySave" onClick={handleFormSubmit}>
+          Save
+        </Button>
         <Button type="submit" autofocus>
           Save & Export
         </Button>
