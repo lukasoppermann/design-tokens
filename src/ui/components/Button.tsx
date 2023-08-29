@@ -57,7 +57,6 @@ type buttonProps = {
   isSecondary?: boolean;
   isDisabled?: boolean;
   type?: 'submit' | 'button' | 'reset';
-  name?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -69,7 +68,6 @@ export const Button = ({
   onClick,
   type,
   autofocus,
-  name
 }: buttonProps) => {
   return (
     <button
@@ -77,7 +75,6 @@ export const Button = ({
       onClick={onClick}
       className={`${style} button--${isSecondary ? 'secondary' : 'primary'} ${className || ''}`}
       disabled={isDisabled}
-      name={name}
       type={type || 'button'}
     >
       {children}

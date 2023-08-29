@@ -4,7 +4,6 @@ import { Button } from '@components/Button'
 import { Checkbox } from '@components/Checkbox'
 import { Title } from '@components/Title'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
-import { CancelButton } from './CancelButton'
 import { css } from '@emotion/css'
 import { Footer } from './Footer'
 import { downloadJson } from '../modules/downloadJson'
@@ -35,6 +34,25 @@ export const FileExportSettings = () => {
   const { figmaUIApi } = useContext(FigmaContext)
   const downloadLinkRef = useRef()
 
+  React.useEffect(() => {
+    const { accessToken, ...pluginSettings } = settings;
+
+    figmaUIApi.postMessage(
+      {
+        pluginMessage: {
+          command: commands.saveSettings,
+          payload: {
+            settings: pluginSettings,
+            accessToken: accessToken,
+          },
+        },
+        // @ts-ignore
+      },
+      "*"
+    );
+}, [settings]);
+
+
   const handleFormSubmit = (event) => {
     event.preventDefault() // Prevent form submit triggering navigation
     const exportSettingsForm = event.target
@@ -61,23 +79,6 @@ export const FileExportSettings = () => {
             pluginMessage: {
               command: commands.closePlugin,
               payload: {
-                notification: "No tokens to export!",
-              },
-            },
-            // @ts-ignore
-          },
-          "*"
-        );
-        return;
-      }
-
-      // only save settings
-      if (event.target.name === "onlySave") {
-        figmaUIApi.postMessage(
-          {
-            pluginMessage: {
-              command: commands.closePlugin,
-              payload: {
                 notification: "Settings saved!!",
               },
             },
@@ -86,7 +87,6 @@ export const FileExportSettings = () => {
         );
         return;
       }
-
       
       const tokensToExport = prepareExport(tokens, pluginSettings);
 
@@ -169,12 +169,8 @@ export const FileExportSettings = () => {
         >
           Documentation
         </WebLink>
-        <CancelButton />
-        <Button type="submit" name="onlySave" onClick={handleFormSubmit}>
-          Save
-        </Button>
         <Button type="submit" autofocus>
-          Save & Export
+          export
         </Button>
       </Footer>
       <a
