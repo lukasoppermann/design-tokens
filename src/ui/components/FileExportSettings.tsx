@@ -170,7 +170,7 @@ export const FileExportSettings = () => {
           Documentation
         </WebLink>
         <Button type="submit" autofocus>
-          export
+          Export
         </Button>
       </Footer>
       <a
