@@ -67,7 +67,7 @@ export const Button = ({
   isDisabled,
   onClick,
   type,
-  autofocus,
+  autofocus
 }: buttonProps) => {
   return (
     <button

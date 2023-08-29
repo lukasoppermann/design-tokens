@@ -79,7 +79,7 @@ export const FileExportSettings = () => {
             pluginMessage: {
               command: commands.closePlugin,
               payload: {
-                notification: "Settings saved!!",
+                notification: "No tokens to export!",
               },
             },
           },
@@ -87,7 +87,7 @@ export const FileExportSettings = () => {
         );
         return;
       }
-      
+
       const tokensToExport = prepareExport(tokens, pluginSettings);
 
       setTokens(tokensToExport);
