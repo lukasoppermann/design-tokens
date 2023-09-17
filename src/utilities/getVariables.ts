@@ -93,10 +93,12 @@ const processAliasModes = (variables) => {
 }
 
 export const getVariables = (figma: PluginAPI, modeReference: boolean) => {
+  const notIncludeCollectionIds = figma.variables.getLocalVariableCollections().filter(collection => !(collection.name.startsWith('_') || collection.name.startsWith('.'))).map(collection => collection.id);
   // get collections
   const collections = Object.fromEntries(figma.variables.getLocalVariableCollections().map((collection) => [collection.id, collection]))
+
   // get variables
-  const variables = figma.variables.getLocalVariables().map((variable) => {
+  const variables = figma.variables.getLocalVariables().filter(variable => notIncludeCollectionIds.includes(variable.variableCollectionId)).map((variable) => {
     // get collection name and modes
     const { variableCollectionId } = variable
     const { name: collection, modes } = collections[variableCollectionId]
