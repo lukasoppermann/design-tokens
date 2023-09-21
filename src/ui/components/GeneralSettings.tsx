@@ -187,7 +187,7 @@ export const GeneralSettings = () => {
             Exclusion prefix{" "}
             <Info
               width={240}
-              label='Styles & tokens with this prefix will be ignored when exporting. ("." and "_" work by default)'
+              label='Styles, tokens with this prefix, and collections of variables will be ignored when exporting. ("." and "_" work by default)'
             />
           </Title>
           <Input
