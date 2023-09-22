@@ -193,7 +193,7 @@ export const GeneralSettings = () => {
           <Input
             type="text"
             pattern="^[#\+*\\/&%$!?;:~,\s]+$"
-            placeholder="#, @"
+            placeholder="exclusion prefix"
             value={settings.exclusionPrefix}
             onChange={(value) =>
               updateSettings((draft: Settings) => {
@@ -232,7 +232,7 @@ export const GeneralSettings = () => {
             Reference mode in variables
             <Info
               width={240}
-              label='If disabled, the exported json will not include the mode of variables.'
+              label="If disabled, the exported json will not include the mode of variables."
             />
           </Title>
           <Checkbox

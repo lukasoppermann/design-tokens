@@ -31,6 +31,6 @@ export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
     ...extractGrids(figmaData.gridStyles, getPrefixArray(settings.prefix.grid)),
     ...extractFonts(figmaData.textStyles, getPrefixArray(settings.prefix.font)),
     ...extractEffects(figmaData.effectStyles, getPrefixArray(settings.prefix.effect)),
-    ...getVariables(figma, settings.modeReference)
+    ...getVariables(figma, settings)
   ]
 }
