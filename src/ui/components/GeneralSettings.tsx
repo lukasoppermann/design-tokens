@@ -187,13 +187,13 @@ export const GeneralSettings = () => {
             Exclusion prefix{" "}
             <Info
               width={240}
-              label='Styles, tokens with this prefix, and collections of variables will be ignored when exporting. ("." and "_" work by default)'
+              label='Styles, tokens, and collections of variables with this prefix will be ignored when exporting. ("." and "_" work by default)'
             />
           </Title>
           <Input
             type="text"
             pattern="^[#\+*\\/&%$!?;:~,\s]+$"
-            placeholder="#, @"
+            placeholder="exclusion prefix"
             value={settings.exclusionPrefix}
             onChange={(value) =>
               updateSettings((draft: Settings) => {
@@ -232,7 +232,7 @@ export const GeneralSettings = () => {
             Reference mode in variables
             <Info
               width={240}
-              label='If disabled, the exported json will not include the mode of variables.'
+              label="If disabled, the exported json will not include the mode of variables."
             />
           </Title>
           <Checkbox
