@@ -7,6 +7,7 @@ import { roundRgba } from './convertColor'
 import { changeNotation } from './changeNotation'
 import { getVariableTypeByValue } from './getVariableTypeByValue'
 import roundWithDecimals from './roundWithDecimals'
+import { Settings } from '@typings/settings'
 
 const extractVariable = (variable, value) => {
   let category: tokenCategoryType = 'color'
@@ -92,11 +93,13 @@ const processAliasModes = (variables) => {
   }, [])
 }
 
-export const getVariables = (figma: PluginAPI, modeReference: boolean) => {
+export const getVariables = (figma: PluginAPI, settings: Settings) => {
+  const excludedCollectionIds = figma.variables.getLocalVariableCollections().filter(collection => !['.', '_', ...settings.exclusionPrefix.split(',')].includes(collection.name.charAt(0))).map(collection => collection.id);
   // get collections
   const collections = Object.fromEntries(figma.variables.getLocalVariableCollections().map((collection) => [collection.id, collection]))
+
   // get variables
-  const variables = figma.variables.getLocalVariables().map((variable) => {
+  const variables = figma.variables.getLocalVariables().filter(variable => excludedCollectionIds.includes(variable.variableCollectionId)).map((variable) => {
     // get collection name and modes
     const { variableCollectionId } = variable
     const { name: collection, modes } = collections[variableCollectionId]
@@ -105,11 +108,11 @@ export const getVariables = (figma: PluginAPI, modeReference: boolean) => {
       return {
         ...extractVariable(variable, value),
         // name is contstructed from collection, mode and variable name
-        name: modeReference ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
+        name: settings.modeReference ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
         // add mnetadata to extensions
         extensions: {
           [config.key.extensionPluginData]: {
-            mode: modeReference ? modes.find(({ modeId }) => modeId === id).name : undefined,
+            mode: settings.modeReference ? modes.find(({ modeId }) => modeId === id).name : undefined,
             collection: collection,
             scopes: variable.scopes,
             [config.key.extensionVariableStyleId]: variable.id,
@@ -120,8 +123,5 @@ export const getVariables = (figma: PluginAPI, modeReference: boolean) => {
     })
   })
 
-  return modeReference ? processAliasModes(variables.flat()) : variables.flat();
+  return settings.modeReference ? processAliasModes(variables.flat()) : variables.flat();
 }
-
-
-
