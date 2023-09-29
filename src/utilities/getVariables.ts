@@ -64,8 +64,8 @@ const extractVariable = (variable, value) => {
 
 const processAliasModes = (variables) => {
   return variables.reduce((collector, variable) => {
-    // nothing needs to be done to variables that have no alias modes
-    if (!variable.aliasModes) {
+    // nothing needs to be done to variables that have no alias modes, or only one mode
+    if (!variable.aliasModes || variable.aliasModes.length < 2) {
       collector.push(variable)
 
       return collector
@@ -105,10 +105,13 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
     const { name: collection, modes } = collections[variableCollectionId]
     // return each mode value as a separate variable
     return Object.entries(variable.valuesByMode).map(([id, value]) => {
+      // Only add mode if there's more than one
+      let addMode = settings.modeReference && modes.length > 1
       return {
         ...extractVariable(variable, value),
         // name is contstructed from collection, mode and variable name
-        name: settings.modeReference ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
+
+        name: addMode ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
         // add mnetadata to extensions
         extensions: {
           [config.key.extensionPluginData]: {
