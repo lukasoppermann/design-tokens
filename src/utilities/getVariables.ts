@@ -25,7 +25,7 @@ const extractVariable = (variable, value) => {
 
       // this is being stored so we can properly update the design tokens later to account for all 
       // modes when using aliases
-      aliasName: collection.name,
+      aliasCollectionName: collection.name,
       aliasModes: collection.modes
     }
   }
@@ -71,11 +71,11 @@ const processAliasModes = (variables) => {
       return collector
     }
 
-    const { aliasModes, aliasName } = variable
+    const { aliasModes, aliasCollectionName } = variable
 
     // this was only added for this function to process that data so before we return the variables, we can remove it
     delete variable.aliasModes
-    delete variable.selfCollectionName
+    delete variable.aliasCollectionName
 
     for (let i = 0; i < aliasModes.length; i++) {
       const modeBasedVariable = { ...variable }
@@ -83,7 +83,7 @@ const processAliasModes = (variables) => {
 
       nameParts.splice(1, 0, aliasModes[i].name)
 
-      modeBasedVariable.values = modeBasedVariable.values.replace(`{${aliasName}.`, `{${aliasName}.${aliasModes[i].name}.`)
+      modeBasedVariable.values = modeBasedVariable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasModes[i].name}.`)
       modeBasedVariable.name = nameParts.join('/')
 
       collector.push(modeBasedVariable)
@@ -97,7 +97,6 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
   const excludedCollectionIds = figma.variables.getLocalVariableCollections().filter(collection => !['.', '_', ...settings.exclusionPrefix.split(',')].includes(collection.name.charAt(0))).map(collection => collection.id);
   // get collections
   const collections = Object.fromEntries(figma.variables.getLocalVariableCollections().map((collection) => [collection.id, collection]))
-
   // get variables
   const variables = figma.variables.getLocalVariables().filter(variable => excludedCollectionIds.includes(variable.variableCollectionId)).map((variable) => {
     // get collection name and modes
@@ -125,6 +124,5 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       }
     })
   })
-
   return settings.modeReference ? processAliasModes(variables.flat()) : variables.flat();
 }
