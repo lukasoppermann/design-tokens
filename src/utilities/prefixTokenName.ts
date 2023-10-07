@@ -17,7 +17,7 @@ export const prefixTokenName = (tokenArray: OriginalFormatTokenInterface[] | Sta
   // nest tokens into object with hierarchy defined by name using /
   return tokenArray.map(token => {
     // remove top level prefix from name if desired
-    if (userSettings.prefixInName === false) {
+    if (userSettings.prefixInName === false && token.exportKey !== 'variables') {
       token.name = token.name.substr(token.name.indexOf('/') + 1).trim().trimLeft()
     } else {
       if (token.extensions?.[config.key.extensionPluginData]?.alias !== undefined) {
