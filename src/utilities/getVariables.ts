@@ -77,16 +77,19 @@ const processAliasModes = (variables) => {
     delete variable.aliasModes
     delete variable.aliasCollectionName
 
-    for (let i = 0; i < aliasModes.length; i++) {
-      const modeBasedVariable = { ...variable }
-      const nameParts = modeBasedVariable.name.split('/');
+    for (const aliasMode of aliasModes) {
+      const modeBasedVariable = { ...variable };
+      const nameParts = modeBasedVariable.name.split("/");
 
-      nameParts.splice(1, 0, aliasModes[i].name)
+      nameParts.splice(1, 0, aliasMode.name);
 
-      modeBasedVariable.values = modeBasedVariable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasModes[i].name}.`)
-      modeBasedVariable.name = nameParts.join('/')
+      modeBasedVariable.values = modeBasedVariable.values.replace(
+        new RegExp(`({${aliasCollectionName}.)`, "i"),
+        `{${aliasCollectionName}.${aliasMode.name}.`
+      );
+      modeBasedVariable.name = nameParts.join("/");
 
-      collector.push(modeBasedVariable)
+      collector.push(modeBasedVariable);
     }
 
     return collector
