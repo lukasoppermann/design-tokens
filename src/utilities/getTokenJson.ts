@@ -19,7 +19,6 @@ const getPrefixArray = (prefixString: string = '') => prefixString.split(',').ma
 export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
   const figmaData: figmaDataType = buildFigmaData(figma, settings)
   // get tokens
-  console.log("getVariables in getTokenJson.ts", getVariables(figma, settings))
   return [
     ...extractSizes(figmaData.tokenFrames, getPrefixArray(settings.prefix.size)),
     ...extractBreakpoints(figmaData.tokenFrames, getPrefixArray(settings.prefix.breakpoint)),

@@ -15,7 +15,6 @@ const extractVariable = (variable, value) => {
   if (value.type === 'VARIABLE_ALIAS') {
     const resolvedAlias = figma.variables.getVariableById(value.id)
     const collection = figma.variables.getVariableCollectionById(resolvedAlias.variableCollectionId)
-    console.log(variable)
     return {
       name: variable.name,
       description: variable.description || undefined,
@@ -25,7 +24,7 @@ const extractVariable = (variable, value) => {
 
       // this is being stored so we can properly update the design tokens later to account for all 
       // modes when using aliases
-      aliasCollectionName: collection.name,
+      aliasCollectionName: collection.name.toLowerCase(),
       aliasModes: collection.modes
     }
   }
