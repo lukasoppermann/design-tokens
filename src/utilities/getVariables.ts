@@ -15,7 +15,7 @@ const extractVariable = (variable, value) => {
   if (value.type === 'VARIABLE_ALIAS') {
     const resolvedAlias = figma.variables.getVariableById(value.id)
     const collection = figma.variables.getVariableCollectionById(resolvedAlias.variableCollectionId)
-
+    console.log(variable)
     return {
       name: variable.name,
       description: variable.description || undefined,
@@ -79,12 +79,7 @@ const processAliasModes = (variables) => {
 
     for (let i = 0; i < aliasModes.length; i++) {
       const modeBasedVariable = { ...variable }
-      const nameParts = modeBasedVariable.name.split('/');
-
-      nameParts.splice(1, 0, aliasModes[i].name)
-
       modeBasedVariable.values = modeBasedVariable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasModes[i].name}.`)
-      modeBasedVariable.name = nameParts.join('/')
 
       collector.push(modeBasedVariable)
     }
