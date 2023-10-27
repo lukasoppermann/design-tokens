@@ -9,7 +9,7 @@ import { getVariableTypeByValue } from './getVariableTypeByValue'
 import roundWithDecimals from './roundWithDecimals'
 import { Settings } from '@typings/settings'
 
-const extractVariable = (variable, value) => {
+const extractVariable = (variable, value, mode) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
@@ -25,7 +25,7 @@ const extractVariable = (variable, value) => {
       // this is being stored so we can properly update the design tokens later to account for all 
       // modes when using aliases
       aliasCollectionName: collection.name.toLowerCase(),
-      aliasModes: collection.modes
+      aliasMode: mode
     }
   }
   switch (variable.resolvedType) {
@@ -64,24 +64,22 @@ const extractVariable = (variable, value) => {
 const processAliasModes = (variables) => {
   return variables.reduce((collector, variable) => {
     // nothing needs to be done to variables that have no alias modes, or only one mode
-    if (!variable.aliasModes || variable.aliasModes.length < 2) {
+    if (!variable.aliasMode) {
       collector.push(variable)
 
       return collector
     }
 
-    const { aliasModes, aliasCollectionName } = variable
+    const { aliasMode, aliasCollectionName } = variable
 
     // this was only added for this function to process that data so before we return the variables, we can remove it
-    delete variable.aliasModes
+    delete variable.aliasMode
     delete variable.aliasCollectionName
 
-    for (let i = 0; i < aliasModes.length; i++) {
-      const modeBasedVariable = { ...variable }
-      modeBasedVariable.values = modeBasedVariable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasModes[i].name}.`)
-
-      collector.push(modeBasedVariable)
-    }
+    collector.push({
+      ...variable,
+      values: variable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasMode.name}.`)
+    });
 
     return collector
   }, [])
@@ -101,7 +99,7 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       // Only add mode if there's more than one
       let addMode = settings.modeReference && modes.length > 1
       return {
-        ...extractVariable(variable, value),
+        ...extractVariable(variable, value, modes.find(({ modeId }) => modeId === id)),
         // name is contstructed from collection, mode and variable name
 
         name: addMode ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
