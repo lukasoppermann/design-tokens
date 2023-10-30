@@ -8,6 +8,12 @@ const returnOrThrow = (convertedString: string, originalString: string, stringCa
 }
 
 const toCamelCase = (string: string): string => {
+  // check if the string is already in camel case
+  if (/^[a-z]+([A-Z][a-z]*)*$/.test(string)) {
+    // return the string as it is
+    return string;
+  }
+  // otherwise, apply the conversion logic
   const convertedString: string = string.toLowerCase()
     .replace(/['"]/g, '')
     .replace(/([-_ ]){1,}/g, ' ')
