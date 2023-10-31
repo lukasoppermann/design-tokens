@@ -15,7 +15,6 @@ const extractVariable = (variable, value) => {
   if (value.type === 'VARIABLE_ALIAS') {
     const resolvedAlias = figma.variables.getVariableById(value.id)
     const collection = figma.variables.getVariableCollectionById(resolvedAlias.variableCollectionId)
-
     return {
       name: variable.name,
       description: variable.description || undefined,
@@ -25,7 +24,7 @@ const extractVariable = (variable, value) => {
 
       // this is being stored so we can properly update the design tokens later to account for all 
       // modes when using aliases
-      aliasCollectionName: collection.name,
+      aliasCollectionName: collection.name.toLowerCase(),
       aliasModes: collection.modes
     }
   }
@@ -78,18 +77,18 @@ const processAliasModes = (variables) => {
     delete variable.aliasCollectionName
 
     for (const aliasMode of aliasModes) {
-      const modeBasedVariable = { ...variable };
-      const nameParts = modeBasedVariable.name.split("/");
+      const modeBasedVariable = { ...variable }
+      const nameParts = modeBasedVariable.name.split("/")
 
-      nameParts.splice(1, 0, aliasMode.name);
+      nameParts.splice(1, 0, aliasMode.name)
 
       modeBasedVariable.values = modeBasedVariable.values.replace(
         new RegExp(`({${aliasCollectionName}.)`, "i"),
         `{${aliasCollectionName}.${aliasMode.name}.`
       );
-      modeBasedVariable.name = nameParts.join("/");
+      modeBasedVariable.name = nameParts.join("/")
 
-      collector.push(modeBasedVariable);
+      collector.push(modeBasedVariable)
     }
 
     return collector
