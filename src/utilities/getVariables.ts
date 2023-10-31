@@ -78,7 +78,7 @@ const processAliasModes = (variables) => {
 
     for (const aliasMode of aliasModes) {
       const modeBasedVariable = { ...variable }
-      modeBasedVariable.values = modeBasedVariable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasMode.name}.`)
+      modeBasedVariable.values = modeBasedVariable.values.replace(new RegExp(`({${aliasCollectionName}.)`, "i"), `{${aliasCollectionName}.${aliasMode.name}.`)
 
       collector.push(modeBasedVariable)
     }
