@@ -76,9 +76,9 @@ const processAliasModes = (variables) => {
     delete variable.aliasModes
     delete variable.aliasCollectionName
 
-    for (let i = 0; i < aliasModes.length; i++) {
+    for (const aliasMode of aliasModes) {
       const modeBasedVariable = { ...variable }
-      modeBasedVariable.values = modeBasedVariable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasModes[i].name}.`)
+      modeBasedVariable.values = modeBasedVariable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasMode.name}.`)
 
       collector.push(modeBasedVariable)
     }
