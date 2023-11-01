@@ -78,7 +78,7 @@ const processAliasModes = (variables) => {
 
     collector.push({
       ...variable,
-      values: variable.values.replace(`{${aliasCollectionName}.`, `{${aliasCollectionName}.${aliasMode.name}.`)
+      values: variable.values.replace(new RegExp(`({${aliasCollectionName}.)`, "i"), `{${aliasCollectionName}.${aliasMode.name}.`)
     });
 
     return collector
