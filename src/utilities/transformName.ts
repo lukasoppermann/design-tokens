@@ -14,7 +14,7 @@ const toCamelCase = (string: string): string => {
     return string;
   }
   // otherwise, apply the conversion logic
-  const convertedString: string = string.toLowerCase()
+  const convertedString: string = string.charAt(0).toLowerCase() + string.slice(1)
     .replace(/['"]/g, '')
     .replace(/([-_ ]){1,}/g, ' ')
     .replace(/\W+/g, ' ')
@@ -24,6 +24,7 @@ const toCamelCase = (string: string): string => {
   // return or throw
   return returnOrThrow(convertedString, string, 'camelCase')
 }
+
 
 const toKebabCase = (string: string): string => {
   const convertedString: string = string.toLowerCase()
