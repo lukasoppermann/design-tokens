@@ -1,10 +1,12 @@
 {
-  "name": "Design Tokens",
-  "id": "888356646278934516",
+  "name": "Design Tokens (Jack's version)",
+  "id": "1327033080853043801",
   "api": "1.0.0",
   "main": "dist/plugin.js",
   "ui": "dist/ui.html",
-  "editorType": ["figma"],
+  "editorType": [
+    "figma"
+  ],
   "networkAccess": {
     "allowedDomains": [
       "https://github.com",
@@ -17,14 +19,38 @@
     ]
   },
   "menu": [
-    { "name": "Export Design Token File", "command": "export" },
-    { "name": "Send Design Tokens to Url", "command": "urlExport" },
-    { "separator": true },
-    { "name": "Settings", "command": "generalSettings" },
-    { "separator": true },
-    { "name": "Help", "command": "help" },
-    { "name": "Demo file", "command": "demo" },
-    { "separator": true },
-    { "name": "Reset Settings", "command": "reset" }
+    {
+      "name": "Export Design Token File",
+      "command": "export"
+    },
+    {
+      "name": "Send Design Tokens to Url",
+      "command": "urlExport"
+    },
+    {
+      "separator": true
+    },
+    {
+      "name": "Settings",
+      "command": "generalSettings"
+    },
+    {
+      "separator": true
+    },
+    {
+      "name": "Help",
+      "command": "help"
+    },
+    {
+      "name": "Demo file",
+      "command": "demo"
+    },
+    {
+      "separator": true
+    },
+    {
+      "name": "Reset Settings",
+      "command": "reset"
+    }
   ]
 }
