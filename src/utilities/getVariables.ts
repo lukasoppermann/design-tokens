@@ -5,8 +5,8 @@ import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { PropertyType } from '@typings/valueTypes'
 import { roundRgba } from './convertColor'
 import roundWithDecimals from './roundWithDecimals'
-import processAliasModes from "./processAliasModes";
-import handleVariableAlias from "./handleVariableAlias";
+import processAliasModes from './processAliasModes'
+import handleVariableAlias from './handleVariableAlias'
 import { Settings } from '@typings/settings'
 
 const extractVariable = (variable, value) => {
@@ -50,7 +50,7 @@ const extractVariable = (variable, value) => {
 }
 
 export const getVariables = (figma: PluginAPI, settings: Settings) => {
-  const excludedCollectionIds = figma.variables.getLocalVariableCollections().filter(collection => !['.', '_', ...settings.exclusionPrefix.split(',')].includes(collection.name.charAt(0))).map(collection => collection.id);
+  const excludedCollectionIds = figma.variables.getLocalVariableCollections().filter(collection => !['.', '_', ...settings.exclusionPrefix.split(',')].includes(collection.name.charAt(0))).map(collection => collection.id)
   // get collections
   const collections = Object.fromEntries(figma.variables.getLocalVariableCollections().map((collection) => [collection.id, collection]))
   // get variables
@@ -61,7 +61,7 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
     // return each mode value as a separate variable
     return Object.entries(variable.valuesByMode).map(([id, value]) => {
       // Only add mode if there's more than one
-      let addMode = settings.modeReference && modes.length > 1
+      const addMode = settings.modeReference && modes.length > 1
       return {
         ...extractVariable(variable, value),
         // name is constructed from collection, mode and variable name
@@ -81,5 +81,5 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
     })
   })
   console.log(variables.flat())
-  return settings.modeReference ? processAliasModes(variables.flat()) : variables.flat();
+  return settings.modeReference ? processAliasModes(variables.flat()) : variables.flat()
 }
