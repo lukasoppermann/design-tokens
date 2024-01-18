@@ -7,6 +7,7 @@ import { roundRgba } from './convertColor'
 import { changeNotation } from './changeNotation'
 import { getVariableTypeByValue } from './getVariableTypeByValue'
 import roundWithDecimals from './roundWithDecimals'
+import processAliasModes from "./processAliasModes";
 import { Settings } from '@typings/settings'
 
 const extractVariable = (variable, value) => {
@@ -61,31 +62,7 @@ const extractVariable = (variable, value) => {
   }
 }
 
-const processAliasModes = (variables) => {
-  return variables.reduce((collector, variable) => {
-    // nothing needs to be done to variables that have no alias modes, or only one mode
-    if (!variable.aliasModes || variable.aliasModes.length < 2) {
-      collector.push(variable)
 
-      return collector
-    }
-
-    const { aliasModes, aliasCollectionName } = variable
-
-    // this was only added for this function to process that data so before we return the variables, we can remove it
-    delete variable.aliasModes
-    delete variable.aliasCollectionName
-
-    for (const aliasMode of aliasModes) {
-      const modeBasedVariable = { ...variable }
-      modeBasedVariable.values = modeBasedVariable.values.replace(new RegExp(`({${aliasCollectionName}.)`, "i"), `{${aliasCollectionName}.${aliasMode.name}.`)
-
-      collector.push(modeBasedVariable)
-    }
-
-    return collector
-  }, [])
-}
 
 export const getVariables = (figma: PluginAPI, settings: Settings) => {
   const excludedCollectionIds = figma.variables.getLocalVariableCollections().filter(collection => !['.', '_', ...settings.exclusionPrefix.split(',')].includes(collection.name.charAt(0))).map(collection => collection.id);
@@ -118,5 +95,6 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       }
     })
   })
+  console.log(variables.flat())
   return settings.modeReference ? processAliasModes(variables.flat()) : variables.flat();
 }
