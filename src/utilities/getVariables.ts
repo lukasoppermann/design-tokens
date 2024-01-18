@@ -6,7 +6,7 @@ import { PropertyType } from '@typings/valueTypes'
 import { roundRgba } from './convertColor'
 import roundWithDecimals from './roundWithDecimals'
 import handleVariableAlias from './handleVariableAlias'
-
+import processAliasModes from './processAliasModes'
 import { Settings } from '@typings/settings'
 
 const extractVariable = (variable, value, mode) => {
@@ -46,33 +46,6 @@ const extractVariable = (variable, value, mode) => {
     category,
     values
   }
-}
-
-const processAliasModes = (variables) => {
-  return variables.reduce((collector, variable) => {
-    // nothing needs to be done to variables that have no alias modes, or only one mode
-    if (!variable.aliasMode) {
-      collector.push(variable)
-
-      return collector
-    }
-
-    const { aliasMode, aliasCollectionName } = variable
-
-    // this was only added for this function to process that data so before we return the variables, we can remove it
-    delete variable.aliasMode
-    delete variable.aliasCollectionName
-
-    collector.push({
-      ...variable,
-      values: variable.values.replace(
-        `{${aliasCollectionName}.`,
-        `{${aliasCollectionName}.${aliasMode.name}.`
-      )
-    })
-
-    return collector
-  }, [])
 }
 
 export const getVariables = (figma: PluginAPI, settings: Settings) => {
