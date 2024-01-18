@@ -80,6 +80,5 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       }
     })
   })
-  console.log(variables.flat())
   return settings.modeReference ? processAliasModes(variables.flat()) : variables.flat()
 }
