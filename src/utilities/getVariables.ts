@@ -4,30 +4,16 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { PropertyType } from '@typings/valueTypes'
 import { roundRgba } from './convertColor'
-import { changeNotation } from './changeNotation'
-import { getVariableTypeByValue } from './getVariableTypeByValue'
 import roundWithDecimals from './roundWithDecimals'
 import processAliasModes from "./processAliasModes";
+import handleVariableAlias from "./handleVariableAlias";
 import { Settings } from '@typings/settings'
 
 const extractVariable = (variable, value) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
-    const resolvedAlias = figma.variables.getVariableById(value.id)
-    const collection = figma.variables.getVariableCollectionById(resolvedAlias.variableCollectionId)
-    return {
-      name: variable.name,
-      description: variable.description || undefined,
-      exportKey: tokenTypes.variables.key as tokenExportKeyType,
-      category: getVariableTypeByValue(Object.values(resolvedAlias.valuesByMode)[0]),
-      values: `{${collection.name.toLowerCase()}.${changeNotation(resolvedAlias.name, '/', '.')}}`,
-
-      // this is being stored so we can properly update the design tokens later to account for all 
-      // modes when using aliases
-      aliasCollectionName: collection.name.toLowerCase(),
-      aliasModes: collection.modes
-    }
+    return handleVariableAlias(variable, value)
   }
   switch (variable.resolvedType) {
     case 'COLOR':
@@ -54,15 +40,14 @@ const extractVariable = (variable, value) => {
       break
   }
   return {
-    name: variable.name,
+    // name is overridden anyways
+    // name: variable.name,
     description: variable.description || undefined,
     exportKey: tokenTypes.variables.key as tokenExportKeyType,
     category,
     values
   }
 }
-
-
 
 export const getVariables = (figma: PluginAPI, settings: Settings) => {
   const excludedCollectionIds = figma.variables.getLocalVariableCollections().filter(collection => !['.', '_', ...settings.exclusionPrefix.split(',')].includes(collection.name.charAt(0))).map(collection => collection.id);
@@ -79,10 +64,10 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       let addMode = settings.modeReference && modes.length > 1
       return {
         ...extractVariable(variable, value),
-        // name is contstructed from collection, mode and variable name
+        // name is constructed from collection, mode and variable name
 
         name: addMode ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
-        // add mnetadata to extensions
+        // add metadata to extensions
         extensions: {
           [config.key.extensionPluginData]: {
             mode: settings.modeReference ? modes.find(({ modeId }) => modeId === id).name : undefined,
