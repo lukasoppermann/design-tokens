@@ -4,37 +4,16 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { PropertyType } from '@typings/valueTypes'
 import { roundRgba } from './convertColor'
-import { changeNotation } from './changeNotation'
-import { getVariableTypeByValue } from './getVariableTypeByValue'
 import roundWithDecimals from './roundWithDecimals'
+import handleVariableAlias from './handleVariableAlias'
+
 import { Settings } from '@typings/settings'
 
 const extractVariable = (variable, value, mode) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
-    const resolvedAlias = figma.variables.getVariableById(value.id)
-    const collection = figma.variables.getVariableCollectionById(
-      resolvedAlias.variableCollectionId
-    )
-    return {
-      name: variable.name,
-      description: variable.description || undefined,
-      exportKey: tokenTypes.variables.key as tokenExportKeyType,
-      category: getVariableTypeByValue(
-        Object.values(resolvedAlias.valuesByMode)[0]
-      ),
-      values: `{${collection.name.toLowerCase()}.${changeNotation(
-        resolvedAlias.name,
-        '/',
-        '.'
-      )}}`,
-
-      // this is being stored so we can properly update the design tokens later to account for all
-      // modes when using aliases
-      aliasCollectionName: collection.name.toLowerCase(),
-      aliasMode: mode
-    }
+    return handleVariableAlias(variable, value, mode)
   }
   switch (variable.resolvedType) {
     case 'COLOR':
