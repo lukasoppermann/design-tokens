@@ -8,6 +8,7 @@ import { changeNotation } from './changeNotation'
 import { getVariableTypeByValue } from './getVariableTypeByValue'
 import roundWithDecimals from './roundWithDecimals'
 import { Settings } from '@typings/settings'
+import transformName from './transformName'
 
 const extractVariable = (variable, value, settings: Settings) => {
   let category: tokenCategoryType = 'color'
@@ -20,7 +21,7 @@ const extractVariable = (variable, value, settings: Settings) => {
       description: variable.description || undefined,
       exportKey: tokenTypes.variables.key as tokenExportKeyType,
       category: getVariableTypeByValue(Object.values(resolvedAlias.valuesByMode)[0]),
-      values: `{${collection.name.toLowerCase()}.${changeNotation(resolvedAlias.name, '/', '.', settings.nameConversion)}}`,
+      values: `{${transformName(collection.name.toLowerCase(), settings.nameConversion)}.${changeNotation(resolvedAlias.name, '/', '.', settings.nameConversion)}}`,
 
       // this is being stored so we can properly update the design tokens later to account for all 
       // modes when using aliases
