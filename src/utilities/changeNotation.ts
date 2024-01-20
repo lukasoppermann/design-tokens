@@ -1,3 +1,5 @@
-export const changeNotation = (name, currentDelimiter = '/', desiredDelimiter = '.') => {
-  return name.split(currentDelimiter).join(desiredDelimiter).toLowerCase()
+import transformName from './transformName'
+
+export const changeNotation = (name: string, currentDelimiter = '/', desiredDelimiter = '.', nameConversion: string = 'default') => {
+  return name.split(currentDelimiter).map(group => transformName(group, nameConversion)).join(desiredDelimiter).toLowerCase()
 }

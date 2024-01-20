@@ -9,7 +9,7 @@ import { getVariableTypeByValue } from './getVariableTypeByValue'
 import roundWithDecimals from './roundWithDecimals'
 import { Settings } from '@typings/settings'
 
-const extractVariable = (variable, value) => {
+const extractVariable = (variable, value, settings: Settings) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
@@ -20,7 +20,7 @@ const extractVariable = (variable, value) => {
       description: variable.description || undefined,
       exportKey: tokenTypes.variables.key as tokenExportKeyType,
       category: getVariableTypeByValue(Object.values(resolvedAlias.valuesByMode)[0]),
-      values: `{${collection.name.toLowerCase()}.${changeNotation(resolvedAlias.name, '/', '.')}}`,
+      values: `{${collection.name.toLowerCase()}.${changeNotation(resolvedAlias.name, '/', '.', settings.nameConversion)}}`,
 
       // this is being stored so we can properly update the design tokens later to account for all 
       // modes when using aliases
@@ -101,7 +101,7 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       // Only add mode if there's more than one
       let addMode = settings.modeReference && modes.length > 1
       return {
-        ...extractVariable(variable, value),
+        ...extractVariable(variable, value, settings),
         // name is contstructed from collection, mode and variable name
 
         name: addMode ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
