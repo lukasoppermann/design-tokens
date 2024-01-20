@@ -16,16 +16,17 @@ const extractVariable = (variable, value, settings: Settings) => {
   if (value.type === 'VARIABLE_ALIAS') {
     const resolvedAlias = figma.variables.getVariableById(value.id)
     const collection = figma.variables.getVariableCollectionById(resolvedAlias.variableCollectionId)
+    const aliasVariable = `${collection.name.toLocaleLowerCase()}/${resolvedAlias.name}`
     return {
       name: variable.name,
       description: variable.description || undefined,
       exportKey: tokenTypes.variables.key as tokenExportKeyType,
       category: getVariableTypeByValue(Object.values(resolvedAlias.valuesByMode)[0]),
-      values: `{${transformName(collection.name.toLowerCase(), settings.nameConversion)}.${changeNotation(resolvedAlias.name, '/', '.', settings.nameConversion)}}`,
+      values: `{${changeNotation(aliasVariable, '/', '.', settings.nameConversion)}}`,
 
       // this is being stored so we can properly update the design tokens later to account for all 
       // modes when using aliases
-      aliasCollectionName: collection.name.toLowerCase(),
+      aliasCollectionName: transformName(collection.name.toLowerCase(), settings.nameConversion),
       aliasModes: collection.modes
     }
   }
@@ -62,7 +63,7 @@ const extractVariable = (variable, value, settings: Settings) => {
   }
 }
 
-const processAliasModes = (variables) => {
+const processAliasModes = (variables, settings: Settings) => {
   return variables.reduce((collector, variable) => {
     // nothing needs to be done to variables that have no alias modes, or only one mode
     if (!variable.aliasModes || variable.aliasModes.length < 2) {
@@ -79,7 +80,8 @@ const processAliasModes = (variables) => {
 
     for (const aliasMode of aliasModes) {
       const modeBasedVariable = { ...variable }
-      modeBasedVariable.values = modeBasedVariable.values.replace(new RegExp(`({${aliasCollectionName}.)`, "i"), `{${aliasCollectionName}.${aliasMode.name}.`)
+      const aliasModeName = transformName(aliasMode.name, settings.nameConversion)
+      modeBasedVariable.values = modeBasedVariable.values.replace(new RegExp(`({${aliasCollectionName}.)`, "i"), `{${aliasCollectionName}.${aliasModeName}.`)
 
       collector.push(modeBasedVariable)
     }
@@ -100,16 +102,17 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
     // return each mode value as a separate variable
     return Object.entries(variable.valuesByMode).map(([id, value]) => {
       // Only add mode if there's more than one
-      let addMode = settings.modeReference && modes.length > 1
+      const addMode = settings.modeReference && modes.length > 1
+      const currentMode = addMode && modes.find(({ modeId }) => modeId === id)
       return {
         ...extractVariable(variable, value, settings),
         // name is contstructed from collection, mode and variable name
 
-        name: addMode ? `${collection}/${modes.find(({ modeId }) => modeId === id).name}/${variable.name}` : `${collection}/${variable.name}`,
+        name: currentMode ? `${collection}/${currentMode.name}/${variable.name}` : `${collection}/${variable.name}`,
         // add mnetadata to extensions
         extensions: {
           [config.key.extensionPluginData]: {
-            mode: settings.modeReference ? modes.find(({ modeId }) => modeId === id).name : undefined,
+            mode: settings.modeReference ? currentMode.name : undefined,
             collection: collection,
             scopes: variable.scopes,
             [config.key.extensionVariableStyleId]: variable.id,
@@ -119,5 +122,5 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       }
     })
   })
-  return settings.modeReference ? processAliasModes(variables.flat()) : variables.flat();
+  return settings.modeReference ? processAliasModes(variables.flat(), settings) : variables.flat();
 }
