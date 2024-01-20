@@ -64,29 +64,27 @@ const extractVariable = (variable, value, settings: Settings) => {
 }
 
 const processAliasModes = (variables, settings: Settings) => {
-  return variables.reduce((collector, variable) => {
+  return variables.reduce((collector, variableWithModes) => {
     // nothing needs to be done to variables that have no alias modes, or only one mode
-    if (!variable.aliasModes || variable.aliasModes.length < 2) {
-      collector.push(variable)
+    if (!variableWithModes.aliasModes || variableWithModes.aliasModes.length < 2) {
+      collector.push(variableWithModes)
 
       return collector
     }
 
-    const { aliasModes, aliasCollectionName } = variable
+    const { aliasModes, aliasCollectionName, ...variableWithoutModes } = variableWithModes
 
-    // this was only added for this function to process that data so before we return the variables, we can remove it
-    delete variable.aliasModes
-    delete variable.aliasCollectionName
-
-    for (const aliasMode of aliasModes) {
-      const modeBasedVariable = { ...variable }
-      const aliasModeName = transformName(aliasMode.name, settings.nameConversion)
-      modeBasedVariable.values = modeBasedVariable.values.replace(new RegExp(`({${aliasCollectionName}.)`, "i"), `{${aliasCollectionName}.${aliasModeName}.`)
-
-      collector.push(modeBasedVariable)
-    }
-
-    return collector
+    return [
+      ...collector,
+      ...aliasModes.map(aliasMode => {
+        const aliasModeName = transformName(aliasMode.name, settings.nameConversion)
+        
+        return {
+          ...variableWithoutModes,
+          values: variableWithoutModes.values.replace(new RegExp(`({${aliasCollectionName}.)`, "i"), `{${aliasCollectionName}.${aliasModeName}.`)
+        };
+      })
+    ]
   }, [])
 }
 
