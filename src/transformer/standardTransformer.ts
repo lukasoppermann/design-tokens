@@ -5,6 +5,7 @@ import roundWithDecimals from '../utilities/roundWithDecimals'
 import { tokenExtensions } from './tokenExtensions'
 import config from '@config/config'
 import { changeNotation } from '@src/utilities/changeNotation'
+import { Settings } from '../../types/settings'
 
 const lineHeightToDimension = (values): number => {
   if (values.lineHeight.unit === 'pixel') {
@@ -257,13 +258,13 @@ const valueTransformer = {
   opacity: opacityValueTransformer
 }
 
-const transformVariable = ({ values, category }): StandardTokenDataInterface => {
+const transformVariable = ({ values, category }, settings: Settings): StandardTokenDataInterface => {
   const refRegEx = /^{[^{}]*}$/
   // is alias
   if (refRegEx.test(values)) {
     return {
       type: category as StandardTokenTypes,
-      value: changeNotation(values, '/', '.')
+      value: changeNotation(values, '/', '.', settings.nameConversion)
     }
   }
   if (category === 'color') {
@@ -297,7 +298,7 @@ const transformer = (token: internalTokenInterface, settings): StandardTokenInte
     return {
       name: token.name,
       description: token.description,
-      ...transformVariable(token),
+      ...transformVariable(token, settings),
       ...tokenExtensions(token, settings)
     }
   }
