@@ -59,7 +59,7 @@ export class GitlabRepository {
         "GET",
         `${this.baseUrl}/repository/files/${encodedFilepath}?ref=${branch}`
       );
-      request.setRequestHeader("Authorization", `Bearer ${this.token}`);
+      this._setRequestHeader(request);
 
       request.onreadystatechange = (_ev: ProgressEvent) => {
         if (request.readyState !== XMLHttpRequest.DONE) {
@@ -101,7 +101,7 @@ export class GitlabRepository {
     const body = {
       branch: branch,
       content: content,
-      commit_message: commitMessage,
+      commit_message: commitMessage || `Design token update at ${Date.now()}`,
       encoding: "base64",
     };
     const encodedFilepath = encodeURIComponent(filepath);
@@ -110,7 +110,13 @@ export class GitlabRepository {
       isFileExist ? "PUT" : "POST",
       `${this.baseUrl}/repository/files/${encodedFilepath}`
     );
-    request.setRequestHeader("Authorization", `Bearer ${this.token}`);
+    this._setRequestHeader(request);
+
     request.send(JSON.stringify(body));
+  }
+
+  private _setRequestHeader(request: XMLHttpRequest) {
+    request.setRequestHeader("Authorization", `Bearer ${this.token}`);
+    request.setRequestHeader("Content-Type", `application/json`);
   }
 }
