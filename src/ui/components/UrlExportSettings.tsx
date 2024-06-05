@@ -111,7 +111,7 @@ export const UrlExportSettings = () => {
           type='text'
           required
           pattern='^https://.*'
-          placeholder='https://api.github.com/repos/:username/:repo/dispatches'
+          placeholder= {(settings.authType === config.key.authType.gitlabCommit && 'https://gitlab.com/api/v4/projects/:projectId')|| 'https://api.github.com/repos/:username/:repo/dispatches'}
           value={settings.serverUrl}
           onChange={value => updateSettings(draft => { draft.serverUrl = value })}
         />
@@ -157,6 +157,10 @@ export const UrlExportSettings = () => {
               value: config.key.authType.gitlabToken
             },
             {
+              label: '(Gitlab) Project Token',
+              value: config.key.authType.gitlabCommit
+            },
+            {
               label: 'Basic authentication',
               value: config.key.authType.basic
             },
@@ -184,6 +188,25 @@ export const UrlExportSettings = () => {
           <h3>Reference<Info
             width={150}
             label='The branch or commit to associate with a Gitlab trigger. Only used when Gitlab is selected for "Auth type"'
+                       />
+          </h3>
+          <Row fill>
+            <Input
+              type='text'
+              required
+              pattern='\S+'
+              placeholder='main'
+              value={settings.reference}
+              onChange={value => updateSettings(draft => { draft.reference = value })}
+            />
+          </Row>
+        </>}
+
+        {config.key.authType.gitlabCommit === settings.authType &&
+        <>
+          <h3>Branch<Info
+            width={150}
+            label='The branch where the file will be committed. Only used when Gitlab Project selected for "Auth type"'
                        />
           </h3>
           <Row fill>
