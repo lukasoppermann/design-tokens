@@ -84,20 +84,16 @@ const addUrlExportRequestEvents = (request: XMLHttpRequest) => {
 
 const generateUrlExportRequestBody = (exportSettings: urlExportSettings, requestBody: urlExportRequestBody) => {
   let body
-  switch (exportSettings.authType) {
-    case config.key.authType.gitlabToken:
-      body = new FormData()
-      body.append('token', exportSettings.accessToken)
-      body.append('ref', exportSettings.reference)
-      body.append('variables[FIGMA_EVENT_TYPE]', requestBody.event_type)
-      body.append('variables[FIGMA_CLIENT_PAYLOAD_TOKENS]', requestBody.client_payload.tokens)
-      body.append('variables[FIGMA_CLIENT_PAYLOAD_FILENAME]', requestBody.client_payload.filename)
-      body.append('variables[FIGMA_CLIENT_PAYLOAD_COMMIT_MESSAGE]', requestBody.client_payload.commitMessage)
-      break;
-
-    default:
-      body = JSON.stringify(requestBody, null, 2)
-      break;
+  if (exportSettings.authType === config.key.authType.gitlabToken) {
+    body = new FormData()
+    body.append('token', exportSettings.accessToken)
+    body.append('ref', exportSettings.reference)
+    body.append('variables[FIGMA_EVENT_TYPE]', requestBody.event_type)
+    body.append('variables[FIGMA_CLIENT_PAYLOAD_TOKENS]', requestBody.client_payload.tokens)
+    body.append('variables[FIGMA_CLIENT_PAYLOAD_FILENAME]', requestBody.client_payload.filename)
+    body.append('variables[FIGMA_CLIENT_PAYLOAD_COMMIT_MESSAGE]', requestBody.client_payload.commitMessage)
+  } else {
+    body = JSON.stringify(requestBody, null, 2)
   }
   return body
 }
