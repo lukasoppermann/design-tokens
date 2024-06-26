@@ -4,7 +4,7 @@ import { StandardTokenInterface, StandardTokenTypes, StandardTokenDataInterface,
 import roundWithDecimals from '../utilities/roundWithDecimals'
 import { tokenExtensions } from './tokenExtensions'
 import config from '@config/config'
-import { changeNotation } from '@src/utilities/changeNotation'
+import { changeNotation } from '../utilities/changeNotation'
 
 const lineHeightToDimension = (values): number => {
   if (values.lineHeight.unit === 'pixel') {
