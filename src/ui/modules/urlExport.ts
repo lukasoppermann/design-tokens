@@ -3,8 +3,9 @@ import { commands } from '@config/commands'
 import config from '@config/config'
 import { PluginMessage } from '@typings/pluginEvent'
 import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
+import { GitlabRepository } from './gitlabRepository'
 
-const responeHandler = (request: XMLHttpRequest): string => {
+const responseHandler = (request: XMLHttpRequest): string => {
   // 401
   if (request.status === 401) {
     return '🚨 401: Check your access token'
@@ -40,31 +41,45 @@ const addUrlExportRequestHeaders = (request: XMLHttpRequest, exportSettings: url
   }
 }
 
+function requestErrorHandler() {
+  parent.postMessage(
+    {
+      pluginMessage: {
+        command: commands.closePlugin,
+        payload: {
+          notification:
+            "🚨 An error occurred while sending the tokens: check your settings & your server.",
+        },
+      } as PluginMessage,
+    },
+    "*"
+  );
+}
+
+function requestLoadedHandler(request: XMLHttpRequest) {
+  // @ts-ignore
+  parent.postMessage(
+    {
+      pluginMessage: {
+        command: commands.closePlugin,
+        payload: {
+          notification: responseHandler(request),
+        },
+      } as PluginMessage,
+    },
+    "*"
+  );
+}
+
 const addUrlExportRequestEvents = (request: XMLHttpRequest) => {
   // on error
-  request.onerror = (event) => {
-    // @ts-ignore
-    parent.postMessage({
-      pluginMessage: {
-        command: commands.closePlugin,
-        payload: {
-          notification: '🚨 An error occurred while sending the tokens: check your settings & your server.'
-        }
-      } as PluginMessage
-    }, '*')
-  }
+  request.onerror = (_event) => {
+    requestErrorHandler();
+  };
   // show message on successful push
   request.onload = (progressEvent: ProgressEvent) => {
-    // @ts-ignore
-    parent.postMessage({
-      pluginMessage: {
-        command: commands.closePlugin,
-        payload: {
-          notification: responeHandler(progressEvent.target as XMLHttpRequest)
-        }
-      } as PluginMessage
-    }, '*')
-  }
+    requestLoadedHandler(progressEvent.target as XMLHttpRequest);
+  };
 }
 
 const generateUrlExportRequestBody = (exportSettings: urlExportSettings, requestBody: urlExportRequestBody) => {
@@ -96,6 +111,19 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
       } as PluginMessage
     }, '*')
   }
+
+  if (exportSettings.authType === config.key.authType.gitlabCommit) {
+    const gitlabRepo = new GitlabRepository({
+      baseUrl: exportSettings.url,
+      token: exportSettings.accessToken,
+    });
+    gitlabRepo.upload(requestBody, exportSettings, {
+      onError: requestErrorHandler,
+      onLoaded: requestLoadedHandler,
+    });
+    return;
+  }
+
   // init request
   const request = new XMLHttpRequest()
   // send to user defined url

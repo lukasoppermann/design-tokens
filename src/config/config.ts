@@ -25,6 +25,7 @@ export default {
     authType: {
       token: 'token',
       gitlabToken: 'gitlab_token',
+      gitlabCommit: 'gitlab_commit',
       basic: 'Basic',
       bearer: 'Bearer'
     }
