@@ -36,6 +36,7 @@ const baseSettings = {
   keyInName: false,
   prefixInName: true,
   modeReference: true,
+  modeInTokenName: true,
   prefix: {
     color: 'color',
     gradient: 'gradient',

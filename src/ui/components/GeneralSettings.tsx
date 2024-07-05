@@ -230,11 +230,9 @@ export const GeneralSettings = () => {
         <div>
           <Title size="small" weight="bold">
             Reference mode in variables
-            <Info
-              width={240}
-              label="If disabled, the exported json will not include the mode of variables."
-            />
+
           </Title>
+          
           <Checkbox
             label="Enable/disable mode referencing"
             type="switch"
@@ -244,6 +242,25 @@ export const GeneralSettings = () => {
                 draft.modeReference = value;
               })
             }
+            info={{
+               width: 240,
+              label:"If disabled, the exported json will not include the mode of variables, nor in the token name, nor in the token value"
+            }}
+          />
+          <Checkbox
+            label="Avoid mode referencing in token values"
+            type="switch"
+            checked={settings.modeInTokenName}
+            isDisabled={!settings.modeReference}
+            onChange={(value) =>
+              updateSettings((draft) => {
+                draft.modeInTokenName = value;
+              })
+            }
+            info={{
+              width: 240,
+              label:"If enabled, the exported json will not include the mode of variables in the token value."
+            }}
           />
         </div>
       </div>
