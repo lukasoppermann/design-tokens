@@ -50,6 +50,12 @@ const style = css`
       opacity: .85;
     }
   }
+  @media (prefers-color-scheme: dark) {
+    .tooltip {
+      color: var(--ui-contrast);
+      background: var(--on--ui-contrast);
+    }
+  }
 `
 
 export const Info = ({ label, width }: InfoProps) => {

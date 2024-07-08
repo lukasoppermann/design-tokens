@@ -77,14 +77,14 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       // return each mode value as a separate variable
       return Object.entries(variable.valuesByMode).map(([id, value]) => {
         // Only add mode if there's more than one
-        const addMode = settings.modeReference && modes.length > 1
+        const addMode = modes.length > 1 && (settings.modeInTokenName || settings.modeReference)
         return {
           ...extractVariable(
             variable,
             value,
             modes.find(({ modeId }) => modeId === id)
           ),
-          // name is contstructed from collection, mode and variable name
+          // name is constructed from collection, mode and variable name
 
           name: addMode
             ? `${collection}/${
