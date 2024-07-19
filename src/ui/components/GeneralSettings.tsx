@@ -70,9 +70,6 @@ export const GeneralSettings = () => {
 
   return (
     <form className={style} onSubmit={handleFormSubmit}>
-      <Title size="xlarge" weight="bold">
-        Design Token Settings
-      </Title>
       <Row>
         <Checkbox
           label="Add token type to name of the token"
@@ -226,42 +223,45 @@ export const GeneralSettings = () => {
         )}
       </div>
       <Separator />
-      <div className="grid-2-col">
-        <div>
+      <div>
           <Title size="small" weight="bold">
             Reference mode in variables
-
           </Title>
-          
-          <Checkbox
-            label="Enable/disable mode referencing"
-            type="switch"
-            checked={settings.modeReference}
-            onChange={(value) =>
-              updateSettings((draft) => {
-                draft.modeReference = value;
-              })
-            }
-            info={{
-               width: 240,
-              label:"If disabled, the exported json will not include the mode of variables, nor in the token name, nor in the token value"
-            }}
-          />
-          <Checkbox
-            label="Avoid mode referencing in token values"
-            type="switch"
-            checked={settings.modeInTokenName}
-            isDisabled={!settings.modeReference}
-            onChange={(value) =>
-              updateSettings((draft) => {
-                draft.modeInTokenName = value;
-              })
-            }
-            info={{
-              width: 240,
-              label:"If enabled, the exported json will not include the mode of variables in the token value."
-            }}
-          />
+        <div className="grid-2-col">
+          <div>
+            <Checkbox
+              label="Enable/disable mode referencing"
+              type="switch"
+              checked={settings.modeReference}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.modeReference = value;
+                })
+              }
+              info={{
+                  width: 240,
+                label:"If disabled, the exported json will not include the mode of variables, nor in the token name, nor in the token value"
+              }}
+            />
+          </div>
+          <div>
+            <Checkbox
+              label="Add mode to token name only"
+              type="switch"
+              checked={settings.modeInTokenName}
+              isDisabled={!settings.modeReference}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.modeInTokenName = value;
+                })
+              }
+              info={{
+                width: 220,
+                position: "left",
+                label:"If enabled, the exported json will include the mode of variables in the token name but not in the value."
+              }}
+            />
+          </div>
         </div>
       </div>
       <Separator />

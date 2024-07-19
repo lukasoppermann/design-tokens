@@ -142,6 +142,7 @@ type props = {
   ) => void;
   info?: {
     width: number,
+    position?: 'center' | 'left',
     label: string
   }
 }
@@ -199,7 +200,7 @@ export const Checkbox = ({
       <label className={`${type}__label`} htmlFor={inputConfig.id}>
         {label}
         {info && info.label && 
-          <Info width={info.width} label={info.label} />
+          <Info width={info.width} label={info.label} position={info.position} />
         }
       </label>
     </div>
