@@ -273,6 +273,28 @@ export const GeneralSettings = () => {
         />
       </Row>
       <Separator />
+      <Title size="small" weight="bold">
+        Hide from publish{" "}
+        <Info width={150} label='Export "Hide from publish" variables' />
+      </Title>
+      <Text className={textStyle} size="small">
+        If you edit one or more variables to set them to "Hide from Publish", they are not exported.
+        By turning this option on, they will be instead included in the export.
+      </Text>
+      <Row>
+        <Checkbox
+          label='Export "Hide from publish" variables'
+          type="switch"
+          checked={settings.exportHideFromPublish}
+          onChange={(value) =>
+            updateSettings((draft) => {
+              console.log(value, draft)
+              draft.exportHideFromPublish = value;
+            })
+          }
+        />
+      </Row>
+      <Separator />
       <div className="grid-2-col">
         {Object.entries(settings.prefix).map(([key, currentValue]) => (
           <Row fill key={key}>

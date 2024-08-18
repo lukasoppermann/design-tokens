@@ -2,6 +2,7 @@ import { getSettings, setSettings } from '../../src/utilities/settings'
 import { stringifyJson } from '../../src/utilities/stringifyJson'
 import { nameConversionType, tokenFormatType } from '../../types/settings'
 import { defaultSettings } from '../../src/config/defaultSettings'
+import { Settings } from "./../../types/settings"
 
 beforeAll(() => {
   // @ts-ignore
@@ -16,7 +17,7 @@ beforeAll(() => {
   }
 })
 
-const baseSettings = {
+const baseSettings: Settings = {
   filename: 'myBaseFile',
   extension: '.json',
   nameConversion: 'default' as nameConversionType,
@@ -36,6 +37,7 @@ const baseSettings = {
   keyInName: false,
   prefixInName: true,
   modeReference: true,
+  exportHideFromPublish: false,
   prefix: {
     color: 'color',
     gradient: 'gradient',

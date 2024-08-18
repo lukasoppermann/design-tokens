@@ -27,6 +27,7 @@ export type Settings = {
   keyInName: boolean,
   prefixInName: boolean,
   modeReference: boolean,
+  exportHideFromPublish: false,
   prefix: {
     color: string,
     gradient: string,
