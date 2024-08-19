@@ -25,12 +25,7 @@
     "set-version": "replace-in-files --regex='\\d+\\.\\d+\\.\\d+' --replacement=$npm_package_version src/utilities/version.ts",
     "version": "npm run set-version && npm run build && git add --all"
   },
-  "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://vea.re)",
-  "contributors": [
-    {
-      "name": "Omar Adobati <omar.adobati@gmail.com> (http://github.com/0m4r)"
-    }
-  ],
+  "author": "Lukas Oppermann <oppermann.lukas@gmail.com> (https://lukasoppermann.com)",
   "license": "MIT",
   "devDependencies": {
     "@ctrl/tinycolor": "^3.4.0",
