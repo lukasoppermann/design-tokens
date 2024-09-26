@@ -1,8 +1,8 @@
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { tokenTypes } from '@config/tokenTypes'
 
-import { getVariableTypeByValue } from '../../src/utilities/getVariableTypeByValue'
-import { changeNotation } from '../../src/utilities/changeNotation'
+import { getVariableTypeByValue } from '@src/utilities/getVariableTypeByValue'
+import { changeNotation } from '@src/utilities/changeNotation'
 
 function handleVariableAlias (variable, value, mode) {
   const resolvedAlias = figma.variables.getVariableById(value.id)

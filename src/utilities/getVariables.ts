@@ -9,7 +9,7 @@ import handleVariableAlias from './handleVariableAlias'
 import processAliasModes from './processAliasModes'
 import { Settings } from '@typings/settings'
 
-const extractVariable = (variable, value, mode) => {
+const extractVariable = (variable: Variable, value: any, mode: { modeId: string, name: string }) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
@@ -78,25 +78,24 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       // return each mode value as a separate variable
       return Object.entries(variable.valuesByMode).map(([id, value]) => {
         // Only add mode if there's more than one
-        const addMode = modes.length > 1
+        // and if modeInTokenName is set to true
+        const addMode = settings.modeInTokenName && modes.length > 1
+        const mode = modes.find(({ modeId }) => modeId === id);
+        const variableName = `${collection}/${variable.name}`;
+        const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
         return {
           ...extractVariable(
             variable,
             value,
-            modes.find(({ modeId }) => modeId === id),
+            mode,
           ),
           // name is constructed from collection, mode and variable name
-
-          name: addMode
-            ? `${collection}/${
-                modes.find(({ modeId }) => modeId === id).name
-              }/${variable.name}`
-            : `${collection}/${variable.name}`,
-          // add mnetadata to extensions
+          name: addMode ? variableNameWithMode : variableName,
+          // add metadata to extensions
           extensions: {
             [config.key.extensionPluginData]: {
-              mode: settings.modeReference
-                ? modes.find(({ modeId }) => modeId === id).name
+              mode: settings.modeInTokenValue
+                ? mode.name
                 : undefined,
               collection: collection,
               scopes: variable.scopes,
@@ -107,7 +106,8 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
         }
       })
     })
-  return settings.modeReference && settings.modeInTokenName === false
+
+  return settings.modeInTokenValue
     ? processAliasModes(variables.flat())
-    : variables.flat()
+    : variables.flat();
 }

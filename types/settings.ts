@@ -26,7 +26,7 @@ export type Settings = {
   reference: string,
   keyInName: boolean,
   prefixInName: boolean,
-  modeReference: boolean,
+  modeInTokenValue: boolean,
   modeInTokenName: boolean,
   prefix: {
     color: string,
