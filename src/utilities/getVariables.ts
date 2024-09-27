@@ -14,7 +14,6 @@ const extractVariable = (variable: Variable, value: any, mode: { modeId: string,
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
     return handleVariableAlias(variable, value, mode)
-
   }
   switch (variable.resolvedType) {
     case 'COLOR':
@@ -80,14 +79,14 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
         // Only add mode if there's more than one
         // and if modeInTokenName is set to true
         const addMode = settings.modeInTokenName && modes.length > 1
-        const mode = modes.find(({ modeId }) => modeId === id);
-        const variableName = `${collection}/${variable.name}`;
+        const mode = modes.find(({ modeId }) => modeId === id)
+        const variableName = `${collection}/${variable.name}`
         const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
         return {
           ...extractVariable(
             variable,
             value,
-            mode,
+            mode
           ),
           // name is constructed from collection, mode and variable name
           name: addMode ? variableNameWithMode : variableName,
@@ -109,5 +108,5 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
 
   return settings.modeInTokenValue
     ? processAliasModes(variables.flat())
-    : variables.flat();
+    : variables.flat()
 }
