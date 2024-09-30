@@ -9,26 +9,11 @@ describe("processAliasModes", () => {
     expect(result).toEqual(variables);
   });
 
-  it("should remove aliasModes and aliasCollectionName properties from the variables", () => {
-    const variables = [
-      {
-        values: "{collection.}",
-        aliasMode: "mode1",
-        aliasCollectionName: "collection",
-      },
-    ];
-    const result = processAliasModes(variables);
-    result.forEach((variable) => {
-      expect(variable).not.toHaveProperty("aliasMode");
-      expect(variable).not.toHaveProperty("aliasCollectionName");
-    });
-  });
-
   it("should match aliasCollectionName case-insensitively and return the alias collection name", () => {
     const variables = [
       {
         values: "{CollEctIon.}",
-        aliasMode: "mode1",
+        aliasMode: {name: "mode1"},
         aliasCollectionName: "collection",
       },
     ];
@@ -36,6 +21,10 @@ describe("processAliasModes", () => {
     expect(result).toMatchInlineSnapshot(`
 Array [
   Object {
+    "aliasCollectionName": "collection",
+    "aliasMode": Object {
+      "name": "mode1",
+    },
     "values": "{CollEctIon.}",
   },
 ]
