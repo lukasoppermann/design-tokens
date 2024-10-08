@@ -70,9 +70,6 @@ export const GeneralSettings = () => {
 
   return (
     <form className={style} onSubmit={handleFormSubmit}>
-      <Title size="xlarge" weight="bold">
-        Design Token Settings
-      </Title>
       <Row>
         <Checkbox
           label="Add token type to name of the token"
@@ -226,25 +223,44 @@ export const GeneralSettings = () => {
         )}
       </div>
       <Separator />
-      <div className="grid-2-col">
-        <div>
+      <div>
           <Title size="small" weight="bold">
-            Reference mode in variables
-            <Info
-              width={240}
-              label="If disabled, the exported json will not include the mode of variables."
-            />
+            Reference mode from variables
           </Title>
-          <Checkbox
-            label="Enable/disable mode referencing"
-            type="switch"
-            checked={settings.modeReference}
-            onChange={(value) =>
-              updateSettings((draft) => {
-                draft.modeReference = value;
-              })
-            }
-          />
+        <div className="grid-2-col">
+          <div>
+            <Checkbox
+              label="Add mode to design token name (if 2 or more modes)"
+              type="switch"
+              checked={settings.modeInTokenName}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.modeInTokenName = value;
+                })
+              }
+              info={{
+                width: 240,
+                label:"If enabled, the exported json will include the mode of the variables in the token name path, if more than 1 mode exists"
+              }}
+            />
+          </div>
+          <div>
+            <Checkbox
+              label="Add mode to design token value"
+              type="switch"
+              checked={settings.modeInTokenValue}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.modeInTokenValue = value;
+                })
+              }
+              info={{
+                width: 220,
+                position: "left",
+                label:"If enabled, the exported json will include the mode of the variables in the token value"
+              }}
+            />
+          </div>
         </div>
       </div>
       <Separator />

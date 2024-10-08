@@ -65,6 +65,7 @@ describe("handleVariableAlias", () => {
       values: `{test collection name.test notation}`,
       aliasCollectionName: "test collection name",
       aliasMode: "passedInMode",
+      aliasSameMode: false
     });
   });
 });
