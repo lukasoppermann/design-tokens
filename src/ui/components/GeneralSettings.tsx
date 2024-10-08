@@ -240,7 +240,7 @@ export const GeneralSettings = () => {
               }
               info={{
                 width: 240,
-                label:"If enabled, the exported json will include the mode of the variables in the token name"
+                label:"If enabled, the exported json will include the mode of the variables in the token name path, if more than 1 mode exists"
               }}
             />
           </div>
