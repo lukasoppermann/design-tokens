@@ -230,7 +230,7 @@ export const GeneralSettings = () => {
         <div className="grid-2-col">
           <div>
             <Checkbox
-              label="Add mode to design token name"
+              label="Add mode to design token name (if 2 or more modes)"
               type="switch"
               checked={settings.modeInTokenName}
               onChange={(value) =>
