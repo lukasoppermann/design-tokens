@@ -55,32 +55,31 @@ const extractVariable = (
 
 const detectVariableReferencesInCollection = (collection, variable) => {
   let tmpVariable = {}
-  collection?.modes?.forEach((mode) => {
-    if (variable) {
+  if (variable) {
+    collection?.modes?.forEach((mode) => {
       const modeValue = variable.valuesByMode[mode.modeId]
 
       // Loop through other variables in the same collection to check for references
       collection.variableIds.forEach((otherVariableId) => {
         const otherVariable = figma.variables.getVariableById(otherVariableId)
 
-        if (otherVariable && modeValue && typeof modeValue === 'object') {
-          // Check if the value references the name of another variable
-          if (
-            variable.name !== otherVariable.name && // Avoid self-reference
-            modeValue.id === otherVariable.id
-          ) {
-            const aliasSameMode = true
-            tmpVariable = handleVariableAlias(
-              variable,
-              modeValue,
-              mode,
-              aliasSameMode
-            )
-          }
+        if (otherVariable &&
+          modeValue &&
+          typeof modeValue === 'object' &&
+          variable.name !== otherVariable.name && // Avoid self-reference
+          modeValue.id === otherVariable.id
+        ) {
+          const aliasSameMode = true
+          tmpVariable = handleVariableAlias(
+            variable,
+            modeValue,
+            mode,
+            aliasSameMode
+          )
         }
       })
-    }
-  })
+    })
+  }
   return deepMerge(variable, tmpVariable)
 }
 
