@@ -358,6 +358,10 @@ By default, the mode names are not included in both the token names and the toke
 - If you wish to do include the mode name in both the token name and value, you can activate both of the checkboxes.
 - If you wish to do not include the mode name in both the token name and value, you can deactivate both of the checkboxes.
 
+### Resolve same collection or same mode variables references (EXPERIMENTAL)
+
+This feature enables the resolution of variable references from within the same collection or mode. When enabled, the default value returned by the Figma API is updated to include all necessary information in the reference path, allowing these references to be properly resolved.
+
 ### Aliases (Standard format only)
 
 The standard token format allows you to define an alias/reference for a color tokens via the description field.

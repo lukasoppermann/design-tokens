@@ -110,7 +110,7 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       const { variableCollectionId } = variable
       const { name: collection, modes } = collections[variableCollectionId]
 
-      if (modes.length > 1) {
+      if (settings.resolveSameCollectionOrModeReference) {
         variable = detectVariableReferencesInCollection(
           collections[variableCollectionId],
           variable

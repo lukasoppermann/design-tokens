@@ -37,6 +37,7 @@ const baseSettings = {
   prefixInName: true,
   modeInTokenValue: true,
   modeInTokenName: true,
+  resolveSameCollectionOrModeReference: false,
   prefix: {
     color: 'color',
     gradient: 'gradient',

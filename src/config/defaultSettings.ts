@@ -22,6 +22,7 @@ export const defaultSettings: Settings = {
   prefixInName: true,
   modeInTokenValue: false,
   modeInTokenName: false,
+  resolveSameCollectionOrModeReference: false,
   prefix: {
     color: 'color',
     gradient: 'gradient',
