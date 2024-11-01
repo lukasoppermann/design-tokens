@@ -63,7 +63,8 @@ const detectVariableReferencesInCollection = (collection, variable) => {
       collection.variableIds.forEach((otherVariableId) => {
         const otherVariable = figma.variables.getVariableById(otherVariableId)
 
-        if (otherVariable &&
+        if (
+          otherVariable &&
           modeValue &&
           typeof modeValue === 'object' &&
           variable.name !== otherVariable.name && // Avoid self-reference
@@ -121,7 +122,7 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       return Object.entries(variable.valuesByMode).map(([id, value]) => {
         // Only add mode if there's more than one
         // and if modeInTokenName is set to true
-        const addMode = settings.modeInTokenName && modes.length > 1
+        const addModeInTokenName = settings.modeInTokenName && modes.length > 1
         const mode = modes.find(({ modeId }) => modeId === id)
         const variableName = `${collection}/${variable.name}`
         const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
@@ -129,7 +130,7 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
         return {
           ...extractVariable(variable, value, mode),
           // name is constructed from collection, mode and variable name
-          name: addMode ? variableNameWithMode : variableName,
+          name: addModeInTokenName ? variableNameWithMode : variableName,
           // add metadata to extensions
           extensions: {
             [config.key.extensionPluginData]: {
@@ -154,7 +155,7 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
     variables
       .flat()
       // @ts-ignore
-      .map((v) => (v.aliasSameMode ? processAliasModes([v]) : v))
+      .map((v) => (v?.aliasSameMode ? processAliasModes([v]) : v))
       .flat()
 
   return settings.modeInTokenValue
