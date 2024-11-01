@@ -1,23 +1,27 @@
-import * as React from 'react'
-import { Button } from '@components/Button'
-import { Checkbox } from '@components/Checkbox'
-import { Input } from '@components/Input'
-import { Select } from '@components/Select'
-import { Label } from '@components/Label'
-import { Title } from '@components/Title'
-import { Text } from '@components/Text'
-import { CancelButton } from '@components/CancelButton'
-import { useContext, useState } from 'react'
-import { FigmaContext, SettingsContext } from '@ui/context'
-import { css } from '@emotion/css'
-import { commands } from '@config/commands'
-import config from '@config/config'
-import { Footer } from '@components/Footer'
-import { nameConversionType, Settings, tokenFormatType } from '@typings/settings'
-import { Row } from '@components/Row'
-import { Info } from '@components/Info'
-import { Separator } from './Separator'
-import { WebLink } from './WebLink'
+import * as React from "react";
+import { Button } from "@components/Button";
+import { Checkbox } from "@components/Checkbox";
+import { Input } from "@components/Input";
+import { Select } from "@components/Select";
+import { Label } from "@components/Label";
+import { Title } from "@components/Title";
+import { Text } from "@components/Text";
+import { CancelButton } from "@components/CancelButton";
+import { useContext, useState } from "react";
+import { FigmaContext, SettingsContext } from "@ui/context";
+import { css } from "@emotion/css";
+import { commands } from "@config/commands";
+import config from "@config/config";
+import { Footer } from "@components/Footer";
+import {
+  nameConversionType,
+  Settings,
+  tokenFormatType,
+} from "@typings/settings";
+import { Row } from "@components/Row";
+import { Info } from "@components/Info";
+import { Separator } from "./Separator";
+import { WebLink } from "./WebLink";
 
 const style = css`
   display: flex;
@@ -29,50 +33,54 @@ const style = css`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-`
+`;
 
 const labelStyle = css`
   width: 85px;
-`
+`;
 
 const textStyle = css`
   padding: 0 var(--size-xxxsmall) 0 var(--size-xxsmall);
   color: var(--figma-color-text-secondary);
   margin-top: 0;
-`
+`;
 
-const isStyle = (key: string): boolean => ['color', 'gradient', 'grid', 'effect', 'font'].includes(key)
+const isStyle = (key: string): boolean =>
+  ["color", "gradient", "grid", "effect", "font"].includes(key);
 
 export const GeneralSettings = () => {
-  const [isStandard, setStandard] = useState(false)
-  const { figmaUIApi, figmaMetaData } = useContext(FigmaContext)
-  const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
+  const [isStandard, setStandard] = useState(false);
+  const { figmaUIApi, figmaMetaData } = useContext(FigmaContext);
+  const { settings, updateSettings } = useContext<{
+    settings: Settings;
+    updateSettings: any;
+  }>(SettingsContext);
 
   const handleFormSubmit = (event) => {
-    event.preventDefault() // Prevent form submit triggering navigation
-    const settingsForm = event.target
+    event.preventDefault(); // Prevent form submit triggering navigation
+    const settingsForm = event.target;
     if (settingsForm.checkValidity() === true) {
-      const { accessToken, ...pluginSettings } = settings
+      const { accessToken, ...pluginSettings } = settings;
       // save date to local storage
-      figmaUIApi.postMessage({
-        pluginMessage: {
-          command: commands.saveSettings,
-          payload: {
-            closePlugin: true,
-            settings: pluginSettings,
-            accessToken: accessToken
-          }
-        }
-      // @ts-ignore
-      }, '*')
+      figmaUIApi.postMessage(
+        {
+          pluginMessage: {
+            command: commands.saveSettings,
+            payload: {
+              closePlugin: true,
+              settings: pluginSettings,
+              accessToken: accessToken,
+            },
+          },
+          // @ts-ignore
+        },
+        "*"
+      );
     }
-  }
+  };
 
   return (
     <form className={style} onSubmit={handleFormSubmit}>
-      <Title size="xlarge" weight="bold">
-        Design Token Settings
-      </Title>
       <Row>
         <Checkbox
           label="Add token type to name of the token"
@@ -226,27 +234,75 @@ export const GeneralSettings = () => {
         )}
       </div>
       <Separator />
-      <div className="grid-2-col">
-        <div>
-          <Title size="small" weight="bold">
-            Reference mode in variables
-            <Info
-              width={240}
-              label="If disabled, the exported json will not include the mode of variables."
+      <div>
+        <Title size="small" weight="bold">
+          Reference mode from variables
+        </Title>
+        <div className="grid-2-col">
+          <div>
+            <Checkbox
+              label="Add mode to design token name (if 2 or more modes)"
+              type="switch"
+              checked={settings.modeInTokenName}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.modeInTokenName = value;
+                })
+              }
+              info={{
+                width: 240,
+                label:
+                  "If enabled, the exported json will include the mode of the variables in the token name path, if more than 1 mode exists",
+              }}
             />
-          </Title>
-          <Checkbox
-            label="Enable/disable mode referencing"
-            type="switch"
-            checked={settings.modeReference}
-            onChange={(value) =>
-              updateSettings((draft) => {
-                draft.modeReference = value;
-              })
-            }
-          />
+          </div>
+          <div>
+            <Checkbox
+              label="Add mode to design token value"
+              type="switch"
+              checked={settings.modeInTokenValue}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.modeInTokenValue = value;
+                })
+              }
+              info={{
+                width: 220,
+                position: "left",
+                label:
+                  "If enabled, the exported json will include the mode of the variables in the token value",
+              }}
+            />
+          </div>
         </div>
       </div>
+      <Separator />
+      <Title size="small" weight="bold">
+        Resolve same collection or same mode variables references (experimental)
+      </Title>
+      <Text className={textStyle} size="small">
+        Resolves the variable reference made to other variables in the same collection or in the same mode.
+      </Text>
+      <Text className={textStyle} size="small">
+        This feature is EXPERIMENTAL and may break in setups with a large number of variables definitions.
+      </Text>
+      <Row>
+        <Checkbox
+          label="Resolve same collection or same mode variable references"
+          type="switch"
+          checked={settings.resolveSameCollectionOrModeReference}
+          onChange={(value) =>
+            updateSettings((draft) => {
+              draft.resolveSameCollectionOrModeReference = value;
+            })
+          }
+          info={{
+            width: 240,
+            label:
+              "If enabled, it resolves same collection or same mode variable reference value.",
+          }}
+        />
+      </Row>
       <Separator />
       <Title size="small" weight="bold">
         Token prefixes{" "}
@@ -310,4 +366,4 @@ export const GeneralSettings = () => {
       </Footer>
     </form>
   );
-}
+};

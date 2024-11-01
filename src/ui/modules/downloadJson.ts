@@ -17,9 +17,12 @@ export const downloadJson = (parent, link: HTMLLinkElement, json: string) => {
   }
   // try to export tokens
   try {
-    link.href = `data:application/design-tokens+json;charset=utf-8,${encodeURIComponent(json)}`
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    link.href = url;
     // Programmatically trigger a click on the anchor element
-    link.click()
+    link.click();
+    URL.revokeObjectURL(url);
     // send success message
     parent.postMessage({
       pluginMessage: {

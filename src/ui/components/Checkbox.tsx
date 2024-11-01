@@ -1,5 +1,6 @@
 import { css } from '@emotion/css'
 import * as React from 'react'
+import { Info } from './Info'
 
 const style = css`
 &.checkbox {
@@ -139,6 +140,11 @@ type props = {
     value: boolean,
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
+  info?: {
+    width: number,
+    position?: 'center' | 'left',
+    label: string
+  }
 }
 
 export const Checkbox = ({
@@ -149,7 +155,8 @@ export const Checkbox = ({
   label,
   defaultValue,
   checked,
-  onChange
+  onChange,
+  info,
 }: props) => {
   let inputConfig: any = {
     id: id || `${type}--${(Math.random() * 100000000).toFixed(0)}`
@@ -192,6 +199,9 @@ export const Checkbox = ({
       />
       <label className={`${type}__label`} htmlFor={inputConfig.id}>
         {label}
+        {info && info.label && 
+          <Info width={info.width} label={info.label} position={info.position} />
+        }
       </label>
     </div>
   )

@@ -20,7 +20,9 @@ export const defaultSettings: Settings = {
   alias: 'alias, ref, reference',
   keyInName: false,
   prefixInName: true,
-  modeReference: true,
+  modeInTokenValue: false,
+  modeInTokenName: false,
+  resolveSameCollectionOrModeReference: false,
   prefix: {
     color: 'color',
     gradient: 'gradient',

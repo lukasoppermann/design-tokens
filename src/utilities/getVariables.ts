@@ -8,8 +8,13 @@ import roundWithDecimals from './roundWithDecimals'
 import handleVariableAlias from './handleVariableAlias'
 import processAliasModes from './processAliasModes'
 import { Settings } from '@typings/settings'
+import deepMerge from './deepMerge'
 
-const extractVariable = (variable, value, mode) => {
+const extractVariable = (
+  variable,
+  value: any,
+  mode: { modeId: string; name: string }
+) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
@@ -48,6 +53,37 @@ const extractVariable = (variable, value, mode) => {
   }
 }
 
+const detectVariableReferencesInCollection = (collection, variable) => {
+  let tmpVariable = {}
+  if (variable) {
+    collection?.modes?.forEach((mode) => {
+      const modeValue = variable.valuesByMode[mode.modeId]
+
+      // Loop through other variables in the same collection to check for references
+      collection.variableIds.forEach((otherVariableId) => {
+        const otherVariable = figma.variables.getVariableById(otherVariableId)
+
+        if (
+          otherVariable &&
+          modeValue &&
+          typeof modeValue === 'object' &&
+          variable.name !== otherVariable.name && // Avoid self-reference
+          modeValue.id === otherVariable.id
+        ) {
+          const aliasSameMode = true
+          tmpVariable = handleVariableAlias(
+            variable,
+            modeValue,
+            mode,
+            aliasSameMode
+          )
+        }
+      })
+    })
+  }
+  return deepMerge(variable, tmpVariable)
+}
+
 export const getVariables = (figma: PluginAPI, settings: Settings) => {
   const excludedCollectionIds = figma.variables
     .getLocalVariableCollections()
@@ -74,29 +110,31 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
       // get collection name and modes
       const { variableCollectionId } = variable
       const { name: collection, modes } = collections[variableCollectionId]
+
+      if (settings.resolveSameCollectionOrModeReference) {
+        variable = detectVariableReferencesInCollection(
+          collections[variableCollectionId],
+          variable
+        )
+      }
+
       // return each mode value as a separate variable
       return Object.entries(variable.valuesByMode).map(([id, value]) => {
         // Only add mode if there's more than one
-        const addMode = settings.modeReference && modes.length > 1
-        return {
-          ...extractVariable(
-            variable,
-            value,
-            modes.find(({ modeId }) => modeId === id)
-          ),
-          // name is contstructed from collection, mode and variable name
+        // and if modeInTokenName is set to true
+        const addModeInTokenName = settings.modeInTokenName && modes.length > 1
+        const mode = modes.find(({ modeId }) => modeId === id)
+        const variableName = `${collection}/${variable.name}`
+        const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
 
-          name: addMode
-            ? `${collection}/${
-                modes.find(({ modeId }) => modeId === id).name
-              }/${variable.name}`
-            : `${collection}/${variable.name}`,
-          // add mnetadata to extensions
+        return {
+          ...extractVariable(variable, value, mode),
+          // name is constructed from collection, mode and variable name
+          name: addModeInTokenName ? variableNameWithMode : variableName,
+          // add metadata to extensions
           extensions: {
             [config.key.extensionPluginData]: {
-              mode: settings.modeReference
-                ? modes.find(({ modeId }) => modeId === id).name
-                : undefined,
+              mode: settings.modeInTokenValue ? mode.name : undefined,
               collection: collection,
               scopes: variable.scopes,
               [config.key.extensionVariableStyleId]: variable.id,
@@ -106,7 +144,21 @@ export const getVariables = (figma: PluginAPI, settings: Settings) => {
         }
       })
     })
-  return settings.modeReference
+
+  // add the mode name to the variable values value in order
+  // to be able to reference to it correctly:
+  // values: collection.value becomes collection.[mode name].value
+  //
+  // `variablesWithAliasInTheSameCollection` is not used when `settings.modeInTokenValue`
+  // is set to `true` to avoid values in the form of: collection.[mode name].[mode name].value
+  const variablesWithAliasInTheSameCollection = () =>
+    variables
+      .flat()
+      // @ts-ignore
+      .map((v) => (v?.aliasSameMode ? processAliasModes([v]) : v))
+      .flat()
+
+  return settings.modeInTokenValue
     ? processAliasModes(variables.flat())
-    : variables.flat()
+    : variablesWithAliasInTheSameCollection()
 }
