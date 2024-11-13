@@ -28,21 +28,38 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
     if (versionDifference !== undefined && versionDifference !== 'patch') {
       figma.ui.resize(config.ui[figma.command].width, config.ui[figma.command].height + 60)
     }
-    // write tokens to json file
-    figma.ui.postMessage({
-      command: figma.command as PluginCommands,
-      payload: {
-        settings: {
-          ...userSettings,
-          ...{ accessToken: await getAccessToken(getFileId(figma)) }
-        },
-        data: stringifyJson(exportRawTokenArray(figma, userSettings)),
-        versionDifference: versionDifference,
-        metadata: {
-          filename: figma.root.name
+    if([commands.export, commands.urlExport].includes(figma.command as PluginCommands)) {
+      // write tokens to json file
+      figma.ui.postMessage({
+        command: figma.command as PluginCommands,
+        payload: {
+          settings: {
+            ...userSettings,
+            ...{ accessToken: await getAccessToken(getFileId(figma)) }
+          },
+          data: stringifyJson(exportRawTokenArray(figma, userSettings)),
+          versionDifference: versionDifference,
+          metadata: {
+            filename: figma.root.name
+          }
         }
-      }
-    } || {} as PluginMessage)
+      } || {} as PluginMessage)
+    } else {
+      // write tokens to json file
+      figma.ui.postMessage({
+        command: figma.command as PluginCommands,
+        payload: {
+          settings: {
+            ...userSettings,
+            ...{ accessToken: await getAccessToken(getFileId(figma)) }
+          },
+          versionDifference: versionDifference,
+          metadata: {
+            filename: figma.root.name
+          }
+        }
+      } || {} as PluginMessage)
+    }
     // register the settings UI
     figma.ui.show()
   }
