@@ -2,8 +2,11 @@
 > **This plugin is only partially supported!**  
 > This means: I don't have capacity to add any features or really improve stuff. Bugfixes may be added if time allows.
 > I am also happy to discuss and merge PRs.
->
-> I personally have changed my opinion a long time ago to favor the source fo truth for design tokens to be in a json file. Figma should be a consumer so you only import tokens into figma. This is why I don't use plugins like this one anymore in my work.
+> 
+> I personally have changed my opinion a long time ago to favor the source fo truth for design tokens to be in a json file. Figma should be a consumer so you only import tokens into figma. This is why I don't use plugins like this one anymore in my work. 
+> 
+> → [Read more about the a better setup](https://medium.com/user-experience-design-1/the-ultimate-design-token-setup-cdf50dc841c8#:~:text=you%20are%20making.-,Source%20of%20truth,-There%20is%20some)
+
 
 ![Design Tokens plugin for figma](https://github.com/lukasoppermann/design-tokens/blob/main/_resources/Design%20Tokens%20Plugin%20Cover.png)
 
