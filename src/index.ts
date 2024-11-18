@@ -28,21 +28,25 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
     if (versionDifference !== undefined && versionDifference !== 'patch') {
       figma.ui.resize(config.ui[figma.command].width, config.ui[figma.command].height + 60)
     }
-    // write tokens to json file
-    figma.ui.postMessage({
+    const postMessageObject = {
       command: figma.command as PluginCommands,
       payload: {
         settings: {
           ...userSettings,
           ...{ accessToken: await getAccessToken(getFileId(figma)) }
         },
-        data: stringifyJson(exportRawTokenArray(figma, userSettings)),
+        data: null,
         versionDifference: versionDifference,
         metadata: {
           filename: figma.root.name
         }
       }
-    } || {} as PluginMessage)
+    }
+    
+    if([commands.export, commands.urlExport].includes(figma.command as PluginCommands)) {
+      postMessageObject.payload.data = stringifyJson(exportRawTokenArray(figma, userSettings));
+    }
+    figma.ui.postMessage({...postMessageObject})
     // register the settings UI
     figma.ui.show()
   }
