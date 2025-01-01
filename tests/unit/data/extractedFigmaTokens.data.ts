@@ -1,5 +1,5 @@
-import { tokenCategoryType } from '../../../types/tokenCategory'
-import { tokenExportKeyType } from '../../../types/tokenExportKey'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 
 export const extractedFigmaTokens = {
   /**
@@ -1061,5 +1061,5 @@ export const extractedFigmaTokens = {
       }
     }
   }
-// END of object
+  // END of object
 }

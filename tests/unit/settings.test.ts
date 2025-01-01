@@ -1,7 +1,7 @@
 import { getSettings, setSettings } from '@utils/settings'
 import { stringifyJson } from '@utils/stringifyJson'
-import { nameConversionType, tokenFormatType } from '../../types/settings'
-import { defaultSettings } from '../../src/config/defaultSettings'
+import { nameConversionType, tokenFormatType } from '@typings/settings'
+import { defaultSettings } from '@src/config/defaultSettings'
 
 beforeAll(() => {
   // @ts-ignore

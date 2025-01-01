@@ -1,10 +1,10 @@
-import { rgbaObjectToHex8 } from '../utilities/convertColor'
+import { rgbaObjectToHex8 } from '@utils/convertColor'
 import { internalTokenInterface } from '@typings/propertyObject'
 import { StandardTokenInterface, StandardTokenTypes, StandardTokenDataInterface, StandardTokenGroup } from '@typings/standardToken'
-import roundWithDecimals from '../utilities/roundWithDecimals'
+import roundWithDecimals from '@utils/roundWithDecimals'
 import { tokenExtensions } from './tokenExtensions'
 import config from '@config/config'
-import { changeNotation } from '../utilities/changeNotation'
+import { changeNotation } from '@utils/changeNotation'
 
 const lineHeightToDimension = (values): number => {
   if (values.lineHeight.unit === 'pixel') {

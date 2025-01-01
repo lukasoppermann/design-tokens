@@ -1,5 +1,5 @@
 import deepMerge from './deepMerge'
-import transformName from '../utilities/transformName'
+import transformName from '@utils/transformName'
 import { Settings } from '@typings/settings'
 import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
 import { StandardTokenInterface } from '@typings/standardToken'

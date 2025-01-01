@@ -1,6 +1,6 @@
 import { internalTokenInterface, tokenCategoryTypes } from '@typings/propertyObject'
 import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
-import { convertRgbaObjectToString } from '../utilities/convertColor'
+import { convertRgbaObjectToString } from '@utils/convertColor'
 import { PropertyType, UnitTypePixel } from '@typings/valueTypes'
 import config from '@config/config'
 

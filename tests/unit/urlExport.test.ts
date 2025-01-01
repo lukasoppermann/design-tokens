@@ -1,6 +1,6 @@
-import {_testing} from '../../src/ui/modules/urlExport'
-import {urlExportRequestBody, urlExportSettings} from '../../types/urlExportData'
-import config from '../../src/config/config'
+import { _testing } from '@ui/modules/urlExport'
+import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
+import config from '@config/config'
 
 function FormDataMock() {
     this.append = jest.fn()
@@ -50,22 +50,22 @@ describe('Testing urlExport', () => {
                 mockUrlExportSettings.authType = config.key.authType.gitlabToken
 
                 const accessToken = 'access token'
-                mockUrlExportSettings.accessToken=accessToken
+                mockUrlExportSettings.accessToken = accessToken
 
                 const reference = 'test/branch'
-                mockUrlExportSettings.reference=reference
+                mockUrlExportSettings.reference = reference
 
                 const event_type = 'new event'
-                mockUrlExportRequestBody.event_type=event_type
+                mockUrlExportRequestBody.event_type = event_type
 
                 const payloadTokens = '{\'name\':\'John\', \'age\':30, \'car\':null}'
-                mockUrlExportRequestBody.client_payload.tokens=payloadTokens
+                mockUrlExportRequestBody.client_payload.tokens = payloadTokens
 
                 const payloadFilename = 'file.new'
-                mockUrlExportRequestBody.client_payload.filename=payloadFilename
+                mockUrlExportRequestBody.client_payload.filename = payloadFilename
 
                 const payloadCommitMessage = 'feat(tokens): Some tokens were added.'
-                mockUrlExportRequestBody.client_payload.commitMessage=payloadCommitMessage
+                mockUrlExportRequestBody.client_payload.commitMessage = payloadCommitMessage
 
 
                 const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any

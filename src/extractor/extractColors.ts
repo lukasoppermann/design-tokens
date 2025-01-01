@@ -3,8 +3,8 @@ import { colorPropertyInterface, fillValuesType, gradientValuesType } from '@typ
 import { PaintStyleObject } from '@typings/styles'
 import { GradientType, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
-import { convertPaintToRgba, roundRgba } from '../utilities/convertColor'
-import roundWithDecimals from '../utilities/roundWithDecimals'
+import { convertPaintToRgba, roundRgba } from '@utils/convertColor'
+import roundWithDecimals from '@utils/roundWithDecimals'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
@@ -98,7 +98,7 @@ const extractFills = (paint): fillValuesType | gradientValuesType => {
   return null
 }
 
-const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: {color: string[], gradient: string[], alias: string[]}): colorPropertyInterface[] => {
+const extractColors: extractorInterface = (tokenNodes: PaintStyleObject[], prefixArray: { color: string[], gradient: string[], alias: string[] }): colorPropertyInterface[] => {
   // get all paint styles
   return tokenNodes
     .reduce((previousValue, node) => {
