@@ -1,4 +1,4 @@
-import getPaintStyles from '../../src/utilities/getPaintStyles'
+import getPaintStyles from '@utils/getPaintStyles'
 import { paintStyles, paintStyleObjects } from './data/paintStyleObjects.data'
 
 describe('Testing getPaintStyles', () => {

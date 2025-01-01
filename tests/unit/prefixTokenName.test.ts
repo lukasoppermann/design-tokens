@@ -1,5 +1,5 @@
 import { defaultSettings } from '../../src/config/defaultSettings'
-import { prefixTokenName } from '../../src/utilities/prefixTokenName'
+import { prefixTokenName } from '@utils/prefixTokenName'
 
 describe('prefixTokenName', () => {
   test('token with alias', () => {

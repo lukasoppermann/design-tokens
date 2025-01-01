@@ -1,4 +1,4 @@
-import transformName from '../../src/utilities/transformName'
+import transformName from '@utils/transformName'
 
 const strings: string[] = [
   ' Foo      Bar',

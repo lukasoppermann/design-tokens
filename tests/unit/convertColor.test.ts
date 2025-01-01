@@ -1,4 +1,4 @@
-import { roundRgba, convertPaintToRgba, convertRgbaObjectToString } from '../../src/utilities/convertColor'
+import { roundRgba, convertPaintToRgba, convertRgbaObjectToString } from '@utils/convertColor'
 
 describe('Testing convertRgbaObjectToString', () => {
   test('Valid Object', () => {

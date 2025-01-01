@@ -1,4 +1,4 @@
-import getGridStyles from '../../src/utilities/getGridStyles'
+import getGridStyles from '@utils/getGridStyles'
 import { gridStyles, gridStyleObjects } from './data/gridStyleObjects.data'
 
 describe('Testing getGridStyles', () => {

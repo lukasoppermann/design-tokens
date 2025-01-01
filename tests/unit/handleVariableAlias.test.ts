@@ -1,16 +1,16 @@
-import handleVariableAlias from '../../src/utilities/handleVariableAlias'
+import handleVariableAlias from '@utils/handleVariableAlias'
 
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { tokenTypes } from '@config/tokenTypes'
 
-import { getVariableTypeByValue } from '../../src/utilities/getVariableTypeByValue'
-import { changeNotation } from '../../src/utilities/changeNotation'
+import { getVariableTypeByValue } from '@utils/getVariableTypeByValue'
+import { changeNotation } from '@utils/changeNotation'
 
-jest.mock('../../src/utilities/getVariableTypeByValue', () => ({
+jest.mock('@utils/getVariableTypeByValue', () => ({
   getVariableTypeByValue: jest.fn(),
 }))
 
-jest.mock('../../src/utilities/changeNotation', () => ({
+jest.mock('@utils/changeNotation', () => ({
   changeNotation: jest.fn(),
 }))
 

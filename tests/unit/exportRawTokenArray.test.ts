@@ -1,5 +1,5 @@
 
-import { exportRawTokenArray } from '../../src/utilities/getTokenJson'
+import { exportRawTokenArray } from '@utils/getTokenJson'
 import extractFonts from '../../src/extractor/extractFonts'
 import extractEffects from '../../src/extractor/extractEffects'
 import extractGrids from '../../src/extractor/extractGrids'
@@ -11,7 +11,7 @@ import extractRadii from '../../src/extractor/extractRadii'
 import extractMotion from '../../src/extractor/extractMotion'
 import extractBreakpoints from '../../src/extractor/extractBreakpoints'
 import extractOpacities from '../../src/extractor/extractOpacities'
-import buildFigmaData from '../../src/utilities/buildFigmaData'
+import buildFigmaData from '@utils/buildFigmaData'
 import { defaultSettings } from '../../src/config/defaultSettings'
 jest.mock('../../src/extractor/extractFonts', () => jest.fn())
 jest.mock('../../src/extractor/extractEffects', () => jest.fn())
@@ -24,7 +24,7 @@ jest.mock('../../src/extractor/extractRadii', () => jest.fn())
 jest.mock('../../src/extractor/extractMotion', () => jest.fn())
 jest.mock('../../src/extractor/extractBreakpoints', () => jest.fn())
 jest.mock('../../src/extractor/extractOpacities', () => jest.fn())
-jest.mock('../../src/utilities/buildFigmaData', () => jest.fn())
+jest.mock('@utils/buildFigmaData', () => jest.fn())
 
 describe('exportRawTokenArray', () => {
   const figma = {

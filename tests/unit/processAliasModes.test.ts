@@ -1,4 +1,4 @@
-import processAliasModes from '../../src/utilities/processAliasModes'
+import processAliasModes from '@utils/processAliasModes'
 
 describe('processAliasModes', () => {
   it('should return the same variables if they have no alias modes', () => {
@@ -13,7 +13,7 @@ describe('processAliasModes', () => {
     const variables = [
       {
         values: '{CollEctIon.}',
-        aliasMode: {name: 'mode1'},
+        aliasMode: { name: 'mode1' },
         aliasCollectionName: 'collection',
       },
     ]

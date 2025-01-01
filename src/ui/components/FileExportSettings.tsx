@@ -1,20 +1,20 @@
-import * as React from 'react'
-import { useContext, useRef } from 'react'
-import { Button } from '@components/Button'
-import { Checkbox } from '@components/Checkbox'
-import { Title } from '@components/Title'
-import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
-import { css } from '@emotion/css'
-import { Footer } from './Footer'
-import { downloadJson } from '../modules/downloadJson'
-import { prepareExport } from '@src/utilities/prepareExport'
-import { Settings } from '@typings/settings'
-import { stringifyJson } from '@src/utilities/stringifyJson'
-import { Info } from '@components/Info'
-import { Row } from '@components/Row'
-import { tokenTypes } from '@config/tokenTypes'
-import { commands } from '@config/commands'
-import { WebLink } from './WebLink'
+import * as React from "react";
+import { useContext, useRef } from "react";
+import { Button } from "@components/Button";
+import { Checkbox } from "@components/Checkbox";
+import { Title } from "@components/Title";
+import { FigmaContext, SettingsContext, TokenContext } from "@ui/context";
+import { css } from "@emotion/css";
+import { Footer } from "./Footer";
+import { downloadJson } from "../modules/downloadJson";
+import { prepareExport } from "@utils/prepareExport";
+import { Settings } from "@typings/settings";
+import { stringifyJson } from "@utils/stringifyJson";
+import { Info } from "@components/Info";
+import { Row } from "@components/Row";
+import { tokenTypes } from "@config/tokenTypes";
+import { commands } from "@config/commands";
+import { WebLink } from "./WebLink";
 
 const style = css`
   display: flex;
@@ -26,13 +26,16 @@ const style = css`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-`
+`;
 
 export const FileExportSettings = () => {
-  const { settings, updateSettings } = useContext<{settings: Settings, updateSettings: any}>(SettingsContext)
-  const { tokens, setTokens } = useContext(TokenContext)
-  const { figmaUIApi } = useContext(FigmaContext)
-  const downloadLinkRef = useRef()
+  const { settings, updateSettings } = useContext<{
+    settings: Settings;
+    updateSettings: any;
+  }>(SettingsContext);
+  const { tokens, setTokens } = useContext(TokenContext);
+  const { figmaUIApi } = useContext(FigmaContext);
+  const downloadLinkRef = useRef();
 
   React.useEffect(() => {
     const { accessToken, ...pluginSettings } = settings;
@@ -50,12 +53,11 @@ export const FileExportSettings = () => {
       },
       "*"
     );
-}, [settings]);
-
+  }, [settings]);
 
   const handleFormSubmit = (event) => {
-    event.preventDefault() // Prevent form submit triggering navigation
-    const exportSettingsForm = event.target
+    event.preventDefault(); // Prevent form submit triggering navigation
+    const exportSettingsForm = event.target;
     if (exportSettingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings;
       // save settings to local storage
@@ -98,7 +100,7 @@ export const FileExportSettings = () => {
         stringifyJson(tokensToExport, pluginSettings.compression)
       );
     }
-  }
+  };
 
   return (
     <form onSubmit={handleFormSubmit} className={style}>
@@ -180,4 +182,4 @@ export const FileExportSettings = () => {
       />
     </form>
   );
-}
+};

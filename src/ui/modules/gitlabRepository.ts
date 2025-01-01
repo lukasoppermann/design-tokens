@@ -1,4 +1,4 @@
-import { utf8ToBase64 } from "@src/utilities/base64";
+import { utf8ToBase64 } from "@utils/base64";
 import {
   urlExportRequestBody,
   urlExportSettings,

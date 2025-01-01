@@ -1,4 +1,4 @@
-import getFileId from '../../src/utilities/getFileId'
+import getFileId from '@utils/getFileId'
 import config from '../../src/config/config'
 
 describe('getFileId', () => {

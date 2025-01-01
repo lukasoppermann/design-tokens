@@ -1,4 +1,4 @@
-import { groupByKeyAndName } from '../../src/utilities/groupByName'
+import { groupByKeyAndName } from '@utils/groupByName'
 import { defaultSettings } from '../../src/config/defaultSettings'
 
 describe('groupByName', () => {

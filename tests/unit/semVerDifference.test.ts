@@ -1,4 +1,4 @@
-import semVerDifference from '../../src/utilities/semVerDifference'
+import semVerDifference from '@utils/semVerDifference'
 
 describe('Testing semVerDifference', () => {
   test('Wrong order of version number', () => {

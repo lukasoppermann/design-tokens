@@ -1,7 +1,7 @@
 import { defaultSettings } from '../../src/config/defaultSettings'
-import buildFigmaData from '../../src/utilities/buildFigmaData'
-import getTokenNodes from '../../src/utilities/getTokenNodes'
-jest.mock('../../src/utilities/getTokenNodes', () => jest.fn())
+import buildFigmaData from '@utils/buildFigmaData'
+import getTokenNodes from '@utils/getTokenNodes'
+jest.mock('@utils/getTokenNodes', () => jest.fn())
 
 const defaultOutput = {
   effectStyles: [{

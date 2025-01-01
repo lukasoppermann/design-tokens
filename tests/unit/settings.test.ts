@@ -1,5 +1,5 @@
-import { getSettings, setSettings } from '../../src/utilities/settings'
-import { stringifyJson } from '../../src/utilities/stringifyJson'
+import { getSettings, setSettings } from '@utils/settings'
+import { stringifyJson } from '@utils/stringifyJson'
 import { nameConversionType, tokenFormatType } from '../../types/settings'
 import { defaultSettings } from '../../src/config/defaultSettings'
 

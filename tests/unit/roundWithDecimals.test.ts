@@ -1,4 +1,4 @@
-import roundWithDecimals from '../../src/utilities/roundWithDecimals'
+import roundWithDecimals from '@utils/roundWithDecimals'
 
 describe('roundWithDecimals', () => {
   test('1.234 to 1 (0 decimal places)', () => {
