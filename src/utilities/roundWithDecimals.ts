@@ -5,7 +5,7 @@
  * @param value number
  * @param decimalPlaces int
  */
-const roundWithDecimals = (value?: number, decimalPlaces: number = 2) => {
+const roundWithDecimals = (value?: number, decimalPlaces = 2) => {
   // exit if value is undefined
   if (value === undefined) {
     return

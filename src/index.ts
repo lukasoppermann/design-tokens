@@ -42,11 +42,11 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
         }
       }
     }
-    
-    if([commands.export, commands.urlExport].includes(figma.command as PluginCommands)) {
-      postMessageObject.payload.data = stringifyJson(exportRawTokenArray(figma, userSettings));
+
+    if ([commands.export, commands.urlExport].includes(figma.command as PluginCommands)) {
+      postMessageObject.payload.data = stringifyJson(exportRawTokenArray(figma, userSettings))
     }
-    figma.ui.postMessage({...postMessageObject})
+    figma.ui.postMessage({ ...postMessageObject })
     // register the settings UI
     figma.ui.show()
   }

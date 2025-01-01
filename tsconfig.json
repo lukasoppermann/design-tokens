@@ -4,37 +4,19 @@
     "lib": ["dom", "es2020", "dom.iterable"],
     "target": "es6",
     "moduleResolution": "node",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./node_modules/@figma",
-      "./types"
-    ],
+    "typeRoots": ["./node_modules/@types", "./node_modules/@figma", "./types"],
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "src/ui/components/*"
-      ],
-      "@config/*": [
-        "src/config/*"
-      ],
-      "@src/*": [
-        "src/*"
-      ],
-      "@ui/*": [
-        "src/ui/*"
-      ],
-      "@utils/*": [
-        "src/utilities/*"
-      ],
-      "@typings/*": [
-        "types/*"
-      ]
+      "@components/*": ["src/ui/components/*"],
+      "@config/*": ["src/config/*"],
+      "@src/*": ["src/*"],
+      "@ui/*": ["src/ui/*"],
+      "@utils/*": ["src/utilities/*"],
+      "@typings/*": ["types/*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": [
-    "src/**/_*"
-  ],
+  "include": ["src/**/*", "tests/**/*"],
+  "exclude": ["src/**/_*"],
   "files": ["src/index.ts"]
 }

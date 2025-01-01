@@ -92,7 +92,7 @@ const fontStyleValueTransformer = ({ values }): StandardTokenDataInterface => ({
   }
 })
 
-const typographyValueTransformer = ({ name, values }) => ({
+const typographyValueTransformer = ({ _name, values }) => ({
   fontSize: {
     type: 'dimension' as StandardTokenTypes,
     value: values.fontSize.value

@@ -30,7 +30,7 @@ const toKebabCase = (string: string): string => {
   return returnOrThrow(convertedString, string, 'kebabCase')
 }
 
-const transformName = (name: string, nameConversion: string = 'default'): string => {
+const transformName = (name: string, nameConversion = 'default'): string => {
   // if camelCase
   if (nameConversion === 'camelCase') {
     return toCamelCase(name)

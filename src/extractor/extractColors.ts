@@ -17,7 +17,7 @@ const transparentFill: fillValuesType = {
   }
 }
 
-const parseDescription = (description: string = '', aliasArray: string[]) => {
+const parseDescription = (description = '', aliasArray: string[]) => {
   aliasArray = !aliasArray || aliasArray.filter(i => i).length === 0 ? ['Ref:'] : aliasArray
   const regex = new RegExp('(' + aliasArray.join('|').toLowerCase() + ')' + ':?\\s')
   // split description in lines

@@ -30,7 +30,7 @@
   "devDependencies": {
     "@ctrl/tinycolor": "^3.4.0",
     "@emotion/css": "^11.1.3",
-    "@figma/plugin-typings": "^1.98.0",
+    "@figma/plugin-typings": "^1.106.0",
     "@types/jest": "^28.1.1",
     "@types/react": "^18.0.13",
     "@types/react-dom": "^18.0.5",
@@ -108,12 +108,50 @@
       "browser": true,
       "es6": true
     },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "ignorePatterns": [
+      "dist",
+      "node_modules",
+      "examples",
+      "tests/**/*.js",
+      "*.config.js",
+      "*.d.ts"
+    ],
     "rules": {
       "default-param-last": 0,
       "no-return-assign": 0,
       "brace-style": 0,
       "no-use-before-define": "off",
-      "@typescript-eslint/no-use-before-define": "error"
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "never"
+      ],
+      "comma-dangle": [
+        "error",
+        "only-multiline"
+      ],
+      "@typescript-eslint/no-use-before-define": "error",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_"
+        }
+      ]
     }
   },
   "jest": {
@@ -142,6 +180,9 @@
     ],
     "moduleNameMapper": {
       "^@config/(.*)$": "<rootDir>/src/config/$1",
+      "^@ui/(.*)$": "<rootDir>/src/ui/$1",
+      "^@utils/(.*)$": "<rootDir>/src/utilities/$1",
+      "^@typings/(.*)$": "<rootDir>/types/$1",
       "^@src/(.*)$": "<rootDir>/src/$1"
     }
   },

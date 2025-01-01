@@ -8,7 +8,7 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 
-const direction = (transition: Transition): {} | null => {
+const direction = (transition: Transition): object | null => {
   if (Object.prototype.hasOwnProperty.call(transition, 'direction')) {
     return {
       direction: {

@@ -154,7 +154,7 @@ const opacityValueTransformer = ({ opacity }) => ({
   type: opacity.type
 })
 
-const valueTransformer: {} | undefined = {
+const valueTransformer: object | undefined = {
   size: sizeValueTransformer,
   color: defaultValueTransformer,
   gradient: defaultValueTransformer,
