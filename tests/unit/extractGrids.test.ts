@@ -1,4 +1,4 @@
-import extractGrids from '../../src/extractor/extractGrids'
+import extractGrids from '@src/extractor/extractGrids'
 import { gridStyleObjects } from './data/gridStyleObjects.data'
 
 describe('extracting grids', () => {

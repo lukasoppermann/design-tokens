@@ -1,4 +1,4 @@
-import { defaultSettings } from '../../src/config/defaultSettings'
+import { defaultSettings } from '@config/defaultSettings'
 import buildFigmaData from '@utils/buildFigmaData'
 import getTokenNodes from '@utils/getTokenNodes'
 jest.mock('@utils/getTokenNodes', () => jest.fn())

@@ -1,4 +1,4 @@
-import extractFonts from '../../src/extractor/extractFonts'
+import extractFonts from '@src/extractor/extractFonts'
 import { textStyleObjects, extractFontsOutput } from './data/textStyleObjects.data'
 
 describe('extracting fonts', () => {

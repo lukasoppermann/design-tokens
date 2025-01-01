@@ -1,4 +1,4 @@
-import extractMotion, { __testing } from '../../src/extractor/extractMotion'
+import extractMotion, { __testing } from '@src/extractor/extractMotion'
 import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting motion tokens', () => {

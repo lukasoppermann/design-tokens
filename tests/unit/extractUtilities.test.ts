@@ -1,4 +1,4 @@
-import { filterByPrefix } from '../../src/extractor/extractUtilities'
+import { filterByPrefix } from '@src/extractor/extractUtilities'
 
 describe('filterByPrefix', () => {
   const nodeList = [{

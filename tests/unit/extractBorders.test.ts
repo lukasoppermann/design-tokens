@@ -1,4 +1,4 @@
-import extractBorders from '../../src/extractor/extractBorders'
+import extractBorders from '@src/extractor/extractBorders'
 import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting borders', () => {

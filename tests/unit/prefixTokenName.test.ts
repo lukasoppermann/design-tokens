@@ -1,4 +1,4 @@
-import { defaultSettings } from '../../src/config/defaultSettings'
+import { defaultSettings } from '@config/defaultSettings'
 import { prefixTokenName } from '@utils/prefixTokenName'
 
 describe('prefixTokenName', () => {

@@ -1,4 +1,4 @@
-import { PluginCommands } from '../src/config/commands'
+import { PluginCommands } from '@config/commands'
 
 export type PluginMessage = {
   command: PluginCommands

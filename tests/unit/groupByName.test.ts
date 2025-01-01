@@ -1,5 +1,5 @@
 import { groupByKeyAndName } from '@utils/groupByName'
-import { defaultSettings } from '../../src/config/defaultSettings'
+import { defaultSettings } from '@config/defaultSettings'
 
 describe('groupByName', () => {
   test('group tokens with name', () => {
