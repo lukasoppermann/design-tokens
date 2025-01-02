@@ -1,4 +1,4 @@
-import getTextStyles from '../../src/utilities/getTextStyles'
+import getTextStyles from '@utils/getTextStyles'
 import { textStyles, textStyleObjects } from './data/textStyleObjects.data'
 
 describe('Testing getTextStyles', () => {

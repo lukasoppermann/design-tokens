@@ -1,5 +1,5 @@
 import deepMerge from './deepMerge'
-import transformName from '../utilities/transformName'
+import transformName from '@utils/transformName'
 import { Settings } from '@typings/settings'
 import { OriginalFormatTokenInterface } from '@typings/originalFormatProperties'
 import { StandardTokenInterface } from '@typings/standardToken'
@@ -12,7 +12,7 @@ const nestedObjectFromArray = (array: string[], value: any) => {
 }
 
 export const groupByKeyAndName = (tokenArray: OriginalFormatTokenInterface[] | StandardTokenInterface[], userSettings: Settings) => {
-  const removeName: boolean = true
+  const removeName = true
   // guard
   if (tokenArray.length <= 0) return []
   // nest tokens into object with hierarchy defined by name using /

@@ -2,7 +2,7 @@ import extractorInterface from '@typings/extractorInterface'
 import { effectPropertyInterface } from '@typings/propertyObject'
 import { EffectType, UnitTypePixel, PropertyType } from '@typings/valueTypes'
 import { tokenTypes } from '@config/tokenTypes'
-import { roundRgba } from '../utilities/convertColor'
+import { roundRgba } from '@utils/convertColor'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
@@ -64,7 +64,7 @@ const extractEffects: extractorInterface = (tokenNodes: EffectStyle[], prefixArr
   return tokenNodes
     // remove tokens with no grid
     .filter(node => node.effects.length > 0)
-  // build
+    // build
     .map(node => ({
       name: `${prefixArray[0]}/${node.name}`,
       category: 'effect' as tokenCategoryType,

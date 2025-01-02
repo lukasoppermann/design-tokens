@@ -1,5 +1,5 @@
-import getVersionDifference from '../../src/utilities/getVersionDifference'
-jest.mock('../../src/utilities/version', () => '3.1.2')
+import getVersionDifference from '@utils/getVersionDifference'
+jest.mock('@utils/version', () => '3.1.2')
 
 describe('getVersionDifference', () => {
   const figmaMock = {

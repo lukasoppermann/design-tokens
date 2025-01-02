@@ -1,6 +1,6 @@
-import extractRadii from '../../src/extractor/extractRadii'
-import { tokenCategoryType } from '../../types/tokenCategory'
-import { tokenExportKeyType } from '../../types/tokenExportKey'
+import extractRadii from '@src/extractor/extractRadii'
+import { tokenCategoryType } from '@typings/tokenCategory'
+import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting radii', () => {

@@ -1,7 +1,7 @@
-import { roundRgba, convertPaintToRgba, convertRgbaObjectToString } from '../../src/utilities/convertColor'
+import { roundRgba, convertPaintToRgba, convertRgbaObjectToString } from '@utils/convertColor'
 
-describe("Testing convertRgbaObjectToString", () => {
-  test("Valid Object", () => {
+describe('Testing convertRgbaObjectToString', () => {
+  test('Valid Object', () => {
     const input = {
       a: .5,
       r: 100,
@@ -13,7 +13,7 @@ describe("Testing convertRgbaObjectToString", () => {
     expect(convertRgbaObjectToString(input)).toStrictEqual(output)
   })
 
-  test.skip("invalid Object", () => {
+  test.skip('invalid Object', () => {
     const input = {
       r: 100,
       g: 150,
@@ -26,8 +26,8 @@ describe("Testing convertRgbaObjectToString", () => {
   })
 })
 
-describe("Testing roundRgba", () => {
-  test("Valid input rgba", () => {
+describe('Testing roundRgba', () => {
+  test('Valid input rgba', () => {
     const rgba = {
       a: .5,
       r: .12,
@@ -44,7 +44,7 @@ describe("Testing roundRgba", () => {
     expect(roundRgba(rgba)).toStrictEqual(output)
   })
 
-  test("Valid input rgb with NO alpha or opacity", () => {
+  test('Valid input rgb with NO alpha or opacity', () => {
     const rgba = {
       r: .12,
       g: .55,
@@ -60,7 +60,7 @@ describe("Testing roundRgba", () => {
     expect(roundRgba(rgba)).toStrictEqual(output)
   })
 
-  test("Valid input rgb and opacity", () => {
+  test('Valid input rgb and opacity', () => {
     const rgba = {
       r: .12,
       g: .55,
@@ -77,8 +77,8 @@ describe("Testing roundRgba", () => {
   })
 })
 
-describe("Testing convertPaintToRgba", () => {
-  test("Valid Paint object with opacity", () => {
+describe('Testing convertPaintToRgba', () => {
+  test('Valid Paint object with opacity', () => {
     const input = {
       type: 'SOLID',
       visible: true,
@@ -99,7 +99,7 @@ describe("Testing convertPaintToRgba", () => {
     expect(convertPaintToRgba(input)).toStrictEqual(output)
   })
 
-  test("Valid Paint object NO opacity", () => {
+  test('Valid Paint object NO opacity', () => {
     const input = {
       type: 'SOLID',
       visible: true,
@@ -119,7 +119,7 @@ describe("Testing convertPaintToRgba", () => {
     expect(convertPaintToRgba(input)).toStrictEqual(output)
   })
 
-  test("Valid Paint object BUT visible false", () => {
+  test('Valid Paint object BUT visible false', () => {
     const input = {
       type: 'SOLID',
       visible: false,
@@ -134,7 +134,7 @@ describe("Testing convertPaintToRgba", () => {
     expect(convertPaintToRgba(input)).toStrictEqual(output)
   })
 
-  test("Type IMAGE object", () => {
+  test('Type IMAGE object', () => {
     const input = {
       type: 'IMAGE',
       visible: true,

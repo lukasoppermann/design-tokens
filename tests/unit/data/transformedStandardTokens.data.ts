@@ -1,4 +1,3 @@
-// import { StandardTokenGroup, StandardTokenInterface } from '../../../types/standardToken'
 // Tokens transformed to the "standard" format
 export const transformedStandardTokens = {
   /**
@@ -537,5 +536,5 @@ export const transformedStandardTokens = {
       }
     }
   }
-// END of object
+  // END of object
 }

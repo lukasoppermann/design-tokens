@@ -1,4 +1,4 @@
-import extractColors from '../../src/extractor/extractColors'
+import extractColors from '@src/extractor/extractColors'
 import { paintStyleObjects } from './data/paintStyleObjects.data'
 
 describe('extracting color fills', () => {

@@ -1,4 +1,4 @@
-import deepMerge from '../../src/utilities/deepMerge'
+import deepMerge from '@utils/deepMerge'
 
 describe('deepMerge', () => {
   test('merge objects', () => {

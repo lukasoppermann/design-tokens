@@ -1,4 +1,4 @@
-import extractEffects from '../../src/extractor/extractEffects'
+import extractEffects from '@src/extractor/extractEffects'
 import { effectStyleObjects } from './data/effectStyleObjects.data'
 
 describe('extracting effects', () => {

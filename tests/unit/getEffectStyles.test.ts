@@ -1,4 +1,4 @@
-import getEffectStyles from '../../src/utilities/getEffectStyles'
+import getEffectStyles from '@utils/getEffectStyles'
 import { effectStyles, effectStyleObjects } from './data/effectStyleObjects.data'
 
 describe('Testing getEffectStyles', () => {

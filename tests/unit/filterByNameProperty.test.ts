@@ -1,4 +1,4 @@
-import filterByNameProperty from '../../src/utilities/filterByNameProperty'
+import filterByNameProperty from '@utils/filterByNameProperty'
 
 describe('getTokenStyles', () => {
   test('exclude _ . and * prefix', () => {

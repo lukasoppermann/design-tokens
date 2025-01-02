@@ -1,4 +1,4 @@
-import extractOpacities from '../../src/extractor/extractOpacities'
+import extractOpacities from '@src/extractor/extractOpacities'
 import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting opacities', () => {

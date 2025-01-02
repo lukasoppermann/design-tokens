@@ -1,9 +1,9 @@
-import {_testing} from '../../src/ui/modules/urlExport'
-import {urlExportRequestBody, urlExportSettings} from "../../types/urlExportData";
-import config from "../../src/config/config";
+import { _testing } from '@ui/modules/urlExport'
+import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
+import config from '@config/config'
 
 function FormDataMock() {
-    this.append = jest.fn();
+    this.append = jest.fn()
 }
 
 (global as any).FormData = FormDataMock
@@ -14,28 +14,28 @@ describe('Testing urlExport', () => {
 
     beforeEach(() => {
         mockUrlExportSettings = {
-            "url": 'https://test.com',
-            "accessToken": 'test',
-            "acceptHeader": 'baseHeader',
-            "contentType": 'text',
-            "authType": 'baseAuthType',
-            "reference": 'main'
+            'url': 'https://test.com',
+            'accessToken': 'test',
+            'acceptHeader': 'baseHeader',
+            'contentType': 'text',
+            'authType': 'baseAuthType',
+            'reference': 'main'
         } as urlExportSettings
         mockUrlExportRequestBody = {
-            "event_type": 'baseEvent',
-            "client_payload": {
-                "tokens": '',
-                "filename": 'myBaseFile.json',
-                "commitMessage": ''
+            'event_type': 'baseEvent',
+            'client_payload': {
+                'tokens': '',
+                'filename': 'myBaseFile.json',
+                'commitMessage': ''
             }
         } as urlExportRequestBody
     })
 
-    describe("generateRequestBody testing", () => {
+    describe('generateRequestBody testing', () => {
         test('If token is set to anything but gitlab_token body is of type string',
             () => {
                 const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody)
-                expect(typeof body).toBe("string")
+                expect(typeof body).toBe('string')
             })
 
         test('If token is set to gitlab_token body is of type form data',
@@ -49,49 +49,49 @@ describe('Testing urlExport', () => {
             () => {
                 mockUrlExportSettings.authType = config.key.authType.gitlabToken
 
-                const accessToken = "access token"
-                mockUrlExportSettings.accessToken=accessToken
+                const accessToken = 'access token'
+                mockUrlExportSettings.accessToken = accessToken
 
-                const reference = "test/branch"
-                mockUrlExportSettings.reference=reference
+                const reference = 'test/branch'
+                mockUrlExportSettings.reference = reference
 
-                const event_type = "new event"
-                mockUrlExportRequestBody.event_type=event_type
+                const event_type = 'new event'
+                mockUrlExportRequestBody.event_type = event_type
 
-                const payloadTokens = "{'name':'John', 'age':30, 'car':null}"
-                mockUrlExportRequestBody.client_payload.tokens=payloadTokens
+                const payloadTokens = '{\'name\':\'John\', \'age\':30, \'car\':null}'
+                mockUrlExportRequestBody.client_payload.tokens = payloadTokens
 
-                const payloadFilename = "file.new"
-                mockUrlExportRequestBody.client_payload.filename=payloadFilename
+                const payloadFilename = 'file.new'
+                mockUrlExportRequestBody.client_payload.filename = payloadFilename
 
-                const payloadCommitMessage = "feat(tokens): Some tokens were added."
-                mockUrlExportRequestBody.client_payload.commitMessage=payloadCommitMessage
+                const payloadCommitMessage = 'feat(tokens): Some tokens were added.'
+                mockUrlExportRequestBody.client_payload.commitMessage = payloadCommitMessage
 
 
                 const body = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
-                expect(body.append).toHaveBeenCalledWith("token", accessToken)
-                expect(body.append).toHaveBeenCalledWith("token", accessToken)
-                expect(body.append).toHaveBeenCalledWith("ref", reference)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_EVENT_TYPE]", event_type)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_TOKENS]", payloadTokens)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_FILENAME]", payloadFilename)
-                expect(body.append).toHaveBeenCalledWith("variables[FIGMA_CLIENT_PAYLOAD_COMMIT_MESSAGE]", payloadCommitMessage)
+                expect(body.append).toHaveBeenCalledWith('token', accessToken)
+                expect(body.append).toHaveBeenCalledWith('token', accessToken)
+                expect(body.append).toHaveBeenCalledWith('ref', reference)
+                expect(body.append).toHaveBeenCalledWith('variables[FIGMA_EVENT_TYPE]', event_type)
+                expect(body.append).toHaveBeenCalledWith('variables[FIGMA_CLIENT_PAYLOAD_TOKENS]', payloadTokens)
+                expect(body.append).toHaveBeenCalledWith('variables[FIGMA_CLIENT_PAYLOAD_FILENAME]', payloadFilename)
+                expect(body.append).toHaveBeenCalledWith('variables[FIGMA_CLIENT_PAYLOAD_COMMIT_MESSAGE]', payloadCommitMessage)
             })
 
         test('If a commit message is included, it is in the client_payload',
             () => {
-                const payloadCommitMessage = "feat(tokens): Some tokens were added."
+                const payloadCommitMessage = 'feat(tokens): Some tokens were added.'
                 mockUrlExportRequestBody.client_payload.commitMessage = payloadCommitMessage
 
                 const bodyString = _testing.generateUrlExportRequestBody(mockUrlExportSettings, mockUrlExportRequestBody) as any
-                const body = JSON.parse(bodyString);
+                const body = JSON.parse(bodyString)
                 expect(body.client_payload).toHaveProperty('commitMessage')
-                expect(body.client_payload.commitMessage).toStrictEqual(payloadCommitMessage);
+                expect(body.client_payload.commitMessage).toStrictEqual(payloadCommitMessage)
             })
 
     })
 
-    describe("addUrlExportRequestHeaders testing", () => {
+    describe('addUrlExportRequestHeaders testing', () => {
 
         test('Setting token to gitlab_token results in no change to the headers',
             () => {

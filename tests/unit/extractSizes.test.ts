@@ -1,4 +1,4 @@
-import extractSizes from '../../src/extractor/extractSizes'
+import extractSizes from '@src/extractor/extractSizes'
 import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting sizes', () => {

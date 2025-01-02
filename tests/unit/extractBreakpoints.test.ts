@@ -1,4 +1,4 @@
-import extractBreakpoints from '../../src/extractor/extractBreakpoints'
+import extractBreakpoints from '@src/extractor/extractBreakpoints'
 import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting breakpoints', () => {

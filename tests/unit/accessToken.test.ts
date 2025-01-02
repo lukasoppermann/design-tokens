@@ -1,4 +1,4 @@
-import { getAccessToken } from '../../src/utilities/accessToken'
+import { getAccessToken } from '@utils/accessToken'
 
 beforeAll(() => {
   // @ts-ignore

@@ -1,5 +1,5 @@
-import getFileId from '../../src/utilities/getFileId'
-import config from '../../src/config/config'
+import getFileId from '@utils/getFileId'
+import config from '@config/config'
 
 describe('getFileId', () => {
   const figmaMock = {

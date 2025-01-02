@@ -1,13 +1,13 @@
-import { getSettings, resetSettings, setSettings } from './utilities/settings'
-import { getAccessToken, setAccessToken } from './utilities/accessToken'
+import { getSettings, resetSettings, setSettings } from '@utils/settings'
+import { getAccessToken, setAccessToken } from '@utils/accessToken'
 import { Settings as UserSettings } from '@typings/settings'
 import config from '@config/config'
 import { commands, PluginCommands } from '@config/commands'
-import getVersionDifference from './utilities/getVersionDifference'
-import getFileId from './utilities/getFileId'
-import { PluginMessage } from '../types/pluginEvent'
-import { exportRawTokenArray } from './utilities/getTokenJson'
-import { stringifyJson } from './utilities/stringifyJson'
+import getVersionDifference from '@utils/getVersionDifference'
+import getFileId from '@utils/getFileId'
+import { PluginMessage } from '@typings/pluginEvent'
+import { exportRawTokenArray } from '@utils/getTokenJson'
+import { stringifyJson } from '@utils/stringifyJson'
 
 // initiate UI
 figma.showUI(__html__, {
@@ -42,11 +42,11 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
         }
       }
     }
-    
-    if([commands.export, commands.urlExport].includes(figma.command as PluginCommands)) {
-      postMessageObject.payload.data = stringifyJson(exportRawTokenArray(figma, userSettings));
+
+    if ([commands.export, commands.urlExport].includes(figma.command as PluginCommands)) {
+      postMessageObject.payload.data = stringifyJson(exportRawTokenArray(figma, userSettings))
     }
-    figma.ui.postMessage({...postMessageObject})
+    figma.ui.postMessage({ ...postMessageObject })
     // register the settings UI
     figma.ui.show()
   }

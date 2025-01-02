@@ -1,4 +1,4 @@
-import extractSpacing from '../../src/extractor/extractSpacing'
+import extractSpacing from '@src/extractor/extractSpacing'
 import { customTokenNode } from './data/customTokenNode.data'
 
 describe('extracting spacing', () => {

@@ -1,4 +1,4 @@
-import getTokenNodes, { __testing } from '../../src/utilities/getTokenNodes'
+import getTokenNodes, { __testing } from '@utils/getTokenNodes'
 
 const pages = [{
   findChildren: jest.fn().mockReturnValue([])
