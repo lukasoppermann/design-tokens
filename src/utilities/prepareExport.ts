@@ -23,7 +23,10 @@ const createTypographyTokens = (tokens: internalTokenInterface[], settings) => {
         item.category = tokenTypes.typography.key as tokenCategoryType
         item.exportKey = tokenTypes.typography.key as tokenExportKeyType
         if (settings.excludeExtensionProp !== true) {
-          item.extensions[config.key.extensionPluginData].exportKey = tokenTypes.typography.key as tokenCategoryType
+          item.extensions[config.key.extensionPluginData] = {
+            ...item.extensions[config.key.extensionPluginData],
+            exportKey: tokenTypes.typography.key as tokenCategoryType
+          }
         }
         return item
       })
@@ -32,7 +35,7 @@ const createTypographyTokens = (tokens: internalTokenInterface[], settings) => {
 }
 
 export const prepareExport = (tokens: string, settings: Settings) => {
-  if (tokens.length === 0) tokens = '[{}]'
+  if (tokens.length === 0) tokens = '[]'
   // parse json string
   let tokenArray: internalTokenInterface[] = JSON.parse(tokens)
   // duplicate font if typography is true && format = standard
@@ -42,7 +45,7 @@ export const prepareExport = (tokens: string, settings: Settings) => {
   // add to name
   const prefixedTokens = prefixTokenName(tokensFiltered, settings)
   // converted values
-  const tokensConverted = prefixedTokens.map(token => tokenTransformer[settings.tokenFormat](token, settings)).filter(Boolean)
+  const tokensConverted = prefixedTokens.map(token => tokenTransformer[settings.tokenFormat]?.(token, settings)).filter(Boolean)
   // group items by their names
   // @ts-ignore
   const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings)

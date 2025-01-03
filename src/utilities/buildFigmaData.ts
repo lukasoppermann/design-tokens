@@ -12,7 +12,7 @@ import { Settings } from '@typings/settings'
  * @param {PluginAPI} figma — the figma PluginAPI object
  * @param options – options object
  */
-const buildFigmaData = (figma: PluginAPI, settings: Settings): figmaDataType => {
+const buildFigmaData = async (figma: PluginAPI, settings: Settings): Promise<figmaDataType> => {
   // use spread operator because the original is readOnly
   const tokenFrames = getTokenNodes([...figma.root.children])
   // get user exclusion prefixes
@@ -20,10 +20,10 @@ const buildFigmaData = (figma: PluginAPI, settings: Settings): figmaDataType => 
   // get data from figma
   return {
     tokenFrames: tokenFrames,
-    paintStyles: getPaintStyles(figma.getLocalPaintStyles()).filter(item => filterByPropertyName(item, userExclusionPrefixes)),
-    gridStyles: getGridStyles(figma.getLocalGridStyles()).filter(item => filterByPropertyName(item, userExclusionPrefixes)),
-    textStyles: getTextStyles(figma.getLocalTextStyles()).filter(item => filterByPropertyName(item, userExclusionPrefixes)),
-    effectStyles: getEffectStyles(figma.getLocalEffectStyles()).filter(item => filterByPropertyName(item, userExclusionPrefixes))
+    paintStyles: getPaintStyles(await figma.getLocalPaintStylesAsync()).filter(item => filterByPropertyName(item, userExclusionPrefixes)),
+    gridStyles: getGridStyles(await figma.getLocalGridStylesAsync()).filter(item => filterByPropertyName(item, userExclusionPrefixes)),
+    textStyles: getTextStyles(await figma.getLocalTextStylesAsync()).filter(item => filterByPropertyName(item, userExclusionPrefixes)),
+    effectStyles: getEffectStyles(await figma.getLocalEffectStylesAsync()).filter(item => filterByPropertyName(item, userExclusionPrefixes))
   }
 }
 
