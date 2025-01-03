@@ -1,29 +1,29 @@
-import * as React from "react";
-import { useContext, useState } from "react";
-import { Button } from "@components/Button";
-import { Checkbox } from "@components/Checkbox";
-import { Input } from "@components/Input";
-import { Select } from "@components/Select";
-import { Title } from "@components/Title";
-import { FigmaContext, SettingsContext, TokenContext } from "@ui/context";
-import { CancelButton } from "./CancelButton";
-import { css } from "@emotion/css";
-import { Footer } from "./Footer";
-import { prepareExport } from "@utils/prepareExport";
-import { Settings } from "@typings/settings";
-import { Info } from "@components/Info";
-import { Row } from "@components/Row";
-import { urlExport } from "../modules/urlExport";
+import * as React from 'react'
+import { useContext, useState } from 'react'
+import { Button } from '@components/Button'
+import { Checkbox } from '@components/Checkbox'
+import { Input } from '@components/Input'
+import { Select } from '@components/Select'
+import { Title } from '@components/Title'
+import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
+import { CancelButton } from './CancelButton'
+import { css } from '@emotion/css'
+import { Footer } from './Footer'
+import { prepareExport } from '@utils/prepareExport'
+import { Settings } from '@typings/settings'
+import { Info } from '@components/Info'
+import { Row } from '@components/Row'
+import { urlExport } from '../modules/urlExport'
 import {
   urlExportRequestBody,
-  urlExportSettings,
-} from "@typings/urlExportData";
-import { PluginMessage } from "@typings/pluginEvent";
-import { commands } from "@config/commands";
-import { stringifyJson } from "@utils/stringifyJson";
-import { WebLink } from "./WebLink";
-import { Separator } from "./Separator";
-import config from "@config/config";
+  urlExportSettings
+} from '@typings/urlExportData'
+import { PluginMessage } from '@typings/pluginEvent'
+import { commands } from '@config/commands'
+import { stringifyJson } from '@utils/stringifyJson'
+import { WebLink } from './WebLink'
+import { Separator } from './Separator'
+import config from '@config/config'
 
 const style = css`
   display: flex;
@@ -35,22 +35,22 @@ const style = css`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-`;
+`
 
 export const UrlExportSettings = () => {
   const { settings, updateSettings } = useContext<{
     settings: Settings;
     updateSettings: any;
-  }>(SettingsContext);
-  const { tokens, setTokens } = useContext(TokenContext);
-  const { figmaUIApi } = useContext(FigmaContext);
-  const [commitMessage, setCommitMessage] = useState("");
+  }>(SettingsContext)
+  const { tokens, setTokens } = useContext(TokenContext)
+  const { figmaUIApi } = useContext(FigmaContext)
+  const [commitMessage, setCommitMessage] = useState('')
 
   const handleFormSubmit = (event) => {
-    event.preventDefault(); // Prevent form submit triggering navigation
-    const exportSettingsForm = event.target;
+    event.preventDefault() // Prevent form submit triggering navigation
+    const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
-      const { accessToken, ...pluginSettings } = settings;
+      const { accessToken, ...pluginSettings } = settings
       // save settings to local storage
       figmaUIApi.postMessage(
         {
@@ -58,16 +58,16 @@ export const UrlExportSettings = () => {
             command: commands.saveSettings,
             payload: {
               settings: pluginSettings,
-              accessToken: accessToken,
-            },
-          } as PluginMessage,
+              accessToken: accessToken
+            }
+          } as PluginMessage
           // @ts-ignore
         },
-        "*"
-      );
+        '*'
+      )
       // prepare token json
-      const tokensToExport = prepareExport(tokens, pluginSettings);
-      setTokens(tokensToExport);
+      const tokensToExport = prepareExport(tokens, pluginSettings)
+      setTokens(tokensToExport)
       // download tokens
       urlExport(
         parent,
@@ -77,7 +77,7 @@ export const UrlExportSettings = () => {
           acceptHeader: settings.acceptHeader,
           contentType: settings.contentType,
           authType: settings.authType,
-          reference: settings.reference,
+          reference: settings.reference
         } as urlExportSettings,
         {
           event_type: settings.eventType,
@@ -87,12 +87,12 @@ export const UrlExportSettings = () => {
               settings.urlJsonCompression
             )}`,
             filename: `${settings.filename}${settings.extension}`,
-            commitMessage: `${commitMessage}`,
-          },
+            commitMessage: `${commitMessage}`
+          }
         } as urlExportRequestBody
-      );
+      )
     }
-  };
+  }
 
   return (
     <form onSubmit={handleFormSubmit} className={style}>
@@ -106,7 +106,7 @@ export const UrlExportSettings = () => {
           checked={settings.urlJsonCompression}
           onChange={(value) =>
             updateSettings((draft) => {
-              draft.urlJsonCompression = value;
+              draft.urlJsonCompression = value
             })
           }
         />
@@ -132,7 +132,7 @@ export const UrlExportSettings = () => {
           value={settings.eventType}
           onChange={(value) =>
             updateSettings((draft) => {
-              draft.eventType = value;
+              draft.eventType = value
             })
           }
         />
@@ -149,13 +149,13 @@ export const UrlExportSettings = () => {
           pattern="^https://.*"
           placeholder={
             (settings.authType === config.key.authType.gitlabCommit &&
-              "https://gitlab.com/api/v4/projects/:projectId") ||
-            "https://api.github.com/repos/:username/:repo/dispatches"
+              'https://gitlab.com/api/v4/projects/:projectId') ||
+            'https://api.github.com/repos/:username/:repo/dispatches'
           }
           value={settings.serverUrl}
           onChange={(value) =>
             updateSettings((draft) => {
-              draft.serverUrl = value;
+              draft.serverUrl = value
             })
           }
         />
@@ -171,7 +171,7 @@ export const UrlExportSettings = () => {
           value={settings.acceptHeader}
           onChange={(value) =>
             updateSettings((draft) => {
-              draft.acceptHeader = value;
+              draft.acceptHeader = value
             })
           }
         />
@@ -187,7 +187,7 @@ export const UrlExportSettings = () => {
           value={settings.contentType}
           onChange={(value) =>
             updateSettings((draft) => {
-              draft.contentType = value;
+              draft.contentType = value
             })
           }
         />
@@ -199,31 +199,31 @@ export const UrlExportSettings = () => {
           defaultValue={settings.authType}
           onChange={({ value }) =>
             updateSettings((draft) => {
-              draft.authType = value;
+              draft.authType = value
             })
           }
           placeholder="Auth type"
           options={[
             {
-              label: "(Github) token",
-              value: config.key.authType.token,
+              label: '(Github) token',
+              value: config.key.authType.token
             },
             {
-              label: "(Gitlab) token",
-              value: config.key.authType.gitlabToken,
+              label: '(Gitlab) token',
+              value: config.key.authType.gitlabToken
             },
             {
-              label: "(Gitlab) Project Token",
-              value: config.key.authType.gitlabCommit,
+              label: '(Gitlab) Project Token',
+              value: config.key.authType.gitlabCommit
             },
             {
-              label: "Basic authentication",
-              value: config.key.authType.basic,
+              label: 'Basic authentication',
+              value: config.key.authType.basic
             },
             {
-              label: "Bearer token authentication",
-              value: config.key.authType.bearer,
-            },
+              label: 'Bearer token authentication',
+              value: config.key.authType.bearer
+            }
           ]}
         />
       </Row>
@@ -238,7 +238,7 @@ export const UrlExportSettings = () => {
           value={settings.accessToken}
           onChange={(value) =>
             updateSettings((draft) => {
-              draft.accessToken = value;
+              draft.accessToken = value
             })
           }
         />
@@ -261,7 +261,7 @@ export const UrlExportSettings = () => {
               value={settings.reference}
               onChange={(value) =>
                 updateSettings((draft) => {
-                  draft.reference = value;
+                  draft.reference = value
                 })
               }
             />
@@ -287,7 +287,7 @@ export const UrlExportSettings = () => {
               value={settings.reference}
               onChange={(value) =>
                 updateSettings((draft) => {
-                  draft.reference = value;
+                  draft.reference = value
                 })
               }
             />
@@ -327,5 +327,5 @@ export const UrlExportSettings = () => {
         </Button>
       </Footer>
     </form>
-  );
-};
+  )
+}
