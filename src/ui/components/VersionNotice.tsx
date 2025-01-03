@@ -1,6 +1,6 @@
-import { css } from "@emotion/css";
-import * as React from "react";
-import { versionDifference } from "@utils/semVerDifference";
+import { css } from '@emotion/css'
+import * as React from 'react'
+import { versionDifference } from '@utils/semVerDifference'
 
 const style = css`
   font-family: var(--font-stack);
@@ -34,21 +34,21 @@ const style = css`
     margin-right: var(--size-xxsmall);
     margin-left: var(--size-xxxsmall);
   }
-`;
+`
 
 interface VersionNoticeProps {
   versionDifference?: versionDifference;
 }
 
 export const VersionNotice = ({ versionDifference }: VersionNoticeProps) => {
-  if (versionDifference !== "major" && versionDifference !== "minor") {
-    return <></>;
+  if (versionDifference !== 'major' && versionDifference !== 'minor') {
+    return <></>
   }
   return (
     <div id="versionNotice" className={style}>
       <div className="icon">🎉</div>
       <div>
-        The{" "}
+        The{' '}
         <a
           className="subtle"
           href="https://www.figma.com/community/plugin/888356646278934516/Design-Tokens"
@@ -56,10 +56,10 @@ export const VersionNotice = ({ versionDifference }: VersionNoticeProps) => {
           rel="noreferrer"
         >
           Design Token plugin
-        </a>{" "}
+        </a>{' '}
         was updated.
         <br />
-        Find out about changes & new features in the{" "}
+        Find out about changes & new features in the{' '}
         <a
           href="https://github.com/lukasoppermann/design-tokens/releases"
           target="_blank"
@@ -69,5 +69,5 @@ export const VersionNotice = ({ versionDifference }: VersionNoticeProps) => {
         </a>
       </div>
     </div>
-  );
-};
+  )
+}

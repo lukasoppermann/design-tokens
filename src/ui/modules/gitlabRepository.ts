@@ -1,16 +1,16 @@
-import { utf8ToBase64 } from "@utils/base64";
+import { utf8ToBase64 } from '@utils/base64'
 import {
   urlExportRequestBody,
-  urlExportSettings,
-} from "@typings/urlExportData";
+  urlExportSettings
+} from '@typings/urlExportData'
 
 export class GitlabRepository {
-  baseUrl: string;
-  token: string;
+  baseUrl: string
+  token: string
 
   constructor(props: { baseUrl: string; token: string }) {
-    this.baseUrl = props.baseUrl;
-    this.token = props.token;
+    this.baseUrl = props.baseUrl
+    this.token = props.token
   }
 
   async upload(
@@ -21,23 +21,23 @@ export class GitlabRepository {
       onLoaded: (request: XMLHttpRequest) => void;
     }
   ) {
-    const encodedContent = utf8ToBase64(clientPayload.tokens);
-    const encodedFilepath = encodeURIComponent(clientPayload.filename);
+    const encodedContent = utf8ToBase64(clientPayload.tokens)
+    const encodedFilepath = encodeURIComponent(clientPayload.filename)
 
-    let isFileExist: boolean;
+    let isFileExist: boolean
     try {
-      isFileExist = await this._checkFile(encodedFilepath, branch);
+      isFileExist = await this._checkFile(encodedFilepath, branch)
     } catch (error) {
       if (error && error.request && error.code === 401) {
-        responseHandler.onLoaded(error.request);
+        responseHandler.onLoaded(error.request)
       }
-      return;
+      return
     }
 
-    const uploadRequest = new XMLHttpRequest();
-    uploadRequest.onerror = (_err) => responseHandler.onError();
+    const uploadRequest = new XMLHttpRequest()
+    uploadRequest.onerror = (_err) => responseHandler.onError()
     uploadRequest.onload = (event) =>
-      responseHandler.onLoaded(event.target as XMLHttpRequest);
+      responseHandler.onLoaded(event.target as XMLHttpRequest)
 
     this._uploadFile({
       request: uploadRequest,
@@ -45,8 +45,8 @@ export class GitlabRepository {
       commitMessage: clientPayload.commitMessage,
       filepath: encodedFilepath,
       branch: branch,
-      isFileExist: isFileExist,
-    });
+      isFileExist: isFileExist
+    })
   }
 
   private _checkFile(
@@ -54,38 +54,38 @@ export class GitlabRepository {
     branch: string
   ): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      const request = new XMLHttpRequest();
+      const request = new XMLHttpRequest()
       request.open(
-        "GET",
+        'GET',
         `${this.baseUrl}/repository/files/${encodedFilepath}?ref=${branch}`
-      );
-      this._setRequestHeader(request);
+      )
+      this._setRequestHeader(request)
 
       request.onreadystatechange = (_ev: ProgressEvent) => {
         if (request.readyState !== XMLHttpRequest.DONE) {
-          return;
+          return
         }
 
-        const statusCode = request.status;
+        const statusCode = request.status
         if (statusCode === 200) {
-          resolve(true);
-          return;
+          resolve(true)
+          return
         }
 
         if (statusCode === 404) {
-          resolve(false);
-          return;
+          resolve(false)
+          return
         }
 
         reject({
           code: statusCode,
           message: request.response,
-          request: request,
-        });
-      };
+          request: request
+        })
+      }
 
-      request.send();
-    });
+      request.send()
+    })
   }
 
   private _uploadFile(args: {
@@ -96,27 +96,27 @@ export class GitlabRepository {
     branch: string;
     isFileExist: boolean;
   }) {
-    const { isFileExist, request, branch, content, commitMessage, filepath } = args;
+    const { isFileExist, request, branch, content, commitMessage, filepath } = args
 
     const body = {
       branch: branch,
       content: content,
       commit_message: commitMessage || `Design token update at ${Date.now()}`,
-      encoding: "base64",
-    };
-    const encodedFilepath = encodeURIComponent(filepath);
+      encoding: 'base64'
+    }
+    const encodedFilepath = encodeURIComponent(filepath)
 
     request.open(
-      isFileExist ? "PUT" : "POST",
+      isFileExist ? 'PUT' : 'POST',
       `${this.baseUrl}/repository/files/${encodedFilepath}`
-    );
-    this._setRequestHeader(request);
+    )
+    this._setRequestHeader(request)
 
-    request.send(JSON.stringify(body));
+    request.send(JSON.stringify(body))
   }
 
   private _setRequestHeader(request: XMLHttpRequest) {
-    request.setRequestHeader("Authorization", `Bearer ${this.token}`);
-    request.setRequestHeader("Content-Type", `application/json`);
+    request.setRequestHeader('Authorization', `Bearer ${this.token}`)
+    request.setRequestHeader('Content-Type', 'application/json')
   }
 }

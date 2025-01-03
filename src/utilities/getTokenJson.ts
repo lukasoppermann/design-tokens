@@ -16,8 +16,8 @@ import { getVariables } from './getVariables'
 
 const getPrefixArray = (prefixString = '') => prefixString.split(',').map(item => item.replace(/\s+/g, ''))
 
-export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
-  const figmaData: figmaDataType = buildFigmaData(figma, settings)
+export const exportRawTokenArray = async (figma: PluginAPI, settings: Settings) => {
+  const figmaData: figmaDataType = await buildFigmaData(figma, settings)
   // get tokens
   return [
     ...extractSizes(figmaData.tokenFrames, getPrefixArray(settings.prefix.size)),
@@ -31,6 +31,6 @@ export const exportRawTokenArray = (figma: PluginAPI, settings: Settings) => {
     ...extractGrids(figmaData.gridStyles, getPrefixArray(settings.prefix.grid)),
     ...extractFonts(figmaData.textStyles, getPrefixArray(settings.prefix.font)),
     ...extractEffects(figmaData.effectStyles, getPrefixArray(settings.prefix.effect)),
-    ...getVariables(figma, settings)
+    ...(await getVariables(figma, settings))
   ]
 }

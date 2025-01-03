@@ -48,35 +48,35 @@ beforeAll(() => {
         findChildren: jest.fn()
       }]
     },
-    getLocalPaintStyles: jest.fn(),
-    getLocalGridStyles: jest.fn(),
-    getLocalTextStyles: jest.fn(),
-    getLocalEffectStyles: jest.fn()
+    getLocalPaintStylesAsync: jest.fn(),
+    getLocalGridStylesAsync: jest.fn(),
+    getLocalTextStylesAsync: jest.fn(),
+    getLocalEffectStylesAsync: jest.fn()
   }
 
   // @ts-ignore
-  global.figma.getLocalPaintStyles.mockReturnValue([{
+  global.figma.getLocalPaintStylesAsync.mockReturnValue([{
     name: 'PaintStyle'
   },
   {
     name: '_HiddenPaintStyle'
   }])
   // @ts-ignore
-  global.figma.getLocalGridStyles.mockReturnValue([{
+  global.figma.getLocalGridStylesAsync.mockReturnValue([{
     name: 'GridStyle'
   },
   {
     name: '_HiddenGridStyle'
   }])
   // @ts-ignore
-  global.figma.getLocalTextStyles.mockReturnValue([{
+  global.figma.getLocalTextStylesAsync.mockReturnValue([{
     name: 'TextStyle'
   },
   {
     name: '_HiddenTextStyle'
   }])
   // @ts-ignore
-  global.figma.getLocalEffectStyles.mockReturnValue([{
+  global.figma.getLocalEffectStylesAsync.mockReturnValue([{
     name: 'EffectStyle'
   },
   {
@@ -87,9 +87,9 @@ beforeAll(() => {
 })
 
 describe('Testing buildFigmaData', () => {
-  test('without options', () => {
+  test('without options', async () => {
     // assert
     // @ts-ignore
-    expect(buildFigmaData(global.figma, defaultSettings)).toStrictEqual(defaultOutput)
+    expect(await buildFigmaData(global.figma, defaultSettings)).toStrictEqual(defaultOutput)
   })
 })

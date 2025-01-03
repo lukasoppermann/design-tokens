@@ -29,12 +29,13 @@ jest.mock('@utils/buildFigmaData', () => jest.fn())
 describe('exportRawTokenArray', () => {
   const figma = {
     variables: {
-      getLocalVariables: () => [],
-      getLocalVariableCollections: () => []
-    }
+      getLocalVariablesAsync: () => { },
+      getLocalVariableCollectionsAsync: () => { }
+    },
+    loadAllPagesAsync: () => { }
   }
 
-  test('empty input', () => {
+  test('empty input', async () => {
     // @ts-ignore
     buildFigmaData.mockImplementation(() => [])
     // @ts-ignore
@@ -60,10 +61,10 @@ describe('exportRawTokenArray', () => {
     // @ts-ignore
     extractOpacities.mockImplementation(() => [])
     // @ts-ignore
-    expect(exportRawTokenArray(figma, defaultSettings)).toStrictEqual([])
+    expect(await exportRawTokenArray(figma, defaultSettings)).toStrictEqual([])
   })
 
-  test('with input', () => {
+  test('with input', async () => {
     // @ts-ignore
     buildFigmaData.mockImplementation(() => [])
     // @ts-ignore
@@ -191,10 +192,10 @@ describe('exportRawTokenArray', () => {
       }
     ]
     // @ts-ignore
-    expect(exportRawTokenArray(figma, { ...defaultSettings, ...{ exclusionPrefix: '*' } })).toStrictEqual(output)
+    expect(await exportRawTokenArray(figma, { ...defaultSettings, ...{ exclusionPrefix: '*' } })).toStrictEqual(output)
   })
 
-  test('undefined prefix value', () => {
+  test('undefined prefix value', async () => {
     // @ts-ignore
     buildFigmaData.mockImplementation(() => [])
     // @ts-ignore
@@ -220,6 +221,6 @@ describe('exportRawTokenArray', () => {
     // @ts-ignore
     extractOpacities.mockImplementation(() => [])
     // @ts-ignore
-    expect(exportRawTokenArray(figma, { ...defaultSettings, ...{ prefix: { color: undefined } } })).toStrictEqual([])
+    expect(await exportRawTokenArray(figma, { ...defaultSettings, ...{ prefix: { color: undefined } } })).toStrictEqual([])
   })
 })

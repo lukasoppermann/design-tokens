@@ -3,7 +3,7 @@ const utf8ToBase64 = (text: string): string => {
   const binString = Array.from(utf8EncodedBytes, (byte) =>
     String.fromCodePoint(byte)
   ).join('')
-  return btoa(binString)
+  return Buffer.from(binString, 'binary').toString('base64')
 }
 
 export { utf8ToBase64 }

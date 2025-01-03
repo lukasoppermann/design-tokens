@@ -156,7 +156,7 @@ export const Checkbox = ({
   defaultValue,
   checked,
   onChange,
-  info,
+  info
 }: props) => {
   let inputConfig: any = {
     id: id || `${type}--${(Math.random() * 100000000).toFixed(0)}`

@@ -3,7 +3,7 @@ import { commands } from '@config/commands'
 import config from '@config/config'
 import { PluginMessage } from '@typings/pluginEvent'
 import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
-import { GitlabRepository } from './gitlabRepository'
+import { GitlabRepository } from '@ui/modules/gitlabRepository'
 
 const responseHandler = (request: XMLHttpRequest): string => {
   // 401
@@ -48,12 +48,12 @@ function requestErrorHandler() {
         command: commands.closePlugin,
         payload: {
           notification:
-            "🚨 An error occurred while sending the tokens: check your settings & your server.",
-        },
-      } as PluginMessage,
+            '🚨 An error occurred while sending the tokens: check your settings & your server.'
+        }
+      } as PluginMessage
     },
-    "*"
-  );
+    '*'
+  )
 }
 
 function requestLoadedHandler(request: XMLHttpRequest) {
@@ -63,23 +63,23 @@ function requestLoadedHandler(request: XMLHttpRequest) {
       pluginMessage: {
         command: commands.closePlugin,
         payload: {
-          notification: responseHandler(request),
-        },
-      } as PluginMessage,
+          notification: responseHandler(request)
+        }
+      } as PluginMessage
     },
-    "*"
-  );
+    '*'
+  )
 }
 
 const addUrlExportRequestEvents = (request: XMLHttpRequest) => {
   // on error
   request.onerror = (_event) => {
-    requestErrorHandler();
-  };
+    requestErrorHandler()
+  }
   // show message on successful push
   request.onload = (progressEvent: ProgressEvent) => {
-    requestLoadedHandler(progressEvent.target as XMLHttpRequest);
-  };
+    requestLoadedHandler(progressEvent.target as XMLHttpRequest)
+  }
 }
 
 const generateUrlExportRequestBody = (exportSettings: urlExportSettings, requestBody: urlExportRequestBody) => {
@@ -115,13 +115,13 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   if (exportSettings.authType === config.key.authType.gitlabCommit) {
     const gitlabRepo = new GitlabRepository({
       baseUrl: exportSettings.url,
-      token: exportSettings.accessToken,
-    });
+      token: exportSettings.accessToken
+    })
     gitlabRepo.upload(requestBody, exportSettings, {
       onError: requestErrorHandler,
-      onLoaded: requestLoadedHandler,
-    });
-    return;
+      onLoaded: requestLoadedHandler
+    })
+    return
   }
 
   // init request
