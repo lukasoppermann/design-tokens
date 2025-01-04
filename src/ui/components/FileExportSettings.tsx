@@ -5,7 +5,7 @@ import { Checkbox } from '@components/Checkbox'
 import { Title } from '@components/Title'
 import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
 import { css } from '@emotion/css'
-import { Footer } from './Footer'
+import { Footer } from '@components/Footer'
 import { downloadJson } from '../modules/downloadJson'
 import { prepareExport } from '@utils/prepareExport'
 import { Settings } from '@typings/settings'
@@ -14,7 +14,7 @@ import { Info } from '@components/Info'
 import { Row } from '@components/Row'
 import { tokenTypes } from '@config/tokenTypes'
 import { commands } from '@config/commands'
-import { WebLink } from './WebLink'
+import { WebLink } from '@components/WebLink'
 
 const style = css`
   display: flex;
@@ -75,7 +75,7 @@ export const FileExportSettings = () => {
         '*'
       )
       // prepare token json
-      if (!tokens || tokens === '[]') {
+      if (!tokens || tokens === '[]' || tokens === '{}') {
         figmaUIApi.postMessage(
           {
             pluginMessage: {

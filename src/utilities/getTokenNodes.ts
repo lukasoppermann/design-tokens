@@ -1,6 +1,6 @@
 import { customTokenNode } from '@typings/tokenNodeTypes'
-import extractTokenNodeValues from './extractTokenNodeValues'
-import isTokenNode from './isTokenNode'
+import extractTokenNodeValues from '@utils/extractTokenNodeValues'
+import isTokenNode from '@utils/isTokenNode'
 
 // the name that token frames have
 const tokenFrameName = '_tokens'
@@ -32,7 +32,8 @@ const getVariantName = (parentName: string, childName: string): string => {
  *
  * @param pages PageNodes
  */
-const getTokenNodes = (pages: PageNode[]): customTokenNode[] => {
+const getTokenNodes = async (pages: PageNode[]): Promise<customTokenNode[]> => {
+  await figma.loadAllPagesAsync()
   // get token frames
   const tokenFrames = getFrameNodes(pages)
   // get all children of token frames

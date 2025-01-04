@@ -10,7 +10,7 @@ import processAliasModes from '@utils/processAliasModes'
 import { Settings } from '@typings/settings'
 import deepMerge from '@utils/deepMerge'
 
-const extractVariable = (
+const extractVariable = async (
   variable: Variable & { aliasSameMode?: boolean },
   value: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   mode: { modeId: string; name: string }
@@ -18,7 +18,7 @@ const extractVariable = (
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
-    return handleVariableAlias(variable, value, mode)
+    return await handleVariableAlias(variable, value, mode)
   }
   switch (variable.resolvedType) {
     case 'COLOR':
@@ -104,9 +104,9 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
       )
     : []
   // get variables
-  const variables = localVariables?.filter((variable) =>
+  const variables = await Promise.all(localVariables?.filter((variable) =>
     excludedCollectionIds.includes(variable.variableCollectionId)
-  )?.map((variable) => {
+  )?.map(async (variable) => {
     // get collection name and modes
     const { variableCollectionId } = variable
     const { name: collection, modes } = collections[variableCollectionId]
@@ -119,16 +119,17 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
     }
 
     // return each mode value as a separate variable
-    return Object.entries(variable.valuesByMode)?.map(([id, value]) => {
+    return await Promise.all(Object.entries(variable.valuesByMode)?.map(async ([id, value]) => {
       // Only add mode if there's more than one
       // and if modeInTokenName is set to true
       const addModeInTokenName = settings.modeInTokenName && modes.length > 1
       const mode = modes.find(({ modeId }) => modeId === id)
       const variableName = `${collection}/${variable.name}`
       const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
+      const extractedVariable = await extractVariable(variable, value, mode)
 
       return {
-        ...extractVariable(variable, value, mode),
+        ...extractedVariable,
         // name is constructed from collection, mode and variable name
         name: addModeInTokenName ? variableNameWithMode : variableName,
         // add metadata to extensions
@@ -142,8 +143,8 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
           }
         }
       }
-    })
-  }) || []
+    }))
+  }) || [])
 
   // add the mode name to the variable values value in order
   // to be able to reference to it correctly:

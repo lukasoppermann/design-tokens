@@ -16,7 +16,11 @@ figma.showUI(__html__, {
 })
 // ---------------------------------
 // open UI
-if ([commands.export, commands.urlExport, commands.generalSettings].includes(figma.command as PluginCommands)) {
+if (
+  [commands.export, commands.urlExport, commands.generalSettings].includes(
+    figma.command as PluginCommands
+  )
+) {
   // wrap in function because of async client Storage
   const openUi = async () => {
     // Get the user settings
@@ -24,9 +28,15 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
     // get the current version differences to the last time the plugin was opened
     const versionDifference = await getVersionDifference(figma)
     // resize UI if needed
-    figma.ui.resize(config.ui[figma.command].width, config.ui[figma.command].height)
+    figma.ui.resize(
+      config.ui[figma.command].width,
+      config.ui[figma.command].height
+    )
     if (versionDifference !== undefined && versionDifference !== 'patch') {
-      figma.ui.resize(config.ui[figma.command].width, config.ui[figma.command].height + 60)
+      figma.ui.resize(
+        config.ui[figma.command].width,
+        config.ui[figma.command].height + 60
+      )
     }
     const postMessageObject = {
       command: figma.command as PluginCommands,
@@ -43,8 +53,14 @@ if ([commands.export, commands.urlExport, commands.generalSettings].includes(fig
       }
     }
 
-    if ([commands.export, commands.urlExport].includes(figma.command as PluginCommands)) {
-      postMessageObject.payload.data = stringifyJson(exportRawTokenArray(figma, userSettings))
+    if (
+      [commands.export, commands.urlExport].includes(
+        figma.command as PluginCommands
+      )
+    ) {
+      postMessageObject.payload.data = stringifyJson(
+        await exportRawTokenArray(figma, userSettings)
+      )
     }
     figma.ui.postMessage({ ...postMessageObject })
     // register the settings UI
