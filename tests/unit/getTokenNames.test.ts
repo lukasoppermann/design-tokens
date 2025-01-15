@@ -11,17 +11,18 @@ beforeAll(() => {
       children: [{
         findChildren: jest.fn()
       }]
-    }
+    },
+    loadAllPagesAsync: jest.fn().mockResolvedValue(pages)
   }
 })
 
 describe('getTokenNodes', () => {
-  test('empty input', () => {
+  test('empty input', async () => {
     // @ts-ignore
-    expect(getTokenNodes(pages)).toStrictEqual([])
+    expect(await getTokenNodes(pages)).toStrictEqual([])
   })
 
-  test('page with input', () => {
+  test('page with input', async () => {
     pages[0].findChildren.mockReturnValue([
       {
         parent: {
@@ -157,7 +158,7 @@ describe('getTokenNodes', () => {
       }
     ])
     // @ts-ignore
-    expect(getTokenNodes(pages)).toStrictEqual([
+    expect(await getTokenNodes(pages)).toStrictEqual([
       {
         name: 'spacers/8',
         description: 'variant component',

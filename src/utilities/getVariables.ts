@@ -3,22 +3,22 @@ import { tokenTypes } from '@config/tokenTypes'
 import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import { PropertyType } from '@typings/valueTypes'
-import { roundRgba } from './convertColor'
-import roundWithDecimals from './roundWithDecimals'
-import handleVariableAlias from './handleVariableAlias'
-import processAliasModes from './processAliasModes'
+import { roundRgba } from '@utils/convertColor'
+import roundWithDecimals from '@utils/roundWithDecimals'
+import handleVariableAlias from '@utils/handleVariableAlias'
+import processAliasModes from '@utils/processAliasModes'
 import { Settings } from '@typings/settings'
-import deepMerge from './deepMerge'
+import deepMerge from '@utils/deepMerge'
 
-const extractVariable = (
-  variable,
-  value: any,
+const extractVariable = async (
+  variable: Variable & { aliasSameMode?: boolean },
+  value: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   mode: { modeId: string; name: string }
 ) => {
   let category: tokenCategoryType = 'color'
   let values = {}
   if (value.type === 'VARIABLE_ALIAS') {
-    return handleVariableAlias(variable, value, mode)
+    return await handleVariableAlias(variable, value, mode)
   }
   switch (variable.resolvedType) {
     case 'COLOR':
@@ -60,8 +60,10 @@ const detectVariableReferencesInCollection = (collection, variable) => {
       const modeValue = variable.valuesByMode[mode.modeId]
 
       // Loop through other variables in the same collection to check for references
-      collection.variableIds.forEach((otherVariableId) => {
-        const otherVariable = figma.variables.getVariableById(otherVariableId)
+      collection.variableIds?.forEach(async (otherVariableId) => {
+        const otherVariable = await figma.variables.getVariableByIdAsync(
+          otherVariableId
+        )
 
         if (
           otherVariable &&
@@ -84,66 +86,65 @@ const detectVariableReferencesInCollection = (collection, variable) => {
   return deepMerge(variable, tmpVariable)
 }
 
-export const getVariables = (figma: PluginAPI, settings: Settings) => {
-  const excludedCollectionIds = figma.variables
-    .getLocalVariableCollections()
-    .filter(
-      (collection) =>
-        !['.', '_', ...settings.exclusionPrefix.split(',')].includes(
-          collection.name.charAt(0)
-        )
-    )
+export const getVariables = async (figma: PluginAPI, settings: Settings) => {
+  const localVariableCollections =
+    await figma.variables.getLocalVariableCollectionsAsync()
+  const localVariables = await figma.variables.getLocalVariablesAsync()
+  const excludedCollectionIds = localVariableCollections?.filter(
+    (collection) =>
+      !['.', '_', ...settings.exclusionPrefix.split(',')].includes(
+        collection.name.charAt(0)
+      )
+  )
     .map((collection) => collection.id)
   // get collections
-  const collections = Object.fromEntries(
-    figma.variables
-      .getLocalVariableCollections()
-      .map((collection) => [collection.id, collection])
-  )
+  const collections = localVariableCollections
+    ? Object.fromEntries(
+        localVariableCollections?.map((collection) => [collection.id, collection])
+      )
+    : []
   // get variables
-  const variables = figma.variables
-    .getLocalVariables()
-    .filter((variable) =>
-      excludedCollectionIds.includes(variable.variableCollectionId)
-    )
-    .map((variable) => {
-      // get collection name and modes
-      const { variableCollectionId } = variable
-      const { name: collection, modes } = collections[variableCollectionId]
+  const variables = await Promise.all(localVariables?.filter((variable) =>
+    excludedCollectionIds.includes(variable.variableCollectionId)
+  )?.map(async (variable) => {
+    // get collection name and modes
+    const { variableCollectionId } = variable
+    const { name: collection, modes } = collections[variableCollectionId]
 
-      if (settings.resolveSameCollectionOrModeReference) {
-        variable = detectVariableReferencesInCollection(
-          collections[variableCollectionId],
-          variable
-        )
-      }
+    if (settings.resolveSameCollectionOrModeReference) {
+      variable = detectVariableReferencesInCollection(
+        collections[variableCollectionId],
+        variable
+      )
+    }
 
-      // return each mode value as a separate variable
-      return Object.entries(variable.valuesByMode).map(([id, value]) => {
-        // Only add mode if there's more than one
-        // and if modeInTokenName is set to true
-        const addModeInTokenName = settings.modeInTokenName && modes.length > 1
-        const mode = modes.find(({ modeId }) => modeId === id)
-        const variableName = `${collection}/${variable.name}`
-        const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
+    // return each mode value as a separate variable
+    return await Promise.all(Object.entries(variable.valuesByMode)?.map(async ([id, value]) => {
+      // Only add mode if there's more than one
+      // and if modeInTokenName is set to true
+      const addModeInTokenName = settings.modeInTokenName && modes.length > 1
+      const mode = modes.find(({ modeId }) => modeId === id)
+      const variableName = `${collection}/${variable.name}`
+      const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
+      const extractedVariable = await extractVariable(variable, value, mode)
 
-        return {
-          ...extractVariable(variable, value, mode),
-          // name is constructed from collection, mode and variable name
-          name: addModeInTokenName ? variableNameWithMode : variableName,
-          // add metadata to extensions
-          extensions: {
-            [config.key.extensionPluginData]: {
-              mode: settings.modeInTokenValue ? mode.name : undefined,
-              collection: collection,
-              scopes: variable.scopes,
-              [config.key.extensionVariableStyleId]: variable.id,
-              exportKey: tokenTypes.variables.key as tokenExportKeyType
-            }
+      return {
+        ...extractedVariable,
+        // name is constructed from collection, mode and variable name
+        name: addModeInTokenName ? variableNameWithMode : variableName,
+        // add metadata to extensions
+        extensions: {
+          [config.key.extensionPluginData]: {
+            mode: settings.modeInTokenValue ? mode.name : undefined,
+            collection: collection,
+            scopes: variable.scopes,
+            [config.key.extensionVariableStyleId]: variable.id,
+            exportKey: tokenTypes.variables.key as tokenExportKeyType
           }
         }
-      })
-    })
+      }
+    }))
+  }) || [])
 
   // add the mode name to the variable values value in order
   // to be able to reference to it correctly:

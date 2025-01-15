@@ -7,11 +7,11 @@ import { getVariableTypeByValue } from '@utils/getVariableTypeByValue'
 import { changeNotation } from '@utils/changeNotation'
 
 jest.mock('@utils/getVariableTypeByValue', () => ({
-  getVariableTypeByValue: jest.fn(),
+  getVariableTypeByValue: jest.fn()
 }))
 
 jest.mock('@utils/changeNotation', () => ({
-  changeNotation: jest.fn(),
+  changeNotation: jest.fn()
 }))
 
 describe('handleVariableAlias', () => {
@@ -23,27 +23,27 @@ describe('handleVariableAlias', () => {
     // @ts-ignore
     global.figma = {
       variables: {
-        getVariableById: jest.fn(),
-        getVariableCollectionById: jest.fn(),
-      },
+        getVariableByIdAsync: jest.fn(),
+        getVariableCollectionByIdAsync: jest.fn()
+      }
     }
   })
 
-  it('should return the correct object', () => {
-    const variable = { description: 'test description' }
+  it('should return the correct object', async () => {
+    const variable = { description: 'test description' } as any
     const value = { id: 'test id' }
     const resolvedAlias = {
       variableCollectionId: 'test collection id',
       name: 'test name',
-      valuesByMode: { mode1: 'value1' },
+      valuesByMode: { mode1: 'value1' }
     }
     const collection = {
       name: 'test collection name',
-      modes: 'test modes',
+      modes: 'test modes'
     }
 
     // @ts-ignore
-    global.figma.variables.getVariableById.mockReturnValue(resolvedAlias)
+    await global.figma.variables.getVariableByIdAsync.mockReturnValue(resolvedAlias)
 
     // @ts-ignore
     getVariableTypeByValue.mockImplementation(() => 'test category')
@@ -52,11 +52,11 @@ describe('handleVariableAlias', () => {
     changeNotation.mockImplementation(() => 'test notation')
 
     // @ts-ignore
-    global.figma.variables.getVariableCollectionById.mockReturnValue(
+    global.figma.variables.getVariableCollectionByIdAsync.mockReturnValue(
       collection
     )
 
-    const result = handleVariableAlias(variable, value, 'passedInMode')
+    const result = await handleVariableAlias(variable, value, { modeId: 'passedInModeId', name: 'passedInMode' })
 
     expect(result).toEqual({
       description: 'test description',
@@ -64,7 +64,7 @@ describe('handleVariableAlias', () => {
       category: 'test category',
       values: '{test collection name.test notation}',
       aliasCollectionName: 'test collection name',
-      aliasMode: 'passedInMode',
+      aliasMode: { modeId: 'passedInModeId', name: 'passedInMode' },
       aliasSameMode: false
     })
   })

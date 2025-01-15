@@ -1,20 +1,20 @@
-import * as React from "react";
-import { useContext, useRef } from "react";
-import { Button } from "@components/Button";
-import { Checkbox } from "@components/Checkbox";
-import { Title } from "@components/Title";
-import { FigmaContext, SettingsContext, TokenContext } from "@ui/context";
-import { css } from "@emotion/css";
-import { Footer } from "./Footer";
-import { downloadJson } from "../modules/downloadJson";
-import { prepareExport } from "@utils/prepareExport";
-import { Settings } from "@typings/settings";
-import { stringifyJson } from "@utils/stringifyJson";
-import { Info } from "@components/Info";
-import { Row } from "@components/Row";
-import { tokenTypes } from "@config/tokenTypes";
-import { commands } from "@config/commands";
-import { WebLink } from "./WebLink";
+import * as React from 'react'
+import { useContext, useRef } from 'react'
+import { Button } from '@components/Button'
+import { Checkbox } from '@components/Checkbox'
+import { Title } from '@components/Title'
+import { FigmaContext, SettingsContext, TokenContext } from '@ui/context'
+import { css } from '@emotion/css'
+import { Footer } from '@components/Footer'
+import { downloadJson } from '../modules/downloadJson'
+import { prepareExport } from '@utils/prepareExport'
+import { Settings } from '@typings/settings'
+import { stringifyJson } from '@utils/stringifyJson'
+import { Info } from '@components/Info'
+import { Row } from '@components/Row'
+import { tokenTypes } from '@config/tokenTypes'
+import { commands } from '@config/commands'
+import { WebLink } from '@components/WebLink'
 
 const style = css`
   display: flex;
@@ -26,19 +26,19 @@ const style = css`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-`;
+`
 
 export const FileExportSettings = () => {
   const { settings, updateSettings } = useContext<{
     settings: Settings;
     updateSettings: any;
-  }>(SettingsContext);
-  const { tokens, setTokens } = useContext(TokenContext);
-  const { figmaUIApi } = useContext(FigmaContext);
-  const downloadLinkRef = useRef();
+  }>(SettingsContext)
+  const { tokens, setTokens } = useContext(TokenContext)
+  const { figmaUIApi } = useContext(FigmaContext)
+  const downloadLinkRef = useRef()
 
   React.useEffect(() => {
-    const { accessToken, ...pluginSettings } = settings;
+    const { accessToken, ...pluginSettings } = settings
 
     figmaUIApi.postMessage(
       {
@@ -46,20 +46,20 @@ export const FileExportSettings = () => {
           command: commands.saveSettings,
           payload: {
             settings: pluginSettings,
-            accessToken: accessToken,
-          },
-        },
+            accessToken: accessToken
+          }
+        }
         // @ts-ignore
       },
-      "*"
-    );
-  }, [settings]);
+      '*'
+    )
+  }, [settings])
 
   const handleFormSubmit = (event) => {
-    event.preventDefault(); // Prevent form submit triggering navigation
-    const exportSettingsForm = event.target;
+    event.preventDefault() // Prevent form submit triggering navigation
+    const exportSettingsForm = event.target
     if (exportSettingsForm.checkValidity() === true) {
-      const { accessToken, ...pluginSettings } = settings;
+      const { accessToken, ...pluginSettings } = settings
       // save settings to local storage
       figmaUIApi.postMessage(
         {
@@ -67,40 +67,40 @@ export const FileExportSettings = () => {
             command: commands.saveSettings,
             payload: {
               settings: pluginSettings,
-              accessToken: accessToken,
-            },
-          },
+              accessToken: accessToken
+            }
+          }
           // @ts-ignore
         },
-        "*"
-      );
+        '*'
+      )
       // prepare token json
-      if (!tokens || tokens === "[]") {
+      if (!tokens || tokens === '[]' || tokens === '{}') {
         figmaUIApi.postMessage(
           {
             pluginMessage: {
               command: commands.closePlugin,
               payload: {
-                notification: "No tokens to export!",
-              },
-            },
+                notification: 'No tokens to export!'
+              }
+            }
           },
-          "*"
-        );
-        return;
+          '*'
+        )
+        return
       }
 
-      const tokensToExport = prepareExport(tokens, pluginSettings);
+      const tokensToExport = prepareExport(tokens, pluginSettings)
 
-      setTokens(tokensToExport);
+      setTokens(tokensToExport)
       // download tokes
       downloadJson(
         parent,
         downloadLinkRef.current,
         stringifyJson(tokensToExport, pluginSettings.compression)
-      );
+      )
     }
-  };
+  }
 
   return (
     <form onSubmit={handleFormSubmit} className={style}>
@@ -114,7 +114,7 @@ export const FileExportSettings = () => {
           checked={settings.compression}
           onChange={(value) =>
             updateSettings((draft) => {
-              draft.compression = value;
+              draft.compression = value
             })
           }
         />
@@ -122,7 +122,7 @@ export const FileExportSettings = () => {
           width={240}
           label="Compression removes line breaks and whitespace from the json string"
         />
-        {settings.tokenFormat === "standard" && (
+        {settings.tokenFormat === 'standard' && (
           <>
             <Checkbox
               label="Exclude extension property"
@@ -130,7 +130,7 @@ export const FileExportSettings = () => {
               checked={settings.excludeExtensionProp}
               onChange={(value) =>
                 updateSettings((draft) => {
-                  draft.excludeExtensionProp = value;
+                  draft.excludeExtensionProp = value
                 })
               }
             />
@@ -157,7 +157,7 @@ export const FileExportSettings = () => {
                   checked={settings.exports[key]}
                   onChange={(value) =>
                     updateSettings((draft: Settings) => {
-                      draft.exports[key] = value;
+                      draft.exports[key] = value
                     })
                   }
                 />
@@ -181,5 +181,5 @@ export const FileExportSettings = () => {
         title={`${settings.filename}${settings.extension}`}
       />
     </form>
-  );
-};
+  )
+}

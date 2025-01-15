@@ -4,9 +4,14 @@ import { tokenTypes } from '@config/tokenTypes'
 import { getVariableTypeByValue } from '@utils/getVariableTypeByValue'
 import { changeNotation } from '@utils/changeNotation'
 
-function handleVariableAlias (variable, value, mode, aliasSameMode = false) {
-  const resolvedAlias = figma.variables.getVariableById(value.id)
-  const collection = figma.variables.getVariableCollectionById(
+async function handleVariableAlias (
+  variable: Variable & { aliasSameMode?: boolean },
+  value: { id: string },
+  mode: { modeId: string; name: string },
+  aliasSameMode = false
+) {
+  const resolvedAlias = await figma.variables.getVariableByIdAsync(value.id)
+  const collection = await figma.variables.getVariableCollectionByIdAsync(
     resolvedAlias.variableCollectionId
   )
   return {
