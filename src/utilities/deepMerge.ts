@@ -19,7 +19,7 @@ const deepMerge = (target, source) => {
     const sourceValue = source[key]
     // merge both values
     if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
-      target[key] = targetValue.concat(sourceValue)
+      target[key] = [...new Set(targetValue.concat(sourceValue))]
     } else if (isObject(targetValue) && isObject(sourceValue)) {
       target[key] = deepMerge(Object.assign({}, targetValue), sourceValue)
     } else {
