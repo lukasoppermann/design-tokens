@@ -19,6 +19,7 @@ import { WebLink } from '@components/WebLink'
 const style = css`
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   h1:first-child {
     margin-top: 0 !important;
   }
