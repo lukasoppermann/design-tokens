@@ -100,8 +100,8 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
   // get collections
   const collections = localVariableCollections
     ? Object.fromEntries(
-        localVariableCollections?.map((collection) => [collection.id, collection])
-      )
+      localVariableCollections?.map((collection) => [collection.id, collection])
+    )
     : []
   // get variables
   const variables = await Promise.all(localVariables?.filter((variable) =>
@@ -124,18 +124,24 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
       // and if modeInTokenName is set to true
       const addModeInTokenName = settings.modeInTokenName && modes.length > 1
       const mode = modes.find(({ modeId }) => modeId === id)
+
+      if (!mode) {
+        console.warn(`cannot find mode with id ${id} for variable ${variable.name}`)
+      }
+
       const variableName = `${collection}/${variable.name}`
-      const variableNameWithMode = `${collection}/${mode.name}/${variable.name}`
+      const variableNameWithMode = mode ? `${collection}/${mode?.name}/${variable?.name}` : variableName
       const extractedVariable = await extractVariable(variable, value, mode)
 
       return {
         ...extractedVariable,
         // name is constructed from collection, mode and variable name
-        name: addModeInTokenName ? variableNameWithMode : variableName,
+        name: mode && addModeInTokenName ? variableNameWithMode : variableName,
         // add metadata to extensions
         extensions: {
           [config.key.extensionPluginData]: {
-            mode: settings.modeInTokenValue ? mode.name : undefined,
+            mode: mode && addModeInTokenName ? mode.name : undefined,
+            modeId: mode && addModeInTokenName ? mode.modeId : undefined,
             collection: collection,
             scopes: variable.scopes,
             [config.key.extensionVariableStyleId]: variable.id,
