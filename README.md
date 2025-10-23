@@ -480,7 +480,9 @@ Overrides the content type header for the final HTTP request. Defaults to "plain
 
 ##### Pushing to Github
 
-If you push to github the server url must be in the format
+**Using GitHub Actions (workflow dispatch):**
+
+If you push to github using the `token` auth type, the server url must be in the format:
 
 ```
 https://api.github.com/repos/:username/:repo/dispatches
@@ -491,6 +493,24 @@ For the repository `lukasoppermann/design-token-transformer` this would be:
 ```
 https://api.github.com/repos/lukasoppermann/design-token-transformer/dispatches
 ```
+
+**Using GitHub Direct Commit:**
+
+If you use the `github_commit` auth type for direct file commits, the server url must be in the format:
+
+```
+https://api.github.com/repos/:username/:repo
+```
+
+For the repository `lukasoppermann/design-token-transformer` this would be:
+
+```
+https://api.github.com/repos/lukasoppermann/design-token-transformer
+```
+
+You can also use the simpler formats:
+- `https://github.com/:username/:repo`
+- `:username/:repo`
 
 #### **Auth header**
 
