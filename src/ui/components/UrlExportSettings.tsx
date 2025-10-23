@@ -151,6 +151,8 @@ export const UrlExportSettings = () => {
           placeholder={
             (settings.authType === config.key.authType.gitlabCommit &&
               'https://gitlab.com/api/v4/projects/:projectId') ||
+            (settings.authType === config.key.authType.githubCommit &&
+              'https://github.com/:username/:repo or https://api.github.com/repos/:username/:repo') ||
             'https://api.github.com/repos/:username/:repo/dispatches'
           }
           value={settings.serverUrl}
