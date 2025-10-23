@@ -128,20 +128,15 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
   if (exportSettings.authType === config.key.authType.githubCommit) {
     let owner: string, repo: string
     
-    if (exportSettings.url.includes('github.com')) {
-      const urlParts = exportSettings.url.split('/')
-      const reposIndex = urlParts.indexOf('repos')
-      if (reposIndex !== -1 && urlParts.length > reposIndex + 2) {
-        owner = urlParts[reposIndex + 1]
-        repo = urlParts[reposIndex + 2]
-      } else {
-        // Try to parse from github.com/owner/repo format
-        owner = urlParts[urlParts.length - 2]
-        repo = urlParts[urlParts.length - 1]
-      }
+    const urlParts = exportSettings.url.split('/')
+    const reposIndex = urlParts.indexOf('repos')
+    if (reposIndex !== -1 && urlParts.length > reposIndex + 2) {
+      owner = urlParts[reposIndex + 1]
+      repo = urlParts[reposIndex + 2]
     } else {
-      // Format: owner/repo
-      [owner, repo] = exportSettings.url.split('/')
+      // Try to parse from github.com/owner/repo format
+      owner = urlParts[urlParts.length - 2]
+      repo = urlParts[urlParts.length - 1]
     }
     
     const githubRepo = new GithubRepository({

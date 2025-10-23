@@ -508,9 +508,8 @@ For the repository `lukasoppermann/design-token-transformer` this would be:
 https://api.github.com/repos/lukasoppermann/design-token-transformer
 ```
 
-You can also use the simpler formats:
+You can also use the simpler format:
 - `https://github.com/:username/:repo`
-- `:username/:repo`
 
 #### **Auth header**
 
