@@ -1,10 +1,10 @@
 > [!WARNING]
-> **This plugin is only partially supported!**  
+> **This plugin is only partially supported!**
 > This means: I don't have capacity to add any features or really improve stuff. Bugfixes may be added if time allows.
 > I am also happy to discuss and merge PRs.
-> 
-> I personally have changed my opinion a long time ago to favor the source fo truth for design tokens to be in a json file. Figma should be a consumer so you only import tokens into figma. This is why I don't use plugins like this one anymore in my work. 
-> 
+>
+> I personally have changed my opinion a long time ago to favor the source fo truth for design tokens to be in a json file. Figma should be a consumer so you only import tokens into figma. This is why I don't use plugins like this one anymore in my work.
+>
 > → [Read more about the a better setup](https://medium.com/user-experience-design-1/the-ultimate-design-token-setup-cdf50dc841c8#:~:text=you%20are%20making.-,Source%20of%20truth,-There%20is%20some)
 
 
@@ -37,7 +37,7 @@ The **Design Tokens** plugin for Figma allows you to export design tokens into a
     - [Opacity token](#opacity)
   - [Available properties](#available-properties)
 - [Settings](#settings)
-  - [File Export Settings](#file-export-settings)  
+  - [File Export Settings](#file-export-settings)
   - [Push tokens to Github / Server](#push-to-server)
 - [Contribution](#contribution)
 
@@ -353,7 +353,7 @@ You can define any additional prefix via this option, e.g `*`. This can be helpf
 
 ### Reference mode in variables
 
-You can configure whether to include these mode names in the output JSON or not.  
+You can configure whether to include these mode names in the output JSON or not.
 By default, the mode names are not included in both the token names and the token values. You can turn on this behavior in the plug-in settings:
 
 - If you wish to include the mode name in the token names, but not in the token values, you can activate the "Add mode to token value".
@@ -449,7 +449,7 @@ The body of the request will look like the following:
 
 ```ts
   "event_type": "update-tokens", // or any string you defined
-  "client_payload": { 
+  "client_payload": {
     "tokens": "{...}", // the stringified json object holding all your design tokens
     "filename": "Design Tokens", // the Figma file name from which the tokens were exported
     "commitMessage": "Your commit message"
@@ -496,7 +496,8 @@ https://api.github.com/repos/lukasoppermann/design-token-transformer/dispatches
 
 This defines the authentication method used with the access token. The current choices are:
 
-- `token` (used for github)
+- `token` (used for github workflow triggers)
+- `github_commit` (used for direct file commits to GitHub)
 - `gitlab_token` (used for Gitlab requests)
 - `bearer` token
 - `basic` auth
