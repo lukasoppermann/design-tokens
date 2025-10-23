@@ -210,6 +210,10 @@ export const UrlExportSettings = () => {
               value: config.key.authType.token
             },
             {
+              label: '(Github) Direct Commit',
+              value: config.key.authType.githubCommit
+            },
+            {
               label: '(Gitlab) token',
               value: config.key.authType.gitlabToken
             },
@@ -251,6 +255,32 @@ export const UrlExportSettings = () => {
             <Info
               width={150}
               label='The branch or commit to associate with a Gitlab trigger. Only used when Gitlab is selected for "Auth type"'
+            />
+          </h3>
+          <Row fill>
+            <Input
+              type="text"
+              required
+              pattern="\S+"
+              placeholder="main"
+              value={settings.reference}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.reference = value
+                })
+              }
+            />
+          </Row>
+        </>
+      )}
+
+      {config.key.authType.githubCommit === settings.authType && (
+        <>
+          <h3>
+            Branch
+            <Info
+              width={150}
+              label='The branch where the file will be committed. Only used when Github Direct Commit is selected for "Auth type"'
             />
           </h3>
           <Row fill>

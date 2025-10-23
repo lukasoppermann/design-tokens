@@ -4,6 +4,7 @@ import config from '@config/config'
 import { PluginMessage } from '@typings/pluginEvent'
 import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
 import { GitlabRepository } from '@ui/modules/gitlabRepository'
+import { GithubRepository } from '@ui/modules/githubRepository'
 
 const responseHandler = (request: XMLHttpRequest): string => {
   // 401
@@ -118,6 +119,19 @@ const urlExport = (parent, exportSettings: urlExportSettings, requestBody: urlEx
       token: exportSettings.accessToken
     })
     gitlabRepo.upload(requestBody, exportSettings, {
+      onError: requestErrorHandler,
+      onLoaded: requestLoadedHandler
+    })
+    return
+  }
+
+  if (exportSettings.authType === config.key.authType.githubCommit) {
+    const githubRepo = new GithubRepository({
+      owner: exportSettings.url.split('/')[3],
+      repo: exportSettings.url.split('/')[4],
+      token: exportSettings.accessToken
+    })
+    githubRepo.upload(requestBody, exportSettings, {
       onError: requestErrorHandler,
       onLoaded: requestLoadedHandler
     })

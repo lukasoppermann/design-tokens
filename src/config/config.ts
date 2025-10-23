@@ -26,6 +26,7 @@ export default {
       token: 'token',
       gitlabToken: 'gitlab_token',
       gitlabCommit: 'gitlab_commit',
+      githubCommit: 'github_commit',
       basic: 'Basic',
       bearer: 'Bearer'
     }
