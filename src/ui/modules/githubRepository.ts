@@ -27,21 +27,18 @@ export class GithubRepository {
     const filepath = clientPayload.filename
 
     try {
-      // Use reference field (branch name) from settings, consistent with GitLab implementation
-      const targetBranch = branch
-
       // Check if branch exists
-      const branchExists = await this._checkBranchExists(targetBranch)
+      const branchExists = await this._checkBranchExists(branch)
       
       if (!branchExists) {
         // Branch doesn't exist - create it from default branch
         const defaultBranch = await this._getDefaultBranch()
         const defaultBranchSHA = await this._getBranchSHA(defaultBranch)
-        await this._createBranch(targetBranch, defaultBranchSHA)
+        await this._createBranch(branch, defaultBranchSHA)
       }
 
       // Check if file exists to get its SHA (required for updates)
-      const fileSHA = await this._getFileSHA(filepath, targetBranch)
+      const fileSHA = await this._getFileSHA(filepath, branch)
 
       // Upload the file
       const uploadRequest = new XMLHttpRequest()
@@ -53,7 +50,7 @@ export class GithubRepository {
         content: encodedContent,
         commitMessage: clientPayload.commitMessage || `Update design tokens at ${Date.now()}`,
         filepath: filepath,
-        branch: targetBranch,
+        branch: branch,
         fileSHA: fileSHA
       })
     } catch (error) {
@@ -180,9 +177,22 @@ export class GithubRepository {
         }
 
         const statusCode = request.status
-        if (statusCode === 201 || statusCode === 422) {
+        if (statusCode === 201) {
           resolve()
           return
+        }
+
+        if (statusCode === 422) {
+          // Check if branch already exists (acceptable) vs other validation errors
+          try {
+            const response = JSON.parse(request.responseText)
+            if (response.message && response.message.includes('Reference already exists')) {
+              resolve()
+              return
+            }
+          } catch (_e) {
+            // Fall through to reject if we can't parse response
+          }
         }
 
         reject({
@@ -207,7 +217,7 @@ export class GithubRepository {
       const request = new XMLHttpRequest()
       request.open(
         'GET',
-        `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${filepath}?ref=${branch}`
+        `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${encodeURIComponent(filepath)}?ref=${branch}`
       )
       this._setRequestHeader(request)
 
@@ -262,7 +272,7 @@ export class GithubRepository {
 
     request.open(
       'PUT',
-      `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${filepath}`
+      `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${encodeURIComponent(filepath)}`
     )
     this._setRequestHeader(request)
 
