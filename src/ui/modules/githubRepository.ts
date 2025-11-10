@@ -29,7 +29,7 @@ export class GithubRepository {
     try {
       // Check if branch exists
       const branchExists = await this._checkBranchExists(branch)
-      
+
       if (!branchExists) {
         // Branch doesn't exist - create it from default branch
         const defaultBranch = await this._getDefaultBranch()
