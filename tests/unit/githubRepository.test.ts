@@ -265,5 +265,225 @@ describe('GithubRepository', () => {
       // Should not fail with encoding issues
       expect(onError).not.toHaveBeenCalled()
     })
+
+    test('should encode slashes in filepath', async () => {
+      mockRequestBody.client_payload.filename = 'path/to/tokens.json'
+      const onError = jest.fn()
+      const onLoaded = jest.fn()
+
+      await repository.upload(
+        mockRequestBody,
+        mockSettings,
+        { onError, onLoaded }
+      )
+
+      await delay(50)
+
+      expect(onError).not.toHaveBeenCalled()
+    })
   })
+
+  describe('Error handling', () => {
+
+    test('should handle 422 with Reference already exists message', async () => {
+      const originalXHR = (global as any).XMLHttpRequest
+
+      class ReferenceExistsXHR extends MockXMLHttpRequest {
+        send (body?: string) {
+          setTimeout(() => {
+            this.readyState = MockXMLHttpRequest.DONE
+
+            if (this._url.includes('/git/refs') && this._method === 'POST') {
+              this.status = 422
+              this.responseText = JSON.stringify({
+                message: 'Reference already exists',
+                documentation_url: 'https://docs.github.com'
+              })
+            } else {
+              this.status = 200
+              this.responseText = JSON.stringify({ success: true })
+            }
+
+            if (this.onreadystatechange) {
+              this.onreadystatechange(new Event('readystatechange') as ProgressEvent)
+            }
+            if (this.onload) {
+              this.onload(new Event('load') as ProgressEvent)
+            }
+          }, 0)
+        }
+      }
+
+      (global as any).XMLHttpRequest = ReferenceExistsXHR
+      mockSettings.reference = 'existing-branch'
+
+      const onError = jest.fn()
+      const onLoaded = jest.fn()
+
+      await repository.upload(
+        mockRequestBody,
+        mockSettings,
+        { onError, onLoaded }
+      )
+
+      await delay(100)
+
+      // Should treat "Reference already exists" as success and continue
+      expect(onLoaded).toHaveBeenCalled()
+
+      ;(global as any).XMLHttpRequest = originalXHR
+    })
+
+    test('should handle 422 with other validation errors', async () => {
+      const originalXHR = (global as any).XMLHttpRequest
+
+      class ValidationErrorXHR extends MockXMLHttpRequest {
+        send (_body?: string) {
+          setTimeout(() => {
+            this.readyState = MockXMLHttpRequest.DONE
+            this.status = 422
+            this.responseText = JSON.stringify({
+              message: 'Validation Failed',
+              errors: [{ field: 'ref', code: 'invalid' }]
+            })
+
+            if (this.onreadystatechange) {
+              this.onreadystatechange(new Event('readystatechange') as ProgressEvent)
+            }
+          }, 0)
+        }
+      }
+
+      (global as any).XMLHttpRequest = ValidationErrorXHR
+
+      const onError = jest.fn()
+      const onLoaded = jest.fn()
+
+      try {
+        await repository.upload(
+          mockRequestBody,
+          mockSettings,
+          { onError, onLoaded }
+        )
+      } catch (err) {
+        // Expected to throw
+      }
+
+      await delay(50)
+
+      ;(global as any).XMLHttpRequest = originalXHR
+    })
+
+    test('should handle invalid JSON in 422 response', async () => {
+      const originalXHR = (global as any).XMLHttpRequest
+
+      class InvalidJsonXHR extends MockXMLHttpRequest {
+        send (_body?: string) {
+          setTimeout(() => {
+            this.readyState = MockXMLHttpRequest.DONE
+            this.status = 422
+            this.responseText = 'Invalid JSON'
+
+            if (this.onreadystatechange) {
+              this.onreadystatechange(new Event('readystatechange') as ProgressEvent)
+            }
+          }, 0)
+        }
+      }
+
+      (global as any).XMLHttpRequest = InvalidJsonXHR
+
+      const onError = jest.fn()
+      const onLoaded = jest.fn()
+
+      try {
+        await repository.upload(
+          mockRequestBody,
+          mockSettings,
+          { onError, onLoaded }
+        )
+      } catch (err) {
+        // Expected to throw
+      }
+
+      await delay(50)
+
+      ;(global as any).XMLHttpRequest = originalXHR
+    })
+
+    test('should handle 401 unauthorized', async () => {
+      const originalXHR = (global as any).XMLHttpRequest
+
+      class UnauthorizedXHR extends MockXMLHttpRequest {
+        send (_body?: string) {
+          setTimeout(() => {
+            this.readyState = MockXMLHttpRequest.DONE
+            this.status = 401
+            this.responseText = JSON.stringify({ message: 'Unauthorized' })
+
+            if (this.onreadystatechange) {
+              this.onreadystatechange(new Event('readystatechange') as ProgressEvent)
+            }
+          }, 0)
+        }
+      }
+
+      (global as any).XMLHttpRequest = UnauthorizedXHR
+
+      const onError = jest.fn()
+      const onLoaded = jest.fn()
+
+      try {
+        await repository.upload(
+          mockRequestBody,
+          mockSettings,
+          { onError, onLoaded }
+        )
+      } catch (err) {
+        // Expected
+      }
+
+      await delay(50)
+
+      ;(global as any).XMLHttpRequest = originalXHR
+    })
+
+    test('should handle 403 forbidden', async () => {
+      const originalXHR = (global as any).XMLHttpRequest
+
+      class ForbiddenXHR extends MockXMLHttpRequest {
+        send (_body?: string) {
+          setTimeout(() => {
+            this.readyState = MockXMLHttpRequest.DONE
+            this.status = 403
+            this.responseText = JSON.stringify({ message: 'Forbidden' })
+
+            if (this.onreadystatechange) {
+              this.onreadystatechange(new Event('readystatechange') as ProgressEvent)
+            }
+          }, 0)
+        }
+      }
+
+      (global as any).XMLHttpRequest = ForbiddenXHR
+
+      const onError = jest.fn()
+      const onLoaded = jest.fn()
+
+      try {
+        await repository.upload(
+          mockRequestBody,
+          mockSettings,
+          { onError, onLoaded }
+        )
+      } catch (err) {
+        // Expected
+      }
+
+      await delay(50)
+
+      ;(global as any).XMLHttpRequest = originalXHR
+    })
+  })
+
 })
