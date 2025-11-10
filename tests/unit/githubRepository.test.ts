@@ -32,7 +32,7 @@ class MockXMLHttpRequest {
     // Simulate async behavior
     setTimeout(() => {
       this.readyState = MockXMLHttpRequest.DONE
-      
+
       // Simulate responses based on URL patterns
       if (this._url.includes('/repos/') && !this._url.includes('/contents/') && !this._url.includes('/refs/')) {
         // Get repository info (default branch)
@@ -78,7 +78,7 @@ class MockXMLHttpRequest {
         const bodyObj = body ? JSON.parse(body) : {}
         if (bodyObj.message && bodyObj.content && bodyObj.branch) {
           this.status = 201
-          this.responseText = JSON.stringify({ 
+          this.responseText = JSON.stringify({
             content: { sha: 'newfile123' },
             commit: { sha: 'commit789' }
           })
