@@ -115,6 +115,24 @@ export const UrlExportSettings = () => {
           width={240}
           label="Compression removes line breaks and whitespace from the json string"
         />
+        {settings.tokenFormat === 'standard' && (
+          <>
+            <Checkbox
+              label="Exclude extension property"
+              type="switch"
+              checked={settings.excludeExtensionProp}
+              onChange={(value) =>
+                updateSettings((draft) => {
+                  draft.excludeExtensionProp = value
+                })
+              }
+            />
+            <Info
+              width={240}
+              label="The extension property holds additional information about the token"
+            />
+          </>
+        )}
       </Row>
       <Separator />
       <Title size="xlarge" weight="bold">
