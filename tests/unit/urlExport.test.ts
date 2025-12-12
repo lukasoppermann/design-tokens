@@ -1,6 +1,18 @@
-import { _testing } from '@ui/modules/urlExport'
+import { _testing, urlExport } from '@ui/modules/urlExport'
 import { urlExportRequestBody, urlExportSettings } from '@typings/urlExportData'
 import config from '@config/config'
+import { GithubRepository } from '@ui/modules/githubRepository'
+
+// Mock GithubRepository
+jest.mock('@ui/modules/githubRepository', () => {
+    return {
+        GithubRepository: jest.fn().mockImplementation(() => {
+            return {
+                upload: jest.fn()
+            }
+        })
+    }
+})
 
 function FormDataMock() {
     this.append = jest.fn()
@@ -203,5 +215,116 @@ describe('Testing urlExport', () => {
                 expect(request.setRequestHeader).not.toHaveBeenCalledWith(_testing.AUTHORIZATION_HEADER_KEY)
             })
 
+    })
+
+    describe('urlExport with githubCommit auth type', () => {
+        let mockRequestBody: urlExportRequestBody
+        let mockExportSettings: urlExportSettings
+        let mockParent: any
+
+        beforeEach(() => {
+            jest.clearAllMocks()
+
+            mockRequestBody = {
+                'event_type': 'testEvent',
+                'client_payload': {
+                    'tokens': '{"colors": "red"}',
+                    'filename': 'tokens.json',
+                    'commitMessage': 'Update tokens'
+                }
+            } as urlExportRequestBody
+
+            mockExportSettings = {
+                'url': '',
+                'accessToken': 'ghp_testtoken123',
+                'acceptHeader': null,
+                'contentType': null,
+                'authType': config.key.authType.githubCommit,
+                'reference': 'main'
+            } as urlExportSettings
+
+            mockParent = {
+                postMessage: jest.fn()
+            }
+        })
+
+        test('parses API URL format (repos/owner/repo)', () => {
+            mockExportSettings.url = 'https://api.github.com/repos/testowner/testrepo'
+
+            urlExport(mockParent, mockExportSettings, mockRequestBody)
+
+            expect(GithubRepository).toHaveBeenCalledWith({
+                owner: 'testowner',
+                repo: 'testrepo',
+                token: 'ghp_testtoken123'
+            })
+        })
+
+        test('parses web URL format (github.com/owner/repo)', () => {
+            mockExportSettings.url = 'https://github.com/myorg/myrepo'
+
+            urlExport(mockParent, mockExportSettings, mockRequestBody)
+
+            expect(GithubRepository).toHaveBeenCalledWith({
+                owner: 'myorg',
+                repo: 'myrepo',
+                token: 'ghp_testtoken123'
+            })
+        })
+
+        test('calls upload method with requestBody and exportSettings', () => {
+            mockExportSettings.url = 'https://github.com/testowner/testrepo'
+
+            const mockUpload = jest.fn()
+            ;(GithubRepository as jest.Mock).mockImplementation(() => ({
+                upload: mockUpload
+            }))
+
+            urlExport(mockParent, mockExportSettings, mockRequestBody)
+
+            expect(mockUpload).toHaveBeenCalledTimes(1)
+            expect(mockUpload).toHaveBeenCalledWith(
+                mockRequestBody,
+                mockExportSettings,
+                expect.objectContaining({
+                    onError: expect.any(Function),
+                    onLoaded: expect.any(Function)
+                })
+            )
+        })
+
+        test('handles URL with trailing slash', () => {
+            mockExportSettings.url = 'https://github.com/testowner/testrepo/'
+
+            urlExport(mockParent, mockExportSettings, mockRequestBody)
+
+            expect(GithubRepository).toHaveBeenCalledWith({
+                owner: 'testrepo',
+                repo: '',
+                token: 'ghp_testtoken123'
+            })
+        })
+
+        test('creates GithubRepository instance', () => {
+            mockExportSettings.url = 'https://github.com/testowner/testrepo'
+
+            urlExport(mockParent, mockExportSettings, mockRequestBody)
+
+            expect(GithubRepository).toHaveBeenCalledTimes(1)
+        })
+
+        test('passes access token to GithubRepository', () => {
+            mockExportSettings.url = 'https://github.com/testowner/testrepo'
+            const customToken = 'ghp_customtoken456'
+            mockExportSettings.accessToken = customToken
+
+            urlExport(mockParent, mockExportSettings, mockRequestBody)
+
+            expect(GithubRepository).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    token: customToken
+                })
+            )
+        })
     })
 })
