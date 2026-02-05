@@ -20,7 +20,8 @@ export const textStyles = [
     },
     paragraphIndent: 3,
     paragraphSpacing: 2,
-    textCase: 'UPPER'
+    textCase: 'UPPER',
+    boundVariables: undefined
   },
   {
     name: 'no description',
@@ -41,7 +42,8 @@ export const textStyles = [
     },
     paragraphIndent: 3,
     paragraphSpacing: 2,
-    textCase: 'ORIGINAL'
+    textCase: 'ORIGINAL',
+    boundVariables: undefined
   }
 ]
 
@@ -66,7 +68,8 @@ export const textStyleObjects = [
     paragraphIndent: 3,
     paragraphSpacing: 2,
     textCase: 'UPPER',
-    id: 10
+    id: 10,
+    boundVariables: undefined
   },
   {
     name: 'no description',
@@ -87,7 +90,8 @@ export const textStyleObjects = [
     paragraphIndent: 3,
     paragraphSpacing: 2,
     textCase: 'ORIGINAL',
-    id: 11
+    id: 11,
+    boundVariables: undefined
   }
 ]
 

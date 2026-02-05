@@ -21,7 +21,8 @@ const defaultOutput = {
     paragraphIndent: undefined,
     paragraphSpacing: undefined,
     textCase: undefined,
-    textDecoration: undefined
+    textDecoration: undefined,
+    boundVariables: undefined
   }],
   gridStyles: [{
     name: 'GridStyle',

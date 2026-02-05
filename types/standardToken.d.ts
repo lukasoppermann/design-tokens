@@ -43,6 +43,8 @@ export type StandardTokenExtensionsInterface = {
     category?: string,
     group?: string,
     unit?: string,
+    boundVariables?: { [field in VariableBindableTextField]?: string },
+    boundVariable?: string
   }
 }
 
