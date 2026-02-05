@@ -285,12 +285,29 @@ const transformTokens = (token: internalTokenInterface): StandardTokenDataInterf
 
 const transformer = (token: internalTokenInterface, settings): StandardTokenInterface | StandardTokenGroup => {
   if (token.category === 'typography') {
-    // @ts-ignore
-    return {
+    const baseTypography = {
       name: token.name,
       description: token.description,
       ...typographyValueTransformer(token)
     }
+
+    // If there are bound variables and extensions are not excluded, add them to individual properties
+    const boundVars = token.extensions?.[config.key.extensionPluginData]?.boundVariables
+    if (boundVars && !settings.excludeExtensionProp) {
+      // For each property that has a bound variable, add extension metadata
+      Object.keys(boundVars).forEach(propName => {
+        if (baseTypography[propName] && typeof baseTypography[propName] === 'object') {
+          baseTypography[propName].$extensions = {
+            [config.key.extensionPluginData]: {
+              boundVariable: boundVars[propName]
+            }
+          }
+        }
+      })
+    }
+
+    // @ts-ignore
+    return baseTypography
   }
   // variable
   if (token.extensions[config.key.extensionPluginData].exportKey === 'variables') {

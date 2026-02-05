@@ -20,7 +20,8 @@ const getTextStyles = (styles: TextStyle[]): TextStyleObject[] => {
       lineHeight: style.lineHeight,
       paragraphIndent: style.paragraphIndent,
       paragraphSpacing: style.paragraphSpacing,
-      textCase: style.textCase
+      textCase: style.textCase,
+      boundVariables: style.boundVariables
     })
   })
   // return array

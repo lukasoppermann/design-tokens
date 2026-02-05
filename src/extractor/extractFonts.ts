@@ -101,75 +101,85 @@ const parseFontStyle = (fontStyle: string): FontStyle => {
 }
 
 const extractFonts: extractorInterface = (tokenNodes: TextStyle[], prefixArray: string[]): fontPropertyInterface[] => {
-  // get raw text styles
-  return tokenNodes.map(node => ({
-    name: `${prefixArray[0]}/${node.name}`,
-    category: 'font' as tokenCategoryType,
-    exportKey: tokenTypes.font.key as tokenExportKeyType,
-    description: node.description || undefined,
-    values: {
-      fontSize: {
-        value: node.fontSize,
-        unit: 'pixel' as UnitTypePixel,
-        type: 'number' as PropertyType
+  return tokenNodes.map(node => {
+    // Convert VariableAlias objects to variable ID strings
+    const boundVariables = node.boundVariables
+      ? Object.entries(node.boundVariables).reduce((acc, [field, alias]) => {
+          acc[field as VariableBindableTextField] = alias.id
+          return acc
+        }, {} as { [field in VariableBindableTextField]?: string })
+      : undefined
+
+    return {
+      name: `${prefixArray[0]}/${node.name}`,
+      category: 'font' as tokenCategoryType,
+      exportKey: tokenTypes.font.key as tokenExportKeyType,
+      description: node.description || undefined,
+      values: {
+        fontSize: {
+          value: node.fontSize,
+          unit: 'pixel' as UnitTypePixel,
+          type: 'number' as PropertyType
+        },
+        textDecoration: {
+          value: textDecorations[node.textDecoration] as TextDecoration,
+          type: 'string' as PropertyType
+        },
+        fontFamily: {
+          value: node.fontName.family,
+          type: 'string' as PropertyType
+        },
+        fontWeight: {
+          value: parseFontWeight(node.fontName.style),
+          type: 'number' as PropertyType
+        },
+        fontStyle: {
+          value: parseFontStyle(node.fontName.style),
+          type: 'string' as PropertyType
+        },
+        fontStretch: {
+          value: parseFontStretch(node.fontName.style),
+          type: 'string' as PropertyType
+        },
+        _fontStyleOld: {
+          value: node.fontName.style,
+          type: 'string' as PropertyType
+        },
+        letterSpacing: {
+          value: roundWithDecimals(node.letterSpacing.value),
+          unit: <NumericUnitTypes>(node.letterSpacing.unit.toLowerCase() === 'pixels' ? 'pixel' : node.letterSpacing.unit.toLowerCase()),
+          type: 'number' as PropertyType
+        },
+        lineHeight: {
+          // @ts-ignore
+          value: roundWithDecimals(node.lineHeight.value) || 'normal',
+          unit: node.lineHeight.unit.toLowerCase() === 'pixels' ? 'pixel' : node.lineHeight.unit.toLowerCase(),
+          type: (Object.prototype.hasOwnProperty.call(node.lineHeight, 'value') ? 'number' : 'string') as PropertyType
+        },
+        paragraphIndent: {
+          value: node.paragraphIndent,
+          unit: 'pixel' as UnitTypePixel,
+          type: 'number' as PropertyType
+        },
+        paragraphSpacing: {
+          value: node.paragraphSpacing,
+          unit: 'pixel' as UnitTypePixel,
+          type: 'number' as PropertyType
+        },
+        textCase: {
+          value: textCases[node.textCase] as TextCase || 'none' as TextCase,
+          type: 'string' as PropertyType
+        }
       },
-      textDecoration: {
-        value: textDecorations[node.textDecoration] as TextDecoration,
-        type: 'string' as PropertyType
-      },
-      fontFamily: {
-        value: node.fontName.family,
-        type: 'string' as PropertyType
-      },
-      fontWeight: {
-        value: parseFontWeight(node.fontName.style),
-        type: 'number' as PropertyType
-      },
-      fontStyle: {
-        value: parseFontStyle(node.fontName.style),
-        type: 'string' as PropertyType
-      },
-      fontStretch: {
-        value: parseFontStretch(node.fontName.style),
-        type: 'string' as PropertyType
-      },
-      _fontStyleOld: {
-        value: node.fontName.style,
-        type: 'string' as PropertyType
-      },
-      letterSpacing: {
-        value: roundWithDecimals(node.letterSpacing.value),
-        unit: <NumericUnitTypes>(node.letterSpacing.unit.toLowerCase() === 'pixels' ? 'pixel' : node.letterSpacing.unit.toLowerCase()),
-        type: 'number' as PropertyType
-      },
-      lineHeight: {
-        // @ts-ignore
-        value: roundWithDecimals(node.lineHeight.value) || 'normal',
-        unit: node.lineHeight.unit.toLowerCase() === 'pixels' ? 'pixel' : node.lineHeight.unit.toLowerCase(),
-        type: (Object.prototype.hasOwnProperty.call(node.lineHeight, 'value') ? 'number' : 'string') as PropertyType
-      },
-      paragraphIndent: {
-        value: node.paragraphIndent,
-        unit: 'pixel' as UnitTypePixel,
-        type: 'number' as PropertyType
-      },
-      paragraphSpacing: {
-        value: node.paragraphSpacing,
-        unit: 'pixel' as UnitTypePixel,
-        type: 'number' as PropertyType
-      },
-      textCase: {
-        value: textCases[node.textCase] as TextCase || 'none' as TextCase,
-        type: 'string' as PropertyType
-      }
-    },
-    extensions: {
-      [config.key.extensionPluginData]: {
-        [config.key.extensionFigmaStyleId]: node.id,
-        exportKey: tokenTypes.font.key as tokenExportKeyType
+      extensions: {
+        [config.key.extensionPluginData]: {
+          [config.key.extensionFigmaStyleId]: node.id,
+          exportKey: tokenTypes.font.key as tokenExportKeyType,
+          ...(boundVariables && { boundVariables })
+        }
       }
     }
-  }))
+  })
 }
 
 export default extractFonts
