@@ -1,6 +1,6 @@
 {
   "name": "design-tokens",
-  "version": "6.11.3",
+  "version": "6.12.0",
   "description": "Export design tokens from Figma",
   "main": "plugin.js",
   "engines": {
