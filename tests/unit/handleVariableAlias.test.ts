@@ -68,4 +68,67 @@ describe('handleVariableAlias', () => {
       aliasSameMode: false
     })
   })
+
+  it('should return null when the alias target cannot be resolved', async () => {
+    const variable = { name: 'test variable', description: 'test description' } as any
+    const value = { id: 'missing alias id' }
+
+    // @ts-ignore
+    global.figma.variables.getVariableByIdAsync.mockReturnValue(null)
+
+    const result = await handleVariableAlias(variable, value, { modeId: 'passedInModeId', name: 'passedInMode' })
+
+    expect(result).toBeNull()
+    // @ts-ignore
+    expect(global.figma.variables.getVariableCollectionByIdAsync).not.toHaveBeenCalled()
+    // @ts-ignore
+    expect(getVariableTypeByValue).not.toHaveBeenCalled()
+    // @ts-ignore
+    expect(changeNotation).not.toHaveBeenCalled()
+  })
+
+  it('should return null when the alias collection cannot be resolved', async () => {
+    const variable = { name: 'test variable', description: 'test description' } as any
+    const value = { id: 'test id' }
+    const resolvedAlias = {
+      variableCollectionId: 'missing collection id',
+      name: 'test name',
+      valuesByMode: { mode1: 'value1' }
+    }
+
+    // @ts-ignore
+    global.figma.variables.getVariableByIdAsync.mockReturnValue(resolvedAlias)
+    // @ts-ignore
+    global.figma.variables.getVariableCollectionByIdAsync.mockReturnValue(null)
+
+    const result = await handleVariableAlias(variable, value, { modeId: 'passedInModeId', name: 'passedInMode' })
+
+    expect(result).toBeNull()
+  })
+
+  it('should return null when the alias target has no resolved values', async () => {
+    const variable = { name: 'test variable', description: 'test description' } as any
+    const value = { id: 'test id' }
+    const resolvedAlias = {
+      variableCollectionId: 'test collection id',
+      name: 'test name',
+      valuesByMode: {}
+    }
+    const collection = {
+      name: 'test collection name'
+    }
+
+    // @ts-ignore
+    global.figma.variables.getVariableByIdAsync.mockReturnValue(resolvedAlias)
+    // @ts-ignore
+    global.figma.variables.getVariableCollectionByIdAsync.mockReturnValue(collection)
+
+    const result = await handleVariableAlias(variable, value, { modeId: 'passedInModeId', name: 'passedInMode' })
+
+    expect(result).toBeNull()
+    // @ts-ignore
+    expect(getVariableTypeByValue).not.toHaveBeenCalled()
+    // @ts-ignore
+    expect(changeNotation).not.toHaveBeenCalled()
+  })
 })

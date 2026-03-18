@@ -9,6 +9,11 @@ const contents = {
   }
 }
 
+const normalizeAssetName = (parts) => {
+  const assetName = changeCase.pascalCase(parts.join(' '))
+  return assetName || 'Token'
+}
+
 const percentageToFloat = percentageString => {
   return parseInt(percentageString.substring(0, percentageString.length - 1)) / 100
 }
@@ -40,7 +45,7 @@ module.exports = {
     dictionary.allTokens
       .filter(token => token.type === 'color')
       .forEach(token => {
-        const colorsetPath = `${assetPath}/${changeCase.pascalCase(token.path.slice(2).join(' '))}.colorset`
+        const colorsetPath = `${assetPath}/${normalizeAssetName(token.path.slice(2))}.colorset`
         fs.ensureDirSync(colorsetPath)
 
         // The colorset might already exist because Style Dictionary is run multiple
@@ -58,7 +63,7 @@ module.exports = {
           }
         }
 
-        if (token.path[0] === 'dark') {
+        if (token.path[1] === 'dark') {
           color.appearances = [{
             appearance: 'luminosity',
             value: 'dark'

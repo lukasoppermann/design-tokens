@@ -1,7 +1,7 @@
 import { PropertyType } from './valueTypes'
 
 export type OriginalFormatPropertyObject = {
-  value: string | number,
+  value: string | number | boolean,
   type: PropertyType,
   unit?: string
   comment?: string,

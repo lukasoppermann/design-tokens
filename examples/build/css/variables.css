@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon Sep 20 2021 16:18:44 GMT+0200 (Central European Summer Time)
+ * Generated on Wed Mar 18 2026 16:49:53 GMT+0100 (Central European Standard Time)
  */
 
 :root {
@@ -26,13 +26,13 @@
   --gradient-gradient-single-with-multiple-color-stops: radial-gradient(rgb(255, 184, 0) 0%, rgb(255, 138, 0) 34%, rgb(255, 46, 0) 65%, rgb(255, 0, 0) 100%);
   --gradient-gradient-multiple-0: linear-gradient(180deg, rgb(255, 184, 0) 0%, rgb(255, 184, 0) 100%);
   --gradient-gradient-multiple-1: radial-gradient(rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
-  --gradient-gradient-multiple-2: undefined;
-  --gradient-gradient-multiple-3: undefined;
+  --gradient-gradient-multiple-2: conic-gradient(from 180deg, rgb(207, 48, 48) 0%, rgb(255, 255, 255) 100%);
+  --gradient-gradient-multiple-3: radial-gradient(rgb(74, 79, 204) 0%, rgb(255, 255, 255) 100%);
   --color-colors-multiple-fills-0: rgb(64, 255, 186);
   --color-colors-multiple-fills-1: rgba(0, 0, 0, 0.1);
   --color-colors-single-blue: rgb(4, 74, 255);
   --color-colors-special-characters: rgb(64, 223, 80);
-  --color-colors-special-characters-nderung: rgb(52, 86, 175);
+  --color-colors-special-characters-änderung: rgb(52, 86, 175);
   --font-body-h3: condensed  700 20/32 "Akzidenz-Grotesk Pro", sans-serif;
   --font-body-h4-strike-through: italic 500 16/19.2 Roboto;
   --font-body-italic: italic 400 12/14 Roboto;

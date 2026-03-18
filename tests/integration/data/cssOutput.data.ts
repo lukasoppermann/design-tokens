@@ -1,6 +1,6 @@
 export default
 `:root {
-  --sizes-32: 32.72; /* 32.72px spacer component */
+  --sizes-32: 32.72; /** 32.72px spacer component */
   --sizes-40: 40;
   --sizes-60: 60;
   --sizes-80: 80;
@@ -12,7 +12,7 @@ export default
   --sizes-in-variant-120: 120;
   --sizes-frame: 32;
   --sizes-rect: 32;
-  --sizes-shape-in-component: 32; /* Should use 32px not 20 from inside shape */
+  --sizes-shape-in-component: 32; /** Should use 32px not 20 from inside shape */
   --breakpoints-lg: 1280;
   --breakpoints-sm: 768;
   --breakpoints-md: 1024;
@@ -34,28 +34,28 @@ export default
   --borders-single-stroke-join: miter;
   --borders-single-stroke-miter-limit: 4;
   --borders-single-stroke-weight: 5;
-  --borders-single-stroke: rgba(0, 0, 0, 1);
+  --borders-single-stroke: #000000;
   --borders-dashed-outside-stroke-align: outside;
   --borders-dashed-outside-dash-pattern: 5, 5, 3, 3;
   --borders-dashed-outside-stroke-cap: none;
   --borders-dashed-outside-stroke-join: miter;
   --borders-dashed-outside-stroke-miter-limit: 4;
   --borders-dashed-outside-stroke-weight: 5;
-  --borders-dashed-outside-stroke: rgba(0, 0, 0, 1);
+  --borders-dashed-outside-stroke: #000000;
   --borders-single-style-stroke-align: inside;
   --borders-single-style-dash-pattern: 0, 0;
   --borders-single-style-stroke-cap: none;
   --borders-single-style-stroke-join: miter;
   --borders-single-style-stroke-miter-limit: 4;
   --borders-single-style-stroke-weight: 5;
-  --borders-single-style-stroke: rgba(4, 74, 255, 1);
+  --borders-single-style-stroke: #044aff;
   --borders-unsupported-multiple-borders-stroke-align: inside;
   --borders-unsupported-multiple-borders-dash-pattern: 5, 10;
   --borders-unsupported-multiple-borders-stroke-cap: none;
   --borders-unsupported-multiple-borders-stroke-join: miter;
   --borders-unsupported-multiple-borders-stroke-miter-limit: 4;
   --borders-unsupported-multiple-borders-stroke-weight: 5;
-  --borders-unsupported-multiple-borders-stroke: rgba(255, 230, 0, 1);
+  --borders-unsupported-multiple-borders-stroke: #ffe600;
   --radius-5-radius-type: single;
   --radius-5-radii-top-left: 5;
   --radius-5-radii-top-right: 5;
@@ -126,50 +126,50 @@ export default
   --gradient-gradient-single-with-multiple-color-stops-gradient-type: radial;
   --gradient-gradient-single-with-multiple-color-stops-rotation: 180;
   --gradient-gradient-single-with-multiple-color-stops-stops-0-position: 0;
-  --gradient-gradient-single-with-multiple-color-stops-stops-0-color: rgba(255, 184, 0, 1);
+  --gradient-gradient-single-with-multiple-color-stops-stops-0-color: #ffb800;
   --gradient-gradient-single-with-multiple-color-stops-stops-1-position: 0.34;
-  --gradient-gradient-single-with-multiple-color-stops-stops-1-color: rgba(255, 138, 0, 1);
+  --gradient-gradient-single-with-multiple-color-stops-stops-1-color: #ff8a00;
   --gradient-gradient-single-with-multiple-color-stops-stops-2-position: 0.65;
-  --gradient-gradient-single-with-multiple-color-stops-stops-2-color: rgba(255, 46, 0, 1);
+  --gradient-gradient-single-with-multiple-color-stops-stops-2-color: #ff2e00;
   --gradient-gradient-single-with-multiple-color-stops-stops-3-position: 1;
-  --gradient-gradient-single-with-multiple-color-stops-stops-3-color: rgba(255, 0, 0, 1);
+  --gradient-gradient-single-with-multiple-color-stops-stops-3-color: #ff0000;
   --gradient-gradient-single-with-multiple-color-stops-opacity: 1;
   --gradient-gradient-multiplegrad-0-gradient-type: linear;
   --gradient-gradient-multiplegrad-0-rotation: 180;
   --gradient-gradient-multiplegrad-0-stops-0-position: 0;
-  --gradient-gradient-multiplegrad-0-stops-0-color: rgba(255, 184, 0, 1);
+  --gradient-gradient-multiplegrad-0-stops-0-color: #ffb800;
   --gradient-gradient-multiplegrad-0-stops-1-position: 1;
   --gradient-gradient-multiplegrad-0-stops-1-color: rgba(255, 184, 0, 0);
   --gradient-gradient-multiplegrad-0-opacity: 1;
   --gradient-gradient-multiplegrad-1-gradient-type: radial;
   --gradient-gradient-multiplegrad-1-rotation: 180;
   --gradient-gradient-multiplegrad-1-stops-0-position: 0;
-  --gradient-gradient-multiplegrad-1-stops-0-color: rgba(255, 255, 255, 1);
+  --gradient-gradient-multiplegrad-1-stops-0-color: #ffffff;
   --gradient-gradient-multiplegrad-1-stops-1-position: 1;
   --gradient-gradient-multiplegrad-1-stops-1-color: rgba(255, 255, 255, 0);
   --gradient-gradient-multiplegrad-1-opacity: 1;
   --gradient-gradient-multiplegrad-2-gradient-type: angular;
   --gradient-gradient-multiplegrad-2-rotation: 180;
   --gradient-gradient-multiplegrad-2-stops-0-position: 0;
-  --gradient-gradient-multiplegrad-2-stops-0-color: rgba(207, 48, 48, 1);
+  --gradient-gradient-multiplegrad-2-stops-0-color: #cf3030;
   --gradient-gradient-multiplegrad-2-stops-1-position: 1;
   --gradient-gradient-multiplegrad-2-stops-1-color: rgba(255, 255, 255, 0);
   --gradient-gradient-multiplegrad-2-opacity: 1;
   --gradient-gradient-multiplegrad-3-gradient-type: diamond;
   --gradient-gradient-multiplegrad-3-rotation: 180;
   --gradient-gradient-multiplegrad-3-stops-0-position: 0;
-  --gradient-gradient-multiplegrad-3-stops-0-color: rgba(74, 79, 204, 1);
+  --gradient-gradient-multiplegrad-3-stops-0-color: #4a4fcc;
   --gradient-gradient-multiplegrad-3-stops-1-position: 0.23;
   --gradient-gradient-multiplegrad-3-stops-1-color: rgba(255, 255, 255, 0);
   --gradient-gradient-multiplegrad-3-opacity: 1;
-  --color-colors-semi-red: rgba(255, 95, 4, 0.5); /* A red with a 50% opacity */
+  --color-colors-semi-red: rgba(255, 95, 4, 0.5); /** A red with a 50% opacity */
   --color-colors-multiple-fills-0: #40ffba;
   --color-colors-multiple-fills-1: rgba(0, 0, 0, 0.1);
   --color-colors-single-blue: #044aff;
-  --color-colors-ref-blue: #044aff; /* Some other description */
+  --color-colors-ref-blue: #044aff; /** Some other description */
   --color-colors-empty: rgba(0, 0, 0, 0);
-  --color-colors-special-characters: #40df50; /* Emoji */
-  --color-colors-special-characters-nderung: #3456af;
+  --color-colors-special-characters: #40df50; /** Emoji */
+  --color-colors-special-characters-änderung: #3456af;
   --grid-multiple-0-pattern: columns;
   --grid-multiple-0-section-size: 1;
   --grid-multiple-0-gutter-size: 20;
@@ -302,7 +302,7 @@ export default
   --effect-inner-shadow-multiple-0-spread: 0;
   --effect-inner-shadow-multiple-1-type: innerShadow;
   --effect-inner-shadow-multiple-1-radius: 1;
-  --effect-inner-shadow-multiple-1-color: rgba(0, 0, 0, 1);
+  --effect-inner-shadow-multiple-1-color: #000000;
   --effect-inner-shadow-multiple-1-offset-x: 10;
   --effect-inner-shadow-multiple-1-offset-y: 100;
   --effect-inner-shadow-multiple-1-spread: 0.5;

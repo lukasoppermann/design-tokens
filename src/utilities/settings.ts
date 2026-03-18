@@ -10,6 +10,14 @@ const fixMissing = (defaults, current) => Object.fromEntries(Object.entries(defa
   return [key, current[key]]
 }))
 
+const normalizeTokenFormat = (tokenFormat: string) =>
+  tokenFormat === 'w3c' ? 'standard' : tokenFormat
+
+const normalizeSettings = (settings: Settings): Settings => ({
+  ...settings,
+  tokenFormat: normalizeTokenFormat(settings.tokenFormat) as Settings['tokenFormat']
+})
+
 /**
  * get the current users settings
  * for settings that are not set, the defaults will be used
@@ -28,7 +36,7 @@ const getSettings = (): Settings => {
   fixedSettings.prefix = fixMissing(defaultSettings.prefix, fixedSettings.prefix)
   fixedSettings.exports = fixMissing(defaultSettings.exports, fixedSettings.exports)
   // return settings
-  return <Settings>fixedSettings
+  return normalizeSettings(<Settings>fixedSettings)
 }
 
 /**
@@ -42,7 +50,7 @@ const setSettings = (settings: Settings) => {
     ...settings
   }
   // store public settings that should be shared across org
-  figma.root.setPluginData(config.key.settings, stringifyJson(settings))
+  figma.root.setPluginData(config.key.settings, stringifyJson(normalizeSettings(settings)))
 }
 /**
  * @name resetSettings

@@ -1,4 +1,3 @@
-/* eslint-env browser */
 import { commands } from '@config/commands'
 import config from '@config/config'
 import { PluginMessage } from '@typings/pluginEvent'

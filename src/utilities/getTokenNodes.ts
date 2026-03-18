@@ -33,7 +33,6 @@ const getVariantName = (parentName: string, childName: string): string => {
  * @param pages PageNodes
  */
 const getTokenNodes = async (pages: PageNode[]): Promise<customTokenNode[]> => {
-  await figma.loadAllPagesAsync()
   // get token frames
   const tokenFrames = getFrameNodes(pages)
   // get all children of token frames

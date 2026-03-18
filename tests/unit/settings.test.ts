@@ -119,4 +119,18 @@ describe('Testing getSettings', () => {
     // assert
     expect(getSettings()).toStrictEqual(defaultSettings)
   })
+
+  test('legacy w3c token format is normalized to standard', () => {
+    const userSettings = {
+      ...baseSettings,
+      tokenFormat: 'w3c'
+    }
+    // @ts-ignore
+    figma.root.getPluginData.mockReturnValue(JSON.stringify(userSettings, null, 2))
+
+    expect(getSettings()).toStrictEqual({
+      ...baseSettings,
+      tokenFormat: 'standard'
+    })
+  })
 })

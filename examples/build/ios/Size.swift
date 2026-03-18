@@ -3,8 +3,7 @@
 // Size.swift
 //
 
-// Do not edit directly
-// Generated on Mon, 20 Sep 2021 14:18:44 GMT
+// Do not edit directly, this file was auto-generated.
 
 
 import UIKit

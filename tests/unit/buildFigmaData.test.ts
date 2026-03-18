@@ -41,18 +41,27 @@ const defaultOutput = {
 }
 
 beforeAll(() => {
-  // @ts-ignore
-  global.figma = {
+  const initialChildren = [{
+    findChildren: jest.fn()
+  }]
+  const loadedChildren = [{
+    findChildren: jest.fn()
+  }]
+  const figmaMock = {
     root: {
-      children: [{
-        findChildren: jest.fn()
-      }]
+      children: initialChildren
     },
+    loadAllPagesAsync: jest.fn().mockImplementation(async () => {
+      figmaMock.root.children = loadedChildren
+      return loadedChildren
+    }),
     getLocalPaintStylesAsync: jest.fn(),
     getLocalGridStylesAsync: jest.fn(),
     getLocalTextStylesAsync: jest.fn(),
     getLocalEffectStylesAsync: jest.fn()
   }
+  // @ts-ignore
+  global.figma = figmaMock
 
   // @ts-ignore
   global.figma.getLocalPaintStylesAsync.mockReturnValue([{
@@ -87,9 +96,23 @@ beforeAll(() => {
 })
 
 describe('Testing buildFigmaData', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   test('without options', async () => {
     // assert
     // @ts-ignore
     expect(await buildFigmaData(global.figma, defaultSettings)).toStrictEqual(defaultOutput)
+  })
+
+  test('loads all pages before reading token frames', async () => {
+    // @ts-ignore
+    await buildFigmaData(global.figma, defaultSettings)
+
+    // @ts-ignore
+    expect(global.figma.loadAllPagesAsync).toHaveBeenCalled()
+    // @ts-ignore
+    expect(getTokenNodes).toHaveBeenCalledWith(global.figma.root.children)
   })
 })

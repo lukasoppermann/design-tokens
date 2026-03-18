@@ -15,7 +15,7 @@ describe('getVersionDifference', () => {
     const versionDifference = await getVersionDifference(figmaMock)
     // expect outcome
     expect(versionDifference).toStrictEqual(undefined)
-    expect(figmaMock.clientStorage.setAsync).not.toBeCalledWith('3.1.2')
+    expect(figmaMock.clientStorage.setAsync).not.toHaveBeenCalledWith('3.1.2')
   })
 
   test('major version', async () => {
@@ -24,7 +24,7 @@ describe('getVersionDifference', () => {
     const versionDifference = await getVersionDifference(figmaMock)
     // expect outcome
     expect(versionDifference).toStrictEqual('major')
-    expect(figmaMock.clientStorage.setAsync).toBeCalledWith('lastVersionSettingsOpened', '3.1.2')
+    expect(figmaMock.clientStorage.setAsync).toHaveBeenCalledWith('lastVersionSettingsOpened', '3.1.2')
   })
 
   test('minor version', async () => {
@@ -33,7 +33,7 @@ describe('getVersionDifference', () => {
     const versionDifference = await getVersionDifference(figmaMock)
     // expect outcome
     expect(versionDifference).toStrictEqual('minor')
-    expect(figmaMock.clientStorage.setAsync).toBeCalledWith('lastVersionSettingsOpened', '3.1.2')
+    expect(figmaMock.clientStorage.setAsync).toHaveBeenCalledWith('lastVersionSettingsOpened', '3.1.2')
   })
 
   test('patch version', async () => {
@@ -42,7 +42,7 @@ describe('getVersionDifference', () => {
     const versionDifference = await getVersionDifference(figmaMock)
     // expect outcome
     expect(versionDifference).toStrictEqual('patch')
-    expect(figmaMock.clientStorage.setAsync).toBeCalledWith('lastVersionSettingsOpened', '3.1.2')
+    expect(figmaMock.clientStorage.setAsync).toHaveBeenCalledWith('lastVersionSettingsOpened', '3.1.2')
   })
 
   test.skip('invers version difference', async () => {
@@ -51,6 +51,6 @@ describe('getVersionDifference', () => {
     const versionDifference = await getVersionDifference(figmaMock)
     // expect outcome
     expect(versionDifference).toStrictEqual('')
-    expect(figmaMock.clientStorage.setAsync).not.toBeCalledWith('3.1.2')
+    expect(figmaMock.clientStorage.setAsync).not.toHaveBeenCalledWith('3.1.2')
   })
 })

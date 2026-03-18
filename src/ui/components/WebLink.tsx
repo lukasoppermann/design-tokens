@@ -21,10 +21,12 @@ const style = css`
   }
 `
 const clickWebLink = (href) => {
-  window.open(href)
   parent.postMessage({
     pluginMessage: {
-      command: commands.closePlugin
+      command: commands.openUrl,
+      payload: {
+        url: href
+      }
     }
   }, '*')
 }

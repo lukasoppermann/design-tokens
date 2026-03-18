@@ -1,30 +1,43 @@
-const StyleDictionary = require('style-dictionary')
+const StyleDictionaryModule = require('style-dictionary')
 
-const StyleDictionaryExtended = StyleDictionary.extend({
+const StyleDictionary = StyleDictionaryModule.default || StyleDictionaryModule
+const probe = new StyleDictionary({})
+
+const adaptTransform = (transform) => ({
+  type: transform.type,
+  filter: transform.matcher || transform.filter,
+  transform: transform.transformer || transform.transform
+})
+
+const StyleDictionaryExtended = new StyleDictionary({
   source: ['./tests/files/standard-tokens.json'],
-  transform: {
-    'size/px': require('./libs/standard/web/sizePx'),
-    'web/shadow': require('./libs/standard/web/webShadows'),
-    'web/radius': require('./libs/standard/web/webRadius'),
-    'web/padding': require('./libs/standard/web/webPadding'),
-    'web/font': require('./libs/standard/web/webFont'),
-    'web/gradient': require('./libs/standard/web/webGradient'),
-    'color/hex8ToRgba': require('./libs/standard/web/colorToRgbaString')
-  },
-  format: {
-    css: require('./libs/standard/web/formatWeb')
+  hooks: {
+    transforms: {
+      'size/px': adaptTransform(require('./libs/standard/web/sizePx')),
+      'web/shadow': adaptTransform(require('./libs/standard/web/webShadows')),
+      'web/radius': adaptTransform(require('./libs/standard/web/webRadius')),
+      'web/padding': adaptTransform(require('./libs/standard/web/webPadding')),
+      'web/font': adaptTransform(require('./libs/standard/web/webFont')),
+      'web/gradient': adaptTransform(require('./libs/standard/web/webGradient')),
+      'color/hex8ToRgba': adaptTransform(require('./libs/standard/web/colorToRgbaString'))
+    },
+    formats: {
+      css: require('./libs/standard/web/formatWeb')
+    }
   },
   platforms: {
     css: {
-      transforms: StyleDictionary.transformGroup.css.concat([
-        'size/px',
-        'web/shadow',
-        'web/radius',
-        'web/padding',
-        'web/font',
-        'web/gradient',
-        'color/hex8ToRgba'
-      ]),
+      transforms: probe.hooks.transformGroups.css
+        .filter(transformName => transformName !== 'size/rem')
+        .concat([
+          'size/px',
+          'web/shadow',
+          'web/radius',
+          'web/padding',
+          'web/font',
+          'web/gradient',
+          'color/hex8ToRgba'
+        ]),
       buildPath: './tests/integration/data/',
       files: [
         {

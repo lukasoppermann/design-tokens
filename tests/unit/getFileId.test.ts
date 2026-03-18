@@ -20,7 +20,7 @@ describe('getFileId', () => {
     // @ts-ignore
     getFileId(figmaMock)
     // assert
-    expect(figmaMock.root.getPluginData).toBeCalledTimes(2)
+    expect(figmaMock.root.getPluginData).toHaveBeenCalledTimes(2)
     expect(figmaMock.root.setPluginData.mock.calls[0][0]).toStrictEqual(config.key.fileId)
     expect(figmaMock.root.setPluginData.mock.calls[0][1].substr(0, 8)).toStrictEqual('testFile')
   })
@@ -31,8 +31,8 @@ describe('getFileId', () => {
     // @ts-ignore
     const value = getFileId(figmaMock)
     // assert
-    expect(figmaMock.root.getPluginData).toBeCalledTimes(1)
-    expect(figmaMock.root.setPluginData).not.toBeCalled()
+    expect(figmaMock.root.getPluginData).toHaveBeenCalledTimes(1)
+    expect(figmaMock.root.setPluginData).not.toHaveBeenCalled()
     expect(value).toStrictEqual('alreadySet 2345')
   })
 })

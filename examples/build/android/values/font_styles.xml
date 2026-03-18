@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Do not edit directly
-  Generated on Mon, 20 Sep 2021 14:18:44 GMT
+  Do not edit directly, this file was auto-generated.
 -->
 <resources>
   <style name="fontBodyH3">
@@ -16,7 +15,7 @@
 
   <style name="fontBodyH4StrikeThrough">
     <!-- With stylisitc options -->
-    <item name="android:fontFamily">undefined</item>
+    <item name="android:fontFamily">Roboto</item>
     <item name="android:textSize">@dimen/fontBodyH4StrikeThrough</item>
     <item name="android:lineHeight">19.2sp</item>
     <item name="android:letterSpacing">1</item>
@@ -25,7 +24,7 @@
   </style>
 
   <style name="fontBodyItalic">
-    <item name="android:fontFamily">undefined</item>
+    <item name="android:fontFamily">Roboto</item>
     <item name="android:textSize">@dimen/fontBodyItalic</item>
     <item name="android:lineHeight">14sp</item>
     <item name="android:letterSpacing">1</item>

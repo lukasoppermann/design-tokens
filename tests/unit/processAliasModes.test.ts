@@ -18,16 +18,12 @@ describe('processAliasModes', () => {
       },
     ]
     const result = processAliasModes(variables)
-    expect(result).toMatchInlineSnapshot(`
-Array [
-  Object {
-    "aliasCollectionName": "collection",
-    "aliasMode": Object {
-      "name": "mode1",
-    },
-    "values": "{CollEctIon.}",
-  },
-]
-`)
+    expect(result).toEqual([
+      {
+        values: '{CollEctIon.}',
+        aliasMode: { name: 'mode1' },
+        aliasCollectionName: 'collection',
+      },
+    ])
   })
 })

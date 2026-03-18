@@ -15,5 +15,6 @@ module.exports = {
     if (value.gradientType === 'radial') {
       return `radial-gradient(${stopsString})`
     }
+    return 'undefined'
   }
 }

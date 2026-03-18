@@ -47,7 +47,7 @@ export default
   --color-colors-ref-blue: rgb(4, 74, 255); /* Some other description */
   --color-colors-empty: rgba(0, 0, 0, 0);
   --color-colors-special-characters: rgb(64, 223, 80); /* Emoji */
-  --color-colors-special-characters-nderung: rgb(52, 86, 175);
+  --color-colors-special-characters-änderung: rgb(52, 86, 175);
   --grid-multiple-0: [object Object];
   --grid-multiple-1: [object Object];
   --grid-multiple-2: [object Object];

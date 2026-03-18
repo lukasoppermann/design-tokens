@@ -121,4 +121,20 @@ describe('prepareExport', () => {
     const result = prepareExport(JSON.stringify(tokens), settings)
     expect(result.some(token => token.category === 'typography')).toBe(false)
   })
+
+  it('should keep variable tokens when the variables export flag is missing from settings', () => {
+    const tokens = [
+      { name: 'collection/token', category: 'dimension', exportKey: 'variables', extensions: {} } as internalTokenInterface
+    ]
+    const settings = {
+      ...mockSettings,
+      exports: Object.fromEntries(
+        Object.entries(mockSettings.exports).filter(([key]) => key !== 'variables')
+      )
+    } as Settings
+
+    const result = prepareExport(JSON.stringify(tokens), settings)
+
+    expect(result.some(token => token.exportKey === 'variables')).toBe(true)
+  })
 })

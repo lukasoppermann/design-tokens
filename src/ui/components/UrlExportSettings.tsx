@@ -43,7 +43,7 @@ export const UrlExportSettings = () => {
     settings: Settings;
     updateSettings: any;
   }>(SettingsContext)
-  const { tokens, setTokens } = useContext(TokenContext)
+  const { tokens } = useContext(TokenContext)
   const { figmaUIApi } = useContext(FigmaContext)
   const [commitMessage, setCommitMessage] = useState('')
 
@@ -68,7 +68,6 @@ export const UrlExportSettings = () => {
       )
       // prepare token json
       const tokensToExport = prepareExport(tokens, pluginSettings)
-      setTokens(tokensToExport)
       // download tokens
       urlExport(
         parent,

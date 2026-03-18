@@ -34,9 +34,9 @@ export const FileExportSettings = () => {
     settings: Settings;
     updateSettings: any;
   }>(SettingsContext)
-  const { tokens, setTokens } = useContext(TokenContext)
+  const { tokens } = useContext(TokenContext)
   const { figmaUIApi } = useContext(FigmaContext)
-  const downloadLinkRef = useRef()
+  const downloadLinkRef = useRef<HTMLAnchorElement>(null)
 
   React.useEffect(() => {
     const { accessToken, ...pluginSettings } = settings
@@ -50,7 +50,6 @@ export const FileExportSettings = () => {
             accessToken: accessToken
           }
         }
-        // @ts-ignore
       },
       '*'
     )
@@ -59,8 +58,16 @@ export const FileExportSettings = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault() // Prevent form submit triggering navigation
     const exportSettingsForm = event.target
+    console.log('[Design Tokens] Export submit triggered', {
+      hasTokens: Boolean(tokens),
+      tokenStringLength: typeof tokens === 'string' ? tokens.length : null,
+      filename: settings.filename,
+      extension: settings.extension,
+      compression: settings.compression
+    })
     if (exportSettingsForm.checkValidity() === true) {
       const { accessToken, ...pluginSettings } = settings
+      console.log('[Design Tokens] Export settings are valid', pluginSettings)
       // save settings to local storage
       figmaUIApi.postMessage(
         {
@@ -71,18 +78,18 @@ export const FileExportSettings = () => {
               accessToken: accessToken
             }
           }
-          // @ts-ignore
         },
         '*'
       )
       // prepare token json
       if (!tokens || tokens === '[]' || tokens === '{}') {
+        console.warn('[Design Tokens] Export aborted because there are no tokens to export')
         figmaUIApi.postMessage(
           {
             pluginMessage: {
               command: commands.closePlugin,
               payload: {
-                notification: 'No tokens to export!'
+                notification: '⛔️ No tokens to export!'
               }
             }
           },
@@ -92,14 +99,26 @@ export const FileExportSettings = () => {
       }
 
       const tokensToExport = prepareExport(tokens, pluginSettings)
+      console.log('[Design Tokens] Tokens prepared for export', {
+        tokenCount: Array.isArray(tokensToExport) ? tokensToExport.length : null,
+        tokenType: typeof tokensToExport
+      })
 
-      setTokens(tokensToExport)
+      if (downloadLinkRef.current === null) {
+        console.error('[Design Tokens] Download link ref is null, export cannot continue')
+        return
+      }
+      console.log('[Design Tokens] Starting download', {
+        downloadName: `${settings.filename}${settings.extension}`
+      })
       // download tokes
       downloadJson(
         parent,
         downloadLinkRef.current,
         stringifyJson(tokensToExport, pluginSettings.compression)
       )
+    } else {
+      console.warn('[Design Tokens] Export settings form is invalid')
     }
   }
 
@@ -147,7 +166,6 @@ export const FileExportSettings = () => {
       </Title>
       <div className="grid-3-col">
         {Object.entries(tokenTypes)
-          // @ts-ignore
           .map(
             ([, { key, label, exclude = undefined }]) =>
               (exclude === undefined ||

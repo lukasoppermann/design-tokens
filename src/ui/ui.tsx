@@ -12,12 +12,11 @@ import { css } from '@emotion/css'
 import { defaultSettings } from '@config/defaultSettings'
 import { handleKeyboardInput } from './modules/handleKeyboardInput'
 import { commands, PluginCommands } from '@config/commands'
-import { PluginEvent } from '@typings/pluginEvent'
+import { PluginEvent, PluginMessage } from '@typings/pluginEvent'
 import { FileExportSettings } from '@components/FileExportSettings'
 import { UrlExportSettings } from '@components/UrlExportSettings'
 // ---------------------------------
-// @ts-ignore
-const figmaUIApi: UIAPI = parent as UIAPI
+const figmaUIApi: UIAPI = parent as unknown as UIAPI
 
 const style = css`
   padding: 8px var(--size-xxsmall) 0;
@@ -34,15 +33,31 @@ const PluginUi = () => {
   const [figmaMetaData, setFigmaMetaData] = useState(null)
   const [settings, updateSettings] = useImmer(defaultSettings)
 
-  // listen to messages
-  // eslint-disable-next-line
   onmessage = (event: PluginEvent) => {
     // capture message
-    const { command, payload } = event.data.pluginMessage || {} as {command: PluginCommands, payload: any}
+    const pluginMessage: Partial<PluginMessage> = event.data.pluginMessage || {}
+    const { command, payload } = pluginMessage as {
+      command?: PluginCommands
+      payload?: PluginMessage['payload']
+    }
+    console.log('[Design Tokens] UI received plugin message', {
+      command,
+      hasPayload: Boolean(payload),
+      payloadKeys: payload ? Object.keys(payload) : []
+    })
     // set settings
     if ([commands.urlExport, commands.export, commands.generalSettings].includes(command)) {
       updateSettings({
+        ...defaultSettings,
         ...payload.settings,
+        prefix: {
+          ...defaultSettings.prefix,
+          ...payload.settings?.prefix
+        },
+        exports: {
+          ...defaultSettings.exports,
+          ...payload.settings?.exports
+        },
         filename: payload.settings.filename || payload.metadata.filename
       })
       setVersionDifference(payload.versionDifference)
@@ -50,13 +65,22 @@ const PluginUi = () => {
       setTokens(payload.data)
       // activate page
       setActivePage(command)
+      console.log('[Design Tokens] UI activated page', {
+        command,
+        hasData: Boolean(payload.data),
+        dataLength: typeof payload.data === 'string' ? payload.data.length : null,
+        data: payload.data
+      })
     }
     // open url
     if ([commands.help, commands.demo, commands.openUrl].includes(command)) {
-      window.open(payload.url)
+      console.log('[Design Tokens] UI opening external URL', { url: payload.url })
       parent.postMessage({
         pluginMessage: {
-          command: commands.closePlugin
+          command: commands.openUrl,
+          payload: {
+            url: payload.url
+          }
         }
       }, '*')
     }

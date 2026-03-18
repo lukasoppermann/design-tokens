@@ -2,7 +2,7 @@
 //
 //  StyleDictionary+Generated.swift
 //
-//  Created by Design Token Generator on 20.09.2021.
+//  Created by Design Token Generator on 18.03.2026.
 //
 
 import UIKit

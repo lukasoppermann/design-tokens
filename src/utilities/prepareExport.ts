@@ -8,6 +8,7 @@ import { tokenCategoryType } from '@typings/tokenCategory'
 import { tokenExportKeyType } from '@typings/tokenExportKey'
 import config from '@config/config'
 import { prefixTokenName } from '@utils/prefixTokenName'
+import { defaultSettings } from '@config/defaultSettings'
 
 const tokenTransformer = {
   original: originalFormatTransformer,
@@ -35,20 +36,47 @@ const createTypographyTokens = (tokens: internalTokenInterface[], settings) => {
 }
 
 export const prepareExport = (tokens: string, settings: Settings) => {
+  const mergedSettings = {
+    ...defaultSettings,
+    ...settings,
+    prefix: {
+      ...defaultSettings.prefix,
+      ...settings.prefix
+    },
+    exports: {
+      ...defaultSettings.exports,
+      ...settings.exports
+    }
+  }
+  if ((mergedSettings.tokenFormat as string) === 'w3c') {
+    mergedSettings.tokenFormat = 'standard'
+  }
   if (tokens.length === 0) tokens = '[]'
   // parse json string
   let tokenArray: internalTokenInterface[] = JSON.parse(tokens)
+  const exportKeyCounts = tokenArray.reduce((counts, token) => {
+    counts[token.exportKey] = (counts[token.exportKey] || 0) + 1
+    return counts
+  }, {})
   // duplicate font if typography is true && format = standard
-  tokenArray = [...tokenArray, ...createTypographyTokens(tokenArray, settings)]
+  tokenArray = [...tokenArray, ...createTypographyTokens(tokenArray, mergedSettings)]
   // filter by user setting for export keys
-  const tokensFiltered: internalTokenInterface[] = tokenArray.filter(({ exportKey }) => settings.exports[exportKey])
+  const tokensFiltered: internalTokenInterface[] = tokenArray.filter(({ exportKey }) => mergedSettings.exports[exportKey])
   // add to name
-  const prefixedTokens = prefixTokenName(tokensFiltered, settings)
+  const prefixedTokens = prefixTokenName(tokensFiltered, mergedSettings)
   // converted values
-  const tokensConverted = prefixedTokens.map(token => tokenTransformer[settings.tokenFormat]?.(token, settings)).filter(Boolean)
+  const tokensConverted = prefixedTokens.map(token => tokenTransformer[mergedSettings.tokenFormat]?.(token, mergedSettings)).filter(Boolean)
+  console.log('[Design Tokens] prepareExport summary', {
+    tokenFormat: mergedSettings.tokenFormat,
+    rawCount: tokenArray.length,
+    exportKeyCounts,
+    enabledExports: mergedSettings.exports,
+    filteredCount: tokensFiltered.length,
+    convertedCount: tokensConverted.length
+  })
   // group items by their names
   // @ts-ignore
-  const tokensGroupedByName = groupByKeyAndName(tokensConverted, settings)
+  const tokensGroupedByName = groupByKeyAndName(tokensConverted, mergedSettings)
   // return tokens
   return tokensGroupedByName
 }

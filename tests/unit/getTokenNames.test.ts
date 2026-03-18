@@ -17,9 +17,16 @@ beforeAll(() => {
 })
 
 describe('getTokenNodes', () => {
+  beforeEach(() => {
+    // @ts-ignore
+    global.figma.loadAllPagesAsync.mockClear()
+  })
+
   test('empty input', async () => {
     // @ts-ignore
     expect(await getTokenNodes(pages)).toStrictEqual([])
+    // @ts-ignore
+    expect(global.figma.loadAllPagesAsync).not.toHaveBeenCalled()
   })
 
   test('page with input', async () => {
@@ -254,6 +261,8 @@ describe('getTokenNodes', () => {
         opacity: 0.3
       }
     ])
+    // @ts-ignore
+    expect(global.figma.loadAllPagesAsync).not.toHaveBeenCalled()
   })
 
   test('isTokenNode valid tokenNode', () => {

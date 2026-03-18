@@ -12,7 +12,7 @@ import deepMerge from '@utils/deepMerge'
 
 const extractVariable = async (
   variable: Variable & { aliasSameMode?: boolean },
-  value: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+  value: any,
   mode: { modeId: string; name: string }
 ) => {
   let category: tokenCategoryType = 'color'
@@ -53,37 +53,44 @@ const extractVariable = async (
   }
 }
 
-const detectVariableReferencesInCollection = (collection, variable) => {
-  let tmpVariable = {}
-  if (variable) {
-    collection?.modes?.forEach((mode) => {
-      const modeValue = variable.valuesByMode[mode.modeId]
-
-      // Loop through other variables in the same collection to check for references
-      collection.variableIds?.forEach(async (otherVariableId) => {
-        const otherVariable = await figma.variables.getVariableByIdAsync(
-          otherVariableId
-        )
-
-        if (
-          otherVariable &&
-          modeValue &&
-          typeof modeValue === 'object' &&
-          variable.name !== otherVariable.name && // Avoid self-reference
-          modeValue.id === otherVariable.id
-        ) {
-          const aliasSameMode = true
-          tmpVariable = handleVariableAlias(
-            variable,
-            modeValue,
-            mode,
-            aliasSameMode
-          )
-        }
-      })
-    })
+// Used only when `resolveSameCollectionOrModeReference` is enabled.
+// For alias values, this checks whether the referenced variable lives in the
+// same collection so later export can inject the current mode into the alias path.
+const detectVariableReferencesInCollection = async (
+  figma: PluginAPI,
+  collection,
+  variable
+) => {
+  if (!collection || !variable) {
+    return variable
   }
-  return deepMerge(variable, tmpVariable)
+
+  for (const mode of collection.modes || []) {
+    const modeValue = variable.valuesByMode?.[mode.modeId]
+
+    if (
+      !modeValue ||
+      typeof modeValue !== 'object' ||
+      modeValue.type !== 'VARIABLE_ALIAS'
+    ) {
+      continue
+    }
+
+    const otherVariable = await figma.variables.getVariableByIdAsync(modeValue.id)
+    const isSameVariable = variable.id
+      ? variable.id === otherVariable?.id
+      : variable.name === otherVariable?.name
+
+    if (
+      otherVariable &&
+      !isSameVariable &&
+      otherVariable.variableCollectionId === collection.id
+    ) {
+      return deepMerge(variable, { aliasSameMode: true })
+    }
+  }
+
+  return variable
 }
 
 export const getVariables = async (figma: PluginAPI, settings: Settings) => {
@@ -112,7 +119,8 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
     const { name: collection, modes } = collections[variableCollectionId]
 
     if (settings.resolveSameCollectionOrModeReference) {
-      variable = detectVariableReferencesInCollection(
+      variable = await detectVariableReferencesInCollection(
+        figma,
         collections[variableCollectionId],
         variable
       )
@@ -132,6 +140,9 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
       const variableName = `${collection}/${variable.name}`
       const variableNameWithMode = mode ? `${collection}/${mode?.name}/${variable?.name}` : variableName
       const extractedVariable = await extractVariable(variable, value, mode)
+      if (!extractedVariable) {
+        return null
+      }
 
       return {
         ...extractedVariable,
@@ -152,6 +163,8 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
     }))
   }) || [])
 
+  const flattenedVariables = variables.flat().filter(Boolean)
+
   // add the mode name to the variable values value in order
   // to be able to reference to it correctly:
   // values: collection.value becomes collection.[mode name].value
@@ -159,13 +172,12 @@ export const getVariables = async (figma: PluginAPI, settings: Settings) => {
   // `variablesWithAliasInTheSameCollection` is not used when `settings.modeInTokenValue`
   // is set to `true` to avoid values in the form of: collection.[mode name].[mode name].value
   const variablesWithAliasInTheSameCollection = () =>
-    variables
-      .flat()
+    flattenedVariables
       // @ts-ignore
       .map((v) => (v?.aliasSameMode ? processAliasModes([v]) : v))
       .flat()
 
   return settings.modeInTokenValue
-    ? processAliasModes(variables.flat())
+    ? processAliasModes(flattenedVariables)
     : variablesWithAliasInTheSameCollection()
 }

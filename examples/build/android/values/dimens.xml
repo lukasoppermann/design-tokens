@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  Do not edit directly
-  Generated on Mon, 20 Sep 2021 14:18:44 GMT
+  Do not edit directly, this file was auto-generated.
 -->
 <resources>
   <dimen name="sizes32">32.72dp</dimen>
@@ -27,5 +26,4 @@
   <dimen name="fontBodyExtraBoldCondensedItalic">12sp</dimen>
   <dimen name="fontBodyMediumExtendedItalic">20sp</dimen>
   <dimen name="fontBodySuper">22sp</dimen>
-  
 </resources>

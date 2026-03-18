@@ -15,5 +15,12 @@ module.exports = {
     if (value.gradientType === 'radial') {
       return `radial-gradient(${stopsString})`
     }
+    if (value.gradientType === 'angular') {
+      return `conic-gradient(from ${value.rotation}deg, ${stopsString})`
+    }
+    if (value.gradientType === 'diamond') {
+      return `radial-gradient(${stopsString})`
+    }
+    return `linear-gradient(${value.rotation}deg, ${stopsString})`
   }
 }

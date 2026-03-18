@@ -16,6 +16,9 @@ const buildFigmaData = async (
   figma: PluginAPI,
   settings: Settings
 ): Promise<figmaDataType> => {
+  if (typeof figma.loadAllPagesAsync === 'function') {
+    await figma.loadAllPagesAsync()
+  }
   // use spread operator because the original is readOnly
   const tokenFrames = await getTokenNodes([...figma.root.children])
   // get user exclusion prefixes
